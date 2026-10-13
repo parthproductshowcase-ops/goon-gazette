@@ -1,0 +1,39 @@
+name: The Goon Gazette
+on:
+  schedule:
+    - cron: "0 11 * * *"   # 7am ET during EDT (6am in winter)
+  workflow_dispatch:        # "Run workflow" button for manual rebuilds
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python -m pipeline.history   # cheap: only fetches seasons not yet archived
+        continue-on-error: true   # a history hiccup never blocks the daily paper
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
+          YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - run: python -m pipeline.build
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
+          YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Commit today's paper
+        run: |
+          git config user.name "gazette-bot"
+          git config user.email "gazette-bot@users.noreply.github.com"
+          git add docs/data archive cache
+          git diff --cached --quiet || git commit -m "Gazette $(date -u +%F)"
+          git push

@@ -1,0 +1,135 @@
+"""Daily build: Yahoo -> stats -> recap -> docs/data/league.json
+
+    python -m pipeline.build            # live (needs env vars below)
+    python -m pipeline.build --sample   # fake league, no credentials
+
+Env: YAHOO_CLIENT_ID, YAHOO_CLIENT_SECRET, YAHOO_REFRESH_TOKEN, YAHOO_LEAGUE_ID,
+     ANTHROPIC_API_KEY (optional; template recap without it)
+"""
+import json
+import os
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+from . import players, recap, stats
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "docs" / "data"
+CACHE = ROOT / "cache" / "days"
+
+
+def fetch_live():
+    from .yahoo import Yahoo
+    y = Yahoo(os.environ["YAHOO_CLIENT_ID"], os.environ["YAHOO_CLIENT_SECRET"],
+              os.environ["YAHOO_REFRESH_TOKEN"])
+    lk = y.league_key(os.environ["YAHOO_LEAGUE_ID"])
+    meta = y.meta(lk)
+    cats = y.cats(lk)
+    ids = {c["id"] for c in cats}
+    teams, standings = y.teams_and_standings(lk)
+    yesterday = (datetime.now(ZoneInfo("America/New_York")) - timedelta(days=1)).date().isoformat()
+
+    po = y.playoff_settings(lk)
+    reg_end = min(po["playoff_start_week"] - 1, meta["end_week"])
+    weekly, results = {}, {}
+    for wk in range(meta["start_week"], meta["current_week"]):
+        results[wk] = y.scoreboard(lk, wk, ids)
+        weekly[wk] = {}
+        for m in results[wk]:
+            weekly[wk][m["a"]] = m["a_stats"]
+            weekly[wk][m["b"]] = m["b_stats"]
+    # remaining regular-season pairings (Yahoo lists future matchups on the scoreboard)
+    schedule = {}
+    for wk in range(meta["current_week"], reg_end + 1):
+        schedule[wk] = [[m["a"], m["b"]] for m in y.scoreboard(lk, wk, set())]
+    now = datetime.now(ZoneInfo("America/New_York"))
+    week_progress = round(now.weekday() / 7, 2)  # Yahoo NBA weeks run Monday to Sunday
+
+    # player-level data: every roster's daily stat lines, cached one file per finished day
+    frac = y.frac_ids(lk)
+    gw = y.game_weeks(lk.split(".")[0])
+    cur = meta["current_week"]
+    windows = {}
+    if cur - 1 in gw:
+        windows["last"] = {"week": cur - 1, **gw[cur - 1]}
+    if cur in gw:
+        windows["current"] = {"week": cur, "start": gw[cur]["start"], "end": min(gw[cur]["end"], yesterday)}
+    days = {}
+    want = set()
+    for w in windows.values():
+        if w["end"] >= w["start"]:
+            want.update(players.date_range(w["start"], w["end"]))
+    want.add(yesterday)
+    if meta.get("draft_status") != "postdraft":
+        want = set()  # no rosters to read before the draft
+    CACHE.mkdir(parents=True, exist_ok=True)
+    for dt in sorted(want):
+        f = CACHE / f"{dt}.json"
+        if f.exists():
+            days[dt] = json.loads(f.read_text())
+            continue
+        days[dt] = {}
+        for tk in teams:
+            try:
+                days[dt][tk] = y.roster_day(tk, dt, ids, frac)
+            except Exception as e:
+                print("roster fetch failed", tk, dt, e)
+        f.write_text(json.dumps(days[dt]))
+    try:
+        transactions = y.transactions(lk)
+    except Exception as e:
+        print("transactions fetch failed:", e)
+        transactions = []
+
+    preseason = meta.get("draft_status") != "postdraft"
+    d = {
+        "league": meta, "cats": cats, "teams": teams, "standings": standings,
+        "weekly": weekly, "results": results, "schedule": schedule, "date": yesterday,
+        "num_playoff_teams": po["num_playoff_teams"], "reg_end": reg_end, "week_progress": week_progress,
+        "matchups": [] if preseason else y.scoreboard(lk, meta["current_week"], ids),
+        "season": {} if preseason else y.team_stats(lk, ids, "season"),
+        "daily": {} if preseason else y.team_stats(lk, ids, "date", yesterday),
+        "days": days, "windows": windows, "transactions": transactions, "frac": frac,
+    }
+    d["bench"] = players.bench_from_day(d, yesterday)
+    return d, preseason
+
+
+def main():
+    sample = "--sample" in sys.argv
+    if sample:
+        from .sample import make
+        d, preseason = make(), False
+    else:
+        d, preseason = fetch_live()
+
+    hist = OUT / "history"
+    hist.mkdir(parents=True, exist_ok=True)
+    prev_files = sorted(p for p in hist.glob("*.json") if p.stem < d["date"])
+    prev = json.loads(prev_files[-1].read_text()) if prev_files else None
+
+    if preseason:
+        a = {"league": d["league"], "date": d["date"], "preseason": True,
+             "cats": d["cats"], "teams": d["teams"], "standings": d["standings"],
+             "power": [], "luck": [], "punts": [], "matchups": [], "daily": None,
+             "bench": [], "weeks_played": 0,
+             "recap": {"headline": "TIP-OFF IS COMING",
+                       "subhead": "The presses roll once the draft is done.",
+                       "body": [f"{len(d['teams'])} teams, {len(d['cats'])} categories, zero excuses."],
+                       "zingers": []}}
+    else:
+        a = stats.analyze(d, prev)
+        a["recap"] = d["recap"] if sample else recap.write(a)
+
+    a["generated_at"] = datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes")
+    blob = json.dumps(a, indent=1)
+    (OUT / "league.json").write_text(blob)
+    if not sample:
+        (hist / f"{d['date']}.json").write_text(blob)
+    print("wrote", OUT / "league.json")
+
+
+if __name__ == "__main__":
+    main()

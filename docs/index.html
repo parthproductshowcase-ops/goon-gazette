@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="assets/gazette.css">
+<link rel="stylesheet" href="themes/fight.css">
+
+<div class="wrap">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1><small id="lg">Ballinwithmygoons · Daily</small></div>
+    <div class="dateline"><span class="label" id="dl1">Loading</span><span class="big" id="dl2">…</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+  <div class="banner" id="banner" hidden></div>
+  <nav aria-label="Sections">
+    <a href="#current">This Week</a><a href="#race">Victory Road</a><a href="#lastweek">Last Week</a>
+    <a href="#waivers">Waiver Wire</a><a href="#trends">Trends</a>
+  </nav>
+
+  <div class="front" style="padding-top:22px">
+    <div><h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p><div class="story" id="story"></div></div>
+    <aside class="overheard" id="zings" hidden><h3>Overheard</h3></aside>
+  </div>
+
+  <section id="current">
+    <div class="sec-head"><h2 id="cw-title">This Week</h2><p>Live category scores. Swing cats are within a bucket and can flip tonight.</p></div>
+    <div class="grid2" id="mu"></div>
+    <div class="cols2 standouts">
+      <div class="list-card"><h3>Top 5 players this week</h3><div id="cw-players"></div></div>
+      <div class="list-card"><h3>Top 5 plays this week</h3><p class="note">Waiver pickups whose stats are winning categories in their matchup.</p><div id="cw-plays"></div></div>
+    </div>
+  </section>
+
+  <section id="race">
+    <div class="sec-head"><h2>Victory Road</h2><p id="race-sub">Playoff odds from simulating the rest of the regular season.</p></div>
+    <div class="race-strip" id="race-strip"></div>
+    <div class="table-wrap"><table class="pr race"><thead><tr><th>#</th><th>Team</th><th class="r">Cat record</th><th class="r">Back</th><th class="r">Vs line</th><th>Playoff odds</th><th class="r">No. 1 seed</th><th class="r">Proj. wins</th></tr></thead><tbody id="rc"></tbody></table></div>
+  </section>
+
+  <section id="lastweek">
+    <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Final scores, plus how every team would have done against the whole league.</p></div>
+    <div class="results" id="lw-games"></div>
+    <div class="awards" id="lw-awards" style="margin-top:14px"></div>
+    <div class="cols2 standouts">
+      <div class="list-card"><h3>Top 5 players of the week</h3><div id="lw-players"></div></div>
+      <div class="list-card"><h3>Top 5 plays of the week</h3><p class="note">Waiver pickups whose stats swung their matchup.</p><div id="lw-plays"></div></div>
+    </div>
+  </section>
+
+  <section id="waivers">
+    <div class="sec-head"><h2 id="ww-title">Waiver Wire Review</h2><p>Every add and drop from last week, graded on what the pickup did for his new team, per game.</p></div>
+    <div class="awards" id="ww-awards"></div>
+    <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Date</th><th>Team</th><th>Added</th><th class="c">Grade</th><th>Dropped</th></tr></thead><tbody id="ww-moves"></tbody></table></div>
+  </section>
+
+  <section id="trends">
+    <div class="sec-head"><h2>Trends</h2><p>Power rank after each week, and who is heating up over the last three weeks.</p></div>
+    <div class="list-card">
+      <div class="h2h-pick"><label for="bump-team" class="label">Highlight</label><select id="bump-team"></select></div>
+      <div class="bump-wrap" id="bump"></div>
+    </div>
+    <div class="cols3" style="margin-top:14px" id="form"></div>
+    <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Team</th><th>Weekly all-play %</th><th class="r">Season</th><th class="r">Last 3</th><th class="r">Form</th></tr></thead><tbody id="spark"></tbody></table></div>
+  </section>
+
+  <footer><span id="gen"></span><span>Rebuilt every morning at 7 ET from Yahoo.</span></footer>
+</div>
+
+<script src="assets/common.js"></script>
+<script>
+siteNav("today");
+
+function render(a){
+  const T = a.teams, nm = tk => esc(T[tk]?.name || tk), mg = tk => esc(T[tk]?.manager || "");
+  const cat = {}; a.cats.forEach(c => cat[c.id] = c);
+  const fmt = (id, v) => fmtStat(v, cat[id]?.pct);
+  const half = v => (Math.round(v * 2) / 2).toString().replace(/\.0$/, "");
+  const pct = v => v >= .995 && v < 1 ? ">99%" : v > 0 && v < .005 ? "<1%" : Math.round(v * 100) + "%";
+
+  $("lg").textContent = `${a.league?.name || "League"} · The Brawl · ${a.cats.length}-cat H2H`;
+  const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
+  $("dl1").textContent = d.toLocaleDateString("en-US", {weekday:"long", month:"short", day:"numeric"});
+  $("dl2").textContent = a.preseason ? "Preseason" : `Week ${a.league?.current_week ?? ""}`;
+  if (a.sample){ $("banner").hidden = false; $("banner").textContent = "Example data from a made-up league. Real numbers appear once the Yahoo connection runs."; }
+
+  const r = a.recap || {};
+  $("hl").textContent = r.headline || "";
+  $("sub").textContent = r.subhead || "";
+  $("story").innerHTML = (r.body || []).map(p => `<p>${esc(p)}</p>`).join("");
+  if (r.zingers?.length){
+    $("zings").hidden = false;
+    $("zings").insertAdjacentHTML("beforeend", r.zingers.map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join(""));
+  }
+
+  // 1. race to the championship
+  const R = a.race;
+  if (R && R.rows.length){
+    const n = R.playoff_teams;
+    $("race-sub").textContent = `Top ${n} make the playoffs. Odds come from ${R.sims.toLocaleString()} simulations of the remaining schedule, using each team's category strength.`;
+    const bubble = R.rows.filter(x => x.playoff_odds >= .2 && x.playoff_odds <= .8).length;
+    const locks = R.rows.filter(x => x.playoff_odds >= .99).length;
+    $("race-strip").innerHTML = [["Weeks left", R.weeks_left], ["Playoff spots", n], ["Near locks", locks], ["On the bubble", bubble]]
+      .map(([k, v]) => `<div><span class="label">${k}</span><b class="num">${v}</b></div>`).join("");
+    $("rc").innerHTML = R.rows.map((x, i) => {
+      const line = x.vs_line <= 0 ? `<span class="delta up">${x.vs_line === 0 ? "on it" : "+" + half(-x.vs_line)}</span>` : `<span class="delta dn">−${half(x.vs_line)}</span>`;
+      const mv = x.odds_move == null || Math.abs(x.odds_move) < .01 ? "" : `<span class="mv ${x.odds_move > 0 ? "up" : "dn"}">${x.odds_move > 0 ? "▲" : "▼"}${Math.round(Math.abs(x.odds_move) * 100)}</span>`;
+      const sep = i === n ? `<tr class="po-line"><td colspan="8"><span>Playoff line</span></td></tr>` : "";
+      return `${sep}<tr class="${i < n ? "in" : "out"}"><td class="rk">${x.rank}</td>
+        <td class="tm"><b>${nm(x.team)}</b><small>${mg(x.team)}</small></td>
+        <td class="num r">${x.w}-${x.l}-${x.t}</td><td class="num r">${x.back ? half(x.back) : "–"}</td><td class="num r">${line}</td>
+        <td><div class="odds"><div class="bar"><i style="width:${Math.max(2, x.playoff_odds * 100)}%"></i></div><span class="num">${pct(x.playoff_odds)}</span>${mv}</div></td>
+        <td class="num r">${pct(x.top_seed_odds)}</td><td class="num r">${x.proj_w}</td></tr>`;
+    }).join("");
+  } else {
+    $("rc").innerHTML = `<tr><td colspan="8" class="empty">The race starts after week 1.</td></tr>`;
+  }
+
+  // 2. matchups
+  $("mu").innerHTML = a.matchups.length ? a.matchups.map(m => {
+    const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}${c.swing?" •":""}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
+    const sw = m.cats.filter(c => c.swing), rest = m.cats.filter(c => !c.swing);
+    return `<article class="mu">
+      <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mg(m.a)}</small></div>
+      <div class="mu-score">${m.score[0]}–${m.score[1]}${m.score[2]?`<span class="t">–${m.score[2]}</span>`:""}</div>
+      <div class="mu-team b">${nm(m.b)}<small>${mg(m.b)}</small></div></div>
+      <div class="hp" aria-hidden="true"><i class="a" style="flex:${m.score[0]||0.2}"></i><i class="t" style="flex:${m.score[2]||0.0001}"></i><i class="b" style="flex:${m.score[1]||0.2}"></i></div>
+      ${sw.length?`<div style="margin-top:10px"><span class="pill swing">${sw.length} swing cat${sw.length>1?"s":""}</span></div>`:""}
+      <table class="cats">${sw.map(row).join("")}</table>
+      <details><summary>All ${m.cats.length} categories</summary><table class="cats">${rest.map(row).join("")}</table></details>
+    </article>`;
+  }).join("") : `<p class="empty">No matchups yet.</p>`;
+
+  // standouts: top players and waiver plays
+  const PL = a.players || {};
+  const catLabel = id => esc(cat[id]?.name);
+  const statChip = (ln, id) => {
+    const v = ln[id];
+    if (v == null) return "";
+    return `<span class="chip">${Array.isArray(v) ? fmtPct(v[0]) : Math.round(v)} ${catLabel(id)}</span>`;
+  };
+  const playerRows = list => list?.length ? list.map((x, i) => `<div class="prow"><span class="pr-rank">${i + 1}</span>
+      <div class="pr-main"><b>${esc(x.name)}</b><small>${nm(x.team)} · ${x.games} game${x.games === 1 ? "" : "s"}</small>
+      <div>${x.best.map(id => statChip(x.line, id)).join("")}</div></div>
+      <span class="pr-val num">${x.value > 0 ? "+" : ""}${x.value.toFixed(1)}</span></div>`).join("")
+    : `<p class="empty">No games yet.</p>`;
+  const acqText = q => {
+    const dt = new Date(q.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"});
+    return `Added ${dt}${q.source === "waivers" ? " off waivers" : " as a free agent"}${q.faab ? ` for $${q.faab}` : ""}`;
+  };
+  const sc = s => `${s[0]}–${s[1]}${s[2] ? "–" + s[2] : ""}`;
+  const playRows = (list, live) => list?.length ? list.map((x, i) => {
+    const verdict = x.flipped
+      ? `${live ? "Leading" : "Won"} ${sc(x.score)}. Without him: ${sc(x.without)}.`
+      : `${live ? "Score" : "Final"} ${sc(x.score)}, worth ${x.net} cat${x.net > 1 ? "s" : ""} on his own.`;
+    return `<div class="prow"><span class="pr-rank">${i + 1}</span>
+      <div class="pr-main"><b>${esc(x.name)}</b><small>${nm(x.team)} vs ${nm(x.opp)} · ${acqText(x.acquired)}</small>
+      <div>${x.swung.map(id => `<span class="chip g">${catLabel(id)}</span>`).join("")}</div>
+      <small class="verdict">${verdict}</small></div>
+      ${x.flipped ? `<span class="pill swing">${live ? "Swinging it" : "Swung it"}</span>` : `<span class="pr-val num">+${x.net}</span>`}</div>`;
+  }).join("") : `<p class="empty">No pickups have swung a matchup ${live ? "yet" : "this week"}.</p>`;
+  $("cw-players").innerHTML = playerRows(PL.current?.top_players);
+  $("cw-plays").innerHTML = playRows(PL.current?.top_plays, true);
+  $("lw-players").innerHTML = playerRows(PL.last?.top_players);
+  $("lw-plays").innerHTML = playRows(PL.last?.top_plays, false);
+
+  // waiver wire review
+  const WW = PL.waiver;
+  const grade = v => v == null ? "–" : v >= 4 ? "A+" : v >= 2 ? "A" : v >= 1 ? "B+" : v >= 0 ? "B" : v >= -1.5 ? "C" : v >= -3 ? "D" : "F";
+  if (WW){
+    $("ww-title").textContent = `Waiver Wire Review · Week ${WW.week}`;
+    const aw = [];
+    if (WW.best_pickup) aw.push(`<div class="award hot"><span class="label">Pickup of the week</span><h3>${esc(WW.best_pickup.player)}</h3><p>${nm(WW.best_pickup.team)}. Grade ${grade(WW.best_pickup.pg)} over ${WW.best_pickup.games} game${WW.best_pickup.games === 1 ? "" : "s"}.</p></div>`);
+    if (WW.trash) aw.push(`<div class="award"><span class="label">One man's trash</span><h3>${esc(WW.trash.player)}</h3><p>Dropped by ${nm(WW.trash.dropped_by)}, now starting for ${nm(WW.trash.now)}: ${WW.trash.games} game${WW.trash.games === 1 ? "" : "s"}, grade ${grade(WW.trash.value)}.</p></div>`);
+    if (WW.busiest) aw.push(`<div class="award"><span class="label">Busiest GM</span><h3>${nm(WW.busiest.team)}</h3><p>${WW.busiest.adds} adds in one week.</p></div>`);
+    if (WW.splash) aw.push(`<div class="award"><span class="label">Biggest FAAB splash</span><h3>$${WW.splash.faab}</h3><p>${nm(WW.splash.team)} on ${esc(WW.splash.player)}. Grade so far: ${grade(WW.splash.pg)}.</p></div>`);
+    aw.push(`<div class="award"><span class="label">League activity</span><h3>${WW.total_adds} adds</h3><p>Across ${WW.moves.length} moves last week.</p></div>`);
+    $("ww-awards").innerHTML = aw.join("");
+    $("ww-moves").innerHTML = WW.moves.length ? WW.moves.map(m => {
+      const dt = new Date(m.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
+      const add = m.adds.map(x => `<b>${esc(x.player)}</b><small class="muted"> ${x.source === "waivers" ? "waivers" : "FA"}${x.faab ? " $" + x.faab : ""} · ${x.games} gp</small>`).join("<br>") || "–";
+      const g = m.adds.map(x => `<span class="badge ${grade(x.pg).startsWith("A") ? "gold" : ""}">${grade(x.pg)}</span>`).join(" ") || "–";
+      const drop = m.drops.map(x => esc(x.player)).join(", ") || "–";
+      return `<tr><td class="num">${dt}</td><td class="tm"><b>${nm(m.team)}</b></td><td>${add}</td><td class="c">${g}</td><td class="muted">${drop}</td></tr>`;
+    }).join("") : `<tr><td colspan="5" class="empty">No waiver activity last week.</td></tr>`;
+  } else {
+    $("ww-awards").innerHTML = `<p class="empty">Waiver review starts after week 1.</p>`;
+  }
+
+  // 3. last week
+  const L = a.last_week;
+  if (L){
+    $("lw-title").textContent = `Last Week · Week ${L.week}`;
+    $("cw-title").textContent = `This Week · Week ${a.league?.current_week ?? ""}`;
+    const opp = L.opponents;
+    $("lw-games").innerHTML = L.games.map(g => {
+      const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;
+      return `<div class="game">${side(g.a, g.score[0])}${side(g.b, g.score[1])}</div>`;
+    }).join("");
+    const aw = [];
+    aw.push(`<div class="award hot"><span class="label">MVP of the week</span><h3>${nm(L.mvp)}</h3><p>Would have beaten ${L.allplay[L.mvp]} of ${opp} teams.</p></div>`);
+    if (L.upset) aw.push(`<div class="award"><span class="label">Upset of the week</span><h3>${nm(L.upset.winner)}</h3><p>Took down ${nm(L.upset.loser)}, ${L.upset.gap} spots higher in the power rankings, ${L.upset.score[0] > L.upset.score[1] ? L.upset.score[0] + "–" + L.upset.score[1] : L.upset.score[1] + "–" + L.upset.score[0]}.</p></div>`);
+    if (L.closest) aw.push(`<div class="award"><span class="label">Closest bout</span><h3>${nm(L.closest.a)} vs ${nm(L.closest.b)}</h3><p>Decided ${L.closest.score[0]}–${L.closest.score[1]}${L.closest.score[2] ? "–" + L.closest.score[2] : ""}.</p></div>`);
+    if (L.robbed) aw.push(`<div class="award"><span class="label">Robbed</span><h3>${nm(L.robbed)}</h3><p>Lost, but would have beaten ${L.allplay[L.robbed]} of ${opp} teams.</p></div>`);
+    aw.push(`<div class="award"><span class="label">Dud of the week</span><h3>${nm(L.dud)}</h3><p>Would have beaten ${L.allplay[L.dud]} of ${opp} teams.</p></div>`);
+    $("lw-awards").innerHTML = aw.join("");
+  } else {
+    $("lw-games").innerHTML = `<p class="empty">No completed weeks yet.</p>`;
+  }
+
+  // 5. trends
+  const TR = a.trends;
+  if (TR){
+    const sel = $("bump-team");
+    const byMove = [...TR.form].sort((x, y) => Math.abs(y.rank_change) - Math.abs(x.rank_change));
+    const order = a.power.map(p => p.team);
+    sel.innerHTML = order.map(t => `<option value="${esc(t)}">${nm(t)}</option>`).join("");
+    let saved = null;
+    try { saved = localStorage.getItem("bump-team"); } catch (e) {}
+    sel.value = saved && T[saved] ? saved : (byMove[0]?.team || order[0]);
+    const draw = () => {
+      try { localStorage.setItem("bump-team", sel.value); } catch (e) {}
+      $("bump").innerHTML = bump(TR, order, sel.value, nm);
+    };
+    sel.onchange = draw;
+    draw();
+    const hot = TR.form.slice(0, 3), cold = TR.form.slice(-3).reverse();
+    const fr = x => `<div class="feud"><span><b>${nm(x.team)}</b></span><span class="num" style="color:var(${x.delta >= 0 ? "--good" : "--bad"})">${x.delta >= 0 ? "+" : "−"}${Math.abs(x.delta * 100).toFixed(1)}</span></div>`;
+    const climb = [...TR.form].sort((x, y) => y.rank_change - x.rank_change)[0];
+    const fall = [...TR.form].sort((x, y) => x.rank_change - y.rank_change)[0];
+    $("form").innerHTML = `
+      <div class="list-card"><h3>Heating up</h3>${hot.map(fr).join("")}</div>
+      <div class="list-card"><h3>Ice cold</h3>${cold.map(fr).join("")}</div>
+      <div class="list-card"><h3>Since week ${TR.weeks[0]}</h3>
+        <div class="feud"><span>Biggest climb</span><span><b>${nm(climb.team)}</b> <span class="num delta up">▲${climb.rank_change}</span></span></div>
+        <div class="feud"><span>Biggest fall</span><span><b>${nm(fall.team)}</b> <span class="num delta dn">▼${-fall.rank_change}</span></span></div></div>`;
+    const formBy = Object.fromEntries(TR.form.map(f => [f.team, f]));
+    $("spark").innerHTML = order.map(t => {
+      const f = formBy[t] || {};
+      return `<tr><td class="tm"><b>${nm(t)}</b></td><td>${spark(TR.allplay_by_week[t])}</td>
+        <td class="num r">${fmtPct(f.season)}</td><td class="num r">${fmtPct(f.recent)}</td>
+        <td class="num r" style="color:var(${(f.delta ?? 0) >= 0 ? "--good" : "--bad"})">${f.delta == null ? "–" : (f.delta >= 0 ? "+" : "−") + Math.abs(f.delta * 100).toFixed(1)}</td></tr>`;
+    }).join("");
+  } else {
+    $("bump").innerHTML = `<p class="empty">Trends start after week 2.</p>`;
+  }
+
+  $("gen").textContent = a.generated_at ? `Updated ${new Date(a.generated_at).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}` : "";
+}
+
+// power rank by week; every team drawn faint, the chosen one bold
+function bump(TR, order, pick, nm){
+  const W = 760, H = 380, L = 34, Rr = 560, Tp = 22, B = 34;
+  const weeks = TR.weeks, n = order.length;
+  const x = i => weeks.length < 2 ? L : L + (Rr - L) * i / (weeks.length - 1);
+  const y = r => Tp + (H - Tp - B) * (r - 1) / Math.max(1, n - 1);
+  let g = "";
+  for (let r = 1; r <= n; r++) g += `<text x="${L - 10}" y="${y(r) + 4}" class="ax" text-anchor="end">${r}</text>`;
+  weeks.forEach((w, i) => g += `<line x1="${x(i)}" x2="${x(i)}" y1="${Tp - 8}" y2="${H - B + 6}" class="grid"/><text x="${x(i)}" y="${H - 10}" class="ax" text-anchor="middle">Wk ${w}</text>`);
+  const lines = order.map(t => {
+    const pts = TR.rank_by_week[t].map((r, i) => `${x(i)},${y(r)}`).join(" ");
+    const last = TR.rank_by_week[t].at(-1);
+    const on = t === pick;
+    return { on, svg: `<g class="${on ? "on" : "off"}"><polyline points="${pts}" fill="none"/>${on ? TR.rank_by_week[t].map((r, i) => `<circle cx="${x(i)}" cy="${y(r)}" r="4.5"/>`).join("") : ""}<text x="${Rr + 12}" y="${y(last) + 4}" class="lab">${last}. ${nm(t)}</text></g>` };
+  });
+  g += lines.filter(l => !l.on).map(l => l.svg).join("") + lines.filter(l => l.on).map(l => l.svg).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" class="bump" role="img" aria-label="Power rank by week">${g}</svg>`;
+}
+
+function spark(vals){
+  const v = (vals || []).filter(x => x != null);
+  if (v.length < 2) return "";
+  const W = 120, H = 28, pad = 3;
+  const x = i => pad + (W - 2 * pad) * i / (v.length - 1), y = p => H - pad - (H - 2 * pad) * p;
+  const pts = v.map((p, i) => `${x(i)},${y(p)}`).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" class="spark" aria-hidden="true"><line x1="0" x2="${W}" y1="${y(.5)}" y2="${y(.5)}" class="mid"/><polyline points="${pts}" fill="none"/><circle cx="${x(v.length - 1)}" cy="${y(v.at(-1))}" r="3"/></svg>`;
+}
+
+fetch("data/league.json", {cache:"no-store"})
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(render)
+  .catch(e => { $("hl").textContent = "PRESSES JAMMED"; $("sub").textContent = "Couldn't load today's data. The morning build may have failed; check the GitHub Actions log."; console.error(e); });
+</script>

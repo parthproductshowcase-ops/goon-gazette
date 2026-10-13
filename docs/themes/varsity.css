@@ -1,0 +1,77 @@
+/* Option B, "Varsity": hardwood floor, jersey twill lettering, stitched patches. Loaded after gazette.css. */
+:root{
+  --paper:#d9b98a; --card:#fffaf1; --ink:#14214a; --muted:#5d6480; --rule:#e2d6c0;
+  --red:#14214a; --red-ink:#f5c33b; --blue:#a3172b; --blue-soft:#f6dcdf; --red-soft:#e3e7f5;
+  --good:#1d7a45; --bad:#a3172b; --swing:#f5c33b;
+  --plank-a:#d7b483; --plank-b:#cfa975; --line:#fffaf1; --stitch:#f5c33b;
+  --display:"Graduate","Rockwell","Georgia",serif;
+  --body:"Work Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0e1733; --card:#16224a; --ink:#eef1fb; --muted:#a3abc8; --rule:#26335f;
+  --red:#f5c33b; --red-ink:#101a3c; --blue:#ff6b7d; --good:#4fd18a; --bad:#ff6b7d; --swing:#f5c33b;
+  --plank-a:#101a38; --plank-b:#0d1631; --line:#26335f; --stitch:#f5c33b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1733; --card:#16224a; --ink:#eef1fb; --muted:#a3abc8; --rule:#26335f;
+  --red:#f5c33b; --red-ink:#101a3c; --blue:#ff6b7d; --good:#4fd18a; --bad:#ff6b7d; --swing:#f5c33b;
+  --plank-a:#101a38; --plank-b:#0d1631; --line:#26335f; --stitch:#f5c33b; color-scheme:dark}
+
+/* the floor: staggered maple planks */
+body{background-color:var(--paper);background-image:
+  repeating-linear-gradient(90deg,transparent 0 119px,rgba(0,0,0,.07) 119px 120px),
+  repeating-linear-gradient(0deg,var(--plank-a) 0 22px,var(--plank-b) 22px 23px,var(--plank-a) 23px 44px,var(--plank-b) 44px 46px)}
+h1,h2,h3{letter-spacing:.01em}
+
+/* masthead as a jersey front */
+.mast{border:0;background:var(--red);border-radius:18px;overflow:hidden;box-shadow:0 0 0 4px var(--red),0 0 0 6px var(--stitch)}
+.nameplate{background:transparent;text-align:center;padding:18px 14px 14px}
+.nameplate h1{font-size:clamp(30px,6.4vw,62px);font-weight:400;text-transform:uppercase;color:var(--red-ink);
+  text-shadow:3px 3px 0 var(--blue),-1px -1px 0 var(--blue)}
+.nameplate small{color:var(--red-ink);letter-spacing:.3em}
+.dateline{background:var(--card);border-left:0;border-radius:12px;margin:12px;text-align:center;align-items:center;justify-content:center}
+.dateline .big{font:400 26px/1 var(--display);color:var(--ink)}
+@media (max-width:560px){.dateline{border-top:0;margin-top:0}}
+nav.site{border:0;margin-top:14px;background:var(--card);border-radius:999px;padding:4px}
+nav.site a{border-right:0;border-radius:999px}
+nav.site a[aria-current="page"]{background:var(--red);color:var(--red-ink)}
+nav.site a:hover,nav.site a:focus-visible{background:var(--blue);color:#fff}
+nav{background:transparent;border-bottom:0}
+nav a{background:var(--card);border-color:var(--card)}
+nav a:hover,nav a:focus-visible{background:var(--red);color:var(--red-ink);border-color:var(--red)}
+.banner{background:var(--card);border-radius:10px}
+
+/* front page sits on a card like a program cover */
+.front{background:var(--card);border-radius:18px;padding:22px;margin-top:14px;outline:2px dashed var(--stitch);outline-offset:-10px}
+.headline{font-size:clamp(36px,7vw,80px);font-weight:400;color:var(--ink)}
+.story p:first-child::first-letter{font-weight:400;color:var(--blue)}
+.overheard,.trophy-aside{background:var(--red);color:var(--red-ink);border-radius:14px}
+.overheard h3{color:var(--red-ink)}
+.zing b{color:var(--red-ink);opacity:.8}
+.zing span{color:color-mix(in srgb,var(--red-ink) 25%,#fff)}
+.zing{border-top-color:color-mix(in srgb,var(--red-ink) 30%,transparent)}
+
+/* section heads painted like a baseline */
+.sec-head{background:var(--card);border-radius:14px;border-bottom:4px solid var(--blue);padding:12px 16px 10px;margin-bottom:14px}
+.sec-head h2{font-size:clamp(26px,4.6vw,40px);font-weight:400}
+
+/* patches */
+.mu,.award,.list-card,.punt,.luck,.table-wrap,.grid-wrap,.game,.ldr{border:0;border-radius:14px;background:var(--card);box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.mu,.award,.list-card{outline:2px dashed var(--rule);outline-offset:-7px}
+.award.hot{background:var(--red);color:var(--red-ink);outline-color:var(--stitch)}
+.award h3,.punt b,.trophy-aside .t-name{font-weight:400}
+.mu-score{font-weight:400;font-size:32px}
+.rk{font-weight:400}
+.pill.swing{background:var(--swing)}
+.cats td.va.lead{box-shadow:inset 4px 0 0 var(--ink)}
+.cats td.vb.lead{box-shadow:inset -4px 0 0 var(--blue)}
+.bar i{background:var(--blue)}
+.badge{border-radius:6px}
+.badge.gold{background:var(--swing);border-color:var(--swing);color:#14214a}
+.cell{border-radius:50%}
+.cell.c1{background:var(--swing);color:#14214a}
+.pennant{clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%);background:var(--red);color:var(--red-ink);border-top:6px solid var(--stitch)}
+.pennant:nth-child(even){background:var(--blue);color:#fff}
+.pennant .yr,.pennant .who{font-weight:400}
+.round.final .game{box-shadow:0 0 0 3px var(--swing)}
+.game .w span:last-child{color:var(--blue)}
+footer{background:var(--card);border-radius:12px;border-top:0;padding:12px 16px}

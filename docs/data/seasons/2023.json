@@ -1,0 +1,618 @@
+{
+ "season": "2023",
+ "label": "2023\u201324",
+ "name": "Ballinwithmygoons",
+ "cats": [
+  "FG%",
+  "FT%",
+  "3PTM",
+  "PTS",
+  "OREB",
+  "REB",
+  "AST",
+  "ST",
+  "BLK",
+  "TO",
+  "DD"
+ ],
+ "teams": {
+  "423.l.9.t.1": {
+   "name": "Iso Joes",
+   "manager": "dub_d",
+   "person": "G_DUB_D"
+  },
+  "423.l.9.t.2": {
+   "name": "Fadeaway Gang",
+   "manager": "kj",
+   "person": "G_KJ"
+  },
+  "423.l.9.t.3": {
+   "name": "Foul Trouble",
+   "manager": "rocco",
+   "person": "G_ROCCO"
+  },
+  "423.l.9.t.4": {
+   "name": "Dribble Trouble",
+   "manager": "nish",
+   "person": "G_NISH"
+  },
+  "423.l.9.t.5": {
+   "name": "Tank Commanders",
+   "manager": "tbone",
+   "person": "G_TBONE"
+  },
+  "423.l.9.t.6": {
+   "name": "Brick City",
+   "manager": "sam",
+   "person": "G_SAM"
+  },
+  "423.l.9.t.7": {
+   "name": "The Load Managers",
+   "manager": "priya",
+   "person": "G_PRIYA"
+  },
+  "423.l.9.t.8": {
+   "name": "Pick & Roll Tide",
+   "manager": "marcus",
+   "person": "G_MARCUS"
+  },
+  "423.l.9.t.9": {
+   "name": "Ankle Breakers Anon",
+   "manager": "dev",
+   "person": "G_DEV"
+  },
+  "423.l.9.t.10": {
+   "name": "Bench Mob Mafia",
+   "manager": "ari",
+   "person": "G_ARI"
+  },
+  "423.l.9.t.11": {
+   "name": "Hack-a-Team",
+   "manager": "jo",
+   "person": "G_JO"
+  },
+  "423.l.9.t.12": {
+   "name": "The Process",
+   "manager": "luis",
+   "person": "G_LUIS"
+  }
+ },
+ "champion": "423.l.9.t.7",
+ "runner_up": "423.l.9.t.3",
+ "sacko": "423.l.9.t.11",
+ "reg_leader": "423.l.9.t.1",
+ "num_playoff_teams": 6,
+ "standings": [
+  {
+   "team": "423.l.9.t.7",
+   "person": "G_PRIYA",
+   "rank": 1,
+   "seed": 2,
+   "w": 113,
+   "l": 57,
+   "t": 6,
+   "pct": 0.659,
+   "paper_rank": 5,
+   "luck": 0.084,
+   "moves": 34,
+   "trades": 1
+  },
+  {
+   "team": "423.l.9.t.3",
+   "person": "G_ROCCO",
+   "rank": 2,
+   "seed": 4,
+   "w": 106,
+   "l": 66,
+   "t": 4,
+   "pct": 0.614,
+   "paper_rank": 2,
+   "luck": -0.02,
+   "moves": 28,
+   "trades": 0
+  },
+  {
+   "team": "423.l.9.t.1",
+   "person": "G_DUB_D",
+   "rank": 3,
+   "seed": 1,
+   "w": 122,
+   "l": 50,
+   "t": 4,
+   "pct": 0.705,
+   "paper_rank": 1,
+   "luck": 0.031,
+   "moves": 36,
+   "trades": 1
+  },
+  {
+   "team": "423.l.9.t.9",
+   "person": "G_DEV",
+   "rank": 4,
+   "seed": 3,
+   "w": 109,
+   "l": 63,
+   "t": 4,
+   "pct": 0.631,
+   "paper_rank": 3,
+   "luck": 0.019,
+   "moves": 24,
+   "trades": 0
+  },
+  {
+   "team": "423.l.9.t.5",
+   "person": "G_TBONE",
+   "rank": 5,
+   "seed": 6,
+   "w": 94,
+   "l": 77,
+   "t": 5,
+   "pct": 0.548,
+   "paper_rank": 6,
+   "luck": 0.038,
+   "moves": 61,
+   "trades": 1
+  },
+  {
+   "team": "423.l.9.t.2",
+   "person": "G_KJ",
+   "rank": 6,
+   "seed": 5,
+   "w": 99,
+   "l": 77,
+   "t": 0,
+   "pct": 0.562,
+   "paper_rank": 4,
+   "luck": -0.016,
+   "moves": 30,
+   "trades": 0
+  },
+  {
+   "team": "423.l.9.t.10",
+   "person": "G_ARI",
+   "rank": 7,
+   "seed": 7,
+   "w": 90,
+   "l": 83,
+   "t": 3,
+   "pct": 0.52,
+   "paper_rank": 7,
+   "luck": -0.012,
+   "moves": 60,
+   "trades": 2
+  },
+  {
+   "team": "423.l.9.t.8",
+   "person": "G_MARCUS",
+   "rank": 8,
+   "seed": 8,
+   "w": 77,
+   "l": 94,
+   "t": 5,
+   "pct": 0.452,
+   "paper_rank": 8,
+   "luck": -0.002,
+   "moves": 38,
+   "trades": 1
+  },
+  {
+   "team": "423.l.9.t.12",
+   "person": "G_LUIS",
+   "rank": 9,
+   "seed": 9,
+   "w": 66,
+   "l": 102,
+   "t": 8,
+   "pct": 0.398,
+   "paper_rank": 9,
+   "luck": -0.066,
+   "moves": 82,
+   "trades": 0
+  },
+  {
+   "team": "423.l.9.t.4",
+   "person": "G_NISH",
+   "rank": 10,
+   "seed": 10,
+   "w": 61,
+   "l": 112,
+   "t": 3,
+   "pct": 0.355,
+   "paper_rank": 11,
+   "luck": 0.004,
+   "moves": 86,
+   "trades": 0
+  },
+  {
+   "team": "423.l.9.t.6",
+   "person": "G_SAM",
+   "rank": 11,
+   "seed": 11,
+   "w": 53,
+   "l": 120,
+   "t": 3,
+   "pct": 0.31,
+   "paper_rank": 10,
+   "luck": -0.048,
+   "moves": 27,
+   "trades": 3
+  },
+  {
+   "team": "423.l.9.t.11",
+   "person": "G_JO",
+   "rank": 12,
+   "seed": 12,
+   "w": 41,
+   "l": 130,
+   "t": 5,
+   "pct": 0.247,
+   "paper_rank": 12,
+   "luck": -0.012,
+   "moves": 81,
+   "trades": 0
+  }
+ ],
+ "bracket": [
+  {
+   "week": 17,
+   "round": "Quarterfinals",
+   "games": [
+    {
+     "a": "423.l.9.t.9",
+     "b": "423.l.9.t.5",
+     "score": [
+      6,
+      5,
+      0
+     ],
+     "winner": "423.l.9.t.9"
+    },
+    {
+     "a": "423.l.9.t.3",
+     "b": "423.l.9.t.2",
+     "score": [
+      8,
+      2,
+      1
+     ],
+     "winner": "423.l.9.t.3"
+    }
+   ]
+  },
+  {
+   "week": 18,
+   "round": "Semifinals",
+   "games": [
+    {
+     "a": "423.l.9.t.1",
+     "b": "423.l.9.t.3",
+     "score": [
+      4,
+      7,
+      0
+     ],
+     "winner": "423.l.9.t.3"
+    },
+    {
+     "a": "423.l.9.t.7",
+     "b": "423.l.9.t.9",
+     "score": [
+      8,
+      3,
+      0
+     ],
+     "winner": "423.l.9.t.7"
+    }
+   ]
+  },
+  {
+   "week": 19,
+   "round": "Final",
+   "games": [
+    {
+     "a": "423.l.9.t.3",
+     "b": "423.l.9.t.7",
+     "score": [
+      4,
+      6,
+      1
+     ],
+     "winner": "423.l.9.t.7"
+    }
+   ]
+  }
+ ],
+ "records": {
+  "best": [
+   {
+    "cat": "FG%",
+    "value": 0.532,
+    "team": "423.l.9.t.8",
+    "week": 15,
+    "pct": true,
+    "hb": true
+   },
+   {
+    "cat": "FT%",
+    "value": 0.885,
+    "team": "423.l.9.t.1",
+    "week": 16,
+    "pct": true,
+    "hb": true
+   },
+   {
+    "cat": "3PTM",
+    "value": 79,
+    "team": "423.l.9.t.5",
+    "week": 4,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "PTS",
+    "value": 730,
+    "team": "423.l.9.t.2",
+    "week": 10,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "OREB",
+    "value": 83,
+    "team": "423.l.9.t.7",
+    "week": 11,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "REB",
+    "value": 292,
+    "team": "423.l.9.t.1",
+    "week": 8,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "AST",
+    "value": 195,
+    "team": "423.l.9.t.5",
+    "week": 8,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "ST",
+    "value": 62,
+    "team": "423.l.9.t.1",
+    "week": 11,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "BLK",
+    "value": 47,
+    "team": "423.l.9.t.2",
+    "week": 9,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "TO",
+    "value": 43,
+    "team": "423.l.9.t.1",
+    "week": 12,
+    "pct": false,
+    "hb": false
+   },
+   {
+    "cat": "DD",
+    "value": 20,
+    "team": "423.l.9.t.1",
+    "week": 2,
+    "pct": false,
+    "hb": true
+   }
+  ],
+  "worst": [
+   {
+    "cat": "FG%",
+    "value": 0.41,
+    "team": "423.l.9.t.8",
+    "week": 13,
+    "pct": true,
+    "hb": true
+   },
+   {
+    "cat": "FT%",
+    "value": 0.695,
+    "team": "423.l.9.t.11",
+    "week": 4,
+    "pct": true,
+    "hb": true
+   },
+   {
+    "cat": "3PTM",
+    "value": 25,
+    "team": "423.l.9.t.4",
+    "week": 2,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "PTS",
+    "value": 355,
+    "team": "423.l.9.t.10",
+    "week": 4,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "OREB",
+    "value": 36,
+    "team": "423.l.9.t.8",
+    "week": 16,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "REB",
+    "value": 130,
+    "team": "423.l.9.t.11",
+    "week": 16,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "AST",
+    "value": 88,
+    "team": "423.l.9.t.9",
+    "week": 3,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "ST",
+    "value": 14,
+    "team": "423.l.9.t.11",
+    "week": 16,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "BLK",
+    "value": 0,
+    "team": "423.l.9.t.6",
+    "week": 10,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "TO",
+    "value": 106,
+    "team": "423.l.9.t.6",
+    "week": 12,
+    "pct": false,
+    "hb": false
+   },
+   {
+    "cat": "DD",
+    "value": 0,
+    "team": "423.l.9.t.11",
+    "week": 8,
+    "pct": false,
+    "hb": true
+   }
+  ]
+ },
+ "awards": [
+  {
+   "title": "Best team, no ring",
+   "team": "423.l.9.t.1",
+   "note": "No. 1 on paper by season category totals, finished 3."
+  },
+  {
+   "title": "Horseshoe award",
+   "team": "423.l.9.t.7",
+   "note": "Luckiest record: +8.4 points over all-play."
+  },
+  {
+   "title": "Robbed",
+   "team": "423.l.9.t.12",
+   "note": "Unluckiest record: -6.6 points under all-play."
+  },
+  {
+   "title": "Waiver wire addict",
+   "team": "423.l.9.t.4",
+   "note": "86 moves."
+  },
+  {
+   "title": "Trade machine",
+   "team": "423.l.9.t.6",
+   "note": "3 trades."
+  }
+ ],
+ "draft": [
+  {
+   "pick": 1,
+   "team": "423.l.9.t.12",
+   "player": "Microwave Mike",
+   "finish": 9
+  },
+  {
+   "pick": 2,
+   "team": "423.l.9.t.11",
+   "player": "Rim Protector",
+   "finish": 12
+  },
+  {
+   "pick": 3,
+   "team": "423.l.9.t.4",
+   "player": "Sniper Steve",
+   "finish": 10
+  },
+  {
+   "pick": 4,
+   "team": "423.l.9.t.8",
+   "player": "Unicorn",
+   "finish": 8
+  },
+  {
+   "pick": 5,
+   "team": "423.l.9.t.6",
+   "player": "Dunk Don",
+   "finish": 11
+  },
+  {
+   "pick": 6,
+   "team": "423.l.9.t.1",
+   "player": "Big Man One",
+   "finish": 3
+  },
+  {
+   "pick": 7,
+   "team": "423.l.9.t.5",
+   "player": "Point God",
+   "finish": 5
+  },
+  {
+   "pick": 8,
+   "team": "423.l.9.t.3",
+   "player": "Wing Wizard",
+   "finish": 2
+  },
+  {
+   "pick": 9,
+   "team": "423.l.9.t.7",
+   "player": "Stretch Five",
+   "finish": 1
+  },
+  {
+   "pick": 10,
+   "team": "423.l.9.t.2",
+   "player": "Two Way Tony",
+   "finish": 6
+  },
+  {
+   "pick": 11,
+   "team": "423.l.9.t.10",
+   "player": "Glass Eater",
+   "finish": 7
+  },
+  {
+   "pick": 12,
+   "team": "423.l.9.t.9",
+   "player": "Floor General",
+   "finish": 4
+  }
+ ],
+ "recap": {
+  "headline": "THE LOAD MANAGERS TAKE THE CROWN",
+  "subhead": "The 2023\u201324 season in review.",
+  "body": [
+   "The Load Managers won the 2023\u201324 title as the No. 2 seed, beating Foul Trouble when it counted.",
+   "Iso Joes owned the regular season and went home without the trophy.",
+   "Hack-a-Team finished last. The Sacko is theirs to keep."
+  ]
+ },
+ "sample": true
+}

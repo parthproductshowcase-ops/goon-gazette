@@ -1,0 +1,6 @@
+{
+  "_help": "Merge a manager's Yahoo identities and set display names. 'match' takes Yahoo GUIDs or nicknames; run `python -m pipeline.history --recompute` after editing. Unlisted managers keep their Yahoo nickname.",
+  "people": {
+    "parth": {"display": "Parth", "match": ["PUT_YAHOO_GUID_OR_NICKNAME_HERE"]}
+  }
+}

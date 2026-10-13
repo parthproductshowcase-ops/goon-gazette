@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette Seasons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="assets/gazette.css">
+<link rel="stylesheet" href="themes/grandprix.css">
+
+<div class="wrap">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1><small>Ballinwithmygoons · Grand Prix archive</small></div>
+    <div class="dateline"><span class="label">Archive edition</span><span class="big" id="yr">…</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+  <div class="banner" id="banner" hidden></div>
+  <nav aria-label="Sections">
+    <a href="#top" data-jump="top">Story</a><a href="#" data-jump="standings">Standings</a><a href="#" data-jump="playoffs">Playoffs</a>
+    <a href="#" data-jump="awards">Awards</a><a href="#" data-jump="records">Record book</a><a href="#" data-jump="draft">Draft</a>
+  </nav>
+
+  <section id="top" class="front">
+    <div><h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p><div class="story" id="story"></div></div>
+    <aside class="trophy-aside" id="trophy"></aside>
+  </section>
+
+  <section id="standings">
+    <div class="sec-head"><h2>Final Standings</h2><p>Finish includes the playoffs. "On paper" ranks season category totals; luck compares the record to all-play.</p></div>
+    <div class="table-wrap"><table class="pr"><thead><tr><th>Fin</th><th>Team</th><th class="r">Cat record</th><th class="c">Seed</th><th class="c">On paper</th><th class="r">Luck</th><th class="r">Moves</th><th class="r">Trades</th></tr></thead><tbody id="st"></tbody></table></div>
+  </section>
+
+  <section id="playoffs">
+    <div class="sec-head"><h2>The Playoff Run</h2><p>Championship bracket. Score is categories won.</p></div>
+    <div class="bracket" id="br"></div>
+  </section>
+
+  <section id="awards">
+    <div class="sec-head"><h2>Season Awards</h2></div>
+    <div class="awards" id="aw"></div>
+  </section>
+
+  <section id="records">
+    <div class="sec-head"><h2>Record Book</h2><p>Best and worst single regular-season week in every category.</p></div>
+    <div class="table-wrap"><table class="pr records"><thead><tr><th>Cat</th><th>Best week</th><th>Worst week</th></tr></thead><tbody id="rb"></tbody></table></div>
+  </section>
+
+  <section id="draft">
+    <div class="sec-head"><h2>Draft Day</h2><p>First round, and where each drafting team finished.</p></div>
+    <div class="table-wrap"><table class="pr"><thead><tr><th>Pick</th><th>Player</th><th>Team</th><th class="c">Finish</th></tr></thead><tbody id="dr"></tbody></table></div>
+  </section>
+
+  <footer><span>Final results, archived from Yahoo.</span><a href="history.html" style="color:inherit">All-time league history</a></footer>
+</div>
+
+<script src="assets/common.js"></script>
+<script>
+let current = null;
+document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", e => {
+  e.preventDefault();
+  document.getElementById(a.dataset.jump).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+}));
+
+function render(s) {
+  current = s.season;
+  siteNav("s" + s.season);
+  const T = s.teams, nm = tk => esc(T[tk]?.name), mg = tk => esc(T[tk]?.manager);
+  const row = Object.fromEntries(s.standings.map(r => [r.team, r]));
+  const n = s.standings.length;
+  document.title = `The Goon Gazette ${s.label}`;
+  $("yr").textContent = s.label;
+  $("banner").hidden = !s.sample;
+  $("banner").textContent = "Example data from a made-up league. Real seasons appear once the Yahoo backfill runs.";
+
+  const r = s.recap || {};
+  $("hl").textContent = r.headline || "";
+  $("sub").textContent = r.subhead || "";
+  $("story").innerHTML = (r.body || []).map(p => `<p>${esc(p)}</p>`).join("");
+  const seed = row[s.champion]?.seed;
+  $("trophy").innerHTML = `
+    <div><span class="label">${esc(s.label)} champion</span><div class="t-name">${nm(s.champion)}</div><div class="t-sub">${mg(s.champion)}${seed ? ` · No. ${seed} seed` : ""}</div></div>
+    <div class="t-row"><span class="label">Runner-up</span><div class="t-sub"><b>${nm(s.runner_up)}</b> · ${mg(s.runner_up)}</div></div>
+    <div class="t-row"><span class="label">Regular season No. 1</span><div class="t-sub"><b>${nm(s.reg_leader)}</b> · ${mg(s.reg_leader)}</div></div>
+    <div class="t-row"><span class="label">Last place</span><div class="t-sub"><b>${nm(s.sacko)}</b> · ${mg(s.sacko)}</div></div>`;
+
+  $("st").innerHTML = s.standings.map(x => {
+    const diff = x.paper_rank - x.rank;
+    const d = diff > 0 ? `<span class="delta up"> ▲${diff}</span>` : diff < 0 ? `<span class="delta dn"> ▼${-diff}</span>` : "";
+    const badge = x.rank === 1 ? "gold" : x.rank === n ? "dim" : "";
+    return `<tr><td><span class="badge ${badge}">${x.rank}</span></td>
+      <td class="tm"><b>${nm(x.team)}</b><small>${mg(x.team)}</small></td>
+      <td class="num r">${x.w}-${x.l}-${x.t}</td><td class="num c">${x.seed ?? "–"}</td>
+      <td class="num c">${x.paper_rank}${d}</td>
+      <td class="num r" style="color:var(${(x.luck ?? 0) >= 0 ? "--good" : "--bad"})">${fmtLuck(x.luck)}</td>
+      <td class="num r">${x.moves}</td><td class="num r">${x.trades}</td></tr>`;
+  }).join("");
+
+  $("br").innerHTML = s.bracket.length ? s.bracket.map((rd, i) => `
+    <div class="round ${i === s.bracket.length - 1 ? "final" : ""}"><h3>${esc(rd.round)}</h3>
+    ${rd.games.map(g => {
+      const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)} <small style="color:var(--muted)">(${row[tk]?.seed ?? "–"})</small></span><span class="num">${sc}</span></div>`;
+      return `<div class="game">${side(g.a, g.score[0])}${side(g.b, g.score[1])}</div>`;
+    }).join("")}</div>`).join("") : `<p class="empty">No playoff data.</p>`;
+
+  $("aw").innerHTML = s.awards.map((a, i) => `<div class="award ${i === 0 ? "hot" : ""}"><span class="label">${esc(a.title)}</span><h3>${nm(a.team)}</h3><p>${esc(a.note)}</p></div>`).join("");
+
+  const worst = Object.fromEntries(s.records.worst.map(w => [w.cat, w]));
+  $("rb").innerHTML = s.records.best.map(b => {
+    const w = worst[b.cat];
+    const cell = x => x ? `<span class="num" style="font-weight:600">${fmtStat(x.value, x.pct)}</span><span class="who">${nm(x.team)} · wk ${x.week}</span>` : "–";
+    return `<tr><td class="c" style="text-align:left;font-weight:700">${esc(b.cat)}</td><td>${cell(b)}</td><td>${cell(w)}</td></tr>`;
+  }).join("");
+
+  $("dr").innerHTML = s.draft.length ? s.draft.map(d => {
+    const f = d.finish, tag = f === 1 ? "gold" : f >= n - 1 ? "dim" : "";
+    return `<tr><td class="rk" style="font-size:24px">${d.pick}</td><td><b>${esc(d.player)}</b></td><td class="tm"><b>${nm(d.team)}</b><small>${mg(d.team)}</small></td><td class="c"><span class="badge ${tag}">${f ?? "–"}</span></td></tr>`;
+  }).join("") : `<tr><td colspan="4" class="empty">No draft data.</td></tr>`;
+}
+
+function load() {
+  getJSON("data/history.json").then(h => {
+    const want = location.hash.replace("#", "");
+    const season = (h.seasons.find(s => s.season === want) || h.seasons[0] || {}).season;
+    if (!season) throw new Error("no seasons");
+    if (season === current) return;
+    return getJSON(`data/seasons/${season}.json`).then(render).then(() => window.scrollTo(0, 0));
+  }).catch(e => { $("hl").textContent = "NO ARCHIVE YET"; $("sub").textContent = "Run the history backfill to fill in past seasons."; console.error(e); });
+}
+window.addEventListener("hashchange", load);
+load();
+</script>
