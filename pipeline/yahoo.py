@@ -56,12 +56,30 @@ def stat_map(stats_list, cat_ids):
 
 
 # ---------- client ----------
+TOKEN_CACHE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".yahoo_token.json")
+
+
 class Yahoo:
+    """Logs in once per run. The access token (valid ~1 hour) and any rotated refresh token
+    are cached in .yahoo_token.json, so the history and build steps share one login instead
+    of each spending the refresh token."""
+
     def __init__(self, client_id, client_secret, refresh_token):
         self.cid, self.secret, self.refresh_token = client_id, client_secret, refresh_token
         self.access = None
+        try:
+            import json
+            with open(TOKEN_CACHE) as f:
+                c = json.load(f)
+            if c.get("refresh_token"):
+                self.refresh_token = c["refresh_token"]
+            if c.get("access_token") and c.get("expires_at", 0) > time.time() + 120:
+                self.access = c["access_token"]
+        except (OSError, ValueError):
+            pass
 
     def _refresh(self):
+        import json
         r = requests.post(
             TOKEN_URL,
             auth=(self.cid, self.secret),
@@ -69,10 +87,22 @@ class Yahoo:
                   "redirect_uri": os.environ.get("YAHOO_REDIRECT_URI") or "oob"},
             timeout=30,
         )
-        r.raise_for_status()
+        if r.status_code != 200:
+            try:
+                err = r.json()
+                reason = f"{err.get('error')}: {err.get('error_description')}"
+            except ValueError:
+                reason = r.text[:200]
+            raise RuntimeError(f"Yahoo login failed ({r.status_code}) {reason}")
         j = r.json()
         self.access = j["access_token"]
         self.refresh_token = j.get("refresh_token", self.refresh_token)
+        try:
+            with open(TOKEN_CACHE, "w") as f:
+                json.dump({"access_token": self.access, "refresh_token": self.refresh_token,
+                           "expires_at": time.time() + int(j.get("expires_in", 3600))}, f)
+        except OSError:
+            pass
 
     def get(self, path):
         if not self.access:
