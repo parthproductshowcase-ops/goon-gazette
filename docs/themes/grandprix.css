@@ -1,84 +1,47 @@
-/* Past seasons + history: "Ballin' Grand Prix", an original kart-racing look. Loaded after gazette.css. */
-:root{
-  --paper:#e9eef2; --card:#ffffff; --ink:#15171c; --muted:#58606b; --rule:#d5dce3;
-  --red:#ff5a1f; --red-ink:#ffffff; --blue:#0a7cff; --blue-soft:#dcebff; --red-soft:#ffe4d9;
-  --good:#129b55; --bad:#e53935; --swing:#f2b705;
-  --gold:#f2b705; --silver:#aab3bd; --bronze:#c9783b; --lane:#ffffff; --checker-a:#15171c; --checker-b:#ffffff;
-  --display:"Racing Sans One","Impact",sans-serif;
-  --mono:"Space Mono",ui-monospace,Menlo,monospace;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#16181d; --card:#20232a; --ink:#f2f4f7; --muted:#a2a9b4; --rule:#30343d;
-  --red:#ff6a33; --red-ink:#16181d; --blue:#4c9dff; --good:#3fd68a; --bad:#ff6b66; --swing:#ffc629;
-  --gold:#ffc629; --silver:#b9c2cc; --bronze:#d98a4c; --lane:#2a2e36; --checker-a:#f2f4f7; --checker-b:#16181d; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#16181d; --card:#20232a; --ink:#f2f4f7; --muted:#a2a9b4; --rule:#30343d;
-  --red:#ff6a33; --red-ink:#16181d; --blue:#4c9dff; --good:#3fd68a; --bad:#ff6b66; --swing:#ffc629;
-  --gold:#ffc629; --silver:#b9c2cc; --bronze:#d98a4c; --lane:#2a2e36; --checker-a:#f2f4f7; --checker-b:#16181d; color-scheme:dark}
+/* Past seasons + history: same network look as the front page, plus archive pieces
+   (podium colors, champions wall). Loaded after gazette.css. */
+@import url("fight.css");
+:root{--gold:#d4a017;--silver:#9aa3ad;--bronze:#b5733a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold:#f0bd3a;--silver:#b5bdc6;--bronze:#d08a4e}}
+:root[data-theme="dark"]{--gold:#f0bd3a;--silver:#b5bdc6;--bronze:#d08a4e}
 
-/* the track: dashed lane lines down the page */
-body{background-color:var(--paper);background-image:
-  repeating-linear-gradient(180deg,var(--lane) 0 40px,transparent 40px 80px),
-  repeating-linear-gradient(180deg,var(--lane) 0 40px,transparent 40px 80px);
-  background-size:4px 100%,4px 100%;background-position:12% 0,88% 0;background-repeat:repeat-y}
-h1,h2,h3{font-weight:400}
-.mast::after,.sec-head::before,.trophy-aside::before{background:conic-gradient(var(--checker-a) 25%,var(--checker-b) 0 50%,var(--checker-a) 0 75%,var(--checker-b) 0) 0 0/14px 14px}
+/* section jump links behave like the tab bar but scroll */
+nav.tabs a[aria-current="true"]::after{display:none}
+nav.tabs{border-bottom:1px solid var(--rule)}
 
-/* masthead: start/finish banner */
-.mast{border:3px solid var(--ink);position:relative;background:var(--card);padding-bottom:14px}
-.mast::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px}
-.nameplate{background:var(--red)}
-.nameplate h1{font-size:clamp(42px,9vw,88px);font-style:italic;font-weight:400;color:#fff;text-shadow:3px 3px 0 var(--ink)}
-.nameplate small{color:#fff}
-.dateline .big{font-weight:400;font-style:italic;color:var(--red)}
-nav.site{border:3px solid var(--ink);border-top:0}
-nav.site a[aria-current="page"]{background:var(--red);color:#fff}
-nav{background:var(--paper);border-bottom:3px solid var(--ink)}
-nav a{border-radius:6px}
-nav a:hover,nav a:focus-visible{background:var(--blue);color:#fff;border-color:var(--blue)}
-
-/* front */
-.headline{font-style:italic;font-size:clamp(46px,10vw,118px);color:var(--ink)}
-.story p:first-child::first-letter{color:var(--red);font-weight:400}
-
-/* trophy block as a podium */
-.trophy-aside{background:var(--card);color:var(--ink);border:3px solid var(--ink);position:relative;padding-top:30px}
-.trophy-aside::before{content:"";position:absolute;left:0;right:0;top:0;height:14px}
+/* story card + podium */
+.lead .story{margin-top:12px;max-width:68ch;font-size:15px;line-height:1.55}
+.lead .story p{margin:0 0 10px}
+.lead .story p:first-child::first-letter{font:inherit;float:none;padding:0;color:inherit}
+.trophy-aside{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:0;gap:0;align-self:stretch}
+.trophy-aside h3{font:700 13px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;padding:12px 14px;border-bottom:1px solid var(--rule)}
 .trophy-aside .label{color:var(--muted);opacity:1}
-.trophy-aside > div:first-child{background:var(--gold);color:#15171c;margin:0 -16px;padding:14px 16px;border-block:3px solid var(--ink)}
-.trophy-aside > div:first-child .label{color:#15171c}
-.trophy-aside .t-name{font-weight:400;font-style:italic}
-.trophy-aside .t-row{border-top:0;border-left:8px solid var(--rule);padding:4px 0 4px 10px}
-.trophy-aside .t-row:nth-child(2){border-left-color:var(--silver)}
-.trophy-aside .t-row:nth-child(3){border-left-color:var(--blue)}
-.trophy-aside .t-row:nth-child(4){border-left-color:var(--bad)}
+.trophy-aside > div{padding:12px 14px;border-bottom:1px solid var(--rule)}
+.trophy-aside > div:last-child{border-bottom:0}
+.trophy-aside > div:first-child{border-left:4px solid var(--gold)}
+.trophy-aside .t-name{font:800 20px/1.15 var(--display);text-transform:none;letter-spacing:-.01em}
+.trophy-aside .t-sub{font-size:13px;color:var(--muted)}
+.trophy-aside .t-row{border-top:0;padding:10px 14px}
+.trophy-aside .t-row:nth-child(2){border-left:4px solid var(--silver)}
+.trophy-aside .t-row:nth-child(3){border-left:4px solid var(--bronze)}
+.trophy-aside .t-row:nth-child(4){border-left:4px solid var(--rule)}
 
-/* section heads get a checkered strip */
-.sec-head{border-bottom:3px solid var(--ink);position:relative;padding-top:20px}
-.sec-head::before{content:"";position:absolute;left:0;top:0;width:min(180px,40%);height:12px}
-.sec-head h2{font-style:italic}
+/* podium badges */
+.badge.gold{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
+#st tr:nth-child(2) .badge{background:var(--silver);border-color:var(--silver);color:#1a1a1a}
+#st tr:nth-child(3) .badge{background:var(--bronze);border-color:var(--bronze);color:#fff}
+.award.hot{background:var(--bar);color:#fff;border-color:var(--bar)}
+.round.final .game{border-color:var(--gold);box-shadow:none}
+.round h3{font:800 13px/1 var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cell{border-radius:2px}
+.cell.c1{background:var(--gold);color:#1a1a1a}
+.cell.top3{background:var(--silver);color:#1a1a1a}
+.grid-wrap{border:1px solid var(--rule);border-radius:2px}
 
-/* race positions */
-.badge{border-radius:6px;font-style:italic}
-.badge.gold{background:var(--gold);border-color:var(--ink);color:#15171c}
-#st tr:nth-child(2) .badge{background:var(--silver);border-color:var(--ink);color:#15171c}
-#st tr:nth-child(3) .badge{background:var(--bronze);border-color:var(--ink);color:#15171c}
-.rk{font-style:italic;font-weight:400;color:var(--red)}
-.table-wrap,.grid-wrap,.list-card,.award,.game{border:3px solid var(--ink);border-radius:8px}
-.award.hot{background:var(--gold);color:#15171c;border-color:var(--ink)}
-.award.hot .label{color:#15171c}
-.award h3{font-style:italic;font-weight:400}
-.round.final .game{border-color:var(--ink);box-shadow:5px 5px 0 var(--gold)}
-.game .w span:last-child{color:var(--red)}
-.cell{border-radius:6px}
-.cell.c1{background:var(--gold);color:#15171c;border-color:var(--ink)}
-.cell.top3{background:var(--silver);color:#15171c}
-
-/* champions' wall: checkered flags on poles */
-.pennant{clip-path:none;border-left:6px solid var(--ink);background:var(--card);color:var(--ink);padding:0 0 14px;min-height:0;position:relative}
-.pennant::before{content:"";display:block;height:44px;margin-bottom:10px;background:conic-gradient(var(--checker-a) 25%,var(--checker-b) 0 50%,var(--checker-a) 0 75%,var(--checker-b) 0) 0 0/14px 14px}
+/* champions wall */
+.pennant{clip-path:none;background:var(--card);color:var(--ink);border:1px solid var(--rule);border-top:4px solid var(--gold);border-radius:2px;padding:12px;min-height:0;flex-basis:170px;gap:4px}
 .pennant:nth-child(even){background:var(--card);color:var(--ink)}
-.pennant .yr{color:var(--red);font-weight:400;font-style:italic;padding-inline:10px}
-.pennant .who{font-weight:400;font-style:italic;padding-inline:10px}
-.pennant .tm{padding-inline:10px;color:var(--muted)}
-.feud .num{color:var(--red)}
+.pennant .yr{font:800 24px/1 var(--display);color:var(--ink)}
+.pennant .who{font:700 15px/1.2 var(--body);text-transform:none}
+.pennant .tm{font-size:12px;color:var(--muted)}
+.feud .num{color:var(--ink)}

@@ -3,24 +3,24 @@
 <title>The Goon Gazette Seasons</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Barlow:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css">
 <link rel="stylesheet" href="themes/grandprix.css">
 
 <div class="wrap">
   <header class="mast">
-    <div class="nameplate"><h1>The Goon Gazette</h1><small>Ballinwithmygoons · Grand Prix archive</small></div>
+    <div class="nameplate"><h1>The Goon Gazette</h1><small>Ballinwithmygoons archive</small></div>
     <div class="dateline"><span class="label">Archive edition</span><span class="big" id="yr">…</span></div>
   </header>
-  <nav class="site" id="sitenav" aria-label="Site"></nav>
-  <div class="banner" id="banner" hidden></div>
-  <nav aria-label="Sections">
+  <nav class="tabs" aria-label="Sections">
     <a href="#top" data-jump="top">Story</a><a href="#" data-jump="standings">Standings</a><a href="#" data-jump="playoffs">Playoffs</a>
     <a href="#" data-jump="awards">Awards</a><a href="#" data-jump="records">Record book</a><a href="#" data-jump="draft">Draft</a>
   </nav>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+  <div class="banner" id="banner" hidden></div>
 
   <section id="top" class="front">
-    <div><h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p><div class="story" id="story"></div></div>
+    <div class="lead"><h3 class="card-h">Season story</h3><h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p><div class="story" id="story"></div></div>
     <aside class="trophy-aside" id="trophy"></aside>
   </section>
 
