@@ -45,3 +45,12 @@ nav.tabs{border-bottom:1px solid var(--rule)}
 .pennant .who{font:700 15px/1.2 var(--body);text-transform:none}
 .pennant .tm{font-size:12px;color:var(--muted)}
 .feud .num{color:var(--ink)}
+
+/* obituary and lore cards: one type scale, bullets */
+.lead .headline{font:800 24px/1.2 var(--display);letter-spacing:-.015em;text-transform:none;margin-top:14px}
+.lead .sub{font-size:15px;margin-top:6px}
+.lead .sub:empty{display:none}
+.story-list{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.story-list li{position:relative;padding-left:18px;font-size:15px;line-height:1.5}
+.story-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--accent);border-radius:1px}
+.story-list b{font-weight:700}

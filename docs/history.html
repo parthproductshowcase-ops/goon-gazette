@@ -2,6 +2,11 @@
 <html lang="en"><meta charset="utf-8">
 <title>The Goon Gazette History</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css">
@@ -75,9 +80,9 @@ function render(h) {
   $("banner").textContent = "Example data from a made-up league. Real history appears once the Yahoo backfill runs.";
 
   const L = h.lore || {};
-  $("hl").textContent = L.headline || "";
+  $("hl").textContent = titleCase(L.headline);
   $("sub").textContent = L.subhead || "";
-  $("story").innerHTML = (L.body || []).map(p => `<p>${esc(p)}</p>`).join("");
+  $("story").innerHTML = storyList(L.body, h.table.flatMap(r => [who(r.person)]).concat(h.trophies.map(t => t.champion.team)));
 
   const top = h.table[0];
   const sacko = [...h.table].sort((a, b) => b.sackos - a.sackos)[0];

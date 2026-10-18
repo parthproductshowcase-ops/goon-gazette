@@ -20,3 +20,22 @@ function siteNav(active) {
   draw([]);
   getJSON("data/history.json").then(h => { draw(h.seasons || []); if (h.sample) siteNav.sample = true; }).catch(() => {});
 }
+
+// Story paragraphs as bullets, with team and manager names bolded.
+function storyList(paras, names) {
+  const keys = [...new Set((names || []).filter(Boolean))].sort((a, b) => b.length - a.length);
+  const bold = txt => {
+    let h = esc(txt);
+    keys.forEach(k => { const e = esc(k).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); h = h.replace(new RegExp(e, "g"), `<b>${esc(k)}</b>`); });
+    return h;
+  };
+  return (paras || []).length ? `<ul class="story-list">${paras.map(t => `<li>${bold(t)}</li>`).join("")}</ul>` : "";
+}
+
+// ALL-CAPS headlines from older recaps -> Title Case (small words lowered, first word kept).
+function titleCase(t) {
+  t = String(t || "");
+  if (t !== t.toUpperCase()) return t;
+  const small = new Set(["of","the","and","a","an","in","on","for","to","vs","at","by","or"]);
+  return t.toLowerCase().split(/(\s+)/).map((w, i) => /\s/.test(w) ? w : (i > 0 && small.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1))).join("");
+}
