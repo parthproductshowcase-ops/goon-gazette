@@ -3,29 +3,31 @@
 <title>The Goon Gazette</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Barlow:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/gazette.css">
 <link rel="stylesheet" href="themes/fight.css">
 
 <div class="wrap">
   <header class="mast">
-    <div class="nameplate"><h1>The Goon Gazette</h1><small id="lg">Ballinwithmygoons · Daily</small></div>
+    <div class="nameplate"><h1>The Goon Gazette</h1><small id="lg">The daily paper of Ballinwithmygoons</small></div>
     <div class="dateline"><span class="label" id="dl1">Loading</span><span class="big" id="dl2">…</span></div>
   </header>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
   <div class="banner" id="banner" hidden></div>
-  <nav aria-label="Sections">
-    <a href="#current">This Week</a><a href="#race">Victory Road</a><a href="#lastweek">Last Week</a>
-    <a href="#waivers">Waiver Wire</a><a href="#trends">Trends</a>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
+    <a href="#waivers" data-tab="waivers">Waiver Wire</a><a href="#trends" data-tab="trends">Trends</a>
   </nav>
 
-  <div class="front" style="padding-top:22px">
-    <div><h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p><div class="story" id="story"></div></div>
-    <aside class="overheard" id="zings" hidden><h3>Overheard</h3></aside>
-  </div>
-
-  <section id="current">
-    <div class="sec-head"><h2 id="cw-title">This Week</h2><p>Live category scores. Swing cats are within a bucket and can flip tonight.</p></div>
+  <section id="current" class="panel">
+    <div class="front">
+      <div>
+        <h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p>
+        <div class="zingers" id="zings"></div>
+      </div>
+      <aside class="board" id="board" aria-label="Standings and power rank"></aside>
+    </div>
+    <div class="sec-head"><h2 id="cw-title">This week's matchups</h2><p>Closest fights first. A dot marks a category close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 5 players this week</h3><div id="cw-players"></div></div>
@@ -33,13 +35,13 @@
     </div>
   </section>
 
-  <section id="race">
+  <section id="race" class="panel" hidden>
     <div class="sec-head"><h2>Victory Road</h2><p id="race-sub">Playoff odds from simulating the rest of the regular season.</p></div>
     <div class="race-strip" id="race-strip"></div>
     <div class="table-wrap"><table class="pr race"><thead><tr><th>#</th><th>Team</th><th class="r">Cat record</th><th class="r">Back</th><th class="r">Vs line</th><th>Playoff odds</th><th class="r">No. 1 seed</th><th class="r">Proj. wins</th></tr></thead><tbody id="rc"></tbody></table></div>
   </section>
 
-  <section id="lastweek">
+  <section id="lastweek" class="panel" hidden>
     <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Final scores, plus how every team would have done against the whole league.</p></div>
     <div class="results" id="lw-games"></div>
     <div class="awards" id="lw-awards" style="margin-top:14px"></div>
@@ -49,13 +51,13 @@
     </div>
   </section>
 
-  <section id="waivers">
+  <section id="waivers" class="panel" hidden>
     <div class="sec-head"><h2 id="ww-title">Waiver Wire Review</h2><p>Every add and drop from last week, graded on what the pickup did for his new team, per game.</p></div>
     <div class="awards" id="ww-awards"></div>
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Date</th><th>Team</th><th>Added</th><th class="c">Grade</th><th>Dropped</th></tr></thead><tbody id="ww-moves"></tbody></table></div>
   </section>
 
-  <section id="trends">
+  <section id="trends" class="panel" hidden>
     <div class="sec-head"><h2>Trends</h2><p>Power rank after each week, and who is heating up over the last three weeks.</p></div>
     <div class="list-card">
       <div class="h2h-pick"><label for="bump-team" class="label">Highlight</label><select id="bump-team"></select></div>
@@ -72,6 +74,19 @@
 <script>
 siteNav("today");
 
+// section tabs: one panel at a time; the hash remembers which
+const TABS = ["current","race","lastweek","waivers","trends"];
+function showTab(id, push){
+  if (!TABS.includes(id)) id = "current";
+  TABS.forEach(t => { $(t).hidden = t !== id; });
+  document.querySelectorAll("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.tab === id ? "true" : "false"));
+  if (push) history.replaceState(null, "", "#" + id);
+  window.scrollTo({top: 0});
+}
+document.querySelectorAll("nav.tabs a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); showTab(a.dataset.tab, true); }));
+window.addEventListener("hashchange", () => showTab(location.hash.slice(1), false));
+showTab(location.hash.slice(1), false);
+
 function render(a){
   const T = a.teams, nm = tk => esc(T[tk]?.name || tk), mg = tk => esc(T[tk]?.manager || "");
   const cat = {}; a.cats.forEach(c => cat[c.id] = c);
@@ -79,7 +94,7 @@ function render(a){
   const half = v => (Math.round(v * 2) / 2).toString().replace(/\.0$/, "");
   const pct = v => v >= .995 && v < 1 ? ">99%" : v > 0 && v < .005 ? "<1%" : Math.round(v * 100) + "%";
 
-  $("lg").textContent = `${a.league?.name || "League"} · The Brawl · ${a.cats.length}-cat H2H`;
+  $("lg").textContent = `The daily paper of ${a.league?.name || "the league"}, ${a.cats.length}-category head-to-head`;
   const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
   $("dl1").textContent = d.toLocaleDateString("en-US", {weekday:"long", month:"short", day:"numeric"});
   $("dl2").textContent = a.preseason ? "Preseason" : `Week ${a.league?.current_week ?? ""}`;
@@ -88,10 +103,20 @@ function render(a){
   const r = a.recap || {};
   $("hl").textContent = r.headline || "";
   $("sub").textContent = r.subhead || "";
-  $("story").innerHTML = (r.body || []).map(p => `<p>${esc(p)}</p>`).join("");
-  if (r.zingers?.length){
-    $("zings").hidden = false;
-    $("zings").insertAdjacentHTML("beforeend", r.zingers.map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join(""));
+  $("zings").innerHTML = (r.zingers || []).slice(0, 3).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
+
+  // rank board: Yahoo standing next to power rank
+  const powerBy = Object.fromEntries((a.power || []).map(p => [p.team, p]));
+  const standing = Object.entries(a.standings || {}).map(([tk, s]) => ({tk, ...s})).sort((x, y) => x.rank - y.rank);
+  const spots = a.race?.playoff_teams || 0;
+  if (standing.length){
+    $("board").innerHTML = `<h3>Standings and power rank</h3><table>
+      <thead><tr><th>Yahoo</th><th>Team</th><th>Power</th><th>Move</th></tr></thead><tbody>` +
+      standing.map((s, i) => {
+        const p = powerBy[s.tk] || {};
+        const mv = p.move == null || p.move === 0 ? `<td class="d eq">–</td>` : `<td class="d ${p.move > 0 ? "up" : "dn"}">${p.move > 0 ? "▲" : "▼"}${Math.abs(p.move)}</td>`;
+        return `<tr class="${spots && i === spots - 1 ? "line" : ""}"><td class="y num">${s.rank}</td><td class="n">${nm(s.tk)}<small>${s.w}-${s.l}${s.t ? "-" + s.t : ""}</small></td><td class="p num">${p.rank ?? "–"}</td>${mv}</tr>`;
+      }).join("") + `</tbody></table>`;
   }
 
   // 1. race to the championship
@@ -117,16 +142,28 @@ function render(a){
     $("rc").innerHTML = `<tr><td colspan="8" class="empty">The race starts after week 1.</td></tr>`;
   }
 
-  // 2. matchups
-  $("mu").innerHTML = a.matchups.length ? a.matchups.map(m => {
-    const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}${c.swing?" •":""}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
+  // 2. matchups, closest first
+  const tier = m => {
+    const gap = Math.abs(m.score[0] - m.score[1]), sw = m.cats.filter(c => c.swing).length;
+    if (gap <= 1 && sw >= 1) return [0, "Down to the wire"];
+    if (gap <= 1) return [0, "Dead even"];
+    if (gap <= 3 && sw >= 2) return [1, "Heating up"];
+    if (gap <= 3) return [1, "Trading blows"];
+    if (gap <= 5) return [3, "Getting away"];
+    return [4, "Blowout brewing"];
+  };
+  const closeness = m => Math.abs(m.score[0] - m.score[1]) - 0.4 * m.cats.filter(c => c.swing).length;
+  const ordered = [...a.matchups].sort((x, y) => closeness(x) - closeness(y));
+  $("mu").innerHTML = ordered.length ? ordered.map(m => {
+    const [tl, tt] = tier(m);
+    const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
     const sw = m.cats.filter(c => c.swing), rest = m.cats.filter(c => !c.swing);
     return `<article class="mu">
+      <span class="tier t${tl}">${tt}</span>
       <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mg(m.a)}</small></div>
       <div class="mu-score">${m.score[0]}–${m.score[1]}${m.score[2]?`<span class="t">–${m.score[2]}</span>`:""}</div>
       <div class="mu-team b">${nm(m.b)}<small>${mg(m.b)}</small></div></div>
       <div class="hp" aria-hidden="true"><i class="a" style="flex:${m.score[0]||0.2}"></i><i class="t" style="flex:${m.score[2]||0.0001}"></i><i class="b" style="flex:${m.score[1]||0.2}"></i></div>
-      ${sw.length?`<div style="margin-top:10px"><span class="pill swing">${sw.length} swing cat${sw.length>1?"s":""}</span></div>`:""}
       <table class="cats">${sw.map(row).join("")}</table>
       <details><summary>All ${m.cats.length} categories</summary><table class="cats">${rest.map(row).join("")}</table></details>
     </article>`;
@@ -192,7 +229,7 @@ function render(a){
   const L = a.last_week;
   if (L){
     $("lw-title").textContent = `Last Week · Week ${L.week}`;
-    $("cw-title").textContent = `This Week · Week ${a.league?.current_week ?? ""}`;
+    $("cw-title").textContent = `Week ${a.league?.current_week ?? ""} matchups`;
     const opp = L.opponents;
     $("lw-games").innerHTML = L.games.map(g => {
       const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;

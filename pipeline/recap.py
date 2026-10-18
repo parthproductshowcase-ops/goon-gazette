@@ -3,19 +3,25 @@ import json
 import os
 import requests
 
-VOICE = """You are the hype announcer for "The Goon Gazette", the daily fight card of a
-12-team Yahoo fantasy basketball league (head-to-head, categories) called Ballinwithmygoons.
-Voice: arcade fighting-game announcer meets NY back page. Punchy, funny, a little mean.
-Matchups are bouts, category wins are hits, blowouts are knockouts. Puns in headlines.
+VOICE = """You write the front page of "The Goon Gazette", the daily paper of a 12-team Yahoo
+fantasy basketball league (head-to-head, categories) called Ballinwithmygoons.
+Voice: a sharp, funny sports columnist who watched every box score last night. Confident,
+specific, a little mean, never cruel. No announcer shtick, no exclamation points.
+The page has a headline, a one-sentence subhead, and exactly three zingers. A zinger is a
+single sentence aimed at one manager's team about what LAST NIGHT did to their matchup:
+the player they benched who went off, the category they just lost the lead in, the pickup
+that is quietly winning them the week, the blowout they are sleepwalking into. Name the
+player and the category when FACTS give you one. The best zingers make the manager wince
+and the other eleven screenshot it for the group chat.
 Rules: roast lineup decisions, trades and luck, never people's looks, families, jobs or
 identities. PG-13. No made-up stats: use only the numbers in FACTS. Refer to teams by team
-name. Keep it short; people read this on their phone in the group chat."""
+name. Short sentences. People read this on their phone."""
 
 SCHEMA = """Return ONLY JSON:
-{"headline": "<=8 words, ALL CAPS, pun welcome",
- "subhead": "one sentence",
- "body": ["3 short paragraphs, 2-3 sentences each"],
- "zingers": [{"team": "<team name>", "line": "one-line roast or salute"}]  // 3-4 of them
+{"headline": "<=7 words, Title Case, a pun or a verdict",
+ "subhead": "one sentence that explains the headline",
+ "body": [],
+ "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words, about last night's impact on their matchup"}]  // exactly 3, three different teams
 }"""
 
 
@@ -38,7 +44,8 @@ def _facts(a):
     f["punting"] = {nm(p["team"]): [cat[c] for c in p["cats"]] for p in a["punts"]}
     f["matchups"] = [{
         "teams": [nm(m["a"]), nm(m["b"])], "score": m["score"][:2],
-        "swing_cats": [cat[r["cat"]] for r in m["cats"] if r["swing"]]}
+        "swing_cats": [{"cat": cat[r["cat"]], "leader": nm(m["a"] if r["lead"] == "a" else m["b"])}
+                       for r in m["cats"] if r["swing"]]}
         for m in a["matchups"]]
     if a.get("race"):
         rows = a["race"]["rows"]
@@ -59,24 +66,28 @@ def _facts(a):
     if P.get("waiver") and P["waiver"].get("best_pickup"):
         f["pickup_of_the_week"] = [P["waiver"]["best_pickup"]["player"], nm(P["waiver"]["best_pickup"]["team"])]
     if a["bench"]:
-        b = a["bench"][0]
-        f["bench_blunder"] = {"team": nm(b["team"]), "player": b["top_player"],
-                              "points_left_on_bench": b["wasted_pts"]}
+        f["bench_blunders_last_night"] = [{"team": nm(b["team"]), "player": b["top_player"],
+                                           "player_points": b["top_pts"], "points_left_on_bench": b["wasted_pts"]}
+                                          for b in a["bench"][:3]]
     return f
 
 
 def fallback(a):
     nm = lambda tk: a["teams"][tk]["name"]
     top = nm(a["power"][0]["team"])
-    body = [f"{top} sits atop the power rankings, and nobody seems able to stop them."]
+    zingers = []
+    for b in (a["bench"] or [])[:2]:
+        zingers.append({"team": nm(b["team"]),
+                        "line": f"Left {b['top_player']} on the bench for {b['top_pts']} points. That is {b['wasted_pts']} points nobody counted."})
     if a["daily"]:
-        body.append(f"Yesterday belonged to {nm(a['daily']['best'])}. "
-                    f"{nm(a['daily']['worst'])} would like to forget it.")
+        zingers.append({"team": nm(a["daily"]["worst"]), "line": "Worst box score in the league last night. Every category, same story."})
+        zingers.append({"team": nm(a["daily"]["best"]), "line": "Best night in the league. Enjoy it, the schedule turns eventually."})
     if a["luck"]:
-        body.append(f"Luckiest team: {nm(a['luck'][0]['team'])}. "
-                    f"Most robbed: {nm(a['luck'][-1]['team'])}.")
-    return {"headline": f"{top.upper()} RUNS THE TOWN", "subhead": "The daily damage report.",
-            "body": body, "zingers": []}
+        zingers.append({"team": nm(a["luck"][-1]["team"]), "line": "Would be winning against most of the league. Drew the one team they can't beat."})
+    sub = f"{top} leads the power rankings."
+    if a["daily"]:
+        sub = f"{nm(a['daily']['best'])} owned last night; {nm(a['daily']['worst'])} would like it struck from the record."
+    return {"headline": f"{top} Runs the Town", "subhead": sub, "body": [], "zingers": zingers[:3]}
 
 
 def _call(system, user, max_tokens=1200):
