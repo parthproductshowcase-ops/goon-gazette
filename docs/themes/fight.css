@@ -184,3 +184,15 @@ nav.tabs{border-bottom:0}
 .play-cats .label{margin-right:2px}
 .play-cats small{margin-left:auto;font-size:12px}
 @media (max-width:480px){.play-top{grid-template-columns:auto 1fr}.play-player{grid-column:2;text-align:left}}
+
+/* round 3: season row, denser squawk box */
+nav.site{display:flex;align-items:center}
+nav.site a{font:500 12px/1 var(--body);color:var(--muted);padding:10px 12px 10px 0}
+nav.site a:first-child{font:700 13px/1 var(--body);color:var(--ink);padding-right:16px}
+nav.site a:nth-child(2){margin-left:auto}
+nav.site a:last-child{margin-left:0;padding-right:0}
+nav.site a[aria-current="page"]{color:var(--accent);font-weight:700}
+.zing{padding:9px 0;gap:10px}
+.zing b{font-size:11px}
+.zing span{font-size:14px;line-height:1.4;margin-top:1px}
+.sec-head{margin-top:18px}

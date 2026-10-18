@@ -95,6 +95,10 @@ def make(seed=7):
             {"team": "Bench Mob Mafia", "line": "Sixth in the standings, near-lock in the sims. Quietly dangerous."},
             {"team": "Tank Commanders", "line": "Lost a week they would have won against 8 teams. Brutal draw."},
             {"team": "Triple Double Trouble", "line": "Enjoy fourth place while it lasts."},
+            {"team": "Corner Three Kings", "line": "Left Rookie McBucket and his 29 on the bench and still won the night. Rude."},
+            {"team": "Punt Intended", "line": "Zero all-play wins last week. The punt has become the whole identity."},
+            {"team": "Splash Bros & Sons", "line": "Lost the threes lead by one make. One. Check the late box scores."},
+            {"team": "Glass Cleaners", "line": "A waiver pickup is carrying your boards. Your draft picks are watching."},
         ],
     }
     return {

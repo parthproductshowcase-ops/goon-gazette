@@ -29,7 +29,7 @@
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
-    <p class="note" style="margin:14px 0 8px">Closest matchups first. Red categories are close enough to flip tonight.</p>
+    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest first. Red categories are close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 5 players this week</h3><div id="cw-players"></div></div>
@@ -105,7 +105,7 @@ function render(a){
   const r = a.recap || {};
   $("hl").textContent = r.headline || "";
   $("sub").textContent = r.subhead || "";
-  $("zings").innerHTML = (r.zingers || []).slice(0, 3).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
+  $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
 
   // rank board: Yahoo standing next to power rank
   const powerBy = Object.fromEntries((a.power || []).map(p => [p.team, p]));
@@ -242,8 +242,9 @@ function render(a){
 
   // 3. last week
   const L = a.last_week;
+  $("cw-title").textContent = `Week ${a.league?.current_week ?? ""} matchups`;
   if (L){
-    $("lw-title").textContent = `Last Week · Week ${L.week}`;
+    $("lw-title").textContent = `Last Week, Week ${L.week}`;
     const opp = L.opponents;
     $("lw-games").innerHTML = L.games.map(g => {
       const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;
