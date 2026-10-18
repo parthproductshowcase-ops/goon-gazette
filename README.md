@@ -39,22 +39,46 @@ Categories, including "lower is better" ones like TO, come from Yahoo's league s
 custom set works with no code change.
 
 ## Setup (about 30 min)
-1. **Yahoo app**: developer.yahoo.com/apps/create. Type: confidential client. Redirect URI: `oob`
-   (if the form rejects it, use `https://localhost`). API permissions: Fantasy Sports, Read.
-   Copy the client ID and secret.
-2. **Login once, on your laptop**:
+1. **Yahoo API approval**: Yahoo now gates the Fantasy Sports API. Apply via the Yahoo Fantasy
+   API access form; once approved you sign a personal-use agreement, create a **new** app (existing
+   apps won't pick up the permission) and send Yahoo that app's Client ID. The API returns 403
+   until Yahoo turns the app on.
+2. **Yahoo app**: developer.yahoo.com/apps/create. Type: confidential client. Redirect URI:
+   `https://localhost` (the login below uses `oob`, which Yahoo still honours). API permissions:
+   Fantasy Sports, Read. Copy the Client ID and Client Secret.
+3. **`.env` file** in the repo root (git-ignored), two lines plus your league ID (the number in
+   your league URL, `basketball.fantasysports.yahoo.com/nba/<ID>`):
+   ```
+   YAHOO_CLIENT_ID=...
+   YAHOO_CLIENT_SECRET=...
+   YAHOO_LEAGUE_ID=...
+   ```
+4. **Login once, on your laptop**:
    ```
    pip install requests
-   YAHOO_CLIENT_ID=xxx YAHOO_CLIENT_SECRET=yyy python -m pipeline.auth_setup
+   YAHOO_REDIRECT_URI=oob python -m pipeline.yahoo_login
    ```
-   Approve, paste the code, copy the refresh token it prints.
-3. **League ID**: the number in your league URL, `basketball.fantasysports.yahoo.com/nba/<ID>`.
-4. **GitHub**: new repo, push this folder. Settings > Secrets and variables > Actions, add
-   `YAHOO_CLIENT_ID`, `YAHOO_CLIENT_SECRET`, `YAHOO_REFRESH_TOKEN`, `YAHOO_LEAGUE_ID`,
-   `ANTHROPIC_API_KEY` (console.anthropic.com).
-5. **Pages**: Settings > Pages > Deploy from branch > `main` / `docs`.
-6. Actions tab > The Goon Gazette > **Run workflow** to test. The first run also backfills history
+   Approve in the browser, paste the code Yahoo shows. The script saves `YAHOO_REFRESH_TOKEN`
+   into `.env`, caches the session in `.yahoo_token.json`, and tests the API. It prints status
+   codes only, never secrets. `fantasy API: 200` plus your league list means you're good;
+   `403` means Yahoo hasn't enabled the app yet.
+5. **Local build**: `python -m pipeline.build` reads `.env` automatically.
+6. **GitHub**: new repo, push this folder. Settings > Secrets and variables > Actions, add
+   `YAHOO_CLIENT_ID`, `YAHOO_CLIENT_SECRET`, `YAHOO_REFRESH_TOKEN`, `YAHOO_LEAGUE_ID` (from
+   `.env`) and `ANTHROPIC_API_KEY` (console.anthropic.com). With the `gh` CLI:
+   `gh secret set YAHOO_REFRESH_TOKEN < <(grep ^YAHOO_REFRESH_TOKEN= .env | cut -d= -f2-)`
+7. **Pages**: Settings > Pages > Deploy from branch > `main` / `docs`.
+8. Actions tab > The Goon Gazette > **Run workflow** to test. The first run also backfills history
    (a minute or two); after that it only checks for newly finished seasons. Then post the link in the chat.
+
+The daily job runs at 08:00 UTC (4am ET in summer, 3am ET in winter).
+
+**Attribution**: Yahoo's agreement requires "Fantasy data provided by Yahoo Fantasy" with a link on
+every page that shows Yahoo data. It's in each page's footer; keep it there.
+
+**Token cache**: `.yahoo_token.json` remembers the rotated refresh token between runs. It is tagged
+with the Client ID and the login it came from, so a new app or a fresh login automatically
+ignores a stale cache.
 
 ## Local
 ```

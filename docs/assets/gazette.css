@@ -245,3 +245,5 @@ svg.spark .mid{stroke:var(--rule);stroke-dasharray:3 3}
 .pr-main .verdict{color:var(--ink);font-weight:500}
 .pr-val{font-weight:700;font-size:15px}
 .muted{color:var(--muted)}
+
+footer .yattr{color:inherit;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}

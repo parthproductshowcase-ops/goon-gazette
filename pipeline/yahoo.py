@@ -59,6 +59,22 @@ def stat_map(stats_list, cat_ids):
 TOKEN_CACHE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".yahoo_token.json")
 
 
+def load_dotenv(path=None):
+    """Load KEY=VALUE lines from .env (repo root) into os.environ without overriding
+    values already set. Safe to call when the file is missing."""
+    path = path or os.path.join(os.path.dirname(TOKEN_CACHE), ".env")
+    try:
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, _, v = line.partition("=")
+                os.environ.setdefault(k.strip(), v.strip())
+    except OSError:
+        pass
+
+
 class Yahoo:
     """Logs in once per run. The access token (valid ~1 hour) and any rotated refresh token
     are cached in .yahoo_token.json, so the history and build steps share one login instead
@@ -66,19 +82,22 @@ class Yahoo:
 
     def __init__(self, client_id, client_secret, refresh_token):
         self.cid, self.secret, self.refresh_token = client_id, client_secret, refresh_token
+        self.seed = refresh_token  # the token we were given; the cache is only trusted if it grew from this one
         self.access = None
         try:
             import json
             with open(TOKEN_CACHE) as f:
                 c = json.load(f)
-            if c.get("refresh_token"):
-                self.refresh_token = c["refresh_token"]
-            if c.get("access_token") and c.get("expires_at", 0) > time.time() + 120:
-                self.access = c["access_token"]
+            # Ignore a cache left over from a different app or a different login.
+            if c.get("client_id") == self.cid and c.get("seed") == self.seed:
+                if c.get("refresh_token"):
+                    self.refresh_token = c["refresh_token"]
+                if c.get("access_token") and c.get("expires_at", 0) > time.time() + 120:
+                    self.access = c["access_token"]
         except (OSError, ValueError):
             pass
 
-    def _refresh(self):
+    def _refresh(self, _retry=True):
         import json
         r = requests.post(
             TOKEN_URL,
@@ -88,6 +107,10 @@ class Yahoo:
             timeout=30,
         )
         if r.status_code != 200:
+            # A stale cached token: fall back to the one we were given, once.
+            if _retry and self.refresh_token != self.seed:
+                self.refresh_token = self.seed
+                return self._refresh(_retry=False)
             try:
                 err = r.json()
                 reason = f"{err.get('error')}: {err.get('error_description')}"
@@ -99,7 +122,8 @@ class Yahoo:
         self.refresh_token = j.get("refresh_token", self.refresh_token)
         try:
             with open(TOKEN_CACHE, "w") as f:
-                json.dump({"access_token": self.access, "refresh_token": self.refresh_token,
+                json.dump({"client_id": self.cid, "seed": self.seed,
+                           "access_token": self.access, "refresh_token": self.refresh_token,
                            "expires_at": time.time() + int(j.get("expires_in", 3600))}, f)
         except OSError:
             pass

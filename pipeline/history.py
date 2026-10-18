@@ -24,7 +24,8 @@ N_SEASONS = 5
 
 
 def fetch_missing(n=N_SEASONS):
-    from .yahoo import Yahoo
+    from .yahoo import Yahoo, load_dotenv
+    load_dotenv()
     y = Yahoo(os.environ["YAHOO_CLIENT_ID"], os.environ["YAHOO_CLIENT_SECRET"],
               os.environ["YAHOO_REFRESH_TOKEN"])
     lk = y.league_key(os.environ["YAHOO_LEAGUE_ID"])
