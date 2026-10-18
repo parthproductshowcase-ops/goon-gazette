@@ -149,3 +149,38 @@ footer{border-top:1px solid var(--rule);font-size:12px;margin-top:28px}
 .mast,nav.site,.scores,nav.tabs{margin-inline:calc(50% - 50vw);padding-inline:max(16px,calc(50vw - 540px + 16px))}
 nav.tabs a:first-child{padding-left:14px}
 nav.tabs a:first-child[aria-current="true"]::after{left:14px}
+
+/* round 2 */
+.zing span{grid-column:2}
+.card-h{font:700 13px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin:-4px 0 12px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.front{align-items:stretch}
+.board{display:flex;flex-direction:column}
+.board table{flex:1}
+.board td{font-size:15px;padding:8px 12px}
+.board th{font-size:12px;padding:9px 12px 7px}
+.board td.n small{font-size:13px}
+.board td.d{font-size:16px;font-weight:700;width:60px}
+.board .d.up{color:var(--good)}.board .d.dn{color:var(--bad)}.board .d.eq{color:#d9a400}
+nav.site{margin-top:0;border-bottom:1px solid var(--rule)}
+nav.tabs{border-bottom:0}
+
+/* top 5 plays */
+.play{border:1px solid var(--rule);border-radius:2px;padding:12px;margin-top:10px;display:grid;gap:10px;background:var(--card)}
+.play:first-of-type{margin-top:12px}
+.play-top{display:grid;grid-template-columns:auto 1fr 1fr;gap:12px;align-items:start}
+.play-rank{font:800 20px/1 var(--display);color:var(--muted);padding-top:2px}
+.play-who b,.play-player b{display:block;font-size:16px;line-height:1.2}
+.play-who small,.play-player small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.play-player{text-align:right}
+.ww{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.ww-cell{background:var(--blue-soft);color:var(--ink);padding:8px 10px;border-radius:2px;display:grid;gap:3px}
+.ww-cell .label{color:var(--blue);letter-spacing:.04em}
+.ww-cell b{font-size:18px;line-height:1}
+.ww-cell.verdict{background:color-mix(in srgb,var(--good) 14%,transparent)}
+.ww-cell.verdict .label{color:var(--good)}
+.ww-cell.verdict.flip{background:var(--good);color:#fff}
+.ww-cell.verdict.flip .label{color:#fff;opacity:.85}
+.play-cats{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.play-cats .label{margin-right:2px}
+.play-cats small{margin-left:auto;font-size:12px}
+@media (max-width:480px){.play-top{grid-template-columns:auto 1fr}.play-player{grid-column:2;text-align:left}}

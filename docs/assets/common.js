@@ -13,7 +13,7 @@ function siteNav(active) {
   if (!el) return;
   const link = (href, label, key) => `<a href="${href}"${key === active ? ' aria-current="page"' : ""}>${label}</a>`;
   const draw = seasons => {
-    el.innerHTML = link("index.html", "Today", "today")
+    el.innerHTML = link("index.html", "Current Season", "today")
       + seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)).join("")
       + link("history.html", "League history", "history");
   };

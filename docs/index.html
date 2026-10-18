@@ -12,23 +12,24 @@
     <div class="nameplate"><h1>The Goon Gazette</h1><small id="lg">The daily paper of Ballinwithmygoons</small></div>
     <div class="dateline"><span class="label" id="dl1">Loading</span><span class="big" id="dl2">…</span></div>
   </header>
-  <nav class="site" id="sitenav" aria-label="Site"></nav>
   <div class="scores" id="scores" aria-label="Scoreboard"></div>
   <nav class="tabs" aria-label="Sections">
     <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
     <a href="#waivers" data-tab="waivers">Waiver Wire</a><a href="#trends" data-tab="trends">Trends</a>
   </nav>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
 
   <div class="banner" id="banner" hidden></div>
   <section id="current" class="panel">
     <div class="front">
       <div class="lead">
+        <h3 class="card-h">Squawk Box</h3>
         <h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p>
         <div class="zingers" id="zings"></div>
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
-    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest first. Red categories are close enough to flip tonight.</p></div>
+    <p class="note" style="margin:14px 0 8px">Closest matchups first. Red categories are close enough to flip tonight.</p>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 5 players this week</h3><div id="cw-players"></div></div>
@@ -115,7 +116,7 @@ function render(a){
       <thead><tr><th>Yahoo</th><th>Team</th><th>Power</th><th>Move</th></tr></thead><tbody>` +
       standing.map((s, i) => {
         const p = powerBy[s.tk] || {};
-        const mv = p.move == null || p.move === 0 ? `<td class="d eq">–</td>` : `<td class="d ${p.move > 0 ? "up" : "dn"}">${p.move > 0 ? "▲" : "▼"}${Math.abs(p.move)}</td>`;
+        const mv = p.move == null || p.move === 0 ? `<td class="d eq">&#8594;</td>` : `<td class="d ${p.move > 0 ? "up" : "dn"}">${p.move > 0 ? "&#8593;" : "&#8595;"}${Math.abs(p.move)}</td>`;
         return `<tr class="${spots && i === spots - 1 ? "line" : ""}"><td class="y num">${s.rank}</td><td class="n">${nm(s.tk)}<small>${s.w}-${s.l}${s.t ? "-" + s.t : ""}</small></td><td class="p num">${p.rank ?? "–"}</td>${mv}</tr>`;
       }).join("") + `</tbody></table>`;
   }
@@ -200,14 +201,16 @@ function render(a){
   };
   const sc = s => `${s[0]}–${s[1]}${s[2] ? "–" + s[2] : ""}`;
   const playRows = (list, live) => list?.length ? list.map((x, i) => {
-    const verdict = x.flipped
-      ? `${live ? "Leading" : "Won"} ${sc(x.score)}. Without him: ${sc(x.without)}.`
-      : `${live ? "Score" : "Final"} ${sc(x.score)}, worth ${x.net} cat${x.net > 1 ? "s" : ""} on his own.`;
-    return `<div class="prow"><span class="pr-rank">${i + 1}</span>
-      <div class="pr-main"><b>${esc(x.name)}</b><small>${nm(x.team)} vs ${nm(x.opp)} · ${acqText(x.acquired)}</small>
-      <div>${x.swung.map(id => `<span class="chip g">${catLabel(id)}</span>`).join("")}</div>
-      <small class="verdict">${verdict}</small></div>
-      ${x.flipped ? `<span class="pill swing">${live ? "Swinging it" : "Swung it"}</span>` : `<span class="pr-val num">+${x.net}</span>`}</div>`;
+    const sw = x.flipped;
+    return `<div class="play">
+      <div class="play-top"><span class="play-rank">${i + 1}</span>
+        <div class="play-who"><b>${nm(x.team)}</b><small>${mg(x.team)} picked up</small></div>
+        <div class="play-player"><b>${esc(x.name)}</b><small>${acqText(x.acquired)}</small></div></div>
+      <div class="ww"><div class="ww-cell"><span class="label">With him</span><b class="num">${sc(x.score)}</b></div>
+        <div class="ww-cell"><span class="label">Without him</span><b class="num">${sc(x.without)}</b></div>
+        <div class="ww-cell verdict ${sw ? "flip" : ""}"><span class="label">${live ? "Right now" : "Result"}</span><b>${sw ? (live ? "Swinging it" : "Swung it") : `+${x.net} cat${x.net > 1 ? "s" : ""}`}</b></div></div>
+      <div class="play-cats"><span class="label">Impact</span>${x.swung.map(id => `<span class="chip g">${catLabel(id)}</span>`).join("")}<small class="muted">vs ${nm(x.opp)}</small></div>
+    </div>`;
   }).join("") : `<p class="empty">No pickups have swung a matchup ${live ? "yet" : "this week"}.</p>`;
   $("cw-players").innerHTML = playerRows(PL.current?.top_players);
   $("cw-plays").innerHTML = playRows(PL.current?.top_plays, true);
@@ -241,7 +244,6 @@ function render(a){
   const L = a.last_week;
   if (L){
     $("lw-title").textContent = `Last Week · Week ${L.week}`;
-    $("cw-title").textContent = `Week ${a.league?.current_week ?? ""} matchups`;
     const opp = L.opponents;
     $("lw-games").innerHTML = L.games.map(g => {
       const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;
