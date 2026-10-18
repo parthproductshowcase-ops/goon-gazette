@@ -257,7 +257,7 @@ footer{padding-top:14px}
 .mu details{display:flex;flex-direction:column}
 .mu details summary{order:1;margin-top:10px;padding-top:8px;border-top:1px solid var(--rule);color:var(--ink)}
 .mu details summary::before{content:"+ "}
-.mu details[open] summary::before{content:"\\2212  "}
+.mu details[open] summary::before{content:"- "}
 .mu details .c-sw{display:none}
 .mu details[open] .c-all{display:none}
 .mu details[open] .c-sw{display:inline}
