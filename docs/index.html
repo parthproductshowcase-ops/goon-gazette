@@ -3,7 +3,7 @@
 <title>The Goon Gazette</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css">
 <link rel="stylesheet" href="themes/fight.css">
 
@@ -13,21 +13,22 @@
     <div class="dateline"><span class="label" id="dl1">Loading</span><span class="big" id="dl2">…</span></div>
   </header>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
-  <div class="banner" id="banner" hidden></div>
+  <div class="scores" id="scores" aria-label="Scoreboard"></div>
   <nav class="tabs" aria-label="Sections">
     <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
     <a href="#waivers" data-tab="waivers">Waiver Wire</a><a href="#trends" data-tab="trends">Trends</a>
   </nav>
 
+  <div class="banner" id="banner" hidden></div>
   <section id="current" class="panel">
     <div class="front">
-      <div>
+      <div class="lead">
         <h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p>
         <div class="zingers" id="zings"></div>
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
-    <div class="sec-head"><h2 id="cw-title">This week's matchups</h2><p>Closest fights first. A dot marks a category close enough to flip tonight.</p></div>
+    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest first. Red categories are close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 5 players this week</h3><div id="cw-players"></div></div>
@@ -97,7 +98,7 @@ function render(a){
   $("lg").textContent = `The daily paper of ${a.league?.name || "the league"}, ${a.cats.length}-category head-to-head`;
   const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
   $("dl1").textContent = d.toLocaleDateString("en-US", {weekday:"long", month:"short", day:"numeric"});
-  $("dl2").textContent = a.preseason ? "Preseason" : `Week ${a.league?.current_week ?? ""}`;
+  $("dl2").textContent = a.preseason ? "Preseason" : `Wk ${a.league?.current_week ?? ""}`;
   if (a.sample){ $("banner").hidden = false; $("banner").textContent = "Example data from a made-up league. Real numbers appear once the Yahoo connection runs."; }
 
   const r = a.recap || {};
@@ -154,11 +155,22 @@ function render(a){
   };
   const closeness = m => Math.abs(m.score[0] - m.score[1]) - 0.4 * m.cats.filter(c => c.swing).length;
   const ordered = [...a.matchups].sort((x, y) => closeness(x) - closeness(y));
-  $("mu").innerHTML = ordered.length ? ordered.map(m => {
+  const short = tk => { const n = T[tk]?.name || tk; return n.length > 16 ? n.slice(0, 15).trim() + "…" : n; };
+  $("scores").innerHTML = ordered.map((m, i) => {
+    const [tl, tt] = tier(m), aw = m.score[0] > m.score[1], bw = m.score[1] > m.score[0];
+    return `<a href="#current" data-mu="${i}"><span class="st ${tl <= 1 ? "live" : ""}">${tt}</span>
+      <span class="tm ${aw ? "w" : ""}">${esc(short(m.a))}</span><span class="sc ${bw ? "l" : ""} num">${m.score[0]}</span>
+      <span class="tm ${bw ? "w" : ""}">${esc(short(m.b))}</span><span class="sc ${aw ? "l" : ""} num">${m.score[1]}</span></a>`;
+  }).join("");
+  document.querySelectorAll("#scores a").forEach(el => el.addEventListener("click", e => {
+    e.preventDefault(); showTab("current", true);
+    document.getElementById("mu-" + el.dataset.mu)?.scrollIntoView({behavior: "smooth", block: "start"});
+  }));
+  $("mu").innerHTML = ordered.length ? ordered.map((m, i) => {
     const [tl, tt] = tier(m);
     const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
     const sw = m.cats.filter(c => c.swing), rest = m.cats.filter(c => !c.swing);
-    return `<article class="mu">
+    return `<article class="mu" id="mu-${i}">
       <span class="tier t${tl}">${tt}</span>
       <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mg(m.a)}</small></div>
       <div class="mu-score">${m.score[0]}–${m.score[1]}${m.score[2]?`<span class="t">–${m.score[2]}</span>`:""}</div>
