@@ -10,9 +10,9 @@ nav.tabs a[aria-current="true"]::after{display:none}
 nav.tabs{border-bottom:1px solid var(--rule)}
 
 /* story card + podium */
-.lead .story{margin-top:12px;max-width:68ch;font-size:15px;line-height:1.55}
-.lead .story p{margin:0 0 10px}
-.lead .story p:first-child::first-letter{font:inherit;float:none;padding:0;color:inherit}
+.lead-card .story{margin-top:12px;max-width:68ch;font-size:15px;line-height:1.55}
+.lead-card .story p{margin:0 0 10px}
+.lead-card .story p:first-child::first-letter{font:inherit;float:none;padding:0;color:inherit}
 .trophy-aside{background:var(--card);color:var(--ink);border:1px solid var(--rule);border-radius:2px;padding:0;gap:0;align-self:stretch}
 .trophy-aside h3{font:700 13px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;padding:12px 14px;border-bottom:1px solid var(--rule)}
 .trophy-aside .label{color:var(--muted);opacity:1}
@@ -47,9 +47,9 @@ nav.tabs{border-bottom:1px solid var(--rule)}
 .feud .num{color:var(--ink)}
 
 /* obituary and lore cards: one type scale, bullets */
-.lead .headline{font:800 24px/1.2 var(--display);letter-spacing:-.015em;text-transform:none;margin-top:14px}
-.lead .sub{font-size:15px;margin-top:6px}
-.lead .sub:empty{display:none}
+.lead-card .headline{font:800 24px/1.2 var(--display);letter-spacing:-.015em;text-transform:none;margin-top:14px}
+.lead-card .sub{font-size:15px;margin-top:6px}
+.lead-card .sub:empty{display:none}
 .story-list{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:10px}
 .story-list li{position:relative;padding-left:18px;font-size:15px;line-height:1.5}
 .story-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--accent);border-radius:1px}
