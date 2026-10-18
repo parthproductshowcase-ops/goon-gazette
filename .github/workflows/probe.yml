@@ -32,5 +32,6 @@ jobs:
               status = r.status_code
           line = f"PROBE login={login} fantasy_api={status}"
           print(line)
+          print(f"::notice title=PROBE::{line}")
           open(os.environ["GITHUB_STEP_SUMMARY"], "a").write(line + "\n")
           PY
