@@ -1,0 +1,31 @@
+name: The Lineup Card
+on:
+  schedule:
+    - cron: "15 23 * * *"   # 7:15pm ET during EDT (6:15pm in winter)
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  tonight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python -m pipeline.tonight
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
+          YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Commit tonight's card
+        run: |
+          git config user.name "gazette-bot"
+          git config user.email "gazette-bot@users.noreply.github.com"
+          git add docs/data/tonight.json
+          git diff --cached --quiet || git commit -m "Lineup Card $(date -u +%F)"
+          git pull --rebase
+          git push

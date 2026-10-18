@@ -71,7 +71,11 @@ custom set works with no code change.
 8. Actions tab > The Goon Gazette > **Run workflow** to test. The first run also backfills history
    (a minute or two); after that it only checks for newly finished seasons. Then post the link in the chat.
 
-The daily job runs at 08:00 UTC (4am ET in summer, 3am ET in winter).
+Two editions a day. The morning paper runs at 08:00 UTC (4am ET in summer, 3am ET in winter):
+final stats, waivers cleared, the Squawk Box. The Lineup Card runs at 23:15 UTC (7:15pm ET in
+summer), after lineups lock: tonight's benched-with-a-game players, injured starters, empty
+slots, today's adds, live scores, and four pre-game zingers. It writes `docs/data/tonight.json`
+and the home page shows it until the next morning edition.
 
 **Attribution**: Yahoo's agreement requires "Fantasy data provided by Yahoo Fantasy" with a link on
 every page that shows Yahoo data. It's in each page's footer; keep it there.

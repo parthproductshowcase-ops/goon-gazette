@@ -116,7 +116,7 @@ def _call(system, user, max_tokens=1200):
         r.raise_for_status()
         text = "".join(b.get("text", "") for b in r.json()["content"])
         out = json.loads(text[text.find("{"): text.rfind("}") + 1])
-        assert out.get("headline") and out.get("body")
+        assert out.get("headline") or out.get("zingers") or out.get("body")
         return out
     except Exception as e:  # never let the newspaper kill the build
         print("Claude call failed, using fallback:", e)
@@ -192,3 +192,51 @@ def lore(h):
             "subhead": f"{len(h['seasons'])} seasons of glory, grudges and last-place finishes.",
             "body": [f"{top['name']} sits on top of the all-time table with {top['titles']} "
                      f"title{'s' if top['titles'] != 1 else ''}. Everyone else is chasing."]}
+
+
+# ---------- evening edition: tonight's lineup card ----------
+TONIGHT_VOICE = VOICE + """
+This is the EVENING edition, written after lineups lock and before most games tip. Nothing has
+happened yet tonight; you are calling it before it does. Write about what managers are about to
+do to themselves: healthy players benched with a game tonight, injured or out players left in
+the starting lineup, panicked adds, and the matchups that tonight will decide."""
+
+TONIGHT_SCHEMA = """Return ONLY JSON:
+{"headline": "<=6 words, Title Case",
+ "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words, about tonight's lineup or matchup"}]  // exactly 4, four different teams
+}"""
+
+
+def tonight_facts(t):
+    nm = lambda tk: t["teams"][tk]["name"]
+    cat = {c["id"]: c["name"] for c in t["cats"]}
+    f = {"date": t["date"], "note": "all facts are about tonight's locked lineups and live matchup scores"}
+    f["matchups"] = [{"teams": [nm(m["a"]), nm(m["b"])], "score": m["score"][:2],
+                      "swing_cats": [{"cat": cat[r["cat"]], "leader": nm(m["a"] if r["lead"] == "a" else m["b"])}
+                                     for r in m["cats"] if r["swing"]]} for m in t["matchups"]]
+    f["lineups"] = {nm(tk): v for tk, v in t["lineups"].items()
+                    if v["benched_with_game"] or v["starting_out"] or v["empty_slots"]}
+    f["moves_today"] = [{"team": nm(x["team"]), x["kind"]: x["player"]} for x in t["moves_today"]][:12]
+    return f
+
+
+def tonight_fallback(t):
+    nm = lambda tk: t["teams"][tk]["name"]
+    z = []
+    for tk, v in t["lineups"].items():
+        if v["benched_with_game"]:
+            p = v["benched_with_game"][0]
+            z.append({"team": nm(tk), "line": f"{p} is healthy, has a game tonight, and is on your bench. Explain that to the group chat."})
+        elif v["starting_out"]:
+            p = v["starting_out"][0]
+            z.append({"team": nm(tk), "line": f"{p['player']} is listed {p['status']} and still in your starting lineup. That is a zero you chose."})
+        elif v["empty_slots"]:
+            z.append({"team": nm(tk), "line": f"{v['empty_slots']} empty starting slot{'s' if v['empty_slots'] > 1 else ''} tonight. You are forfeiting minutes on purpose."})
+        if len(z) >= 4:
+            break
+    return {"headline": "Tonight's Lineup Card", "zingers": z[:4]}
+
+
+def tonight(t):
+    out = _call(TONIGHT_VOICE, "FACTS:\n" + json.dumps(tonight_facts(t)) + "\n\n" + TONIGHT_SCHEMA, 700)
+    return out or tonight_fallback(t)

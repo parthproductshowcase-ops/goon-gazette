@@ -28,6 +28,10 @@
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
+    <section class="card lineup" id="lineup" hidden>
+      <div class="lu-head"><h3 id="lu-title">The Lineup Card</h3><span class="lu-time" id="lu-time"></span></div>
+      <div class="lu-body"><div class="zingers" id="lu-zings"></div><div class="lu-flags" id="lu-flags"></div></div>
+    </section>
     <div class="sec-head"><h2 id="cw-title">The Fights</h2><p>Closest fights first. Red categories are clutch: close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
@@ -65,7 +69,7 @@
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Team</th><th>Weekly all-play %</th><th class="r">Season</th><th class="r">Last 3</th><th class="r">Form</th></tr></thead><tbody id="spark"></tbody></table></div>
   </section>
 
-  <footer><span id="gen"></span><span>Rebuilt every morning at 4 ET.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+  <footer><span id="gen"></span><span>Morning edition 4am ET. Lineup Card 7:15pm ET, after lineups lock.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
 <script src="assets/common.js"></script>
@@ -176,6 +180,25 @@ function render(a){
       <details><summary><span class="c-all">All ${m.cats.length} categories</span><span class="c-sw">Clutch categories</span></summary><table class="cats">${rest.map(row).join("")}</table></details>
     </article>`;
   }).join("") : `<p class="empty">No matchups yet.</p>`;
+
+  // tonight's lineup card (evening edition)
+  const TN = a.tonight;
+  if (TN){
+    $("lineup").hidden = false;
+    $("dl1").textContent += ", evening edition";
+    $("lu-title").innerHTML = `${esc(TN.headline || "The Lineup Card")} <b class="dot">&bull;</b> Tonight`;
+    $("lu-time").textContent = `Lineups as of ${new Date(TN.generated_at).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit"})}`;
+    $("lu-zings").innerHTML = (TN.zingers || []).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("") || `<p class="empty">Everyone set a clean lineup. Suspicious.</p>`;
+    const flags = Object.entries(TN.lineups || {}).map(([tk, v]) => {
+      const bits = [];
+      v.benched_with_game.forEach(p => bits.push(`<span class="chip r">Benched: ${esc(p)}</span>`));
+      v.starting_out.forEach(p => bits.push(`<span class="chip r">Starting ${esc(p.status)}: ${esc(p.player)}</span>`));
+      if (v.empty_slots) bits.push(`<span class="chip r">${v.empty_slots} empty slot${v.empty_slots > 1 ? "s" : ""}</span>`);
+      (TN.moves_today || []).filter(m => m.team === tk && m.kind === "add").forEach(m => bits.push(`<span class="chip g">Added ${esc(m.player)}</span>`));
+      return bits.length ? `<div class="lu-row"><b>${nm(tk)}</b><div>${bits.join("")}</div></div>` : "";
+    }).join("");
+    $("lu-flags").innerHTML = flags || `<p class="empty">No lineup crimes detected tonight.</p>`;
+  }
 
   // standouts: top players and waiver plays
   const PL = a.players || {};
@@ -311,8 +334,16 @@ function spark(vals){
   return `<svg viewBox="0 0 ${W} ${H}" class="spark" aria-hidden="true"><line x1="0" x2="${W}" y1="${y(.5)}" y2="${y(.5)}" class="mid"/><polyline points="${pts}" fill="none"/><circle cx="${x(v.length - 1)}" cy="${y(v.at(-1))}" r="3"/></svg>`;
 }
 
-fetch("data/league.json", {cache:"no-store"})
-  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(render)
+Promise.all([
+  fetch("data/league.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch("data/tonight.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null)
+]).then(([a, t]) => {
+    // the evening edition wins while it is newer than the morning paper
+    if (t && t.generated_at && a.generated_at && t.generated_at >= a.generated_at && !t.sample === !a.sample){
+      a.matchups = t.matchups || a.matchups;
+      a.tonight = t;
+    }
+    render(a);
+  })
   .catch(e => { $("zings").innerHTML = `<div class="zing"><b>Presses jammed</b><span>Couldn't load today's data. The morning build may have failed; check the GitHub Actions log.</span></div>`; console.error(e); });
 </script>
