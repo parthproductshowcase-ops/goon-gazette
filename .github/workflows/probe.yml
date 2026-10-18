@@ -1,0 +1,36 @@
+name: Yahoo API probe
+on:
+  schedule:
+    - cron: "40 12 * * *"   # 8:40am ET; a quick 1-call check until Yahoo turns access on
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q requests
+      - name: Probe
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        run: |
+          python - <<'PY'
+          import os, requests
+          from pipeline.yahoo import Yahoo
+          y = Yahoo(os.environ["YAHOO_CLIENT_ID"], os.environ["YAHOO_CLIENT_SECRET"], os.environ["YAHOO_REFRESH_TOKEN"])
+          try:
+              y._refresh(); login = "ok"
+          except Exception as e:
+              login = f"failed: {e}"
+          status = "n/a"
+          if login == "ok":
+              r = requests.get("https://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_codes=nba/leagues",
+                               params={"format": "json"}, headers={"Authorization": "Bearer " + y.access}, timeout=30)
+              status = r.status_code
+          line = f"PROBE login={login} fantasy_api={status}"
+          print(line)
+          open(os.environ["GITHUB_STEP_SUMMARY"], "a").write(line + "\n")
+          PY
