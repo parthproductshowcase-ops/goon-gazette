@@ -28,28 +28,28 @@
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
-    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest fights first. Red categories are clutch: close enough to flip tonight.</p></div>
+    <div class="sec-head"><h2 id="cw-title">The Fights</h2><p>Closest fights first. Red categories are clutch: close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
-      <div class="list-card"><h3>Top 10 players this week</h3><div id="cw-players"></div></div>
-      <div class="list-card"><h3>Top 5 plays this week</h3><p class="note">Pickups doing the job your draft picks were supposed to do.</p><div id="cw-plays"></div></div>
+      <div class="list-card"><h3>Managers Who Earned Their Keep</h3><p class="note">Pickups doing the job the draft picks were supposed to do.</p><div id="cw-plays"></div></div>
+      <div class="list-card"><h3>Players Carrying Lazy Rosters</h3><p class="note">Top 10 this week by category value.</p><div id="cw-players"></div></div>
     </div>
   </section>
 
   <section id="race" class="panel" hidden>
-    <div class="sec-head"><h2 id="race-title">Victory Road</h2><p id="race-sub">Playoff odds from simulating the rest of the regular season.</p></div>
+    <div class="sec-head"><h2 id="race-title">Victory Road</h2><p id="race-sub">Who is in, who is praying, who is already planning next year.</p></div>
     <div class="race-strip" id="race-strip"></div>
     <div class="table-wrap"><table class="pr race"><thead><tr><th>#</th><th>Team</th><th class="r">Cat record</th><th class="r">Back</th><th class="r">Vs line</th><th>Playoff odds</th><th class="r">No. 1 seed</th><th class="r">Proj. wins</th></tr></thead><tbody id="rc"></tbody></table></div>
   </section>
 
   <section id="lastweek" class="panel" hidden>
-    <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Receipts from last week. All-play means how you would have done against everyone.</p></div>
+    <div class="sec-head"><h2 id="lw-title">The Receipts</h2><p>Receipts from last week. All-play means how you would have done against everyone.</p></div>
     <div class="awards" id="lw-awards"></div>
-    <div class="sec-head"><h2>Matchup summary</h2><p>Final category scores.</p></div>
+    <div class="sec-head"><h2>Final Damage</h2><p>How every fight ended.</p></div>
     <div class="results" id="lw-games"></div>
     <div class="cols2 standouts">
-      <div class="list-card"><h3>Top 10 players of the week</h3><div id="lw-players"></div></div>
-      <div class="list-card"><h3>Top 5 plays of the week</h3><p class="note">Pickups that decided a matchup while the draft picks watched.</p><div id="lw-plays"></div></div>
+      <div class="list-card"><h3>Managers Who Earned Their Keep</h3><p class="note">Pickups that decided a matchup while the draft picks watched.</p><div id="lw-plays"></div></div>
+      <div class="list-card"><h3>Players Carrying Lazy Rosters</h3><p class="note">Top 10 last week by category value.</p><div id="lw-players"></div></div>
     </div>
   </section>
 
@@ -60,7 +60,7 @@
   </section>
 
   <section id="trends" class="panel" hidden>
-    <div class="sec-head"><h2 id="tr-title">Trends</h2><p>Who is heating up over the last three weeks, and every team's weekly all-play.</p></div>
+    <div class="sec-head"><h2 id="tr-title">Cooking or Cooked</h2><p>Who is rising over the last three weeks, who is falling apart, and every team's weekly all-play.</p></div>
     <div class="cols3" id="form"></div>
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Team</th><th>Weekly all-play %</th><th class="r">Season</th><th class="r">Last 3</th><th class="r">Form</th></tr></thead><tbody id="spark"></tbody></table></div>
   </section>
@@ -254,9 +254,9 @@ function render(a){
 
   // 3. last week
   const L = a.last_week;
-  $("cw-title").textContent = `Week ${a.league?.current_week ?? ""} matchups`;
+  $("cw-title").innerHTML = `The Fights <b class="dot">&bull;</b> Week ${a.league?.current_week ?? ""}`;
   if (L){
-    $("lw-title").innerHTML = `Last Week <b class="dot">&bull;</b> Week ${L.week}`;
+    $("lw-title").innerHTML = `The Receipts <b class="dot">&bull;</b> Week ${L.week}`;
     const opp = L.opponents;
     $("lw-games").innerHTML = L.games.map(g => {
       const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;
@@ -276,16 +276,16 @@ function render(a){
   // 5. trends
   const TR = a.trends;
   if (TR){
-    $("tr-title").innerHTML = `Trends <b class="dot">&bull;</b> Weeks ${TR.weeks[0]}&ndash;${TR.weeks.at(-1)}`;
+    $("tr-title").innerHTML = `Cooking or Cooked <b class="dot">&bull;</b> Weeks ${TR.weeks[0]}&ndash;${TR.weeks.at(-1)}`;
     const order = a.power.map(p => p.team);
     const hot = TR.form.slice(0, 3), cold = TR.form.slice(-3).reverse();
     const fr = x => `<div class="feud"><span><b>${nm(x.team)}</b></span><span class="num" style="color:var(${x.delta >= 0 ? "--good" : "--bad"})">${x.delta >= 0 ? "+" : "−"}${Math.abs(x.delta * 100).toFixed(1)}</span></div>`;
     const climb = [...TR.form].sort((x, y) => y.rank_change - x.rank_change)[0];
     const fall = [...TR.form].sort((x, y) => x.rank_change - y.rank_change)[0];
     $("form").innerHTML = `
-      <div class="list-card"><h3>Heating up</h3>${hot.map(fr).join("")}</div>
-      <div class="list-card"><h3>Ice cold</h3>${cold.map(fr).join("")}</div>
-      <div class="list-card"><h3>Since week ${TR.weeks[0]}</h3>
+      <div class="list-card"><h3>Cooking</h3>${hot.map(fr).join("")}</div>
+      <div class="list-card"><h3>Cooked</h3>${cold.map(fr).join("")}</div>
+      <div class="list-card"><h3>Biggest moves since week ${TR.weeks[0]}</h3>
         <div class="feud"><span>Biggest climb</span><span><b>${nm(climb.team)}</b> <span class="num delta up">▲${climb.rank_change}</span></span></div>
         <div class="feud"><span>Biggest fall</span><span><b>${nm(fall.team)}</b> <span class="num delta dn">▼${-fall.rank_change}</span></span></div></div>`;
     const formBy = Object.fromEntries(TR.form.map(f => [f.team, f]));
