@@ -235,3 +235,6 @@ nav.tabs{border-bottom:1px solid var(--rule)}
 .game div{font-size:14px;padding:9px 12px}
 .game .w{font-weight:700}
 .list-card .feud{font-size:14px;padding-block:9px}
+/* align tab text with the button and card edge */
+nav.tabs a:first-child{padding-left:0}
+nav.tabs a:first-child[aria-current="true"]::after{left:0}
