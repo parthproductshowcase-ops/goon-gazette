@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from . import recap
+from . import recap, stats
 from .yahoo import coll, flat
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -115,6 +115,7 @@ def sample():
 def main():
     is_sample = "--sample" in sys.argv
     t = sample() if is_sample else fetch_live()
+    t["matchups"] = stats.matchup_board({"matchups": t["matchups"], "cats": t["cats"]})
     card = recap.tonight_fallback(t) if is_sample else recap.tonight(t)
     out = {"date": t["date"], "week": t["week"], "sample": is_sample,
            "generated_at": datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes"),

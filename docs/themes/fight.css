@@ -219,7 +219,7 @@ nav.site a[aria-current="page"]{background:var(--accent);color:#fff;outline:0;bo
 nav.site a:hover,nav.site a:focus-visible{background:var(--accent);color:#fff}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav.site a{background:#3a3c42}}
 .card-h,.board h3{font:800 18px/1.1 var(--display);text-transform:none;letter-spacing:-.01em;color:var(--ink)}
-.card-h{padding-bottom:12px;margin-bottom:14px}
+.card-h{padding-bottom:12px;margin-bottom:0}
 .board h3{padding:14px 14px 12px}
 
 /* grade colors */
@@ -264,7 +264,7 @@ footer{padding-top:14px}
 .cats td.lead{border:0;outline:0}
 /* squawk box fills its card */
 .lead{display:flex;flex-direction:column}
-.zingers{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;border-top:1px solid var(--rule)}
+.zingers{flex:1;display:flex;flex-direction:column;justify-content:space-evenly;border-top:0}
 .zing{padding:10px 0}
 .zing b{font-size:12px}
 .zing span{font-size:16px;line-height:1.45}
