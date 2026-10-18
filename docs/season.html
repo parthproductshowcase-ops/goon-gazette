@@ -14,7 +14,7 @@
   </header>
   <nav class="tabs" aria-label="Sections">
     <a href="#top" data-jump="top">Story</a><a href="#" data-jump="standings">Standings</a><a href="#" data-jump="playoffs">Playoffs</a>
-    <a href="#" data-jump="awards">Awards</a><a href="#" data-jump="records">Record book</a><a href="#" data-jump="draft">Draft</a>
+    <a href="#" data-jump="awards">Awards</a><a href="#" data-jump="records">Record book</a><a href="#" data-jump="draft">Top 12</a>
   </nav>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
   <div class="banner" id="banner" hidden></div>
@@ -45,8 +45,8 @@
   </section>
 
   <section id="draft">
-    <div class="sec-head"><h2>Draft Day</h2><p>First round, and where each drafting team finished.</p></div>
-    <div class="table-wrap"><table class="pr"><thead><tr><th>Pick</th><th>Player</th><th>Team</th><th class="c">Finish</th></tr></thead><tbody id="dr"></tbody></table></div>
+    <div class="sec-head"><h2>Top 12 players</h2><p id="dr-sub">Yahoo's season rank. Team is who held him when the season ended.</p></div>
+    <div class="table-wrap"><table class="pr"><thead><tr><th>#</th><th>Player</th><th>Team</th><th>Drafted by</th><th class="r" id="dr-cost">Draft</th></tr></thead><tbody id="dr"></tbody></table></div>
   </section>
 
   <footer><span>Final results archive.</span><a href="history.html" style="color:inherit">All-time league history</a><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
@@ -110,10 +110,19 @@ function render(s) {
     return `<tr><td class="c" style="text-align:left;font-weight:700">${esc(b.cat)}</td><td>${cell(b)}</td><td>${cell(w)}</td></tr>`;
   }).join("");
 
-  $("dr").innerHTML = s.draft.length ? s.draft.map(d => {
-    const f = d.finish, tag = f === 1 ? "gold" : f >= n - 1 ? "dim" : "";
-    return `<tr><td class="rk" style="font-size:24px">${d.pick}</td><td><b>${esc(d.player)}</b></td><td class="tm"><b>${nm(d.team)}</b><small>${mg(d.team)}</small></td><td class="c"><span class="badge ${tag}">${f ?? "–"}</span></td></tr>`;
-  }).join("") : `<tr><td colspan="4" class="empty">No draft data.</td></tr>`;
+  const tp = s.top_players || [];
+  $("dr-cost").textContent = s.auction ? "Price" : "Pick";
+  $("dr").innerHTML = tp.length ? tp.map(x => {
+    const draftCell = x.drafted_by == null ? `<span class="muted">Undrafted</span>`
+      : s.auction ? (x.cost != null ? `$${x.cost}` : "–")
+      : (x.round ? `Rd ${x.round}, #${x.pick}` : `#${x.pick}`);
+    const kept = x.team && x.drafted_by && x.team === x.drafted_by;
+    return `<tr><td class="rk" style="font-size:18px">${x.rank}</td>
+      <td><b>${esc(x.player)}</b>${x.pos ? `<small class="muted"> ${esc(x.pos)}</small>` : ""}</td>
+      <td class="tm">${x.team ? `<b>${nm(x.team)}</b><small>${mg(x.team)}</small>` : `<span class="muted">Free agent</span>`}</td>
+      <td class="tm">${x.drafted_by ? `<b>${nm(x.drafted_by)}</b>${kept ? `<small>kept all year</small>` : ""}` : `<span class="muted">–</span>`}</td>
+      <td class="r num">${draftCell}</td></tr>`;
+  }).join("") : `<tr><td colspan="5" class="empty">Top players load with the next history backfill.</td></tr>`;
 }
 
 function load() {

@@ -149,6 +149,8 @@ def season_summary(s, cfg):
         "num_playoff_teams": s.get("num_playoff_teams"),
         "standings": standings, "bracket": bracket, "records": {"best": best, "worst": worst},
         "awards": awards, "draft": draft, "recap": s.get("recap"),
+        "top_players": s.get("top_players", []),
+        "auction": any(d.get("cost") is not None for d in s.get("draft_all", [])),
     }
 
 

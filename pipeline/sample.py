@@ -307,8 +307,19 @@ def make_history(seed=11):
         draft_order = tks[:]
         rnd.shuffle(draft_order)
         draft = [{"pick": i + 1, "team": tk, "player": STARS[(i + season) % 12]} for i, tk in enumerate(draft_order)]
+        auction = season >= 2024
+        draft_all = [{"pick": i + 1, "round": 1, "cost": (rnd.randint(28, 72) if auction else None),
+                      "team": tk, "player_key": f"p{(i + season) % 12}"} for i, tk in enumerate(draft_order)]
+        top_players = []
+        for i in range(12):
+            pk = f"p{(i + season) % 12}"
+            d = next(x for x in draft_all if x["player_key"] == pk)
+            holder = d["team"] if rnd.random() < .7 else rnd.choice(tks)
+            top_players.append({"rank": i + 1, "player_key": pk, "player": STARS[(i + season) % 12], "pos": rnd.choice(["PG", "SG", "SF", "PF", "C"]),
+                                "team": holder, "drafted_by": d["team"], "cost": d["cost"], "pick": d["pick"], "round": 1})
         out.append({"season": str(season), "label": f"{season}–{str(season + 1)[-2:]}", "name": "Ballinwithmygoons",
                     "cats": cats, "end_week": 19, "num_playoff_teams": 6, "playoff_start_week": 17,
                     "teams": teams, "standings": standings, "weeks": weeks,
-                    "season_stats": season_stats, "draft": draft, "recap": None})
+                    "season_stats": season_stats, "draft": draft, "recap": None,
+                    "top_players": top_players, "draft_all": draft_all})
     return out

@@ -614,5 +614,140 @@
    "Waiver Wire Warriors finished last. The Sacko is theirs to keep."
   ]
  },
+ "top_players": [
+  {
+   "rank": 1,
+   "player_key": "p9",
+   "player": "Sniper Steve",
+   "pos": "C",
+   "team": "425.l.9.t.5",
+   "drafted_by": "425.l.9.t.5",
+   "cost": 67,
+   "pick": 1,
+   "round": 1
+  },
+  {
+   "rank": 2,
+   "player_key": "p10",
+   "player": "Unicorn",
+   "pos": "PF",
+   "team": "425.l.9.t.2",
+   "drafted_by": "425.l.9.t.2",
+   "cost": 34,
+   "pick": 2,
+   "round": 1
+  },
+  {
+   "rank": 3,
+   "player_key": "p11",
+   "player": "Dunk Don",
+   "pos": "SF",
+   "team": "425.l.9.t.4",
+   "drafted_by": "425.l.9.t.3",
+   "cost": 41,
+   "pick": 3,
+   "round": 1
+  },
+  {
+   "rank": 4,
+   "player_key": "p0",
+   "player": "Big Man One",
+   "pos": "PG",
+   "team": "425.l.9.t.6",
+   "drafted_by": "425.l.9.t.6",
+   "cost": 43,
+   "pick": 4,
+   "round": 1
+  },
+  {
+   "rank": 5,
+   "player_key": "p1",
+   "player": "Point God",
+   "pos": "SG",
+   "team": "425.l.9.t.8",
+   "drafted_by": "425.l.9.t.9",
+   "cost": 59,
+   "pick": 5,
+   "round": 1
+  },
+  {
+   "rank": 6,
+   "player_key": "p2",
+   "player": "Wing Wizard",
+   "pos": "PF",
+   "team": "425.l.9.t.12",
+   "drafted_by": "425.l.9.t.12",
+   "cost": 65,
+   "pick": 6,
+   "round": 1
+  },
+  {
+   "rank": 7,
+   "player_key": "p3",
+   "player": "Stretch Five",
+   "pos": "PF",
+   "team": "425.l.9.t.11",
+   "drafted_by": "425.l.9.t.11",
+   "cost": 48,
+   "pick": 7,
+   "round": 1
+  },
+  {
+   "rank": 8,
+   "player_key": "p4",
+   "player": "Two Way Tony",
+   "pos": "C",
+   "team": "425.l.9.t.7",
+   "drafted_by": "425.l.9.t.7",
+   "cost": 68,
+   "pick": 8,
+   "round": 1
+  },
+  {
+   "rank": 9,
+   "player_key": "p5",
+   "player": "Glass Eater",
+   "pos": "SF",
+   "team": "425.l.9.t.8",
+   "drafted_by": "425.l.9.t.8",
+   "cost": 35,
+   "pick": 9,
+   "round": 1
+  },
+  {
+   "rank": 10,
+   "player_key": "p6",
+   "player": "Floor General",
+   "pos": "PG",
+   "team": "425.l.9.t.10",
+   "drafted_by": "425.l.9.t.10",
+   "cost": 49,
+   "pick": 10,
+   "round": 1
+  },
+  {
+   "rank": 11,
+   "player_key": "p7",
+   "player": "Microwave Mike",
+   "pos": "PF",
+   "team": "425.l.9.t.1",
+   "drafted_by": "425.l.9.t.1",
+   "cost": 47,
+   "pick": 11,
+   "round": 1
+  },
+  {
+   "rank": 12,
+   "player_key": "p8",
+   "player": "Rim Protector",
+   "pos": "C",
+   "team": "425.l.9.t.4",
+   "drafted_by": "425.l.9.t.4",
+   "cost": 29,
+   "pick": 12,
+   "round": 1
+  }
+ ],
+ "auction": true,
  "sample": true
 }

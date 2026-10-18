@@ -23,6 +23,20 @@ OUT = ROOT / "docs" / "data"
 N_SEASONS = 5
 
 
+def _top_with_draft(y, lk):
+    """Top 12 players at season's end, each tagged with who drafted him and for what."""
+    draft_all = y.draft_results(lk)
+    by_key = {d["player_key"]: d for d in draft_all}
+    top = y.top_players(lk, 12)
+    for t in top:
+        d = by_key.get(t["player_key"])
+        t["drafted_by"] = d["team"] if d else None
+        t["cost"] = d["cost"] if d else None
+        t["pick"] = d["pick"] if d else None
+        t["round"] = d["round"] if d else None
+    return top, draft_all
+
+
 def fetch_missing(n=N_SEASONS):
     from .yahoo import Yahoo, load_dotenv
     load_dotenv()
@@ -40,6 +54,14 @@ def fetch_missing(n=N_SEASONS):
         got += 1
         path = ARCHIVE / f"{meta['season']}.json"
         if path.exists():
+            old = json.loads(path.read_text())
+            if "top_players" not in old:
+                try:
+                    old["top_players"], old["draft_all"] = _top_with_draft(y, lk)
+                    path.write_text(json.dumps(old, indent=1))
+                    print("added top players to", meta["season"])
+                except Exception as e:
+                    print("top players fetch failed:", e)
             lk = prev
             continue
         print("fetching", meta["season"], lk)
@@ -52,10 +74,16 @@ def fetch_missing(n=N_SEASONS):
         except Exception as e:
             print("draft fetch failed:", e)
             draft = []
+        try:
+            top, draft_all = _top_with_draft(y, lk)
+        except Exception as e:
+            print("top players fetch failed:", e)
+            top, draft_all = [], []
         s = {"season": meta["season"], "label": hs.season_label(meta["season"]), "league_key": lk,
              "name": meta["name"], "cats": cats, "end_week": meta["end_week"],
              **y.playoff_settings(lk), "teams": teams, "standings": standings, "weeks": weeks,
-             "season_stats": y.team_stats(lk, ids, "season"), "draft": draft}
+             "season_stats": y.team_stats(lk, ids, "season"), "draft": draft,
+             "top_players": top, "draft_all": draft_all}
         path.write_text(json.dumps(s, indent=1))
         lk = prev
     if got < n:

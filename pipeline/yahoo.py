@@ -185,6 +185,33 @@ class Yahoo:
         return [{"pick": int(p["pick"]), "team": p["team_key"],
                  "player": names.get(p["player_key"], p["player_key"])} for p in picks]
 
+    def draft_results(self, lk):
+        """Every pick: pick, round, cost (auction) or None, team, player_key."""
+        lg = flat(self.get(f"league/{lk}/draftresults")["league"])
+        out = []
+        for p in coll(lg.get("draft_results"), "draft_result"):
+            if not p.get("player_key"):
+                continue
+            cost = p.get("cost")
+            out.append({"pick": int(p.get("pick") or 0), "round": int(p.get("round") or 0),
+                        "cost": int(cost) if cost not in (None, "") else None,
+                        "team": p["team_key"], "player_key": p["player_key"]})
+        return out
+
+    def top_players(self, lk, n=12):
+        """Top n players by Yahoo's season rank for this league, with the team that holds them."""
+        lg = flat(self.get(f"league/{lk}/players;sort=AR;sort_type=season;count={n};out=ownership")["league"])
+        out = []
+        for i, p in enumerate(coll(lg.get("players"), "player"), 1):
+            p = flat(p)
+            nm = p.get("name", {})
+            own = flat(p.get("ownership") or {})
+            out.append({"rank": i, "player_key": p.get("player_key"),
+                        "player": nm.get("full") if isinstance(nm, dict) else str(nm),
+                        "pos": p.get("display_position"),
+                        "team": own.get("owner_team_key") if own.get("ownership_type") == "team" else None})
+        return out
+
     def cats(self, lk):
         lg = flat(self.get(f"league/{lk}/settings")["league"])
         s = flat(lg["settings"])
