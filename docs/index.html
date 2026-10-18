@@ -13,11 +13,11 @@
     <div class="dateline"><span class="label" id="dl1">Loading</span><span class="big" id="dl2">…</span></div>
   </header>
   <div class="scores" id="scores" aria-label="Scoreboard"></div>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
   <nav class="tabs" aria-label="Sections">
     <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
     <a href="#waivers" data-tab="waivers">Waiver Wire</a><a href="#trends" data-tab="trends">Trends</a>
   </nav>
-  <nav class="site" id="sitenav" aria-label="Site"></nav>
 
   <div class="banner" id="banner" hidden></div>
   <section id="current" class="panel">
@@ -220,13 +220,14 @@ function render(a){
   // waiver wire review
   const WW = PL.waiver;
   const grade = v => v == null ? "–" : v >= 4 ? "A+" : v >= 2 ? "A" : v >= 1 ? "B+" : v >= 0 ? "B" : v >= -1.5 ? "C" : v >= -3 ? "D" : "F";
+  const gcls = v => v == null ? "" : v >= 1 ? "g-good" : v >= -1.5 ? "g-mid" : "g-bad";
   if (WW){
     $("ww-title").innerHTML = `Waiver Wire <b class="dot">&bull;</b> Week ${WW.week} <b class="dot">&bull;</b> ${WW.total_adds} add${WW.total_adds === 1 ? "" : "s"} this week`;
     const adds = WW.moves.flatMap(m => m.adds.map(x => ({...x, team: m.team, date: m.date})));
     const played = adds.filter(x => x.games > 0);
     const box = (label, player, team, g, extra, hot) => `<div class="award ${hot ? "hot" : ""}"><span class="label">${label}</span>
       <h3>${player ? `<mark>${esc(player)}</mark>` : "–"}</h3>
-      <p>${team ? `<b>${nm(team)}</b>` : ""}${g != null ? ` <span class="gr">Grade <b>${grade(g)}</b></span>` : ""}${extra ? `<br>${extra}` : ""}</p></div>`;
+      <p>${team ? `<b>${nm(team)}</b>` : ""}${g != null ? ` <span class="gr">Grade <b class="${gcls(g)}">${grade(g)}</b></span>` : ""}${extra ? `<br>${extra}` : ""}</p></div>`;
     const gp = n => `${n} game${n === 1 ? "" : "s"}`;
     const aw = [];
     if (WW.best_pickup) aw.push(box("Pickup of the week", WW.best_pickup.player, WW.best_pickup.team, WW.best_pickup.pg, gp(WW.best_pickup.games), true));
@@ -248,7 +249,7 @@ function render(a){
     $("ww-moves").innerHTML = WW.moves.length ? WW.moves.map(m => {
       const dt = new Date(m.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
       const add = m.adds.map(x => `<b>${esc(x.player)}</b><small class="muted"> ${x.source === "waivers" ? "waivers" : "FA"}${x.faab ? " $" + x.faab : ""} · ${x.games} gp</small>`).join("<br>") || "–";
-      const g = m.adds.map(x => `<span class="badge ${grade(x.pg).startsWith("A") ? "gold" : ""}">${grade(x.pg)}</span>`).join(" ") || "–";
+      const g = m.adds.map(x => `<span class="badge ${gcls(x.pg)}">${grade(x.pg)}</span>`).join(" ") || "–";
       const drop = m.drops.map(x => esc(x.player)).join(", ") || "–";
       return `<tr><td class="num">${dt}</td><td class="tm"><b>${nm(m.team)}</b></td><td>${add}</td><td class="c">${g}</td><td class="muted">${drop}</td></tr>`;
     }).join("") : `<tr><td colspan="5" class="empty">No waiver activity last week.</td></tr>`;

@@ -221,3 +221,12 @@ nav.site a:hover,nav.site a:focus-visible{background:var(--accent);color:#fff}
 .card-h,.board h3{font:800 18px/1.1 var(--display);text-transform:none;letter-spacing:-.01em;color:var(--ink)}
 .card-h{padding-bottom:12px;margin-bottom:14px}
 .board h3{padding:14px 14px 12px}
+
+/* grade colors */
+.g-good{color:var(--good)}.g-mid{color:#c99400}.g-bad{color:var(--bad)}
+.badge.g-good{background:var(--good);border-color:var(--good);color:#fff}
+.badge.g-mid{background:#f2c437;border-color:#f2c437;color:#1a1a1a}
+.badge.g-bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.award.hot .g-good{color:#6fe3a1}.award.hot .g-mid{color:#ffd65c}.award.hot .g-bad{color:#ff8a93}
+nav.site{border-bottom:0;padding-top:12px;padding-bottom:4px}
+nav.tabs{border-bottom:1px solid var(--rule)}
