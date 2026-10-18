@@ -230,3 +230,8 @@ nav.site a:hover,nav.site a:focus-visible{background:var(--accent);color:#fff}
 .award.hot .g-good{color:#6fe3a1}.award.hot .g-mid{color:#ffd65c}.award.hot .g-bad{color:#ff8a93}
 nav.site{border-bottom:0;padding-top:12px;padding-bottom:4px}
 nav.tabs{border-bottom:1px solid var(--rule)}
+.sec-head .dot{color:var(--accent);margin:0 4px}
+.results{gap:12px}
+.game div{font-size:14px;padding:9px 12px}
+.game .w{font-weight:700}
+.list-card .feud{font-size:14px;padding-block:9px}

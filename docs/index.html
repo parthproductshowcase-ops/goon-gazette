@@ -38,15 +38,16 @@
   </section>
 
   <section id="race" class="panel" hidden>
-    <div class="sec-head"><h2>Victory Road</h2><p id="race-sub">Playoff odds from simulating the rest of the regular season.</p></div>
+    <div class="sec-head"><h2 id="race-title">Victory Road</h2><p id="race-sub">Playoff odds from simulating the rest of the regular season.</p></div>
     <div class="race-strip" id="race-strip"></div>
     <div class="table-wrap"><table class="pr race"><thead><tr><th>#</th><th>Team</th><th class="r">Cat record</th><th class="r">Back</th><th class="r">Vs line</th><th>Playoff odds</th><th class="r">No. 1 seed</th><th class="r">Proj. wins</th></tr></thead><tbody id="rc"></tbody></table></div>
   </section>
 
   <section id="lastweek" class="panel" hidden>
-    <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Final scores, plus how every team would have done against the whole league.</p></div>
+    <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Awards use all-play: how each team would have done against the whole league.</p></div>
+    <div class="awards" id="lw-awards"></div>
+    <div class="sec-head"><h2>Matchup summary</h2><p>Final category scores.</p></div>
     <div class="results" id="lw-games"></div>
-    <div class="awards" id="lw-awards" style="margin-top:14px"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 5 players of the week</h3><div id="lw-players"></div></div>
       <div class="list-card"><h3>Top 5 plays of the week</h3><p class="note">Waiver pickups whose stats swung their matchup.</p><div id="lw-plays"></div></div>
@@ -60,12 +61,8 @@
   </section>
 
   <section id="trends" class="panel" hidden>
-    <div class="sec-head"><h2>Trends</h2><p>Power rank after each week, and who is heating up over the last three weeks.</p></div>
-    <div class="list-card">
-      <div class="h2h-pick"><label for="bump-team" class="label">Highlight</label><select id="bump-team"></select></div>
-      <div class="bump-wrap" id="bump"></div>
-    </div>
-    <div class="cols3" style="margin-top:14px" id="form"></div>
+    <div class="sec-head"><h2 id="tr-title">Trends</h2><p>Who is heating up over the last three weeks, and every team's weekly all-play.</p></div>
+    <div class="cols3" id="form"></div>
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Team</th><th>Weekly all-play %</th><th class="r">Season</th><th class="r">Last 3</th><th class="r">Form</th></tr></thead><tbody id="spark"></tbody></table></div>
   </section>
 
@@ -125,6 +122,7 @@ function render(a){
   const R = a.race;
   if (R && R.rows.length){
     const n = R.playoff_teams;
+    $("race-title").innerHTML = `Victory Road <b class="dot">&bull;</b> ${R.weeks_left} week${R.weeks_left === 1 ? "" : "s"} left <b class="dot">&bull;</b> ${n} playoff spots`;
     $("race-sub").textContent = `Top ${n} make the playoffs. Odds come from ${R.sims.toLocaleString()} simulations of the remaining schedule, using each team's category strength.`;
     const bubble = R.rows.filter(x => x.playoff_odds >= .2 && x.playoff_odds <= .8).length;
     const locks = R.rows.filter(x => x.playoff_odds >= .99).length;
@@ -261,7 +259,7 @@ function render(a){
   const L = a.last_week;
   $("cw-title").textContent = `Week ${a.league?.current_week ?? ""} matchups`;
   if (L){
-    $("lw-title").textContent = `Last Week, Week ${L.week}`;
+    $("lw-title").innerHTML = `Last Week <b class="dot">&bull;</b> Week ${L.week}`;
     const opp = L.opponents;
     $("lw-games").innerHTML = L.games.map(g => {
       const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;
@@ -281,19 +279,8 @@ function render(a){
   // 5. trends
   const TR = a.trends;
   if (TR){
-    const sel = $("bump-team");
-    const byMove = [...TR.form].sort((x, y) => Math.abs(y.rank_change) - Math.abs(x.rank_change));
+    $("tr-title").innerHTML = `Trends <b class="dot">&bull;</b> Weeks ${TR.weeks[0]}&ndash;${TR.weeks.at(-1)}`;
     const order = a.power.map(p => p.team);
-    sel.innerHTML = order.map(t => `<option value="${esc(t)}">${nm(t)}</option>`).join("");
-    let saved = null;
-    try { saved = localStorage.getItem("bump-team"); } catch (e) {}
-    sel.value = saved && T[saved] ? saved : (byMove[0]?.team || order[0]);
-    const draw = () => {
-      try { localStorage.setItem("bump-team", sel.value); } catch (e) {}
-      $("bump").innerHTML = bump(TR, order, sel.value, nm);
-    };
-    sel.onchange = draw;
-    draw();
     const hot = TR.form.slice(0, 3), cold = TR.form.slice(-3).reverse();
     const fr = x => `<div class="feud"><span><b>${nm(x.team)}</b></span><span class="num" style="color:var(${x.delta >= 0 ? "--good" : "--bad"})">${x.delta >= 0 ? "+" : "−"}${Math.abs(x.delta * 100).toFixed(1)}</span></div>`;
     const climb = [...TR.form].sort((x, y) => y.rank_change - x.rank_change)[0];
@@ -312,29 +299,10 @@ function render(a){
         <td class="num r" style="color:var(${(f.delta ?? 0) >= 0 ? "--good" : "--bad"})">${f.delta == null ? "–" : (f.delta >= 0 ? "+" : "−") + Math.abs(f.delta * 100).toFixed(1)}</td></tr>`;
     }).join("");
   } else {
-    $("bump").innerHTML = `<p class="empty">Trends start after week 2.</p>`;
+    $("form").innerHTML = `<p class="empty">Trends start after week 2.</p>`;
   }
 
   $("gen").textContent = a.generated_at ? `Updated ${new Date(a.generated_at).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}` : "";
-}
-
-// power rank by week; every team drawn faint, the chosen one bold
-function bump(TR, order, pick, nm){
-  const W = 760, H = 380, L = 34, Rr = 560, Tp = 22, B = 34;
-  const weeks = TR.weeks, n = order.length;
-  const x = i => weeks.length < 2 ? L : L + (Rr - L) * i / (weeks.length - 1);
-  const y = r => Tp + (H - Tp - B) * (r - 1) / Math.max(1, n - 1);
-  let g = "";
-  for (let r = 1; r <= n; r++) g += `<text x="${L - 10}" y="${y(r) + 4}" class="ax" text-anchor="end">${r}</text>`;
-  weeks.forEach((w, i) => g += `<line x1="${x(i)}" x2="${x(i)}" y1="${Tp - 8}" y2="${H - B + 6}" class="grid"/><text x="${x(i)}" y="${H - 10}" class="ax" text-anchor="middle">Wk ${w}</text>`);
-  const lines = order.map(t => {
-    const pts = TR.rank_by_week[t].map((r, i) => `${x(i)},${y(r)}`).join(" ");
-    const last = TR.rank_by_week[t].at(-1);
-    const on = t === pick;
-    return { on, svg: `<g class="${on ? "on" : "off"}"><polyline points="${pts}" fill="none"/>${on ? TR.rank_by_week[t].map((r, i) => `<circle cx="${x(i)}" cy="${y(r)}" r="4.5"/>`).join("") : ""}<text x="${Rr + 12}" y="${y(last) + 4}" class="lab">${last}. ${nm(t)}</text></g>` };
-  });
-  g += lines.filter(l => !l.on).map(l => l.svg).join("") + lines.filter(l => l.on).map(l => l.svg).join("");
-  return `<svg viewBox="0 0 ${W} ${H}" class="bump" role="img" aria-label="Power rank by week">${g}</svg>`;
 }
 
 function spark(vals){
