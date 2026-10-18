@@ -92,13 +92,13 @@ def make(seed=7):
             "Punt Intended beat zero teams in all-play last week. Zero. The punt is now the whole strategy.",
         ],
         "zingers": [
-            {"team": "Bench Mob Mafia", "line": "Sixth in the standings, near-lock in the sims. Quietly dangerous."},
-            {"team": "Tank Commanders", "line": "Lost a week they would have won against 8 teams. Brutal draw."},
-            {"team": "Triple Double Trouble", "line": "Enjoy fourth place while it lasts."},
-            {"team": "Corner Three Kings", "line": "Left Rookie McBucket and his 29 on the bench and still won the night. Rude."},
-            {"team": "Punt Intended", "line": "Zero all-play wins last week. The punt has become the whole identity."},
-            {"team": "Splash Bros & Sons", "line": "Lost the threes lead by one make. One. Check the late box scores."},
-            {"team": "Glass Cleaners", "line": "A waiver pickup is carrying your boards. Your draft picks are watching."},
+            {"team": "Bench Mob Mafia", "line": "Benched Rookie McBucket for 29 points and lost the rebounds by four. The name was a warning, not a brand."},
+            {"team": "Tank Commanders", "line": "Beat eight teams on paper and lost anyway. Unlucky is the polite word. Soft is the accurate one."},
+            {"team": "Triple Double Trouble", "line": "Fourth in the standings with a one-in-three playoff shot. The record is lying to you and the sims know it."},
+            {"team": "Corner Three Kings", "line": "Won the night with a 29-point scorer glued to the bench. Imagine if you tried."},
+            {"team": "Punt Intended", "line": "Zero all-play wins last week. You punted eleven categories and the matchup."},
+            {"team": "Splash Bros & Sons", "line": "Lost the threes lead by one make. One. Your shooter sat Saturday and you never noticed."},
+            {"team": "Glass Cleaners", "line": "A free-agent center is carrying your boards. Your first-round pick is a decoration."},
         ],
     }
     return {

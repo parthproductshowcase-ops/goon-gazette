@@ -24,16 +24,15 @@
     <div class="front">
       <div class="lead">
         <h3 class="card-h">Squawk Box</h3>
-        <h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p>
         <div class="zingers" id="zings"></div>
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
-    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest first. Red categories are close enough to flip tonight.</p></div>
+    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest fights first. Red categories can flip tonight, so set your lineup.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 10 players this week</h3><div id="cw-players"></div></div>
-      <div class="list-card"><h3>Top 5 plays this week</h3><p class="note">Waiver pickups whose stats are winning categories in their matchup.</p><div id="cw-plays"></div></div>
+      <div class="list-card"><h3>Top 5 plays this week</h3><p class="note">Pickups doing the job your draft picks were supposed to do.</p><div id="cw-plays"></div></div>
     </div>
   </section>
 
@@ -44,18 +43,18 @@
   </section>
 
   <section id="lastweek" class="panel" hidden>
-    <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Awards use all-play: how each team would have done against the whole league.</p></div>
+    <div class="sec-head"><h2 id="lw-title">Last Week</h2><p>Receipts from last week. All-play means how you would have done against everyone.</p></div>
     <div class="awards" id="lw-awards"></div>
     <div class="sec-head"><h2>Matchup summary</h2><p>Final category scores.</p></div>
     <div class="results" id="lw-games"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 10 players of the week</h3><div id="lw-players"></div></div>
-      <div class="list-card"><h3>Top 5 plays of the week</h3><p class="note">Waiver pickups whose stats swung their matchup.</p><div id="lw-plays"></div></div>
+      <div class="list-card"><h3>Top 5 plays of the week</h3><p class="note">Pickups that decided a matchup while the draft picks watched.</p><div id="lw-plays"></div></div>
     </div>
   </section>
 
   <section id="waivers" class="panel" hidden>
-    <div class="sec-head"><h2 id="ww-title">Waiver Wire Review</h2><p>Every add and drop from last week, graded on what the pickup did for his new team, per game.</p></div>
+    <div class="sec-head"><h2 id="ww-title">Waiver Wire Review</h2><p>Every add and drop from last week, graded on what the pickup actually did. The grades are not kind.</p></div>
     <div class="awards" id="ww-awards"></div>
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Date</th><th>Team</th><th>Added</th><th class="c">Grade</th><th>Dropped</th></tr></thead><tbody id="ww-moves"></tbody></table></div>
   </section>
@@ -100,8 +99,6 @@ function render(a){
   if (a.sample){ $("banner").hidden = false; $("banner").textContent = "Example data from a made-up league. Real numbers appear once the Yahoo connection runs."; }
 
   const r = a.recap || {};
-  $("hl").textContent = r.headline || "";
-  $("sub").textContent = r.subhead || "";
   $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
 
   // rank board: Yahoo standing next to power rank
@@ -148,9 +145,9 @@ function render(a){
     if (gap <= 1 && sw >= 1) return [0, "Down to the wire"];
     if (gap <= 1) return [0, "Dead even"];
     if (gap <= 3 && sw >= 2) return [1, "Heating up"];
-    if (gap <= 3) return [1, "Trading blows"];
-    if (gap <= 5) return [3, "Getting away"];
-    return [4, "Blowout brewing"];
+    if (gap <= 3) return [1, "Trading punches"];
+    if (gap <= 5) return [3, "Slipping away"];
+    return [4, "Getting embarrassed"];
   };
   const closeness = m => Math.abs(m.score[0] - m.score[1]) - 0.4 * m.cats.filter(c => c.swing).length;
   const ordered = [...a.matchups].sort((x, y) => closeness(x) - closeness(y));
@@ -230,7 +227,7 @@ function render(a){
     const aw = [];
     if (WW.best_pickup) aw.push(box("Pickup of the week", WW.best_pickup.player, WW.best_pickup.team, WW.best_pickup.pg, gp(WW.best_pickup.games), true));
     const worst = [...played].sort((x, y) => x.pg - y.pg)[0];
-    if (worst && worst.pg < 0) aw.push(box("Worst pickup", worst.player, worst.team, worst.pg, gp(worst.games)));
+    if (worst && worst.pg < 0) aw.push(box("Waiver wire crime", worst.player, worst.team, worst.pg, gp(worst.games)));
     if (WW.splash) aw.push(box("Biggest FAAB splash", WW.splash.player, WW.splash.team, WW.splash.pg, `$${WW.splash.faab} of budget`));
     const bargain = [...played].filter(x => !x.faab).sort((x, y) => y.pg - x.pg)[0];
     if (bargain && bargain.pg > 0) aw.push(box("Bargain of the week", bargain.player, bargain.team, bargain.pg, `Free, ${gp(bargain.games)}`));
@@ -240,9 +237,9 @@ function render(a){
     if (workhorse && workhorse !== bargain) aw.push(box("Most games played", workhorse.player, workhorse.team, workhorse.pg, gp(workhorse.games)));
     const movers = new Set(WW.moves.map(m => m.team));
     const quiet = Object.keys(T).filter(tk => !movers.has(tk));
-    if (quiet.length) aw.push(`<div class="award"><span class="label">Standing pat</span><h3>${quiet.length} team${quiet.length === 1 ? "" : "s"}</h3><p>No moves: <b>${quiet.slice(0, 3).map(nm).join(", ")}</b>${quiet.length > 3 ? ` and ${quiet.length - 3} more` : ""}</p></div>`);
+    if (quiet.length) aw.push(`<div class="award"><span class="label">Asleep at the wheel</span><h3>${quiet.length} team${quiet.length === 1 ? "" : "s"}</h3><p>Not one move: <b>${quiet.slice(0, 3).map(nm).join(", ")}</b>${quiet.length > 3 ? ` and ${quiet.length - 3} more` : ""}</p></div>`);
     const streamer = (() => { const c = {}; adds.filter(x => x.games <= 1).forEach(x => c[x.team] = (c[x.team] || 0) + 1); const t = Object.entries(c).sort((a, b) => b[1] - a[1])[0]; return t && t[1] >= 2 ? t : null; })();
-    if (aw.length < 8 && streamer) aw.push(`<div class="award"><span class="label">Streamer of the week</span><h3>${nm(streamer[0])}</h3><p><b>${streamer[1]} one-game rentals</b></p></div>`);
+    if (aw.length < 8 && streamer) aw.push(`<div class="award"><span class="label">Rental car GM</span><h3>${nm(streamer[0])}</h3><p><b>${streamer[1]} one-game rentals</b></p></div>`);
     $("ww-awards").innerHTML = aw.slice(0, 8).join("");
     $("ww-moves").innerHTML = WW.moves.length ? WW.moves.map(m => {
       const dt = new Date(m.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
@@ -269,8 +266,8 @@ function render(a){
     aw.push(`<div class="award hot"><span class="label">MVP of the week</span><h3>${nm(L.mvp)}</h3><p>Would have beaten ${L.allplay[L.mvp]} of ${opp} teams.</p></div>`);
     if (L.upset) aw.push(`<div class="award"><span class="label">Upset of the week</span><h3>${nm(L.upset.winner)}</h3><p>Took down ${nm(L.upset.loser)}, ${L.upset.gap} spots higher in the power rankings, ${L.upset.score[0] > L.upset.score[1] ? L.upset.score[0] + "–" + L.upset.score[1] : L.upset.score[1] + "–" + L.upset.score[0]}.</p></div>`);
     if (L.closest) aw.push(`<div class="award"><span class="label">Closest bout</span><h3>${nm(L.closest.a)} vs ${nm(L.closest.b)}</h3><p>Decided ${L.closest.score[0]}–${L.closest.score[1]}${L.closest.score[2] ? "–" + L.closest.score[2] : ""}.</p></div>`);
-    if (L.robbed) aw.push(`<div class="award"><span class="label">Robbed</span><h3>${nm(L.robbed)}</h3><p>Lost, but would have beaten ${L.allplay[L.robbed]} of ${opp} teams.</p></div>`);
-    aw.push(`<div class="award"><span class="label">Dud of the week</span><h3>${nm(L.dud)}</h3><p>Would have beaten ${L.allplay[L.dud]} of ${opp} teams.</p></div>`);
+    if (L.robbed) aw.push(`<div class="award"><span class="label">Robbed in broad daylight</span><h3>${nm(L.robbed)}</h3><p>Lost, but would have beaten ${L.allplay[L.robbed]} of ${opp} teams.</p></div>`);
+    aw.push(`<div class="award"><span class="label">Disgrace of the week</span><h3>${nm(L.dud)}</h3><p>Would have beaten ${L.allplay[L.dud]} of ${opp} teams.</p></div>`);
     $("lw-awards").innerHTML = aw.join("");
   } else {
     $("lw-games").innerHTML = `<p class="empty">No completed weeks yet.</p>`;
@@ -317,5 +314,5 @@ function spark(vals){
 fetch("data/league.json", {cache:"no-store"})
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(render)
-  .catch(e => { $("hl").textContent = "PRESSES JAMMED"; $("sub").textContent = "Couldn't load today's data. The morning build may have failed; check the GitHub Actions log."; console.error(e); });
+  .catch(e => { $("zings").innerHTML = `<div class="zing"><b>Presses jammed</b><span>Couldn't load today's data. The morning build may have failed; check the GitHub Actions log.</span></div>`; console.error(e); });
 </script>

@@ -3,23 +3,26 @@ import json
 import os
 import requests
 
-VOICE = """You write the front page of "The Goon Gazette", the daily paper of a 12-team Yahoo
+VOICE = """You write the Squawk Box for "The Goon Gazette", the daily paper of a 12-team Yahoo
 fantasy basketball league (head-to-head, categories) called Ballinwithmygoons.
-Voice: a sharp, funny sports columnist who watched every box score last night. Confident,
-specific, a little mean, never cruel. No announcer shtick, no exclamation points.
-The page has a headline, a one-sentence subhead, and exactly seven zingers. A zinger is a
-single sentence aimed at one manager's team about what LAST NIGHT did to their matchup:
-the player they benched who went off, the category they just lost the lead in, the pickup
-that is quietly winning them the week, the blowout they are sleepwalking into. Name the
-player and the category when FACTS give you one. The best zingers make the manager wince
-and the other eleven screenshot it for the group chat.
-Rules: roast lineup decisions, trades and luck, never people's looks, families, jobs or
-identities. PG-13. No made-up stats: use only the numbers in FACTS. Refer to teams by team
-name. Short sentences. People read this on their phone."""
+The whole point of the paper is to expose every manager's atrocities to the other eleven.
+Voice: a ruthless beat writer who read every box score last night and is personally offended
+by what he saw. Snappy, sharp, humiliating. Short declarative sentences. Name names. No
+announcer shtick, no exclamation points, no hedging, no compliments unless they set up a
+knife. Praise only goes to a team that is embarrassing someone else.
+You produce exactly seven zingers, each one sentence, each aimed at a different team, about
+what LAST NIGHT did to their matchup: the player left on the bench who went off, the category
+lead they coughed up, the pickup carrying a lazy roster, the blowout they are sleepwalking
+into, the lucky stiff who should be losing. Use the player's name and the category whenever
+FACTS give you one. The test for every line: would the manager wince, and would the other
+eleven screenshot it for the group chat.
+Hard rules: roast lineups, trades, pickups, laziness and luck. Never looks, families, jobs,
+health, money or identities. No slurs, PG-13. No made-up stats: use only numbers in FACTS.
+Refer to teams by team name. Nothing longer than 22 words."""
 
 SCHEMA = """Return ONLY JSON:
-{"headline": "<=7 words, Title Case, a pun or a verdict",
- "subhead": "one sentence that explains the headline",
+{"headline": "<=7 words, Title Case, the day's verdict",
+ "subhead": "one sentence",
  "body": [],
  "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words, about last night's impact on their matchup"}]  // exactly 7, seven different teams
 }"""
@@ -78,17 +81,17 @@ def fallback(a):
     zingers = []
     for b in (a["bench"] or [])[:3]:
         zingers.append({"team": nm(b["team"]),
-                        "line": f"Left {b['top_player']} on the bench for {b['top_pts']} points. That is {b['wasted_pts']} points nobody counted."})
+                        "line": f"Benched {b['top_player']} for {b['top_pts']} points. {b['wasted_pts']} points rotting on the pine while you lost a category."})
     if a["daily"]:
-        zingers.append({"team": nm(a["daily"]["worst"]), "line": "Worst box score in the league last night. Every category, same story."})
-        zingers.append({"team": nm(a["daily"]["best"]), "line": "Best night in the league. Enjoy it, the schedule turns eventually."})
+        zingers.append({"team": nm(a["daily"]["worst"]), "line": "Worst box score in the league last night. Twelve teams, and you found the bottom."})
+        zingers.append({"team": nm(a["daily"]["best"]), "line": "Best night in the league, which says more about the other eleven than about you."})
     if a["luck"]:
-        zingers.append({"team": nm(a["luck"][-1]["team"]), "line": "Would be winning against most of the league. Drew the one team they can't beat."})
-        zingers.append({"team": nm(a["luck"][0]["team"]), "line": "Luckiest schedule in the league. The record says contender; the categories say coin flip."})
+        zingers.append({"team": nm(a["luck"][-1]["team"]), "line": "Beats most of the league on paper and still loses. Unlucky is one word for it."})
+        zingers.append({"team": nm(a["luck"][0]["team"]), "line": "Luckiest schedule in the league. The record is a lie and everybody knows it."})
     for pw in a["power"]:
         if abs(pw.get("move", 0)) >= 2 and len(zingers) < 7:
             up = pw["move"] > 0
-            zingers.append({"team": nm(pw["team"]), "line": f"{'Up' if up else 'Down'} {abs(pw['move'])} spots in the power rankings this week. {'Somebody set their lineup.' if up else 'Somebody forgot to.'}"})
+            zingers.append({"team": nm(pw["team"]), "line": f"{'Up' if up else 'Down'} {abs(pw['move'])} spots in the power rankings this week. {'Somebody finally set a lineup.' if up else 'Somebody stopped setting one.'}"})
     sub = f"{top} leads the power rankings."
     if a["daily"]:
         sub = f"{nm(a['daily']['best'])} owned last night; {nm(a['daily']['worst'])} would like it struck from the record."
@@ -125,12 +128,13 @@ def write(a):
 
 
 # ---------- past seasons ----------
-SEASON_VOICE = """You are the race commentator for "The Goon Gazette" Grand Prix, the season-in-review
-archive of a 12-team Yahoo fantasy basketball league (head-to-head, categories) called
-Ballinwithmygoons. Voice: kart-race commentator, fast and funny. The season is a grand prix,
-the playoffs are the final laps, the champion took the checkered flag, last place spun out.
-Rules: roast lineup decisions, trades and luck, never people's looks, families, jobs or
-identities. PG-13. No made-up stats: use only the numbers in FACTS. Keep it short."""
+SEASON_VOICE = """You write the season obituaries and league lore for "The Goon Gazette", the paper of a
+12-team Yahoo fantasy basketball league called Ballinwithmygoons. The paper exists to put
+every manager's crimes on the record permanently. Voice: ruthless, funny, specific. Short
+sentences. The champion gets grudging respect and a jab; everyone else gets the truth about
+how they lost. Name the collapses, the lucky runs, the drafts that aged like milk.
+Hard rules: roast results, rosters, trades and luck. Never looks, families, jobs, health,
+money or identities. No slurs, PG-13. No made-up stats: only numbers in FACTS."""
 SEASON_SCHEMA = """Return ONLY JSON:
 {"headline": "<=8 words, ALL CAPS", "subhead": "one sentence",
  "body": ["3 short paragraphs: the champion's run, the biggest storyline, the cellar"]}"""
