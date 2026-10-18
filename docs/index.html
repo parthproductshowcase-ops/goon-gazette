@@ -28,7 +28,7 @@
       </div>
       <aside class="board" id="board" aria-label="Standings and power rank"></aside>
     </div>
-    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest fights first. Red categories can flip tonight, so set your lineup.</p></div>
+    <div class="sec-head"><h2 id="cw-title">Matchups</h2><p>Closest fights first. Red categories are clutch: close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
       <div class="list-card"><h3>Top 10 players this week</h3><div id="cw-players"></div></div>
@@ -173,7 +173,7 @@ function render(a){
       <div class="mu-team b">${nm(m.b)}<small>${mg(m.b)}</small></div></div>
       <div class="hp" aria-hidden="true"><i class="a" style="flex:${m.score[0]||0.2}"></i><i class="t" style="flex:${m.score[2]||0.0001}"></i><i class="b" style="flex:${m.score[1]||0.2}"></i></div>
       <table class="cats">${sw.map(row).join("")}</table>
-      <details><summary>All ${m.cats.length} categories</summary><table class="cats">${rest.map(row).join("")}</table></details>
+      <details><summary><span class="c-all">All ${m.cats.length} categories</span><span class="c-sw">Clutch categories</span></summary><table class="cats">${rest.map(row).join("")}</table></details>
     </article>`;
   }).join("") : `<p class="empty">No matchups yet.</p>`;
 
