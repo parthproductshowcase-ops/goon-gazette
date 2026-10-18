@@ -238,3 +238,18 @@ nav.tabs{border-bottom:1px solid var(--rule)}
 /* align tab text with the button and card edge */
 nav.tabs a:first-child{padding-left:0}
 nav.tabs a:first-child[aria-current="true"]::after{left:0}
+
+/* consistency pass: card headers one size, lists fill their cards */
+.list-card h3{font:800 18px/1.1 var(--display);text-transform:none;letter-spacing:-.01em;padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid var(--rule)}
+.sec-head h2{font-size:20px}
+.standouts .list-card{display:flex;flex-direction:column}
+#cw-players,#lw-players{flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+#cw-players .prow,#lw-players .prow{padding-block:8px}
+.prow{align-items:center}
+.pr-main b{font-size:15px}
+.pr-val{font-size:14px;color:var(--muted)}
+.award .label,.race-strip .label,.ww-cell .label{font-size:11px}
+.trophy-aside .t-name{font-size:20px}
+.pennant .yr{font-size:22px}
+.round h3{font-size:12px}
+footer{padding-top:14px}

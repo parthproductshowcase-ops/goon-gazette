@@ -286,7 +286,7 @@ def weekly_report(d):
         cutoff = (datetime.fromisoformat(w["end"]).replace(tzinfo=ET) + timedelta(days=1)).timestamp()
         acq = acquisitions(d.get("transactions", []), cutoff)
         out[key] = {"week": w["week"], "start": w["start"], "end": w["end"], "days": len(dates),
-                    "top_players": top_players(players, scorer, cats),
+                    "top_players": top_players(players, scorer, cats, 10),
                     "top_plays": top_plays(players, teams, pairs, cats, acq, scorer)}
         if key == "last":
             cur = (d.get("windows") or {}).get("current")
