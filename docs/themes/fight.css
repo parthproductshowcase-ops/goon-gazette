@@ -196,3 +196,12 @@ nav.site a[aria-current="page"]{color:var(--accent);font-weight:700}
 .zing b{font-size:11px}
 .zing span{font-size:14px;line-height:1.4;margin-top:1px}
 .sec-head{margin-top:18px}
+
+/* waiver wire */
+#ww-title .dot{color:var(--accent);margin:0 4px}
+.award h3 mark{background:#ffe66d;color:#1a1a1a;padding:0 4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.award.hot h3 mark{background:#ffe66d;color:#1a1a1a}
+.award p{font-size:14px;line-height:1.4}
+.award .gr{margin-left:6px}
+.award .gr b{font-size:15px}
+@media (min-width:900px){#ww-awards{grid-template-columns:repeat(4,1fr)}}

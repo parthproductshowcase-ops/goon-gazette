@@ -221,14 +221,30 @@ function render(a){
   const WW = PL.waiver;
   const grade = v => v == null ? "–" : v >= 4 ? "A+" : v >= 2 ? "A" : v >= 1 ? "B+" : v >= 0 ? "B" : v >= -1.5 ? "C" : v >= -3 ? "D" : "F";
   if (WW){
-    $("ww-title").textContent = `Waiver Wire Review · Week ${WW.week}`;
+    $("ww-title").innerHTML = `Waiver Wire <b class="dot">&bull;</b> Week ${WW.week} <b class="dot">&bull;</b> ${WW.total_adds} add${WW.total_adds === 1 ? "" : "s"} this week`;
+    const adds = WW.moves.flatMap(m => m.adds.map(x => ({...x, team: m.team, date: m.date})));
+    const played = adds.filter(x => x.games > 0);
+    const box = (label, player, team, g, extra, hot) => `<div class="award ${hot ? "hot" : ""}"><span class="label">${label}</span>
+      <h3>${player ? `<mark>${esc(player)}</mark>` : "–"}</h3>
+      <p>${team ? `<b>${nm(team)}</b>` : ""}${g != null ? ` <span class="gr">Grade <b>${grade(g)}</b></span>` : ""}${extra ? `<br>${extra}` : ""}</p></div>`;
+    const gp = n => `${n} game${n === 1 ? "" : "s"}`;
     const aw = [];
-    if (WW.best_pickup) aw.push(`<div class="award hot"><span class="label">Pickup of the week</span><h3>${esc(WW.best_pickup.player)}</h3><p>${nm(WW.best_pickup.team)}. Grade ${grade(WW.best_pickup.pg)} over ${WW.best_pickup.games} game${WW.best_pickup.games === 1 ? "" : "s"}.</p></div>`);
-    if (WW.trash) aw.push(`<div class="award"><span class="label">One man's trash</span><h3>${esc(WW.trash.player)}</h3><p>Dropped by ${nm(WW.trash.dropped_by)}, now starting for ${nm(WW.trash.now)}: ${WW.trash.games} game${WW.trash.games === 1 ? "" : "s"}, grade ${grade(WW.trash.value)}.</p></div>`);
-    if (WW.busiest) aw.push(`<div class="award"><span class="label">Busiest GM</span><h3>${nm(WW.busiest.team)}</h3><p>${WW.busiest.adds} adds in one week.</p></div>`);
-    if (WW.splash) aw.push(`<div class="award"><span class="label">Biggest FAAB splash</span><h3>$${WW.splash.faab}</h3><p>${nm(WW.splash.team)} on ${esc(WW.splash.player)}. Grade so far: ${grade(WW.splash.pg)}.</p></div>`);
-    aw.push(`<div class="award"><span class="label">League activity</span><h3>${WW.total_adds} adds</h3><p>Across ${WW.moves.length} moves last week.</p></div>`);
-    $("ww-awards").innerHTML = aw.join("");
+    if (WW.best_pickup) aw.push(box("Pickup of the week", WW.best_pickup.player, WW.best_pickup.team, WW.best_pickup.pg, gp(WW.best_pickup.games), true));
+    const worst = [...played].sort((x, y) => x.pg - y.pg)[0];
+    if (worst && worst.pg < 0) aw.push(box("Worst pickup", worst.player, worst.team, worst.pg, gp(worst.games)));
+    if (WW.splash) aw.push(box("Biggest FAAB splash", WW.splash.player, WW.splash.team, WW.splash.pg, `$${WW.splash.faab} of budget`));
+    const bargain = [...played].filter(x => !x.faab).sort((x, y) => y.pg - x.pg)[0];
+    if (bargain && bargain.pg > 0) aw.push(box("Bargain of the week", bargain.player, bargain.team, bargain.pg, `Free, ${gp(bargain.games)}`));
+    if (WW.trash) aw.push(box("One man's trash", WW.trash.player, WW.trash.now, WW.trash.value, `Dropped by ${nm(WW.trash.dropped_by)}, ${gp(WW.trash.games)}`));
+    if (WW.busiest) aw.push(`<div class="award"><span class="label">Busiest GM</span><h3>${nm(WW.busiest.team)}</h3><p><b>${WW.busiest.adds} adds</b> in one week</p></div>`);
+    const workhorse = [...played].sort((x, y) => y.games - x.games || y.pg - x.pg)[0];
+    if (workhorse && workhorse !== bargain) aw.push(box("Most games played", workhorse.player, workhorse.team, workhorse.pg, gp(workhorse.games)));
+    const movers = new Set(WW.moves.map(m => m.team));
+    const quiet = Object.keys(T).filter(tk => !movers.has(tk));
+    if (quiet.length) aw.push(`<div class="award"><span class="label">Standing pat</span><h3>${quiet.length} team${quiet.length === 1 ? "" : "s"}</h3><p>No moves: <b>${quiet.slice(0, 3).map(nm).join(", ")}</b>${quiet.length > 3 ? ` and ${quiet.length - 3} more` : ""}</p></div>`);
+    const streamer = (() => { const c = {}; adds.filter(x => x.games <= 1).forEach(x => c[x.team] = (c[x.team] || 0) + 1); const t = Object.entries(c).sort((a, b) => b[1] - a[1])[0]; return t && t[1] >= 2 ? t : null; })();
+    if (aw.length < 8 && streamer) aw.push(`<div class="award"><span class="label">Streamer of the week</span><h3>${nm(streamer[0])}</h3><p><b>${streamer[1]} one-game rentals</b></p></div>`);
+    $("ww-awards").innerHTML = aw.slice(0, 8).join("");
     $("ww-moves").innerHTML = WW.moves.length ? WW.moves.map(m => {
       const dt = new Date(m.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
       const add = m.adds.map(x => `<b>${esc(x.player)}</b><small class="muted"> ${x.source === "waivers" ? "waivers" : "FA"}${x.faab ? " $" + x.faab : ""} · ${x.games} gp</small>`).join("<br>") || "–";
