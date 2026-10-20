@@ -89,6 +89,7 @@ function showTab(id, push){
   document.querySelectorAll("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.tab === id ? "true" : "false"));
   if (push) history.replaceState(null, "", "#" + id);
   window.scrollTo({top: 0});
+  gc.once("tab/" + id);
 }
 document.querySelectorAll("nav.tabs a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); showTab(a.dataset.tab, true); }));
 window.addEventListener("hashchange", () => showTab(location.hash.slice(1), false));
@@ -190,6 +191,7 @@ function render(a){
   const TN = a.tonight;
   if (TN){
     $("lineup").hidden = false;
+    gc.once("view/lineup-card");
     $("dl1").textContent += ", evening edition";
     $("lu-title").innerHTML = `${esc(TN.headline || "The Lineup Card")} <b class="dot">&bull;</b> Tonight`;
     $("lu-time").textContent = `Lineups as of ${new Date(TN.generated_at).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit"})}`;
