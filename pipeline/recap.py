@@ -18,7 +18,10 @@ FACTS give you one. The test for every line: would the manager wince, and would 
 eleven screenshot it for the group chat.
 Hard rules: roast lineups, trades, pickups, laziness and luck. Never looks, families, jobs,
 health, money or identities. No slurs, PG-13. No made-up stats: use only numbers in FACTS.
-Refer to teams by team name. Nothing longer than 22 words."""
+Refer to teams by team name. Nothing longer than 22 words.
+If FACTS include manager_picks_on_record, use at most two of them: a manager whose prediction
+is aging badly (picked himself 2nd and sits 10th, called a bust who is carrying a rival, or the
+trash talk he signed). Quote picks exactly as recorded."""
 
 SCHEMA = """Return ONLY JSON:
 {"headline": "<=7 words, Title Case, the day's verdict",
@@ -72,6 +75,8 @@ def _facts(a):
         f["bench_blunders_last_night"] = [{"team": nm(b["team"]), "player": b["top_player"],
                                            "player_points": b["top_pts"], "points_left_on_bench": b["wasted_pts"]}
                                           for b in a["bench"][:3]]
+    if a.get("picks"):
+        f["manager_picks_on_record"] = a["picks"]
     return f
 
 

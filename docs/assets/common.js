@@ -12,17 +12,25 @@ function siteNav(active) {
   const el = $("sitenav");
   if (!el) return;
   const link = (href, label, key) => `<a href="${href}"${key === active ? ' aria-current="page"' : ""}>${label}</a>`;
-  let seasons = [];
+  let seasons = [], picks = null;
   const draw = () => {
     const cur = siteNav.locked
       ? `<a href="index.html" class="locked"${active === "today" ? ' aria-current="page"' : ""} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
       : link("index.html", "Current Season", "today");
-    el.innerHTML = cur
+    const pk = picks ? `<a href="predict.html" class="picks${picks.open ? " open" : ""}"${active === "picks" ? ' aria-current="page"' : ""}>${picks.open ? "File Your Picks" : "Picks"}${picks.open ? `<em>Locks ${esc(picks.day)}</em>` : ""}</a>` : "";
+    el.innerHTML = cur + pk
       + seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)).join("")
       + link("history.html", "League history", "history");
   };
   draw();
   getJSON("data/history.json").then(h => { seasons = h.seasons || []; draw(); if (h.sample) siteNav.sample = true; }).catch(() => {});
+  getJSON("data/polls.json").then(c => {
+    const now = Date.now(), ps = c.polls || [];
+    const open = ps.find(p => new Date(p.opens) <= now && now < new Date(p.locks));
+    if (open) picks = {open: true, day: new Date(open.locks).toLocaleDateString("en-US", {weekday: "short", timeZone: "America/New_York"})};
+    else if (ps.some(p => new Date(p.locks) <= now)) picks = {open: false};
+    if (picks) draw();
+  }).catch(() => {});
   seasonLocked().then(l => { if (l !== siteNav.locked) { siteNav.locked = l; draw(); } });
 }
 

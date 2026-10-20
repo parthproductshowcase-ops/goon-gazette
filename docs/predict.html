@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette Picks</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=f72d1098">
+
+<div class="wrap picks-page">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1><small>On the record</small></div>
+    <div class="dateline"><span class="label" id="dl1">Picks</span><span class="big" id="dl2">…</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+
+  <section class="pk-hero" id="hero">
+    <div>
+      <span class="label" id="pk-label">Preseason</span>
+      <h2 id="pk-title">Picks</h2>
+      <p id="pk-kicker"></p>
+    </div>
+    <div class="pk-status" id="pk-status"></div>
+  </section>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <form id="pk-form" class="pk-form" autocomplete="off" hidden>
+    <section class="pk-q pk-who">
+      <h3><b class="dot">&bull;</b> Who's signing this?</h3>
+      <div class="chips" id="who"></div>
+    </section>
+    <div class="pk-grid" id="qs"></div>
+    <div class="pk-bar">
+      <span id="pk-progress">0 answered</span>
+      <button type="submit" class="pk-submit" id="pk-submit" disabled>File My Picks</button>
+    </div>
+  </form>
+
+  <section class="pk-done" id="pk-done" hidden></section>
+
+  <section id="ledger" hidden>
+    <div class="sec-head"><h2>The Ledger <b class="dot">&bull;</b> <span id="lg-count"></span></h2><p>Locked. Every pick below gets graded all season.</p></div>
+    <div class="pk-cons" id="cons"></div>
+    <div class="sec-head"><h2>Every Manager's Picks</h2><p>Signed, sealed, screenshotted.</p></div>
+    <div class="table-wrap"><table class="pr" id="lg-table"></table></div>
+    <div class="list-card pk-quotes" id="quotes" hidden><h3>Things They'll Regret Saying</h3><div id="quote-list"></div></div>
+  </section>
+
+  <footer><span>Picks lock at the deadline. Change them as often as you like before then; the last one counts.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+</div>
+
+<script src="assets/common.js?v=e306539e"></script>
+<script>
+siteNav("picks");
+
+const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+             set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+const fmtLock = d => d.toLocaleString("en-US", {weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/New_York"}) + " ET";
+
+let CFG, POLL, MGR = {}, answers = {}, who = null, started = false;
+
+getJSON("data/polls.json").then(cfg => {
+  CFG = cfg;
+  cfg.managers.forEach(m => MGR[m.id] = m.name);
+  POLL = pickPoll(cfg.polls || []);
+  if (!POLL) { $("pk-title").textContent = "No picks open"; $("pk-kicker").textContent = "The next flash poll drops when somebody does something stupid."; return; }
+  const locks = new Date(POLL.locks), locked = Date.now() >= locks;
+  $("pk-label").textContent = locked ? "Locked" : "Open until " + fmtLock(locks);
+  $("pk-title").textContent = POLL.title;
+  $("pk-kicker").textContent = POLL.kicker || "";
+  $("dl1").textContent = POLL.title;
+  $("dl2").textContent = locked ? "Locked" : "Locks " + locks.toLocaleDateString("en-US", {weekday: "short", timeZone: "America/New_York"});
+  if (!cfg.endpoint) {
+    showBanner("The ballot box is still being bolted down. Picks open shortly; nothing you tap here is saved yet.");
+  }
+  if (locked) loadStatus(true);
+  else { buildForm(); loadStatus(false); }
+}).catch(e => showBanner("Couldn't load the picks. Refresh in a minute."));
+
+// newest poll that is open; otherwise the most recently locked one
+function pickPoll(polls) {
+  const now = Date.now();
+  const open = polls.filter(p => new Date(p.opens) <= now && now < new Date(p.locks));
+  if (open.length) return open.sort((a, b) => new Date(b.opens) - new Date(a.opens))[0];
+  const done = polls.filter(p => new Date(p.locks) <= now);
+  return done.sort((a, b) => new Date(b.locks) - new Date(a.locks))[0] || null;
+}
+
+function showBanner(t) { const b = $("banner"); b.textContent = t; b.hidden = false; }
+
+function loadStatus(locked) {
+  if (!CFG.endpoint) { drawStatus({count: 0, filed: []}); return; }
+  getJSON(CFG.endpoint + "?poll=" + encodeURIComponent(POLL.id)).then(s => {
+    drawStatus(s);
+    if (s.locked && s.picks) drawLedger(s.picks);
+    else if (locked) showBanner("Picks are locked. The ledger shows up here once the ballot box reports in.");
+  }).catch(() => drawStatus(null));
+}
+
+function drawStatus(s) {
+  const n = CFG.managers.length;
+  if (!s) { $("pk-status").innerHTML = `<b class="num">?</b><span>Ballot box not answering</span>`; return; }
+  const filed = new Set(s.filed || []);
+  const stall = CFG.managers.filter(m => !filed.has(m.id));
+  $("pk-status").innerHTML = `<div class="pk-count"><b class="num">${s.count || 0}</b><span>of ${n} filed</span></div>` +
+    (filed.size ? `<p class="pk-filed"><span class="label">On the record</span>${[...filed].map(id => `<b>${esc(MGR[id] || id)}</b>`).join(", ")}</p>` : "") +
+    (stall.length ? `<p class="pk-stall"><span class="label">${s.locked ? "Ducked it" : "Still stalling"}</span>${stall.map(m => `<b>${esc(m.name)}</b>`).join(", ")}</p>` : "");
+}
+
+function chipRow(name, opts, cur) {
+  return `<div class="chips" data-q="${name}">` + opts.map(([v, label]) =>
+    `<button type="button" class="chip${String(cur) === String(v) ? " on" : ""}" data-v="${esc(v)}" aria-pressed="${String(cur) === String(v)}">${esc(label)}</button>`).join("") + `</div>`;
+}
+
+function buildForm() {
+  const saved = JSON.parse(LS.get("gg_picks_" + POLL.id) || "null");
+  who = (saved && saved.who) || LS.get("gg_who") || null;
+  answers = (saved && saved.answers) || {};
+  const mgrs = CFG.managers.map(m => [m.id, m.name]);
+  $("who").outerHTML = chipRow("__who", mgrs, who);
+  $("qs").innerHTML = POLL.questions.map((q, i) => {
+    const cur = answers[q.id];
+    let body;
+    if (q.type === "manager") body = chipRow(q.id, mgrs, cur);
+    else if (q.type === "rank") body = chipRow(q.id, CFG.managers.map((_, k) => [k + 1, ordinal(k + 1)]), cur);
+    else if (q.type === "cat") body = chipRow(q.id, CFG.cats.map(c => [c, c]), cur);
+    else if (q.type === "player") body = `<input class="pk-in" list="pl-list" name="${q.id}" data-q="${q.id}" placeholder="Type a player" maxlength="40" value="${esc(cur || "")}">`;
+    else body = `<input class="pk-in" name="${q.id}" data-q="${q.id}" maxlength="${q.max || 140}" placeholder="Make it count" value="${esc(cur || "")}"><small class="pk-left" data-for="${q.id}"></small>`;
+    return `<section class="pk-q" data-type="${q.type}"><h3><span class="pk-n">${i + 1}</span>${esc(q.q)}${q.optional ? ` <em>Optional</em>` : ""}</h3>${q.hint ? `<p class="note">${esc(q.hint)}</p>` : ""}${body}</section>`;
+  }).join("") + `<datalist id="pl-list">${CFG.players.map(p => `<option value="${esc(p)}">`).join("")}</datalist>`;
+  $("pk-form").hidden = false;
+
+  $("pk-form").addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b) return;
+    const row = b.parentNode, q = row.dataset.q;
+    row.querySelectorAll(".chip").forEach(c => { c.classList.toggle("on", c === b); c.setAttribute("aria-pressed", c === b); });
+    if (q === "__who") { who = b.dataset.v; LS.set("gg_who", who); } else answers[q] = b.dataset.v;
+    touched();
+  });
+  $("pk-form").addEventListener("input", e => {
+    const q = e.target.dataset.q; if (!q) return;
+    answers[q] = e.target.value.trim();
+    touched();
+  });
+  $("pk-form").addEventListener("submit", submit);
+  touched(true);
+  if (saved && saved.who) done();
+}
+
+function touched(init) {
+  if (!init && !started) { started = true; gc.once("picks/start"); }
+  const req = POLL.questions.filter(q => !q.optional);
+  const done = req.filter(q => answers[q.id]).length;
+  const ready = who && done === req.length;
+  $("pk-progress").innerHTML = !who ? "Pick your name first" : `<b>${done}</b> of ${req.length} answered`;
+  $("pk-submit").disabled = !ready;
+  document.querySelectorAll(".pk-left").forEach(s => { const q = POLL.questions.find(x => x.id === s.dataset.for); s.textContent = `${(q.max || 140) - (answers[q.id] || "").length} left`; });
+}
+
+function submit(e) {
+  e.preventDefault();
+  if (!CFG.endpoint) { showBanner("Not saved: the ballot box isn't wired up yet. Try again shortly."); return; }
+  const btn = $("pk-submit");
+  btn.disabled = true; btn.textContent = "Filing…";
+  const body = {poll: POLL.id, who, reader: LS.get("gg_reader") || "", answers};
+  fetch(CFG.endpoint, {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(body)})
+    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error(r.error || "rejected");
+      LS.set("gg_picks_" + POLL.id, JSON.stringify({who, answers, at: new Date().toISOString()}));
+      gc.event("picks/submit");
+      done();
+      loadStatus(false);
+    })
+    .catch(err => { btn.disabled = false; btn.textContent = "File My Picks"; showBanner("Not saved: " + err.message + ". Try again."); });
+}
+
+function label(q, v) {
+  if (v == null || v === "") return "–";
+  if (q.type === "manager") return MGR[v] || v;
+  if (q.type === "rank") return ordinal(+v);
+  return v;
+}
+
+function done() {
+  $("pk-form").hidden = true;
+  const el = $("pk-done");
+  el.hidden = false;
+  el.innerHTML = `<div class="pk-signed"><span class="label">On the record</span><h2>Signed by <b>${esc(MGR[who])}</b></h2>
+    <p>Picks are hidden from everyone until ${fmtLock(new Date(POLL.locks))}. Then the receipts start.</p>
+    <dl>${POLL.questions.map(q => `<div><dt>${esc(q.q)}</dt><dd>${esc(label(q, answers[q.id]))}</dd></div>`).join("")}</dl>
+    <button type="button" class="pk-edit" id="pk-edit">Change my picks</button></div>`;
+  $("pk-edit").onclick = () => { el.hidden = true; $("pk-form").hidden = false; const b = $("pk-submit"); b.textContent = "Refile My Picks"; touched(true); window.scrollTo({top: 0}); };
+  window.scrollTo({top: 0});
+}
+
+function drawLedger(picks) {
+  $("ledger").hidden = false;
+  $("lg-count").textContent = `${picks.length} of ${CFG.managers.length} filed`;
+  const qs = POLL.questions.filter(q => q.type !== "text");
+  // consensus: top three answers per question
+  $("cons").innerHTML = qs.map(q => {
+    const tally = {};
+    picks.forEach(p => { const v = p.answers[q.id]; if (v) { const k = q.type === "player" ? v.toLowerCase() : v; tally[k] = tally[k] || {v, n: 0}; tally[k].n++; } });
+    const top = Object.values(tally).sort((a, b) => b.n - a.n).slice(0, 3);
+    return `<div class="pk-c"><h3>${esc(q.q)}</h3>${top.map((t, i) => `<div class="pk-bar-row${i ? "" : " lead"}"><span>${q.type === "player" ? `<mark>${esc(label(q, t.v))}</mark>` : `<b>${esc(label(q, t.v))}</b>`}</span><i style="--w:${Math.round(t.n / picks.length * 100)}%"></i><b class="num">${t.n}</b></div>`).join("") || `<p class="note">No picks.</p>`}</div>`;
+  }).join("");
+  const cols = POLL.questions.filter(q => q.type !== "text");
+  $("lg-table").innerHTML = `<thead><tr><th>Manager</th>${cols.map(q => `<th>${esc(q.id === "finish" ? "Self" : shortQ(q))}</th>`).join("")}</tr></thead><tbody>` +
+    picks.sort((a, b) => (MGR[a.who] || "").localeCompare(MGR[b.who] || "")).map(p => `<tr><td><b>${esc(MGR[p.who] || p.who)}</b></td>${cols.map(q => `<td>${q.type === "player" ? `<mark>${esc(label(q, p.answers[q.id]))}</mark>` : esc(label(q, p.answers[q.id]))}</td>`).join("")}</tr>`).join("") + `</tbody>`;
+  const said = picks.filter(p => p.answers.talk);
+  if (said.length) {
+    $("quotes").hidden = false;
+    $("quote-list").innerHTML = said.map(p => `<blockquote>"${esc(p.answers.talk)}"<cite>${esc(MGR[p.who] || p.who)}</cite></blockquote>`).join("");
+  }
+}
+function shortQ(q) { return ({champ: "Champ", sacko: "Last", bust: "Bust", breakout: "Breakout", trade: "Worst trade", own: "Owns", punt: "Punts"})[q.id] || q.id; }
+</script>

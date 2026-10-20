@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import players, recap, stats
+from . import players, polls, recap, stats
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data"
@@ -122,6 +122,9 @@ def main():
                        "zingers": []}}
     else:
         a = stats.analyze(d, prev)
+        if not sample:
+            polls.snapshot()
+            a["picks"] = polls.facts(a)
         a["recap"] = d["recap"] if sample else recap.write(a)
 
     a["generated_at"] = datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes")
