@@ -122,14 +122,14 @@ def _spicy_playoffs(s, cats, standings, bracket, n=2):
                     rel = abs(va - vb) / (1 if c["pct"] else max(abs(va), abs(vb), 1))
                     if narrow is None or rel < narrow[0]:
                         narrow = (rel, {"cat": c["name"], "margin": round(abs(va - vb), 3), "pct": c["pct"]})
-            spice = -margin * 10 + close * 3 + stakes.get(rnd, 0)
+            spice = -margin * 6 + close * 3 + stakes.get(rnd, 0) * 4
             picks.append({"week": wk, "round": rnd, "a": m["a"], "b": m["b"], "score": sc,
                           "winner": winner, "loser": loser, "close_cats": close,
                           "narrowest": narrow[1] if narrow else None, "cats": rows, "_spice": spice})
     picks.sort(key=lambda g: -g["_spice"])
     for g in picks:
         g.pop("_spice")
-    return picks[:n]
+    return picks[:n] if n else picks
 
 
 def _rank_race(reg, cats, teams, standings):
@@ -151,6 +151,25 @@ def _rank_race(reg, cats, teams, standings):
         for i, tk in enumerate(order, 1):
             ranks[tk].append(i)
     return {"weeks": weeks, "ranks": ranks}
+
+
+def _identity(reg, cats, teams):
+    """Each team's regular-season category record: what they usually win and usually lose."""
+    rec = {tk: {c["name"]: [0, 0] for c in cats} for tk in teams}
+    for ms in reg.values():
+        for m in ms:
+            for c in cats:
+                r = stats.cmp_cat(m["a_stats"].get(c["id"]), m["b_stats"].get(c["id"]), c["hb"], c["pct"])
+                if r > 0:
+                    rec[m["a"]][c["name"]][0] += 1; rec[m["b"]][c["name"]][1] += 1
+                elif r < 0:
+                    rec[m["b"]][c["name"]][0] += 1; rec[m["a"]][c["name"]][1] += 1
+    out = {}
+    for tk, cr in rec.items():
+        rate = {k: v[0] / max(1, sum(v)) for k, v in cr.items()}
+        order = sorted(rate, key=lambda k: -rate[k])
+        out[tk] = {"record": cr, "strong": order[:3], "weak": order[-3:]}
+    return out
 
 
 # ---------- one season ----------
@@ -242,6 +261,8 @@ def season_summary(s, cfg):
         "standings": standings, "bracket": bracket, "records": {"best": best, "worst": worst},
         "spicy": _spicy_playoffs(s, cats, standings, bracket),
         "race": _rank_race(reg, cats, teams, standings),
+        "identity": _identity(reg, cats, teams),
+        "editorial": s.get("editorial") or {},
         "awards": awards, "draft": draft, "recap": s.get("recap"),
         "top_players": s.get("top_players", []),
         "auction": any(d.get("cost") is not None for d in s.get("draft_all", [])),

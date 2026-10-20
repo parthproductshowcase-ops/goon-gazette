@@ -6178,12 +6178,65 @@
  ],
  "source": "yahoo-web",
  "recap": {
-  "headline": "WHITE MAMBAS TAKE THE SEED AND THE RING",
-  "subhead": "Vishal held the No. 1 seed all season and closed it with a 7-4 win in the final.",
+  "headline": "WHITE MAMBAS WIN UGLY, PARTH CHOKES PRETTY",
+  "subhead": "Vishal never left the top three. Parth rented half the waiver wire to reach the final, then the magic ran out.",
   "body": [
-   "White Mambas went 117-79-2, took the top seed and beat LeParth James 7-4 for the title. Vishal made 90 moves, the most in the league, and every one of them is now a receipt.",
-   "LeParth James rostered the best player in the league, Shai Gilgeous-Alexander for $70, and still lost the final. Suggs to be you rode the luckiest record in the league, +6.2 over all-play, to the No. 2 seed, then got bounced in the semis by LeParth anyway. The horseshoe only goes so far.",
-   "MehtaWorldPeace finished last at 72-125-1. RUM spent $105 on Victor Wembanyama, the priciest player in the draft, then made 13 moves all season, fewest in the league. Bought the lottery ticket and never checked the numbers."
+   "White Mambas never fell out of the top three, finished No. 1 and closed it out 7-4 over LeParth James. Vishal lost the points category almost every single week and did not care: protect the ball, block shots, hit free throws, collect the hardware.",
+   "LeParth James was 12th as late as Week 6. Then Parth rode Quentin Grimes, a waiver pickup, all the way to the final, including 125 points and 18 threes in the semis alone. He also owned the best player in fantasy, Shai Gilgeous-Alexander, and still lost the final. That takes skill.",
+   "Suggs to be you had the No. 2 seed and the luckiest record in the league, then lost a semifinal on free throws by three thousandths. Luck is a loan. It came due.",
+   "MehtaWorldPeace finished last and won the points category zero times. Not once in 18 weeks. RUM paid $105 for Victor Wembanyama, the priciest player in the draft, then made 13 moves all year. The lights were on. Nobody was home."
   ]
+ },
+ "editorial": {
+  "cups": {
+   "2024.l.68899.t.12": "Never left the top three. Won the title without scoring points.",
+   "2024.l.68899.t.7": "Owned the best player in fantasy and still lost the final.",
+   "2024.l.68899.t.1": "Lost a semi in the one category he never loses.",
+   "2024.l.68899.t.11": "No. 2 seed, luckiest record, beaten on free throws by three thousandths."
+  },
+  "bubble": {
+   "headline": "Parth Rises From 12th, Arnav Falls Off a Cliff",
+   "sub": "Who came from nowhere, and who coughed it up down the stretch.",
+   "cards": [
+    {
+     "team": "2024.l.68899.t.7",
+     "tag": "Came from nowhere",
+     "body": "Dead last for three straight weeks and still 7th with six weeks to go. Then Parth ripped off a run to the 3 seed and rode the waiver wire all the way to the final."
+    },
+    {
+     "team": "2024.l.68899.t.3",
+     "tag": "Snuck in",
+     "body": "In the top six for 10 weeks, out for 8, never higher than 4th. Finished as the 5 seed: never comfortable, never out, never worth fearing."
+    },
+    {
+     "team": "2024.l.68899.t.9",
+     "tag": "Crashed out",
+     "body": "Sat 4th with six weeks to play. Then 5th, 7th, 8th, 8th. Arnav missed the playoffs entirely, then won the whole thing the next year. Rehab works."
+    },
+    {
+     "team": "2024.l.68899.t.5",
+     "tag": "Too little, too late",
+     "body": "Won the final week 9-2 and still finished 7th, after six straight weeks parked in 8th. The comeback started about a month too late."
+    }
+   ]
+  },
+  "spicy": {
+   "20-7-11": {
+    "headline": "Parth Rents the Waiver Wire and Steals a Semi",
+    "body": [
+     "On paper, this was Keshav's week. Assists were Suggs's best category all year, and Parth rarely won them. So Parth went shopping: Tre Jones, gone from his roster by season's end, dished 28 assists, and Quentin Grimes, a pickup, added 25 more with 125 points and 18 threes. Assists went to Parth by eight.",
+     "Threes, another Parth weakness, fell the same way. Grimes and Malik Beasley, a since-dropped rental, combined for 35 of Parth's 91.",
+     "Then the comedy. Parth cut Keldon Johnson mid-week, Keshav scooped him up, and Keldon chipped in 3 blocks and 3 steals against his old team. It didn't matter. Free throws decided it, .816 to .813. Three thousandths, and Keshav went home."
+    ]
+   },
+   "20-1-12": {
+    "headline": "White Mambas Win a Semi in Their Worst Category",
+    "body": [
+     "White Mambas lost the points category 14 times in 18 regular-season weeks. theInfamous won it 14 times. So naturally, Vishal won points by 150 in the semifinal.",
+     "Anthony Edwards dropped 84, Austin Reaves 77, and Fred VanVleet hit 14 threes. White Mambas buried theInfamous from deep, 105 threes to 66.",
+     "John J fought back where he lives: offensive boards by 41, with \u015eeng\u00fcn grabbing 47 rebounds and Josh Hart 36. Steals and blocks finished dead even. Assists went to John J by three. It still came up one category short, and the one that killed him was the one he never loses."
+    ]
+   }
+  }
  }
 }

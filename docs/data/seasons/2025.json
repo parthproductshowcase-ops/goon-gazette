@@ -507,6 +507,115 @@
  "spicy": [
   {
    "week": 22,
+   "round": "Final",
+   "a": "2025.l.40764.t.1",
+   "b": "2025.l.40764.t.9",
+   "score": [
+    4,
+    7,
+    0
+   ],
+   "winner": "2025.l.40764.t.9",
+   "loser": "2025.l.40764.t.1",
+   "close_cats": 2,
+   "narrowest": {
+    "cat": "FT%",
+    "margin": 0.016,
+    "pct": true
+   },
+   "cats": [
+    {
+     "cat": "FG%",
+     "a": 0.471,
+     "b": 0.492,
+     "pct": true,
+     "win": "b",
+     "close": false
+    },
+    {
+     "cat": "FT%",
+     "a": 0.817,
+     "b": 0.833,
+     "pct": true,
+     "win": "b",
+     "close": false
+    },
+    {
+     "cat": "3PTM",
+     "a": 95,
+     "b": 85,
+     "pct": false,
+     "win": "a",
+     "close": false
+    },
+    {
+     "cat": "3PT%",
+     "a": 0.393,
+     "b": 0.385,
+     "pct": true,
+     "win": "a",
+     "close": true
+    },
+    {
+     "cat": "PTS",
+     "a": 859,
+     "b": 780,
+     "pct": false,
+     "win": "a",
+     "close": false
+    },
+    {
+     "cat": "OREB",
+     "a": 66,
+     "b": 77,
+     "pct": false,
+     "win": "b",
+     "close": false
+    },
+    {
+     "cat": "DREB",
+     "a": 225,
+     "b": 229,
+     "pct": false,
+     "win": "b",
+     "close": true
+    },
+    {
+     "cat": "AST",
+     "a": 192,
+     "b": 214,
+     "pct": false,
+     "win": "b",
+     "close": false
+    },
+    {
+     "cat": "ST",
+     "a": 45,
+     "b": 51,
+     "pct": false,
+     "win": "b",
+     "close": false
+    },
+    {
+     "cat": "BLK",
+     "a": 27,
+     "b": 24,
+     "pct": false,
+     "win": "a",
+     "close": false
+    },
+    {
+     "cat": "TO",
+     "a": 95,
+     "b": 80,
+     "pct": false,
+     "win": "b",
+     "close": false
+    }
+   ]
+  },
+  {
+   "week": 22,
    "round": "3rd place game",
    "a": "2025.l.40764.t.6",
    "b": "2025.l.40764.t.10",
@@ -608,115 +717,6 @@
      "cat": "TO",
      "a": 55,
      "b": 80,
-     "pct": false,
-     "win": "a",
-     "close": false
-    }
-   ]
-  },
-  {
-   "week": 21,
-   "round": "5th place game",
-   "a": "2025.l.40764.t.8",
-   "b": "2025.l.40764.t.12",
-   "score": [
-    6,
-    4,
-    1
-   ],
-   "winner": "2025.l.40764.t.8",
-   "loser": "2025.l.40764.t.12",
-   "close_cats": 2,
-   "narrowest": {
-    "cat": "PTS",
-    "margin": 9,
-    "pct": false
-   },
-   "cats": [
-    {
-     "cat": "FG%",
-     "a": 0.463,
-     "b": 0.422,
-     "pct": true,
-     "win": "a",
-     "close": false
-    },
-    {
-     "cat": "FT%",
-     "a": 0.781,
-     "b": 0.799,
-     "pct": true,
-     "win": "b",
-     "close": false
-    },
-    {
-     "cat": "3PTM",
-     "a": 81,
-     "b": 57,
-     "pct": false,
-     "win": "a",
-     "close": false
-    },
-    {
-     "cat": "3PT%",
-     "a": 0.342,
-     "b": 0.277,
-     "pct": true,
-     "win": "a",
-     "close": false
-    },
-    {
-     "cat": "PTS",
-     "a": 611,
-     "b": 602,
-     "pct": false,
-     "win": "a",
-     "close": true
-    },
-    {
-     "cat": "OREB",
-     "a": 34,
-     "b": 58,
-     "pct": false,
-     "win": "b",
-     "close": false
-    },
-    {
-     "cat": "DREB",
-     "a": 169,
-     "b": 181,
-     "pct": false,
-     "win": "b",
-     "close": false
-    },
-    {
-     "cat": "AST",
-     "a": 147,
-     "b": 159,
-     "pct": false,
-     "win": "b",
-     "close": false
-    },
-    {
-     "cat": "ST",
-     "a": 45,
-     "b": 40,
-     "pct": false,
-     "win": "a",
-     "close": false
-    },
-    {
-     "cat": "BLK",
-     "a": 29,
-     "b": 29,
-     "pct": false,
-     "win": "t",
-     "close": true
-    },
-    {
-     "cat": "TO",
-     "a": 77,
-     "b": 94,
      "pct": false,
      "win": "a",
      "close": false
@@ -1001,6 +1001,756 @@
    ]
   }
  },
+ "identity": {
+  "2025.l.40764.t.2": {
+   "record": {
+    "FG%": [
+     12,
+     7
+    ],
+    "FT%": [
+     17,
+     2
+    ],
+    "3PTM": [
+     2,
+     17
+    ],
+    "3PT%": [
+     7,
+     12
+    ],
+    "PTS": [
+     5,
+     14
+    ],
+    "OREB": [
+     8,
+     11
+    ],
+    "DREB": [
+     1,
+     18
+    ],
+    "AST": [
+     3,
+     16
+    ],
+    "ST": [
+     2,
+     16
+    ],
+    "BLK": [
+     2,
+     16
+    ],
+    "TO": [
+     16,
+     3
+    ]
+   },
+   "strong": [
+    "FT%",
+    "TO",
+    "FG%"
+   ],
+   "weak": [
+    "BLK",
+    "3PTM",
+    "DREB"
+   ]
+  },
+  "2025.l.40764.t.12": {
+   "record": {
+    "FG%": [
+     5,
+     14
+    ],
+    "FT%": [
+     10,
+     8
+    ],
+    "3PTM": [
+     13,
+     6
+    ],
+    "3PT%": [
+     11,
+     8
+    ],
+    "PTS": [
+     10,
+     9
+    ],
+    "OREB": [
+     9,
+     10
+    ],
+    "DREB": [
+     13,
+     6
+    ],
+    "AST": [
+     16,
+     3
+    ],
+    "ST": [
+     8,
+     11
+    ],
+    "BLK": [
+     11,
+     7
+    ],
+    "TO": [
+     8,
+     11
+    ]
+   },
+   "strong": [
+    "AST",
+    "3PTM",
+    "DREB"
+   ],
+   "weak": [
+    "ST",
+    "TO",
+    "FG%"
+   ]
+  },
+  "2025.l.40764.t.3": {
+   "record": {
+    "FG%": [
+     7,
+     12
+    ],
+    "FT%": [
+     8,
+     11
+    ],
+    "3PTM": [
+     9,
+     10
+    ],
+    "3PT%": [
+     10,
+     9
+    ],
+    "PTS": [
+     8,
+     11
+    ],
+    "OREB": [
+     8,
+     11
+    ],
+    "DREB": [
+     9,
+     10
+    ],
+    "AST": [
+     7,
+     12
+    ],
+    "ST": [
+     6,
+     13
+    ],
+    "BLK": [
+     7,
+     12
+    ],
+    "TO": [
+     9,
+     10
+    ]
+   },
+   "strong": [
+    "3PT%",
+    "3PTM",
+    "DREB"
+   ],
+   "weak": [
+    "AST",
+    "BLK",
+    "ST"
+   ]
+  },
+  "2025.l.40764.t.4": {
+   "record": {
+    "FG%": [
+     9,
+     10
+    ],
+    "FT%": [
+     8,
+     10
+    ],
+    "3PTM": [
+     7,
+     12
+    ],
+    "3PT%": [
+     7,
+     12
+    ],
+    "PTS": [
+     7,
+     12
+    ],
+    "OREB": [
+     15,
+     4
+    ],
+    "DREB": [
+     9,
+     9
+    ],
+    "AST": [
+     8,
+     11
+    ],
+    "ST": [
+     6,
+     13
+    ],
+    "BLK": [
+     13,
+     6
+    ],
+    "TO": [
+     11,
+     8
+    ]
+   },
+   "strong": [
+    "OREB",
+    "BLK",
+    "TO"
+   ],
+   "weak": [
+    "3PT%",
+    "PTS",
+    "ST"
+   ]
+  },
+  "2025.l.40764.t.5": {
+   "record": {
+    "FG%": [
+     10,
+     9
+    ],
+    "FT%": [
+     6,
+     13
+    ],
+    "3PTM": [
+     6,
+     13
+    ],
+    "3PT%": [
+     12,
+     7
+    ],
+    "PTS": [
+     11,
+     8
+    ],
+    "OREB": [
+     12,
+     7
+    ],
+    "DREB": [
+     10,
+     9
+    ],
+    "AST": [
+     9,
+     10
+    ],
+    "ST": [
+     10,
+     8
+    ],
+    "BLK": [
+     10,
+     8
+    ],
+    "TO": [
+     6,
+     13
+    ]
+   },
+   "strong": [
+    "3PT%",
+    "OREB",
+    "PTS"
+   ],
+   "weak": [
+    "FT%",
+    "3PTM",
+    "TO"
+   ]
+  },
+  "2025.l.40764.t.6": {
+   "record": {
+    "FG%": [
+     8,
+     11
+    ],
+    "FT%": [
+     8,
+     10
+    ],
+    "3PTM": [
+     9,
+     9
+    ],
+    "3PT%": [
+     8,
+     11
+    ],
+    "PTS": [
+     8,
+     11
+    ],
+    "OREB": [
+     7,
+     12
+    ],
+    "DREB": [
+     8,
+     10
+    ],
+    "AST": [
+     13,
+     6
+    ],
+    "ST": [
+     13,
+     5
+    ],
+    "BLK": [
+     12,
+     7
+    ],
+    "TO": [
+     10,
+     9
+    ]
+   },
+   "strong": [
+    "ST",
+    "AST",
+    "BLK"
+   ],
+   "weak": [
+    "3PT%",
+    "PTS",
+    "OREB"
+   ]
+  },
+  "2025.l.40764.t.7": {
+   "record": {
+    "FG%": [
+     5,
+     14
+    ],
+    "FT%": [
+     14,
+     4
+    ],
+    "3PTM": [
+     14,
+     5
+    ],
+    "3PT%": [
+     10,
+     9
+    ],
+    "PTS": [
+     9,
+     10
+    ],
+    "OREB": [
+     8,
+     11
+    ],
+    "DREB": [
+     6,
+     13
+    ],
+    "AST": [
+     7,
+     12
+    ],
+    "ST": [
+     8,
+     11
+    ],
+    "BLK": [
+     5,
+     14
+    ],
+    "TO": [
+     8,
+     11
+    ]
+   },
+   "strong": [
+    "FT%",
+    "3PTM",
+    "3PT%"
+   ],
+   "weak": [
+    "DREB",
+    "FG%",
+    "BLK"
+   ]
+  },
+  "2025.l.40764.t.8": {
+   "record": {
+    "FG%": [
+     11,
+     8
+    ],
+    "FT%": [
+     9,
+     10
+    ],
+    "3PTM": [
+     14,
+     5
+    ],
+    "3PT%": [
+     11,
+     8
+    ],
+    "PTS": [
+     6,
+     13
+    ],
+    "OREB": [
+     8,
+     11
+    ],
+    "DREB": [
+     10,
+     9
+    ],
+    "AST": [
+     7,
+     11
+    ],
+    "ST": [
+     14,
+     4
+    ],
+    "BLK": [
+     10,
+     7
+    ],
+    "TO": [
+     13,
+     5
+    ]
+   },
+   "strong": [
+    "ST",
+    "3PTM",
+    "TO"
+   ],
+   "weak": [
+    "OREB",
+    "AST",
+    "PTS"
+   ]
+  },
+  "2025.l.40764.t.1": {
+   "record": {
+    "FG%": [
+     11,
+     8
+    ],
+    "FT%": [
+     9,
+     10
+    ],
+    "3PTM": [
+     10,
+     8
+    ],
+    "3PT%": [
+     9,
+     10
+    ],
+    "PTS": [
+     12,
+     7
+    ],
+    "OREB": [
+     15,
+     4
+    ],
+    "DREB": [
+     16,
+     3
+    ],
+    "AST": [
+     9,
+     10
+    ],
+    "ST": [
+     14,
+     5
+    ],
+    "BLK": [
+     9,
+     9
+    ],
+    "TO": [
+     9,
+     10
+    ]
+   },
+   "strong": [
+    "DREB",
+    "OREB",
+    "ST"
+   ],
+   "weak": [
+    "3PT%",
+    "AST",
+    "TO"
+   ]
+  },
+  "2025.l.40764.t.9": {
+   "record": {
+    "FG%": [
+     15,
+     4
+    ],
+    "FT%": [
+     5,
+     14
+    ],
+    "3PTM": [
+     12,
+     7
+    ],
+    "3PT%": [
+     13,
+     6
+    ],
+    "PTS": [
+     13,
+     6
+    ],
+    "OREB": [
+     13,
+     5
+    ],
+    "DREB": [
+     12,
+     7
+    ],
+    "AST": [
+     11,
+     8
+    ],
+    "ST": [
+     12,
+     7
+    ],
+    "BLK": [
+     12,
+     7
+    ],
+    "TO": [
+     13,
+     6
+    ]
+   },
+   "strong": [
+    "FG%",
+    "OREB",
+    "3PT%"
+   ],
+   "weak": [
+    "BLK",
+    "AST",
+    "FT%"
+   ]
+  },
+  "2025.l.40764.t.10": {
+   "record": {
+    "FG%": [
+     9,
+     10
+    ],
+    "FT%": [
+     8,
+     11
+    ],
+    "3PTM": [
+     10,
+     9
+    ],
+    "3PT%": [
+     6,
+     13
+    ],
+    "PTS": [
+     12,
+     7
+    ],
+    "OREB": [
+     6,
+     12
+    ],
+    "DREB": [
+     12,
+     6
+    ],
+    "AST": [
+     11,
+     8
+    ],
+    "ST": [
+     10,
+     9
+    ],
+    "BLK": [
+     14,
+     4
+    ],
+    "TO": [
+     7,
+     11
+    ]
+   },
+   "strong": [
+    "BLK",
+    "DREB",
+    "PTS"
+   ],
+   "weak": [
+    "TO",
+    "OREB",
+    "3PT%"
+   ]
+  },
+  "2025.l.40764.t.11": {
+   "record": {
+    "FG%": [
+     12,
+     7
+    ],
+    "FT%": [
+     10,
+     9
+    ],
+    "3PTM": [
+     7,
+     12
+    ],
+    "3PT%": [
+     10,
+     9
+    ],
+    "PTS": [
+     13,
+     6
+    ],
+    "OREB": [
+     4,
+     15
+    ],
+    "DREB": [
+     6,
+     12
+    ],
+    "AST": [
+     12,
+     6
+    ],
+    "ST": [
+     9,
+     10
+    ],
+    "BLK": [
+     5,
+     13
+    ],
+    "TO": [
+     3,
+     16
+    ]
+   },
+   "strong": [
+    "PTS",
+    "AST",
+    "FG%"
+   ],
+   "weak": [
+    "BLK",
+    "OREB",
+    "TO"
+   ]
+  }
+ },
+ "editorial": {
+  "cups": {
+   "2025.l.40764.t.9": "Built a champion out of everyone else's cuts.",
+   "2025.l.40764.t.1": "Lost the final to two players he dropped.",
+   "2025.l.40764.t.10": "Stole bronze by 19 points. Vishal will take it.",
+   "2025.l.40764.t.6": "Parked in 8th for five straight weeks, then lost bronze by 19 points."
+  },
+  "bubble": {
+   "headline": "Parth Squeaks In, Two Contenders Fall Off the Ledge",
+   "sub": "Six playoff spots, decided on the last day of the regular season.",
+   "cards": [
+    {
+     "team": "2025.l.40764.t.6",
+     "tag": "Snuck in",
+     "body": "Outside the line for 16 of 19 weeks, including five straight parked in 8th. Final week: a 9-2 beating of last-place Acinonyx while MONSTARS face-planted. In by a hair, then hung a 10-1 on the 3 seed in the quarters."
+    },
+    {
+     "team": "2025.l.40764.t.12",
+     "tag": "Back from the dead",
+     "body": "Dead last in Week 2. Finished as the 4 seed after closing the regular season with a 9-2 demolition of Gopher Gold. Nobody saw it coming, least of all Gopher Gold."
+    },
+    {
+     "team": "2025.l.40764.t.5",
+     "tag": "Crashed out",
+     "body": "Held a playoff spot for 12 weeks and walked into the final week sitting 6th. Lost 2-9 to the 9th-place Nova Knicks. Season over by Sunday."
+    },
+    {
+     "team": "2025.l.40764.t.4",
+     "tag": "Crashed out",
+     "body": "Was No. 1 in Week 4 and spent 15 weeks inside the line. Then slid from 4th to 8th over the final five weeks, capped by a 2-9 beatdown. A full collapse, start to finish."
+    }
+   ]
+  },
+  "spicy": {
+   "22-1-9": {
+    "headline": "John J Gets Killed by His Own Cuts",
+    "body": [
+     "John J had the volume. Luka dropped 116, Kawhi 103, and theInfamous outscored Thug Life by 79 points and won the threes. For a minute, the trophy looked like it had his name on it.",
+     "Then the receipts came in. Nickeil Alexander-Walker, drafted by John J for $1 and cut, put up 94 points, 13 threes and 7 steals for Arnav. Josh Hart, another John J cast-off, added 21 rebounds and 7 steals. Joki\u0107 piled on 68 rebounds and 56 assists, and Thug Life swept steals, assists and turnovers.",
+     "The dagger: defensive rebounds, theInfamous's best category all season, went to Thug Life by four. Beaten at your own game by players you threw away."
+    ]
+   },
+   "22-6-10": {
+    "headline": "Parth Loses Bronze by Nineteen Points",
+    "body": [
+     "Third place, nothing on the line but pride, and Parth still found a way to make it hurt. LeParth James won blocks by 19, turnovers by 25 and offensive boards by 17. Brunson poured in 90. Wembanyama swatted 13.",
+     "It came down to points, and Parth lost them by 19. Vishal's pickups did the damage: Bennedict Mathurin and Olivier-Maxence Prosper threw in 68 apiece.",
+     "Steals, normally Parth's best category, went the other way. So did assists. Bronze slipped to Vishal, and Parth takes home the Tin Cup."
+    ]
+   }
+  }
+ },
  "awards": [
   {
    "title": "Horseshoe award",
@@ -1098,12 +1848,13 @@
   }
  ],
  "recap": {
-  "headline": "THUG LIFE BURIES THE LEAGUE WIRE TO WIRE",
-  "subhead": "Arnav B took the top seed, the title and the waiver wire, and made it look like a chore.",
+  "headline": "THUG LIFE WON A TITLE OUT OF YOUR TRASH",
+  "subhead": "Arnav built a champion from the league's waiver scraps, and two of them buried theInfamous in the final.",
   "body": [
-   "Thug Life went 131-77-1, grabbed the No. 1 seed and beat theInfamous 7-4 in the final. Arnav paid $84 for Nikola Joki\u0107, got the best player in the league, then made 102 moves anyway, the most of anyone. Overkill is a lifestyle.",
-   "theInfamous reached the final on a horseshoe: +6.8 over all-play, the luckiest record in the league. BrookynDynasty got the other end of that deal, 7th on paper, 11th in the standings, -7.8 under all-play. And LeParth James paid $40 for Tyrese Maxey, the No. 7 player in the league, who finished the season unowned. Read that again.",
-   "Acinonyx finished dead last at 75-132-2. Zero Fox Given made 27 moves all season, fewest in the league, and finished 10th. Effort and results, perfectly matched."
+   "Thug Life took over No. 1 in Week 6 and never gave it back. Joki\u0107 did Joki\u0107 things, but the real story is the scrap heap: Nickeil Alexander-Walker, Brandin Podziemski, Jalen Williams and Josh Hart all started the final for Arnav, and all four began the season on somebody else's roster in this league before landing on waivers.",
+   "theInfamous gets the worst of it. John J drafted Alexander-Walker for $1 and Hart for $8, let both walk, then watched them combine for 135 points and 14 steals against him in the championship. Two own goals in the biggest week of the year.",
+   "LeParth James sat outside the playoff line for 16 of 19 weeks, crawled in on the final day, then hung a 10-1 on the 3 seed like it was personal. The run died in the semis. Also, Parth paid $40 for Tyrese Maxey, the No. 7 player in fantasy, and finished the year with Maxey sitting unowned on waivers.",
+   "Acinonyx finished dead last and it was never close. Eshan won defensive rebounds once all season. Once. Zero Fox Given made 27 moves, fewest in the league, and played every week like it."
   ]
  },
  "top_players": [

@@ -130,11 +130,17 @@ def write(a):
 # ---------- past seasons ----------
 SEASON_VOICE = """You write the season obituaries and league lore for "The Goon Gazette", the paper of a
 12-team Yahoo fantasy basketball league called Ballinwithmygoons. The paper exists to put
-every manager's crimes on the record permanently. Voice: ruthless, funny, specific. Short
-sentences. The champion gets grudging respect and a jab; everyone else gets the truth about
-how they lost. Name the collapses, the lucky runs, the drafts that aged like milk.
-Hard rules: roast results, rosters, trades and luck. Never looks, families, jobs, health,
-money or identities. No slurs, PG-13. No made-up stats: only numbers in FACTS."""
+every manager's crimes on the record permanently. Voice: unfiltered, savage, funny, specific.
+Short sentences. Debilitating zingers. The champion gets grudging respect and a jab; everyone
+else gets the truth about how they lost.
+Do NOT recite records, win percentages, luck numbers or category tallies. Find the insight
+instead: a team winning the category it usually loses (or losing the one it owns), a player one
+manager cut who burned him later, a team parked below the playoff line for months that snuck in
+on the last day, a contender that collapsed down the stretch, an expensive draft pick that
+vanished. One sharp number inside a sentence is fine when it lands the joke.
+Hard rules: roast results, rosters, trades, pickups, laziness and luck. Never looks, families,
+jobs, health, money or identities. No slurs, PG-13. No em dashes. No made-up facts: only what
+is in FACTS."""
 SEASON_SCHEMA = """Return ONLY JSON:
 {"headline": "<=8 words, ALL CAPS", "subhead": "one sentence",
  "body": ["3 short paragraphs: the champion's run, the biggest storyline, the cellar"]}"""
@@ -151,6 +157,17 @@ def _season_facts(sm):
          "regular_season_leader": nm(sm["reg_leader"]),
          "final_round": [[nm(g["a"]), nm(g["b"]), g["score"][:2]] for g in (sm["bracket"][-1]["games"] if sm["bracket"] else [])],
          "awards": [[a["title"], nm(a["team"]), a["note"]] for a in sm["awards"]]}
+    idn = sm.get("identity") or {}
+    f["category_identity"] = {nm(tk): {"usually_wins": v["strong"], "usually_loses": v["weak"]} for tk, v in idn.items()}
+    race = sm.get("race") or {}
+    npo = sm.get("num_playoff_teams") or 0
+    if race.get("weeks") and npo:
+        f["race"] = {nm(tk): {"weeks_in_playoff_spot": sum(1 for x in rk if x <= npo), "best": min(rk), "worst": max(rk),
+                              "last_6_weeks": rk[-6:], "seed": st[tk]["seed"]} for tk, rk in race["ranks"].items()}
+    f["closest_playoff_games"] = [{"round": g["round"], "a": nm(g["a"]), "b": nm(g["b"]), "score": g["score"],
+                                   "winner": nm(g["winner"]),
+                                   "categories": [[c["cat"], c["win"], c["close"]] for c in g["cats"]]}
+                                  for g in sm.get("spicy", [])]
     return f
 
 

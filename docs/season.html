@@ -18,25 +18,16 @@
     <div class="dateline"><span class="label">Archive edition</span><span class="big" id="yr">…</span></div>
   </header>
   <nav class="tabs" aria-label="Sections">
-    <a href="#top" data-jump="top">Obituary</a><a href="#" data-jump="awards">Hardware</a><a href="#" data-jump="spicy">Spiciest</a>
-    <a href="#" data-jump="climb">The race</a><a href="#" data-jump="draft">The twelve</a><a href="#" data-jump="standings">Where it ended</a>
+    <a href="#top" data-jump="top">Obituary</a><a href="#" data-jump="climb">The race</a><a href="#" data-jump="bubble">Bubble</a>
+    <a href="#" data-jump="spicy">Spiciest</a><a href="#" data-jump="awards">Hardware</a><a href="#" data-jump="draft">The twelve</a><a href="#" data-jump="standings">Where it ended</a>
   </nav>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
   <div class="banner" id="banner" hidden></div>
 
-  <section id="top" class="front">
+  <section id="cups" class="cups" aria-label="Final top four"></section>
+
+  <section id="top" class="front solo">
     <div class="lead-card"><h3 class="card-h">Season Obituary</h3><h1 class="headline" id="hl"></h1><p class="sub" id="sub"></p><div class="story" id="story"></div></div>
-    <aside class="trophy-aside" id="trophy"></aside>
-  </section>
-
-  <section id="awards">
-    <div class="sec-head"><h2>Hardware and Humiliations</h2></div>
-    <div class="awards" id="aw"></div>
-  </section>
-
-  <section id="spicy">
-    <div class="sec-head"><h2>Spiciest Playoff Matchups</h2><p>The playoff fights that came down to the wire. Red dots mark categories decided by a whisker.</p></div>
-    <div class="spicy" id="sp"></div>
   </section>
 
   <section id="climb">
@@ -46,6 +37,21 @@
       <div class="rk-tip" id="rk-tip" hidden></div>
       <div class="rk-chips" id="rk-chips" role="group" aria-label="Teams to highlight"></div>
     </div>
+  </section>
+
+  <section id="bubble">
+    <div class="sec-head"><h2>Playoff Bubble <span class="dot">•</span> <span id="bb-hl"></span></h2><p id="bb-sub"></p></div>
+    <div class="bubble" id="bb"></div>
+  </section>
+
+  <section id="spicy">
+    <div class="sec-head"><h2>Spiciest Playoff Matchups</h2><p>The playoff fights that came down to the wire.</p></div>
+    <div class="spicy" id="sp"></div>
+  </section>
+
+  <section id="awards">
+    <div class="sec-head"><h2>Hardware and Humiliations</h2></div>
+    <div class="awards" id="aw"></div>
   </section>
 
   <section id="draft">
@@ -71,28 +77,62 @@ document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click"
 }));
 
 const WORDS = ["zero", "one", "two", "three"];
+const CUPS = [["gold", "Gold Cup"], ["silver", "Silver Cup"], ["bronze", "Bronze Cup"], ["tin", "Tin Cup"]];
+const cupIcon = `<svg class="cup-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v3h3v2a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v3H8v-3h3v-2.1A5 5 0 0 1 8.6 13 5 5 0 0 1 4 8V6h3V3zm10 5v2.8A3 3 0 0 0 18 8zM6 8a3 3 0 0 0 1 2.8V8z"/></svg>`;
+
+function cupsRow(s) {
+  const T = s.teams, ed = (s.editorial || {}).cups || {};
+  return s.standings.filter(r => r.rank <= 4).sort((a, b) => a.rank - b.rank).map(r => {
+    const [cls, label] = CUPS[r.rank - 1];
+    return `<article class="cup ${cls}"><div class="cup-top"><span class="cup-pill">${cupIcon}${label}</span><span class="cup-seed">No. ${r.seed ?? "–"} seed</span></div>
+      <h3>${esc(T[r.team].name)}</h3><small>${esc(T[r.team].manager || "")}</small>
+      ${ed[r.team] ? `<p>${esc(ed[r.team])}</p>` : ""}</article>`;
+  }).join("");
+}
+
+function miniPath(s, tk, cls) {
+  const R = s.race; if (!R || !R.ranks[tk]) return "";
+  const rk = R.ranks[tk], N = Object.keys(R.ranks).length, W = 240, H = 64, pad = 5;
+  const x = i => pad + i * (W - 2 * pad) / Math.max(1, rk.length - 1), y = r => pad + (r - 1) * (H - 2 * pad) / (N - 1);
+  const npo = s.num_playoff_teams || 0, yc = (y(npo) + y(npo + 1)) / 2;
+  const d = rk.map((r, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(r).toFixed(1)}`).join("");
+  return `<svg class="bb-path ${cls}" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Weekly rank, from ${rk[0]} to ${rk.at(-1)}">
+    ${npo ? `<line x1="0" x2="${W}" y1="${yc}" y2="${yc}" class="bb-cut"/>` : ""}<path d="${d}" vector-effect="non-scaling-stroke"/>
+    <circle cx="${x(rk.length - 1)}" cy="${y(rk.at(-1))}" r="3.5"/></svg>`;
+}
+
+function bubbleCards(s) {
+  const T = s.teams, b = (s.editorial || {}).bubble, seed = Object.fromEntries(s.standings.map(r => [r.team, r.seed]));
+  if (!b) return `<p class="empty">Bubble story lands with the next backfill.</p>`;
+  return b.cards.map(c => {
+    const good = !/crash|late|fell|choke/i.test(c.tag), cls = good ? "up" : "down";
+    const rk = s.race?.ranks?.[c.team] || [];
+    return `<article class="bb-card ${cls}"><div class="bb-top"><span class="bb-tag">${esc(c.tag)}</span><span class="bb-seed">${seed[c.team] <= (s.num_playoff_teams || 0) ? `No. ${seed[c.team]} seed` : `Finished ${seed[c.team]}th`}</span></div>
+      <h3>${esc(T[c.team].name)}</h3><small>${esc(T[c.team].manager || "")}</small>
+      ${miniPath(s, c.team, cls)}<div class="bb-axis"><span>Wk 1</span><span>Playoff line</span><span>Final</span></div>
+      <p>${esc(c.body)}</p></article>`;
+  }).join("");
+}
+
 function spicyCard(g, s) {
   const T = s.teams, nm = tk => esc(T[tk]?.name), mg = tk => esc(T[tk]?.manager);
   const seed = Object.fromEntries(s.standings.map(r => [r.team, r.seed]));
   const [sa, sb, st] = g.score, margin = Math.abs(sa - sb);
-  const elim = !/place game/.test(g.round);
-  const verb = elim ? (g.round === "Final" ? "takes the ring off" : "survives") : "edges";
+  const ed = ((s.editorial || {}).spicy || {})[`${g.week}-${g.a.split(".").pop()}-${g.b.split(".").pop()}`];
   const tag = margin === 1 ? "Decided by one category" : `${WORDS[margin][0].toUpperCase() + WORDS[margin].slice(1)}-category margin`;
-  const n = g.narrowest;
-  const knife = n ? `<b>${nm(g.loser)}</b> lost ${esc(n.cat)} by ${n.pct ? fmtStat(n.margin, true) : fmtStat(n.margin)}${elim ? " and went home" : ""}.` : "";
-  const cnt = ["", "One", "Two", "Three", "Four", "Five"][g.close_cats] || String(g.close_cats);
-  const whisker = g.close_cats === 1 ? " One category came down to a whisker." : g.close_cats > 1 ? ` ${cnt} categories came down to a whisker.` : "";
   const side = (tk, sc) => `<div class="sp-team ${g.winner === tk ? "w" : ""}"><div><b>${nm(tk)}</b><small>${mg(tk)}${seed[tk] ? ` · No. ${seed[tk]} seed` : ""}</small></div><span class="sp-sc num">${sc}</span></div>`;
-  const rows = g.cats.map(c => {
-    const cell = (v, me) => `<td class="num r ${c.win === me ? "won" : ""}">${fmtStat(v, c.pct)}</td>`;
-    return `<tr><td class="sp-cat">${c.close ? `<span class="sp-dot" title="Decided by a whisker">●</span>` : ""}${esc(c.cat)}</td>${cell(c.a, "a")}${cell(c.b, "b")}</tr>`;
-  }).join("");
+  let story;
+  if (ed) story = `<h3 class="sp-hl">${esc(ed.headline)}</h3>`, story = { hl: story, body: storyList(ed.body, Object.values(T).flatMap(t => [t.name, t.manager])) };
+  else {
+    const n = g.narrowest, elim = !/place game/.test(g.round);
+    const knife = n ? `<p class="sp-knife"><b>${nm(g.loser)}</b> lost ${esc(n.cat)} by ${n.pct ? fmtStat(n.margin, true) : fmtStat(n.margin)}${elim ? " and went home" : ""}.</p>` : "";
+    story = { hl: `<h3 class="sp-hl">${nm(g.winner)} ${elim ? "survives" : "edges"} ${nm(g.loser)}</h3>`, body: knife };
+  }
   return `<article class="sp-card">
     <div class="sp-top"><span class="label">${esc(g.round)} · Week ${g.week}</span><span class="sp-tag">${tag}${st ? `, ${st} tied` : ""}</span></div>
-    <h3 class="sp-hl">${nm(g.winner)} ${verb} ${nm(g.loser)}</h3>
+    ${story.hl}
     <div class="sp-board">${side(g.a, sa)}${side(g.b, sb)}</div>
-    <p class="sp-knife">${knife}${whisker}</p>
-    <div class="table-wrap"><table class="pr sp-cats"><thead><tr><th>Cat</th><th class="r">${nm(g.a)}</th><th class="r">${nm(g.b)}</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="sp-story">${story.body}</div>
   </article>`;
 }
 
@@ -182,12 +222,11 @@ function render(s) {
   $("hl").textContent = titleCase(r.headline);
   $("sub").textContent = r.subhead && !/season in review/i.test(r.subhead) ? r.subhead : "";
   $("story").innerHTML = storyList(r.body, Object.values(T).flatMap(t => [t.name, t.manager]));
-  const seed = row[s.champion]?.seed;
-  $("trophy").innerHTML = `
-    <div><span class="label">${esc(s.label)} champion</span><div class="t-name">${nm(s.champion)}</div><div class="t-sub">${mg(s.champion)}${seed ? ` · No. ${seed} seed` : ""}</div></div>
-    <div class="t-row"><span class="label">Runner-up</span><div class="t-sub"><b>${nm(s.runner_up)}</b> · ${mg(s.runner_up)}</div></div>
-    <div class="t-row"><span class="label">Regular season No. 1</span><div class="t-sub"><b>${nm(s.reg_leader)}</b> · ${mg(s.reg_leader)}</div></div>
-    <div class="t-row"><span class="label">Last place</span><div class="t-sub"><b>${nm(s.sacko)}</b> · ${mg(s.sacko)}</div></div>`;
+  $("cups").innerHTML = cupsRow(s);
+  const bb = (s.editorial || {}).bubble;
+  $("bb-hl").textContent = bb ? bb.headline : "Who Got In";
+  $("bb-sub").textContent = bb ? bb.sub : "";
+  $("bb").innerHTML = bubbleCards(s);
 
   $("aw").innerHTML = s.awards.map((a, i) => `<div class="award ${i === 0 ? "hot" : ""}"><span class="label">${esc(a.title)}</span><h3>${nm(a.team)}</h3><p>${esc(a.note)}</p></div>`).join("");
 
