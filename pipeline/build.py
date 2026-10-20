@@ -127,6 +127,9 @@ def main():
     a["generated_at"] = datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes")
     blob = json.dumps(a, indent=1)
     (OUT / "league.json").write_text(blob)
+    # tiny flag file every page reads: while "sample" is true the current season shows as locked
+    (OUT / "edition.json").write_text(json.dumps({"sample": bool(a.get("sample") or sample),
+                                                  "date": d["date"], "generated_at": a["generated_at"]}))
     if not sample:
         (hist / f"{d['date']}.json").write_text(blob)
     print("wrote", OUT / "league.json")

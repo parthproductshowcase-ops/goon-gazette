@@ -9,8 +9,8 @@
 <meta name="theme-color" content="#121212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/gazette.css">
-<link rel="stylesheet" href="themes/grandprix.css">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/grandprix.css?v=be4e1ca1">
 
 <div class="wrap">
   <header class="mast">
@@ -67,7 +67,7 @@
   <footer><span>Final results archive.</span><a href="history.html" style="color:inherit">All-time league history</a><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js"></script>
+<script src="assets/common.js?v=28c85432"></script>
 <script>
 let current = null, S = null, picked = [];
 const SLOTS = 4;
@@ -228,7 +228,7 @@ function render(s) {
   $("bb-sub").textContent = bb ? bb.sub : "";
   $("bb").innerHTML = bubbleCards(s);
 
-  $("aw").innerHTML = s.awards.map((a, i) => `<div class="award ${i === 0 ? "hot" : ""}"><span class="label">${esc(a.title)}</span><h3>${nm(a.team)}</h3><p>${esc(a.note)}</p></div>`).join("");
+  $("aw").innerHTML = s.awards.map((a, i) => `<div class="award ${i === 0 ? "hot" : ""}"><span class="label">${esc(a.title)}</span><h3>${nm(a.team)}</h3><p>${esc(((s.editorial || {}).awards || {})[a.title] || a.note)}</p></div>`).join("");
 
   const sp = s.spicy || [];
   $("sp").innerHTML = sp.length ? sp.map(g => spicyCard(g, s)).join("")

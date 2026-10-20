@@ -387,3 +387,42 @@ table.pr.sp-cats{min-width:0;width:100%;table-layout:fixed}
 @media (min-width:900px){.front.solo .story-list{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;row-gap:12px}}
 .bb-tag{line-height:1.2;white-space:nowrap}
 .bb-top{flex-wrap:wrap}
+
+/* ---------- current season in chains until the first real build (Oct 20) ---------- */
+.chain{position:absolute;left:-15%;width:130%;height:12px;pointer-events:none;z-index:2;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='14' viewBox='0 0 34 14'%3E%3Cellipse cx='9' cy='7' rx='7.5' ry='4.6' fill='none' stroke='%234a4f57' stroke-width='3.4'/%3E%3Cellipse cx='9' cy='7' rx='7.5' ry='4.6' fill='none' stroke='%23c9ced4' stroke-width='1.4'/%3E%3Crect x='17.5' y='5.3' width='15' height='3.4' rx='1.7' fill='%234a4f57'/%3E%3Crect x='18.5' y='6.2' width='13' height='1.4' rx='.7' fill='%23c9ced4'/%3E%3C/svg%3E") repeat-x center/auto 100%;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+nav.site a.locked{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:6px;background:#2b2d31 !important;color:#fff;box-shadow:inset 0 0 0 2px var(--accent)}
+nav.site a.locked[aria-current="page"]{box-shadow:inset 0 0 0 2px #fff,0 0 0 2px var(--accent)}
+nav.site a.locked .lock-ic{width:14px;height:14px;fill:#ffd65c;position:relative;z-index:3}
+nav.site a.locked span{position:relative;z-index:1}
+nav.site a.locked em{font:800 9px/1 var(--body);font-style:normal;text-transform:uppercase;letter-spacing:.06em;background:var(--accent);color:#fff;padding:3px 5px;border-radius:2px;position:relative;z-index:3}
+nav.site a.locked .chain{height:9px;top:calc(50% - 4.5px)}
+nav.site a.locked .chain.c1{transform:rotate(9deg)}
+nav.site a.locked .chain.c2{transform:rotate(-9deg)}
+nav.site a.locked:hover{background:#2b2d31 !important}
+
+body.season-locked nav.tabs,body.season-locked .panel:not(#current),body.season-locked #banner{display:none !important}
+body.season-locked .scores{filter:blur(3px) grayscale(.6);opacity:.45;pointer-events:none}
+.lock-stage{position:relative;max-height:660px;overflow:hidden;margin-top:16px;border:1px solid var(--rule);border-radius:2px}
+.lock-stage #current{filter:blur(6px) grayscale(.5);opacity:.4;pointer-events:none;user-select:none}
+.lock-stage::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--paper));pointer-events:none}
+.lock-stage .chain.big{height:22px;top:calc(50% - 11px);z-index:3}
+.lock-stage .chain.big.c1{transform:rotate(16deg)}
+.lock-stage .chain.big.c2{transform:rotate(-16deg)}
+.lock-card{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100% - 32px));background:var(--card);border:1px solid var(--rule);border-top:6px solid var(--accent);border-radius:2px;padding:26px 24px 22px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.lock-badge{width:56px;height:56px;border-radius:50%;background:var(--bar);display:grid;place-items:center;margin:-56px auto 10px;border:3px solid var(--card)}
+.lock-badge .lock-ic{width:26px;height:26px;fill:#ffd65c}
+.lock-card .label{font:800 12px/1 var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.lock-card h2{font:800 clamp(22px,3.4vw,30px)/1.1 var(--display);letter-spacing:-.01em;margin:8px 0 10px}
+.lock-card p{margin:0 auto 8px;max-width:46ch;font-size:15px;line-height:1.5;color:var(--muted)}
+.lock-card .lock-kicker{color:var(--ink);font-weight:700}
+.lock-cta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.lock-cta .btn{display:inline-block;font:700 13px/1 var(--body);padding:11px 14px;border-radius:4px;background:var(--ink);color:var(--card);text-decoration:none}
+.lock-cta .btn.red{background:var(--accent);color:#fff}
+.lock-cta .btn:hover{opacity:.9}
+@media (max-width:560px){.lock-stage{max-height:620px}.lock-card{padding:22px 16px 18px}}
+nav.site a.locked span,nav.site a.locked .lock-ic{text-shadow:0 1px 2px #000,0 0 6px #000}
+nav.site a.locked span{z-index:3}
+nav.site a.locked .chain{opacity:.85}
+@media (max-width:560px){nav.site{flex-wrap:wrap;row-gap:8px}nav.site a:nth-child(2){margin-left:0}nav.site a.locked em{display:none}}

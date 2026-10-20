@@ -1,6 +1,6 @@
 /* Past seasons + history: same network look as the front page, plus archive pieces
    (podium colors, champions wall). Loaded after gazette.css. */
-@import url("fight.css");
+@import url("fight.css?v=9c2ee0e6");
 :root{--gold:#d4a017;--silver:#9aa3ad;--bronze:#b5733a}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gold:#f0bd3a;--silver:#b5bdc6;--bronze:#d08a4e}}
 :root[data-theme="dark"]{--gold:#f0bd3a;--silver:#b5bdc6;--bronze:#d08a4e}

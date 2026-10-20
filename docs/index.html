@@ -9,8 +9,8 @@
 <meta name="theme-color" content="#121212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="assets/gazette.css">
-<link rel="stylesheet" href="themes/fight.css">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=9c2ee0e6">
 
 <div class="wrap">
   <header class="mast">
@@ -77,7 +77,7 @@
   <footer><span id="gen"></span><span>Morning edition 4am ET. Lineup Card 7:15pm ET, after lineups lock.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js"></script>
+<script src="assets/common.js?v=28c85432"></script>
 <script>
 siteNav("today");
 
@@ -106,7 +106,7 @@ function render(a){
   const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
   $("dl1").textContent = d.toLocaleDateString("en-US", {weekday:"long", month:"short", day:"numeric"});
   $("dl2").textContent = a.preseason ? "Preseason" : `Wk ${a.league?.current_week ?? ""}`;
-  if (a.sample){ $("banner").hidden = false; $("banner").textContent = "Example data from a made-up league. Real numbers appear once the Yahoo connection runs."; }
+  if (a.sample){ lockdown(); }
 
   const r = a.recap || {};
   $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
@@ -191,8 +191,10 @@ function render(a){
   const TN = a.tonight;
   if (TN){
     $("lineup").hidden = false;
-    gc.once("view/lineup-card");
-    $("dl1").textContent += ", evening edition";
+    if (!document.body.classList.contains("season-locked")) {  // sample card behind the chains: don't count it or label it
+      gc.once("view/lineup-card");
+      $("dl1").textContent += ", evening edition";
+    }
     $("lu-title").innerHTML = `${esc(TN.headline || "The Lineup Card")} <b class="dot">&bull;</b> Tonight`;
     $("lu-time").textContent = `Lineups as of ${new Date(TN.generated_at).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit"})}`;
     $("lu-zings").innerHTML = (TN.zingers || []).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("") || `<p class="empty">Everyone set a clean lineup. Suspicious.</p>`;
@@ -353,4 +355,27 @@ Promise.all([
     render(a);
   })
   .catch(e => { $("zings").innerHTML = `<div class="zing"><b>Presses jammed</b><span>Couldn't load today's data. The morning build may have failed; check the GitHub Actions log.</span></div>`; console.error(e); });
+
+// Season in chains: blur the sample paper behind a lock card until real data lands.
+function lockdown() {
+  if (document.body.classList.contains("season-locked")) return;
+  document.body.classList.add("season-locked");
+  $("dl1").textContent = new Date().toLocaleDateString("en-US", {weekday: "long", month: "short", day: "numeric"});
+  $("dl2").textContent = "Tip-off";
+  const cur = $("current"), stage = document.createElement("div");
+  stage.className = "lock-stage";
+  cur.parentNode.insertBefore(stage, cur);
+  stage.appendChild(cur);
+  cur.setAttribute("aria-hidden", "true");
+  stage.insertAdjacentHTML("beforeend", `
+    <i class="chain big c1" aria-hidden="true"></i><i class="chain big c2" aria-hidden="true"></i>
+    <div class="lock-card" role="region" aria-label="Current season locked">
+      <div class="lock-badge">${LOCK_SVG}</div>
+      <span class="label">2026-27 season</span>
+      <h2>The Paper Is in Chains Until Tip-Off</h2>
+      <p>The new season tips off tonight. The first edition drops the morning after real box scores land, and the receipts start piling up the same day.</p>
+      <p class="lock-kicker">Twelve managers. Eleven categories. Zero excuses.</p>
+      <div class="lock-cta"><a class="btn red" href="season.html#2025">Relive 2025-26</a><a class="btn" href="season.html#2024">Relive 2024-25</a><a class="btn" href="history.html">League history</a></div>
+    </div>`);
+}
 </script>

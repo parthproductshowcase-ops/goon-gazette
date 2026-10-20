@@ -12,13 +12,25 @@ function siteNav(active) {
   const el = $("sitenav");
   if (!el) return;
   const link = (href, label, key) => `<a href="${href}"${key === active ? ' aria-current="page"' : ""}>${label}</a>`;
-  const draw = seasons => {
-    el.innerHTML = link("index.html", "Current Season", "today")
+  let seasons = [];
+  const draw = () => {
+    const cur = siteNav.locked
+      ? `<a href="index.html" class="locked"${active === "today" ? ' aria-current="page"' : ""} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
+      : link("index.html", "Current Season", "today");
+    el.innerHTML = cur
       + seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)).join("")
       + link("history.html", "League history", "history");
   };
-  draw([]);
-  getJSON("data/history.json").then(h => { draw(h.seasons || []); if (h.sample) siteNav.sample = true; }).catch(() => {});
+  draw();
+  getJSON("data/history.json").then(h => { seasons = h.seasons || []; draw(); if (h.sample) siteNav.sample = true; }).catch(() => {});
+  seasonLocked().then(l => { if (l !== siteNav.locked) { siteNav.locked = l; draw(); } });
+}
+
+// The current season stays in chains until the first real (non-sample) build lands.
+const LOCK_SVG = `<svg class="lock-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2h1.5A1.5 1.5 0 0 1 20 11.5v9A1.5 1.5 0 0 1 18.5 22h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10zm2 0h6V8a3 3 0 0 0-6 0zm3 4a1.6 1.6 0 0 0-.8 3V19h1.6v-2a1.6 1.6 0 0 0-.8-3z"/></svg>`;
+function seasonLocked() {
+  if (!seasonLocked.p) seasonLocked.p = getJSON("data/edition.json").then(e => !!e.sample).catch(() => false);
+  return seasonLocked.p;
 }
 
 // Story paragraphs as bullets, with team and manager names bolded.
