@@ -61,6 +61,98 @@ def _reg_weeks(s):
     return out
 
 
+def _close_cat(a, b, c):
+    """A category decided by a whisker: pct within .010, counts within 3% (or 1)."""
+    if a is None or b is None:
+        return False
+    if c["pct"]:
+        return abs(a - b) <= .010
+    return abs(a - b) <= max(1, .03 * max(abs(a), abs(b)))
+
+
+def _spicy_playoffs(s, cats, standings, bracket, n=2):
+    """Up to n playoff games between playoff teams that went down to the wire."""
+    npo = s.get("num_playoff_teams") or 0
+    seed = {r["team"]: r.get("seed") for r in standings}
+    in_po = lambda tk: bool(seed.get(tk) and npo and seed[tk] <= npo)
+    labels = {rd["week"]: rd["round"] for rd in bracket}
+    semi_wk = next((rd["week"] for rd in bracket if rd["round"] == "Semifinals"), None)
+    qf_wk = next((rd["week"] for rd in bracket if rd["round"] == "Quarterfinals"), None)
+
+    def losers(wk):
+        out = set()
+        for m in s["weeks"].get(wk, s["weeks"].get(str(wk), [])) if wk else []:
+            if m.get("playoffs") and not m.get("consolation"):
+                w = _matchup_winner(m, cats)
+                out.add(m["b"] if w == m["a"] else m["a"])
+        return out
+    semi_l, qf_l = losers(semi_wk), losers(qf_wk)
+    stakes = {"Final": 4, "Semifinals": 3, "Quarterfinals": 2, "3rd place game": 1, "5th place game": 0}
+
+    picks = []
+    for wk, ms in s["weeks"].items():
+        wk = int(wk)
+        for m in ms:
+            if not m.get("playoffs") or not (in_po(m["a"]) and in_po(m["b"])):
+                continue
+            if not m.get("consolation"):
+                rnd = labels.get(wk, "Playoffs")
+            elif {m["a"], m["b"]} <= semi_l:
+                rnd = "3rd place game"
+            elif {m["a"], m["b"]} <= qf_l:
+                rnd = "5th place game"
+            else:
+                continue
+            sc = _cat_score(m, cats)
+            margin = abs(sc[0] - sc[1])
+            if margin > 3:
+                continue
+            winner = _matchup_winner(m, cats)
+            loser = m["b"] if winner == m["a"] else m["a"]
+            rows, close, narrow = [], 0, None
+            for c in cats:
+                va, vb = m["a_stats"].get(c["id"]), m["b_stats"].get(c["id"])
+                r = stats.cmp_cat(va, vb, c["hb"], c["pct"])
+                tight = _close_cat(va, vb, c)
+                close += tight
+                rows.append({"cat": c["name"], "a": va, "b": vb, "pct": c["pct"],
+                             "win": "a" if r > 0 else "b" if r < 0 else "t", "close": tight})
+                lost_by_loser = (r < 0 and loser == m["a"]) or (r > 0 and loser == m["b"])
+                if lost_by_loser and va is not None and vb is not None:
+                    rel = abs(va - vb) / (1 if c["pct"] else max(abs(va), abs(vb), 1))
+                    if narrow is None or rel < narrow[0]:
+                        narrow = (rel, {"cat": c["name"], "margin": round(abs(va - vb), 3), "pct": c["pct"]})
+            spice = -margin * 10 + close * 3 + stakes.get(rnd, 0)
+            picks.append({"week": wk, "round": rnd, "a": m["a"], "b": m["b"], "score": sc,
+                          "winner": winner, "loser": loser, "close_cats": close,
+                          "narrowest": narrow[1] if narrow else None, "cats": rows, "_spice": spice})
+    picks.sort(key=lambda g: -g["_spice"])
+    for g in picks:
+        g.pop("_spice")
+    return picks[:n]
+
+
+def _rank_race(reg, cats, teams, standings):
+    """Standings rank after every regular-season week, by cumulative category win %."""
+    seed = {r["team"]: r.get("seed") or 99 for r in standings}
+    rec = {tk: [0, 0, 0] for tk in teams}
+    weeks, ranks = [], {tk: [] for tk in teams}
+    for wk in sorted(reg):
+        for m in reg[wk]:
+            sc = _cat_score(m, cats)
+            for tk, (w, l) in ((m["a"], (sc[0], sc[1])), (m["b"], (sc[1], sc[0]))):
+                rec[tk][0] += w; rec[tk][1] += l; rec[tk][2] += sc[2]
+        def pct(tk):
+            w, l, t = rec[tk]
+            g = w + l + t
+            return (w + .5 * t) / g if g else 0
+        order = sorted(teams, key=lambda tk: (-pct(tk), -rec[tk][0], seed[tk]))
+        weeks.append(wk)
+        for i, tk in enumerate(order, 1):
+            ranks[tk].append(i)
+    return {"weeks": weeks, "ranks": ranks}
+
+
 # ---------- one season ----------
 def season_summary(s, cfg):
     cats, teams, st = s["cats"], s["teams"], s["standings"]
@@ -148,6 +240,8 @@ def season_summary(s, cfg):
         "champion": champ, "runner_up": runner, "sacko": sacko, "reg_leader": reg_leader,
         "num_playoff_teams": s.get("num_playoff_teams"),
         "standings": standings, "bracket": bracket, "records": {"best": best, "worst": worst},
+        "spicy": _spicy_playoffs(s, cats, standings, bracket),
+        "race": _rank_race(reg, cats, teams, standings),
         "awards": awards, "draft": draft, "recap": s.get("recap"),
         "top_players": s.get("top_players", []),
         "auction": any(d.get("cost") is not None for d in s.get("draft_all", [])),

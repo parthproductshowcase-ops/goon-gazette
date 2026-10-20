@@ -18,8 +18,8 @@
     <div class="dateline"><span class="label">Archive edition</span><span class="big" id="yr">…</span></div>
   </header>
   <nav class="tabs" aria-label="Sections">
-    <a href="#top" data-jump="top">Obituary</a><a href="#" data-jump="standings">Where it ended</a><a href="#" data-jump="playoffs">Playoffs</a>
-    <a href="#" data-jump="awards">Hardware</a><a href="#" data-jump="records">Record book</a><a href="#" data-jump="draft">The twelve</a>
+    <a href="#top" data-jump="top">Obituary</a><a href="#" data-jump="awards">Hardware</a><a href="#" data-jump="spicy">Spiciest</a>
+    <a href="#" data-jump="climb">The race</a><a href="#" data-jump="draft">The twelve</a><a href="#" data-jump="standings">Where it ended</a>
   </nav>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
   <div class="banner" id="banner" hidden></div>
@@ -29,24 +29,23 @@
     <aside class="trophy-aside" id="trophy"></aside>
   </section>
 
-  <section id="standings">
-    <div class="sec-head"><h2>Where It Ended</h2><p>Finish includes the playoffs. "On paper" ranks season category totals; luck compares the record to all-play.</p></div>
-    <div class="table-wrap"><table class="pr"><thead><tr><th>Fin</th><th>Team</th><th class="r">Cat record</th><th class="c">Seed</th><th class="c">On paper</th><th class="r">Luck</th><th class="r">Moves</th><th class="r">Trades</th></tr></thead><tbody id="st"></tbody></table></div>
-  </section>
-
-  <section id="playoffs">
-    <div class="sec-head"><h2>Playoffs: Who Showed Up</h2><p>Championship bracket. Score is categories won.</p></div>
-    <div class="bracket" id="br"></div>
-  </section>
-
   <section id="awards">
     <div class="sec-head"><h2>Hardware and Humiliations</h2></div>
     <div class="awards" id="aw"></div>
   </section>
 
-  <section id="records">
-    <div class="sec-head"><h2>Record Book</h2><p>Best and worst single regular-season week in every category.</p></div>
-    <div class="table-wrap"><table class="pr records"><thead><tr><th>Cat</th><th>Best week</th><th>Worst week</th></tr></thead><tbody id="rb"></tbody></table></div>
+  <section id="spicy">
+    <div class="sec-head"><h2>Spiciest Playoff Matchups</h2><p>The playoff fights that came down to the wire. Red dots mark categories decided by a whisker.</p></div>
+    <div class="spicy" id="sp"></div>
+  </section>
+
+  <section id="climb">
+    <div class="sec-head"><h2>The Race <span class="dot">•</span> Week by Week</h2><p>Regular-season standings after every week. Tap teams to follow them.</p></div>
+    <div class="rk-card">
+      <div class="rk-plot" id="rk-plot"></div>
+      <div class="rk-tip" id="rk-tip" hidden></div>
+      <div class="rk-chips" id="rk-chips" role="group" aria-label="Teams to highlight"></div>
+    </div>
   </section>
 
   <section id="draft">
@@ -54,19 +53,122 @@
     <div class="table-wrap"><table class="pr"><thead><tr><th>#</th><th>Player</th><th>Team</th><th>Drafted by</th><th class="r" id="dr-cost">Draft</th></tr></thead><tbody id="dr"></tbody></table></div>
   </section>
 
+  <section id="standings">
+    <div class="sec-head"><h2>Where It Ended</h2><p>Finish includes the playoffs. "On paper" ranks season category totals; luck compares the record to all-play.</p></div>
+    <div class="table-wrap"><table class="pr"><thead><tr><th>Fin</th><th>Team</th><th class="r">Cat record</th><th class="c">Seed</th><th class="c">On paper</th><th class="r">Luck</th><th class="r">Moves</th><th class="r">Trades</th></tr></thead><tbody id="st"></tbody></table></div>
+  </section>
+
   <footer><span>Final results archive.</span><a href="history.html" style="color:inherit">All-time league history</a><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
 <script src="assets/common.js"></script>
 <script>
-let current = null;
+let current = null, S = null, picked = [];
+const SLOTS = 4;
 document.querySelectorAll("[data-jump]").forEach(a => a.addEventListener("click", e => {
   e.preventDefault();
   document.getElementById(a.dataset.jump).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 }));
 
+const WORDS = ["zero", "one", "two", "three"];
+function spicyCard(g, s) {
+  const T = s.teams, nm = tk => esc(T[tk]?.name), mg = tk => esc(T[tk]?.manager);
+  const seed = Object.fromEntries(s.standings.map(r => [r.team, r.seed]));
+  const [sa, sb, st] = g.score, margin = Math.abs(sa - sb);
+  const elim = !/place game/.test(g.round);
+  const verb = elim ? (g.round === "Final" ? "takes the ring off" : "survives") : "edges";
+  const tag = margin === 1 ? "Decided by one category" : `${WORDS[margin][0].toUpperCase() + WORDS[margin].slice(1)}-category margin`;
+  const n = g.narrowest;
+  const knife = n ? `<b>${nm(g.loser)}</b> lost ${esc(n.cat)} by ${n.pct ? fmtStat(n.margin, true) : fmtStat(n.margin)}${elim ? " and went home" : ""}.` : "";
+  const cnt = ["", "One", "Two", "Three", "Four", "Five"][g.close_cats] || String(g.close_cats);
+  const whisker = g.close_cats === 1 ? " One category came down to a whisker." : g.close_cats > 1 ? ` ${cnt} categories came down to a whisker.` : "";
+  const side = (tk, sc) => `<div class="sp-team ${g.winner === tk ? "w" : ""}"><div><b>${nm(tk)}</b><small>${mg(tk)}${seed[tk] ? ` · No. ${seed[tk]} seed` : ""}</small></div><span class="sp-sc num">${sc}</span></div>`;
+  const rows = g.cats.map(c => {
+    const cell = (v, me) => `<td class="num r ${c.win === me ? "won" : ""}">${fmtStat(v, c.pct)}</td>`;
+    return `<tr><td class="sp-cat">${c.close ? `<span class="sp-dot" title="Decided by a whisker">●</span>` : ""}${esc(c.cat)}</td>${cell(c.a, "a")}${cell(c.b, "b")}</tr>`;
+  }).join("");
+  return `<article class="sp-card">
+    <div class="sp-top"><span class="label">${esc(g.round)} · Week ${g.week}</span><span class="sp-tag">${tag}${st ? `, ${st} tied` : ""}</span></div>
+    <h3 class="sp-hl">${nm(g.winner)} ${verb} ${nm(g.loser)}</h3>
+    <div class="sp-board">${side(g.a, sa)}${side(g.b, sb)}</div>
+    <p class="sp-knife">${knife}${whisker}</p>
+    <div class="table-wrap"><table class="pr sp-cats"><thead><tr><th>Cat</th><th class="r">${nm(g.a)}</th><th class="r">${nm(g.b)}</th></tr></thead><tbody>${rows}</tbody></table></div>
+  </article>`;
+}
+
+// ---------- the race (bump chart, drawn at real pixel size so text stays readable) ----------
+function drawRace() {
+  const s = S, R = s.race, box = $("rk-plot");
+  if (!R || !R.weeks.length) { box.innerHTML = `<p class="empty">No weekly data.</p>`; return; }
+  const T = s.teams, teams = Object.keys(R.ranks), N = teams.length, W = box.clientWidth || 700;
+  const narrow = W < 560, H = narrow ? 300 : 380;
+  const m = {l: 30, r: narrow ? 118 : 170, t: 12, b: 30};
+  const wks = R.weeks, x = i => m.l + (wks.length === 1 ? 0 : i * (W - m.l - m.r) / (wks.length - 1));
+  const y = r => m.t + (r - 1) * (H - m.t - m.b) / (N - 1);
+  const npo = s.num_playoff_teams || 0, slot = tk => picked.indexOf(tk);
+  const path = tk => R.ranks[tk].map((r, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(r).toFixed(1)}`).join("");
+  const short = t => t.length > (narrow ? 13 : 20) ? t.slice(0, narrow ? 12 : 19) + "…" : t;
+  let g = "";
+  for (let r = 1; r <= N; r++) g += `<text class="rk-ax" x="${m.l - 10}" y="${y(r) + 4}" text-anchor="end">${r}</text>`;
+  const step = wks.length > 12 ? (narrow ? 4 : 2) : 1;
+  wks.forEach((w, i) => {
+    const lastI = wks.length - 1, show = i === lastI || (i % step === 0 && lastI - i >= Math.max(2, step / 2 + 1) - (step === 1 ? 1 : 0));
+    if (show) g += `<text class="rk-ax" x="${x(i)}" y="${H - 8}" text-anchor="middle">${w}</text>`;
+  });
+  if (npo && npo < N) {
+    const yc = (y(npo) + y(npo + 1)) / 2;
+    g += `<line class="rk-cut" x1="${m.l - 4}" x2="${x(wks.length - 1) + 6}" y1="${yc}" y2="${yc}"/><text class="rk-cutl" x="${x(wks.length - 1) + 10}" y="${yc + 4}">Playoff line</text>`;
+  }
+  const rest = teams.filter(tk => slot(tk) < 0), on = picked.filter(tk => R.ranks[tk]);
+  rest.forEach(tk => g += `<path class="rk-line" d="${path(tk)}" data-tk="${tk}"/>`);
+  on.forEach(tk => {
+    const k = slot(tk) + 1, last = R.ranks[tk].length - 1, rk = R.ranks[tk][last];
+    g += `<path class="rk-halo" d="${path(tk)}"/><path class="rk-line on s${k}" d="${path(tk)}" data-tk="${tk}"/>
+      <circle class="rk-end s${k}" cx="${x(last)}" cy="${y(rk)}" r="4.5"/>
+      <text class="rk-lab" x="${x(last) + 10}" y="${y(rk) + 4}"><tspan class="rk-labn">${rk}</tspan> ${esc(short(T[tk].name))}</text>`;
+  });
+  g += `<line class="rk-x" id="rk-x" x1="0" x2="0" y1="${m.t - 6}" y2="${H - m.b + 6}" style="display:none"/>`;
+  box.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Standings rank by week for every team; table of final standings below">${g}</svg>`;
+
+  const svg = box.querySelector("svg"), tip = $("rk-tip"), cross = $("rk-x");
+  const hide = () => { tip.hidden = true; cross.style.display = "none"; };
+  svg.addEventListener("pointerleave", hide);
+  svg.addEventListener("pointermove", e => {
+    const bx = svg.getBoundingClientRect(), px = e.clientX - bx.left;
+    if (px < m.l - 10 || px > W - m.r + 10) return hide();
+    const i = Math.max(0, Math.min(wks.length - 1, Math.round((px - m.l) / ((W - m.l - m.r) / Math.max(1, wks.length - 1)))));
+    cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i)); cross.style.display = "";
+    const order = teams.slice().sort((a, b) => R.ranks[a][i] - R.ranks[b][i]);
+    tip.innerHTML = `<div class="label">After week ${wks[i]}</div><ol>${order.map(tk => {
+      const k = slot(tk);
+      return `<li class="${k >= 0 ? "on" : ""}">${k >= 0 ? `<i class="sw s${k + 1}"></i>` : ""}<span>${R.ranks[tk][i]}</span> ${esc(T[tk].name)}</li>`;
+    }).join("")}</ol>`;
+    tip.hidden = false;
+    const tw = tip.offsetWidth, left = x(i) + 14 + tw > W ? x(i) - 14 - tw : x(i) + 14;
+    tip.style.left = Math.max(0, left) + "px";
+  });
+}
+
+function drawChips() {
+  const s = S, R = s.race, T = s.teams;
+  if (!R) return;
+  const last = tk => R.ranks[tk].at(-1);
+  const order = Object.keys(R.ranks).sort((a, b) => last(a) - last(b));
+  $("rk-chips").innerHTML = order.map(tk => {
+    const k = picked.indexOf(tk);
+    return `<button type="button" class="rk-chip ${k >= 0 ? "on s" + (k + 1) : ""}" data-tk="${tk}" aria-pressed="${k >= 0}"><span class="rk-chipn">${last(tk)}</span>${esc(T[tk].name)}</button>`;
+  }).join("");
+  $("rk-chips").querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+    const tk = b.dataset.tk, k = picked.indexOf(tk);
+    if (k >= 0) picked[k] = null;
+    else { const free = picked.indexOf(null); if (free >= 0) picked[free] = tk; else if (picked.length < SLOTS) picked.push(tk); else picked[0] = tk; }
+    while (picked.length && picked.at(-1) === null) picked.pop();
+    drawChips(); drawRace();
+  }));
+}
+
 function render(s) {
-  current = s.season;
+  current = s.season; S = s;
   siteNav("s" + s.season);
   const T = s.teams, nm = tk => esc(T[tk]?.name), mg = tk => esc(T[tk]?.manager);
   const row = Object.fromEntries(s.standings.map(r => [r.team, r]));
@@ -87,33 +189,14 @@ function render(s) {
     <div class="t-row"><span class="label">Regular season No. 1</span><div class="t-sub"><b>${nm(s.reg_leader)}</b> · ${mg(s.reg_leader)}</div></div>
     <div class="t-row"><span class="label">Last place</span><div class="t-sub"><b>${nm(s.sacko)}</b> · ${mg(s.sacko)}</div></div>`;
 
-  $("st").innerHTML = s.standings.map(x => {
-    const diff = x.paper_rank - x.rank;
-    const d = diff > 0 ? `<span class="delta up"> ▲${diff}</span>` : diff < 0 ? `<span class="delta dn"> ▼${-diff}</span>` : "";
-    const badge = x.rank === 1 ? "gold" : x.rank === n ? "dim" : "";
-    return `<tr><td><span class="badge ${badge}">${x.rank}</span></td>
-      <td class="tm"><b>${nm(x.team)}</b><small>${mg(x.team)}</small></td>
-      <td class="num r">${x.w}-${x.l}-${x.t}</td><td class="num c">${x.seed ?? "–"}</td>
-      <td class="num c">${x.paper_rank}${d}</td>
-      <td class="num r" style="color:var(${(x.luck ?? 0) >= 0 ? "--good" : "--bad"})">${fmtLuck(x.luck)}</td>
-      <td class="num r">${x.moves}</td><td class="num r">${x.trades}</td></tr>`;
-  }).join("");
-
-  $("br").innerHTML = s.bracket.length ? s.bracket.map((rd, i) => `
-    <div class="round ${i === s.bracket.length - 1 ? "final" : ""}"><h3>${esc(rd.round)}</h3>
-    ${rd.games.map(g => {
-      const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)} <small style="color:var(--muted)">(${row[tk]?.seed ?? "–"})</small></span><span class="num">${sc}</span></div>`;
-      return `<div class="game">${side(g.a, g.score[0])}${side(g.b, g.score[1])}</div>`;
-    }).join("")}</div>`).join("") : `<p class="empty">No playoff data.</p>`;
-
   $("aw").innerHTML = s.awards.map((a, i) => `<div class="award ${i === 0 ? "hot" : ""}"><span class="label">${esc(a.title)}</span><h3>${nm(a.team)}</h3><p>${esc(a.note)}</p></div>`).join("");
 
-  const worst = Object.fromEntries(s.records.worst.map(w => [w.cat, w]));
-  $("rb").innerHTML = s.records.best.map(b => {
-    const w = worst[b.cat];
-    const cell = x => x ? `<span class="num" style="font-weight:600">${fmtStat(x.value, x.pct)}</span><span class="who">${nm(x.team)} · wk ${x.week}</span>` : "–";
-    return `<tr><td class="c" style="text-align:left;font-weight:700">${esc(b.cat)}</td><td>${cell(b)}</td><td>${cell(w)}</td></tr>`;
-  }).join("");
+  const sp = s.spicy || [];
+  $("sp").innerHTML = sp.length ? sp.map(g => spicyCard(g, s)).join("")
+    : `<p class="empty">No playoff game came within three categories. Blowouts all the way down.</p>`;
+
+  picked = [s.champion, s.runner_up].filter(Boolean);
+  drawChips(); drawRace();
 
   const tp = s.top_players || [];
   $("dr-cost").textContent = s.auction ? "Price" : "Pick";
@@ -128,7 +211,22 @@ function render(s) {
       <td class="tm">${x.drafted_by ? `<b>${nm(x.drafted_by)}</b>${kept ? `<small>kept all year</small>` : ""}` : `<span class="muted">–</span>`}</td>
       <td class="r num">${draftCell}</td></tr>`;
   }).join("") : `<tr><td colspan="5" class="empty">Top players load with the next history backfill.</td></tr>`;
+
+  $("st").innerHTML = s.standings.map(x => {
+    const diff = x.paper_rank - x.rank;
+    const d = diff > 0 ? `<span class="delta up"> ▲${diff}</span>` : diff < 0 ? `<span class="delta dn"> ▼${-diff}</span>` : "";
+    const badge = x.rank === 1 ? "gold" : x.rank === n ? "dim" : "";
+    return `<tr><td><span class="badge ${badge}">${x.rank}</span></td>
+      <td class="tm"><b>${nm(x.team)}</b><small>${mg(x.team)}</small></td>
+      <td class="num r">${x.w}-${x.l}-${x.t}</td><td class="num c">${x.seed ?? "–"}</td>
+      <td class="num c">${x.paper_rank}${d}</td>
+      <td class="num r" style="color:var(${(x.luck ?? 0) >= 0 ? "--good" : "--bad"})">${fmtLuck(x.luck)}</td>
+      <td class="num r">${x.moves}</td><td class="num r">${x.trades}</td></tr>`;
+  }).join("");
 }
+
+let rsz;
+window.addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(() => S && drawRace(), 120); });
 
 function load() {
   getJSON("data/history.json").then(h => {

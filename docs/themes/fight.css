@@ -284,3 +284,67 @@ footer{padding-top:14px}
 /* only the tab bar sticks; the season buttons scroll away */
 nav.site{position:static}
 nav.tabs{position:sticky;top:0;z-index:6}
+
+/* ---------- season page: spiciest playoff matchups + the race (Oct 20) ---------- */
+:root{--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}}
+:root[data-theme="dark"]{--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}
+
+.spicy{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}
+.sp-card{background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.sp-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.sp-top .label{font:700 12px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sp-tag{font:700 11px/1 var(--body);text-transform:uppercase;letter-spacing:.05em;background:var(--accent);color:#fff;padding:5px 8px;border-radius:2px}
+.sp-hl{font:800 20px/1.15 var(--display);letter-spacing:-.01em;margin:0}
+.sp-board{border:1px solid var(--rule);border-radius:2px}
+.sp-team{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px}
+.sp-team+.sp-team{border-top:1px solid var(--rule)}
+.sp-team b{display:block;font-size:15px}
+.sp-team small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.sp-sc{font:800 26px/1 var(--display);color:var(--muted)}
+.sp-team.w{background:var(--bar);color:#fff}
+.sp-team.w small{color:#b9babd}
+.sp-team.w .sp-sc{color:#fff}
+.sp-knife{margin:0;font-size:14px;line-height:1.45}
+.sp-cats{font-size:13px}
+.sp-cats th{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.sp-cats td{padding-block:6px}
+.sp-cats td.won{font-weight:800}
+.sp-cat{font-weight:700;white-space:nowrap}
+.sp-dot{color:var(--accent);font-size:10px;margin-right:6px;vertical-align:1px}
+
+.rk-card{position:relative;background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:14px 12px 12px}
+.rk-plot{width:100%;overflow:hidden}
+.rk-plot svg{display:block;touch-action:pan-y}
+.rk-ax{font:500 11px var(--body);fill:var(--muted)}
+.rk-cut{stroke:var(--accent);stroke-width:1;stroke-dasharray:4 4;opacity:.7}
+.rk-cutl{font:700 10px var(--body);fill:var(--accent);text-transform:uppercase;letter-spacing:.05em}
+.rk-line{fill:none;stroke:var(--muted);stroke-width:1.5;opacity:.28;stroke-linejoin:round;stroke-linecap:round}
+.rk-line.on{opacity:1;stroke-width:2.5}
+.rk-halo{fill:none;stroke:var(--card);stroke-width:6;stroke-linejoin:round}
+.rk-line.s1,.rk-end.s1{stroke:var(--s1)}.rk-line.s2,.rk-end.s2{stroke:var(--s2)}.rk-line.s3,.rk-end.s3{stroke:var(--s3)}.rk-line.s4,.rk-end.s4{stroke:var(--s4)}
+.rk-end{fill:var(--card);stroke-width:2.5}
+.rk-lab{font:700 12px var(--body);fill:var(--ink)}
+.rk-labn{fill:var(--muted);font-weight:600}
+.rk-x{stroke:var(--ink);stroke-width:1;opacity:.35}
+.rk-tip{position:absolute;top:14px;background:var(--card);border:1px solid var(--rule);border-radius:2px;box-shadow:0 4px 14px rgba(0,0,0,.12);padding:8px 10px;font-size:12px;pointer-events:none;z-index:2;min-width:150px}
+.rk-tip .label{font:700 11px var(--body);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+.rk-tip ol{list-style:none;margin:0;padding:0}
+.rk-tip li{display:flex;align-items:center;gap:6px;line-height:1.55;color:var(--muted)}
+.rk-tip li.on{color:var(--ink);font-weight:700}
+.rk-tip li span{display:inline-block;min-width:16px;text-align:right;font-variant-numeric:tabular-nums}
+.sw{display:inline-block;width:10px;height:3px;border-radius:2px}
+.sw.s1{background:var(--s1)}.sw.s2{background:var(--s2)}.sw.s3{background:var(--s3)}.sw.s4{background:var(--s4)}
+.rk-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--rule)}
+.rk-chip{font:600 13px/1 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:8px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:34px}
+.rk-chip:hover{border-color:var(--ink)}
+.rk-chipn{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
+.rk-chip.on{color:#fff;font-weight:700}
+.rk-chip.on .rk-chipn{color:rgba(255,255,255,.8)}
+.rk-chip.s1{background:var(--s1);border-color:var(--s1)}.rk-chip.s2{background:var(--s2);border-color:var(--s2)}
+.rk-chip.s3{background:var(--s3);border-color:var(--s3);color:#0d2a1f}.rk-chip.s4{background:var(--s4);border-color:var(--s4);color:#2b1d00}
+.rk-chip.s3 .rk-chipn,.rk-chip.s4 .rk-chipn{color:inherit;opacity:.75}
+.sp-card .table-wrap{overflow:visible}
+table.pr.sp-cats{min-width:0;width:100%;table-layout:fixed}
+.sp-cats th:first-child,.sp-cats td:first-child{width:34%}
+.sp-cats th{max-width:none}
