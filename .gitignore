@@ -3,3 +3,6 @@ __pycache__/
 .yahoo_token.json
 .env
 stats/
+
+# raw Yahoo web-page export (stopgap while the API is 403)
+archive/_web/

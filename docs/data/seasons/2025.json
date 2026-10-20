@@ -1,323 +1,323 @@
 {
  "season": "2025",
  "label": "2025\u201326",
- "name": "Ballinwithmygoons",
+ "name": "BallinWithMyGoons",
  "cats": [
   "FG%",
   "FT%",
   "3PTM",
+  "3PT%",
   "PTS",
   "OREB",
-  "REB",
+  "DREB",
   "AST",
   "ST",
   "BLK",
-  "TO",
-  "DD"
+  "TO"
  ],
  "teams": {
-  "425.l.9.t.1": {
-   "name": "Euro Step Brothers",
-   "manager": "dub_d",
-   "person": "G_DUB_D"
+  "2025.l.40764.t.2": {
+   "name": "Acinonyx",
+   "manager": "Eshan B",
+   "person": "name:Eshan B"
   },
-  "425.l.9.t.2": {
-   "name": "Zone Defense",
-   "manager": "kj",
-   "person": "G_KJ"
+  "2025.l.40764.t.12": {
+   "name": "Adam Silver Dez Nuts",
+   "manager": "Jason",
+   "person": "name:Jason"
   },
-  "425.l.9.t.3": {
-   "name": "Foul Trouble",
-   "manager": "rocco",
-   "person": "G_ROCCO"
+  "2025.l.40764.t.3": {
+   "name": "BrookynDynasty",
+   "manager": "Adarsh",
+   "person": "name:Adarsh"
   },
-  "425.l.9.t.4": {
-   "name": "Hack-a-Team",
-   "manager": "nish",
-   "person": "G_NISH"
+  "2025.l.40764.t.4": {
+   "name": "Gopher Gold",
+   "manager": "Phil",
+   "person": "name:Phil"
   },
-  "425.l.9.t.5": {
-   "name": "Moneyball Mavs",
-   "manager": "tbone",
-   "person": "G_TBONE"
+  "2025.l.40764.t.5": {
+   "name": "INJ MONSTARS \u2604\ufe0f",
+   "manager": "Chris",
+   "person": "name:Chris"
   },
-  "425.l.9.t.6": {
-   "name": "Fadeaway Gang",
-   "manager": "sam",
-   "person": "G_SAM"
+  "2025.l.40764.t.6": {
+   "name": "LeParth James",
+   "manager": "parth s",
+   "person": "parth"
   },
-  "425.l.9.t.7": {
-   "name": "Dribble Trouble",
-   "manager": "priya",
-   "person": "G_PRIYA"
+  "2025.l.40764.t.7": {
+   "name": "Nova Knicks",
+   "manager": "Roshan",
+   "person": "name:Roshan"
   },
-  "425.l.9.t.8": {
-   "name": "Free Throw Tragedies",
-   "manager": "marcus",
-   "person": "G_MARCUS"
+  "2025.l.40764.t.8": {
+   "name": "Suggs to be you",
+   "manager": "Keshav",
+   "person": "name:Keshav"
   },
-  "425.l.9.t.9": {
-   "name": "The Process",
-   "manager": "dev",
-   "person": "G_DEV"
+  "2025.l.40764.t.1": {
+   "name": "theInfamous",
+   "manager": "John J",
+   "person": "name:John J"
   },
-  "425.l.9.t.10": {
-   "name": "Tank Commanders",
-   "manager": "ari",
-   "person": "G_ARI"
+  "2025.l.40764.t.9": {
+   "name": "Thug Life",
+   "manager": "Arnav B",
+   "person": "name:Arnav B"
   },
-  "425.l.9.t.11": {
-   "name": "Waiver Wire Warriors",
-   "manager": "jo",
-   "person": "G_JO"
+  "2025.l.40764.t.10": {
+   "name": "White Mambas",
+   "manager": "Vishal",
+   "person": "name:Vishal"
   },
-  "425.l.9.t.12": {
-   "name": "Brick City",
-   "manager": "luis",
-   "person": "G_LUIS"
+  "2025.l.40764.t.11": {
+   "name": "Zero Fox Given",
+   "manager": "Sagar",
+   "person": "name:Sagar"
   }
  },
- "champion": "425.l.9.t.7",
- "runner_up": "425.l.9.t.1",
- "sacko": "425.l.9.t.11",
- "reg_leader": "425.l.9.t.2",
+ "champion": "2025.l.40764.t.9",
+ "runner_up": "2025.l.40764.t.1",
+ "sacko": "2025.l.40764.t.2",
+ "reg_leader": "2025.l.40764.t.9",
  "num_playoff_teams": 6,
  "standings": [
   {
-   "team": "425.l.9.t.7",
-   "person": "G_PRIYA",
+   "team": "2025.l.40764.t.9",
+   "person": "name:Arnav B",
    "rank": 1,
-   "seed": 5,
-   "w": 94,
-   "l": 79,
-   "t": 3,
-   "pct": 0.543,
-   "paper_rank": 5,
-   "luck": -0.035,
-   "moves": 38,
-   "trades": 2
-  },
-  {
-   "team": "425.l.9.t.1",
-   "person": "G_DUB_D",
-   "rank": 2,
-   "seed": 6,
-   "w": 85,
-   "l": 87,
-   "t": 4,
-   "pct": 0.494,
-   "paper_rank": 4,
-   "luck": -0.077,
-   "moves": 41,
+   "seed": 1,
+   "w": 131,
+   "l": 77,
+   "t": 1,
+   "pct": 0.629,
+   "paper_rank": 1,
+   "luck": 0.019,
+   "moves": 102,
    "trades": 0
   },
   {
-   "team": "425.l.9.t.2",
-   "person": "G_KJ",
+   "team": "2025.l.40764.t.1",
+   "person": "name:John J",
+   "rank": 2,
+   "seed": 2,
+   "w": 123,
+   "l": 84,
+   "t": 2,
+   "pct": 0.593,
+   "paper_rank": 4,
+   "luck": 0.068,
+   "moves": 99,
+   "trades": 0
+  },
+  {
+   "team": "2025.l.40764.t.10",
+   "person": "name:Vishal",
    "rank": 3,
-   "seed": 1,
+   "seed": 5,
    "w": 105,
-   "l": 62,
-   "t": 9,
-   "pct": 0.622,
+   "l": 100,
+   "t": 4,
+   "pct": 0.512,
    "paper_rank": 2,
-   "luck": 0.011,
-   "moves": 75,
+   "luck": -0.071,
+   "moves": 95,
+   "trades": 0
+  },
+  {
+   "team": "2025.l.40764.t.6",
+   "person": "parth",
+   "rank": 4,
+   "seed": 6,
+   "w": 104,
+   "l": 101,
+   "t": 4,
+   "pct": 0.507,
+   "paper_rank": 3,
+   "luck": -0.033,
+   "moves": 91,
    "trades": 1
   },
   {
-   "team": "425.l.9.t.3",
-   "person": "G_ROCCO",
-   "rank": 4,
-   "seed": 2,
-   "w": 106,
-   "l": 65,
+   "team": "2025.l.40764.t.8",
+   "person": "name:Keshav",
+   "rank": 5,
+   "seed": 3,
+   "w": 113,
+   "l": 91,
    "t": 5,
-   "pct": 0.616,
-   "paper_rank": 3,
-   "luck": 0.012,
+   "pct": 0.553,
+   "paper_rank": 6,
+   "luck": 0.058,
+   "moves": 69,
+   "trades": 1
+  },
+  {
+   "team": "2025.l.40764.t.12",
+   "person": "name:Jason",
+   "rank": 6,
+   "seed": 4,
+   "w": 114,
+   "l": 93,
+   "t": 2,
+   "pct": 0.55,
+   "paper_rank": 8,
+   "luck": 0.036,
+   "moves": 66,
+   "trades": 0
+  },
+  {
+   "team": "2025.l.40764.t.4",
+   "person": "name:Phil",
+   "rank": 7,
+   "seed": 8,
+   "w": 100,
+   "l": 107,
+   "t": 2,
+   "pct": 0.483,
+   "paper_rank": 9,
+   "luck": 0.013,
+   "moves": 53,
+   "trades": 0
+  },
+  {
+   "team": "2025.l.40764.t.5",
+   "person": "name:Chris",
+   "rank": 8,
+   "seed": 7,
+   "w": 102,
+   "l": 105,
+   "t": 2,
+   "pct": 0.493,
+   "paper_rank": 5,
+   "luck": -0.046,
    "moves": 36,
    "trades": 0
   },
   {
-   "team": "425.l.9.t.5",
-   "person": "G_TBONE",
-   "rank": 5,
-   "seed": 3,
-   "w": 101,
-   "l": 71,
-   "t": 4,
-   "pct": 0.585,
-   "paper_rank": 1,
-   "luck": -0.016,
-   "moves": 23,
-   "trades": 2
-  },
-  {
-   "team": "425.l.9.t.9",
-   "person": "G_DEV",
-   "rank": 6,
-   "seed": 4,
-   "w": 92,
-   "l": 76,
-   "t": 8,
-   "pct": 0.545,
-   "paper_rank": 6,
-   "luck": 0.034,
-   "moves": 85,
-   "trades": 0
-  },
-  {
-   "team": "425.l.9.t.4",
-   "person": "G_NISH",
-   "rank": 7,
-   "seed": 7,
-   "w": 85,
-   "l": 88,
-   "t": 3,
-   "pct": 0.491,
-   "paper_rank": 7,
-   "luck": 0.013,
-   "moves": 86,
-   "trades": 5
-  },
-  {
-   "team": "425.l.9.t.12",
-   "person": "G_LUIS",
-   "rank": 8,
-   "seed": 8,
-   "w": 80,
-   "l": 92,
-   "t": 4,
-   "pct": 0.466,
-   "paper_rank": 8,
-   "luck": 0.047,
-   "moves": 94,
-   "trades": 0
-  },
-  {
-   "team": "425.l.9.t.6",
-   "person": "G_SAM",
+   "team": "2025.l.40764.t.7",
+   "person": "name:Roshan",
    "rank": 9,
    "seed": 9,
-   "w": 78,
-   "l": 92,
-   "t": 6,
-   "pct": 0.46,
-   "paper_rank": 9,
-   "luck": 0.029,
-   "moves": 68,
-   "trades": 1
-  },
-  {
-   "team": "425.l.9.t.8",
-   "person": "G_MARCUS",
-   "rank": 10,
-   "seed": 10,
-   "w": 74,
-   "l": 97,
-   "t": 5,
-   "pct": 0.435,
+   "w": 94,
+   "l": 114,
+   "t": 1,
+   "pct": 0.452,
    "paper_rank": 10,
-   "luck": 0.024,
-   "moves": 19,
-   "trades": 5
-  },
-  {
-   "team": "425.l.9.t.10",
-   "person": "G_ARI",
-   "rank": 11,
-   "seed": 11,
-   "w": 65,
-   "l": 105,
-   "t": 6,
-   "pct": 0.386,
-   "paper_rank": 11,
-   "luck": -0.032,
-   "moves": 25,
+   "luck": 0.026,
+   "moves": 69,
    "trades": 0
   },
   {
-   "team": "425.l.9.t.11",
-   "person": "G_JO",
+   "team": "2025.l.40764.t.11",
+   "person": "name:Sagar",
+   "rank": 10,
+   "seed": 10,
+   "w": 91,
+   "l": 115,
+   "t": 3,
+   "pct": 0.443,
+   "paper_rank": 11,
+   "luck": 0.016,
+   "moves": 27,
+   "trades": 0
+  },
+  {
+   "team": "2025.l.40764.t.3",
+   "person": "name:Adarsh",
+   "rank": 11,
+   "seed": 11,
+   "w": 88,
+   "l": 121,
+   "t": 0,
+   "pct": 0.421,
+   "paper_rank": 7,
+   "luck": -0.078,
+   "moves": 92,
+   "trades": 0
+  },
+  {
+   "team": "2025.l.40764.t.2",
+   "person": "name:Eshan B",
    "rank": 12,
    "seed": 12,
-   "w": 60,
-   "l": 111,
-   "t": 5,
-   "pct": 0.355,
+   "w": 75,
+   "l": 132,
+   "t": 2,
+   "pct": 0.364,
    "paper_rank": 12,
-   "luck": -0.008,
-   "moves": 42,
+   "luck": -0.009,
+   "moves": 51,
    "trades": 0
   }
  ],
  "bracket": [
   {
-   "week": 17,
+   "week": 20,
    "round": "Quarterfinals",
    "games": [
     {
-     "a": "425.l.9.t.5",
-     "b": "425.l.9.t.1",
+     "a": "2025.l.40764.t.6",
+     "b": "2025.l.40764.t.8",
      "score": [
-      4,
-      7,
+      10,
+      1,
       0
      ],
-     "winner": "425.l.9.t.1"
+     "winner": "2025.l.40764.t.6"
     },
     {
-     "a": "425.l.9.t.9",
-     "b": "425.l.9.t.7",
+     "a": "2025.l.40764.t.10",
+     "b": "2025.l.40764.t.12",
+     "score": [
+      8,
+      3,
+      0
+     ],
+     "winner": "2025.l.40764.t.10"
+    }
+   ]
+  },
+  {
+   "week": 21,
+   "round": "Semifinals",
+   "games": [
+    {
+     "a": "2025.l.40764.t.6",
+     "b": "2025.l.40764.t.1",
      "score": [
       3,
       8,
       0
      ],
-     "winner": "425.l.9.t.7"
-    }
-   ]
-  },
-  {
-   "week": 18,
-   "round": "Semifinals",
-   "games": [
-    {
-     "a": "425.l.9.t.2",
-     "b": "425.l.9.t.7",
-     "score": [
-      3,
-      7,
-      1
-     ],
-     "winner": "425.l.9.t.7"
+     "winner": "2025.l.40764.t.1"
     },
     {
-     "a": "425.l.9.t.3",
-     "b": "425.l.9.t.1",
+     "a": "2025.l.40764.t.9",
+     "b": "2025.l.40764.t.10",
      "score": [
-      2,
-      9,
+      10,
+      1,
       0
      ],
-     "winner": "425.l.9.t.1"
+     "winner": "2025.l.40764.t.9"
     }
    ]
   },
   {
-   "week": 19,
+   "week": 22,
    "round": "Final",
    "games": [
     {
-     "a": "425.l.9.t.7",
-     "b": "425.l.9.t.1",
+     "a": "2025.l.40764.t.1",
+     "b": "2025.l.40764.t.9",
      "score": [
-      7,
       4,
+      7,
       0
      ],
-     "winner": "425.l.9.t.7"
+     "winner": "2025.l.40764.t.9"
     }
    ]
   }
@@ -326,428 +326,423 @@
   "best": [
    {
     "cat": "FG%",
-    "value": 0.537,
-    "team": "425.l.9.t.3",
-    "week": 16,
+    "value": 0.549,
+    "team": "2025.l.40764.t.9",
+    "week": 3,
     "pct": true,
     "hb": true
    },
    {
     "cat": "FT%",
-    "value": 0.871,
-    "team": "425.l.9.t.5",
-    "week": 8,
+    "value": 0.904,
+    "team": "2025.l.40764.t.7",
+    "week": 3,
     "pct": true,
     "hb": true
    },
    {
     "cat": "3PTM",
-    "value": 80,
-    "team": "425.l.9.t.12",
+    "value": 111,
+    "team": "2025.l.40764.t.3",
+    "week": 12,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "3PT%",
+    "value": 0.449,
+    "team": "2025.l.40764.t.10",
+    "week": 2,
+    "pct": true,
+    "hb": true
+   },
+   {
+    "cat": "PTS",
+    "value": 953,
+    "team": "2025.l.40764.t.6",
+    "week": 17,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "OREB",
+    "value": 90,
+    "team": "2025.l.40764.t.4",
+    "week": 5,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "DREB",
+    "value": 276,
+    "team": "2025.l.40764.t.6",
+    "week": 17,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "AST",
+    "value": 226,
+    "team": "2025.l.40764.t.5",
     "week": 3,
     "pct": false,
     "hb": true
    },
    {
-    "cat": "PTS",
-    "value": 785,
-    "team": "425.l.9.t.3",
-    "week": 10,
-    "pct": false,
-    "hb": true
-   },
-   {
-    "cat": "OREB",
-    "value": 83,
-    "team": "425.l.9.t.3",
-    "week": 13,
-    "pct": false,
-    "hb": true
-   },
-   {
-    "cat": "REB",
-    "value": 312,
-    "team": "425.l.9.t.7",
-    "week": 5,
-    "pct": false,
-    "hb": true
-   },
-   {
-    "cat": "AST",
-    "value": 205,
-    "team": "425.l.9.t.7",
-    "week": 4,
-    "pct": false,
-    "hb": true
-   },
-   {
     "cat": "ST",
-    "value": 66,
-    "team": "425.l.9.t.5",
-    "week": 9,
+    "value": 69,
+    "team": "2025.l.40764.t.10",
+    "week": 17,
     "pct": false,
     "hb": true
    },
    {
     "cat": "BLK",
-    "value": 52,
-    "team": "425.l.9.t.5",
+    "value": 57,
+    "team": "2025.l.40764.t.8",
     "week": 11,
     "pct": false,
     "hb": true
    },
    {
     "cat": "TO",
-    "value": 50,
-    "team": "425.l.9.t.2",
-    "week": 9,
+    "value": 24,
+    "team": "2025.l.40764.t.4",
+    "week": 8,
     "pct": false,
     "hb": false
-   },
-   {
-    "cat": "DD",
-    "value": 19,
-    "team": "425.l.9.t.5",
-    "week": 7,
-    "pct": false,
-    "hb": true
    }
   ],
   "worst": [
    {
     "cat": "FG%",
-    "value": 0.418,
-    "team": "425.l.9.t.8",
-    "week": 4,
+    "value": 0.396,
+    "team": "2025.l.40764.t.8",
+    "week": 15,
     "pct": true,
     "hb": true
    },
    {
     "cat": "FT%",
-    "value": 0.695,
-    "team": "425.l.9.t.12",
-    "week": 14,
+    "value": 0.66,
+    "team": "2025.l.40764.t.1",
+    "week": 15,
     "pct": true,
     "hb": true
    },
    {
     "cat": "3PTM",
-    "value": 27,
-    "team": "425.l.9.t.6",
-    "week": 1,
+    "value": 25,
+    "team": "2025.l.40764.t.10",
+    "week": 8,
     "pct": false,
     "hb": true
    },
    {
+    "cat": "3PT%",
+    "value": 0.248,
+    "team": "2025.l.40764.t.10",
+    "week": 8,
+    "pct": true,
+    "hb": true
+   },
+   {
     "cat": "PTS",
-    "value": 364,
-    "team": "425.l.9.t.12",
+    "value": 272,
+    "team": "2025.l.40764.t.4",
     "week": 8,
     "pct": false,
     "hb": true
    },
    {
     "cat": "OREB",
-    "value": 24,
-    "team": "425.l.9.t.5",
-    "week": 11,
-    "pct": false,
-    "hb": true
-   },
-   {
-    "cat": "REB",
-    "value": 162,
-    "team": "425.l.9.t.11",
-    "week": 7,
-    "pct": false,
-    "hb": true
-   },
-   {
-    "cat": "AST",
-    "value": 86,
-    "team": "425.l.9.t.5",
+    "value": 19,
+    "team": "2025.l.40764.t.11",
     "week": 8,
     "pct": false,
     "hb": true
    },
    {
+    "cat": "DREB",
+    "value": 66,
+    "team": "2025.l.40764.t.11",
+    "week": 8,
+    "pct": false,
+    "hb": true
+   },
+   {
+    "cat": "AST",
+    "value": 68,
+    "team": "2025.l.40764.t.2",
+    "week": 16,
+    "pct": false,
+    "hb": true
+   },
+   {
     "cat": "ST",
-    "value": 22,
-    "team": "425.l.9.t.10",
-    "week": 7,
+    "value": 15,
+    "team": "2025.l.40764.t.11",
+    "week": 8,
     "pct": false,
     "hb": true
    },
    {
     "cat": "BLK",
-    "value": 9,
-    "team": "425.l.9.t.8",
-    "week": 2,
+    "value": 6,
+    "team": "2025.l.40764.t.11",
+    "week": 8,
     "pct": false,
     "hb": true
    },
    {
     "cat": "TO",
-    "value": 106,
-    "team": "425.l.9.t.7",
-    "week": 12,
+    "value": 132,
+    "team": "2025.l.40764.t.9",
+    "week": 17,
     "pct": false,
     "hb": false
-   },
-   {
-    "cat": "DD",
-    "value": 0,
-    "team": "425.l.9.t.1",
-    "week": 5,
-    "pct": false,
-    "hb": true
    }
   ]
  },
  "awards": [
   {
-   "title": "Best team, no ring",
-   "team": "425.l.9.t.5",
-   "note": "No. 1 on paper by season category totals, finished 5."
-  },
-  {
    "title": "Horseshoe award",
-   "team": "425.l.9.t.12",
-   "note": "Luckiest record: +4.7 points over all-play."
+   "team": "2025.l.40764.t.1",
+   "note": "Luckiest record: +6.8 points over all-play."
   },
   {
    "title": "Robbed",
-   "team": "425.l.9.t.1",
-   "note": "Unluckiest record: -7.7 points under all-play."
+   "team": "2025.l.40764.t.3",
+   "note": "Unluckiest record: -7.8 points under all-play."
   },
   {
    "title": "Waiver wire addict",
-   "team": "425.l.9.t.12",
-   "note": "94 moves."
+   "team": "2025.l.40764.t.9",
+   "note": "102 moves."
   },
   {
    "title": "Trade machine",
-   "team": "425.l.9.t.4",
-   "note": "5 trades."
+   "team": "2025.l.40764.t.6",
+   "note": "1 trades."
   }
  ],
  "draft": [
   {
    "pick": 1,
-   "team": "425.l.9.t.5",
-   "player": "Sniper Steve",
-   "finish": 5
+   "team": "2025.l.40764.t.9",
+   "player": "Nikola Joki\u0107",
+   "finish": 1
   },
   {
    "pick": 2,
-   "team": "425.l.9.t.2",
-   "player": "Unicorn",
-   "finish": 3
+   "team": "2025.l.40764.t.4",
+   "player": "Giannis Antetokounmpo",
+   "finish": 7
   },
   {
    "pick": 3,
-   "team": "425.l.9.t.3",
-   "player": "Dunk Don",
-   "finish": 4
+   "team": "2025.l.40764.t.3",
+   "player": "Shai Gilgeous-Alexander",
+   "finish": 11
   },
   {
    "pick": 4,
-   "team": "425.l.9.t.6",
-   "player": "Big Man One",
-   "finish": 9
+   "team": "2025.l.40764.t.6",
+   "player": "Victor Wembanyama",
+   "finish": 4
   },
   {
    "pick": 5,
-   "team": "425.l.9.t.9",
-   "player": "Point God",
-   "finish": 6
+   "team": "2025.l.40764.t.1",
+   "player": "Amen Thompson",
+   "finish": 2
   },
   {
    "pick": 6,
-   "team": "425.l.9.t.12",
-   "player": "Wing Wizard",
+   "team": "2025.l.40764.t.5",
+   "player": "Anthony Davis",
    "finish": 8
   },
   {
    "pick": 7,
-   "team": "425.l.9.t.11",
-   "player": "Stretch Five",
-   "finish": 12
-  },
-  {
-   "pick": 8,
-   "team": "425.l.9.t.7",
-   "player": "Two Way Tony",
-   "finish": 1
-  },
-  {
-   "pick": 9,
-   "team": "425.l.9.t.8",
-   "player": "Glass Eater",
-   "finish": 10
-  },
-  {
-   "pick": 10,
-   "team": "425.l.9.t.10",
-   "player": "Floor General",
-   "finish": 11
-  },
-  {
-   "pick": 11,
-   "team": "425.l.9.t.1",
-   "player": "Microwave Mike",
+   "team": "2025.l.40764.t.1",
+   "player": "Luka Don\u010di\u0107",
    "finish": 2
   },
   {
+   "pick": 8,
+   "team": "2025.l.40764.t.3",
+   "player": "LeBron James",
+   "finish": 11
+  },
+  {
+   "pick": 9,
+   "team": "2025.l.40764.t.9",
+   "player": "Anthony Edwards",
+   "finish": 1
+  },
+  {
+   "pick": 10,
+   "team": "2025.l.40764.t.8",
+   "player": "Chet Holmgren",
+   "finish": 5
+  },
+  {
+   "pick": 11,
+   "team": "2025.l.40764.t.11",
+   "player": "Cade Cunningham",
+   "finish": 10
+  },
+  {
    "pick": 12,
-   "team": "425.l.9.t.4",
-   "player": "Rim Protector",
-   "finish": 7
+   "team": "2025.l.40764.t.11",
+   "player": "Kevin Durant",
+   "finish": 10
   }
  ],
  "recap": {
-  "headline": "DRIBBLE TROUBLE TAKE THE CROWN",
-  "subhead": "The 2025\u201326 season in review.",
+  "headline": "THUG LIFE BURIES THE LEAGUE WIRE TO WIRE",
+  "subhead": "Arnav B took the top seed, the title and the waiver wire, and made it look like a chore.",
   "body": [
-   "Dribble Trouble won the 2025\u201326 title as the No. 5 seed, beating Euro Step Brothers when it counted.",
-   "Zone Defense owned the regular season and went home without the trophy.",
-   "Waiver Wire Warriors finished last. The Sacko is theirs to keep."
+   "Thug Life went 131-77-1, grabbed the No. 1 seed and beat theInfamous 7-4 in the final. Arnav paid $84 for Nikola Joki\u0107, got the best player in the league, then made 102 moves anyway, the most of anyone. Overkill is a lifestyle.",
+   "theInfamous reached the final on a horseshoe: +6.8 over all-play, the luckiest record in the league. BrookynDynasty got the other end of that deal, 7th on paper, 11th in the standings, -7.8 under all-play. And LeParth James paid $40 for Tyrese Maxey, the No. 7 player in the league, who finished the season unowned. Read that again.",
+   "Acinonyx finished dead last at 75-132-2. Zero Fox Given made 27 moves all season, fewest in the league, and finished 10th. Effort and results, perfectly matched."
   ]
  },
  "top_players": [
   {
    "rank": 1,
-   "player_key": "p9",
-   "player": "Sniper Steve",
+   "player_key": "nba.p.5352",
+   "player": "Nikola Joki\u0107",
    "pos": "C",
-   "team": "425.l.9.t.5",
-   "drafted_by": "425.l.9.t.5",
-   "cost": 67,
+   "team": "2025.l.40764.t.9",
+   "drafted_by": "2025.l.40764.t.9",
+   "cost": 84,
    "pick": 1,
    "round": 1
   },
   {
    "rank": 2,
-   "player_key": "p10",
-   "player": "Unicorn",
-   "pos": "PF",
-   "team": "425.l.9.t.2",
-   "drafted_by": "425.l.9.t.2",
-   "cost": 34,
-   "pick": 2,
+   "player_key": "nba.p.10094",
+   "player": "Victor Wembanyama",
+   "pos": "PF,C",
+   "team": "2025.l.40764.t.6",
+   "drafted_by": "2025.l.40764.t.6",
+   "cost": 79,
+   "pick": 4,
    "round": 1
   },
   {
    "rank": 3,
-   "player_key": "p11",
-   "player": "Dunk Don",
-   "pos": "SF",
-   "team": "425.l.9.t.4",
-   "drafted_by": "425.l.9.t.3",
-   "cost": 41,
+   "player_key": "nba.p.6022",
+   "player": "Shai Gilgeous-Alexander",
+   "pos": "PG",
+   "team": "2025.l.40764.t.3",
+   "drafted_by": "2025.l.40764.t.3",
+   "cost": 73,
    "pick": 3,
    "round": 1
   },
   {
    "rank": 4,
-   "player_key": "p0",
-   "player": "Big Man One",
-   "pos": "PG",
-   "team": "425.l.9.t.6",
-   "drafted_by": "425.l.9.t.6",
-   "cost": 43,
-   "pick": 4,
-   "round": 1
+   "player_key": "nba.p.5638",
+   "player": "Jamal Murray",
+   "pos": "PG,SG",
+   "team": "2025.l.40764.t.12",
+   "drafted_by": "2025.l.40764.t.12",
+   "cost": 23,
+   "pick": 43,
+   "round": 4
   },
   {
    "rank": 5,
-   "player_key": "p1",
-   "player": "Point God",
-   "pos": "SG",
-   "team": "425.l.9.t.8",
-   "drafted_by": "425.l.9.t.9",
-   "cost": 59,
-   "pick": 5,
-   "round": 1
+   "player_key": "nba.p.4896",
+   "player": "Kawhi Leonard",
+   "pos": "SF,PF",
+   "team": "2025.l.40764.t.1",
+   "drafted_by": "2025.l.40764.t.1",
+   "cost": 13,
+   "pick": 39,
+   "round": 4
   },
   {
    "rank": 6,
-   "player_key": "p2",
-   "player": "Wing Wizard",
-   "pos": "PF",
-   "team": "425.l.9.t.12",
-   "drafted_by": "425.l.9.t.12",
-   "cost": 65,
-   "pick": 6,
+   "player_key": "nba.p.4244",
+   "player": "Kevin Durant",
+   "pos": "SG,SF,PF",
+   "team": "2025.l.40764.t.11",
+   "drafted_by": "2025.l.40764.t.11",
+   "cost": 42,
+   "pick": 12,
    "round": 1
   },
   {
    "rank": 7,
-   "player_key": "p3",
-   "player": "Stretch Five",
-   "pos": "PF",
-   "team": "425.l.9.t.11",
-   "drafted_by": "425.l.9.t.11",
-   "cost": 48,
-   "pick": 7,
-   "round": 1
+   "player_key": "nba.p.6413",
+   "player": "Tyrese Maxey",
+   "pos": "PG",
+   "team": null,
+   "drafted_by": "2025.l.40764.t.6",
+   "cost": 40,
+   "pick": 15,
+   "round": 2
   },
   {
    "rank": 8,
-   "player_key": "p4",
-   "player": "Two Way Tony",
-   "pos": "C",
-   "team": "425.l.9.t.7",
-   "drafted_by": "425.l.9.t.7",
-   "cost": 68,
-   "pick": 8,
-   "round": 1
+   "player_key": "nba.p.5432",
+   "player": "Karl-Anthony Towns",
+   "pos": "PF,C",
+   "team": "2025.l.40764.t.7",
+   "drafted_by": "2025.l.40764.t.7",
+   "cost": 56,
+   "pick": 18,
+   "round": 2
   },
   {
    "rank": 9,
-   "player_key": "p5",
-   "player": "Glass Eater",
-   "pos": "SF",
-   "team": "425.l.9.t.8",
-   "drafted_by": "425.l.9.t.8",
-   "cost": 35,
-   "pick": 9,
-   "round": 1
+   "player_key": "nba.p.6515",
+   "player": "Scottie Barnes",
+   "pos": "SG,SF,PF,C",
+   "team": "2025.l.40764.t.4",
+   "drafted_by": "2025.l.40764.t.4",
+   "cost": 29,
+   "pick": 30,
+   "round": 3
   },
   {
    "rank": 10,
-   "player_key": "p6",
-   "player": "Floor General",
-   "pos": "PG",
-   "team": "425.l.9.t.10",
-   "drafted_by": "425.l.9.t.10",
-   "cost": 49,
-   "pick": 10,
-   "round": 1
+   "player_key": "nba.p.10285",
+   "player": "Donovan Clingan",
+   "pos": "C",
+   "team": "2025.l.40764.t.4",
+   "drafted_by": "2025.l.40764.t.4",
+   "cost": 11,
+   "pick": 73,
+   "round": 7
   },
   {
    "rank": 11,
-   "player_key": "p7",
-   "player": "Microwave Mike",
-   "pos": "PF",
-   "team": "425.l.9.t.1",
-   "drafted_by": "425.l.9.t.1",
-   "cost": 47,
-   "pick": 11,
-   "round": 1
+   "player_key": "nba.p.10450",
+   "player": "Kon Knueppel",
+   "pos": null,
+   "team": "2025.l.40764.t.11",
+   "drafted_by": null,
+   "cost": null,
+   "pick": null,
+   "round": null
   },
   {
    "rank": 12,
-   "player_key": "p8",
-   "player": "Rim Protector",
-   "pos": "C",
-   "team": "425.l.9.t.4",
-   "drafted_by": "425.l.9.t.4",
-   "cost": 29,
-   "pick": 12,
-   "round": 1
+   "player_key": "nba.p.6205",
+   "player": "N. Alexander-Walker",
+   "pos": null,
+   "team": "2025.l.40764.t.9",
+   "drafted_by": "2025.l.40764.t.1",
+   "cost": 1,
+   "pick": 137,
+   "round": 12
   }
  ],
  "auction": true,
- "sample": true
+ "sample": false
 }

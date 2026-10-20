@@ -7,906 +7,578 @@
   {
    "season": "2024",
    "label": "2024\u201325"
-  },
-  {
-   "season": "2023",
-   "label": "2023\u201324"
-  },
-  {
-   "season": "2022",
-   "label": "2022\u201323"
-  },
-  {
-   "season": "2021",
-   "label": "2021\u201322"
   }
  ],
  "people": {
-  "G_PRIYA": "priya",
-  "G_DUB_D": "dub_d",
-  "G_DEV": "dev",
-  "G_KJ": "kj",
-  "G_ROCCO": "rocco",
-  "G_LUIS": "luis",
-  "G_TBONE": "tbone",
-  "G_MARCUS": "marcus",
-  "G_NISH": "nish",
-  "G_SAM": "sam",
-  "G_ARI": "ari",
-  "G_OLD_MIKE": "old_mike",
-  "G_JO": "jo"
+  "name:Arnav B": "Arnav B",
+  "name:Vishal": "Vishal",
+  "name:John J": "John J",
+  "name:Keshav": "Keshav",
+  "name:Jason": "Jason",
+  "name:Kaushil P": "Kaushil P",
+  "parth": "Parth",
+  "name:Chris": "Chris",
+  "name:Phil": "Phil",
+  "name:Roshan": "Roshan",
+  "name:sagars": "sagars",
+  "name:Sagar": "Sagar",
+  "name:Adarsh": "Adarsh",
+  "name:Eshan B": "Eshan B",
+  "name:RUM": "RUM"
  },
  "table": [
   {
-   "person": "G_PRIYA",
-   "name": "priya",
-   "seasons": 5,
-   "titles": 3,
-   "runner_ups": 0,
-   "sackos": 0,
-   "playoffs": 5,
-   "w": 542,
-   "l": 316,
-   "t": 22,
-   "pct": 0.628,
-   "avg_finish": 2.4,
-   "best_finish": 1,
-   "finish_sd": 1.74,
-   "luck": -0.01,
-   "trades": 9,
-   "moves": 278,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Pick & Roll Tide",
-     "rank": 5,
-     "of": 12,
-     "seed": 6,
-     "made_playoffs": true,
-     "record": "91-81-4"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Brick City",
-     "rank": 4,
-     "of": 12,
-     "seed": 2,
-     "made_playoffs": true,
-     "record": "115-55-6"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Splash Bros & Sons",
-     "rank": 1,
-     "of": 12,
-     "seed": 1,
-     "made_playoffs": true,
-     "record": "119-53-4"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Bench Mob Mafia",
-     "rank": 1,
-     "of": 12,
-     "seed": 2,
-     "made_playoffs": true,
-     "record": "123-48-5"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Dribble Trouble",
-     "rank": 1,
-     "of": 12,
-     "seed": 5,
-     "made_playoffs": true,
-     "record": "94-79-3"
-    }
-   ]
-  },
-  {
-   "person": "G_DUB_D",
-   "name": "dub_d",
-   "seasons": 5,
+   "person": "name:Arnav B",
+   "name": "Arnav B",
+   "seasons": 2,
    "titles": 1,
-   "runner_ups": 2,
-   "sackos": 0,
-   "playoffs": 5,
-   "w": 572,
-   "l": 287,
-   "t": 21,
-   "pct": 0.662,
-   "avg_finish": 2.2,
-   "best_finish": 1,
-   "finish_sd": 0.75,
-   "luck": -0.002,
-   "trades": 4,
-   "moves": 304,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Dribble Trouble",
-     "rank": 1,
-     "of": 12,
-     "seed": 3,
-     "made_playoffs": true,
-     "record": "113-58-5"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Bench Mob Mafia",
-     "rank": 3,
-     "of": 12,
-     "seed": 1,
-     "made_playoffs": true,
-     "record": "118-54-4"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Bench Mob Mafia",
-     "rank": 2,
-     "of": 12,
-     "seed": 2,
-     "made_playoffs": true,
-     "record": "117-54-5"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Euro Step Brothers",
-     "rank": 3,
-     "of": 12,
-     "seed": 1,
-     "made_playoffs": true,
-     "record": "139-34-3"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Euro Step Brothers",
-     "rank": 2,
-     "of": 12,
-     "seed": 6,
-     "made_playoffs": true,
-     "record": "85-87-4"
-    }
-   ]
-  },
-  {
-   "person": "G_DEV",
-   "name": "dev",
-   "seasons": 5,
-   "titles": 1,
-   "runner_ups": 0,
-   "sackos": 0,
-   "playoffs": 5,
-   "w": 505,
-   "l": 356,
-   "t": 19,
-   "pct": 0.585,
-   "avg_finish": 4.2,
-   "best_finish": 1,
-   "finish_sd": 1.94,
-   "luck": -0.005,
-   "trades": 4,
-   "moves": 374,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Waiver Wire Warriors",
-     "rank": 6,
-     "of": 12,
-     "seed": 5,
-     "made_playoffs": true,
-     "record": "96-76-4"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Splash Bros & Sons",
-     "rank": 1,
-     "of": 12,
-     "seed": 4,
-     "made_playoffs": true,
-     "record": "97-78-1"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Dribble Trouble",
-     "rank": 3,
-     "of": 12,
-     "seed": 4,
-     "made_playoffs": true,
-     "record": "105-70-1"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Zone Defense",
-     "rank": 5,
-     "of": 12,
-     "seed": 3,
-     "made_playoffs": true,
-     "record": "115-56-5"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "The Process",
-     "rank": 6,
-     "of": 12,
-     "seed": 4,
-     "made_playoffs": true,
-     "record": "92-76-8"
-    }
-   ]
-  },
-  {
-   "person": "G_KJ",
-   "name": "kj",
-   "seasons": 5,
-   "titles": 0,
-   "runner_ups": 3,
-   "sackos": 0,
-   "playoffs": 5,
-   "w": 519,
-   "l": 342,
-   "t": 19,
-   "pct": 0.601,
-   "avg_finish": 2.6,
-   "best_finish": 2,
-   "finish_sd": 0.8,
-   "luck": -0.012,
-   "trades": 8,
-   "moves": 307,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Iso Joes",
-     "rank": 2,
-     "of": 12,
-     "seed": 1,
-     "made_playoffs": true,
-     "record": "127-47-2"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Zone Defense",
-     "rank": 2,
-     "of": 12,
-     "seed": 6,
-     "made_playoffs": true,
-     "record": "92-81-3"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Box Out Bandits",
-     "rank": 4,
-     "of": 12,
-     "seed": 3,
-     "made_playoffs": true,
-     "record": "108-66-2"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Hack-a-Team",
-     "rank": 2,
-     "of": 12,
-     "seed": 5,
-     "made_playoffs": true,
-     "record": "87-86-3"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Zone Defense",
-     "rank": 3,
-     "of": 12,
-     "seed": 1,
-     "made_playoffs": true,
-     "record": "105-62-9"
-    }
-   ]
-  },
-  {
-   "person": "G_ROCCO",
-   "name": "rocco",
-   "seasons": 5,
-   "titles": 0,
-   "runner_ups": 0,
-   "sackos": 0,
-   "playoffs": 5,
-   "w": 496,
-   "l": 363,
-   "t": 21,
-   "pct": 0.576,
-   "avg_finish": 4.4,
-   "best_finish": 3,
-   "finish_sd": 1.02,
-   "luck": -0.003,
-   "trades": 5,
-   "moves": 227,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "The Process",
-     "rank": 3,
-     "of": 12,
-     "seed": 4,
-     "made_playoffs": true,
-     "record": "109-62-5"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Pick & Roll Tide",
-     "rank": 5,
-     "of": 12,
-     "seed": 3,
-     "made_playoffs": true,
-     "record": "98-73-5"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Lob City Leftovers",
-     "rank": 6,
-     "of": 12,
-     "seed": 5,
-     "made_playoffs": true,
-     "record": "96-76-4"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Brick City",
-     "rank": 4,
-     "of": 12,
-     "seed": 6,
-     "made_playoffs": true,
-     "record": "87-87-2"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Foul Trouble",
-     "rank": 4,
-     "of": 12,
-     "seed": 2,
-     "made_playoffs": true,
-     "record": "106-65-5"
-    }
-   ]
-  },
-  {
-   "person": "G_LUIS",
-   "name": "luis",
-   "seasons": 3,
-   "titles": 0,
    "runner_ups": 0,
    "sackos": 0,
    "playoffs": 1,
-   "w": 260,
-   "l": 260,
-   "t": 8,
-   "pct": 0.5,
-   "avg_finish": 7,
-   "best_finish": 6,
-   "finish_sd": 0.82,
-   "luck": 0.01,
-   "trades": 1,
-   "moves": 193,
+   "w": 227,
+   "l": 176,
+   "t": 4,
+   "pct": 0.563,
+   "avg_finish": 5.5,
+   "best_finish": 1,
+   "finish_sd": 4.5,
+   "luck": 0.011,
+   "trades": 0,
+   "moves": 168,
    "history": [
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Moneyball Mavs",
-     "rank": 7,
-     "of": 12,
-     "seed": 7,
-     "made_playoffs": false,
-     "record": "90-83-3"
-    },
     {
      "season": "2024",
      "label": "2024\u201325",
-     "team": "Pick & Roll Tide",
-     "rank": 6,
+     "team": "Thug Life",
+     "rank": 10,
      "of": 12,
-     "seed": 4,
-     "made_playoffs": true,
-     "record": "90-85-1"
+     "seed": 8,
+     "made_playoffs": false,
+     "record": "96-99-3"
     },
     {
      "season": "2025",
      "label": "2025\u201326",
-     "team": "Brick City",
-     "rank": 8,
+     "team": "Thug Life",
+     "rank": 1,
      "of": 12,
-     "seed": 8,
-     "made_playoffs": false,
-     "record": "80-92-4"
+     "seed": 1,
+     "made_playoffs": true,
+     "record": "131-77-1"
     }
    ]
   },
   {
-   "person": "G_TBONE",
-   "name": "tbone",
-   "seasons": 5,
+   "person": "name:Vishal",
+   "name": "Vishal",
+   "seasons": 2,
+   "titles": 1,
+   "runner_ups": 0,
+   "sackos": 0,
+   "playoffs": 2,
+   "w": 222,
+   "l": 179,
+   "t": 6,
+   "pct": 0.553,
+   "avg_finish": 2,
+   "best_finish": 1,
+   "finish_sd": 1.0,
+   "luck": -0.014,
+   "trades": 0,
+   "moves": 185,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "White Mambas",
+     "rank": 1,
+     "of": 12,
+     "seed": 1,
+     "made_playoffs": true,
+     "record": "117-79-2"
+    },
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "White Mambas",
+     "rank": 3,
+     "of": 12,
+     "seed": 5,
+     "made_playoffs": true,
+     "record": "105-100-4"
+    }
+   ]
+  },
+  {
+   "person": "name:John J",
+   "name": "John J",
+   "seasons": 2,
+   "titles": 0,
+   "runner_ups": 1,
+   "sackos": 0,
+   "playoffs": 2,
+   "w": 231,
+   "l": 171,
+   "t": 5,
+   "pct": 0.574,
+   "avg_finish": 2.5,
+   "best_finish": 2,
+   "finish_sd": 0.5,
+   "luck": 0.021,
+   "trades": 0,
+   "moves": 186,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "theInfamous",
+     "rank": 3,
+     "of": 12,
+     "seed": 4,
+     "made_playoffs": true,
+     "record": "108-87-3"
+    },
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "theInfamous",
+     "rank": 2,
+     "of": 12,
+     "seed": 2,
+     "made_playoffs": true,
+     "record": "123-84-2"
+    }
+   ]
+  },
+  {
+   "person": "name:Keshav",
+   "name": "Keshav",
+   "seasons": 2,
    "titles": 0,
    "runner_ups": 0,
    "sackos": 0,
    "playoffs": 2,
-   "w": 423,
-   "l": 436,
-   "t": 21,
-   "pct": 0.493,
-   "avg_finish": 7.6,
+   "w": 223,
+   "l": 173,
+   "t": 11,
+   "pct": 0.561,
+   "avg_finish": 4.5,
    "best_finish": 4,
-   "finish_sd": 2.73,
-   "luck": -0.019,
-   "trades": 9,
-   "moves": 254,
+   "finish_sd": 0.5,
+   "luck": 0.06,
+   "trades": 1,
+   "moves": 133,
    "history": [
     {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Moneyball Mavs",
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "Suggs to be you",
      "rank": 4,
      "of": 12,
      "seed": 2,
      "made_playoffs": true,
-     "record": "116-56-4"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Iso Joes",
-     "rank": 8,
-     "of": 12,
-     "seed": 8,
-     "made_playoffs": false,
-     "record": "81-90-5"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Corner Three Kings",
-     "rank": 11,
-     "of": 12,
-     "seed": 11,
-     "made_playoffs": false,
-     "record": "58-113-5"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Iso Joes",
-     "rank": 10,
-     "of": 12,
-     "seed": 10,
-     "made_playoffs": false,
-     "record": "67-106-3"
+     "record": "110-82-6"
     },
     {
      "season": "2025",
      "label": "2025\u201326",
-     "team": "Moneyball Mavs",
+     "team": "Suggs to be you",
      "rank": 5,
      "of": 12,
      "seed": 3,
      "made_playoffs": true,
-     "record": "101-71-4"
+     "record": "113-91-5"
     }
    ]
   },
   {
-   "person": "G_MARCUS",
-   "name": "marcus",
-   "seasons": 5,
+   "person": "name:Jason",
+   "name": "Jason",
+   "seasons": 1,
    "titles": 0,
    "runner_ups": 0,
    "sackos": 0,
    "playoffs": 1,
-   "w": 418,
-   "l": 445,
-   "t": 17,
-   "pct": 0.485,
-   "avg_finish": 7.8,
+   "w": 114,
+   "l": 93,
+   "t": 2,
+   "pct": 0.55,
+   "avg_finish": 6,
    "best_finish": 6,
-   "finish_sd": 1.33,
-   "luck": 0.028,
-   "trades": 10,
-   "moves": 280,
+   "finish_sd": null,
+   "luck": 0.036,
+   "trades": 0,
+   "moves": 66,
    "history": [
     {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Splash Bros & Sons",
-     "rank": 7,
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "Adam Silver Dez Nuts",
+     "rank": 6,
      "of": 12,
-     "seed": 7,
-     "made_playoffs": false,
-     "record": "90-82-4"
-    },
+     "seed": 4,
+     "made_playoffs": true,
+     "record": "114-93-2"
+    }
+   ]
+  },
+  {
+   "person": "name:Kaushil P",
+   "name": "Kaushil P",
+   "seasons": 1,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 0,
+   "playoffs": 1,
+   "w": 106,
+   "l": 87,
+   "t": 5,
+   "pct": 0.548,
+   "avg_finish": 6,
+   "best_finish": 6,
+   "finish_sd": null,
+   "luck": 0.009,
+   "trades": 0,
+   "moves": 76,
+   "history": [
     {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "The Process",
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "BING BONG",
      "rank": 6,
      "of": 12,
      "seed": 5,
      "made_playoffs": true,
-     "record": "96-80-0"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "The Load Managers",
-     "rank": 8,
-     "of": 12,
-     "seed": 8,
-     "made_playoffs": false,
-     "record": "76-96-4"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Waiver Wire Warriors",
-     "rank": 8,
-     "of": 12,
-     "seed": 8,
-     "made_playoffs": false,
-     "record": "82-90-4"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Free Throw Tragedies",
-     "rank": 10,
-     "of": 12,
-     "seed": 10,
-     "made_playoffs": false,
-     "record": "74-97-5"
+     "record": "106-87-5"
     }
    ]
   },
   {
-   "person": "G_NISH",
-   "name": "nish",
-   "seasons": 5,
+   "person": "parth",
+   "name": "Parth",
+   "seasons": 2,
+   "titles": 0,
+   "runner_ups": 1,
+   "sackos": 0,
+   "playoffs": 2,
+   "w": 212,
+   "l": 185,
+   "t": 10,
+   "pct": 0.533,
+   "avg_finish": 3,
+   "best_finish": 2,
+   "finish_sd": 1.0,
+   "luck": -0.002,
+   "trades": 1,
+   "moves": 176,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "LeParth James",
+     "rank": 2,
+     "of": 12,
+     "seed": 3,
+     "made_playoffs": true,
+     "record": "108-84-6"
+    },
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "LeParth James",
+     "rank": 4,
+     "of": 12,
+     "seed": 6,
+     "made_playoffs": true,
+     "record": "104-101-4"
+    }
+   ]
+  },
+  {
+   "person": "name:Chris",
+   "name": "Chris",
+   "seasons": 2,
    "titles": 0,
    "runner_ups": 0,
    "sackos": 0,
-   "playoffs": 0,
-   "w": 391,
-   "l": 472,
-   "t": 17,
-   "pct": 0.454,
-   "avg_finish": 7.8,
-   "best_finish": 7,
-   "finish_sd": 1.17,
-   "luck": -0.012,
-   "trades": 19,
-   "moves": 313,
+   "playoffs": 1,
+   "w": 205,
+   "l": 197,
+   "t": 5,
+   "pct": 0.51,
+   "avg_finish": 6.5,
+   "best_finish": 5,
+   "finish_sd": 1.5,
+   "luck": -0.018,
+   "trades": 0,
+   "moves": 72,
    "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Ankle Breakers Anon",
-     "rank": 8,
-     "of": 12,
-     "seed": 8,
-     "made_playoffs": false,
-     "record": "74-99-3"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Fadeaway Gang",
-     "rank": 7,
-     "of": 12,
-     "seed": 7,
-     "made_playoffs": false,
-     "record": "84-88-4"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Hack-a-Team",
-     "rank": 10,
-     "of": 12,
-     "seed": 10,
-     "made_playoffs": false,
-     "record": "66-108-2"
-    },
     {
      "season": "2024",
      "label": "2024\u201325",
-     "team": "Moneyball Mavs",
-     "rank": 7,
-     "of": 12,
-     "seed": 7,
-     "made_playoffs": false,
-     "record": "82-89-5"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Hack-a-Team",
-     "rank": 7,
-     "of": 12,
-     "seed": 7,
-     "made_playoffs": false,
-     "record": "85-88-3"
-    }
-   ]
-  },
-  {
-   "person": "G_SAM",
-   "name": "sam",
-   "seasons": 5,
-   "titles": 0,
-   "runner_ups": 0,
-   "sackos": 1,
-   "playoffs": 1,
-   "w": 348,
-   "l": 512,
-   "t": 20,
-   "pct": 0.407,
-   "avg_finish": 9.2,
-   "best_finish": 5,
-   "finish_sd": 2.4,
-   "luck": 0.044,
-   "trades": 7,
-   "moves": 308,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Fadeaway Gang",
-     "rank": 11,
-     "of": 12,
-     "seed": 11,
-     "made_playoffs": false,
-     "record": "56-118-2"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Box Out Bandits",
-     "rank": 12,
-     "of": 12,
-     "seed": 12,
-     "made_playoffs": false,
-     "record": "55-119-2"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Triple Double Trouble",
+     "team": "INJ MONSTARS \u2604\ufe0f",
      "rank": 5,
      "of": 12,
      "seed": 6,
      "made_playoffs": true,
-     "record": "92-78-6"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "The Load Managers",
-     "rank": 9,
-     "of": 12,
-     "seed": 9,
-     "made_playoffs": false,
-     "record": "67-105-4"
+     "record": "103-92-3"
     },
     {
      "season": "2025",
      "label": "2025\u201326",
-     "team": "Fadeaway Gang",
-     "rank": 9,
+     "team": "INJ MONSTARS \u2604\ufe0f",
+     "rank": 8,
      "of": 12,
-     "seed": 9,
+     "seed": 7,
      "made_playoffs": false,
-     "record": "78-92-6"
+     "record": "102-105-2"
     }
    ]
   },
   {
-   "person": "G_ARI",
-   "name": "ari",
-   "seasons": 5,
-   "titles": 0,
-   "runner_ups": 0,
-   "sackos": 0,
-   "playoffs": 0,
-   "w": 334,
-   "l": 521,
-   "t": 25,
-   "pct": 0.394,
-   "avg_finish": 9.8,
-   "best_finish": 9,
-   "finish_sd": 0.98,
-   "luck": 0.001,
-   "trades": 3,
-   "moves": 264,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Glass Cleaners",
-     "rank": 9,
-     "of": 12,
-     "seed": 9,
-     "made_playoffs": false,
-     "record": "65-105-6"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Tank Commanders",
-     "rank": 9,
-     "of": 12,
-     "seed": 9,
-     "made_playoffs": false,
-     "record": "78-95-3"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Fadeaway Gang",
-     "rank": 9,
-     "of": 12,
-     "seed": 9,
-     "made_playoffs": false,
-     "record": "65-106-5"
-    },
-    {
-     "season": "2024",
-     "label": "2024\u201325",
-     "team": "Corner Three Kings",
-     "rank": 11,
-     "of": 12,
-     "seed": 11,
-     "made_playoffs": false,
-     "record": "61-110-5"
-    },
-    {
-     "season": "2025",
-     "label": "2025\u201326",
-     "team": "Tank Commanders",
-     "rank": 11,
-     "of": 12,
-     "seed": 11,
-     "made_playoffs": false,
-     "record": "65-105-6"
-    }
-   ]
-  },
-  {
-   "person": "G_OLD_MIKE",
-   "name": "old_mike",
+   "person": "name:Phil",
+   "name": "Phil",
    "seasons": 2,
    "titles": 0,
    "runner_ups": 0,
    "sackos": 0,
    "playoffs": 0,
-   "w": 123,
-   "l": 220,
-   "t": 9,
-   "pct": 0.362,
-   "avg_finish": 10,
-   "best_finish": 10,
+   "w": 200,
+   "l": 203,
+   "t": 4,
+   "pct": 0.496,
+   "avg_finish": 7,
+   "best_finish": 7,
    "finish_sd": 0.0,
-   "luck": -0.005,
-   "trades": 8,
-   "moves": 103,
+   "luck": -0.009,
+   "trades": 0,
+   "moves": 112,
    "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Corner Three Kings",
-     "rank": 10,
-     "of": 12,
-     "seed": 10,
-     "made_playoffs": false,
-     "record": "55-113-8"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Hack-a-Team",
-     "rank": 10,
-     "of": 12,
-     "seed": 10,
-     "made_playoffs": false,
-     "record": "68-107-1"
-    }
-   ]
-  },
-  {
-   "person": "G_JO",
-   "name": "jo",
-   "seasons": 5,
-   "titles": 0,
-   "runner_ups": 0,
-   "sackos": 4,
-   "playoffs": 0,
-   "w": 232,
-   "l": 633,
-   "t": 15,
-   "pct": 0.272,
-   "avg_finish": 11.8,
-   "best_finish": 11,
-   "finish_sd": 0.4,
-   "luck": -0.014,
-   "trades": 12,
-   "moves": 287,
-   "history": [
-    {
-     "season": "2021",
-     "label": "2021\u201322",
-     "team": "Foul Trouble",
-     "rank": 12,
-     "of": 12,
-     "seed": 12,
-     "made_playoffs": false,
-     "record": "38-133-5"
-    },
-    {
-     "season": "2022",
-     "label": "2022\u201323",
-     "team": "Triple Double Trouble",
-     "rank": 11,
-     "of": 12,
-     "seed": 11,
-     "made_playoffs": false,
-     "record": "56-118-2"
-    },
-    {
-     "season": "2023",
-     "label": "2023\u201324",
-     "team": "Ankle Breakers Anon",
-     "rank": 12,
-     "of": 12,
-     "seed": 12,
-     "made_playoffs": false,
-     "record": "42-131-3"
-    },
     {
      "season": "2024",
      "label": "2024\u201325",
-     "team": "Lob City Leftovers",
-     "rank": 12,
+     "team": "Gopher Gold",
+     "rank": 7,
      "of": 12,
-     "seed": 12,
+     "seed": 7,
      "made_playoffs": false,
-     "record": "36-140-0"
+     "record": "100-96-2"
     },
     {
      "season": "2025",
      "label": "2025\u201326",
-     "team": "Waiver Wire Warriors",
+     "team": "Gopher Gold",
+     "rank": 7,
+     "of": 12,
+     "seed": 8,
+     "made_playoffs": false,
+     "record": "100-107-2"
+    }
+   ]
+  },
+  {
+   "person": "name:Roshan",
+   "name": "Roshan",
+   "seasons": 1,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 0,
+   "playoffs": 0,
+   "w": 94,
+   "l": 114,
+   "t": 1,
+   "pct": 0.452,
+   "avg_finish": 9,
+   "best_finish": 9,
+   "finish_sd": null,
+   "luck": 0.026,
+   "trades": 0,
+   "moves": 69,
+   "history": [
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "Nova Knicks",
+     "rank": 9,
+     "of": 12,
+     "seed": 9,
+     "made_playoffs": false,
+     "record": "94-114-1"
+    }
+   ]
+  },
+  {
+   "person": "name:sagars",
+   "name": "sagars",
+   "seasons": 1,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 0,
+   "playoffs": 0,
+   "w": 88,
+   "l": 107,
+   "t": 3,
+   "pct": 0.452,
+   "avg_finish": 8,
+   "best_finish": 8,
+   "finish_sd": null,
+   "luck": -0.036,
+   "trades": 0,
+   "moves": 47,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "SagarSoze",
+     "rank": 8,
+     "of": 12,
+     "seed": 9,
+     "made_playoffs": false,
+     "record": "88-107-3"
+    }
+   ]
+  },
+  {
+   "person": "name:Sagar",
+   "name": "Sagar",
+   "seasons": 2,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 0,
+   "playoffs": 0,
+   "w": 169,
+   "l": 229,
+   "t": 9,
+   "pct": 0.426,
+   "avg_finish": 10.5,
+   "best_finish": 10,
+   "finish_sd": 0.5,
+   "luck": 0.005,
+   "trades": 0,
+   "moves": 51,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "Zero Fox Given",
+     "rank": 11,
+     "of": 12,
+     "seed": 11,
+     "made_playoffs": false,
+     "record": "78-114-6"
+    },
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "Zero Fox Given",
+     "rank": 10,
+     "of": 12,
+     "seed": 10,
+     "made_playoffs": false,
+     "record": "91-115-3"
+    }
+   ]
+  },
+  {
+   "person": "name:Adarsh",
+   "name": "Adarsh",
+   "seasons": 1,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 0,
+   "playoffs": 0,
+   "w": 88,
+   "l": 121,
+   "t": 0,
+   "pct": 0.421,
+   "avg_finish": 11,
+   "best_finish": 11,
+   "finish_sd": null,
+   "luck": -0.078,
+   "trades": 0,
+   "moves": 92,
+   "history": [
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "BrookynDynasty",
+     "rank": 11,
+     "of": 12,
+     "seed": 11,
+     "made_playoffs": false,
+     "record": "88-121-0"
+    }
+   ]
+  },
+  {
+   "person": "name:Eshan B",
+   "name": "Eshan B",
+   "seasons": 2,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 1,
+   "playoffs": 0,
+   "w": 156,
+   "l": 247,
+   "t": 4,
+   "pct": 0.388,
+   "avg_finish": 10.5,
+   "best_finish": 9,
+   "finish_sd": 1.5,
+   "luck": -0.021,
+   "trades": 0,
+   "moves": 106,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "Acinonyx",
+     "rank": 9,
+     "of": 12,
+     "seed": 10,
+     "made_playoffs": false,
+     "record": "81-115-2"
+    },
+    {
+     "season": "2025",
+     "label": "2025\u201326",
+     "team": "Acinonyx",
      "rank": 12,
      "of": 12,
      "seed": 12,
      "made_playoffs": false,
-     "record": "60-111-5"
+     "record": "75-132-2"
+    }
+   ]
+  },
+  {
+   "person": "name:RUM",
+   "name": "RUM",
+   "seasons": 1,
+   "titles": 0,
+   "runner_ups": 0,
+   "sackos": 1,
+   "playoffs": 0,
+   "w": 72,
+   "l": 125,
+   "t": 1,
+   "pct": 0.366,
+   "avg_finish": 12,
+   "best_finish": 12,
+   "finish_sd": null,
+   "luck": -0.025,
+   "trades": 0,
+   "moves": 13,
+   "history": [
+    {
+     "season": "2024",
+     "label": "2024\u201325",
+     "team": "MehtaWorldPeace",
+     "rank": 12,
+     "of": 12,
+     "seed": 12,
+     "made_playoffs": false,
+     "record": "72-125-1"
     }
    ]
   }
@@ -916,904 +588,163 @@
    "season": "2025",
    "label": "2025\u201326",
    "champion": {
-    "person": "G_PRIYA",
-    "team": "Dribble Trouble"
+    "person": "name:Arnav B",
+    "team": "Thug Life"
    },
    "runner_up": {
-    "person": "G_DUB_D",
-    "team": "Euro Step Brothers"
+    "person": "name:John J",
+    "team": "theInfamous"
    },
    "sacko": {
-    "person": "G_JO",
-    "team": "Waiver Wire Warriors"
+    "person": "name:Eshan B",
+    "team": "Acinonyx"
    }
   },
   {
    "season": "2024",
    "label": "2024\u201325",
    "champion": {
-    "person": "G_PRIYA",
-    "team": "Bench Mob Mafia"
+    "person": "name:Vishal",
+    "team": "White Mambas"
    },
    "runner_up": {
-    "person": "G_KJ",
-    "team": "Hack-a-Team"
+    "person": "parth",
+    "team": "LeParth James"
    },
    "sacko": {
-    "person": "G_JO",
-    "team": "Lob City Leftovers"
-   }
-  },
-  {
-   "season": "2023",
-   "label": "2023\u201324",
-   "champion": {
-    "person": "G_PRIYA",
-    "team": "Splash Bros & Sons"
-   },
-   "runner_up": {
-    "person": "G_DUB_D",
-    "team": "Bench Mob Mafia"
-   },
-   "sacko": {
-    "person": "G_JO",
-    "team": "Ankle Breakers Anon"
-   }
-  },
-  {
-   "season": "2022",
-   "label": "2022\u201323",
-   "champion": {
-    "person": "G_DEV",
-    "team": "Splash Bros & Sons"
-   },
-   "runner_up": {
-    "person": "G_KJ",
-    "team": "Zone Defense"
-   },
-   "sacko": {
-    "person": "G_SAM",
-    "team": "Box Out Bandits"
-   }
-  },
-  {
-   "season": "2021",
-   "label": "2021\u201322",
-   "champion": {
-    "person": "G_DUB_D",
-    "team": "Dribble Trouble"
-   },
-   "runner_up": {
-    "person": "G_KJ",
-    "team": "Iso Joes"
-   },
-   "sacko": {
-    "person": "G_JO",
-    "team": "Foul Trouble"
+    "person": "name:RUM",
+    "team": "MehtaWorldPeace"
    }
   }
  ],
  "h2h": {
-  "G_NISH|G_TBONE": {
-   "w": 1,
-   "l": 5,
-   "t": 1,
-   "cw": 35,
-   "cl": 40,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_NISH": {
-   "w": 5,
-   "l": 1,
-   "t": 1,
-   "cw": 40,
-   "cl": 35,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_DEV": {
-   "w": 1,
-   "l": 4,
-   "t": 3,
-   "cw": 40,
-   "cl": 44,
-   "ct": 4,
-   "playoff_meetings": 1
-  },
-  "G_DEV|G_DUB_D": {
-   "w": 4,
-   "l": 1,
-   "t": 3,
-   "cw": 44,
-   "cl": 40,
-   "ct": 4,
-   "playoff_meetings": 1
-  },
-  "G_PRIYA|G_ROCCO": {
-   "w": 5,
-   "l": 1,
-   "t": 1,
-   "cw": 43,
-   "cl": 30,
-   "ct": 4,
-   "playoff_meetings": 1
-  },
-  "G_ROCCO|G_PRIYA": {
-   "w": 1,
-   "l": 5,
-   "t": 1,
-   "cw": 30,
-   "cl": 43,
-   "ct": 4,
-   "playoff_meetings": 1
-  },
-  "G_SAM|G_LUIS": {
-   "w": 1,
-   "l": 4,
-   "t": 1,
-   "cw": 31,
-   "cl": 33,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_SAM": {
-   "w": 4,
-   "l": 1,
-   "t": 1,
-   "cw": 33,
-   "cl": 31,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_KJ": {
-   "w": 2,
-   "l": 6,
-   "t": 0,
-   "cw": 33,
-   "cl": 53,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_KJ|G_MARCUS": {
-   "w": 6,
-   "l": 2,
-   "t": 0,
-   "cw": 53,
-   "cl": 33,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_ARI": {
-   "w": 2,
-   "l": 2,
-   "t": 1,
-   "cw": 22,
-   "cl": 30,
-   "ct": 3,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_JO": {
-   "w": 2,
-   "l": 2,
-   "t": 1,
-   "cw": 30,
-   "cl": 22,
-   "ct": 3,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_MARCUS": {
-   "w": 5,
-   "l": 1,
-   "t": 0,
-   "cw": 38,
-   "cl": 26,
-   "ct": 2,
-   "playoff_meetings": 1
-  },
-  "G_MARCUS|G_DEV": {
-   "w": 1,
-   "l": 5,
-   "t": 0,
-   "cw": 26,
-   "cl": 38,
-   "ct": 2,
-   "playoff_meetings": 1
-  },
-  "G_TBONE|G_ROCCO": {
-   "w": 0,
-   "l": 4,
-   "t": 0,
-   "cw": 14,
-   "cl": 30,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_TBONE": {
-   "w": 4,
-   "l": 0,
-   "t": 0,
-   "cw": 30,
-   "cl": 14,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_PRIYA": {
-   "w": 7,
-   "l": 7,
-   "t": 1,
-   "cw": 85,
-   "cl": 77,
-   "ct": 3,
-   "playoff_meetings": 3
-  },
-  "G_PRIYA|G_DUB_D": {
-   "w": 7,
-   "l": 7,
-   "t": 1,
-   "cw": 77,
-   "cl": 85,
-   "ct": 3,
-   "playoff_meetings": 3
-  },
-  "G_ARI|G_NISH": {
-   "w": 2,
-   "l": 5,
-   "t": 0,
-   "cw": 32,
-   "cl": 43,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_ARI": {
-   "w": 5,
-   "l": 2,
-   "t": 0,
-   "cw": 43,
-   "cl": 32,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_KJ|G_JO": {
-   "w": 11,
-   "l": 0,
-   "t": 0,
-   "cw": 94,
-   "cl": 23,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_KJ": {
-   "w": 0,
-   "l": 11,
-   "t": 0,
-   "cw": 23,
-   "cl": 94,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_JO": {
-   "w": 4,
-   "l": 0,
-   "t": 0,
-   "cw": 26,
-   "cl": 18,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_LUIS": {
-   "w": 0,
-   "l": 4,
-   "t": 0,
-   "cw": 18,
-   "cl": 26,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_TBONE": {
-   "w": 3,
-   "l": 5,
-   "t": 0,
-   "cw": 32,
-   "cl": 56,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_SAM": {
-   "w": 5,
-   "l": 3,
-   "t": 0,
-   "cw": 56,
-   "cl": 32,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_KJ|G_NISH": {
-   "w": 9,
-   "l": 1,
-   "t": 0,
-   "cw": 75,
-   "cl": 34,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_KJ": {
-   "w": 1,
-   "l": 9,
-   "t": 0,
-   "cw": 34,
-   "cl": 75,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_MARCUS": {
-   "w": 6,
-   "l": 1,
-   "t": 0,
-   "cw": 48,
-   "cl": 29,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_ROCCO": {
-   "w": 1,
-   "l": 6,
-   "t": 0,
-   "cw": 29,
-   "cl": 48,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_DEV": {
-   "w": 3,
-   "l": 7,
-   "t": 1,
-   "cw": 46,
-   "cl": 73,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_ARI": {
-   "w": 7,
-   "l": 3,
-   "t": 1,
-   "cw": 73,
-   "cl": 46,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_PRIYA|G_TBONE": {
-   "w": 9,
-   "l": 2,
-   "t": 0,
-   "cw": 75,
-   "cl": 42,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_PRIYA": {
-   "w": 2,
-   "l": 9,
-   "t": 0,
-   "cw": 42,
-   "cl": 75,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_KJ": {
-   "w": 0,
-   "l": 6,
-   "t": 0,
-   "cw": 19,
-   "cl": 45,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_KJ|G_ARI": {
-   "w": 6,
-   "l": 0,
-   "t": 0,
-   "cw": 45,
-   "cl": 19,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_MARCUS": {
-   "w": 5,
-   "l": 4,
-   "t": 0,
-   "cw": 51,
-   "cl": 47,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_LUIS": {
-   "w": 4,
-   "l": 5,
-   "t": 0,
-   "cw": 47,
-   "cl": 51,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_ROCCO": {
-   "w": 0,
-   "l": 5,
-   "t": 0,
-   "cw": 14,
-   "cl": 41,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_JO": {
-   "w": 5,
-   "l": 0,
-   "t": 0,
-   "cw": 41,
-   "cl": 14,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_SAM": {
-   "w": 4,
-   "l": 0,
-   "t": 1,
-   "cw": 32,
-   "cl": 19,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_DEV": {
-   "w": 0,
-   "l": 4,
-   "t": 1,
-   "cw": 19,
-   "cl": 32,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_NISH": {
-   "w": 8,
-   "l": 1,
-   "t": 0,
-   "cw": 67,
-   "cl": 31,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_DUB_D": {
-   "w": 1,
-   "l": 8,
-   "t": 0,
-   "cw": 31,
-   "cl": 67,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_KJ|G_DUB_D": {
-   "w": 2,
-   "l": 8,
-   "t": 0,
-   "cw": 42,
-   "cl": 64,
-   "ct": 4,
-   "playoff_meetings": 3
-  },
-  "G_DUB_D|G_KJ": {
-   "w": 8,
-   "l": 2,
-   "t": 0,
-   "cw": 64,
-   "cl": 42,
-   "ct": 4,
-   "playoff_meetings": 3
-  },
-  "G_ARI|G_ROCCO": {
-   "w": 0,
-   "l": 9,
-   "t": 0,
-   "cw": 31,
-   "cl": 66,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_ARI": {
-   "w": 9,
-   "l": 0,
-   "t": 0,
-   "cw": 66,
-   "cl": 31,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_NISH": {
-   "w": 4,
-   "l": 7,
-   "t": 0,
-   "cw": 54,
-   "cl": 64,
-   "ct": 3,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_MARCUS": {
-   "w": 7,
-   "l": 4,
-   "t": 0,
-   "cw": 64,
-   "cl": 54,
-   "ct": 3,
-   "playoff_meetings": 0
-  },
-  "G_PRIYA|G_LUIS": {
-   "w": 3,
-   "l": 1,
-   "t": 0,
-   "cw": 26,
-   "cl": 18,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_PRIYA": {
+  "parth|name:John J": {
    "w": 1,
    "l": 3,
    "t": 0,
    "cw": 18,
-   "cl": 26,
-   "ct": 0,
-   "playoff_meetings": 0
+   "cl": 25,
+   "ct": 1,
+   "playoff_meetings": 1
   },
-  "G_DUB_D|G_MARCUS": {
-   "w": 2,
+  "name:John J|parth": {
+   "w": 3,
    "l": 1,
    "t": 0,
-   "cw": 19,
+   "cw": 25,
+   "cl": 18,
+   "ct": 1,
+   "playoff_meetings": 1
+  },
+  "name:Eshan B|name:Roshan": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 8,
    "cl": 14,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_MARCUS|G_DUB_D": {
-   "w": 1,
-   "l": 2,
+  "name:Roshan|name:Eshan B": {
+   "w": 2,
+   "l": 0,
    "t": 0,
    "cw": 14,
-   "cl": 19,
+   "cl": 8,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_SAM|G_KJ": {
-   "w": 0,
-   "l": 6,
+  "name:Adarsh|name:Vishal": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Adarsh": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Chris": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 19,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Phil": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 13,
+   "cl": 19,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Sagar": {
+   "w": 3,
+   "l": 1,
+   "t": 0,
+   "cw": 25,
+   "cl": 15,
+   "ct": 4,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Keshav": {
+   "w": 1,
+   "l": 3,
+   "t": 0,
+   "cw": 15,
+   "cl": 25,
+   "ct": 4,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Jason": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Jason|name:Arnav B": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Jason": {
+   "w": 1,
+   "l": 1,
    "t": 0,
    "cw": 12,
-   "cl": 54,
+   "cl": 10,
    "ct": 0,
-   "playoff_meetings": 1
+   "playoff_meetings": 0
   },
-  "G_KJ|G_SAM": {
-   "w": 6,
-   "l": 0,
+  "name:Jason|parth": {
+   "w": 1,
+   "l": 1,
    "t": 0,
-   "cw": 54,
+   "cw": 10,
    "cl": 12,
    "ct": 0,
-   "playoff_meetings": 1
-  },
-  "G_DEV|G_LUIS": {
-   "w": 5,
-   "l": 2,
-   "t": 0,
-   "cw": 41,
-   "cl": 35,
-   "ct": 1,
    "playoff_meetings": 0
   },
-  "G_LUIS|G_DEV": {
-   "w": 2,
-   "l": 5,
-   "t": 0,
-   "cw": 35,
-   "cl": 41,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_MARCUS": {
-   "w": 2,
-   "l": 5,
-   "t": 1,
-   "cw": 39,
-   "cl": 47,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_ARI": {
-   "w": 5,
-   "l": 2,
-   "t": 1,
-   "cw": 47,
-   "cl": 39,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_KJ": {
-   "w": 1,
-   "l": 8,
-   "t": 0,
-   "cw": 42,
-   "cl": 54,
-   "ct": 3,
-   "playoff_meetings": 2
-  },
-  "G_KJ|G_ROCCO": {
-   "w": 8,
-   "l": 1,
-   "t": 0,
-   "cw": 54,
-   "cl": 42,
-   "ct": 3,
-   "playoff_meetings": 2
-  },
-  "G_PRIYA|G_SAM": {
-   "w": 6,
-   "l": 1,
-   "t": 0,
-   "cw": 47,
-   "cl": 29,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_PRIYA": {
-   "w": 1,
-   "l": 6,
-   "t": 0,
-   "cw": 29,
-   "cl": 47,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_TBONE": {
-   "w": 3,
-   "l": 0,
-   "t": 1,
-   "cw": 28,
-   "cl": 14,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_LUIS": {
-   "w": 0,
-   "l": 3,
-   "t": 1,
-   "cw": 14,
-   "cl": 28,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_JO": {
-   "w": 8,
-   "l": 2,
-   "t": 0,
-   "cw": 67,
-   "cl": 41,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_MARCUS": {
-   "w": 2,
-   "l": 8,
-   "t": 0,
-   "cw": 41,
-   "cl": 67,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_DUB_D": {
-   "w": 2,
-   "l": 7,
-   "t": 0,
-   "cw": 38,
-   "cl": 57,
-   "ct": 4,
-   "playoff_meetings": 1
-  },
-  "G_DUB_D|G_ROCCO": {
-   "w": 7,
-   "l": 2,
-   "t": 0,
-   "cw": 57,
-   "cl": 38,
-   "ct": 4,
-   "playoff_meetings": 1
-  },
-  "G_DEV|G_TBONE": {
-   "w": 7,
-   "l": 1,
-   "t": 0,
-   "cw": 56,
-   "cl": 31,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_DEV": {
-   "w": 1,
-   "l": 7,
-   "t": 0,
-   "cw": 31,
-   "cl": 56,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_SAM": {
-   "w": 5,
-   "l": 4,
-   "t": 0,
-   "cw": 49,
-   "cl": 46,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_ARI": {
-   "w": 4,
-   "l": 5,
-   "t": 0,
-   "cw": 46,
-   "cl": 49,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_TBONE": {
-   "w": 9,
-   "l": 1,
-   "t": 1,
-   "cw": 82,
-   "cl": 32,
-   "ct": 7,
-   "playoff_meetings": 2
-  },
-  "G_TBONE|G_DUB_D": {
-   "w": 1,
-   "l": 9,
-   "t": 1,
-   "cw": 32,
-   "cl": 82,
-   "ct": 7,
-   "playoff_meetings": 2
-  },
-  "G_KJ|G_PRIYA": {
-   "w": 5,
-   "l": 7,
-   "t": 1,
-   "cw": 61,
-   "cl": 78,
-   "ct": 4,
-   "playoff_meetings": 3
-  },
-  "G_PRIYA|G_KJ": {
-   "w": 7,
-   "l": 5,
-   "t": 1,
-   "cw": 78,
-   "cl": 61,
-   "ct": 4,
-   "playoff_meetings": 3
-  },
-  "G_ROCCO|G_LUIS": {
-   "w": 2,
-   "l": 1,
-   "t": 2,
-   "cw": 32,
-   "cl": 21,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_ROCCO": {
-   "w": 1,
-   "l": 2,
-   "t": 2,
-   "cw": 21,
-   "cl": 32,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_JO": {
-   "w": 6,
-   "l": 1,
-   "t": 0,
-   "cw": 61,
-   "cl": 16,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_DEV": {
-   "w": 1,
-   "l": 6,
-   "t": 0,
-   "cw": 16,
-   "cl": 61,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_NISH": {
-   "w": 8,
-   "l": 2,
-   "t": 0,
-   "cw": 62,
-   "cl": 46,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_ROCCO": {
-   "w": 2,
-   "l": 8,
-   "t": 0,
-   "cw": 46,
-   "cl": 62,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_DUB_D": {
-   "w": 0,
-   "l": 7,
-   "t": 0,
-   "cw": 17,
-   "cl": 60,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_SAM": {
-   "w": 7,
-   "l": 0,
-   "t": 0,
-   "cw": 60,
-   "cl": 17,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_TBONE": {
-   "w": 0,
-   "l": 6,
-   "t": 0,
-   "cw": 14,
-   "cl": 52,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_JO": {
-   "w": 6,
-   "l": 0,
-   "t": 0,
-   "cw": 52,
-   "cl": 14,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_PRIYA": {
-   "w": 0,
-   "l": 6,
-   "t": 0,
-   "cw": 20,
-   "cl": 44,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_PRIYA|G_ARI": {
-   "w": 6,
-   "l": 0,
-   "t": 0,
-   "cw": 44,
-   "cl": 20,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_TBONE": {
-   "w": 1,
-   "l": 3,
-   "t": 0,
-   "cw": 16,
-   "cl": 27,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_MARCUS": {
+  "name:John J|name:Chris": {
    "w": 3,
    "l": 1,
    "t": 0,
@@ -1822,394 +753,628 @@
    "ct": 1,
    "playoff_meetings": 0
   },
-  "G_JO|G_PRIYA": {
-   "w": 0,
-   "l": 10,
-   "t": 0,
-   "cw": 14,
-   "cl": 95,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_PRIYA|G_JO": {
-   "w": 10,
-   "l": 0,
-   "t": 0,
-   "cw": 95,
-   "cl": 14,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_NISH": {
-   "w": 6,
-   "l": 1,
-   "t": 0,
-   "cw": 44,
-   "cl": 31,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_DEV": {
+  "name:Chris|name:John J": {
    "w": 1,
-   "l": 6,
+   "l": 3,
    "t": 0,
-   "cw": 31,
-   "cl": 44,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_JO": {
-   "w": 5,
-   "l": 0,
-   "t": 0,
-   "cw": 36,
-   "cl": 18,
+   "cw": 16,
+   "cl": 27,
    "ct": 1,
    "playoff_meetings": 0
   },
-  "G_JO|G_NISH": {
-   "w": 0,
-   "l": 5,
+  "name:Eshan B|name:Vishal": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 15,
+   "cl": 18,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Eshan B": {
+   "w": 2,
+   "l": 1,
    "t": 0,
    "cw": 18,
-   "cl": 36,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_ROCCO": {
-   "w": 6,
-   "l": 4,
-   "t": 2,
-   "cw": 69,
-   "cl": 58,
-   "ct": 5,
-   "playoff_meetings": 3
-  },
-  "G_ROCCO|G_DEV": {
-   "w": 4,
-   "l": 6,
-   "t": 2,
-   "cw": 58,
-   "cl": 69,
-   "ct": 5,
-   "playoff_meetings": 3
-  },
-  "G_SAM|G_NISH": {
-   "w": 3,
-   "l": 2,
-   "t": 1,
-   "cw": 31,
-   "cl": 33,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_SAM": {
-   "w": 2,
-   "l": 3,
-   "t": 1,
-   "cw": 33,
-   "cl": 31,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_NISH": {
-   "w": 2,
-   "l": 2,
-   "t": 0,
-   "cw": 24,
-   "cl": 20,
+   "cl": 15,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_NISH|G_LUIS": {
-   "w": 2,
-   "l": 2,
-   "t": 0,
-   "cw": 20,
-   "cl": 24,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_DEV|G_PRIYA": {
-   "w": 1,
-   "l": 4,
-   "t": 0,
-   "cw": 23,
-   "cl": 31,
-   "ct": 1,
-   "playoff_meetings": 2
-  },
-  "G_PRIYA|G_DEV": {
-   "w": 4,
-   "l": 1,
-   "t": 0,
-   "cw": 31,
-   "cl": 23,
-   "ct": 1,
-   "playoff_meetings": 2
-  },
-  "G_JO|G_SAM": {
-   "w": 1,
-   "l": 7,
-   "t": 0,
-   "cw": 29,
-   "cl": 57,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_JO": {
-   "w": 7,
-   "l": 1,
-   "t": 0,
-   "cw": 57,
-   "cl": 29,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_TBONE": {
-   "w": 4,
-   "l": 6,
-   "t": 0,
-   "cw": 44,
-   "cl": 62,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_ARI": {
-   "w": 6,
-   "l": 4,
-   "t": 0,
-   "cw": 62,
-   "cl": 44,
-   "ct": 4,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_SAM": {
-   "w": 6,
-   "l": 1,
-   "t": 0,
-   "cw": 49,
-   "cl": 25,
-   "ct": 3,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_MARCUS": {
-   "w": 1,
-   "l": 6,
-   "t": 0,
-   "cw": 25,
-   "cl": 49,
-   "ct": 3,
-   "playoff_meetings": 0
-  },
-  "G_LUIS|G_DUB_D": {
+  "name:Adarsh|name:Phil": {
    "w": 0,
-   "l": 3,
+   "l": 2,
    "t": 0,
-   "cw": 9,
-   "cl": 24,
+   "cw": 5,
+   "cl": 17,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_DUB_D|G_LUIS": {
-   "w": 3,
+  "name:Phil|name:Adarsh": {
+   "w": 2,
    "l": 0,
    "t": 0,
-   "cw": 24,
+   "cw": 17,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|name:Sagar": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Roshan": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 13,
    "cl": 9,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_PRIYA|G_MARCUS": {
+  "name:Keshav|name:Arnav B": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 16,
+   "cl": 17,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Keshav": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 17,
+   "cl": 16,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Keshav": {
    "w": 4,
    "l": 2,
    "t": 0,
-   "cw": 36,
+   "cw": 35,
    "cl": 28,
-   "ct": 2,
-   "playoff_meetings": 0
+   "ct": 3,
+   "playoff_meetings": 2
   },
-  "G_MARCUS|G_PRIYA": {
+  "name:Keshav|parth": {
    "w": 2,
    "l": 4,
    "t": 0,
    "cw": 28,
-   "cl": 36,
-   "ct": 2,
-   "playoff_meetings": 0
+   "cl": 35,
+   "ct": 3,
+   "playoff_meetings": 2
   },
-  "G_DUB_D|G_JO": {
-   "w": 6,
+  "name:John J|name:Jason": {
+   "w": 2,
    "l": 0,
    "t": 0,
-   "cw": 57,
+   "cw": 15,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Jason|name:John J": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 7,
+   "cl": 15,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:Phil": {
+   "w": 0,
+   "l": 4,
+   "t": 0,
+   "cw": 14,
+   "cl": 30,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Eshan B": {
+   "w": 4,
+   "l": 0,
+   "t": 0,
+   "cw": 30,
+   "cl": 14,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Chris": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Adarsh": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 13,
    "cl": 9,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_JO|G_DUB_D": {
+  "name:Roshan|name:Arnav B": {
    "w": 0,
-   "l": 6,
+   "l": 2,
    "t": 0,
-   "cw": 9,
-   "cl": 57,
+   "cw": 7,
+   "cl": 15,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_KJ|G_LUIS": {
-   "w": 1,
-   "l": 1,
-   "t": 0,
-   "cw": 10,
-   "cl": 12,
-   "ct": 0,
-   "playoff_meetings": 1
-  },
-  "G_LUIS|G_KJ": {
-   "w": 1,
-   "l": 1,
-   "t": 0,
-   "cw": 12,
-   "cl": 10,
-   "ct": 0,
-   "playoff_meetings": 1
-  },
-  "G_ARI|G_DUB_D": {
-   "w": 0,
-   "l": 6,
-   "t": 0,
-   "cw": 12,
-   "cl": 53,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_ARI": {
-   "w": 6,
+  "name:Arnav B|name:Roshan": {
+   "w": 2,
    "l": 0,
    "t": 0,
-   "cw": 53,
+   "cw": 15,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Sagar": {
+   "w": 3,
+   "l": 1,
+   "t": 0,
+   "cw": 31,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Vishal": {
+   "w": 1,
+   "l": 3,
+   "t": 0,
+   "cw": 13,
+   "cl": 31,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Roshan": {
+   "w": 1,
+   "l": 0,
+   "t": 1,
+   "cw": 12,
+   "cl": 9,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|parth": {
+   "w": 0,
+   "l": 1,
+   "t": 1,
+   "cw": 9,
    "cl": 12,
    "ct": 1,
    "playoff_meetings": 0
   },
-  "G_DEV|G_KJ": {
-   "w": 5,
-   "l": 6,
+  "name:John J|name:Keshav": {
+   "w": 2,
+   "l": 1,
    "t": 0,
-   "cw": 61,
-   "cl": 59,
+   "cw": 17,
+   "cl": 16,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:John J": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 16,
+   "cl": 17,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:Adarsh": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Eshan B": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Sagar": {
+   "w": 2,
+   "l": 2,
+   "t": 0,
+   "cw": 22,
+   "cl": 21,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Phil": {
+   "w": 2,
+   "l": 2,
+   "t": 0,
+   "cw": 21,
+   "cl": 22,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Jason": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Jason|name:Chris": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Vishal": {
+   "w": 2,
+   "l": 2,
+   "t": 1,
+   "cw": 26,
+   "cl": 28,
    "ct": 1,
    "playoff_meetings": 1
   },
-  "G_KJ|G_DEV": {
-   "w": 6,
-   "l": 5,
-   "t": 0,
-   "cw": 59,
-   "cl": 61,
+  "name:Vishal|name:Arnav B": {
+   "w": 2,
+   "l": 2,
+   "t": 1,
+   "cw": 28,
+   "cl": 26,
    "ct": 1,
    "playoff_meetings": 1
   },
-  "G_NISH|G_PRIYA": {
+  "parth|name:Vishal": {
+   "w": 1,
+   "l": 3,
+   "t": 1,
+   "cw": 24,
+   "cl": 29,
+   "ct": 2,
+   "playoff_meetings": 1
+  },
+  "name:Vishal|parth": {
+   "w": 3,
+   "l": 1,
+   "t": 1,
+   "cw": 29,
+   "cl": 24,
+   "ct": 2,
+   "playoff_meetings": 1
+  },
+  "name:John J|name:Roshan": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 16,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|name:John J": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 6,
+   "cl": 16,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:Chris": {
+   "w": 0,
+   "l": 4,
+   "t": 0,
+   "cw": 13,
+   "cl": 30,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Eshan B": {
+   "w": 4,
+   "l": 0,
+   "t": 0,
+   "cw": 30,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Sagar": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 15,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Adarsh": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 7,
+   "cl": 15,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Arnav B": {
+   "w": 1,
+   "l": 3,
+   "t": 0,
+   "cw": 20,
+   "cl": 23,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Phil": {
+   "w": 3,
+   "l": 1,
+   "t": 0,
+   "cw": 23,
+   "cl": 20,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Jason": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Jason|name:Keshav": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Phil": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 19,
+   "cl": 14,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|parth": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 14,
+   "cl": 19,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:Vishal": {
+   "w": 2,
+   "l": 3,
+   "t": 0,
+   "cw": 26,
+   "cl": 26,
+   "ct": 3,
+   "playoff_meetings": 1
+  },
+  "name:Vishal|name:John J": {
+   "w": 3,
+   "l": 2,
+   "t": 0,
+   "cw": 26,
+   "cl": 26,
+   "ct": 3,
+   "playoff_meetings": 1
+  },
+  "name:Eshan B|name:Sagar": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 20,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Eshan B": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 13,
+   "cl": 20,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Arnav B": {
    "w": 0,
    "l": 2,
    "t": 0,
    "cw": 4,
-   "cl": 17,
-   "ct": 1,
+   "cl": 18,
+   "ct": 0,
    "playoff_meetings": 0
   },
-  "G_PRIYA|G_NISH": {
+  "name:Arnav B|name:Adarsh": {
    "w": 2,
    "l": 0,
    "t": 0,
-   "cw": 17,
+   "cw": 18,
    "cl": 4,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_ROCCO|G_SAM": {
-   "w": 7,
-   "l": 0,
-   "t": 0,
-   "cw": 53,
-   "cl": 23,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_ROCCO": {
-   "w": 0,
-   "l": 7,
-   "t": 0,
-   "cw": 23,
-   "cl": 53,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_ARI|G_LUIS": {
-   "w": 0,
-   "l": 1,
-   "t": 0,
-   "cw": 3,
-   "cl": 8,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_LUIS|G_ARI": {
-   "w": 1,
-   "l": 0,
-   "t": 0,
-   "cw": 8,
-   "cl": 3,
-   "ct": 0,
+  "name:Chris|name:Keshav": {
+   "w": 0,
+   "l": 3,
+   "t": 1,
+   "cw": 19,
+   "cl": 24,
+   "ct": 1,
    "playoff_meetings": 0
   },
-  "G_PRIYA|G_OLD_MIKE": {
+  "name:Keshav|name:Chris": {
    "w": 3,
    "l": 0,
-   "t": 0,
-   "cw": 30,
-   "cl": 2,
+   "t": 1,
+   "cw": 24,
+   "cl": 19,
    "ct": 1,
    "playoff_meetings": 0
   },
-  "G_OLD_MIKE|G_PRIYA": {
-   "w": 0,
-   "l": 3,
-   "t": 0,
-   "cw": 2,
-   "cl": 30,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_OLD_MIKE|G_TBONE": {
+  "name:Roshan|name:Jason": {
    "w": 1,
-   "l": 4,
-   "t": 1,
-   "cw": 23,
-   "cl": 41,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_OLD_MIKE": {
-   "w": 4,
    "l": 1,
-   "t": 1,
-   "cw": 41,
-   "cl": 23,
-   "ct": 2,
+   "t": 0,
+   "cw": 10,
+   "cl": 12,
+   "ct": 0,
    "playoff_meetings": 0
   },
-  "G_OLD_MIKE|G_ROCCO": {
-   "w": 0,
+  "name:Jason|name:Roshan": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 12,
+   "cl": 10,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Adarsh": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|parth": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:Phil": {
+   "w": 2,
+   "l": 2,
+   "t": 0,
+   "cw": 22,
+   "cl": 22,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:John J": {
+   "w": 2,
+   "l": 2,
+   "t": 0,
+   "cw": 22,
+   "cl": 22,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:Arnav B": {
+   "w": 1,
    "l": 3,
    "t": 0,
-   "cw": 8,
+   "cw": 13,
+   "cl": 31,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Eshan B": {
+   "w": 3,
+   "l": 1,
+   "t": 0,
+   "cw": 31,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Sagar": {
+   "w": 3,
+   "l": 1,
+   "t": 0,
+   "cw": 25,
+   "cl": 19,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Chris": {
+   "w": 1,
+   "l": 3,
+   "t": 0,
+   "cw": 19,
    "cl": 25,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_ROCCO|G_OLD_MIKE": {
+  "name:Roshan|name:Keshav": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Roshan": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Jason": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 14,
+   "cl": 19,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:Jason|name:Vishal": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 19,
+   "cl": 14,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "parth|name:Eshan B": {
    "w": 3,
    "l": 0,
    "t": 0,
@@ -2218,133 +1383,142 @@
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_OLD_MIKE|G_DUB_D": {
+  "name:Eshan B|parth": {
    "w": 0,
    "l": 3,
    "t": 0,
    "cw": 8,
-   "cl": 24,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_DUB_D|G_OLD_MIKE": {
-   "w": 3,
-   "l": 0,
-   "t": 0,
-   "cw": 24,
-   "cl": 8,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_MARCUS|G_OLD_MIKE": {
-   "w": 0,
-   "l": 2,
-   "t": 0,
-   "cw": 10,
-   "cl": 12,
+   "cl": 25,
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_OLD_MIKE|G_MARCUS": {
+  "name:John J|name:Adarsh": {
    "w": 2,
    "l": 0,
    "t": 0,
-   "cw": 12,
-   "cl": 10,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_NISH|G_OLD_MIKE": {
-   "w": 2,
-   "l": 0,
-   "t": 0,
-   "cw": 14,
-   "cl": 8,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_OLD_MIKE|G_NISH": {
-   "w": 0,
-   "l": 2,
-   "t": 0,
-   "cw": 8,
-   "cl": 14,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_KJ|G_TBONE": {
-   "w": 1,
-   "l": 2,
-   "t": 0,
-   "cw": 16,
-   "cl": 17,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_TBONE|G_KJ": {
-   "w": 2,
-   "l": 1,
-   "t": 0,
-   "cw": 17,
-   "cl": 16,
-   "ct": 0,
-   "playoff_meetings": 0
-  },
-  "G_OLD_MIKE|G_SAM": {
-   "w": 3,
-   "l": 2,
-   "t": 0,
-   "cw": 27,
-   "cl": 27,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_SAM|G_OLD_MIKE": {
-   "w": 2,
-   "l": 3,
-   "t": 0,
-   "cw": 27,
-   "cl": 27,
-   "ct": 1,
-   "playoff_meetings": 0
-  },
-  "G_JO|G_OLD_MIKE": {
-   "w": 1,
-   "l": 2,
-   "t": 0,
-   "cw": 14,
-   "cl": 17,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_OLD_MIKE|G_JO": {
-   "w": 2,
-   "l": 1,
-   "t": 0,
-   "cw": 17,
-   "cl": 14,
-   "ct": 2,
-   "playoff_meetings": 0
-  },
-  "G_OLD_MIKE|G_ARI": {
-   "w": 2,
-   "l": 0,
-   "t": 0,
-   "cw": 12,
+   "cw": 13,
    "cl": 9,
-   "ct": 1,
+   "ct": 0,
    "playoff_meetings": 0
   },
-  "G_ARI|G_OLD_MIKE": {
+  "name:Adarsh|name:John J": {
    "w": 0,
    "l": 2,
    "t": 0,
    "cw": 9,
-   "cl": 12,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Jason": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 5,
+   "cl": 16,
    "ct": 1,
    "playoff_meetings": 0
   },
-  "G_OLD_MIKE|G_DEV": {
+  "name:Jason|name:Phil": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 16,
+   "cl": 5,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Roshan": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 5,
+   "cl": 17,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|name:Chris": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 17,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Vishal": {
+   "w": 2,
+   "l": 2,
+   "t": 0,
+   "cw": 25,
+   "cl": 17,
+   "ct": 2,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Keshav": {
+   "w": 2,
+   "l": 2,
+   "t": 0,
+   "cw": 17,
+   "cl": 25,
+   "ct": 2,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Sagar": {
+   "w": 4,
+   "l": 0,
+   "t": 0,
+   "cw": 30,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Arnav B": {
+   "w": 0,
+   "l": 4,
+   "t": 0,
+   "cw": 13,
+   "cl": 30,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "parth|name:Sagar": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 13,
+   "cl": 19,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|parth": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 19,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:Eshan B": {
+   "w": 1,
+   "l": 1,
+   "t": 1,
+   "cw": 17,
+   "cl": 15,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:John J": {
+   "w": 1,
+   "l": 1,
+   "t": 1,
+   "cw": 15,
+   "cl": 17,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Jason": {
    "w": 0,
    "l": 1,
    "t": 0,
@@ -2353,7 +1527,7 @@
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_DEV|G_OLD_MIKE": {
+  "name:Jason|name:Adarsh": {
    "w": 1,
    "l": 0,
    "t": 0,
@@ -2362,21 +1536,813 @@
    "ct": 0,
    "playoff_meetings": 0
   },
-  "G_KJ|G_OLD_MIKE": {
-   "w": 2,
+  "name:Phil|name:Keshav": {
+   "w": 0,
+   "l": 3,
+   "t": 0,
+   "cw": 7,
+   "cl": 26,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Phil": {
+   "w": 3,
    "l": 0,
    "t": 0,
-   "cw": 19,
-   "cl": 2,
+   "cw": 26,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Arnav B": {
+   "w": 1,
+   "l": 1,
+   "t": 1,
+   "cw": 17,
+   "cl": 15,
    "ct": 1,
    "playoff_meetings": 0
   },
-  "G_OLD_MIKE|G_KJ": {
+  "name:Arnav B|name:Chris": {
+   "w": 1,
+   "l": 1,
+   "t": 1,
+   "cw": 15,
+   "cl": 17,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|name:Vishal": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 2,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Roshan": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 9,
+   "cl": 2,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Arnav B": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 17,
+   "cl": 16,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|parth": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 16,
+   "cl": 17,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:Sagar": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 14,
+   "cl": 8,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:John J": {
    "w": 0,
    "l": 2,
    "t": 0,
+   "cw": 8,
+   "cl": 14,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:Jason": {
+   "w": 0,
+   "l": 0,
+   "t": 1,
+   "cw": 5,
+   "cl": 5,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Jason|name:Eshan B": {
+   "w": 0,
+   "l": 0,
+   "t": 1,
+   "cw": 5,
+   "cl": 5,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Keshav": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 5,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Adarsh": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 6,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Roshan": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 5,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|name:Phil": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 6,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Vishal": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Chris": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Chris": {
+   "w": 1,
+   "l": 3,
+   "t": 0,
+   "cw": 21,
+   "cl": 23,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:Chris|parth": {
+   "w": 3,
+   "l": 1,
+   "t": 0,
+   "cw": 23,
+   "cl": 21,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:John J|name:Arnav B": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 18,
+   "cl": 15,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:Arnav B|name:John J": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 15,
+   "cl": 18,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:Eshan B|name:Keshav": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Eshan B": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Adarsh|name:Roshan": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 6,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Roshan|name:Adarsh": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 5,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Vishal": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 10,
+   "cl": 12,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Phil": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 12,
+   "cl": 10,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Jason": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 5,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Jason|name:Sagar": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 6,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:RUM": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 8,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:John J": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 8,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Vishal": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:Kaushil P": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Keshav": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:sagars": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:Kaushil P": {
+   "w": 1,
+   "l": 2,
+   "t": 0,
+   "cw": 16,
+   "cl": 17,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:Kaushil P|name:John J": {
+   "w": 2,
+   "l": 1,
+   "t": 0,
+   "cw": 17,
+   "cl": 16,
+   "ct": 0,
+   "playoff_meetings": 1
+  },
+  "name:Eshan B|name:RUM": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Eshan B": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 11,
+   "cl": 11,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Arnav B": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 12,
+   "cl": 10,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:sagars": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 10,
+   "cl": 12,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:Kaushil P": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 10,
+   "cl": 10,
+   "ct": 2,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|parth": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 10,
+   "cl": 10,
+   "ct": 2,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:sagars": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:RUM": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:John J|name:sagars": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 15,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:John J": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 7,
+   "cl": 15,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:Kaushil P": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 7,
+   "cl": 15,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Eshan B": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 15,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Phil": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:RUM": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Eshan B|name:sagars": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 7,
+   "cl": 14,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Eshan B": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 14,
+   "cl": 7,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Sagar": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 8,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:Kaushil P": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 8,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Chris": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 5,
+   "cl": 17,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:RUM": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 17,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:sagars": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 13,
+   "cl": 8,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Kaushil P": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 8,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Vishal": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 6,
+   "cl": 16,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:RUM": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 16,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:RUM": {
+   "w": 2,
+   "l": 0,
+   "t": 0,
+   "cw": 15,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|parth": {
+   "w": 0,
+   "l": 2,
+   "t": 0,
+   "cw": 7,
+   "cl": 15,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Keshav": {
+   "w": 1,
+   "l": 0,
+   "t": 1,
+   "cw": 13,
+   "cl": 8,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:Kaushil P": {
+   "w": 0,
+   "l": 1,
+   "t": 1,
+   "cw": 8,
+   "cl": 13,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:sagars": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 13,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Phil": {
+   "w": 1,
+   "l": 1,
+   "t": 0,
+   "cw": 9,
+   "cl": 13,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Phil": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 8,
+   "cl": 3,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Phil|name:Kaushil P": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 3,
+   "cl": 8,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Sagar": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 7,
+   "cl": 4,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:RUM": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 4,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Chris": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 4,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:sagars": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 7,
+   "cl": 4,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Arnav B": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 1,
+   "cl": 10,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:Kaushil P": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 10,
+   "cl": 1,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Keshav": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 4,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Keshav|name:RUM": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 7,
+   "cl": 4,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Vishal": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 3,
+   "cl": 8,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Vishal|name:sagars": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 8,
+   "cl": 3,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "parth|name:sagars": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 8,
+   "cl": 3,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|parth": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 3,
+   "cl": 8,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:Chris": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 5,
+   "cl": 6,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Chris|name:Kaushil P": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 6,
+   "cl": 5,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Arnav B": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 4,
+   "cl": 7,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Arnav B|name:RUM": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 7,
+   "cl": 4,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:Kaushil P|name:RUM": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 9,
+   "cl": 2,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:RUM|name:Kaushil P": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
    "cw": 2,
-   "cl": 19,
+   "cl": 9,
+   "ct": 0,
+   "playoff_meetings": 0
+  },
+  "name:sagars|name:Sagar": {
+   "w": 0,
+   "l": 1,
+   "t": 0,
+   "cw": 4,
+   "cl": 6,
+   "ct": 1,
+   "playoff_meetings": 0
+  },
+  "name:Sagar|name:sagars": {
+   "w": 1,
+   "l": 0,
+   "t": 0,
+   "cw": 6,
+   "cl": 4,
    "ct": 1,
    "playoff_meetings": 0
   }
@@ -2384,80 +2350,70 @@
  "rivalries": {
   "lopsided": [
    {
-    "a": "G_KJ",
-    "b": "G_JO",
-    "w": 11,
+    "a": "name:Phil",
+    "b": "name:Eshan B",
+    "w": 4,
     "l": 0,
     "t": 0,
-    "games": 11,
+    "games": 4,
     "playoff_meetings": 0,
     "gap": 1.0
    },
    {
-    "a": "G_PRIYA",
-    "b": "G_JO",
-    "w": 10,
+    "a": "name:Chris",
+    "b": "name:Eshan B",
+    "w": 4,
     "l": 0,
     "t": 0,
-    "games": 10,
+    "games": 4,
     "playoff_meetings": 0,
     "gap": 1.0
    },
    {
-    "a": "G_ROCCO",
-    "b": "G_ARI",
-    "w": 9,
+    "a": "name:Arnav B",
+    "b": "name:Sagar",
+    "w": 4,
     "l": 0,
     "t": 0,
-    "games": 9,
+    "games": 4,
     "playoff_meetings": 0,
     "gap": 1.0
    },
    {
-    "a": "G_DUB_D",
-    "b": "G_SAM",
-    "w": 7,
+    "a": "parth",
+    "b": "name:Eshan B",
+    "w": 3,
     "l": 0,
     "t": 0,
-    "games": 7,
+    "games": 3,
     "playoff_meetings": 0,
     "gap": 1.0
    },
    {
-    "a": "G_ROCCO",
-    "b": "G_SAM",
-    "w": 7,
+    "a": "name:Keshav",
+    "b": "name:Phil",
+    "w": 3,
     "l": 0,
     "t": 0,
-    "games": 7,
+    "games": 3,
     "playoff_meetings": 0,
     "gap": 1.0
    }
   ],
   "closest": [
    {
-    "a": "G_DUB_D",
-    "b": "G_PRIYA",
-    "w": 7,
-    "l": 7,
-    "t": 1,
-    "games": 15,
-    "playoff_meetings": 3,
-    "gap": 0.0
-   },
-   {
-    "a": "G_JO",
-    "b": "G_ARI",
+    "a": "name:Arnav B",
+    "b": "name:Vishal",
     "w": 2,
     "l": 2,
     "t": 1,
     "games": 5,
-    "playoff_meetings": 0,
+    "playoff_meetings": 1,
     "gap": 0.0
    },
    {
-    "a": "G_LUIS",
-    "b": "G_NISH",
+    "a": "name:Phil",
+    "b": "name:Sagar",
     "w": 2,
     "l": 2,
     "t": 0,
@@ -2466,76 +2422,86 @@
     "gap": 0.0
    },
    {
-    "a": "G_DEV",
-    "b": "G_KJ",
-    "w": 5,
-    "l": 6,
+    "a": "name:John J",
+    "b": "name:Phil",
+    "w": 2,
+    "l": 2,
     "t": 0,
-    "games": 11,
-    "playoff_meetings": 1,
-    "gap": 0.09090909090909091
+    "games": 4,
+    "playoff_meetings": 0,
+    "gap": 0.0
    },
    {
-    "a": "G_LUIS",
-    "b": "G_MARCUS",
-    "w": 5,
-    "l": 4,
+    "a": "name:Keshav",
+    "b": "name:Vishal",
+    "w": 2,
+    "l": 2,
     "t": 0,
-    "games": 9,
+    "games": 4,
     "playoff_meetings": 0,
-    "gap": 0.1111111111111111
+    "gap": 0.0
+   },
+   {
+    "a": "name:John J",
+    "b": "name:Eshan B",
+    "w": 1,
+    "l": 1,
+    "t": 1,
+    "games": 3,
+    "playoff_meetings": 0,
+    "gap": 0.0
    }
   ],
   "playoff": [
    {
-    "a": "G_DUB_D",
-    "b": "G_PRIYA",
-    "w": 7,
-    "l": 7,
+    "a": "parth",
+    "b": "name:Keshav",
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "games": 6,
+    "playoff_meetings": 2,
+    "gap": 0.3333333333333333
+   },
+   {
+    "a": "parth",
+    "b": "name:John J",
+    "w": 1,
+    "l": 3,
+    "t": 0,
+    "games": 4,
+    "playoff_meetings": 1,
+    "gap": 0.5
+   },
+   {
+    "a": "name:Arnav B",
+    "b": "name:Vishal",
+    "w": 2,
+    "l": 2,
     "t": 1,
-    "games": 15,
-    "playoff_meetings": 3,
+    "games": 5,
+    "playoff_meetings": 1,
     "gap": 0.0
    },
    {
-    "a": "G_KJ",
-    "b": "G_DUB_D",
-    "w": 2,
-    "l": 8,
-    "t": 0,
-    "games": 10,
-    "playoff_meetings": 3,
-    "gap": 0.6
-   },
-   {
-    "a": "G_KJ",
-    "b": "G_PRIYA",
-    "w": 5,
-    "l": 7,
-    "t": 1,
-    "games": 13,
-    "playoff_meetings": 3,
-    "gap": 0.15384615384615385
-   },
-   {
-    "a": "G_DEV",
-    "b": "G_ROCCO",
-    "w": 6,
-    "l": 4,
-    "t": 2,
-    "games": 12,
-    "playoff_meetings": 3,
-    "gap": 0.16666666666666666
-   },
-   {
-    "a": "G_ROCCO",
-    "b": "G_KJ",
+    "a": "parth",
+    "b": "name:Vishal",
     "w": 1,
-    "l": 8,
+    "l": 3,
+    "t": 1,
+    "games": 5,
+    "playoff_meetings": 1,
+    "gap": 0.4
+   },
+   {
+    "a": "name:John J",
+    "b": "name:Vishal",
+    "w": 2,
+    "l": 3,
     "t": 0,
-    "games": 9,
-    "playoff_meetings": 2,
-    "gap": 0.7777777777777778
+    "games": 5,
+    "playoff_meetings": 1,
+    "gap": 0.2
    }
   ]
  },
@@ -2543,320 +2509,316 @@
   "best": [
    {
     "cat": "FG%",
-    "value": 0.537,
-    "team": "425.l.9.t.3",
-    "week": 16,
+    "value": 0.549,
+    "team": "2025.l.40764.t.9",
+    "week": 3,
     "pct": true,
     "hb": true,
     "season": "2025",
     "label": "2025\u201326",
-    "person": "G_ROCCO",
-    "team_name": "Foul Trouble"
+    "person": "name:Arnav B",
+    "team_name": "Thug Life"
    },
    {
     "cat": "FT%",
-    "value": 0.887,
-    "team": "421.l.9.t.2",
-    "week": 12,
+    "value": 0.904,
+    "team": "2025.l.40764.t.7",
+    "week": 3,
     "pct": true,
     "hb": true,
-    "season": "2021",
-    "label": "2021\u201322",
-    "person": "G_KJ",
-    "team_name": "Iso Joes"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Roshan",
+    "team_name": "Nova Knicks"
    },
    {
     "cat": "3PTM",
-    "value": 94,
-    "team": "422.l.9.t.5",
-    "week": 8,
-    "pct": false,
-    "hb": true,
-    "season": "2022",
-    "label": "2022\u201323",
-    "person": "G_TBONE",
-    "team_name": "Iso Joes"
-   },
-   {
-    "cat": "PTS",
-    "value": 785,
-    "team": "425.l.9.t.3",
-    "week": 10,
-    "pct": false,
-    "hb": true,
-    "season": "2025",
-    "label": "2025\u201326",
-    "person": "G_ROCCO",
-    "team_name": "Foul Trouble"
-   },
-   {
-    "cat": "OREB",
-    "value": 95,
-    "team": "422.l.9.t.7",
-    "week": 9,
-    "pct": false,
-    "hb": true,
-    "season": "2022",
-    "label": "2022\u201323",
-    "person": "G_PRIYA",
-    "team_name": "Brick City"
-   },
-   {
-    "cat": "REB",
-    "value": 312,
-    "team": "425.l.9.t.7",
-    "week": 5,
-    "pct": false,
-    "hb": true,
-    "season": "2025",
-    "label": "2025\u201326",
-    "person": "G_PRIYA",
-    "team_name": "Dribble Trouble"
-   },
-   {
-    "cat": "AST",
-    "value": 208,
-    "team": "423.l.9.t.7",
-    "week": 11,
-    "pct": false,
-    "hb": true,
-    "season": "2023",
-    "label": "2023\u201324",
-    "person": "G_PRIYA",
-    "team_name": "Splash Bros & Sons"
-   },
-   {
-    "cat": "ST",
-    "value": 69,
-    "team": "422.l.9.t.2",
-    "week": 1,
-    "pct": false,
-    "hb": true,
-    "season": "2022",
-    "label": "2022\u201323",
-    "person": "G_KJ",
-    "team_name": "Zone Defense"
-   },
-   {
-    "cat": "BLK",
-    "value": 52,
-    "team": "425.l.9.t.5",
-    "week": 11,
-    "pct": false,
-    "hb": true,
-    "season": "2025",
-    "label": "2025\u201326",
-    "person": "G_TBONE",
-    "team_name": "Moneyball Mavs"
-   },
-   {
-    "cat": "TO",
-    "value": 42,
-    "team": "423.l.9.t.2",
-    "week": 11,
-    "pct": false,
-    "hb": false,
-    "season": "2023",
-    "label": "2023\u201324",
-    "person": "G_KJ",
-    "team_name": "Box Out Bandits"
-   },
-   {
-    "cat": "DD",
-    "value": 21,
-    "team": "424.l.9.t.1",
-    "week": 9,
+    "value": 128,
+    "team": "2024.l.68899.t.12",
+    "week": 7,
     "pct": false,
     "hb": true,
     "season": "2024",
     "label": "2024\u201325",
-    "person": "G_DUB_D",
-    "team_name": "Euro Step Brothers"
+    "person": "name:Vishal",
+    "team_name": "White Mambas"
+   },
+   {
+    "cat": "3PT%",
+    "value": 0.472,
+    "team": "2024.l.68899.t.9",
+    "week": 8,
+    "pct": true,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:Arnav B",
+    "team_name": "Thug Life"
+   },
+   {
+    "cat": "PTS",
+    "value": 1169,
+    "team": "2024.l.68899.t.8",
+    "week": 7,
+    "pct": false,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:Chris",
+    "team_name": "INJ MONSTARS \u2604\ufe0f"
+   },
+   {
+    "cat": "OREB",
+    "value": 104,
+    "team": "2024.l.68899.t.1",
+    "week": 7,
+    "pct": false,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:John J",
+    "team_name": "theInfamous"
+   },
+   {
+    "cat": "DREB",
+    "value": 383,
+    "team": "2024.l.68899.t.8",
+    "week": 7,
+    "pct": false,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:Chris",
+    "team_name": "INJ MONSTARS \u2604\ufe0f"
+   },
+   {
+    "cat": "AST",
+    "value": 304,
+    "team": "2024.l.68899.t.11",
+    "week": 7,
+    "pct": false,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:Keshav",
+    "team_name": "Suggs to be you"
+   },
+   {
+    "cat": "ST",
+    "value": 91,
+    "team": "2024.l.68899.t.1",
+    "week": 7,
+    "pct": false,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:John J",
+    "team_name": "theInfamous"
+   },
+   {
+    "cat": "BLK",
+    "value": 60,
+    "team": "2024.l.68899.t.12",
+    "week": 7,
+    "pct": false,
+    "hb": true,
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:Vishal",
+    "team_name": "White Mambas"
+   },
+   {
+    "cat": "TO",
+    "value": 24,
+    "team": "2025.l.40764.t.4",
+    "week": 8,
+    "pct": false,
+    "hb": false,
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Phil",
+    "team_name": "Gopher Gold"
    }
   ],
   "worst": [
    {
     "cat": "FG%",
-    "value": 0.401,
-    "team": "422.l.9.t.4",
-    "week": 7,
+    "value": 0.396,
+    "team": "2025.l.40764.t.8",
+    "week": 15,
     "pct": true,
     "hb": true,
-    "season": "2022",
-    "label": "2022\u201323",
-    "person": "G_NISH",
-    "team_name": "Fadeaway Gang"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Keshav",
+    "team_name": "Suggs to be you"
    },
    {
     "cat": "FT%",
-    "value": 0.636,
-    "team": "423.l.9.t.8",
-    "week": 3,
+    "value": 0.66,
+    "team": "2025.l.40764.t.1",
+    "week": 15,
     "pct": true,
     "hb": true,
-    "season": "2023",
-    "label": "2023\u201324",
-    "person": "G_MARCUS",
-    "team_name": "The Load Managers"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:John J",
+    "team_name": "theInfamous"
    },
    {
     "cat": "3PTM",
-    "value": 20,
-    "team": "421.l.9.t.12",
-    "week": 7,
+    "value": 25,
+    "team": "2025.l.40764.t.10",
+    "week": 8,
     "pct": false,
     "hb": true,
-    "season": "2021",
-    "label": "2021\u201322",
-    "person": "G_OLD_MIKE",
-    "team_name": "Corner Three Kings"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Vishal",
+    "team_name": "White Mambas"
+   },
+   {
+    "cat": "3PT%",
+    "value": 0.248,
+    "team": "2025.l.40764.t.10",
+    "week": 8,
+    "pct": true,
+    "hb": true,
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Vishal",
+    "team_name": "White Mambas"
    },
    {
     "cat": "PTS",
-    "value": 339,
-    "team": "422.l.9.t.6",
-    "week": 1,
+    "value": 272,
+    "team": "2025.l.40764.t.4",
+    "week": 8,
     "pct": false,
     "hb": true,
-    "season": "2022",
-    "label": "2022\u201323",
-    "person": "G_SAM",
-    "team_name": "Box Out Bandits"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Phil",
+    "team_name": "Gopher Gold"
    },
    {
     "cat": "OREB",
-    "value": 18,
-    "team": "424.l.9.t.11",
-    "week": 16,
+    "value": 15,
+    "team": "2024.l.68899.t.7",
+    "week": 8,
     "pct": false,
     "hb": true,
     "season": "2024",
     "label": "2024\u201325",
-    "person": "G_JO",
-    "team_name": "Lob City Leftovers"
+    "person": "parth",
+    "team_name": "LeParth James"
    },
    {
-    "cat": "REB",
-    "value": 137,
-    "team": "421.l.9.t.5",
+    "cat": "DREB",
+    "value": 66,
+    "team": "2025.l.40764.t.11",
     "week": 8,
     "pct": false,
     "hb": true,
-    "season": "2021",
-    "label": "2021\u201322",
-    "person": "G_TBONE",
-    "team_name": "Moneyball Mavs"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Sagar",
+    "team_name": "Zero Fox Given"
    },
    {
     "cat": "AST",
-    "value": 75,
-    "team": "422.l.9.t.8",
-    "week": 10,
+    "value": 68,
+    "team": "2025.l.40764.t.2",
+    "week": 16,
     "pct": false,
     "hb": true,
-    "season": "2022",
-    "label": "2022\u201323",
-    "person": "G_MARCUS",
-    "team_name": "The Process"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Eshan B",
+    "team_name": "Acinonyx"
    },
    {
     "cat": "ST",
-    "value": 13,
-    "team": "421.l.9.t.11",
-    "week": 6,
+    "value": 15,
+    "team": "2025.l.40764.t.11",
+    "week": 8,
     "pct": false,
     "hb": true,
-    "season": "2021",
-    "label": "2021\u201322",
-    "person": "G_JO",
-    "team_name": "Foul Trouble"
+    "season": "2025",
+    "label": "2025\u201326",
+    "person": "name:Sagar",
+    "team_name": "Zero Fox Given"
    },
    {
     "cat": "BLK",
     "value": 5,
-    "team": "424.l.9.t.11",
-    "week": 6,
+    "team": "2024.l.68899.t.10",
+    "week": 8,
     "pct": false,
     "hb": true,
     "season": "2024",
     "label": "2024\u201325",
-    "person": "G_JO",
-    "team_name": "Lob City Leftovers"
+    "person": "name:Sagar",
+    "team_name": "Zero Fox Given"
    },
    {
     "cat": "TO",
-    "value": 106,
-    "team": "425.l.9.t.7",
-    "week": 12,
+    "value": 173,
+    "team": "2024.l.68899.t.8",
+    "week": 7,
     "pct": false,
     "hb": false,
-    "season": "2025",
-    "label": "2025\u201326",
-    "person": "G_PRIYA",
-    "team_name": "Dribble Trouble"
-   },
-   {
-    "cat": "DD",
-    "value": 0,
-    "team": "425.l.9.t.1",
-    "week": 5,
-    "pct": false,
-    "hb": true,
-    "season": "2025",
-    "label": "2025\u201326",
-    "person": "G_DUB_D",
-    "team_name": "Euro Step Brothers"
+    "season": "2024",
+    "label": "2024\u201325",
+    "person": "name:Chris",
+    "team_name": "INJ MONSTARS \u2604\ufe0f"
    }
   ]
  },
  "superlatives": [
   {
    "title": "Dynasty",
-   "person": "G_PRIYA",
-   "note": "3 titles in 5 seasons."
+   "person": "name:Arnav B",
+   "note": "1 titles in 2 seasons."
   },
   {
    "title": "Sacko royalty",
-   "person": "G_JO",
-   "note": "4 last-place finishes."
+   "person": "name:Eshan B",
+   "note": "1 last-place finishes."
   },
   {
    "title": "Ringless",
-   "person": "G_KJ",
-   "note": "5 playoff trips, zero titles."
+   "person": "name:John J",
+   "note": "2 playoff trips, zero titles."
   },
   {
    "title": "Bridesmaid",
-   "person": "G_DUB_D",
-   "note": "2 runner-up finishes."
+   "person": "parth",
+   "note": "1 runner-up finishes."
   },
   {
    "title": "Born lucky",
-   "person": "G_SAM",
-   "note": "+4.4 points a year over all-play."
+   "person": "name:Keshav",
+   "note": "+6.0 points a year over all-play."
   },
   {
    "title": "Cursed",
-   "person": "G_TBONE",
-   "note": "-1.9 points a year under all-play."
-  },
-  {
-   "title": "Trade machine",
-   "person": "G_NISH",
-   "note": "19 trades all time."
+   "person": "name:Chris",
+   "note": "-1.8 points a year under all-play."
   },
   {
    "title": "Mr. Consistent",
-   "person": "G_LUIS",
-   "note": "Average finish 7, rarely moves."
+   "person": "name:Sagar",
+   "note": "Average finish 10.5, rarely moves."
   }
  ],
- "sample": true,
+ "sample": false,
  "lore": {
-  "headline": "THE BOOK OF GOONS",
-  "subhead": "5 seasons of glory, grudges and last-place finishes.",
+  "headline": "TWO SEASONS, TWO KINGS, ZERO MERCY",
+  "subhead": "The archive opens with 2024-25 and 2025-26, and nobody comes out clean.",
   "body": [
-   "priya sits on top of the all-time table with 3 titles. Everyone else is chasing."
+   "Vishal won 2024-25 from the top seed. Arnav B answered by winning 2025-26 a year after finishing 10th, which tells you everything about this league's attention span. John J made the playoffs both years, finished 3rd and then 2nd, and owns zero rings. Parth lost the 2024-25 final and settled for 4th the next year. Bridesmaid energy.",
+   "Eshan B is the league's punching bag: last place in 2025-26, 0-4 against Phil, 0-4 against Chris, 0-3 against Parth. Keshav is +6.0 a year over all-play, so whatever he thinks he's doing, it's mostly luck. Sagar averages a 10.5 finish. Consistency is a virtue, they said."
   ]
  }
 }
