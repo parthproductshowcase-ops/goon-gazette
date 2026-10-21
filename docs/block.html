@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=27eed80c">
+<link rel="stylesheet" href="themes/fight.css?v=017ae4b3">
 
 <div class="wrap picks-page">
   <header class="mast">
@@ -41,6 +41,7 @@
       <div class="bk-pinrow"><input class="pk-in" id="pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="PIN" autocomplete="off"><span class="bk-pinmsg" id="pinmsg"></span></div>
       <div id="mine"></div>
       <div class="bk-add" id="add" hidden>
+        <div id="roster" class="bk-roster"></div>
         <input class="pk-in" id="player" list="pl-list" maxlength="40" placeholder="Player from your roster">
         <input class="pk-in" id="note" maxlength="60" placeholder="Looking for (optional), e.g. boards, steals">
         <button type="button" class="pk-submit" id="list-btn">Put Him on the Block</button>
@@ -139,12 +140,23 @@ function drawMine() {
   $("mine").innerHTML = `<div class="bk-mine"><span class="label">${esc(MGR[who])}'s block, ${mine.length} of ${STATE.max}</span>` +
     (mine.map(x => `<div class="bk-row"><mark>${esc(x.player)}</mark><button type="button" class="pk-edit" data-pull="${esc(x.player)}">Pull him</button></div>`).join("") || `<p class="note">Empty. Somebody on that roster has to go.</p>`) + `</div>`;
   $("add").hidden = room <= 0;
+  // this season's roster: tap a player instead of typing
+  const R = CFG.rosters && CFG.rosters.teams && CFG.rosters.teams[who];
+  const taken = new Set((STATE.listings || []).map(x => x.player.toLowerCase()));
+  $("player").hidden = !!R;
+  $("roster").innerHTML = R ? `<span class="label">Pick from ${esc(R.team)}</span><div class="chips">` +
+    R.players.filter(n => !taken.has(n.toLowerCase())).map(n => `<button type="button" class="chip${$("player").value === n ? " on" : ""}" data-p="${esc(n)}">${esc(n)}${(R.il || []).includes(n) ? `<i class="tag">IL</i>` : ""}</button>`).join("") + `</div>` : "";
 }
 
 $("mine").addEventListener("click", e => {
   const b = e.target.closest("[data-pull]"); if (!b) return;
   b.disabled = true; b.textContent = "Pulling…";
   send({action: "block_remove", who, pin, player: b.dataset.pull, reader: LS.get("gg_reader") || ""});
+});
+$("roster").addEventListener("click", e => {
+  const b = e.target.closest("[data-p]"); if (!b) return;
+  $("player").value = b.dataset.p;
+  $("roster").querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b));
 });
 $("list-btn").addEventListener("click", () => {
   const player = $("player").value.trim(); if (!player) { $("player").focus(); return; }

@@ -550,3 +550,6 @@ nav.site a.block + a{margin-left:auto}
 .bk-tag{font:800 10px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;padding:4px 6px;border-radius:2px;background:var(--accent);color:#fff}
 .bk-ev.remove .bk-tag{background:var(--muted)}
 .bk-add[hidden]{display:none}
+.bk-roster .label{display:block;font:800 11px/1 var(--body);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+.bk-roster .chip{font-size:13px;padding:8px 10px;min-height:36px}
+.pk-in[hidden]{display:none}

@@ -22,7 +22,8 @@
  *         POST {action:"pin_check", who, pin}
  *         GET  ?block=1  -> {listings:[{who, player, note, since}], recent:[...], max}
  *
- * Lock times, managers and the block cap come from goongazette.com/data/polls.json.
+ * Lock times, managers, rosters and the block cap come from goongazette.com/data/polls.json.
+ * When polls.json has rosters for a manager, he can only list players on that roster.
  */
 const CONFIG_URL = "https://goongazette.com/data/polls.json";
 const SHEET = "responses";
@@ -171,6 +172,10 @@ function listings_() {
   return { listings: Object.values(on).sort((a, b) => a.since < b.since ? 1 : -1), recent: recent.slice(-20).reverse() };
 }
 
+function norm_(s) {
+  return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
 function blockGet_(cfg) {
   const L = listings_();
   return { ok: true, max: (cfg.block && cfg.block.max) || 2, listings: L.listings, recent: L.recent };
@@ -182,8 +187,15 @@ function blockPost_(cfg, b) {
   if (!m) return { ok: false, error: "unknown manager" };
   if (!pinOk_(b.who, b.pin)) return { ok: false, error: "wrong PIN" };
   if (b.action === "pin_check") return { ok: true };
-  const player = String(b.player || "").replace(/\s+/g, " ").trim().slice(0, 40);
+  let player = String(b.player || "").replace(/\s+/g, " ").trim().slice(0, 40);
   if (!player) return { ok: false, error: "no player" };
+  // with this season's rosters loaded, a manager can only list his own players
+  const roster = cfg.rosters && cfg.rosters.teams && cfg.rosters.teams[b.who];
+  if (roster && b.action === "block_add") {
+    const hit = (roster.players || []).find(n => norm_(n) === norm_(player));
+    if (!hit) return { ok: false, error: player + " isn't on your roster" };
+    player = hit;
+  }
   const reader = String(b.reader || "").replace(/[^a-z0-9_-]/gi, "").slice(0, 24);
   const L = listings_().listings;
   const mine = L.filter(x => x.who === b.who);
