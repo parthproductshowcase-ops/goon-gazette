@@ -68,7 +68,13 @@ def facts(a, polls=None):
                 q = qs.get(k)
                 if not q:
                     continue
-                row[q["q"]] = names.get(v, v) if q["type"] == "manager" else v
+                if q["type"] == "manager":
+                    v = names.get(v, v)
+                elif q["type"] == "managers":
+                    v = [names.get(x, x) for x in v.split("|") if x]
+                elif q.get("pick", 1) > 1:
+                    v = [x for x in v.split("|") if x]
+                row[q["q"]] = v
             if row["team"] and "finish" in r["answers"] and row["team"] in rank:
                 row["predicted_own_finish"] = int(r["answers"]["finish"])
                 row["current_power_rank"] = rank[row["team"]]
@@ -90,6 +96,7 @@ def context(season="2025"):
         if not mid:
             continue
         people[mid] = {"fin": [[x["label"], x["rank"]] for x in row["history"]],
+                       "po": [bool(x.get("made_playoffs")) for x in row["history"]],
                        "titles": row["titles"], "sackos": row["sackos"],
                        "trades": row["trades"], "moves": row["moves"]}
     t = h["trophies"][0] if h.get("trophies") else None

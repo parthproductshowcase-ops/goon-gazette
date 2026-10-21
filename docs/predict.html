@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=05da62b8">
+<link rel="stylesheet" href="themes/fight.css?v=57174f5a">
 
 <div class="wrap picks-page">
   <header class="mast">
@@ -114,9 +114,18 @@ function drawStatus(s) {
     (stall.length ? `<p class="pk-stall"><span class="label">${s.locked ? "Ducked it" : "Still stalling"}</span>${stall.map(m => `<b>${esc(m.name)}</b>`).join(", ")}</p>` : "");
 }
 
-function chipRow(name, opts, cur) {
-  return `<div class="chips" data-q="${name}">` + opts.map(([v, label, sub, tag]) =>
-    `<button type="button" class="chip${sub ? " two" : ""}${String(cur) === String(v) ? " on" : ""}" data-v="${esc(v)}" aria-pressed="${String(cur) === String(v)}"><span>${esc(label)}${tag ? `<i class="tag">${esc(tag)}</i>` : ""}</span>${sub ? `<small>${esc(sub)}</small>` : ""}</button>`).join("") + `</div>`;
+// multi-answer questions store their picks joined with "|"
+const parts = v => String(v || "").split("|").filter(Boolean);
+function chipRow(name, opts, cur, multi) {
+  const on = new Set(multi ? parts(cur) : [String(cur)]);
+  return `<div class="chips" data-q="${name}"${multi ? ` data-multi="${multi}"` : ""}>` + opts.map(([v, label, sub, tag]) =>
+    `<button type="button" class="chip${sub ? " two" : ""}${on.has(String(v)) ? " on" : ""}" data-v="${esc(v)}" aria-pressed="${on.has(String(v))}"><span>${esc(label)}${tag ? `<i class="tag">${esc(tag)}</i>` : ""}</span>${sub ? `<small>${esc(sub)}</small>` : ""}</button>`).join("") + `</div>`;
+}
+function valid(q) {
+  const v = answers[q.id];
+  if (q.type === "managers") return parts(v).length === q.pick;
+  if (q.type === "player" && q.pick > 1) { const p = parts(v); return p.length === q.pick && new Set(p.map(x => x.toLowerCase())).size === q.pick; }
+  return !!v;
 }
 
 // last season's receipts, shown with each question (built by `python -m pipeline.polls --context`)
@@ -126,11 +135,16 @@ function tape(q) {
   const fins = id => (P[id]?.fin || []).map(f => ordinal(f[1])).join(", ");
   const mgr = (sub, tags) => CFG.managers.map(m => [m.id, m.name, sub(m.id), tags && tags(m.id)]);
   const crown = id => id === X.champ ? "Champ" : id === X.sacko ? "Last" : "";
-  if (q.id === "champ" || q.id === "sacko")
-    return {opts: mgr(id => fins(id) ? "Finished " + fins(id) : "New blood", crown), html: `<p class="note">Final finishes, ${esc((P[X.champ]?.fin || []).map(f => f[0]).join(" and ") || "last two seasons")}.</p>`};
+  const seasons = esc((P[X.champ]?.fin || []).map(f => f[0]).join(" and ") || "last two seasons");
+  if (q.id === "champ")
+    return {opts: mgr(id => fins(id) ? "Finished " + fins(id) : "New blood", crown), html: `<p class="note">Final finishes, ${seasons}.</p>`};
+  if (q.id === "missing") {
+    const out = id => { const po = P[id]?.po || []; return po.length && !po[po.length - 1] ? "Missed" : ""; };
+    return {opts: mgr(id => fins(id) ? "Finished " + fins(id) : "New blood", out), html: `<p class="note">Final finishes, ${seasons}. Tagged: missed the playoffs last season.</p>`};
+  }
   if (q.id === "trade") {
     const tr = CFG.managers.filter(m => P[m.id]?.trades).map(m => `<b>${esc(m.name)}</b> ${P[m.id].trades}`);
-    return {opts: null, html: `<p class="note">Trades over the last two seasons: ${tr.length ? tr.join(", ") + ". Everyone else: 0" : "zero, league-wide"}. Somebody is due.</p>`};
+    return {opts: null, html: `<p class="note">Trades accepted over the last two seasons: ${tr.length ? tr.join(", ") + ". Everyone else: 0" : "zero, league-wide"}. The bad offers never get accepted, so this one runs on reputation.</p>`};
   }
   if (q.type === "rank") {
     const me = LS.get("gg_who"), mine = me && fins(me);
@@ -158,9 +172,10 @@ function buildForm() {
     const cur = answers[q.id], T = tape(q);
     let body;
     if (q.type === "manager") body = chipRow(q.id, T.opts || mgrs, cur);
+    else if (q.type === "managers") body = chipRow(q.id, T.opts || mgrs, cur, q.pick) + `<small class="pk-left" data-for="${q.id}"></small>`;
     else if (q.type === "rank") body = chipRow(q.id, CFG.managers.map((_, k) => [k + 1, ordinal(k + 1)]), cur);
     else if (q.type === "cat") body = chipRow(q.id, T.opts || CFG.cats.map(c => [c, c]), cur);
-    else if (q.type === "player") body = `<input class="pk-in" list="pl-list" name="${q.id}" data-q="${q.id}" placeholder="Type a player" maxlength="40" value="${esc(cur || "")}">`;
+    else if (q.type === "player") { const cp = parts(cur); body = `<div class="pk-pair">` + Array.from({length: q.pick || 1}, (_, k) => `<input class="pk-in" list="pl-list" data-q="${q.id}" data-i="${k}" placeholder="${q.pick > 1 ? ["First", "Second", "Third"][k] + " player" : "Type a player"}" maxlength="40" value="${esc(cp[k] || "")}">`).join("") + `</div>`; }
     else body = `<input class="pk-in" name="${q.id}" data-q="${q.id}" maxlength="${q.max || 140}" placeholder="Make it count" value="${esc(cur || "")}"><small class="pk-left" data-for="${q.id}"></small>`;
     return `<section class="pk-q" data-type="${q.type}"><h3><span class="pk-n">${i + 1}</span>${esc(q.q)}${q.optional ? ` <em>Optional</em>` : ""}</h3>${q.hint ? `<p class="note">${esc(q.hint)}</p>` : ""}${q.type === "player" ? body + T.html : T.html + body}</section>`;
   }).join("") + `<datalist id="pl-list">${CFG.players.map(p => `<option value="${esc(p)}">`).join("")}</datalist>`;
@@ -168,14 +183,22 @@ function buildForm() {
 
   $("pk-form").addEventListener("click", e => {
     const b = e.target.closest(".chip"); if (!b) return;
-    const row = b.parentNode, q = row.dataset.q;
+    const row = b.parentNode, q = row.dataset.q, multi = +row.dataset.multi || 0;
+    if (multi) {
+      const isOn = b.classList.contains("on");
+      if (!isOn && row.querySelectorAll(".chip.on").length >= multi) { row.classList.remove("full"); void row.offsetWidth; row.classList.add("full"); return; }
+      b.classList.toggle("on", !isOn); b.setAttribute("aria-pressed", !isOn);
+      answers[q] = [...row.querySelectorAll(".chip.on")].map(c => c.dataset.v).join("|");
+      touched(); return;
+    }
     row.querySelectorAll(".chip").forEach(c => { c.classList.toggle("on", c === b); c.setAttribute("aria-pressed", c === b); });
     if (q === "__who") { who = b.dataset.v; LS.set("gg_who", who); } else answers[q] = b.dataset.v;
     touched();
   });
   $("pk-form").addEventListener("input", e => {
     const q = e.target.dataset.q; if (!q) return;
-    answers[q] = e.target.value.trim();
+    if (e.target.dataset.i != null) answers[q] = [...document.querySelectorAll(`input[data-q="${q}"]`)].map(x => x.value.trim().replace(/\|/g, "")).filter(Boolean).join("|");
+    else answers[q] = e.target.value.trim();
     touched();
   });
   $("pk-form").addEventListener("submit", submit);
@@ -186,11 +209,12 @@ function buildForm() {
 function touched(init) {
   if (!init && !started) { started = true; gc.once("picks/start"); }
   const req = POLL.questions.filter(q => !q.optional);
-  const done = req.filter(q => answers[q.id]).length;
+  const done = req.filter(valid).length;
   const ready = who && done === req.length;
   $("pk-progress").innerHTML = done < req.length ? `<b>${done}</b> of ${req.length} answered` : !who ? "Now sign it at the bottom" : "Ready to file";
   $("pk-submit").disabled = !ready;
-  document.querySelectorAll(".pk-left").forEach(s => { const q = POLL.questions.find(x => x.id === s.dataset.for); s.textContent = `${(q.max || 140) - (answers[q.id] || "").length} left`; });
+  document.querySelectorAll(".pk-left").forEach(s => { const q = POLL.questions.find(x => x.id === s.dataset.for);
+    s.textContent = q.type === "managers" ? `${parts(answers[q.id]).length} of ${q.pick} picked` : `${(q.max || 140) - (answers[q.id] || "").length} left`; });
 }
 
 function submit(e) {
@@ -214,6 +238,8 @@ function submit(e) {
 function label(q, v) {
   if (v == null || v === "") return "–";
   if (q.type === "manager") return MGR[v] || v;
+  if (q.type === "managers") return parts(v).map(x => MGR[x] || x).join(", ");
+  if (q.pick > 1) return parts(v).join(" and ");
   if (q.type === "rank") return ordinal(+v);
   return v;
 }
@@ -237,9 +263,10 @@ function drawLedger(picks) {
   // consensus: top three answers per question
   $("cons").innerHTML = qs.map(q => {
     const tally = {};
-    picks.forEach(p => { const v = p.answers[q.id]; if (v) { const k = q.type === "player" ? v.toLowerCase() : v; tally[k] = tally[k] || {v, n: 0}; tally[k].n++; } });
-    const top = Object.values(tally).sort((a, b) => b.n - a.n).slice(0, 3);
-    return `<div class="pk-c"><h3>${esc(q.q)}</h3>${top.map((t, i) => `<div class="pk-bar-row${i ? "" : " lead"}"><span>${q.type === "player" ? `<mark>${esc(label(q, t.v))}</mark>` : `<b>${esc(label(q, t.v))}</b>`}</span><i style="--w:${Math.round(t.n / picks.length * 100)}%"></i><b class="num">${t.n}</b></div>`).join("") || `<p class="note">No picks.</p>`}</div>`;
+    const one = {type: q.type === "managers" ? "manager" : q.type};
+    picks.forEach(p => { (q.pick > 1 ? parts(p.answers[q.id]) : [p.answers[q.id]]).filter(Boolean).forEach(v => { const k = q.type === "player" ? v.toLowerCase() : v; tally[k] = tally[k] || {v, n: 0}; tally[k].n++; }); });
+    const top = Object.values(tally).sort((a, b) => b.n - a.n).slice(0, q.type === "managers" ? q.pick : 3);
+    return `<div class="pk-c"><h3>${esc(q.q)}</h3>${top.map((t, i) => `<div class="pk-bar-row${i ? "" : " lead"}"><span>${q.type === "player" ? `<mark>${esc(label(one, t.v))}</mark>` : `<b>${esc(label(one, t.v))}</b>`}</span><i style="--w:${Math.round(t.n / picks.length * 100)}%"></i><b class="num">${t.n}</b></div>`).join("") || `<p class="note">No picks.</p>`}</div>`;
   }).join("");
   const cols = POLL.questions.filter(q => q.type !== "text");
   $("lg-table").innerHTML = `<thead><tr><th>Manager</th>${cols.map(q => `<th>${esc(q.id === "finish" ? "Self" : shortQ(q))}</th>`).join("")}</tr></thead><tbody>` +
@@ -250,5 +277,5 @@ function drawLedger(picks) {
     $("quote-list").innerHTML = said.map(p => `<blockquote>"${esc(p.answers.talk)}"<cite>${esc(MGR[p.who] || p.who)}</cite></blockquote>`).join("");
   }
 }
-function shortQ(q) { return ({champ: "Champ", sacko: "Last", bust: "Bust", breakout: "Breakout", trade: "Worst trade", own: "Owns", punt: "Punts"})[q.id] || q.id; }
+function shortQ(q) { return ({champ: "Champ", missing: "Miss playoffs", bust: "Busts", breakout: "Breakouts", trade: "Worst offers"})[q.id] || q.id; }
 </script>

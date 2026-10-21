@@ -238,9 +238,12 @@
      "q": "Who wins the 2026-27 title?"
     },
     {
-     "id": "sacko",
-     "type": "manager",
-     "q": "Who finishes dead last?"
+     "id": "missing",
+     "type": "managers",
+     "pick": 6,
+     "max": 120,
+     "q": "Which 6 miss the playoffs?",
+     "hint": "Six of twelve get in. Pick the six who don't."
     },
     {
      "id": "finish",
@@ -250,29 +253,23 @@
     {
      "id": "trade",
      "type": "manager",
-     "q": "Who makes the worst trade?"
+     "q": "Who offers the worst trades?"
     },
     {
      "id": "bust",
      "type": "player",
-     "q": "Biggest bust of the season",
-     "hint": "A star who wrecks somebody's draft"
+     "pick": 2,
+     "max": 90,
+     "q": "Two biggest busts",
+     "hint": "Stars who wreck somebody's draft"
     },
     {
      "id": "breakout",
      "type": "player",
-     "q": "Breakout player",
-     "hint": "Someone nobody paid for"
-    },
-    {
-     "id": "own",
-     "type": "cat",
-     "q": "The category your team owns"
-    },
-    {
-     "id": "punt",
-     "type": "cat",
-     "q": "The category you're giving up on"
+     "pick": 2,
+     "max": 90,
+     "q": "Two breakout players",
+     "hint": "Guys nobody paid for"
     },
     {
      "id": "talk",
@@ -301,6 +298,10 @@
       1
      ]
     ],
+    "po": [
+     false,
+     true
+    ],
     "titles": 1,
     "sackos": 0,
     "trades": 0,
@@ -316,6 +317,10 @@
       "2025–26",
       3
      ]
+    ],
+    "po": [
+     true,
+     true
     ],
     "titles": 1,
     "sackos": 0,
@@ -333,6 +338,10 @@
       2
      ]
     ],
+    "po": [
+     true,
+     true
+    ],
     "titles": 0,
     "sackos": 0,
     "trades": 0,
@@ -349,6 +358,10 @@
       5
      ]
     ],
+    "po": [
+     true,
+     true
+    ],
     "titles": 0,
     "sackos": 0,
     "trades": 1,
@@ -360,6 +373,9 @@
       "2025–26",
       6
      ]
+    ],
+    "po": [
+     true
     ],
     "titles": 0,
     "sackos": 0,
@@ -377,6 +393,10 @@
       4
      ]
     ],
+    "po": [
+     true,
+     true
+    ],
     "titles": 0,
     "sackos": 0,
     "trades": 1,
@@ -392,6 +412,10 @@
       "2025–26",
       8
      ]
+    ],
+    "po": [
+     true,
+     false
     ],
     "titles": 0,
     "sackos": 0,
@@ -409,6 +433,10 @@
       7
      ]
     ],
+    "po": [
+     false,
+     false
+    ],
     "titles": 0,
     "sackos": 0,
     "trades": 0,
@@ -420,6 +448,9 @@
       "2025–26",
       9
      ]
+    ],
+    "po": [
+     false
     ],
     "titles": 0,
     "sackos": 0,
@@ -437,6 +468,10 @@
       10
      ]
     ],
+    "po": [
+     false,
+     false
+    ],
     "titles": 0,
     "sackos": 0,
     "trades": 0,
@@ -448,6 +483,9 @@
       "2025–26",
       11
      ]
+    ],
+    "po": [
+     false
     ],
     "titles": 0,
     "sackos": 0,
@@ -464,6 +502,10 @@
       "2025–26",
       12
      ]
+    ],
+    "po": [
+     false,
+     false
     ],
     "titles": 0,
     "sackos": 1,

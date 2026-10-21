@@ -511,3 +511,7 @@ nav.site a.picks.open[aria-current="page"]{box-shadow:inset 0 0 0 2px #1a1a1a,0 
 .pk-tape em.ok{color:var(--good)}
 .pk-tape em.no{color:var(--bad)}
 @media (max-width:420px){.pk-tape .tr{grid-template-columns:minmax(0,1fr) auto;row-gap:2px}.pk-tape em{grid-column:2;text-align:right}}
+.pk-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:420px){.pk-pair{grid-template-columns:1fr}}
+.chips.full{animation:pk-shake .3s}
+@keyframes pk-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
