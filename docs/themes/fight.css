@@ -333,8 +333,8 @@ nav.tabs{position:sticky;top:0;z-index:6}
 .rk-tip li{display:flex;align-items:center;gap:6px;line-height:1.55;color:var(--muted)}
 .rk-tip li.on{color:var(--ink);font-weight:700}
 .rk-tip li span{display:inline-block;min-width:16px;text-align:right;font-variant-numeric:tabular-nums}
-.sw{display:inline-block;width:10px;height:3px;border-radius:2px}
-.sw.s1{background:var(--s1)}.sw.s2{background:var(--s2)}.sw.s3{background:var(--s3)}.sw.s4{background:var(--s4)}
+i.sw{display:inline-block;width:10px;height:3px;border-radius:2px}
+i.sw.s1{background:var(--s1)}i.sw.s2{background:var(--s2)}i.sw.s3{background:var(--s3)}i.sw.s4{background:var(--s4)}
 .rk-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--rule)}
 .rk-chip{font:600 13px/1 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:2px;padding:8px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:34px}
 .rk-chip:hover{border-color:var(--ink)}

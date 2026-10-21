@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=017ae4b3">
+<link rel="stylesheet" href="themes/fight.css?v=13670745">
 
 <div class="wrap">
   <header class="mast">
@@ -106,6 +106,10 @@ function render(a){
   const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
   $("dl1").textContent = d.toLocaleDateString("en-US", {weekday:"long", month:"short", day:"numeric"});
   $("dl2").textContent = a.preseason ? "Preseason" : `Wk ${a.league?.current_week ?? ""}`;
+  if (a.preview){
+    const b = $("banner"); b.hidden = false;
+    b.innerHTML = `<b>Preview.</b> Your real league, read from Yahoo's pages through ${new Date(a.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"})}. Only people with this link see it; everyone else still sees the chains.`;
+  }
   if (a.sample){
     if (PREVIEW) { const b = $("banner"); b.hidden = false; b.innerHTML = `<b>Preview.</b> Sample league with made-up teams and numbers, so you can click around. Your real league replaces it the morning after the Yahoo API opens.`; }
     else lockdown();
@@ -347,7 +351,9 @@ function spark(vals){
 }
 
 Promise.all([
-  fetch("data/league.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  // preview tabs read the real-league preview (built from Yahoo's pages) when there is one
+  (PREVIEW ? fetch("data/preview/league.json", {cache:"no-store"}).then(r => r.ok ? r.json() : Promise.reject()).catch(() => null) : Promise.resolve(null))
+    .then(p => p || fetch("data/league.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })),
   fetch("data/tonight.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null)
 ]).then(([a, t]) => {
     // the evening edition wins while it is newer than the morning paper
