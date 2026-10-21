@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette Trade Block</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=27eed80c">
+
+<div class="wrap picks-page">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1><small>Everything must go</small></div>
+    <div class="dateline"><span class="label">Trade wire</span><span class="big" id="dl2">Open</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+
+  <section class="pk-hero">
+    <div>
+      <span class="label">The Trade Block</span>
+      <h2>Who's Selling</h2>
+      <p>Two players max per manager. The whole league gets pinged when you list one, and again when you chicken out.</p>
+    </div>
+    <div class="pk-status" id="bk-status"><div class="pk-count"><b class="num">…</b><span>on the block</span></div></div>
+  </section>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <div class="sec-head"><h2>On the Block <b class="dot">&bull;</b> <span id="bk-n">0</span> players</h2><p>Newest first. Slide into the group chat with an offer.</p></div>
+  <div class="bk-board" id="board"></div>
+
+  <div class="cols2 bk-low">
+    <section class="pk-q bk-manage" id="manage">
+      <h3><b class="dot">&bull;</b> Your block</h3>
+      <p class="note">Pick your name and enter the 4-digit PIN Parth sent you. This device remembers both.</p>
+      <div class="chips" id="who"></div>
+      <div class="bk-pinrow"><input class="pk-in" id="pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="PIN" autocomplete="off"><span class="bk-pinmsg" id="pinmsg"></span></div>
+      <div id="mine"></div>
+      <div class="bk-add" id="add" hidden>
+        <input class="pk-in" id="player" list="pl-list" maxlength="40" placeholder="Player from your roster">
+        <input class="pk-in" id="note" maxlength="60" placeholder="Looking for (optional), e.g. boards, steals">
+        <button type="button" class="pk-submit" id="list-btn">Put Him on the Block</button>
+      </div>
+      <datalist id="pl-list"></datalist>
+    </section>
+    <section class="list-card bk-wire">
+      <h3>The Wire</h3>
+      <div id="wire"><p class="note">Nothing yet. A whole league of hoarders.</p></div>
+    </section>
+  </div>
+
+  <footer><span>Listings are public. Changes post to the league chat.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+</div>
+
+<script src="assets/common.js?v=d82c5362"></script>
+<script>
+siteNav("block");
+
+const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+             set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} },
+             del: k => { try { localStorage.removeItem(k); } catch (e) {} } };
+const ago = iso => {
+  const m = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (m < 1) return "just now"; if (m < 60) return m + "m ago";
+  const h = Math.round(m / 60); if (h < 24) return h + "h ago";
+  return new Date(iso).toLocaleDateString("en-US", {month: "short", day: "numeric", timeZone: "America/New_York"});
+};
+let CFG, MGR = {}, STATE = {listings: [], recent: [], max: 2}, who = LS.get("gg_who"), pin = LS.get("gg_pin") || "", pinGood = false;
+
+getJSON("data/polls.json").then(cfg => {
+  CFG = cfg;
+  cfg.managers.forEach(m => MGR[m.id] = m.name);
+  STATE.max = (cfg.block && cfg.block.max) || 2;
+  $("pl-list").innerHTML = cfg.players.map(p => `<option value="${esc(p)}">`).join("");
+  drawWho();
+  $("pin").value = pin;
+  if (!cfg.endpoint) { showBanner("The trade wire isn't connected yet."); return; }
+  load();
+  if (who && pin) checkPin();
+}).catch(() => showBanner("Couldn't load the block. Refresh in a minute."));
+
+function showBanner(t) { const b = $("banner"); b.textContent = t; b.hidden = !t; }
+function api(body) {
+  return fetch(CFG.endpoint, {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(body)}).then(r => r.json());
+}
+function load() {
+  getJSON(CFG.endpoint + "?block=1").then(s => { STATE = s; draw(); }).catch(() => showBanner("The trade wire isn't answering. Refresh in a minute."));
+}
+
+function draw() {
+  const L = STATE.listings || [];
+  $("bk-n").textContent = L.length;
+  $("bk-status").innerHTML = `<div class="pk-count"><b class="num">${L.length}</b><span>on the block</span></div>` +
+    `<p class="pk-filed"><span class="label">Sellers</span>${[...new Set(L.map(x => x.who))].map(id => `<b>${esc(MGR[id] || id)}</b>`).join(", ") || "Nobody. Cowards."}</p>`;
+  $("board").innerHTML = L.length ? L.map(x => `<div class="bk-card">
+      <div class="bk-top"><mark>${esc(x.player)}</mark><span class="bk-ago">${ago(x.since)}</span></div>
+      <div class="bk-by">Shopped by <b>${esc(MGR[x.who] || x.who)}</b></div>
+      ${x.note ? `<div class="bk-note"><span class="label">Wants</span>${esc(x.note)}</div>` : ""}
+    </div>`).join("") : `<div class="bk-empty">Nothing for sale. Twelve managers, zero players anyone will admit to wanting gone.</div>`;
+  const R = STATE.recent || [];
+  $("wire").innerHTML = R.length ? R.map(r => `<div class="bk-ev ${r.action}"><span class="bk-tag">${r.action === "add" ? "On" : "Off"}</span><span><b>${esc(MGR[r.who] || r.who)}</b> ${r.action === "add" ? "listed" : "pulled"} <mark>${esc(r.player)}</mark></span><small>${ago(r.at)}</small></div>`).join("")
+    : `<p class="note">Nothing yet. A whole league of hoarders.</p>`;
+  drawMine();
+}
+
+function drawWho() {
+  $("who").innerHTML = CFG.managers.map(m => `<button type="button" class="chip${m.id === who ? " on" : ""}" data-v="${m.id}" aria-pressed="${m.id === who}">${esc(m.name)}</button>`).join("");
+}
+$("who").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  who = b.dataset.v; LS.set("gg_who", who); pinGood = false; drawWho(); drawMine();
+  if (pin.length === 4) checkPin();
+});
+$("pin").addEventListener("input", e => {
+  pin = e.target.value.replace(/\D/g, "").slice(0, 4); e.target.value = pin; pinGood = false;
+  $("pinmsg").textContent = ""; drawMine();
+  if (pin.length === 4 && who) checkPin();
+});
+function checkPin() {
+  if (!CFG.endpoint) return;
+  $("pinmsg").textContent = "Checking…"; $("pinmsg").className = "bk-pinmsg";
+  api({action: "pin_check", who, pin}).then(r => {
+    pinGood = !!r.ok;
+    $("pinmsg").textContent = r.ok ? "You're in" : "Wrong PIN";
+    $("pinmsg").className = "bk-pinmsg " + (r.ok ? "ok" : "no");
+    if (r.ok) LS.set("gg_pin", pin); else LS.del("gg_pin");
+    drawMine();
+  }).catch(() => { $("pinmsg").textContent = "Couldn't check"; });
+}
+
+function drawMine() {
+  const mine = (STATE.listings || []).filter(x => x.who === who);
+  const room = STATE.max - mine.length;
+  if (!who || !pinGood) { $("mine").innerHTML = ""; $("add").hidden = true; return; }
+  $("mine").innerHTML = `<div class="bk-mine"><span class="label">${esc(MGR[who])}'s block, ${mine.length} of ${STATE.max}</span>` +
+    (mine.map(x => `<div class="bk-row"><mark>${esc(x.player)}</mark><button type="button" class="pk-edit" data-pull="${esc(x.player)}">Pull him</button></div>`).join("") || `<p class="note">Empty. Somebody on that roster has to go.</p>`) + `</div>`;
+  $("add").hidden = room <= 0;
+}
+
+$("mine").addEventListener("click", e => {
+  const b = e.target.closest("[data-pull]"); if (!b) return;
+  b.disabled = true; b.textContent = "Pulling…";
+  send({action: "block_remove", who, pin, player: b.dataset.pull, reader: LS.get("gg_reader") || ""});
+});
+$("list-btn").addEventListener("click", () => {
+  const player = $("player").value.trim(); if (!player) { $("player").focus(); return; }
+  $("list-btn").disabled = true; $("list-btn").textContent = "Listing…";
+  send({action: "block_add", who, pin, player, note: $("note").value.trim(), reader: LS.get("gg_reader") || ""});
+});
+function send(body) {
+  api(body).then(r => {
+    $("list-btn").disabled = false; $("list-btn").textContent = "Put Him on the Block";
+    if (!r.ok) { showBanner("Not done: " + r.error + "."); drawMine(); return; }
+    showBanner("");
+    gc.event(body.action === "block_add" ? "block/add" : "block/remove");
+    $("player").value = ""; $("note").value = "";
+    STATE = r; draw();
+  }).catch(() => { $("list-btn").disabled = false; $("list-btn").textContent = "Put Him on the Block"; showBanner("Not done: the trade wire didn't answer. Try again."); drawMine(); });
+}
+</script>
