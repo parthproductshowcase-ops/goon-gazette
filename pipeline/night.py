@@ -10,7 +10,50 @@ Commentary is built only from numbers in the lines, so nothing is invented.
 from .players import INACTIVE, Scorer, _add_line, _empty, _line, pct_map
 from .stats import cmp_cat
 
+import re
+import unicodedata
+
 REB = ("13", "14")
+SUFFIX = {"jr", "sr", "ii", "iii", "iv"}
+
+
+def _parts(name):
+    s = unicodedata.normalize("NFD", str(name)).encode("ascii", "ignore").decode().lower()
+    raw = s.replace("-", "").split()
+    parts = [re.sub(r"[^a-z]", "", p) for p in raw]
+    keep = [(p, r) for p, r in zip(parts, raw) if p and p not in SUFFIX]
+    return keep
+
+
+def key(name):
+    """Name match across Yahoo and ESPN: full first + last name, accents, punctuation and suffixes
+    dropped. An abbreviated first name ('N. Alexander-Walker') keys as initial + last name."""
+    k = _parts(name)
+    if not k:
+        return ""
+    if len(k) == 1:
+        return k[0][0]
+    first, raw_first = k[0]
+    if len(first) == 1 or raw_first.endswith("."):
+        return f"{first[0]}. {k[-1][0]}"
+    return f"{first} {k[-1][0]}"
+
+
+def matches(name, keys):
+    """True if `name` (full name) matches any key in `keys` by full or abbreviated-first key."""
+    k = key(name)
+    if k in keys:
+        return True
+    parts = _parts(name)
+    return len(parts) > 1 and f"{parts[0][0][0]}. {parts[-1][0]}" in keys
+
+
+def owner(name, owned):
+    k = key(name)
+    if k in owned:
+        return owned[k]
+    parts = _parts(name)
+    return owned.get(f"{parts[0][0][0]}. {parts[-1][0]}") if len(parts) > 1 else None
 
 
 def _agg(stats, cats, pmap):
@@ -76,8 +119,29 @@ def build(d, recap_notes=None):
     for r in rows:
         r["desc"] = _desc(r)
         best = sorted(r["z"], key=r["z"].get, reverse=True)
-        r["best"] = [c for c in best if r["z"][c] > 0.5][:3]
+        good = {c["id"] for c in cats if c["hb"]}  # "0 TO" is not a highlight
+        r["best"] = [c for c in best if c in good and r["z"][c] > 0.5][:3]
         r["worst"] = [c for c in sorted(r["z"], key=r["z"].get) if r["z"][c] < -0.5][:2]
+
+    CAT_HB = {c["id"]: c["hb"] for c in cats}
+    # free agents who balled: every NBA line that night from players no fantasy team had
+    rostered = {key(r["name"]) for r in rows}
+    owned = d.get("owned_now") or {}
+    free = []
+    for ln in d.get("nba_lines") or []:
+        if matches(ln["name"], rostered):
+            continue
+        a, played = _agg(ln["stats"], cats, pmap)
+        if not played:
+            continue
+        z = scorer.z(a)
+        f = {"name": ln["name"], "nba": ln.get("nba", ""), "result": ln.get("result", ""), "min": ln.get("min"),
+             "value": round(sum(z.values()), 2), "z": {c: round(v, 2) for c, v in z.items()},
+             "line": _line(a, cats), "owned_by": owner(ln["name"], owned)}
+        f["desc"] = _desc(f)
+        f["best"] = [c for c in sorted(f["z"], key=f["z"].get, reverse=True) if CAT_HB.get(c) and f["z"][c] > 0.5][:3]
+        free.append(f)
+    free = [f for f in sorted(free, key=lambda f: -f["value"]) if f["value"] > 0][:8]
 
     started = [r for r in rows if not r["benched"]]
     stars = rows[:8]
@@ -164,11 +228,15 @@ def build(d, recap_notes=None):
         top, low = teams[0], [t for t in teams if t["players"]]
         if low:
             notes.append(f"Best night: {nm(top['team'])}. Worst: {nm(low[-1]['team'])}.")
+        if free:
+            f = free[0]
+            notes.append(f"Best free agent: {f['name']} ({f['desc']}). "
+                         + (f"{f['owned_by']} already grabbed him." if f["owned_by"] else "Still sitting on the wire."))
         idle = [nm(t["team"]) for t in teams if not t["started"]]
         if idle:
             notes.append(f"Nobody started a game for {', '.join(idle)}.")
     games = {tuple(sorted((r["nba"], r["result"].split()[-1]))) for r in rows if r["result"] and r["nba"]}
     return {"date": day, "players": len(rows), "games": len(games) or None,
-            "results": results, "notes": notes, "stars": stars, "bricks": bricks, "bench": bench,
+            "results": results, "notes": notes, "stars": stars, "free": free, "bricks": bricks, "bench": bench,
             "kings": kings, "teams": teams, "cats": cats,
             "team_names": {tk: {"name": T[tk]["name"], "manager": T[tk].get("manager", "")} for tk in T}}

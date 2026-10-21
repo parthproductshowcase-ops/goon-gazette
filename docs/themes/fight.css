@@ -619,3 +619,6 @@ table.nt-box td.b{color:var(--bad);font-weight:800}
 table.nt-box tr.bn td{opacity:.55}
 @media (max-width:560px){.nt-rec{display:none}.nt-hero{padding:16px}}
 nav.site a.night{margin-left:0 !important}
+.nt-tag.wire{background:var(--good)}
+.nt-tag.gone{background:var(--muted)}
+.nt-free .nt-star{border-left-color:var(--good)}

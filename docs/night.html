@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=3a4a9377">
+<link rel="stylesheet" href="themes/fight.css?v=4909127f">
 
 <div class="wrap">
   <header class="mast">
@@ -35,6 +35,11 @@
 
   <div class="sec-head"><h2>The Best Lines <b class="dot">&bull;</b> <span id="nt-n"></span></h2><p>Ranked by value across all 11 categories. Rostered players only.</p></div>
   <div class="nt-stars" id="stars"></div>
+
+  <div id="free-sec" hidden>
+    <div class="sec-head"><h2>Free Agents Who Balled</h2><p>Unrostered players with the best lines last night. Every NBA game counts.</p></div>
+    <div class="nt-stars nt-free" id="free"></div>
+  </div>
 
   <div class="cols2 nt-pair">
     <div class="list-card"><h3>Bricks</h3><p class="note">Starters who actively hurt: bad shooting on volume, turnovers.</p><div id="bricks"></div></div>
@@ -101,6 +106,15 @@ function render() {
       <div class="nt-by"><b>${nm(s.team)}</b>${s.benched ? ` <i class="nt-tag">Benched</i>` : ""}<small>${esc(s.nba)}${s.result ? ` · ${esc(s.result)}` : ""}</small></div>
       <div class="nt-chips">${s.best.map(c => chip(c, s.line[c])).join("")}</div>
       <p class="nt-desc">${esc(s.desc)}</p>
+    </article>`).join("");
+
+  const F = N.free || [];
+  $("free-sec").hidden = !F.length;
+  $("free").innerHTML = F.map(f => `<article class="nt-star ${tone(f.value)}">
+      <div class="nt-st-top"><mark>${esc(f.name)}</mark><b class="nt-val ${tone(f.value)}">${sign(f.value)}</b></div>
+      <div class="nt-by">${f.owned_by ? `<i class="nt-tag gone">Scooped by ${esc(f.owned_by)}</i>` : `<i class="nt-tag wire">On the wire</i>`}<small>${esc(f.nba)}${f.min ? ` · ${f.min} min` : ""}${f.result ? ` · ${esc(f.result)}` : ""}</small></div>
+      <div class="nt-chips">${f.best.map(c => chip(c, f.line[c])).join("")}</div>
+      <p class="nt-desc">${esc(f.desc)}</p>
     </article>`).join("");
 
   $("bricks").innerHTML = N.bricks.length ? N.bricks.map(b => `<div class="nt-row">

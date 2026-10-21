@@ -8,8 +8,9 @@
 // Step 3: JSON.stringify(window.__gg.out)  and save it as a file, then on the repo:
 //     python -m pipeline.web_current --merge that_file.json
 //
-// Output: {days: {date: {team_id: [rows]}}, transactions: [...], moves: {team_id: {moves, trades}},
-//          rosters: {team_id: {team, players, il}}}
+// Output: {days: {date: {team_id: [rows]}}, nba: {date: [rows]}, transactions: [...],
+//          moves: {team_id: {moves, trades}}, rosters: {team_id: {team, players, il}}}
+// nba rows (nba_cols): name, nba, min, result, fgm, fga, ftm, fta, tpm, tpa, pts, oreb, dreb, ast, st, blk, to
 // A row is only kept for a player who played (has makes/attempts), in day_cols order:
 // slot, name, pid, nba, pos, result, fgm, fga, ftm, fta, tpm, tpa, pts, oreb, dreb, ast, st, blk, to
 function ggScrape(dates) {
@@ -18,7 +19,7 @@ function ggScrape(dates) {
   const get = async url => new DOMParser().parseFromString(await fetch(url, {credentials: "include"}).then(r => r.text()), "text/html");
   const num = s => (s === "-" || s === "" || s == null ? 0 : Number(String(s).replace(/^\./, "0.")));
   const frac = s => { const m = /^(\d+)\/(\d+)$/.exec(s || ""); return m ? [+m[1], +m[2]] : null; };
-  const g = window.__gg = {done: false, err: null, out: {days: {}, transactions: [], moves: {}, rosters: {}}};
+  const g = window.__gg = {done: false, err: null, out: {days: {}, nba: {}, transactions: [], moves: {}, rosters: {}}};
   (async () => {
     try {
       for (const date of dates) {
@@ -42,6 +43,34 @@ function ggScrape(dates) {
           g.out.days[date][id] = rows;
           await sleep(1500);
         }
+      }
+      // every NBA box score for those dates (ESPN's public API), for free agents who balled.
+      // Keeps the 60 best lines by a rough score; the pipeline drops anyone rostered that night.
+      g.out.nba = {};
+      for (const date of dates) {
+        const sb = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${date.replace(/-/g, "")}`).then(r => r.json());
+        const rows = [];
+        for (const ev of sb.events || []) {
+          if (!ev.status?.type?.completed) continue;
+          const comp = ev.competitions[0].competitors;
+          const s = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=${ev.id}`).then(r => r.json());
+          for (const t of s.boxscore?.players || []) {
+            const me = comp.find(c => c.team.abbreviation === t.team.abbreviation), opp = comp.find(c => c !== me);
+            const res = me && opp ? `${me.winner ? "W" : "L"}, ${me.score}-${opp.score} ${me.homeAway === "home" ? "vs" : "@"} ${opp.team.abbreviation}` : "";
+            const st = t.statistics[0], ix = k => st.labels.indexOf(k);
+            for (const a of st.athletes || []) {
+              if (a.didNotPlay || !a.stats || !a.stats.length) continue;
+              const v = k => a.stats[ix(k)] || "0", pr = k => v(k).split("-").map(Number);
+              if (!(+v("MIN") > 0)) continue;
+              const [fgm, fga] = pr("FG"), [tpm, tpa] = pr("3PT"), [ftm, fta] = pr("FT");
+              rows.push([a.athlete.displayName, t.team.abbreviation, +v("MIN"), res, fgm, fga, ftm, fta, tpm, tpa,
+                +v("PTS"), +v("OREB"), +v("DREB"), +v("AST"), +v("STL"), +v("BLK"), +v("TO")]);
+            }
+          }
+          await sleep(500);
+        }
+        const rough = r => r[10] + 1.2 * (r[11] + r[12]) + 1.5 * r[13] + 3 * (r[14] + r[15]) + r[8] - r[16];
+        g.out.nba[date] = rows.sort((x, y) => rough(y) - rough(x)).slice(0, 60);
       }
       // current rosters (today's lineup page), for the trade block
       for (let id = 1; id <= 12; id++) {

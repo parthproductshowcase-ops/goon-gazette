@@ -173,6 +173,15 @@ def build_d(src, today=None):
         "days": days, "windows": windows, "transactions": transactions(src), "frac": FRAC,
     }
     d["bench"] = players.bench_from_day(d, last)
+    # every NBA line that night (free agents who balled) and who owns whom right now
+    # nba row: name, nba, min, result, fgm, fga, ftm, fta, tpm, tpa, pts, oreb, dreb, ast, st, blk, to
+    d["nba_lines"] = [{**line(["FA", r[0], "", r[1], "", r[3], *r[4:]], cols), "min": r[2]}
+                      for r in (src.get("nba") or {}).get(last, [])]
+    try:
+        R = json.loads(POLLS.read_text()).get("rosters", {}).get("teams", {})
+        d["owned_now"] = {night.key(n): v["team"] for v in R.values() for n in v.get("players", [])}
+    except Exception:
+        d["owned_now"] = {}
     return d
 
 
@@ -198,6 +207,8 @@ def merge(path):
         if len(byteam) != 12:
             sys.exit(f"{dt}: expected 12 teams, got {len(byteam)}; not merged")
         src["days"][dt] = byteam
+    for dt, rows in (new.get("nba") or {}).items():
+        src.setdefault("nba", {})[dt] = rows
     if new.get("moves"):
         src["moves"] = {str(k): v for k, v in new["moves"].items()}
     if new.get("transactions"):
