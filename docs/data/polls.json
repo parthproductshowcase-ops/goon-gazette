@@ -248,6 +248,11 @@
      "q": "Where do you finish? Be honest. We will check."
     },
     {
+     "id": "trade",
+     "type": "manager",
+     "q": "Who makes the worst trade?"
+    },
+    {
      "id": "bust",
      "type": "player",
      "q": "Biggest bust of the season",
@@ -258,11 +263,6 @@
      "type": "player",
      "q": "Breakout player",
      "hint": "Someone nobody paid for"
-    },
-    {
-     "id": "trade",
-     "type": "manager",
-     "q": "Who makes the worst trade?"
     },
     {
      "id": "own",
@@ -284,5 +284,374 @@
     }
    ]
   }
- ]
+ ],
+ "context": {
+  "season": "2025–26",
+  "champ": "arnavb",
+  "sacko": "eshanb",
+  "people": {
+   "arnavb": {
+    "fin": [
+     [
+      "2024–25",
+      10
+     ],
+     [
+      "2025–26",
+      1
+     ]
+    ],
+    "titles": 1,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 168
+   },
+   "vishal": {
+    "fin": [
+     [
+      "2024–25",
+      1
+     ],
+     [
+      "2025–26",
+      3
+     ]
+    ],
+    "titles": 1,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 185
+   },
+   "johnj": {
+    "fin": [
+     [
+      "2024–25",
+      3
+     ],
+     [
+      "2025–26",
+      2
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 186
+   },
+   "keshav": {
+    "fin": [
+     [
+      "2024–25",
+      4
+     ],
+     [
+      "2025–26",
+      5
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 1,
+    "moves": 133
+   },
+   "jason": {
+    "fin": [
+     [
+      "2025–26",
+      6
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 66
+   },
+   "parth": {
+    "fin": [
+     [
+      "2024–25",
+      2
+     ],
+     [
+      "2025–26",
+      4
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 1,
+    "moves": 176
+   },
+   "chris": {
+    "fin": [
+     [
+      "2024–25",
+      5
+     ],
+     [
+      "2025–26",
+      8
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 72
+   },
+   "phil": {
+    "fin": [
+     [
+      "2024–25",
+      7
+     ],
+     [
+      "2025–26",
+      7
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 112
+   },
+   "roshan": {
+    "fin": [
+     [
+      "2025–26",
+      9
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 69
+   },
+   "sagar": {
+    "fin": [
+     [
+      "2024–25",
+      11
+     ],
+     [
+      "2025–26",
+      10
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 51
+   },
+   "adarsh": {
+    "fin": [
+     [
+      "2025–26",
+      11
+     ]
+    ],
+    "titles": 0,
+    "sackos": 0,
+    "trades": 0,
+    "moves": 92
+   },
+   "eshanb": {
+    "fin": [
+     [
+      "2024–25",
+      9
+     ],
+     [
+      "2025–26",
+      12
+     ]
+    ],
+    "titles": 0,
+    "sackos": 1,
+    "trades": 0,
+    "moves": 106
+   }
+  },
+  "cats": {
+   "FG%": {
+    "best": "arnavb",
+    "worst": "jason"
+   },
+   "FT%": {
+    "best": "eshanb",
+    "worst": "chris"
+   },
+   "3PTM": {
+    "best": "vishal",
+    "worst": "eshanb"
+   },
+   "3PT%": {
+    "best": "arnavb",
+    "worst": "jason"
+   },
+   "PTS": {
+    "best": "vishal",
+    "worst": "eshanb"
+   },
+   "OREB": {
+    "best": "arnavb",
+    "worst": "sagar"
+   },
+   "DREB": {
+    "best": "arnavb",
+    "worst": "eshanb"
+   },
+   "AST": {
+    "best": "sagar",
+    "worst": "eshanb"
+   },
+   "ST": {
+    "best": "johnj",
+    "worst": "eshanb"
+   },
+   "BLK": {
+    "best": "vishal",
+    "worst": "eshanb"
+   },
+   "TO": {
+    "best": "eshanb",
+    "worst": "vishal"
+   }
+  },
+  "pricey": [
+   {
+    "player": "Nikola Jokić",
+    "cost": 84,
+    "by": "arnavb",
+    "rank": 1
+   },
+   {
+    "player": "Victor Wembanyama",
+    "cost": 79,
+    "by": "parth",
+    "rank": 2
+   },
+   {
+    "player": "Luka Dončić",
+    "cost": 77,
+    "by": "johnj",
+    "rank": null
+   },
+   {
+    "player": "Shai Gilgeous-Alexander",
+    "cost": 73,
+    "by": "adarsh",
+    "rank": 3
+   },
+   {
+    "player": "Giannis Antetokounmpo",
+    "cost": 63,
+    "by": "phil",
+    "rank": null
+   },
+   {
+    "player": "Anthony Edwards",
+    "cost": 58,
+    "by": "arnavb",
+    "rank": null
+   },
+   {
+    "player": "Karl-Anthony Towns",
+    "cost": 56,
+    "by": "roshan",
+    "rank": 8
+   },
+   {
+    "player": "Cade Cunningham",
+    "cost": 54,
+    "by": "sagar",
+    "rank": null
+   },
+   {
+    "player": "Devin Booker",
+    "cost": 51,
+    "by": "vishal",
+    "rank": null
+   },
+   {
+    "player": "Amen Thompson",
+    "cost": 50,
+    "by": "johnj",
+    "rank": null
+   }
+  ],
+  "top": [
+   {
+    "player": "Nikola Jokić",
+    "rank": 1,
+    "cost": 84,
+    "by": "arnavb"
+   },
+   {
+    "player": "Victor Wembanyama",
+    "rank": 2,
+    "cost": 79,
+    "by": "parth"
+   },
+   {
+    "player": "Shai Gilgeous-Alexander",
+    "rank": 3,
+    "cost": 73,
+    "by": "adarsh"
+   },
+   {
+    "player": "Jamal Murray",
+    "rank": 4,
+    "cost": 23,
+    "by": "jason"
+   },
+   {
+    "player": "Kawhi Leonard",
+    "rank": 5,
+    "cost": 13,
+    "by": "johnj"
+   },
+   {
+    "player": "Kevin Durant",
+    "rank": 6,
+    "cost": 42,
+    "by": "sagar"
+   },
+   {
+    "player": "Tyrese Maxey",
+    "rank": 7,
+    "cost": 40,
+    "by": "parth"
+   },
+   {
+    "player": "Karl-Anthony Towns",
+    "rank": 8,
+    "cost": 56,
+    "by": "roshan"
+   },
+   {
+    "player": "Scottie Barnes",
+    "rank": 9,
+    "cost": 29,
+    "by": "phil"
+   },
+   {
+    "player": "Donovan Clingan",
+    "rank": 10,
+    "cost": 11,
+    "by": "phil"
+   },
+   {
+    "player": "Kon Knueppel",
+    "rank": 11,
+    "cost": null,
+    "by": null
+   },
+   {
+    "player": "N. Alexander-Walker",
+    "rank": 12,
+    "cost": 1,
+    "by": "johnj"
+   }
+  ]
+ }
 }

@@ -77,5 +77,51 @@ def facts(a, polls=None):
     return out
 
 
+def context(season="2025"):
+    """Last season's facts shown next to each question, so managers pick with receipts in hand.
+    Writes cfg["context"] in polls.json. Only real archive data; nothing estimated."""
+    cfg = json.loads(CFG.read_text())
+    a = json.loads((ROOT / "archive" / f"{season}.json").read_text())
+    h = json.loads((ROOT / "docs" / "data" / "history.json").read_text())
+    ids = {_norm(m["name"]): m["id"] for m in cfg["managers"]}
+    people = {}
+    for row in h.get("table", []):
+        mid = ids.get(_norm(row["name"]))
+        if not mid:
+            continue
+        people[mid] = {"fin": [[x["label"], x["rank"]] for x in row["history"]],
+                       "titles": row["titles"], "sackos": row["sackos"],
+                       "trades": row["trades"], "moves": row["moves"]}
+    t = h["trophies"][0] if h.get("trophies") else None
+    champ = ids.get(_norm(t["champion"]["person"].split(":", 1)[-1])) if t else None
+    sacko = ids.get(_norm(t["sacko"]["person"].split(":", 1)[-1])) if t else None
+    mgr_of = {}
+    for tk, tm in a["teams"].items():
+        nm = "Parth" if tm["manager"] == "parth s" else tm["manager"]
+        mgr_of[tk] = ids.get(_norm(nm))
+    # category leaders and trailers for the season (TO: fewer is better)
+    cats = {}
+    for c in a["cats"]:
+        vals = [(v[c["id"]], tk) for tk, v in a["season_stats"].items() if v.get(c["id"]) is not None]
+        if not vals:
+            continue
+        best = (min if c.get("hb") is False else max)(vals)[1]
+        worst = (max if c.get("hb") is False else min)(vals)[1]
+        cats[c["name"]] = {"best": mgr_of.get(best), "worst": mgr_of.get(worst)}
+    top = {p["player"]: p["rank"] for p in a["top_players"]}
+    pricey = sorted(a["draft_all"], key=lambda d: -(d.get("cost") or 0))[:10]
+    cfg["context"] = {
+        "season": a["label"], "champ": champ, "sacko": sacko, "people": people, "cats": cats,
+        "pricey": [{"player": d["player"], "cost": d["cost"], "by": mgr_of.get(d["team"]), "rank": top.get(d["player"])} for d in pricey],
+        "top": [{"player": p["player"], "rank": p["rank"], "cost": p.get("cost"), "by": mgr_of.get(p.get("drafted_by"))} for p in a["top_players"][:12]],
+    }
+    CFG.write_text(json.dumps(cfg, indent=1, ensure_ascii=False))
+    return cfg["context"]
+
+
 if __name__ == "__main__":
-    print(json.dumps(snapshot(), indent=1)[:2000])
+    import sys
+    if "--context" in sys.argv:
+        print(json.dumps(context(), indent=1, ensure_ascii=False)[:3000])
+    else:
+        print(json.dumps(snapshot(), indent=1)[:2000])
