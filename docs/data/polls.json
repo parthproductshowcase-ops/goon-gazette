@@ -1,6 +1,6 @@
 {
  "_help": "Polls for goongazette.com/predict.html. 'endpoint' is the Google Apps Script web app URL. Managers default to the 2025-26 lineup; edit if the 2026-27 league changed. Add a flash poll by appending to 'polls' (newest open poll is shown). Times are ET with offset.",
- "endpoint": "https://script.google.com/macros/s/AKfycbwshY6EVStS6_3a-DRBTaheulguDm-7rbnofGMlL5I7bjHHwoG4AiJOjP-flpyge7eU/exec",
+ "endpoint": "https://script.google.com/macros/s/AKfycby6S0n8p_O3XQdV9C9lqFpp4_X_u7_MN2Se4Cv7J4JhW5carJ-bFpnqVhS46sqbTqvh/exec",
  "managers": [
   {
    "id": "adarsh",
