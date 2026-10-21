@@ -615,7 +615,7 @@
    "name": "theInfamous",
    "manager": "John J",
    "logo": null,
-   "moves": 4,
+   "moves": 5,
    "trades": 0
   },
   "web.l.39751.t.2": {
@@ -636,7 +636,7 @@
    "name": "Gopher Gold",
    "manager": "Phil",
    "logo": null,
-   "moves": 2,
+   "moves": 3,
    "trades": 0
   },
   "web.l.39751.t.5": {
@@ -1676,9 +1676,9 @@
  },
  "bench": [],
  "weeks_played": 0,
- "preview": true,
  "source": "yahoo-web",
  "recap": {
+  "date": "2026-10-20",
   "headline": "Opening Night: Zero Fox Given, Literally",
   "subhead": "Paul George dropped 38, Wembanyama went 1 for 13, and Zero Fox Given never took the floor.",
   "body": [],
@@ -1713,5 +1713,5 @@
    }
   ]
  },
- "generated_at": "2026-10-21T04:05-04:00"
+ "generated_at": "2026-10-21T14:45-04:00"
 }
