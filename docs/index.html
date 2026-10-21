@@ -77,7 +77,7 @@
   <footer><span id="gen"></span><span>Morning edition 4am ET. Lineup Card 7:15pm ET, after lineups lock.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=d82c5362"></script>
+<script src="assets/common.js?v=251cc02d"></script>
 <script>
 siteNav("today");
 
@@ -106,7 +106,10 @@ function render(a){
   const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
   $("dl1").textContent = d.toLocaleDateString("en-US", {weekday:"long", month:"short", day:"numeric"});
   $("dl2").textContent = a.preseason ? "Preseason" : `Wk ${a.league?.current_week ?? ""}`;
-  if (a.sample){ lockdown(); }
+  if (a.sample){
+    if (PREVIEW) { const b = $("banner"); b.hidden = false; b.innerHTML = `<b>Preview.</b> Sample league with made-up teams and numbers, so you can click around. Your real league replaces it the morning after the Yahoo API opens.`; }
+    else lockdown();
+  }
 
   const r = a.recap || {};
   $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");

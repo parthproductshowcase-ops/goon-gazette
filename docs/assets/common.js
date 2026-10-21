@@ -37,7 +37,15 @@ function siteNav(active) {
 
 // The current season stays in chains until the first real (non-sample) build lands.
 const LOCK_SVG = `<svg class="lock-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2h1.5A1.5 1.5 0 0 1 20 11.5v9A1.5 1.5 0 0 1 18.5 22h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10zm2 0h6V8a3 3 0 0 0-6 0zm3 4a1.6 1.6 0 0 0-.8 3V19h1.6v-2a1.6 1.6 0 0 0-.8-3z"/></svg>`;
+// goongazette.com/?preview opens the current-season pages on sample data for this tab only
+const PREVIEW = (() => {
+  try {
+    if (new URLSearchParams(location.search).has("preview")) sessionStorage.setItem("gg_preview", "1");
+    return sessionStorage.getItem("gg_preview") === "1";
+  } catch (e) { return new URLSearchParams(location.search).has("preview"); }
+})();
 function seasonLocked() {
+  if (PREVIEW) return Promise.resolve(false);
   if (!seasonLocked.p) seasonLocked.p = getJSON("data/edition.json").then(e => !!e.sample).catch(() => false);
   return seasonLocked.p;
 }
