@@ -246,11 +246,6 @@
      "hint": "Six of twelve get in. Pick the six who don't."
     },
     {
-     "id": "finish",
-     "type": "rank",
-     "q": "Where do you finish? Be honest. We will check."
-    },
-    {
      "id": "bust",
      "type": "player",
      "pick": 2,
@@ -265,6 +260,11 @@
      "max": 90,
      "q": "Two breakout players",
      "hint": "Guys nobody paid for"
+    },
+    {
+     "id": "finish",
+     "type": "rank",
+     "q": "Where do you finish? Be honest. We will check."
     },
     {
      "id": "talk",

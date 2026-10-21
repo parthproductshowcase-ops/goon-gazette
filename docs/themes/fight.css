@@ -515,3 +515,4 @@ nav.site a.picks.open[aria-current="page"]{box-shadow:inset 0 0 0 2px #1a1a1a,0 
 @media (max-width:420px){.pk-pair{grid-template-columns:1fr}}
 .chips.full{animation:pk-shake .3s}
 @keyframes pk-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.pk-q[data-type="rank"]{grid-column:1/-1}
