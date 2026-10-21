@@ -135,6 +135,9 @@ def main():
                                                   "date": d["date"], "generated_at": a["generated_at"]}))
     if not sample:
         (hist / f"{d['date']}.json").write_text(blob)
+        if d.get("days"):
+            from .web_current import write_night
+            write_night(d, (a.get("recap") or {}).get("night"))
     print("wrote", OUT / "league.json")
 
 

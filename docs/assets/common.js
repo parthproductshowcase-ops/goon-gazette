@@ -19,7 +19,8 @@ function siteNav(active) {
       : link("index.html", "Current Season", "today");
     const pk = picks ? `<a href="predict.html" class="picks${picks.open ? " open" : ""}"${active === "picks" ? ' aria-current="page"' : ""}>${picks.open ? "File Your Picks" : "Picks"}${picks.open ? `<em>Locks ${esc(picks.day)}</em>` : ""}</a>` : "";
     const bk = `<a href="block.html" class="block"${active === "block" ? ' aria-current="page"' : ""}>Trade Block</a>`;
-    el.innerHTML = cur + pk + bk
+    const nt = siteNav.locked ? "" : `<a href="night.html" class="night"${active === "night" ? ' aria-current="page"' : ""}>Last Night</a>`;
+    el.innerHTML = cur + nt + pk + bk
       + seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)).join("")
       + link("history.html", "League history", "history");
   };

@@ -19,7 +19,7 @@ from datetime import date as Date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import players, recap, stats
+from . import night, players, recap, stats
 
 ET = ZoneInfo("America/New_York")
 ROOT = Path(__file__).resolve().parent.parent
@@ -61,7 +61,8 @@ def line(row, cols):
     s["9004003"] = [r["fgm"], r["fga"]]
     s["9007006"] = [r["ftm"], r["fta"]]
     s["9001002"] = [r["tpm"], r["tpa"]]
-    return {"pk": "nba.p." + r["pid"], "name": r["name"], "pos": r["slot"], "nba": r["nba"], "stats": s}
+    return {"pk": "nba.p." + r["pid"], "name": r["name"], "pos": r["slot"], "nba": r["nba"],
+            "result": r.get("result", ""), "stats": s}
 
 
 def totals(lines):
@@ -177,6 +178,7 @@ def build_d(src, today=None):
 
 def analyze(src, today=None):
     d = build_d(src, today)
+    analyze.d = d
     hist = DATA / "history"
     prev_files = sorted(p for p in hist.glob("*.json") if p.stem < d["date"]) if hist.exists() else []
     prev = json.loads(prev_files[-1].read_text()) if prev_files else None
@@ -220,6 +222,20 @@ def merge(path):
     print("merged", sorted((new.get("days") or {}).keys()), "into", SRC.name)
 
 
+def write_night(d, notes=None):
+    """Last Night page data: docs/data/night.json plus a dated copy and an index of dates."""
+    n = night.build(d, notes)
+    if not n:
+        return
+    blob = json.dumps(n, ensure_ascii=False)
+    (DATA / "nights").mkdir(parents=True, exist_ok=True)
+    (DATA / "nights" / f"{n['date']}.json").write_text(blob)
+    (DATA / "night.json").write_text(blob)
+    dates = sorted(p.stem for p in (DATA / "nights").glob("20*.json"))
+    (DATA / "nights" / "index.json").write_text(json.dumps(dates))
+    print("wrote night", n["date"])
+
+
 def write(a, publish):
     a["generated_at"] = datetime.now(ET).isoformat(timespec="minutes")
     blob = json.dumps(a, indent=1, ensure_ascii=False)
@@ -230,6 +246,7 @@ def write(a, publish):
         (DATA / "history").mkdir(parents=True, exist_ok=True)
         (DATA / "history" / f"{a['date']}.json").write_text(blob)
         print("published", DATA / "league.json")
+        write_night(analyze.d, (a.get("recap") or {}).get("night"))
     else:
         a["preview"] = True
         (DATA / "preview").mkdir(parents=True, exist_ok=True)
