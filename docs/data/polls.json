@@ -251,11 +251,6 @@
      "q": "Where do you finish? Be honest. We will check."
     },
     {
-     "id": "trade",
-     "type": "manager",
-     "q": "Who offers the worst trades?"
-    },
-    {
      "id": "bust",
      "type": "player",
      "pick": 2,
