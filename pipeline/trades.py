@@ -236,6 +236,13 @@ def pick(deals, limit=12, per_pair=1, per_player=1, per_team=3):
 
 
 # ---------- build ----------
+def weeks_left(d):
+    """Regular-season weeks still to play, counting what's left of the current week."""
+    cur = (d.get("league") or {}).get("current_week") or 1
+    reg = d.get("reg_end") or 18
+    return round(max(0.0, (reg - cur) + (1 - (d.get("week_progress") or 0))), 2)
+
+
 def _mgr_by_team(polls):
     return {str(v["team_id"]): mid for mid, v in polls["rosters"]["teams"].items()}
 
@@ -367,7 +374,7 @@ def build(d, polls, prior=None):
 
     return {"date": d["date"], "season_games": max((s["n"] for s in season.values()), default=0),
             "model": {"k": K, "gpw": GPW, "active": N_ACTIVE, "min_gain": MIN_GAIN, "max_gap": MAX_GAP,
-                      "prior": pr.get("per_game_season")},
+                      "prior": pr.get("per_game_season"), "weeks_left": weeks_left(d)},
             "cats": [{"id": c["id"], "name": c["name"], "lower": c["id"] in LOWER, "pct": c["id"] in PCT} for c in d["cats"]],
             "replacement": {"value": rep_player["value"], "line": {f: round(v, 4) for f, v in rep.items()}, "z": rep_player["z"]},
             "teams": teams, "players": players, "deals": deals, "partners": partners,

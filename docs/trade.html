@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=b15a970d">
+<link rel="stylesheet" href="themes/fight.css?v=f39d5c1e">
 
 <div class="wrap picks-page tl-page">
   <header class="mast">
@@ -19,84 +19,59 @@
   </header>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
 
-  <section class="pk-hero">
-    <div>
-      <span class="label">The Trade Analyzer</span>
-      <h2>Build a Trade. Get Judged.</h2>
-      <p>Pick two teams, tap who goes where. We score it for both sides, tell you which categories move, and roast whoever's getting robbed. Then send it to the group chat and let the haggling begin.</p>
-    </div>
-    <div class="pk-status" id="tl-status"><div class="pk-count"><b class="num">…</b><span>trades made this season</span></div></div>
+  <section class="ta-hero">
+    <span class="label">Trade Analyzer</span>
+    <h2>Build a trade. See the damage.</h2>
+    <p>Pick two teams, tap who moves. Every category, rest of season, both sides. Instantly.</p>
   </section>
 
   <div class="banner" id="banner" hidden></div>
 
-  <div class="sec-head"><h2>The Analyzer <b class="dot">&bull;</b> build your own</h2><p>Tap players on each side. Injured players can't be moved.</p></div>
-  <section class="tl-az" id="az">
-    <div class="tl-az-side" data-side="a">
-      <span class="label">Team one sends</span>
+  <section class="ta-build" id="az">
+    <div class="ta-side">
       <select class="pk-in" id="az-a" aria-label="First team"></select>
+      <span class="label">Sends</span>
       <div class="chips" id="az-ra"></div>
     </div>
-    <div class="tl-az-side" data-side="b">
-      <span class="label">Team two sends</span>
+    <div class="ta-mid">
+      <button type="button" class="ta-tool" id="swap" title="Swap sides" aria-label="Swap sides">⇄</button>
+      <button type="button" class="ta-tool sm" id="clear">Clear</button>
+    </div>
+    <div class="ta-side">
       <select class="pk-in" id="az-b" aria-label="Second team"></select>
+      <span class="label">Sends</span>
       <div class="chips" id="az-rb"></div>
     </div>
-    <div class="tl-az-out" id="az-out"><p class="note">Tap at least one player on each side.</p></div>
   </section>
 
-  <section class="tl-you" id="you">
-    <div class="tl-you-head">
-      <h3><b class="dot">&bull;</b> Know Your Needs</h3>
-      <div class="chips" id="who"></div>
-    </div>
-    <div id="you-body"><p class="note">Tap your name. We'll show where your roster is bleeding and which teams have what you need.</p></div>
-  </section>
+  <section class="ta-out" id="az-out"><p class="ta-empty">Tap at least one player on each side.</p></section>
 
-  <div class="sec-head"><h2>Needs Map <b class="dot">&bull;</b> projected weekly rank</h2><p>Where every team would finish in each category this week. Green is surplus to sell, red is a hole to fill.</p></div>
-  <div class="table-wrap tl-map-wrap"><table class="tl-map" id="map"></table></div>
-
-  <section class="tl-how">
-    <h3>How the Analyzer works</h3>
-    <p id="how"></p>
-  </section>
-
-  <footer><span>Projections, not promises. Make your own call.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+  <p class="ta-how" id="how"></p>
+  <footer><span>Projections, not promises.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
 <script src="assets/common.js?v=1d3ea527"></script>
 <script>
 siteNav("trade");
 
-const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
-             set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
-let T, CAT = {}, CATS = [], ROST = {}, who = LS.get("gg_who");
+const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } } };
+let T, CAT = {}, CATS = [], ROST = {}, WK = 0;
+const who = LS.get("gg_who");
 const mgr = tk => T.teams[tk] ? T.teams[tk].manager : tk;
 const pl = n => `<mark>${esc(n)}</mark>`;
-const rkCls = r => r <= 3 ? "hi" : r >= 10 ? "lo" : "";
 const tkOf = mid => Object.keys(T.teams).find(k => T.teams[k].mid === mid);
 
 getJSON("data/trades.json").then(t => {
-  T = t;
+  T = t; WK = t.model.weeks_left || 0;
   T.cats.forEach(c => CAT[c.id] = c);
   CATS = T.cats.map(c => c.id);
   Object.entries(T.players).forEach(([n, p]) => (ROST[p.team] = ROST[p.team] || []).push(n));
   Object.values(ROST).forEach(r => r.sort((a, b) => T.players[b].tv - T.players[a].tv));
-  drawStatus(); drawAnalyzer(); drawYou(); drawMap(); drawHow();
+  $("dl2").textContent = WK.toFixed(1) + " wks left";
+  $("how").textContent = `Rest of season = the ${WK.toFixed(1)} regular-season weeks left. Each player's line blends this season with his ${t.model.prior} per-game line (rookies start at waiver level), and a team counts its top ${t.model.active} healthy players at ${t.model.gpw} games a week. ` +
+    `"Cat wins" is how many more categories a team should win across its remaining matchups. Through ${new Date(T.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"})}, rebuilt every morning.`;
+  init();
 }).catch(() => { const b = $("banner"); b.textContent = "The trade desk is closed. Refresh in a minute."; b.hidden = false; });
-
-function drawStatus() {
-  const made = Object.values(T.teams).reduce((s, t) => s + (t.trades || 0), 0);
-  $("dl2").textContent = made + " made";
-  $("tl-status").innerHTML = `<div class="pk-count"><b class="num">${made}</b><span>trades made this season</span></div>` +
-    `<p class="pk-filed"><span class="label">Last two seasons</span>${pastLine()}</p>`;
-}
-function pastLine() {
-  const ts = Object.values(T.teams), sides = ts.reduce((s, t) => s + Object.values(t.past_trades || {}).reduce((a, v) => a + v, 0), 0);
-  const n = Math.round(sides / 2), who = ts.filter(t => Object.values(t.past_trades || {}).some(v => v)).map(t => `<b>${esc(t.manager)}</b>`);
-  if (!n) return "Zero trades. A league of museum curators.";
-  return `${n === 1 ? "One trade" : n + " trades"}, all from ${who.join(" and ")}. Everyone else is a collector.`;
-}
 
 // ---------- model: same math as pipeline/trades.py ----------
 const F = ["fgm","fga","ftm","fta","tpm","tpa","pts","oreb","dreb","ast","st","blk","to"];
@@ -125,22 +100,19 @@ function rankAll(W) {
 }
 const roster = tk => (ROST[tk] || []).map(n => ({name: n, ...T.players[n]}));
 const REP = () => ({name: "Waiver add", il: false, value: T.replacement.value, line: T.replacement.line});
+let BASE;  // league weeks before any trade (computed once)
 
-// ---------- analyzer UI ----------
+// ---------- builder ----------
 const SEL = {a: new Set(), b: new Set()};
-function drawAnalyzer() {
+function init() {
+  BASE = {}; Object.keys(T.teams).forEach(k => BASE[k] = teamWeek(roster(k)));
   const keys = Object.keys(T.teams).sort((x, y) => mgr(x).localeCompare(mgr(y)));
-  const opts = keys.map(tk => `<option value="${tk}">${esc(mgr(tk))} (${esc(T.teams[tk].name)})</option>`).join("");
+  const opts = keys.map(tk => `<option value="${tk}">${esc(mgr(tk))} · ${esc(T.teams[tk].name)}</option>`).join("");
   $("az-a").innerHTML = opts; $("az-b").innerHTML = opts;
-  const fromHash = readHash();
-  if (!fromHash) {
-    $("az-a").value = tkOf(who) || keys[0];
-    $("az-b").value = keys.find(k => k !== $("az-a").value);
-  }
-  drawRoster("a"); drawRoster("b"); runAnalyzer();
+  if (!readHash()) { $("az-a").value = tkOf(who) || keys[0]; $("az-b").value = keys.find(k => k !== $("az-a").value); }
+  draw();
 }
 function readHash() {
-  // #t=<teamA>~Name|Name~<teamB>~Name   (shareable trade links)
   const m = location.hash.match(/^#t=(.+)$/); if (!m) return false;
   try {
     const [a, ga, b, gb] = decodeURIComponent(m[1]).split("~");
@@ -152,181 +124,114 @@ function readHash() {
     return true;
   } catch (e) { return false; }
 }
-function drawRoster(side) {
+function chips(side) {
   const tk = $("az-" + side).value;
-  $("az-r" + side).innerHTML = roster(tk).map(p => `<button type="button" class="chip two${SEL[side].has(p.name) ? " on" : ""}" data-s="${side}" data-p="${esc(p.name)}"${p.il ? " disabled" : ""}><span>${esc(p.name)}${p.il ? `<i class="tag">IL</i>` : ""}</span><small>${p.cost ? "$" + p.cost + " draft" : "Undrafted"}${p.games ? ` · ${p.games} gm` : ""}</small></button>`).join("");
+  $("az-r" + side).innerHTML = roster(tk).map(p => `<button type="button" class="chip two${SEL[side].has(p.name) ? " on" : ""}" data-s="${side}" data-p="${esc(p.name)}"${p.il ? " disabled" : ""}><span>${esc(p.name)}${p.il ? `<i class="tag">IL</i>` : ""}</span><small>${p.cost ? "$" + p.cost : "Undrafted"}</small></button>`).join("");
 }
+function draw() { chips("a"); chips("b"); run(); }
 ["a", "b"].forEach(side => $("az-" + side).addEventListener("change", () => {
   SEL.a.clear(); SEL.b.clear();
   const other = side === "a" ? "b" : "a";
   if ($("az-a").value === $("az-b").value) $("az-" + other).value = Object.keys(T.teams).find(k => k !== $("az-" + side).value);
-  drawRoster("a"); drawRoster("b"); runAnalyzer();
+  draw();
 }));
 $("az").addEventListener("click", e => {
   const b = e.target.closest("[data-p]"); if (!b) return;
   const s = SEL[b.dataset.s];
   s.has(b.dataset.p) ? s.delete(b.dataset.p) : s.add(b.dataset.p);
-  b.classList.toggle("on"); runAnalyzer(); gc.once("trade/analyze");
+  b.classList.toggle("on"); run(); gc.once("trade/analyze");
 });
+$("swap").addEventListener("click", () => {
+  const a = $("az-a").value, b = $("az-b").value, sa = [...SEL.a], sb = [...SEL.b];
+  $("az-a").value = b; $("az-b").value = a;
+  SEL.a = new Set(sb); SEL.b = new Set(sa); draw();
+});
+$("clear").addEventListener("click", () => { SEL.a.clear(); SEL.b.clear(); draw(); });
 
-// ---------- roast desk ----------
+// ---------- roast desk (templates over the model's own numbers) ----------
 function hashStr(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h); }
-const pick = (arr, seed, i) => arr[(seed + (i || 0)) % arr.length];
-const names = l => l.length === 1 ? l[0] : l.slice(0, -1).join(", ") + " and " + l[l.length - 1];
-const ROAST = {
-  both: [
-    "Both teams get better. In this league that's basically a miracle.",
-    "A trade where nobody gets robbed. Frame it, it may never happen again.",
-    "Fair, useful and good for both sides, which is exactly why neither of you will do it.",
-    "Two teams improve at once. Somebody check if the league is under new management.",
-  ],
-  fleeceA: [
-    "{A} walks off with the categories. {B} walks off with a lesson he will absolutely not learn.",
-    "This isn't a trade, it's a mugging with extra steps. {A} wins, {B} loses, the group chat feasts.",
-    "{A} sends this, {B} accepts, and the Gazette writes the obituary by Friday.",
-    "Daylight robbery by {A}. {B} would need to be asleep at the wheel to sign this, so maybe it happens.",
-  ],
-  bothLose: [
-    "Both teams get worse. A trade for two people who hate themselves equally.",
-    "Somehow this hurts both rosters. That takes real effort.",
-    "Mutually assured destruction. Fitting for this league.",
-  ],
-  nothing: [
-    "Nothing moves. All that tapping for a lateral shuffle.",
-    "A trade so pointless Yahoo might not even process it out of spite.",
-    "Rearranging deck chairs. Neither team is better, neither team is worse, everyone is bored.",
-  ],
+const pick = (arr, seed) => arr[seed % arr.length];
+const VERDICT = {
+  both: ["Both teams get better. In this league that's a miracle.", "Win-win. Frame it, it'll never happen again.", "Fair and useful. So naturally nobody will do it."],
+  fleece: ["{W} robs {L} in broad daylight.", "Not a trade, a mugging. {W} wins, {L} pays.", "{L} would have to be asleep to sign this. So it might happen."],
+  lose: ["Both teams get worse. Impressive, honestly.", "Mutually assured destruction. Fitting."],
+  lean: ["{W} wins it quietly. {L} finds out in March.", "{W} on points. {L} is wobbling."],
+  meh: ["Nothing moves. All that tapping for a shrug.", "Deck chairs, rearranged. Nobody's better."],
 };
-function sideRoast(tk, gain, moves, give, get, seed, vgap) {
-  const m = esc(mgr(tk));
-  const down = moves.filter(x => x.to > x.from).sort((x, y) => (y.to - y.from) - (x.to - x.from))[0];
-  const up = moves.filter(x => x.to < x.from).sort((x, y) => (x.to - x.from) - (y.to - y.from))[0];
-  const lines = [];
-  if (gain > 0.1 && up) lines.push(pick([
-    `<b>${m}</b> jumps from ${ordinal(up.from)} to ${ordinal(up.to)} in ${esc(CAT[up.cat].name)}. Finally, a plan.`,
-    `<b>${m}</b> fixes ${esc(CAT[up.cat].name)} (${ordinal(up.from)} to ${ordinal(up.to)}). Took him long enough.`,
-    `<b>${m}</b> climbs to ${ordinal(up.to)} in ${esc(CAT[up.cat].name)}. Even a broken roster is right twice a week.`,
-  ], seed));
-  else if (gain < -0.1 && down) lines.push(pick([
-    `<b>${m}</b> falls from ${ordinal(down.from)} to ${ordinal(down.to)} in ${esc(CAT[down.cat].name)}. Bold strategy, losing on purpose.`,
-    `<b>${m}</b> drops to ${ordinal(down.to)} in ${esc(CAT[down.cat].name)}${down.to >= 11 ? ", where he can live rent free at the bottom" : ""}.`,
-    `<b>${m}</b> gives away ${esc(CAT[down.cat].name)} (${ordinal(down.from)} to ${ordinal(down.to)}) and calls it a trade.`,
-  ], seed));
-  else lines.push(`<b>${m}</b> barely moves. ${pick(["Congrats on the participation trophy.", "Why are we here.", "Peak indecision."], seed)}`);
-  if (vgap < -1.5) lines.push(pick([
-    `He's giving up the better players by a mile. That's not a trade, that's a donation.`,
-    `On value alone he's overpaying. Hope the categories are worth the humiliation.`,
-  ], seed, 1));
-  if (give.length >= 2 && get.length === 1) lines.push(`Two for one: he frees a roster spot, so we gave him a waiver add in the math.`);
+function sideLine(tk, ros, mv, give, get, vgap, seed) {
+  const m = `<b>${esc(mgr(tk))}</b>`;
+  const up = mv.filter(x => x.to < x.from).sort((x, y) => (x.to - x.from) - (y.to - y.from))[0];
+  const dn = mv.filter(x => x.to > x.from).sort((x, y) => (y.to - y.from) - (x.to - x.from))[0];
+  const L = [];
+  if (ros > 1 && up) L.push(pick([`${m} fixes ${esc(CAT[up.cat].name)}. Took him long enough.`, `${m} climbs to ${ordinal(up.to)} in ${esc(CAT[up.cat].name)}. Finally, a plan.`], seed));
+  else if (ros < -1 && dn) L.push(pick([`${m} tanks ${esc(CAT[dn.cat].name)} to ${ordinal(dn.to)}. Bold.`, `${m} gives away ${esc(CAT[dn.cat].name)} and calls it strategy.`], seed));
+  else L.push(`${m} barely moves.`);
+  if (vgap < -1.5) L.push("Overpaying on talent, too.");
   const dud = give.find(p => p.cost >= 25 && p.tv < 0);
-  if (dud) lines.push(`Moving ${pl(dud.name)} after paying $${dud.cost} for him. Sunk cost, meet the exit.`);
-  const mystery = get.find(p => p.src === "replacement" && p.games < 3);
-  if (mystery) lines.push(`Nobody knows what ${pl(mystery.name)} is yet, him included. Projection is a coin flip.`);
-  return lines.join(" ");
+  if (dud) L.push(`$${dud.cost} for ${pl(dud.name)}, now dumped. Sunk cost.`);
+  const ghost = get.find(p => p.src === "replacement" && p.games < 3);
+  if (ghost) L.push(`${pl(ghost.name)} is a mystery box.`);
+  return L.join(" ");
 }
 
-function runAnalyzer() {
-  const a = $("az-a").value, b = $("az-b").value;
-  const ga = [...SEL.a], gb = [...SEL.b];
+// ---------- results ----------
+const fmtTot = (c, v) => CAT[c].pct ? Number(v).toFixed(3).replace(/^0/, "") : Math.round(v).toLocaleString();
+function fmtDelta(c, v) {
+  if (CAT[c].pct) { const p = Math.round(v * 1000); return (p > 0 ? "+" : p < 0 ? "−" : "") + "." + String(Math.abs(p)).padStart(3, "0"); }
+  const r = Math.round(v); return (r > 0 ? "+" : r < 0 ? "−" : "") + Math.abs(r).toLocaleString();
+}
+function run() {
+  const a = $("az-a").value, b = $("az-b").value, ga = [...SEL.a], gb = [...SEL.b];
   writeHash(a, b, ga, gb);
-  if (!ga.length || !gb.length) { $("az-out").innerHTML = `<p class="note">Tap at least one player on each side.</p>`; return; }
-  const W = {}; Object.keys(T.teams).forEach(k => W[k] = teamWeek(roster(k)));
+  if (!ga.length || !gb.length) { $("az-out").innerHTML = `<p class="ta-empty">Tap at least one player on each side.</p>`; return; }
   const pa = ga.map(n => ({name: n, ...T.players[n]})), pb = gb.map(n => ({name: n, ...T.players[n]}));
-  let ra = roster(a).filter(p => !ga.includes(p.name)).concat(pb);
-  let rb = roster(b).filter(p => !gb.includes(p.name)).concat(pa);
+  const ra = roster(a).filter(p => !ga.includes(p.name)).concat(pb);
+  const rb = roster(b).filter(p => !gb.includes(p.name)).concat(pa);
   for (let i = gb.length; i < ga.length; i++) ra.push(REP());
   for (let i = ga.length; i < gb.length; i++) rb.push(REP());
-  const W2 = {...W, [a]: teamWeek(ra), [b]: teamWeek(rb)};
-  const da = allplay(W2, a) - allplay(W, a), db = allplay(W2, b) - allplay(W, b);
-  const r1 = rankAll(W), r2 = rankAll(W2);
-  const moves = tk => CATS.filter(c => r2[tk][c] !== r1[tk][c]).map(c => ({cat: c, from: r1[tk][c], to: r2[tk][c]}));
-  const ma = moves(a), mb = moves(b);
-  const chips = mv => mv.sort((x, y) => (x.to - x.from) - (y.to - y.from))
-    .map(m => `<span class="tl-mv ${m.to < m.from ? "up" : "dn"}"><b>${esc(CAT[m.cat].name)}</b> ${ordinal(m.from)} <i>→</i> ${ordinal(m.to)}</span>`).join("") || `<span class="note">No rank changes</span>`;
+  const W2 = {...BASE, [a]: teamWeek(ra), [b]: teamWeek(rb)};
+  const wkA = allplay(W2, a) - allplay(BASE, a), wkB = allplay(W2, b) - allplay(BASE, b);
+  const rosA = wkA * WK, rosB = wkB * WK;
+  const r1 = rankAll(BASE), r2 = rankAll(W2);
+  const mv = tk => CATS.filter(c => r2[tk][c] !== r1[tk][c]).map(c => ({cat: c, from: r1[tk][c], to: r2[tk][c]}));
   const va = pa.reduce((s, p) => s + p.tv, 0), vb = pb.reduce((s, p) => s + p.tv, 0);
-  const seed = hashStr([a, b, ...ga.sort(), "|", ...gb.sort()].join(","));
-  const fill = s => s.replace(/\{A\}/g, `<b>${esc(mgr(da >= db ? a : b))}</b>`).replace(/\{B\}/g, `<b>${esc(mgr(da >= db ? b : a))}</b>`);
-  let head, kind;
-  if (da > 0.1 && db > 0.1) { kind = "both"; head = pick(ROAST.both, seed); }
-  else if (Math.max(da, db) > 0.1 && Math.min(da, db) < -0.1) { kind = "fleece"; head = fill(pick(ROAST.fleeceA, seed)); }
-  else if (da < -0.1 && db < -0.1) { kind = "lose"; head = pick(ROAST.bothLose, seed); }
-  else if (Math.max(da, db) > 0.1) { kind = "lean"; head = `<b>${esc(mgr(da > db ? a : b))}</b> wins this one, ${pick(["quietly. The other guy won't notice until March.", "on points. Not a knockout, but the other guy is wobbling.", "and the other side is merely fine with being slightly worse."], seed)}`; }
-  else { kind = "meh"; head = pick(ROAST.nothing, seed); }
-  const sign = v => `<b class="num ${v > 0.05 ? "up" : v < -0.05 ? "dn" : ""}">${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(2)}</b>`;
-  const val = (out, inn) => { const g = inn - out; return `<span class="tl-val">Value ${g > 0.75 ? "<b class=\"up\">gains</b>" : g < -0.75 ? "<b class=\"dn\">overpays</b>" : "<b>about even</b>"}</span>`; };
-  const side = (tk, d, mv, give, get, vgap, k) => `<div class="tl-az-col">
-      <span class="label">${esc(mgr(tk))} <small>${esc(T.teams[tk].name)}</small></span>
-      <div class="tl-az-num">${sign(d)}<small>cats / week</small>${val(0, vgap)}</div>
-      <div class="tl-mvs">${chips(mv)}</div>
-      <p class="tl-roast">${sideRoast(tk, d, mv, give, get, seed + k, vgap)}</p>
+  const seed = hashStr([a, b, ...ga.slice().sort(), "|", ...gb.slice().sort()].join(","));
+  const W_ = rosA >= rosB ? a : b, L_ = W_ === a ? b : a;
+  const kind = rosA > 1 && rosB > 1 ? "both" : Math.max(rosA, rosB) > 1 && Math.min(rosA, rosB) < -1 ? "fleece" : rosA < -1 && rosB < -1 ? "lose" : Math.max(rosA, rosB) > 1 ? "lean" : "meh";
+  const verdict = pick(VERDICT[kind], seed).replace(/\{W\}/g, `<b>${esc(mgr(W_))}</b>`).replace(/\{L\}/g, `<b>${esc(mgr(L_))}</b>`);
+  const num = v => `<b class="ta-big ${v > 0.5 ? "up" : v < -0.5 ? "dn" : ""}">${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1)}</b>`;
+  const valTxt = g => g > 0.75 ? `<span class="up">Gets more talent</span>` : g < -0.75 ? `<span class="dn">Gives more talent</span>` : `<span>Talent about even</span>`;
+  const card = (tk, ros, wk, give, get, vgap) => `<div class="ta-card ${ros > 0.5 ? "up" : ros < -0.5 ? "dn" : ""}">
+      <span class="label">${esc(mgr(tk))}</span>
+      <div class="ta-nums">${num(ros)}<span>cat wins, rest of season<small>${wk >= 0 ? "+" : "−"}${Math.abs(wk).toFixed(2)} a week · ${valTxt(vgap)}</small></span></div>
+      <p class="ta-roast">${sideLine(tk, ros, mv(tk), give, get, vgap, seed + (tk === a ? 1 : 2))}</p>
     </div>`;
-  $("az-out").innerHTML = `<div class="tl-verdict-wrap ${kind}"><span class="label">The verdict</span><p class="tl-verdict">${head}</p></div>
-    <div class="tl-az-res">${side(a, da, ma, pa, pb, vb - va, 1)}${side(b, db, mb, pb, pa, va - vb, 2)}</div>
-    <div class="tl-foot"><span class="tl-fair">${esc(mgr(a))} sends ${ga.map(esc).join(" + ")}. ${esc(mgr(b))} sends ${gb.map(esc).join(" + ")}.</span>
-      <button type="button" class="tl-copy" id="share">Send it to the group chat</button></div>`;
+  const row = c => {
+    const cell = tk => {
+      const d = (W2[tk][c] - BASE[tk][c]) * (CAT[c].pct ? 1 : WK), f = r1[tk][c], t = r2[tk][c];
+      const better = CAT[c].lower ? d < 0 : d > 0, zero = CAT[c].pct ? Math.abs(d) < 0.0005 : Math.abs(d) < 0.5;
+      return `<td class="num ta-d ${zero ? "" : better ? "up" : "dn"}">${zero ? "–" : fmtDelta(c, d)}</td>` +
+        `<td class="num ta-r ${t < f ? "up" : t > f ? "dn" : ""}">${t !== f ? `${ordinal(f)}<i>→</i>${ordinal(t)}` : ordinal(t)}</td>`;
+    };
+    return `<tr><th>${esc(CAT[c].name)}</th>${cell(a)}${cell(b)}</tr>`;
+  };
+  $("az-out").innerHTML = `
+    <div class="ta-verdict ${kind}"><span class="label">Verdict</span><p>${verdict}</p></div>
+    <div class="ta-cards">${card(a, rosA, wkA, pa, pb, vb - va)}${card(b, rosB, wkB, pb, pa, va - vb)}</div>
+    <div class="table-wrap ta-tw"><table class="ta-cats">
+      <thead><tr><th rowspan="2">Cat</th><th colspan="2">${esc(mgr(a))}</th><th colspan="2">${esc(mgr(b))}</th></tr>
+      <tr><th>ROS</th><th>Rank</th><th>ROS</th><th>Rank</th></tr></thead>
+      <tbody>${CATS.map(row).join("")}</tbody></table></div>
+    <div class="ta-foot"><span>${ga.length !== gb.length ? "Side giving more players gets a waiver add for the open spot. " : ""}ROS = change in projected rest-of-season total (percentages: change in rate).</span>
+      <button type="button" class="tl-copy" id="share">Send to the group chat</button></div>`;
   $("share").onclick = () => {
-    const txt = `TRADE DESK: ${mgr(a)} sends ${ga.join(" + ")} for ${gb.join(" + ")}. ` +
-      `${mgr(a)} ${da >= 0 ? "+" : "-"}${Math.abs(da).toFixed(2)} cats/week, ${mgr(b)} ${db >= 0 ? "+" : "-"}${Math.abs(db).toFixed(2)}. Judge it: ${location.href}`;
-    const done = () => { $("share").textContent = "Copied. Go start a fight."; $("share").classList.add("ok"); gc.event("trade/share"); };
+    const txt = `TRADE DESK: ${mgr(a)} sends ${ga.join(" + ")} for ${gb.join(" + ")}. Rest of season: ${mgr(a)} ${rosA >= 0 ? "+" : "-"}${Math.abs(rosA).toFixed(1)} cat wins, ${mgr(b)} ${rosB >= 0 ? "+" : "-"}${Math.abs(rosB).toFixed(1)}. Judge it: ${location.href}`;
+    const done = () => { $("share").textContent = "Copied. Start the fight."; $("share").classList.add("ok"); gc.event("trade/share"); };
     (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(done).catch(() => { window.prompt("Copy this:", txt); done(); });
   };
 }
 function writeHash(a, b, ga, gb) {
   const h = ga.length || gb.length ? "#t=" + encodeURIComponent([a, ga.join("|"), b, gb.join("|")].join("~")) : "";
   try { history.replaceState(null, "", location.pathname + location.search + h); } catch (e) {}
-}
-
-// ---------- know your needs ----------
-function drawYou() {
-  const ids = Object.values(T.teams).filter(t => t.mid).sort((a, b) => a.manager.localeCompare(b.manager));
-  $("who").innerHTML = ids.map(t => `<button type="button" class="chip${t.mid === who ? " on" : ""}" data-v="${t.mid}">${esc(t.manager)}</button>`).join("");
-  const tk = tkOf(who);
-  if (!tk || !T.targets[tk]) return;
-  const t = T.teams[tk], r = t.ranks, g = T.targets[tk];
-  const chip = (c, rk, cls) => `<span class="tl-cat ${cls}"><b>${esc(CAT[c].name)}</b>${ordinal(rk)}</span>`;
-  const verdict = g.holes.length >= 4 ? "A roster with this many holes is a colander, not a team." : g.holes.length ? "Fixable. If you ever actually make a trade." : "No real holes. Insufferable.";
-  let html = `<div class="tl-you-grid tl-needs">
-      <div><span class="label">Your top needs</span><div class="tl-cats">${g.holes.map(c => chip(c, r[c], "lo")).join("") || "<span class='note'>None</span>"}</div></div>
-      <div><span class="label">What you can sell</span><div class="tl-cats">${g.surplus.map(c => chip(c, r[c], "hi")).join("") || "<span class='note'>Nothing anyone wants</span>"}</div></div>
-    </div><p class="tl-roast tl-you-roast">${verdict}</p>`;
-  html += `<span class="label tl-best-l">Teams to call</span><div class="tl-partners">` + (g.partners.map(p => {
-    const pt = T.teams[p.team];
-    return `<div class="tl-partner${p.mutual ? " mutual" : ""}">
-      <div class="tl-pair-top"><span><b>${esc(pt.manager)}</b><small>${esc(pt.name)}</small></span>${p.mutual ? `<span class="tl-tag">Both need it</span>` : ""}</div>
-      <p><span class="label">He has your</span>${p.they_have.map(c => chip(c, pt.ranks[c], "hi")).join("")}</p>
-      ${p.you_have.length ? `<p><span class="label">You have his</span>${p.you_have.map(c => chip(c, r[c], "hi")).join("")}</p>` : `<p class="note">He doesn't need what you have. Bring sweeteners.</p>`}
-      ${p.ask.length ? `<p class="tl-ask"><span class="label">Ask about</span>${p.ask.map(pl).join(" ")}</p>` : ""}
-      ${p.dangle.length ? `<p class="tl-ask"><span class="label">Dangle</span>${p.dangle.map(pl).join(" ")}</p>` : ""}
-      <button type="button" class="tl-load" data-b="${p.team}">Open in the Analyzer</button>
-    </div>`;
-  }).join("") || `<p class="note">Nobody has what you need. That's on you.</p>`) + `</div>`;
-  $("you-body").innerHTML = html;
-}
-$("who").addEventListener("click", e => {
-  const b = e.target.closest(".chip"); if (!b) return;
-  who = b.dataset.v; LS.set("gg_who", who); drawYou(); drawMap(); gc.once("trade/needs");
-});
-$("you-body").addEventListener("click", e => {
-  const b = e.target.closest(".tl-load"); if (!b) return;
-  SEL.a.clear(); SEL.b.clear();
-  $("az-a").value = tkOf(who); $("az-b").value = b.dataset.b;
-  drawRoster("a"); drawRoster("b"); runAnalyzer();
-  if ($("az").scrollIntoView) $("az").scrollIntoView({behavior: "smooth", block: "start"});
-  gc.once("trade/partner");
-});
-
-function drawMap() {
-  const order = Object.keys(T.teams).sort((a, b) => T.teams[b].strength - T.teams[a].strength);
-  $("map").innerHTML = `<thead><tr><th class="tm">Team</th><th title="Expected category wins per matchup">Cats</th>${CATS.map(c => `<th>${esc(CAT[c].name)}</th>`).join("")}</tr></thead><tbody>` +
-    order.map(tk => { const t = T.teams[tk]; return `<tr${t.mid === who ? ' class="me"' : ""}><td class="tm"><b>${esc(t.manager)}</b><small>${esc(t.name)}</small></td><td class="num tl-str">${t.strength.toFixed(1)}</td>` +
-      CATS.map(c => `<td class="num ${rkCls(t.ranks[c])}">${t.ranks[c]}</td>`).join("") + `</tr>`; }).join("") + `</tbody>`;
-}
-
-function drawHow() {
-  const m = T.model;
-  $("how").textContent = `Each player's line blends this season's games with his ${m.prior} per-game line, weighted like ${m.k} extra games, so one hot night can't make a star. ` +
-    `Rookies and anyone without a line start at waiver level until they play. A team's week is its top ${m.active} healthy players at ${m.gpw} games each. ` +
-    `"Cats / week" is how many more categories a team would expect to win per matchup after the trade. "Value" compares the players moving, blending stats with draft price early in the season. ` +
-    `Through ${new Date(T.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"})}; rebuilt every morning.`;
 }
 </script>
