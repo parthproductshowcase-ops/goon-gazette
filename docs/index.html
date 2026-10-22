@@ -342,7 +342,7 @@ function render(a){
   if (a.source === "yahoo-web") {
     const thru = new Date(a.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
     $("gen").textContent += `. Early edition: games through ${thru}, rebuilt each morning from Yahoo's league pages until the official feed opens`;
-    document.querySelector("footer span:nth-of-type(2)").textContent = "Morning edition about 9am ET. The Lineup Card returns when the official feed opens.";
+    document.querySelector("footer span:nth-of-type(2)").textContent = "Morning edition by 6am ET. The Lineup Card returns when the official feed opens.";
   }
 }
 
