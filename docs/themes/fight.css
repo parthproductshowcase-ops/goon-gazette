@@ -808,3 +808,18 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
   .ta-verdict p{font-size:17px}
   .ta-cats{font-size:13px}.ta-cats td,.ta-cats tbody th{padding:7px 5px}
 }
+/* Trade Analyzer v3 (simple) */
+.ta-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ta-lean{font:800 20px/1.1 var(--display)}
+.ta-lean.up{color:var(--good)}.ta-lean.dn{color:var(--accent)}
+.ta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px}
+.ta-k{font:700 11px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);width:46px}
+.ta-c{display:inline-flex;gap:6px;align-items:baseline;font:600 13px/1 var(--body);padding:7px 9px;border-radius:3px}
+.ta-c.up{background:color-mix(in srgb,var(--good) 15%,var(--card))}
+.ta-c.dn{background:color-mix(in srgb,var(--accent) 12%,var(--card))}
+.ta-c i{font-style:normal;color:var(--muted)}
+.ta-none{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.ta-card .ta-roast{margin-top:10px;font-size:13px;color:var(--muted)}
+.ta-grain{margin:12px 0 0;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-left:4px solid #ffe66d;border-radius:2px;font-size:13px;line-height:1.5;color:var(--muted)}
+.ta-grain b{color:var(--ink)}
+@media (max-width:640px){.ta-cards{grid-template-columns:1fr}.ta-k{width:100%}}

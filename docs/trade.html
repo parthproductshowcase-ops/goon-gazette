@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=f39d5c1e">
+<link rel="stylesheet" href="themes/fight.css?v=0f5f1d3c">
 
 <div class="wrap picks-page tl-page">
   <header class="mast">
@@ -22,7 +22,7 @@
   <section class="ta-hero">
     <span class="label">Trade Analyzer</span>
     <h2>Build a trade. See the damage.</h2>
-    <p>Pick two teams, tap who moves. Every category, rest of season, both sides. Instantly.</p>
+    <p>Pick two teams, tap who moves. See which categories swing for each side. Then trust your gut.</p>
   </section>
 
   <div class="banner" id="banner" hidden></div>
@@ -68,8 +68,8 @@ getJSON("data/trades.json").then(t => {
   Object.entries(T.players).forEach(([n, p]) => (ROST[p.team] = ROST[p.team] || []).push(n));
   Object.values(ROST).forEach(r => r.sort((a, b) => T.players[b].tv - T.players[a].tv));
   $("dl2").textContent = WK.toFixed(1) + " wks left";
-  $("how").textContent = `Rest of season = the ${WK.toFixed(1)} regular-season weeks left. Each player's line blends this season with his ${t.model.prior} per-game line (rookies start at waiver level), and a team counts its top ${t.model.active} healthy players at ${t.model.gpw} games a week. ` +
-    `"Cat wins" is how many more categories a team should win across its remaining matchups. Through ${new Date(T.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"})}, rebuilt every morning.`;
+  $("how").textContent = `How it's built: each player's line blends this season with his ${t.model.prior} per-game line (rookies start at waiver level), and a team counts its top ${t.model.active} healthy players at ${t.model.gpw} games a week for the ${WK.toFixed(1)} weeks left. ` +
+    `Only categories that move ${MEANINGFUL}+ spots are shown. Data through ${new Date(T.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"})}, rebuilt every morning.`;
   init();
 }).catch(() => { const b = $("banner"); b.textContent = "The trade desk is closed. Refresh in a minute."; b.hidden = false; });
 
@@ -152,34 +152,21 @@ $("clear").addEventListener("click", () => { SEL.a.clear(); SEL.b.clear(); draw(
 function hashStr(s) { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return Math.abs(h); }
 const pick = (arr, seed) => arr[seed % arr.length];
 const VERDICT = {
-  both: ["Both teams get better. In this league that's a miracle.", "Win-win. Frame it, it'll never happen again.", "Fair and useful. So naturally nobody will do it."],
-  fleece: ["{W} robs {L} in broad daylight.", "Not a trade, a mugging. {W} wins, {L} pays.", "{L} would have to be asleep to sign this. So it might happen."],
-  lose: ["Both teams get worse. Impressive, honestly.", "Mutually assured destruction. Fitting."],
-  lean: ["{W} wins it quietly. {L} finds out in March.", "{W} on points. {L} is wobbling."],
-  meh: ["Nothing moves. All that tapping for a shrug.", "Deck chairs, rearranged. Nobody's better."],
+  both: ["On paper, both teams get better. In this league that's a miracle.", "The numbers like it for both of you. So naturally nobody will do it."],
+  fleece: ["On paper, {W} robs {L}. Convince us otherwise.", "The model sees a mugging: {W} wins, {L} pays. Maybe you know something it doesn't."],
+  lose: ["On paper, both teams get worse. You'd better know something.", "The numbers hate this for both sides. Bold."],
+  lean: ["Slight lean to {W}. Close enough that your gut should decide.", "{W} edges it on paper. Not by much."],
+  meh: ["On paper it's a wash. This one comes down to who you believe in.", "The numbers shrug. Your call."],
 };
-function sideLine(tk, ros, mv, give, get, vgap, seed) {
-  const m = `<b>${esc(mgr(tk))}</b>`;
-  const up = mv.filter(x => x.to < x.from).sort((x, y) => (x.to - x.from) - (y.to - y.from))[0];
-  const dn = mv.filter(x => x.to > x.from).sort((x, y) => (y.to - y.from) - (x.to - x.from))[0];
-  const L = [];
-  if (ros > 1 && up) L.push(pick([`${m} fixes ${esc(CAT[up.cat].name)}. Took him long enough.`, `${m} climbs to ${ordinal(up.to)} in ${esc(CAT[up.cat].name)}. Finally, a plan.`], seed));
-  else if (ros < -1 && dn) L.push(pick([`${m} tanks ${esc(CAT[dn.cat].name)} to ${ordinal(dn.to)}. Bold.`, `${m} gives away ${esc(CAT[dn.cat].name)} and calls it strategy.`], seed));
-  else L.push(`${m} barely moves.`);
-  if (vgap < -1.5) L.push("Overpaying on talent, too.");
-  const dud = give.find(p => p.cost >= 25 && p.tv < 0);
-  if (dud) L.push(`$${dud.cost} for ${pl(dud.name)}, now dumped. Sunk cost.`);
+const MEANINGFUL = 2;   // a category counts when a team moves 2+ spots in the league ranks
+const lean = r => r > 4 ? ["Looks a lot better", "up"] : r > 1 ? ["Looks a bit better", "up"] : r < -4 ? ["Looks a lot worse", "dn"] : r < -1 ? ["Looks a bit worse", "dn"] : ["About a wash", ""];
+function quip(tk, give, get, seed) {
   const ghost = get.find(p => p.src === "replacement" && p.games < 3);
-  if (ghost) L.push(`${pl(ghost.name)} is a mystery box.`);
-  return L.join(" ");
+  if (ghost) return `${pl(ghost.name)} is a mystery box. The model is guessing; so are you.`;
+  return "";
 }
 
 // ---------- results ----------
-const fmtTot = (c, v) => CAT[c].pct ? Number(v).toFixed(3).replace(/^0/, "") : Math.round(v).toLocaleString();
-function fmtDelta(c, v) {
-  if (CAT[c].pct) { const p = Math.round(v * 1000); return (p > 0 ? "+" : p < 0 ? "−" : "") + "." + String(Math.abs(p)).padStart(3, "0"); }
-  const r = Math.round(v); return (r > 0 ? "+" : r < 0 ? "−" : "") + Math.abs(r).toLocaleString();
-}
 function run() {
   const a = $("az-a").value, b = $("az-b").value, ga = [...SEL.a], gb = [...SEL.b];
   writeHash(a, b, ga, gb);
@@ -190,42 +177,36 @@ function run() {
   for (let i = gb.length; i < ga.length; i++) ra.push(REP());
   for (let i = ga.length; i < gb.length; i++) rb.push(REP());
   const W2 = {...BASE, [a]: teamWeek(ra), [b]: teamWeek(rb)};
-  const wkA = allplay(W2, a) - allplay(BASE, a), wkB = allplay(W2, b) - allplay(BASE, b);
-  const rosA = wkA * WK, rosB = wkB * WK;
+  const rosA = (allplay(W2, a) - allplay(BASE, a)) * WK, rosB = (allplay(W2, b) - allplay(BASE, b)) * WK;
   const r1 = rankAll(BASE), r2 = rankAll(W2);
-  const mv = tk => CATS.filter(c => r2[tk][c] !== r1[tk][c]).map(c => ({cat: c, from: r1[tk][c], to: r2[tk][c]}));
-  const va = pa.reduce((s, p) => s + p.tv, 0), vb = pb.reduce((s, p) => s + p.tv, 0);
+  const moved = (tk, up) => CATS.map(c => ({cat: c, from: r1[tk][c], to: r2[tk][c]}))
+    .filter(m => up ? m.from - m.to >= MEANINGFUL : m.to - m.from >= MEANINGFUL)
+    .sort((x, y) => Math.abs(y.to - y.from) - Math.abs(x.to - x.from)).slice(0, 3);
   const seed = hashStr([a, b, ...ga.slice().sort(), "|", ...gb.slice().sort()].join(","));
   const W_ = rosA >= rosB ? a : b, L_ = W_ === a ? b : a;
   const kind = rosA > 1 && rosB > 1 ? "both" : Math.max(rosA, rosB) > 1 && Math.min(rosA, rosB) < -1 ? "fleece" : rosA < -1 && rosB < -1 ? "lose" : Math.max(rosA, rosB) > 1 ? "lean" : "meh";
   const verdict = pick(VERDICT[kind], seed).replace(/\{W\}/g, `<b>${esc(mgr(W_))}</b>`).replace(/\{L\}/g, `<b>${esc(mgr(L_))}</b>`);
-  const num = v => `<b class="ta-big ${v > 0.5 ? "up" : v < -0.5 ? "dn" : ""}">${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1)}</b>`;
-  const valTxt = g => g > 0.75 ? `<span class="up">Gets more talent</span>` : g < -0.75 ? `<span class="dn">Gives more talent</span>` : `<span>Talent about even</span>`;
-  const card = (tk, ros, wk, give, get, vgap) => `<div class="ta-card ${ros > 0.5 ? "up" : ros < -0.5 ? "dn" : ""}">
-      <span class="label">${esc(mgr(tk))}</span>
-      <div class="ta-nums">${num(ros)}<span>cat wins, rest of season<small>${wk >= 0 ? "+" : "−"}${Math.abs(wk).toFixed(2)} a week · ${valTxt(vgap)}</small></span></div>
-      <p class="ta-roast">${sideLine(tk, ros, mv(tk), give, get, vgap, seed + (tk === a ? 1 : 2))}</p>
+  const chip = (m, cls) => `<span class="ta-c ${cls}"><b>${esc(CAT[m.cat].name)}</b>${ordinal(m.from)} <i>→</i> ${ordinal(m.to)}</span>`;
+  const card = (tk, ros, give, get) => {
+    const [txt, cls] = lean(ros), up = moved(tk, true), dn = moved(tk, false), q = quip(tk, give, get, seed);
+    return `<div class="ta-card ${cls}">
+      <div class="ta-top"><span class="label">${esc(mgr(tk))}</span><b class="ta-lean ${cls}">${txt}</b></div>
+      ${up.length ? `<div class="ta-row"><span class="ta-k">Helps</span>${up.map(m => chip(m, "up")).join("")}</div>` : ""}
+      ${dn.length ? `<div class="ta-row"><span class="ta-k">Costs</span>${dn.map(m => chip(m, "dn")).join("")}</div>` : ""}
+      ${!up.length && !dn.length ? `<p class="ta-none">No category moves more than a spot.</p>` : ""}
+      ${q ? `<p class="ta-roast">${q}</p>` : ""}
     </div>`;
-  const row = c => {
-    const cell = tk => {
-      const d = (W2[tk][c] - BASE[tk][c]) * (CAT[c].pct ? 1 : WK), f = r1[tk][c], t = r2[tk][c];
-      const better = CAT[c].lower ? d < 0 : d > 0, zero = CAT[c].pct ? Math.abs(d) < 0.0005 : Math.abs(d) < 0.5;
-      return `<td class="num ta-d ${zero ? "" : better ? "up" : "dn"}">${zero ? "–" : fmtDelta(c, d)}</td>` +
-        `<td class="num ta-r ${t < f ? "up" : t > f ? "dn" : ""}">${t !== f ? `${ordinal(f)}<i>→</i>${ordinal(t)}` : ordinal(t)}</td>`;
-    };
-    return `<tr><th>${esc(CAT[c].name)}</th>${cell(a)}${cell(b)}</tr>`;
   };
   $("az-out").innerHTML = `
-    <div class="ta-verdict ${kind}"><span class="label">Verdict</span><p>${verdict}</p></div>
-    <div class="ta-cards">${card(a, rosA, wkA, pa, pb, vb - va)}${card(b, rosB, wkB, pb, pa, va - vb)}</div>
-    <div class="table-wrap ta-tw"><table class="ta-cats">
-      <thead><tr><th rowspan="2">Cat</th><th colspan="2">${esc(mgr(a))}</th><th colspan="2">${esc(mgr(b))}</th></tr>
-      <tr><th>ROS</th><th>Rank</th><th>ROS</th><th>Rank</th></tr></thead>
-      <tbody>${CATS.map(row).join("")}</tbody></table></div>
-    <div class="ta-foot"><span>${ga.length !== gb.length ? "Side giving more players gets a waiver add for the open spot. " : ""}ROS = change in projected rest-of-season total (percentages: change in rate).</span>
-      <button type="button" class="tl-copy" id="share">Send to the group chat</button></div>`;
+    <div class="ta-verdict ${kind}"><span class="label">The projection's take</span><p>${verdict}</p></div>
+    <div class="ta-cards">${card(a, rosA, pa, pb)}${card(b, rosB, pb, pa)}</div>
+    <div class="ta-foot"><span>Ranks are projected league standing in each category over the rest of the season.${ga.length !== gb.length ? " The side giving more players gets a waiver add for the open spot." : ""}</span>
+      <button type="button" class="tl-copy" id="share">Send to the group chat</button></div>
+    <p class="ta-grain"><b>Grain of salt:</b> this is a projection from last season's numbers and a handful of games. It can't see roles, minutes, injuries, schedules or the guy who just clicked. You know your players. Use this to start the argument, not to settle it.</p>`;
   $("share").onclick = () => {
-    const txt = `TRADE DESK: ${mgr(a)} sends ${ga.join(" + ")} for ${gb.join(" + ")}. Rest of season: ${mgr(a)} ${rosA >= 0 ? "+" : "-"}${Math.abs(rosA).toFixed(1)} cat wins, ${mgr(b)} ${rosB >= 0 ? "+" : "-"}${Math.abs(rosB).toFixed(1)}. Judge it: ${location.href}`;
+    const helps = tk => moved(tk, true).map(m => CAT[m.cat].name).join(", ");
+    const txt = `TRADE DESK: ${mgr(a)} sends ${ga.join(" + ")} for ${gb.join(" + ")}. ` +
+      `${mgr(a)}: ${lean(rosA)[0].toLowerCase()}${helps(a) ? " (" + helps(a) + ")" : ""}. ${mgr(b)}: ${lean(rosB)[0].toLowerCase()}${helps(b) ? " (" + helps(b) + ")" : ""}. Judge it: ${location.href}`;
     const done = () => { $("share").textContent = "Copied. Start the fight."; $("share").classList.add("ok"); gc.event("trade/share"); };
     (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(done).catch(() => { window.prompt("Copy this:", txt); done(); });
   };
