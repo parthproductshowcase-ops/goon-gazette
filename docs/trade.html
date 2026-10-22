@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette Trade Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=2f51a782">
+
+<div class="wrap picks-page tl-page">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1><small>Somebody pick up the phone</small></div>
+    <div class="dateline"><span class="label">Trade Lab</span><span class="big" id="dl2">Open</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+
+  <section class="pk-hero">
+    <div>
+      <span class="label">The Trade Lab</span>
+      <h2>Deals That Help Both Sides</h2>
+      <p>Every roster run against every roster. These swaps win both teams more categories a week. The only thing missing is a manager with a spine.</p>
+    </div>
+    <div class="pk-status" id="tl-status"><div class="pk-count"><b class="num">…</b><span>deals that work</span></div></div>
+  </section>
+
+  <div class="banner" id="banner" hidden></div>
+
+  <section class="tl-you" id="you">
+    <div class="tl-you-head">
+      <h3><b class="dot">&bull;</b> Your Move</h3>
+      <div class="chips" id="who"></div>
+    </div>
+    <div id="you-body"><p class="note">Tap your name. We'll show what your roster is missing and the one call you should make today.</p></div>
+  </section>
+
+  <div class="sec-head"><h2>The Deal Board <b class="dot">&bull;</b> <span id="n-deals">0</span> on the table</h2><p>Ranked by how much the less-helped side gains. Copy one and drop it in the group chat.</p></div>
+  <div class="tl-deals" id="deals"></div>
+  <button type="button" class="tl-showall" id="showall" hidden>Show all deals</button>
+
+  <div class="sec-head"><h2>Needs Map <b class="dot">&bull;</b> projected weekly rank</h2><p>Where every team would finish in each category this week. Green is surplus to sell, red is a hole to fill.</p></div>
+  <div class="table-wrap tl-map-wrap"><table class="tl-map" id="map"></table></div>
+
+  <div class="cols2 tl-low">
+    <section class="list-card" id="partners-card">
+      <h3>Perfect Partners</h3>
+      <div id="partners"></div>
+    </section>
+    <section class="list-card" id="matched-card">
+      <h3>Block Matches</h3>
+      <div id="matched"><p class="note">Loading the Trade Block…</p></div>
+    </section>
+  </div>
+
+  <div class="sec-head"><h2>Trade Analyzer <b class="dot">&bull;</b> build your own</h2><p>Pick two teams, tap who goes each way. We'll tell you who wins the categories.</p></div>
+  <section class="tl-az" id="az">
+    <div class="tl-az-side" data-side="a">
+      <select class="pk-in" id="az-a" aria-label="First team"></select>
+      <div class="chips" id="az-ra"></div>
+    </div>
+    <div class="tl-az-side" data-side="b">
+      <select class="pk-in" id="az-b" aria-label="Second team"></select>
+      <div class="chips" id="az-rb"></div>
+    </div>
+    <div class="tl-az-out" id="az-out"><p class="note">Tap at least one player on each side.</p></div>
+  </section>
+
+  <div class="sec-head"><h2>Cowards' Corner <b class="dot">&bull;</b> trades made</h2><p id="cc-sub">Two full seasons of receipts.</p></div>
+  <div class="table-wrap"><table class="tl-cc" id="cc"></table></div>
+
+  <section class="tl-how">
+    <h3>How the Lab works</h3>
+    <p id="how"></p>
+  </section>
+
+  <footer><span>Projections, not promises. Deals are suggestions; make your own call.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+</div>
+
+<script src="assets/common.js?v=b660608d"></script>
+<script>
+siteNav("trade");
+
+const LS = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+             set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+let T, CAT = {}, CATS = [], ROST = {}, who = LS.get("gg_who");
+const mgr = tk => T.teams[tk] ? T.teams[tk].manager : tk;
+const pl = n => `<mark>${esc(n)}</mark>`;
+const rkCls = r => r <= 3 ? "hi" : r >= 10 ? "lo" : "";
+const gain = g => `+${g.toFixed(2)}`;
+const CLOSERS = [
+  "Both sides win. Neither of you will make the call.",
+  "The math is done. The only thing missing is a spine.",
+  "A fair deal. Which is exactly why it will never happen.",
+  "Somebody send the offer before the other guy reads this.",
+  "One text message. That's the whole job.",
+  "Fixes two rosters. Requires two adults.",
+];
+
+Promise.all([getJSON("data/trades.json"), getJSON("data/polls.json")]).then(([t, cfg]) => {
+  T = t;
+  T.cats.forEach(c => CAT[c.id] = c);
+  CATS = T.cats.map(c => c.id);
+  Object.entries(T.players).forEach(([n, p]) => (ROST[p.team] = ROST[p.team] || []).push(n));
+  Object.values(ROST).forEach(r => r.sort((a, b) => T.players[b].value - T.players[a].value));
+  drawStatus(); drawYou(); drawDeals(); drawMap(); drawPartners(); drawAnalyzer(); drawCowards(); drawHow();
+  if (cfg.endpoint) getJSON(cfg.endpoint + "?block=1").then(drawMatched).catch(() => $("matched").innerHTML = `<p class="note">The Trade Block isn't answering. Try again later.</p>`);
+  else $("matched").innerHTML = `<p class="note">The Trade Block isn't connected.</p>`;
+}).catch(() => { const b = $("banner"); b.textContent = "The Lab is closed for cleaning. Refresh in a minute."; b.hidden = false; });
+
+function movesText(moves, n) {
+  return (moves || []).filter(m => m.to < m.from).slice(0, n || 2)
+    .map(m => `<span class="tl-mv"><b>${esc(CAT[m.cat].name)}</b> ${ordinal(m.from)} <i>→</i> ${ordinal(m.to)}</span>`).join("");
+}
+function pitch(d, i) {
+  const up = side => (d.moves[side] || []).find(m => m.to < m.from);
+  const a = up("a"), b = up("b");
+  const bits = [];
+  if (a) bits.push(`<b>${esc(mgr(d.a))}</b> goes from ${ordinal(a.from)} to ${ordinal(a.to)} in ${esc(CAT[a.cat].name)}.`);
+  if (b) bits.push(`<b>${esc(mgr(d.b))}</b> goes from ${ordinal(b.from)} to ${ordinal(b.to)} in ${esc(CAT[b.cat].name)}.`);
+  bits.push(CLOSERS[i % CLOSERS.length]);
+  return bits.join(" ");
+}
+function dealCard(d, i, opts) {
+  const side = (tk, give, get, g, mv) => `<div class="tl-side">
+      <div class="tl-who"><b>${esc(mgr(tk))}</b><small>${esc(T.teams[tk].name)}</small></div>
+      <div class="tl-gets"><span class="label">Gets</span>${get.map(pl).join(" + ")}${get.length < give.length ? `<span class="tl-plus">+ a waiver add</span>` : ""}</div>
+      <div class="tl-gain"><b class="num">${gain(g)}</b><span>cats / week</span></div>
+      <div class="tl-mvs">${movesText(mv)}</div>
+    </div>`;
+  return `<article class="tl-deal${opts && opts.mine ? " mine" : ""}">
+    <div class="tl-sides">
+      ${side(d.a, d.give_a, d.give_b, d.gain_a, d.moves.a)}
+      <div class="tl-x" aria-hidden="true">⇄</div>
+      ${side(d.b, d.give_b, d.give_a, d.gain_b, d.moves.b)}
+    </div>
+    <p class="tl-pitch">${pitch(d, i)}</p>
+    <div class="tl-foot"><span class="tl-fair">${fairText(d)}</span><button type="button" class="tl-copy" data-i="${opts && opts.key || i}">Copy the offer</button></div>
+  </article>`;
+}
+function fairText(d) {
+  const g = Math.abs(d.gap);
+  if (g < 0.5) return "Value: dead even";
+  return `Value: slight edge to <b>${esc(mgr(d.gap > 0 ? d.b : d.a))}</b>`;
+}
+function offerText(d) {
+  const mv = side => (d.moves[side] || []).filter(m => m.to < m.from).slice(0, 2).map(m => `${CAT[m.cat].name} ${ordinal(m.from)} to ${ordinal(m.to)}`).join(", ");
+  return `TRADE LAB: ${mgr(d.a)} sends ${d.give_a.join(" + ")} to ${mgr(d.b)} for ${d.give_b.join(" + ")}. ` +
+    `${mgr(d.a)}: ${mv("a") || "more category wins"}. ${mgr(d.b)}: ${mv("b") || "more category wins"}. Both sides win. goongazette.com/trade.html`;
+}
+const CARDS = {};
+document.addEventListener("click", e => {
+  const b = e.target.closest(".tl-copy"); if (!b) return;
+  const d = CARDS[b.dataset.i]; if (!d) return;
+  const t = offerText(d);
+  const done = () => { b.textContent = "Copied. Now send it."; b.classList.add("ok"); gc.event("trade/copy"); };
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(done).catch(() => { window.prompt("Copy the offer:", t); done(); });
+});
+
+function drawStatus() {
+  const made = Object.values(T.teams).reduce((s, t) => s + (t.trades || 0), 0);
+  $("dl2").textContent = made ? made + " made" : "0 made";
+  $("tl-status").innerHTML = `<div class="pk-count"><b class="num">${T.deal_count}</b><span>deals that help both sides</span></div>` +
+    `<p class="pk-filed"><span class="label">Trades made this season</span><b class="tl-zero">${made}</b>${made ? "" : " Not one."}</p>`;
+}
+
+function drawYou() {
+  const ids = Object.values(T.teams).filter(t => t.mid).sort((a, b) => a.manager.localeCompare(b.manager));
+  $("who").innerHTML = ids.map(t => `<button type="button" class="chip${t.mid === who ? " on" : ""}" data-v="${t.mid}">${esc(t.manager)}</button>`).join("");
+  const tk = Object.keys(T.teams).find(k => T.teams[k].mid === who);
+  if (!tk) return;
+  const t = T.teams[tk], r = t.ranks;
+  const chip = (c, cls) => `<span class="tl-cat ${cls}"><b>${esc(CAT[c].name)}</b>${ordinal(r[c])}</span>`;
+  const sellers = Object.entries(T.players).filter(([n, p]) => p.team === tk && p.dealable)
+    .map(([n, p]) => [n, t.strong.reduce((s, c) => s + Math.max(0, p.z[c] || 0), 0)]).sort((a, b) => b[1] - a[1]).slice(0, 2);
+  let html = `<div class="tl-you-grid">
+      <div><span class="label">Sell from</span><div class="tl-cats">${t.strong.map(c => chip(c, "hi")).join("")}</div></div>
+      <div><span class="label">Fix these</span><div class="tl-cats">${t.weak.map(c => chip(c, "lo")).join("")}</div></div>
+      <div><span class="label">Your trade bait</span><div class="tl-bait">${sellers.map(([n]) => pl(n)).join(" ") || "Nobody, apparently"}</div></div>
+    </div>`;
+  if (t.best) {
+    const d = t.best;
+    CARDS.you = d;
+    html += `<span class="label tl-best-l">Your best call today</span>` + dealCard(d, 0, {mine: true, key: "you"});
+  } else html += `<p class="note">No deal helps you and the other guy. That's not the market, that's your roster.</p>`;
+  $("you-body").innerHTML = html;
+}
+$("who").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  who = b.dataset.v; LS.set("gg_who", who); drawYou(); gc.once("trade/you");
+});
+
+function drawDeals() {
+  $("n-deals").textContent = T.deals.length;
+  $("showall").hidden = T.deals.length <= 6;
+  $("showall").textContent = `Show all ${T.deals.length} deals`;
+  T.deals.forEach((d, i) => CARDS[i] = d);
+  $("deals").innerHTML = T.deals.map((d, i) => dealCard(d, i).replace('class="tl-deal', `class="tl-deal${i >= 6 ? " extra" : ""}`)).join("") || `<div class="bk-empty">No deal helps both sides today. Twelve rosters, zero overlap. Impressive, honestly.</div>`;
+}
+
+$("showall").addEventListener("click", () => { $("deals").classList.add("all"); $("showall").hidden = true; gc.once("trade/all"); });
+function drawMap() {
+  const order = Object.keys(T.teams).sort((a, b) => T.teams[b].strength - T.teams[a].strength);
+  $("map").innerHTML = `<thead><tr><th class="tm">Team</th><th title="Expected category wins per matchup">Cats</th>${CATS.map(c => `<th>${esc(CAT[c].name)}</th>`).join("")}</tr></thead><tbody>` +
+    order.map(tk => { const t = T.teams[tk]; return `<tr${t.mid === who ? ' class="me"' : ""}><td class="tm"><b>${esc(t.manager)}</b><small>${esc(t.name)}</small></td><td class="num tl-str">${t.strength.toFixed(1)}</td>` +
+      CATS.map(c => `<td class="num ${rkCls(t.ranks[c])}">${t.ranks[c]}</td>`).join("") + `</tr>`; }).join("") + `</tbody>`;
+}
+
+function drawPartners() {
+  $("partners").innerHTML = (T.partners || []).slice(0, 6).map(d => {
+    const ta = T.teams[d.a], tb = T.teams[d.b];
+    const give = (from, to) => from.strong.filter(c => to.weak.includes(c)).map(c => esc(CAT[c].name));
+    const ab = give(ta, tb), ba = give(tb, ta);
+    const why = ab.length || ba.length ? `${ab.length ? `<b>${esc(ta.manager)}</b> has the ${ab.join(", ")} <b>${esc(tb.manager)}</b> needs. ` : ""}${ba.length ? `<b>${esc(tb.manager)}</b> has the ${ba.join(", ")} <b>${esc(ta.manager)}</b> needs.` : ""}`
+      : `Rosters fit even where the ranks don't show it.`;
+    return `<div class="tl-pair"><div class="tl-pair-top"><span><b>${esc(ta.manager)}</b> <i>⇄</i> <b>${esc(tb.manager)}</b></span><span class="num tl-fit">${gain(Math.min(d.gain_a, d.gain_b))}</span></div><p>${why}</p></div>`;
+  }).join("") || `<p class="note">No pair fits yet.</p>`;
+}
+
+function drawMatched(s) {
+  const L = (s && s.listings) || [];
+  if (!L.length) { $("matched").innerHTML = `<p class="note">Nobody's shopping anyone. <a href="block.html">List a player</a> and we'll find him a buyer.</p>`; return; }
+  $("matched").innerHTML = L.map(x => {
+    const p = T.players[x.player];
+    const fits = p ? p.fits || [] : [];
+    const seller = p ? mgr(p.team) : x.who;
+    return `<div class="tl-match"><div class="tl-pair-top"><span>${pl(x.player)}</span><small>from <b>${esc(seller)}</b></small></div>` +
+      (fits.length ? `<p>Needs him most: ${fits.map(f => `<b>${esc(mgr(f.team))}</b>${f.cats.length ? ` (${f.cats.map(c => esc(CAT[c].name)).join(", ")})` : ""}`).join(", ")}</p>`
+        : `<p>Nobody's hole fits his game. Tough market.</p>`) + `</div>`;
+  }).join("") + `<p class="note tl-more"><a href="block.html">See the full Trade Block</a></p>`;
+}
+
+// ---------- analyzer: same model as pipeline/trades.py ----------
+const F = ["fgm","fga","ftm","fta","tpm","tpa","pts","oreb","dreb","ast","st","blk","to"];
+const CNT = {"10":"tpm","12":"pts","13":"oreb","14":"dreb","16":"ast","17":"st","18":"blk","19":"to"};
+const PCTS = {"5":["fgm","fga"],"8":["ftm","fta"],"11":["tpm","tpa"]};
+const LOWER = new Set(["19"]);
+function teamWeek(ps) {
+  const top = ps.filter(p => !p.il).sort((a, b) => b.value - a.value).slice(0, T.model.active);
+  const t = {}; F.forEach(f => t[f] = 0);
+  top.forEach(p => F.forEach(f => t[f] += p.line[f] * T.model.gpw));
+  const out = {};
+  Object.entries(CNT).forEach(([c, f]) => out[c] = t[f]);
+  Object.entries(PCTS).forEach(([c, [m, a]]) => out[c] = t[a] ? t[m] / t[a] : 0);
+  return out;
+}
+function beats(a, b, c) { if (Math.abs(a - b) < 1e-9) return .5; return (LOWER.has(c) ? a < b : a > b) ? 1 : 0; }
+function allplay(W, tk) {
+  const o = Object.keys(W).filter(k => k !== tk);
+  let s = 0; o.forEach(k => CATS.forEach(c => s += beats(W[tk][c], W[k][c], c)));
+  return s / o.length;
+}
+function rankAll(W) {
+  const r = {}; Object.keys(W).forEach(k => r[k] = {});
+  CATS.forEach(c => Object.keys(W).sort((x, y) => LOWER.has(c) ? W[x][c] - W[y][c] : W[y][c] - W[x][c]).forEach((k, i) => r[k][c] = i + 1));
+  return r;
+}
+const roster = tk => (ROST[tk] || []).map(n => ({name: n, ...T.players[n]}));
+const REP = () => ({name: "Waiver add", il: false, value: T.replacement.value, line: T.replacement.line});
+const SEL = {a: new Set(), b: new Set()};
+function drawAnalyzer() {
+  const opts = Object.keys(T.teams).sort((x, y) => mgr(x).localeCompare(mgr(y))).map(tk => `<option value="${tk}">${esc(mgr(tk))} (${esc(T.teams[tk].name)})</option>`).join("");
+  $("az-a").innerHTML = opts; $("az-b").innerHTML = opts;
+  const mine = Object.keys(T.teams).find(k => T.teams[k].mid === who);
+  const keys = Object.keys(T.teams);
+  $("az-a").value = mine || keys[0];
+  $("az-b").value = keys.find(k => k !== $("az-a").value);
+  drawRoster("a"); drawRoster("b"); runAnalyzer();
+}
+function drawRoster(side) {
+  const tk = $("az-" + side).value;
+  $("az-r" + side).innerHTML = roster(tk).map(p => `<button type="button" class="chip two${SEL[side].has(p.name) ? " on" : ""}" data-s="${side}" data-p="${esc(p.name)}"${p.il ? " disabled" : ""}><span>${esc(p.name)}${p.il ? `<i class="tag">IL</i>` : ""}</span><small>${p.games} gm this season</small></button>`).join("");
+}
+["a", "b"].forEach(side => $("az-" + side).addEventListener("change", () => {
+  SEL.a.clear(); SEL.b.clear();
+  if ($("az-a").value === $("az-b").value) { const o = Object.keys(T.teams).find(k => k !== $("az-a").value); $("az-" + (side === "a" ? "b" : "a")).value = o; }
+  drawRoster("a"); drawRoster("b"); runAnalyzer();
+}));
+$("az").addEventListener("click", e => {
+  const b = e.target.closest("[data-p]"); if (!b) return;
+  const s = SEL[b.dataset.s];
+  s.has(b.dataset.p) ? s.delete(b.dataset.p) : s.add(b.dataset.p);
+  b.classList.toggle("on"); runAnalyzer(); gc.once("trade/analyze");
+});
+function runAnalyzer() {
+  const a = $("az-a").value, b = $("az-b").value;
+  const ga = [...SEL.a], gb = [...SEL.b];
+  if (!ga.length || !gb.length) { $("az-out").innerHTML = `<p class="note">Tap at least one player on each side.</p>`; return; }
+  const W = {}; Object.keys(T.teams).forEach(k => W[k] = teamWeek(roster(k)));
+  let ra = roster(a).filter(p => !ga.includes(p.name)).concat(gb.map(n => ({name: n, ...T.players[n]})));
+  let rb = roster(b).filter(p => !gb.includes(p.name)).concat(ga.map(n => ({name: n, ...T.players[n]})));
+  for (let i = gb.length; i < ga.length; i++) ra.push(REP());
+  for (let i = ga.length; i < gb.length; i++) rb.push(REP());
+  const W2 = {...W, [a]: teamWeek(ra), [b]: teamWeek(rb)};
+  const da = allplay(W2, a) - allplay(W, a), db = allplay(W2, b) - allplay(W, b);
+  const r1 = rankAll(W), r2 = rankAll(W2);
+  const mv = tk => CATS.filter(c => r2[tk][c] !== r1[tk][c]).sort((x, y) => (r2[tk][x] - r1[tk][x]) - (r2[tk][y] - r1[tk][y]))
+    .map(c => `<span class="tl-mv ${r2[tk][c] < r1[tk][c] ? "up" : "dn"}"><b>${esc(CAT[c].name)}</b> ${ordinal(r1[tk][c])} <i>→</i> ${ordinal(r2[tk][c])}</span>`).join("") || `<span class="note">No rank changes</span>`;
+  const verdict = da > 0.1 && db > 0.1 ? "Both sides win. Send it." : da > 0.1 ? `<b>${esc(mgr(a))}</b> fleeces this one.` : db > 0.1 ? `<b>${esc(mgr(b))}</b> fleeces this one.` : "Nobody gets better. Pointless, like most of your ideas.";
+  const sign = v => `<b class="num ${v > 0.05 ? "up" : v < -0.05 ? "dn" : ""}">${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(2)}</b>`;
+  $("az-out").innerHTML = `<p class="tl-verdict">${verdict}</p><div class="tl-az-res">
+      <div><span class="label">${esc(mgr(a))}</span>${sign(da)}<small>cats / week</small><div class="tl-mvs">${mv(a)}</div></div>
+      <div><span class="label">${esc(mgr(b))}</span>${sign(db)}<small>cats / week</small><div class="tl-mvs">${mv(b)}</div></div>
+    </div>`;
+}
+
+function drawCowards() {
+  const rows = Object.values(T.teams).map(t => ({...t, total: (t.trades || 0) + Object.values(t.past_trades || {}).reduce((s, v) => s + v, 0)}))
+    .sort((x, y) => x.total - y.total || x.manager.localeCompare(y.manager));
+  const all = Math.round(rows.reduce((s, r) => s + r.total, 0) / 2);
+  const dealers = rows.filter(r => r.total).map(r => r.manager);
+  $("cc-sub").textContent = all === 0 ? "Zero trades. Ever. A league of museum curators."
+    : `${all === 1 ? "One trade" : all + " trades"} since 2024. ${all === 1 ? "Both sides" : "The dealers"}: ${dealers.join(" and ")}. Everyone else is a collector.`;
+  const cell = v => v == null ? `<td class="num muted">–</td>` : `<td class="num${v ? " hi" : ""}">${v}</td>`;
+  $("cc").innerHTML = `<thead><tr><th class="tm">Manager</th><th>2024-25</th><th>2025-26</th><th>This year</th><th>Verdict</th></tr></thead><tbody>` +
+    rows.map(r => `<tr${r.mid === who ? ' class="me"' : ""}><td class="tm"><b>${esc(r.manager)}</b><small>${esc(r.name)}</small></td>${cell(r.past_trades["2024"])}${cell(r.past_trades["2025"])}${cell(r.trades || 0)}<td class="tl-verd">${r.total ? "Has a pulse" : "Coward"}</td></tr>`).join("") + `</tbody>`;
+}
+
+function drawHow() {
+  const m = T.model;
+  $("how").textContent = `Each player's line blends this season's games with his ${m.prior} per-game line, weighted like ${m.k} extra games, so one hot night can't make a star. ` +
+    `Rookies and anyone without a line start at waiver level. A team's week is its top ${m.active} healthy players at ${m.gpw} games each. ` +
+    `Strength is expected category wins against every other team. A deal makes the board only when both sides gain at least ${m.min_gain} category wins a week and the auction prices are close enough that nobody laughs. ` +
+    `Through ${new Date(T.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"})}; rebuilt every morning.`;
+}
+</script>

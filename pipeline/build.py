@@ -138,6 +138,11 @@ def main():
         if d.get("days"):
             from .web_current import write_night
             write_night(d, (a.get("recap") or {}).get("night"))
+            try:
+                from . import trades
+                trades.write(d)
+            except Exception as e:  # the Lab never blocks the paper
+                print("trades skipped:", e)
     print("wrote", OUT / "league.json")
 
 
