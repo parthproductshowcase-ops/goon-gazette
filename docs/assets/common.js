@@ -15,12 +15,12 @@ function siteNav(active) {
   let seasons = [], picks = null;
   const draw = () => {
     const cur = siteNav.locked
-      ? `<a href="index.html" class="locked"${active === "today" ? ' aria-current="page"' : ""} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
-      : link("index.html", "Current Season", "today");
+      ? `<a href="index.html#current" class="locked"${active === "today" ? ' aria-current="page"' : ""} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
+      : link("index.html#current", "Current Season", "today");
     const pk = picks ? `<a href="predict.html" class="picks${picks.open ? " open" : ""}"${active === "picks" ? ' aria-current="page"' : ""}>${picks.open ? "File Your Picks" : "Picks"}${picks.open ? `<em>Locks ${esc(picks.day)}</em>` : ""}</a>` : "";
     const bk = `<a href="block.html" class="block"${active === "block" ? ' aria-current="page"' : ""}>Trade Block</a>`;
     const nt = siteNav.locked ? "" : `<a href="night.html" class="night"${active === "night" ? ' aria-current="page"' : ""}>Last Night</a>`;
-    el.innerHTML = cur + nt + pk + bk
+    el.innerHTML = nt + cur + pk + bk
       + seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)).join("")
       + link("history.html", "League history", "history");
   };
