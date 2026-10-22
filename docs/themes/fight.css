@@ -718,3 +718,33 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 .tl-how{margin-top:18px;background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
 .tl-how h3{font:800 15px/1 var(--display);margin:0 0 6px}
 .tl-how p{margin:0;font-size:13px;color:var(--muted);line-height:1.5}
+/* Trade Analyzer (public page) */
+.tl-az-side .label{display:block;margin-bottom:6px}
+.tl-verdict-wrap{border-left:6px solid var(--ink);background:var(--paper);padding:12px 14px;border-radius:2px;margin-bottom:12px}
+.tl-verdict-wrap.both{border-left-color:var(--good)}
+.tl-verdict-wrap.fleece,.tl-verdict-wrap.lose{border-left-color:var(--accent)}
+.tl-verdict-wrap .label{display:block;margin-bottom:6px;color:var(--accent);font-weight:800}
+.tl-verdict-wrap .tl-verdict{margin:0}
+.tl-az-col{background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:12px;min-width:0}
+.tl-az-col .label small{text-transform:none;letter-spacing:0;font-weight:500;margin-left:4px}
+.tl-az-num{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 8px;margin:6px 0 8px}
+.tl-val{font-size:12px;color:var(--muted);margin-left:auto}
+.tl-val b{color:var(--ink)}.tl-val b.up{color:var(--good)}.tl-val b.dn{color:var(--accent)}
+.tl-roast{margin:10px 0 0;font-size:14px;line-height:1.45}
+.tl-az-out .tl-foot{margin-top:12px}
+.tl-you{margin-top:18px}
+.tl-needs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tl-you-roast{margin:-4px 0 12px;color:var(--muted)}
+.tl-partners{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tl-partner{border:1px solid var(--rule);border-top:4px solid var(--ink);border-radius:2px;padding:12px;display:flex;flex-direction:column;gap:6px;background:var(--card)}
+.tl-partner.mutual{border-top-color:var(--good)}
+.tl-partner p{margin:0;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px}
+.tl-partner p .label{width:100%}
+.tl-partner .tl-pair-top b{display:block;font:800 16px/1.1 var(--display)}
+.tl-partner .tl-pair-top small{color:var(--muted);font-size:12px}
+.tl-tag{font:800 10px/1 var(--body);text-transform:uppercase;letter-spacing:.05em;background:var(--good);color:#fff;padding:4px 6px;border-radius:2px;white-space:nowrap}
+.tl-ask{line-height:1.8}
+.tl-load{margin-top:auto;font:800 12px/1 var(--body);text-transform:uppercase;letter-spacing:.04em;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:3px;padding:10px 12px;cursor:pointer}
+.tl-load:hover{background:var(--ink);color:var(--card)}
+@media (max-width:820px){.tl-partners{grid-template-columns:1fr}}
+@media (max-width:560px){.tl-needs{grid-template-columns:1fr}.tl-val{margin-left:0;width:100%}}

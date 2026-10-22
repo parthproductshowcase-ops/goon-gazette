@@ -1,11 +1,10 @@
 """Trade Lab: category needs, partner fits and deals that help both sides.
 
     build(d, polls) -> dict     # d is the dict web_current.build_d / build.py make; polls = polls.json
-    python -m pipeline.trades   # build from archive/2026_web.json and write labs/trades.json (not served)
+    python -m pipeline.trades   # build from archive/2026_web.json and write labs/trades.json (full) and docs/data/trades.json (public)
 
-UNPUBLISHED (Oct 22): Parth pulled the Trade Lab before rollout. The page lives in labs/trade.html and is
-not hooked into the morning publish or build.py. To preview locally, copy labs/trade.html and
-labs/trades.json into docs/ and docs/data/ in a scratch copy and serve it.
+Oct 22: the full Lab (suggested deals) stays unpublished in labs/. The public page docs/trade.html is the
+Trade Analyzer plus Know Your Needs, fed by docs/data/trades.json = public(t), which carries no deals.
 
 Model (all numbers come from real lines, nothing invented):
   * Each player's per-game line = this season's games blended with a prior, K games of prior weight.
@@ -26,7 +25,8 @@ from .night import key
 ROOT = Path(__file__).resolve().parents[1]
 PRIOR = ROOT / "archive" / "2026_prior.json"
 POLLS = ROOT / "docs" / "data" / "polls.json"
-OUT = ROOT / "labs" / "trades.json"   # unpublished: labs/ is not served by Pages
+OUT = ROOT / "labs" / "trades.json"   # full Lab incl. suggested deals: unpublished, labs/ is not served
+PUBLIC = ROOT / "docs" / "data" / "trades.json"   # public Trade Analyzer: no suggested deals
 
 K = 10            # prior weight in games
 GPW = 3.5         # games per player per week
@@ -374,11 +374,66 @@ def build(d, polls, prior=None):
             "deal_count": len(deals_all)}
 
 
+def targets(t, n=3):
+    """For each team: the category holes to fix and the teams that fit, by ranks alone.
+    A partner is strong (top 4) where you're weak (bottom 4), and the reverse is what you can offer back.
+    Each partner also gets the two players on his roster who carry your weak categories."""
+    teams, players = t["teams"], t["players"]
+    cats = [c["id"] for c in t["cats"]]
+    untouch = {}
+    for nm, p in players.items():
+        untouch.setdefault(p["team"], []).append((p["tv"], nm))
+    untouch = {k: {nm for _, nm in sorted(v, reverse=True)[:3]} for k, v in untouch.items()}
+
+    def carriers(tk, cs):
+        """Two players on tk who carry categories cs, skipping his top 3 (nobody's moving those)."""
+        if not cs:
+            return []
+        rows = sorted(((nm, sum(max(0, p["z"].get(c, 0)) for c in cs)) for nm, p in players.items()
+                       if p["team"] == tk and p.get("dealable") and nm not in untouch.get(tk, ())), key=lambda x: -x[1])
+        return [nm for nm, v in rows[:2] if v > 0.3]
+
+    out = {}
+    for a, ta in teams.items():
+        ra = ta["ranks"]
+        if not ra:
+            continue
+        holes = sorted([c for c in cats if ra[c] >= 7], key=lambda c: -ra[c])[:4]
+        surplus = sorted([c for c in cats if ra[c] <= 5], key=lambda c: ra[c])[:4]
+        fits = []
+        for b, tb in teams.items():
+            rb = tb["ranks"]
+            if b == a or not rb:
+                continue
+            they_have = [c for c in holes if rb[c] <= 4]
+            you_have = [c for c in surplus if rb[c] >= 8]
+            score = sum((ra[c] - rb[c]) for c in they_have) + sum((rb[c] - ra[c]) for c in you_have)
+            if not they_have:
+                continue
+            fits.append({"team": b, "score": score, "they_have": they_have, "you_have": you_have,
+                         "mutual": bool(you_have), "ask": carriers(b, they_have), "dangle": carriers(a, you_have)})
+        fits.sort(key=lambda f: (not f["mutual"], -f["score"]))
+        out[a] = {"holes": holes, "surplus": surplus, "partners": fits[:n]}
+    return out
+
+
+def public(t):
+    """What goongazette.com gets: the model's inputs and team needs, never a suggested deal."""
+    keep_p = ("team", "il", "value", "tv", "dealable", "games", "src", "cost", "z", "line")
+    drop_t = ("best",)
+    return {"date": t["date"], "season_games": t["season_games"], "model": t["model"], "cats": t["cats"],
+            "replacement": t["replacement"],
+            "teams": {k: {f: v for f, v in x.items() if f not in drop_t} for k, x in t["teams"].items()},
+            "players": {n: {f: p[f] for f in keep_p} for n, p in t["players"].items()},
+            "targets": targets(t)}
+
+
 def write(d, polls=None):
     polls = polls or json.loads(POLLS.read_text())
     t = build(d, polls)
     OUT.write_text(json.dumps(t, ensure_ascii=False, separators=(",", ":")))
-    print("wrote trades", t["date"], len(t["deals"]), "deals of", t["deal_count"])
+    PUBLIC.write_text(json.dumps(public(t), ensure_ascii=False, separators=(",", ":")))
+    print("wrote trades", t["date"], len(t["deals"]), "deals of", t["deal_count"], "(public analyzer: no deals)")
     return t
 
 
