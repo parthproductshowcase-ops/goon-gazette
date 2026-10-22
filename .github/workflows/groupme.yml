@@ -1,0 +1,89 @@
+name: GroupMe morning post
+# Posts "Last Night" to the league GroupMe once per new night, held until 8am ET.
+# Fires when the web morning edition pushes a new docs/data/night.json, or after the
+# API daily build (its own pushes use GITHUB_TOKEN, which doesn't trigger push events).
+# One post per night: a cache key groupme-posted-<date> marks nights already posted.
+on:
+  push:
+    branches: [main]
+    paths: [docs/data/night.json]
+  workflow_run:
+    workflows: ["The Goon Gazette"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run prints the message; post sends it (held until 8am ET, once per night)"
+        type: choice
+        options: [dry-run, post]
+        default: dry-run
+
+concurrency:
+  group: groupme-post
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  post:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main, fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Which night is up
+        id: night
+        run: python -m pipeline.announce --check
+
+      - name: Message preview
+        run: python -m pipeline.announce --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Already posted this night?
+        id: seen
+        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'post'
+        uses: actions/cache/restore@v4
+        with:
+          path: .groupme-posted
+          key: groupme-posted-${{ steps.night.outputs.date }}
+          lookup-only: true
+
+      - name: Decide
+        id: go
+        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'post'
+        run: |
+          if [ "${{ steps.seen.outputs.cache-hit }}" = "true" ]; then
+            echo "Night ${{ steps.night.outputs.date }} already posted; skipping." | tee -a "$GITHUB_STEP_SUMMARY"
+          elif [ "${{ steps.night.outputs.fresh }}" != "true" ]; then
+            echo "Night ${{ steps.night.outputs.date }} is stale; not posting." | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "post=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Hold until 8am ET
+        if: steps.go.outputs.post == 'true'
+        run: python -m pipeline.announce --wait 08:00
+
+      - name: Pull latest notes
+        if: steps.go.outputs.post == 'true'
+        run: git fetch --depth 1 origin main && git reset --hard FETCH_HEAD
+
+      - name: Post to GroupMe
+        if: steps.go.outputs.post == 'true'
+        env:
+          GROUPME_BOT_ID: ${{ secrets.GROUPME_GAZETTE_BOT_ID }}
+        run: |
+          python -m pipeline.announce --check
+          python -m pipeline.announce --post
+          mkdir -p .groupme-posted && date -u > .groupme-posted/at
+
+      - name: Mark night as posted
+        if: steps.go.outputs.post == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .groupme-posted
+          key: groupme-posted-${{ steps.night.outputs.date }}
