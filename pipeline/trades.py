@@ -1,7 +1,11 @@
 """Trade Lab: category needs, partner fits and deals that help both sides.
 
     build(d, polls) -> dict     # d is the dict web_current.build_d / build.py make; polls = polls.json
-    python -m pipeline.trades   # build from archive/2026_web.json and write docs/data/trades.json
+    python -m pipeline.trades   # build from archive/2026_web.json and write labs/trades.json (not served)
+
+UNPUBLISHED (Oct 22): Parth pulled the Trade Lab before rollout. The page lives in labs/trade.html and is
+not hooked into the morning publish or build.py. To preview locally, copy labs/trade.html and
+labs/trades.json into docs/ and docs/data/ in a scratch copy and serve it.
 
 Model (all numbers come from real lines, nothing invented):
   * Each player's per-game line = this season's games blended with a prior, K games of prior weight.
@@ -22,7 +26,7 @@ from .night import key
 ROOT = Path(__file__).resolve().parents[1]
 PRIOR = ROOT / "archive" / "2026_prior.json"
 POLLS = ROOT / "docs" / "data" / "polls.json"
-OUT = ROOT / "docs" / "data" / "trades.json"
+OUT = ROOT / "labs" / "trades.json"   # unpublished: labs/ is not served by Pages
 
 K = 10            # prior weight in games
 GPW = 3.5         # games per player per week
