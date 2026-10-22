@@ -823,3 +823,28 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 .ta-grain{margin:12px 0 0;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-left:4px solid #ffe66d;border-radius:2px;font-size:13px;line-height:1.5;color:var(--muted)}
 .ta-grain b{color:var(--ink)}
 @media (max-width:640px){.ta-cards{grid-template-columns:1fr}.ta-k{width:100%}}
+/* Trade Analyzer v4 (grades) */
+.ta-vtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ta-vtop>b{font:800 20px/1.2 var(--display);color:#fff}
+.ta-badge{font:800 12px/1 var(--body);text-transform:uppercase;letter-spacing:.05em;padding:6px 9px;border-radius:3px;background:#3a3b3d;color:#fff}
+.ta-badge.ok{background:var(--good)}
+.ta-badge.bad{background:var(--accent)}
+.ta-verdict.lop,.ta-verdict.lose{border-left-color:var(--accent)}
+.ta-verdict.even{border-left-color:#8a8b8d}
+.ta-verdict>p{font:500 15px/1.4 var(--body);margin-top:8px;opacity:.9}
+.ta-grade{font:900 40px/1 var(--display);min-width:56px;text-align:center;padding:6px 8px;border-radius:4px;background:var(--paper)}
+.ta-grade.up{background:color-mix(in srgb,var(--good) 16%,var(--card));color:var(--good)}
+.ta-grade.dn{background:color-mix(in srgb,var(--accent) 14%,var(--card));color:var(--accent)}
+.ta-card .ta-top{align-items:center}
+.ta-lists{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ta-lists .ta-k{display:block;width:auto;margin-bottom:6px}
+.ta-lists ul{list-style:none;margin:0;padding:0}
+.ta-lists li{display:flex;justify-content:space-between;align-items:baseline;padding:6px 8px;margin-bottom:4px;border-radius:3px;font-size:14px}
+.ta-lists li span{font-weight:700}
+.ta-lists li b{font-variant-numeric:tabular-nums}
+.ta-lists li.up{background:color-mix(in srgb,var(--good) 13%,var(--card))}.ta-lists li.up b{color:var(--good)}
+.ta-lists li.dn{background:color-mix(in srgb,var(--accent) 11%,var(--card))}.ta-lists li.dn b{color:var(--accent)}
+.ta-lists li.none{color:var(--muted);font-size:13px;padding-left:0}
+.ta-net{margin-top:10px;padding-top:10px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
+.ta-net b{font-size:16px;color:var(--ink)}.ta-net b.up{color:var(--good)}.ta-net b.dn{color:var(--accent)}
+@media (max-width:640px){.ta-grade{font-size:32px}.ta-vtop>b{font-size:17px}}
