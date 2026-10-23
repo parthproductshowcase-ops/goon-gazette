@@ -28,6 +28,7 @@ PROJ = ROOT / "archive" / "2026_proj.json"   # Yahoo "Remaining Games (proj)", r
 POLLS = ROOT / "docs" / "data" / "polls.json"
 OUT = ROOT / "labs" / "trades.json"   # full Lab incl. suggested deals: unpublished, labs/ is not served
 PUBLIC = ROOT / "docs" / "data" / "trades.json"   # public Trade Analyzer: no suggested deals
+PUBLISH = False   # Oct 22: Parth pulled the Trade Analyzer from the site while he thinks it over. True + move labs/analyzer.html back to docs/trade.html + nav link = live again
 
 K = 10            # prior weight in games
 GPW = 3.5         # games per player per week
@@ -486,7 +487,10 @@ def write(d, polls=None):
     polls = polls or json.loads(POLLS.read_text())
     t = build(d, polls)
     OUT.write_text(json.dumps(t, ensure_ascii=False, separators=(",", ":")))
-    PUBLIC.write_text(json.dumps(public(t), ensure_ascii=False, separators=(",", ":")))
+    if PUBLISH:
+        PUBLIC.write_text(json.dumps(public(t), ensure_ascii=False, separators=(",", ":")))
+    else:   # unpublished (Oct 22): the page is parked in labs/analyzer.html; keep its data next to it
+        (ROOT / "labs" / "analyzer.json").write_text(json.dumps(public(t), ensure_ascii=False, separators=(",", ":")))
     print("wrote trades", t["date"], len(t["deals"]), "deals of", t["deal_count"], "(public analyzer: no deals)")
     return t
 
