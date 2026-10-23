@@ -848,3 +848,7 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 .ta-net{margin-top:10px;padding-top:10px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)}
 .ta-net b{font-size:16px;color:var(--ink)}.ta-net b.up{color:var(--good)}.ta-net b.dn{color:var(--accent)}
 @media (max-width:640px){.ta-grade{font-size:32px}.ta-vtop>b{font-size:17px}}
+.ta-verdict .ta-talent{font:600 14px/1.4 var(--body);margin-top:8px;padding-top:8px;border-top:1px solid #333;color:#fff}
+.ta-verdict .ta-talent b{color:#ffe66d}
+.ta-net .ta-tl{display:block;margin-top:4px;font-weight:600}
+.ta-net .ta-tl .up{color:var(--good)}.ta-net .ta-tl .dn{color:var(--accent)}
