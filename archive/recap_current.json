@@ -1,43 +1,43 @@
 {
- "date": "2026-10-21",
- "headline": "Edwards Drops 45 as Acuff Bricks",
- "subhead": "Acinonyx won the night 10-1 while theInfamous rode Darius Acuff Jr. and his 5 for 24 into a 9-2 hole.",
+ "date": "2026-10-22",
+ "headline": "Holmgren Bullies BrookynDynasty as Jokić Bricks",
+ "subhead": "Gopher Gold took the night 10-1 behind Chet Holmgren's 17 rebounds and 4 blocks while Nikola Jokić shot 5 for 19.",
  "body": [],
  "zingers": [
   {
-   "team": "theInfamous",
-   "line": "Darius Acuff Jr. went 5 for 24 and 0 for 7 from three, and theInfamous now trails 9-2."
-  },
-  {
-   "team": "Gopher Gold",
-   "line": "Gopher Gold dropped Brook Lopez, watched him post 17 and 11 off the wire, and got five players on the floor."
-  },
-  {
-   "team": "Zero Fox Given",
-   "line": "Down 10-1 to Acinonyx, Zero Fox Given got 3 for 13 from Rui Hachimura and a big zero from Nic Claxton."
+   "team": "BrookynDynasty",
+   "line": "Nikola Jokić went 5 for 19, Gopher Gold won the night 10-1, and BrookynDynasty now trails 7-4."
   },
   {
    "team": "White Mambas",
-   "line": "Josh Giddey went 1 for 10 for two points, and White Mambas trail Nova Knicks 8-3."
+   "line": "Jamal Murray shot 2 for 11 with 6 turnovers, the worst brick of the night, and White Mambas lead only 6-5."
   },
   {
-   "team": "Nova Knicks",
-   "line": "Nova Knicks started Coby White for a line of zeros and watched Caleb Wilson commit nine turnovers."
+   "team": "theInfamous",
+   "line": "theInfamous trails 10-1, and Peyton Watson answered with 8 points, 2 for 7 shooting and 5 turnovers."
   },
   {
-   "team": "MONSTARS ☄️",
-   "line": "MONSTARS ☄️ left Isaiah Jackson's 13 points on the bench and only lead Suggs to be you 7-4."
+   "team": "Zero Fox Given",
+   "line": "Donovan Mitchell dropped 32 and 10, DeMar DeRozan added 5 turnovers, and Zero Fox Given still trails Acinonyx 10-1."
   },
   {
-   "team": "LeParth James",
-   "line": "Cameron Boozer went 2 for 15 and De'Anthony Melton scored zero, so LeParth James cut Melton before breakfast."
+   "team": "Acinonyx",
+   "line": "James Harden led the league in turnovers with 6, and Acinonyx slid three spots in the power rankings."
+  },
+  {
+   "team": "Thug Life",
+   "line": "Thug Life did not start a single player last night and still lost the night 4-1 to LeParth James."
+  },
+  {
+   "team": "Suggs to be you",
+   "line": "Suggs to be you sent out Cason Wallace alone, and MONSTARS ☄️ took the night 6-2 anyway."
   }
  ],
  "night": [
-  "Anthony Edwards hung 45 points, 10 rebounds and 9 threes on 16 for 29 shooting for BrookynDynasty.",
-  "Darius Acuff Jr. went 5 for 24 and 0 for 7 from three for theInfamous, the worst brick of the night.",
-  "MONSTARS ☄️ left Isaiah Jackson on the bench for 13 points that never counted.",
-  "Keaton Wagler put up 15 points and 3 threes on 4 for 8 and is still sitting on the wire, unclaimed.",
-  "Acinonyx won the night 10-1 over Zero Fox Given behind Yves Missi's 13 points, 14 rebounds and 3 blocks."
+  "Chet Holmgren posted 12 points, 17 rebounds and 4 blocks on 5 for 9 shooting for Gopher Gold, the best line of the night.",
+  "Jamal Murray went 2 for 11 with 6 turnovers for White Mambas, the worst brick of the night, and White Mambas lost the night 4-3.",
+  "Nikola Jokić shot 5 for 19 for BrookynDynasty, which got flattened 10-1 on the night by Gopher Gold.",
+  "James Harden coughed up a league-worst 6 turnovers for Acinonyx.",
+  "Thug Life did not start a single player and lost the night 4-1 to LeParth James."
  ]
 }
