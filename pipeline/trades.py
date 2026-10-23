@@ -24,6 +24,7 @@ from .night import key
 
 ROOT = Path(__file__).resolve().parents[1]
 PRIOR = ROOT / "archive" / "2026_prior.json"
+PROJ = ROOT / "archive" / "2026_proj.json"   # Yahoo "Remaining Games (proj)", refreshed every Monday
 POLLS = ROOT / "docs" / "data" / "polls.json"
 OUT = ROOT / "labs" / "trades.json"   # full Lab incl. suggested deals: unpublished, labs/ is not served
 PUBLIC = ROOT / "docs" / "data" / "trades.json"   # public Trade Analyzer: no suggested deals
@@ -134,13 +135,17 @@ class Valuer:
 
 
 # ---------- teams ----------
+MODE = {"gpw": GPW, "skip_il": True}   # Yahoo mode: lines are rest-of-season totals, gpw 1, injured players count via their projected games
+
+
 def team_week(players):
-    """Weekly totals from the top N_ACTIVE healthy players by value."""
-    top = sorted((p for p in players if not p.get("il")), key=lambda p: -p["value"])[:N_ACTIVE]
+    """Team totals from the top N_ACTIVE players by value (weekly in prior mode, rest of season in Yahoo mode)."""
+    pool = [p for p in players if not (MODE["skip_il"] and p.get("il"))]
+    top = sorted(pool, key=lambda p: -p["value"])[:N_ACTIVE]
     t = dict.fromkeys(FIELDS, 0.0)
     for p in top:
         for f in FIELDS:
-            t[f] += p["line"][f] * GPW
+            t[f] += p["line"][f] * MODE["gpw"]
     out = {cid: t[f] for cid, f in CNT.items()}
     for cid, (m, a) in PCT.items():
         out[cid] = t[m] / t[a] if t[a] else 0
@@ -272,6 +277,34 @@ def build(d, polls, prior=None):
     for ps in raw.values():
         for p in ps:
             p["line"], p["games"], p["src"] = project(p["name"], season, pbase, rep)
+    proj = json.loads(PROJ.read_text()) if PROJ.exists() else None
+    ros = bool(proj)
+    MODE.update(gpw=1 if ros else GPW, skip_il=not ros)
+    if ros:
+        # Yahoo per-game averages times each player's projected remaining games. Players Yahoo hasn't projected
+        # (unprojected rookies, anyone missing from the list) use this season's games once they have 3+, else the
+        # fallback line above, at the median projected games.
+        yrows = {key(n): v for n, v in proj["rows"].items() if v[0] > 0}
+        gp_med = sorted(v[0] for v in yrows.values())[len(yrows) // 2]
+        for ps in raw.values():
+            for p in ps:
+                v = yrows.get(key(p["name"]))
+                if v:
+                    gp = v[0]
+                    per = {f: v[i + 1] / gp for i, f in enumerate(FIELDS)}
+                    p["src"] = "yahoo"
+                else:
+                    gp = gp_med
+                    cur = _lookup(season, p["name"])
+                    if cur and cur["n"] >= MIN_GAMES:
+                        per = {f: cur["sum"][f] / cur["n"] for f in FIELDS}
+                        p["src"] = "season"
+                    else:
+                        per = p["line"]
+                        p["src"] = "replacement" if p["src"] == "replacement" else "last season"
+                p["gp"] = round(gp, 1)
+                p["line"] = {f: round(per[f] * gp, 2) for f in FIELDS}   # rest-of-season totals
+        rep = {f: round(rep[f] * gp_med, 2) for f in FIELDS}
     pool = [p["line"] for ps in raw.values() for p in ps]
     val = Valuer(pool)
     for ps in raw.values():
@@ -287,9 +320,12 @@ def build(d, polls, prior=None):
         p["market"] = by_val[min(i, len(by_val) - 1)]
     for p in allp:
         w = 0.5 + 0.5 * min(1, p["games"] / 30)
-        p["tv"] = round(w * p["value"] + (1 - w) * p["market"], 2) if "market" in p else p["value"]
+        if ros:   # Yahoo's projection already prices in role and health; draft price plays no part
+            p["tv"] = round(p["value"], 2)
+        else:
+            p["tv"] = round(w * p["value"] + (1 - w) * p["market"], 2) if "market" in p else p["value"]
         p["cost"] = cost.get(key(p["name"]))
-        p["dealable"] = not p["il"] and (p["src"] != "replacement" or p["games"] >= MIN_GAMES)
+        p["dealable"] = (ros or not p["il"]) and (p["src"] != "replacement" or p["games"] >= MIN_GAMES)
     rep_player = {"name": "Waiver add", "il": False, "line": rep, "z": val.z(rep)}
     rep_player["value"] = rep_player["tv"] = round(sum(rep_player["z"].values()), 5)
 
@@ -356,7 +392,7 @@ def build(d, polls, prior=None):
     players = {}
     for tk, ps in raw.items():
         for p in ps:
-            players[p["name"]] = {"team": tk, "il": p["il"], "value": p["value_x"], "tv": p["tv"], "dealable": p["dealable"], "games": p["games"], "src": p["src"],
+            players[p["name"]] = {"team": tk, "il": p["il"], "gp": p.get("gp"), "value": p["value_x"], "tv": p["tv"], "dealable": p["dealable"], "games": p["games"], "src": p["src"],
                                   "cost": cost.get(key(p["name"])),
                                   "z": {c: round(v, 2) for c, v in p["z"].items()},
                                   "line": {f: round(v, 4) for f, v in p["line"].items()}}
@@ -373,8 +409,10 @@ def build(d, polls, prior=None):
         p["fits"] = sorted(fits, key=lambda f: -f["fit"])[:3]
 
     return {"date": d["date"], "season_games": max((s["n"] for s in season.values()), default=0),
-            "model": {"k": K, "gpw": GPW, "active": N_ACTIVE, "min_gain": MIN_GAIN, "max_gap": MAX_GAP,
-                      "prior": pr.get("per_game_season"), "weeks_left": weeks_left(d)},
+            "model": {"k": K, "active": N_ACTIVE, "min_gain": MIN_GAIN, "max_gap": MAX_GAP,
+                      "prior": pr.get("per_game_season"), "weeks_left": weeks_left(d),
+                      "ros": ros, "gpw": MODE["gpw"], "proj_as_of": proj["as_of"] if proj else None,
+                      "tv_gap": round(pstdev([p["value"] for ps in raw.values() for p in ps]), 2)},
             "cats": [{"id": c["id"], "name": c["name"], "lower": c["id"] in LOWER, "pct": c["id"] in PCT} for c in d["cats"]],
             "replacement": {"value": rep_player["value"], "line": {f: round(v, 4) for f, v in rep.items()}, "z": rep_player["z"]},
             "teams": teams, "players": players, "deals": deals, "partners": partners,
@@ -426,7 +464,7 @@ def targets(t, n=3):
 
 def public(t):
     """What goongazette.com gets: the model's inputs and team needs, never a suggested deal."""
-    keep_p = ("team", "il", "value", "tv", "dealable", "games", "src", "cost", "z", "line")
+    keep_p = ("team", "il", "value", "tv", "dealable", "games", "gp", "src", "cost", "z", "line")
     drop_t = ("best",)
     return {"date": t["date"], "season_games": t["season_games"], "model": t["model"], "cats": t["cats"],
             "replacement": t["replacement"],
