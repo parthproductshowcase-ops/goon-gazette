@@ -140,12 +140,21 @@ MODE = {"gpw": GPW, "skip_il": True}   # Yahoo mode: lines are rest-of-season to
 
 def team_week(players):
     """Team totals from the top N_ACTIVE players by value (weekly in prior mode, rest of season in Yahoo mode)."""
-    pool = [p for p in players if not (MODE["skip_il"] and p.get("il"))]
-    top = sorted(pool, key=lambda p: -p["value"])[:N_ACTIVE]
     t = dict.fromkeys(FIELDS, 0.0)
-    for p in top:
-        for f in FIELDS:
-            t[f] += p["line"][f] * MODE["gpw"]
+    if not MODE["skip_il"]:
+        # Yahoo mode: every player counts, weighted by roster share. 10 lineup slots spread over the healthy roster,
+        # so each player contributes about N_ACTIVE / healthy of his projected games (IL players by the same share,
+        # their projected games already discount the absence). No player silently drops out of the lineup.
+        healthy = sum(1 for p in players if not p.get("il")) or 1
+        share = min(1.0, N_ACTIVE / healthy)
+        for p in players:
+            for f in FIELDS:
+                t[f] += p["line"][f] * share
+    else:
+        top = sorted((p for p in players if not p.get("il")), key=lambda p: -p["value"])[:N_ACTIVE]
+        for p in top:
+            for f in FIELDS:
+                t[f] += p["line"][f] * MODE["gpw"]
     out = {cid: t[f] for cid, f in CNT.items()}
     for cid, (m, a) in PCT.items():
         out[cid] = t[m] / t[a] if t[a] else 0

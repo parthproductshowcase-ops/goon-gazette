@@ -69,7 +69,7 @@ getJSON("data/trades.json").then(t => {
   Object.values(ROST).forEach(r => r.sort((a, b) => T.players[b].tv - T.players[a].tv));
   $("dl2").textContent = WK.toFixed(1) + " wks left";
   $("how").textContent = `How it's built: Yahoo's rest-of-season projections, as per-game averages times each player's projected games left (injured players count only for the games Yahoo expects). ` +
-    `A team counts its top ${t.model.active} players. Players Yahoo hasn't projected use this season's games once they've played 3, otherwise waiver level. ` +
+    `Every player counts, weighted by roster share (${t.model.active} lineup slots spread across the healthy roster). Players Yahoo hasn't projected use this season's games once they've played 3, otherwise waiver level. ` +
     `Grades come from net category wins over the ${WK.toFixed(1)} weeks left: A+ is 6 or more, C is about even, F is 4 or more lost. The talent check flags a trade as lopsided when one side gets far better players by Yahoo's projections, even if the categories look fine.`;
   init();
 }).catch(() => { const b = $("banner"); b.textContent = "The trade desk is closed. Refresh in a minute."; b.hidden = false; });
@@ -80,9 +80,13 @@ const CNT = {"10":"tpm","12":"pts","13":"oreb","14":"dreb","16":"ast","17":"st",
 const PCTS = {"5":["fgm","fga"],"8":["ftm","fta"],"11":["tpm","tpa"]};
 const LOWER = new Set(["19"]);
 function teamWeek(ps) {
-  const top = (T.model.ros ? ps.slice() : ps.filter(p => !p.il)).sort((a, b) => b.value - a.value).slice(0, T.model.active);
   const t = {}; F.forEach(f => t[f] = 0);
-  top.forEach(p => F.forEach(f => t[f] += p.line[f] * T.model.gpw));
+  if (T.model.ros) {   // every player counts, weighted by roster share (same as pipeline/trades.py)
+    const share = Math.min(1, T.model.active / (ps.filter(p => !p.il).length || 1));
+    ps.forEach(p => F.forEach(f => t[f] += p.line[f] * share));
+  } else {
+    ps.filter(p => !p.il).sort((a, b) => b.value - a.value).slice(0, T.model.active).forEach(p => F.forEach(f => t[f] += p.line[f] * T.model.gpw));
+  }
   const out = {};
   Object.entries(CNT).forEach(([c, f]) => out[c] = t[f]);
   Object.entries(PCTS).forEach(([c, [m, a]]) => out[c] = t[a] ? t[m] / t[a] : 0);
