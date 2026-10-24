@@ -1,43 +1,22 @@
 {
- "date": "2026-10-22",
- "headline": "Holmgren Bullies BrookynDynasty as Jokić Bricks",
- "subhead": "Gopher Gold took the night 10-1 behind Chet Holmgren's 17 rebounds and 4 blocks while Nikola Jokić shot 5 for 19.",
+ "date": "2026-10-23",
+ "headline": "Luka Dončić Hands Out 11 Turnovers",
+ "subhead": "MONSTARS ☄️ took the night 7-4 behind Tyler Herro's 34, while Thug Life watched Toumani Camara score 19 from the bench.",
  "body": [],
  "zingers": [
-  {
-   "team": "BrookynDynasty",
-   "line": "Nikola Jokić went 5 for 19, Gopher Gold won the night 10-1, and BrookynDynasty now trails 7-4."
-  },
-  {
-   "team": "White Mambas",
-   "line": "Jamal Murray shot 2 for 11 with 6 turnovers, the worst brick of the night, and White Mambas lead only 6-5."
-  },
-  {
-   "team": "theInfamous",
-   "line": "theInfamous trails 10-1, and Peyton Watson answered with 8 points, 2 for 7 shooting and 5 turnovers."
-  },
-  {
-   "team": "Zero Fox Given",
-   "line": "Donovan Mitchell dropped 32 and 10, DeMar DeRozan added 5 turnovers, and Zero Fox Given still trails Acinonyx 10-1."
-  },
-  {
-   "team": "Acinonyx",
-   "line": "James Harden led the league in turnovers with 6, and Acinonyx slid three spots in the power rankings."
-  },
-  {
-   "team": "Thug Life",
-   "line": "Thug Life did not start a single player last night and still lost the night 4-1 to LeParth James."
-  },
-  {
-   "team": "Suggs to be you",
-   "line": "Suggs to be you sent out Cason Wallace alone, and MONSTARS ☄️ took the night 6-2 anyway."
-  }
+  {"team": "Acinonyx", "line": "Luka Dončić gift-wrapped 11 turnovers on 8 for 21 shooting, and Acinonyx tied the night 5-5 with Zero Fox Given."},
+  {"team": "Thug Life", "line": "Thug Life benched Toumani Camara's 19 points and 5 threes while starting Mikal Bridges, who shot 0 for 8."},
+  {"team": "Suggs to be you", "line": "Brandon Miller shot 2 for 14, 1 for 11 from three, and Suggs to be you dropped the night 7-4."},
+  {"team": "White Mambas", "line": "White Mambas got waxed 9-2 on the night by Nova Knicks while Desmond Bane shot 2 for 11."},
+  {"team": "Gopher Gold", "line": "Domantas Sabonis posted 27, 19 and 10, and Gopher Gold still lost the night 9-2 to BrookynDynasty."},
+  {"team": "BrookynDynasty", "line": "Anthony Edwards jacked up 23 shots and made 5, and BrookynDynasty still won the night 9-2 by accident."},
+  {"team": "Adam Silver Dez Nuts", "line": "Adam Silver Dez Nuts bricked the whole day, slid three power spots, and lost the night 6-5 to theInfamous."}
  ],
  "night": [
-  "Chet Holmgren posted 12 points, 17 rebounds and 4 blocks on 5 for 9 shooting for Gopher Gold, the best line of the night.",
-  "Jamal Murray went 2 for 11 with 6 turnovers for White Mambas, the worst brick of the night, and White Mambas lost the night 4-3.",
-  "Nikola Jokić shot 5 for 19 for BrookynDynasty, which got flattened 10-1 on the night by Gopher Gold.",
-  "James Harden coughed up a league-worst 6 turnovers for Acinonyx.",
-  "Thug Life did not start a single player and lost the night 4-1 to LeParth James."
+  "Domantas Sabonis put up 27 points, 19 rebounds and 10 assists on 10 for 13 shooting for Gopher Gold, the best line of the night.",
+  "Luka Dončić committed 11 turnovers on 8 for 21 shooting for Acinonyx, the worst brick of the night, and Acinonyx only tied Zero Fox Given.",
+  "Thug Life left Toumani Camara on the bench for 19 points and 5 threes while Mikal Bridges started and shot 0 for 8.",
+  "Paul Reed posted 19 points and 11 rebounds on 8 for 11 shooting, and not one of the twelve teams in this league owns him.",
+  "Nova Knicks flattened White Mambas 9-2 on the night while Desmond Bane shot 2 for 11."
  ]
 }
