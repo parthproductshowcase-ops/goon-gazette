@@ -194,6 +194,7 @@ def analyze(d, prev=None):
         "power": power, "luck": luck(d), "punts": punts(d, zs),
         "matchups": matchup_board(d), "daily": daily_report(d), "bench": bench_report(d),
         "weeks_played": len(d["weekly"]),
+        "gauntlet": gauntlet(d),
     }
 
 
@@ -282,6 +283,45 @@ def race(d, prev=None, sims=2000, seed=42):
         })
     return {"rows": rows, "playoff_teams": npo, "weeks_left": len(sched), "reg_end": d.get("reg_end"),
             "sims": sims}
+
+
+# ---------- the gauntlet: every team against every team, every week ----------
+def gauntlet(d):
+    """Category lines per team for each finished week plus the live one, with real opponents.
+    The page (index.html#gauntlet) plays every pair off with the same rules as cmp_cat."""
+    cats = d["cats"]
+
+    def lines(tbl):
+        out = {}
+        for t, row in (tbl or {}).items():
+            if not row:
+                continue
+            out[t] = {c["id"]: (None if row.get(c["id"]) is None else round(row[c["id"]], 5 if c["pct"] else 2))
+                      for c in cats}
+        return out
+
+    def opps(ms):
+        o = {}
+        for m in ms or []:
+            o[m["a"]], o[m["b"]] = m["b"], m["a"]
+        return o
+
+    weeks = []
+    for w in sorted(d["weekly"]):
+        weeks.append({"week": w, "live": False, "lines": lines(d["weekly"][w]),
+                      "opp": opps((d.get("results") or {}).get(w))})
+    cur = (d.get("league") or {}).get("current_week")
+    if d.get("matchups") and cur not in d["weekly"]:
+        tbl = {}
+        for m in d["matchups"]:
+            tbl[m["a"]], tbl[m["b"]] = m["a_stats"], m["b_stats"]
+        played = any(v for row in tbl.values() for c in cats if not c["pct"] and c["hb"]
+                     for v in [(row or {}).get(c["id"])] if v)
+        if played:  # a fresh week with no games yet stays off; the page shows last week's final
+            weeks.append({"week": cur, "live": True, "through": d.get("date"), "lines": lines(tbl),
+                          "opp": opps(d["matchups"])})
+    weeks = [w for w in weeks if len(w["lines"]) >= 2]
+    return {"weeks": weeks} if weeks else None
 
 
 # ---------- last week ----------

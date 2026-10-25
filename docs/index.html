@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=57c63e3c">
+<link rel="stylesheet" href="themes/fight.css?v=bf40f60c">
 
 <div class="wrap">
   <header class="mast">
@@ -21,7 +21,7 @@
   <div class="scores" id="scores" aria-label="Scoreboard"></div>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
   <nav class="tabs" aria-label="Sections">
-    <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
+    <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#gauntlet" data-tab="gauntlet">The Gauntlet</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
     <a href="#waivers" data-tab="waivers">Waiver Wire</a><a href="#trends" data-tab="trends">Trends</a>
   </nav>
 
@@ -43,6 +43,20 @@
     <div class="cols2 standouts">
       <div class="list-card"><h3>Managers Who Earned Their Keep</h3><p class="note">Pickups doing the job the draft picks were supposed to do.</p><div id="cw-plays"></div></div>
       <div class="list-card"><h3>Players Carrying Lazy Rosters</h3><p class="note">Top 10 this week by category value.</p><div id="cw-players"></div></div>
+    </div>
+  </section>
+
+  <section id="gauntlet" class="panel" hidden>
+    <div class="sec-head"><h2 id="gt-title">The Gauntlet</h2><p id="gt-sub">Your schedule is luck. This is every team against every team, category by category.</p></div>
+    <div class="gt-bar"><div class="chips gt-weeks" id="gt-weeks"></div></div>
+    <div class="gt-pick"><span class="label">Pick a team</span><div class="chips" id="gt-teams"></div></div>
+    <div class="gt-hero" id="gt-hero"></div>
+    <div class="list-card gt-card"><h3 id="gt-board-h">Vs everyone</h3><p class="note">Every opponent, every category. Tap a row for the full head to head.</p><div class="gt-scroll"><table class="gt-tbl" id="gt-board"></table></div></div>
+    <div class="gt-two">
+      <div class="list-card gt-card gt-h2h" id="gt-h2h-card"><h3>Head to head <b class="dot">&bull;</b> Any two teams</h3>
+        <div class="gt-sel"><select id="gt-a" aria-label="Team"></select><span>vs</span><select id="gt-b" aria-label="Opponent"></select></div>
+        <div id="gt-h2h"></div></div>
+      <div class="list-card gt-card"><h3>All-play standings</h3><p class="note">Record if you played all 11 teams this week. Gift: winning your real matchup but losing to most of the league. Robbed: the opposite.</p><div class="gt-scroll"><table class="gt-st" id="gt-stand"></table></div></div>
     </div>
   </section>
 
@@ -83,7 +97,7 @@
 siteNav("today");
 
 // section tabs: one panel at a time; the hash remembers which
-const TABS = ["current","race","lastweek","waivers","trends"];
+const TABS = ["current","gauntlet","race","lastweek","waivers","trends"];
 function showTab(id, push){
   if (!TABS.includes(id)) id = "current";
   TABS.forEach(t => { $(t).hidden = t !== id; });
@@ -339,12 +353,130 @@ function render(a){
     $("form").innerHTML = `<p class="empty">Trends start after week 2.</p>`;
   }
 
+  gauntlet(a);
+
   $("gen").textContent = a.generated_at ? `Updated ${new Date(a.generated_at).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}` : "";
   if (a.source === "yahoo-web") {
     const thru = new Date(a.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
     $("gen").textContent += `. Early edition: games through ${thru}, rebuilt each morning from Yahoo's league pages until the official feed opens`;
     document.querySelector("footer span:nth-of-type(2)").textContent = "Morning edition by 6am ET. The Lineup Card returns when the official feed opens.";
   }
+}
+
+// The Gauntlet: every team against every team, every category (data: a.gauntlet, from stats.gauntlet)
+function gauntlet(a){
+  const G = a.gauntlet, T = a.teams;
+  if (!G || !G.weeks?.length){ $("gt-hero").innerHTML = `<p class="empty">The Gauntlet opens once the first games are in.</p>`; return; }
+  const DISP = {};  // display names from polls.json (Yahoo nicknames like "parth s" otherwise)
+  const nm = tk => esc(T[tk]?.name || tk), mg = tk => esc(DISP[tk] || T[tk]?.manager || "");
+  const cats = a.cats, CAT = Object.fromEntries(cats.map(c => [c.id, c]));
+  const cmp = (x, y, c) => x == null || y == null ? 0 : Math.abs(x - y) < (c.pct ? 1e-4 : 1e-9) ? 0 : (x > y ? 1 : -1) * (c.hb ? 1 : -1);
+  const sc = s => `${s[0]}-${s[1]}${s[2] ? "-" + s[2] : ""}`;
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+  const S = { w: G.weeks.length - 1, me: null, b: null };
+
+  function play(L){  // every pair, every category
+    const teams = Object.keys(L), res = {};
+    teams.forEach(t => {
+      res[t] = { vs: {}, rec: [0, 0, 0], cat: [0, 0, 0], byCat: Object.fromEntries(cats.map(c => [c.id, [0, 0, 0]])) };
+      teams.forEach(o => {
+        if (o === t) return;
+        const cells = cats.map(c => cmp(L[t][c.id], L[o][c.id], c)), s = [0, 0, 0];
+        cells.forEach((r, i) => { const k = r > 0 ? 0 : r < 0 ? 1 : 2; s[k]++; res[t].cat[k]++; res[t].byCat[cats[i].id][k]++; });
+        res[t].vs[o] = { cells, s };
+        res[t].rec[s[0] > s[1] ? 0 : s[1] > s[0] ? 1 : 2]++;
+      });
+    });
+    return res;
+  }
+  const apw = r => r.rec[0] + r.rec[2] / 2, catPct = r => (r.cat[0] + r.cat[2] / 2) / ((r.cat[0] + r.cat[1] + r.cat[2]) || 1);
+  const verdict = (real, r, n) => {
+    if (!real) return null;
+    const won = real.s[0] > real.s[1], lost = real.s[1] > real.s[0], half = n / 2, w = apw(r);
+    if (won) return w >= half ? ["Legit", "g-good"] : ["Gift", "g-mid"];
+    if (lost) return w > half ? ["Robbed", "g-blue"] : ["Exposed", "g-bad"];
+    return ["Even", ""];
+  };
+
+  // a manager's own team, from the name they signed on Picks or the Trade Block
+  getJSON("data/polls.json").then(c => {
+    const byId = Object.fromEntries((c.managers || []).map(m => [m.id, m.name])), keyOf = id => Object.keys(T).find(tk => tk.endsWith(".t." + id));
+    Object.entries(c.rosters?.teams || {}).forEach(([mid, r]) => { const k = keyOf(r.team_id); if (k && byId[mid]) DISP[k] = byId[mid]; });
+    const R = c.rosters?.teams?.[store.get("gg_who")];
+    if (R && !store.get("gg_gt")) { const k = keyOf(R.team_id); if (k) S.me = k; }
+    draw();
+  }).catch(() => {});
+  const saved = store.get("gg_gt");
+  if (saved) S.me = Object.keys(T).find(tk => tk.endsWith(".t." + saved)) || null;
+
+  function draw(){
+    const W = G.weeks[S.w], L = W.lines, R = play(L), teams = Object.keys(L), n = teams.length - 1;
+    const order = [...teams].sort((x, y) => apw(R[y]) - apw(R[x]) || catPct(R[y]) - catPct(R[x]) || (T[x]?.name || "").localeCompare(T[y]?.name || ""));
+    if (!S.me || !L[S.me]) S.me = order[0];
+    const me = S.me, my = R[me], opp = W.opp[me], real = opp ? my.vs[opp] : null;
+    if (!S.b || S.b === me || !L[S.b]) S.b = opp && L[opp] ? opp : order.find(t => t !== me);
+    const thru = W.through ? new Date(W.through + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"}) : "";
+
+    $("gt-title").innerHTML = `The Gauntlet <b class="dot">&bull;</b> Week ${W.week}${W.live ? ` <b class="dot">&bull;</b> Live` : ""}`;
+    $("gt-sub").textContent = W.live ? `Your schedule is luck. This is every team against every team, category by category, with games through ${thru}. Updates every morning.`
+      : `Week ${W.week} is final. Every team against every team, category by category.`;
+    $("gt-weeks").innerHTML = G.weeks.length > 1 ? G.weeks.map((w, i) => `<button class="chip${i === S.w ? " on" : ""}" data-w="${i}">Week ${w.week}${w.live ? " (live)" : ""}</button>`).reverse().join("") : "";
+    $("gt-teams").innerHTML = order.map(t => `<button class="chip${t === me ? " on" : ""}" data-t="${t}">${mg(t) || nm(t)}</button>`).join("");
+
+    // the verdict on the picked team
+    const v = verdict(real, my, n), w = my.rec[0], l = my.rec[1], rank = order.indexOf(me) + 1;
+    const bc = cats.map(c => ({ c, s: my.byCat[c.id] })), best = [...bc].sort((x, y) => (y.s[0] + y.s[2] / 2) - (x.s[0] + x.s[2] / 2))[0], worst = [...bc].sort((x, y) => (x.s[0] + x.s[2] / 2) - (y.s[0] + y.s[2] / 2))[0];
+    const up = real && real.s[0] > real.s[1], down = real && real.s[1] > real.s[0];
+    const realTxt = !real ? "" : W.live ? `${up ? "Up" : down ? "Down" : "Tied"} ${sc(real.s)} ${up ? "on" : down ? "to" : "with"} <b>${nm(opp)}</b>` : `${up ? "Beat" : down ? "Lost to" : "Tied"} <b>${nm(opp)}</b> ${sc(real.s)}`;
+    const roast = !v ? "" : {
+      Legit: `And beats ${w} of ${n}. No luck involved, unfortunately for everyone else.`,
+      Gift: `But loses to ${l} of ${n}. The schedule is doing the heavy lifting.`,
+      Robbed: `Yet beats ${w} of ${n}. Drew the wrong opponent at the wrong time.`,
+      Exposed: `And loses to ${l} of ${n}. Not unlucky. Just bad.`,
+      Even: `Beats ${w} of ${n}, loses to ${l}. Perfectly mediocre.`
+    }[v[0]];
+    $("gt-hero").innerHTML = `<div class="award hot gt-v">
+      <div class="gt-vtop"><span class="label">${nm(me)} <small>${mg(me)}</small></span>${v ? `<span class="badge ${v[1]}">${v[0]}</span>` : ""}</div>
+      <h3>Beats ${w} of ${n}${my.rec[2] ? `, ties ${my.rec[2]}` : ""}</h3>
+      <p>${realTxt}${realTxt ? ". " : ""}${esc(roast)}</p>
+      <div class="gt-facts"><span><i>All-play rank</i><b>${ordinal(rank)} of ${n + 1}</b></span><span><i>Category record</i><b>${sc(my.cat)}</b></span>
+        <span><i>Owns</i><b>${esc(best.c.name)} ${sc(best.s)}</b></span><span><i>Bullied in</i><b>${esc(worst.c.name)} ${sc(worst.s)}</b></span></div></div>`;
+
+    // vs everyone, every category
+    $("gt-board-h").innerHTML = `${nm(me)} vs everyone <b class="dot">&bull;</b> Week ${W.week}`;
+    const rows = teams.filter(t => t !== me).sort((x, y) => (t => t === opp ? -1 : 0)(x) - (t => t === opp ? -1 : 0)(y) || (my.vs[y].s[0] - my.vs[y].s[1]) - (my.vs[x].s[0] - my.vs[x].s[1]));
+    const cell = r => r > 0 ? `<td class="cw">W</td>` : r < 0 ? `<td class="cl">L</td>` : `<td class="ct">T</td>`;
+    const res = s => s[0] > s[1] ? "w" : s[1] > s[0] ? "l" : "t";
+    $("gt-board").innerHTML = `<thead><tr><th class="tm">Opponent</th><th class="s">Score</th>${cats.map(c => `<th>${esc(c.name)}</th>`).join("")}</tr></thead><tbody>` +
+      rows.map(o => { const x = my.vs[o]; return `<tr data-o="${o}" class="${o === opp ? "real" : ""}${o === S.b ? " pick" : ""}" tabindex="0"><td class="tm"><b>${nm(o)}</b><small>${mg(o)}${o === opp ? ` <i class="gt-real">Real matchup</i>` : ""}</small></td><td class="s ${res(x.s)}">${sc(x.s)}</td>${x.cells.map(cell).join("")}</tr>`; }).join("") +
+      `</tbody><tfoot><tr><td class="tm">Won vs the field</td><td class="s">${sc(my.rec)}</td>${cats.map(c => { const s = my.byCat[c.id], p = (s[0] + s[2] / 2) / n; return `<td class="${p >= .67 ? "fw" : p <= .33 ? "fl" : "fm"}">${s[0]}</td>`; }).join("")}</tr></tfoot>`;
+
+    // head to head
+    const opt = sel => order.map(t => `<option value="${t}"${t === sel ? " selected" : ""}>${esc(T[t]?.name || t)} (${mg(t)})</option>`).join("");
+    $("gt-a").innerHTML = opt(me); $("gt-b").innerHTML = opt(S.b);
+    const h = R[me].vs[S.b] || { cells: [], s: [0, 0, 0] }, isReal = S.b === opp;
+    $("gt-h2h").innerHTML = `<div class="mu-top gt-mt"><div class="mu-team">${nm(me)}<small>${mg(me)}</small></div>
+        <div class="mu-score">${h.s[0]}–${h.s[1]}${h.s[2] ? `<span class="t">–${h.s[2]}</span>` : ""}</div>
+        <div class="mu-team b">${nm(S.b)}<small>${mg(S.b)}</small></div></div>
+      <p class="gt-hn">${isReal ? "This is the real matchup." : real ? `Real matchup: ${sc(real.s)} vs ${nm(opp)}. This one would be ${h.s[0] > h.s[1] ? "a win" : h.s[1] > h.s[0] ? "a loss" : "a tie"}.` : ""}</p>
+      <table class="cats">${cats.map((c, i) => { const r = h.cells[i]; return `<tr><td class="v va ${r > 0 ? "lead" : ""}">${fmtStat(L[me][c.id], c.pct)}</td><td class="c">${esc(c.name)}</td><td class="v vb ${r < 0 ? "lead" : ""}">${fmtStat(L[S.b][c.id], c.pct)}</td></tr>`; }).join("")}</table>`;
+
+    // all-play standings
+    $("gt-stand").innerHTML = `<thead><tr><th>#</th><th class="tm">Team</th><th class="r">All-play</th><th class="r">Cat %</th><th class="r">Real</th><th></th></tr></thead><tbody>` +
+      order.map((t, i) => { const r = R[t], o = W.opp[t], rl = o && R[t].vs[o], vv = verdict(rl, r, n);
+        return `<tr data-t="${t}" class="${t === me ? "me" : ""}" tabindex="0"><td class="rk">${i + 1}</td><td class="tm"><b>${nm(t)}</b><small>${mg(t)}</small></td><td class="num r">${sc(r.rec)}</td><td class="num r">${fmtPct(catPct(r))}</td><td class="num r">${rl ? sc(rl.s) : "–"}</td><td>${vv && vv[0] !== "Even" ? `<span class="badge ${vv[1]}">${vv[0]}</span>` : ""}</td></tr>`; }).join("") + `</tbody>`;
+  }
+
+  const pickMe = t => { if (!t) return; S.me = t; store.set("gg_gt", t.split(".t.").pop()); gc.once("gauntlet/team"); draw(); };
+  $("gt-teams").addEventListener("click", e => pickMe(e.target.closest("[data-t]")?.dataset.t));
+  $("gt-stand").addEventListener("click", e => { const t = e.target.closest("[data-t]")?.dataset.t; if (t) { pickMe(t); $("gt-hero").scrollIntoView({behavior: "smooth", block: "start"}); } });
+  $("gt-weeks").addEventListener("click", e => { const w = e.target.closest("[data-w]")?.dataset.w; if (w != null) { S.w = +w; draw(); } });
+  const openH2H = o => { if (!o) return; S.b = o; gc.once("gauntlet/h2h"); draw(); $("gt-h2h-card").scrollIntoView({behavior: "smooth", block: "start"}); };
+  $("gt-board").addEventListener("click", e => openH2H(e.target.closest("[data-o]")?.dataset.o));
+  $("gt-board").addEventListener("keydown", e => { if (e.key === "Enter") openH2H(e.target.closest("[data-o]")?.dataset.o); });
+  $("gt-a").addEventListener("change", e => { if (e.target.value === S.b) S.b = null; pickMe(e.target.value); });
+  $("gt-b").addEventListener("change", e => { S.b = e.target.value; if (S.b === S.me) S.b = null; gc.once("gauntlet/h2h"); draw(); });
+  draw();
 }
 
 function spark(vals){
