@@ -16,6 +16,8 @@ from zoneinfo import ZoneInfo
 
 ET = ZoneInfo("America/New_York")
 NIGHT = Path(__file__).resolve().parent.parent / "docs" / "data" / "night.json"
+# One-off extra note (e.g. a new feature), posted only on its ET date: {"date": "YYYY-MM-DD", "text": "..."}
+NOTE = Path(__file__).resolve().parent.parent / "config" / "announce_note.json"
 LINK = "goongazette.com"
 
 
@@ -29,11 +31,23 @@ def fresh(date, now=None):
     return dt.date.fromisoformat(date) >= today - dt.timedelta(days=1)
 
 
-def message(n):
+def extra_note(now=None):
+    try:
+        x = json.loads(NOTE.read_text())
+    except Exception:
+        return ""
+    today = (now or dt.datetime.now(ET)).date().isoformat()
+    return str(x.get("text") or "").strip() if x.get("date") == today else ""
+
+
+def message(n, now=None):
     d = dt.date.fromisoformat(n["date"])
     head = f"LAST NIGHT IN THE GOONS ({d.strftime('%a')}, {d.strftime('%b')} {d.day})"
     notes = [x.strip() for x in (n.get("notes") or []) if str(x).strip()][:2]
     lines = [head] + notes + [f"Full damage: {LINK}"]
+    note = extra_note(now)
+    if note:
+        lines += ["", note]
     text = "\n".join(lines)
     return text if len(text) <= 1000 else text[:997] + "..."  # GroupMe caps at 1000
 
