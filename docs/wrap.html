@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
 <link rel="stylesheet" href="themes/fight.css?v=005abff9">
-<link rel="stylesheet" href="themes/wrap.css?v=7afb4f09">
+<link rel="stylesheet" href="themes/wrap.css?v=2138c943">
 
 <div class="wrap">
   <header class="mast">
@@ -120,38 +120,46 @@ function rider(x, y, s = 1, flip = false) {
 }
 Object.assign(ART.western, {
   hero() {
-    let legs = "";
-    for (let x = 30; x < 780; x += 60) legs += `<path d="M${x} 214L${x + 30} 300M${x + 60} 214L${x + 30} 300M${x} 214v86M${x + 60} 214v86" stroke="currentColor" stroke-width="2.2"/>`;
-    const puff = [[508, 108, 13], [484, 90, 19], [450, 74, 25], [404, 64, 29], [350, 58, 31], [292, 56, 28]]
-      .map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#wxh2)" stroke="currentColor" stroke-width="1.5"/>`).join("");
-    return `<svg viewBox="0 0 800 300" role="img" aria-label="A train crossing a trestle bridge with riders alongside">
-      <rect width="800" height="300" fill="url(#wxh2)" opacity=".18"/>
-      <circle cx="660" cy="84" r="44" fill="var(--wx-accent)" opacity=".35"/>
-      <path d="M0 200L60 150H160L190 182H262L292 138H420L452 190H800V214H0z" fill="currentColor" opacity=".22"/>
-      <path d="M560 190l40-34h70l30 34z" fill="url(#wxh)" stroke="currentColor" stroke-width="1.5"/>
-      ${legs}
-      <rect x="0" y="205" width="800" height="9" fill="currentColor"/>
+    // a goon from common.js, placed and posed inside the scene
+    const g = (i, x, y, w, rot = 0, flip = false) => {
+      const h = w * 80 / 60;
+      return `<g transform="translate(${x} ${y}) rotate(${rot}) ${flip ? "scale(-1 1)" : ""}">` +
+        goon(i).replace(/<svg viewBox="0 0 60 80" class="g\d">/, `<svg x="${-w / 2}" y="${-h}" width="${w}" height="${h}" viewBox="0 0 60 80" overflow="visible">`) + `</g>`;
+    };
+    const boom = (x, y, r) => `<path transform="translate(${x} ${y}) scale(${r})" d="M0-12l4 7 8-4-3 8 9 2-8 4 5 7-8-2-1 9-5-7-6 6 0-9-9 1 6-6-7-5 9-1-3-8 8 3z" fill="var(--wx-accent)"/>`;
+    const dust = [[300, 262, 18], [330, 270, 14], [470, 266, 20], [505, 274, 13], [395, 276, 16]]
+      .map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#wxh2)" stroke="currentColor" stroke-width="1.2" opacity=".85"/>`).join("");
+    return `<svg viewBox="0 0 800 320" role="img" aria-label="A brawl in the street outside a frontier saloon">
+      <rect width="800" height="320" fill="url(#wxh2)" opacity=".16"/>
+      <circle cx="700" cy="70" r="40" fill="var(--wx-accent)" opacity=".3"/>
+      <path d="M0 210L50 170H130L150 200H650L680 160H760L800 190V250H0z" fill="currentColor" opacity=".18"/>
       <g fill="currentColor">
-        <rect x="110" y="140" width="136" height="56" rx="4"/><rect x="104" y="134" width="148" height="8" rx="3"/>
-        <g fill="var(--wx-poster)"><rect x="122" y="150" width="18" height="16"/><rect x="150" y="150" width="18" height="16"/><rect x="178" y="150" width="18" height="16"/><rect x="206" y="150" width="18" height="16"/></g>
-        <circle cx="135" cy="200" r="9"/><circle cx="222" cy="200" r="9"/>
-        <rect x="256" y="158" width="100" height="38" rx="3"/><circle cx="280" cy="200" r="9"/><circle cx="332" cy="200" r="9"/>
-        <rect x="366" y="134" width="58" height="62"/><rect x="358" y="126" width="74" height="10" rx="3"/>
-        <rect x="378" y="144" width="20" height="18" fill="var(--wx-poster)"/>
-        <rect x="420" y="158" width="112" height="38" rx="10"/>
-        <path d="M494 158l-4-34h32l-6 34z"/><path d="M484 118h44l-7 9h-30z"/>
-        <path d="M446 158a10 10 0 0 1 20 0z"/>
-        <rect x="526" y="164" width="12" height="10" fill="var(--wx-accent)"/>
-        <path d="M532 196l38 10h-38z"/>
-        <circle cx="398" cy="192" r="15" fill="var(--wx-poster)" stroke="currentColor" stroke-width="5"/>
-        <circle cx="446" cy="192" r="15" fill="var(--wx-poster)" stroke="currentColor" stroke-width="5"/>
-        <circle cx="496" cy="198" r="9"/><circle cx="522" cy="198" r="9"/>
-        <path d="M398 192h48" stroke="currentColor" stroke-width="4"/>
+        <path d="M190 252V70h30V48h60V34h240v14h60v22h30v182z" opacity=".9"/>
+        <rect x="250" y="40" width="300" height="34" fill="var(--wx-poster)" stroke="currentColor" stroke-width="3"/>
+        <text x="400" y="65" text-anchor="middle" font-family="Rye,Georgia,serif" font-size="22" fill="currentColor">SILVER GOON SALOON</text>
+        <rect x="180" y="142" width="440" height="8"/>
+        <g fill="var(--wx-poster)"><rect x="220" y="88" width="44" height="40"/><rect x="300" y="88" width="44" height="40"/><rect x="456" y="88" width="44" height="40"/><rect x="536" y="88" width="44" height="40"/></g>
+        <g stroke="var(--wx-poster)" stroke-width="3"><path d="M186 136h428"/><path d="M200 136v6M240 136v6M280 136v6M320 136v6M360 136v6M440 136v6M480 136v6M520 136v6M560 136v6M600 136v6"/></g>
+        <rect x="372" y="176" width="56" height="76" fill="var(--wx-poster)"/>
+        <path d="M374 186q12-6 24 0v44q-12 4-24 0zM402 186q12-6 24 0v44q-12 4-24 0z" fill="url(#wxh)" stroke="currentColor" stroke-width="2.5"/>
+        <rect x="474" y="178" width="70" height="52" fill="var(--wx-poster)"/>
+        <path d="M226 178h70v52h-70z" fill="var(--wx-poster)"/>
+        <path d="M226 178h70v52h-70zM240 190l14 10-6 16 18-8 12 14 2-20 16-4-16-6" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="170" y="250" width="460" height="8"/>
+        <path d="M196 150v100M604 150v100" stroke="currentColor" stroke-width="5"/>
       </g>
-      ${puff}
-      <path d="M0 262h800" stroke="currentColor" stroke-width="1" opacity=".4"/>
-      ${rider(250, 262, .9)}${rider(380, 270, 1.05)}${rider(130, 268, .8)}
-      <g fill="var(--wx-accent)"><path d="M412 226l6-10 2 10 9-4-6 9 9 3-10 2 3 9-8-6-5 8 0-10-9 0 8-5z"/></g>
+      <rect x="0" y="258" width="800" height="62" fill="url(#wxh)" opacity=".45"/>
+      <g stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M250 236l-14 20M226 222l8 8"/><path d="M640 300l26-10M650 286l4 18"/></g>
+      ${dust}
+      ${g(5, 262, 214, 46, -38)}
+      ${g(2, 338, 300, 58, 8)}
+      ${g(0, 462, 300, 62, -6, true)}
+      ${g(7, 574, 312, 52, 84)}
+      ${g(9, 560, 140, 40, 0)}
+      ${g(3, 120, 300, 50, 0)}
+      ${boom(400, 228, 1.4)}${boom(270, 176, 1)}${boom(560, 270, .9)}
+      ${rider(716, 300, .9, true)}
+      <circle cx="760" cy="306" r="11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
     </svg>`;
   },
   strongbox: `<svg viewBox="0 0 200 140" aria-hidden="true"><path d="M30 60l20-26h100l20 26z" fill="url(#wxh)" stroke="currentColor" stroke-width="2.5"/>
@@ -165,6 +173,14 @@ Object.assign(ART.western, {
     <g fill="var(--wx-poster)"><rect x="16" y="66" width="16" height="14"/><rect x="42" y="66" width="16" height="14"/><rect x="68" y="66" width="16" height="14"/><rect x="116" y="66" width="16" height="14"/><rect x="142" y="66" width="16" height="14"/><rect x="168" y="66" width="16" height="14"/></g>
     <g fill="var(--wx-accent)"><path d="M96 40l7-14 2 14 13-6-9 12 14 3-14 3 6 12-11-8-5 13-2-14-13 5 9-11-12-6z"/><path d="M40 30l4-8 1 8 8-3-5 7 8 2-8 2 3 7-6-5-3 7-1-8-8 3 5-6-7-4z"/></g>
     ${rider(160, 36, .55, true).replace("translate(160 36)", "translate(160 30)")}</svg>`,
+  piano: `<svg viewBox="0 0 200 140" aria-hidden="true"><rect x="34" y="18" width="132" height="104" rx="4" fill="currentColor"/>
+    <rect x="56" y="30" width="88" height="34" fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"/>
+    <g stroke="currentColor" stroke-width="1.5"><path d="M64 34v26M70 38v18M78 34v26M90 42v12M100 34v26M110 38v18M122 34v26M132 42v12"/></g>
+    <rect x="40" y="76" width="120" height="16" fill="var(--wx-poster)"/>
+    <g fill="currentColor"><rect x="46" y="76" width="5" height="9"/><rect x="58" y="76" width="5" height="9"/><rect x="76" y="76" width="5" height="9"/><rect x="88" y="76" width="5" height="9"/><rect x="100" y="76" width="5" height="9"/><rect x="118" y="76" width="5" height="9"/><rect x="130" y="76" width="5" height="9"/><rect x="148" y="76" width="5" height="9"/></g>
+    <path d="M44 122v14M156 122v14" stroke="currentColor" stroke-width="6"/>
+    <g fill="none" stroke="var(--wx-accent)" stroke-width="2.5"><path d="M174 26c6-6 12 2 6 8M176 50c8-4 12 6 4 10"/><path d="M20 30c-6-4-10 4-4 8"/></g>
+    <circle cx="184" cy="38" r="3" fill="var(--wx-accent)"/><circle cx="12" cy="44" r="3" fill="var(--wx-accent)"/></svg>`,
   coffin: `<svg viewBox="0 0 200 140" aria-hidden="true"><path d="M70 10l60 0 18 30-14 92H66L52 40z" fill="url(#wxh)" stroke="currentColor" stroke-width="3"/>
     <rect x="80" y="54" width="40" height="18" fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"/>
     <text x="100" y="67" text-anchor="middle" font-family="Rye,Georgia,serif" font-size="11" fill="currentColor">R.I.P.</text>
@@ -322,9 +338,9 @@ function render() {
     const fig = art ? `<figure class="wx-spot">${typeof art === "function" ? art() : art}${ch.caption ? `<figcaption>${esc(ch.caption)}</figcaption>` : ""}</figure>` : "";
     const paras = (ch.text || []).map(x => `<p>${ink(x)}</p>`).join("");
     return `<section class="wx-ch wx-ch-${esc(ch.block)}">
-      <h3 class="wx-h"><span class="wx-num">${ROMAN[i] || i + 1}.</span> ${esc(ch.head || "")}</h3>
+      <h3 class="wx-h">${esc(ch.head || "")}</h3>
       ${ch.sub ? `<p class="wx-sub">${esc(ch.sub)}</p>` : ""}
-      ${fig || paras ? `<div class="wx-body${ch.block === "intro" ? " wx-lead" : ""}">${fig}${paras}</div>` : ""}
+      ${fig || paras ? `<div class="wx-body${ch.block === "intro" ? " wx-lead" : ""}${fig && paras ? " has-fig" : ""}">${paras ? `<div class="wx-txt">${paras}</div>` : ""}${fig}</div>` : ""}
       ${(BLOCK[ch.block] || (() => ""))()}</section>`;
   }).join("");
 

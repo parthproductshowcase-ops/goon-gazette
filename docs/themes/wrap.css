@@ -201,3 +201,13 @@
 @media (max-width:640px){.wx-spot{float:none;width:auto;max-width:300px;margin:4px auto 10px}.wx-body.wx-lead{columns:1}.wx-ch .wx-h{font-size:22px}}
 .wx[data-wt] .wx-ch .wx-h::before{content:none}
 .wx-spot{width:190px}
+
+/* v4: text and engraving side by side in a grid (no floats), equal-height story cards */
+.wx-spot{float:none;width:auto;margin:0}
+.wx-body.has-fig{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:18px;align-items:start}
+.wx-body .wx-txt > p:last-child{margin-bottom:0}
+.wx-late{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:640px){.wx-body.has-fig{grid-template-columns:1fr}.wx-body.has-fig .wx-spot{max-width:300px;margin:0 auto}.wx-late{grid-template-columns:1fr}}
+.wx-body.has-fig{grid-template-columns:minmax(0,1fr) 170px}
+.wx-board{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:640px){.wx-board{grid-template-columns:1fr 1fr}}
