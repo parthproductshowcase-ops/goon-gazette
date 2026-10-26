@@ -334,7 +334,7 @@ function render() {
 
   const chapters = C.chapters || DEFAULT_CHAPTERS.map(b => ({block: b, head: S[b] || "", text: b === "intro" ? autoLead() : []}));
   $("chapters").innerHTML = chapters.map((ch, i) => {
-    const art = ch.art && (ART[th] || {})[ch.art];
+    const art = null;  // Parth, Oct 26: no spot art in chapters (it broke the rows); the hero engraving and the posters carry the imagery
     const fig = art ? `<figure class="wx-spot">${typeof art === "function" ? art() : art}${ch.caption ? `<figcaption>${esc(ch.caption)}</figcaption>` : ""}</figure>` : "";
     const paras = (ch.text || []).map(x => `<p>${ink(x)}</p>`).join("");
     return `<section class="wx-ch wx-ch-${esc(ch.block)}">

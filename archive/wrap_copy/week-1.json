@@ -7,43 +7,187 @@
  "deck": "The player piano started on Tuesday like it always does. By Sunday a chair had gone through the front window, the defending champ was face down in the horse trough, and one regular never got off his barstool.",
  "hero_caption": "Main Street outside the Silver Goon, as sketched by our correspondent from underneath the boardwalk.",
  "chapters": [
-  {"block": "intro", "head": "Another Tuesday in Goon Gulch",
+  {
+   "block": "intro",
+   "head": "Another Tuesday in Goon Gulch",
    "text": [
     "Every Tuesday morning Goon Gulch wakes up the same way. The player piano strikes up the same tune, the bartender wipes the same glass, and twelve outfits push through the batwing doors with the same plan they had last season. Nobody in town remembers how the week ends. Nobody ever does.",
     "This week the clockwork slipped. John J came in through the side door with a coat full of roster moves. Roshan burst in at closing time Sunday and bought three rounds before the bartender could turn around. Sagar sat down on the same barstool he took Tuesday morning and did not move again.",
     "Then somebody threw a chair through the front window, and the whole saloon spilled into the street."
-   ]},
-  {"block": "wanted", "head": "Wanted Posters on the Sheriff's Door", "sub": "Nailed up before the dust settled."},
-  {"block": "results", "head": "Six Duels on Main Street", "art": "doors", "caption": "The batwing doors of the Silver Goon, shortly before a patron removed them on his way through.",
+   ]
+  },
+  {
+   "block": "wanted",
+   "head": "Wanted Posters on the Sheriff's Door",
+   "sub": "Nailed up before the dust settled."
+  },
+  {
+   "block": "results",
+   "head": "Six Duels on Main Street",
    "text": [
     "Six duels broke out in the street, one for every two outfits in town. Here is who was still standing when the sheriff finally came out with a lantern.",
     "The champ's pistol jammed in the first round, Acinonyx cleaned out the poker table, and BrookynDynasty landed more punches than almost anybody and still ended up in the trough."
-   ]},
-  {"block": "late", "head": "The Fight Rolls Into the Weekend", "art": "piano", "caption": "The player piano, which kept playing through all of it.",
-   "text": ["Most fights on Main Street are over by Friday. Four of these were still rolling around in the dirt when the church bell rang on Sunday."]},
-  {"block": "boot", "head": "The Undertaker Takes Measurements", "art": "coffin", "caption": "The undertaker, reached for comment, asked to be paid in advance.",
+   ]
+  },
+  {
+   "block": "late",
+   "head": "The Fight Rolls Into the Weekend",
+   "text": [
+    "Most fights on Main Street are over by Friday. Four of these were still rolling around in the dirt when the church bell rang on Sunday."
+   ]
+  },
+  {
+   "block": "boot",
+   "head": "The Undertaker Takes Measurements",
    "text": [
     "The undertaker worked a double shift. Jalen Williams went down on the last day of the week and is laid out in Parth's back room. Cooper Flagg, the priciest horse at the spring auction, is in Keshav's stable with a question mark nailed to the stall door. Stephen Curry is sleeping it off in John J's infirmary.",
     "Worst of all, Zero Fox Given walked into Monday with two men the undertaker has already measured standing in the starting lineup, boots on, eyes closed."
-   ]},
-  {"block": "roy", "head": "The Long Ride Out of Goon Gulch", "art": "posse", "caption": "The posse, departing Monday with the assayer's report and a bad map.",
+   ]
+  },
+  {
+   "block": "roy",
+   "head": "The Long Ride Out of Goon Gulch",
    "text": [
     "The posse saddled up Monday with the assayer's report in one hand and the odds in the other. Gopher Gold leads the ride, but the assayer ranks their claim only ninth in the territory, which is exactly how fool's gold looks right before somebody bites it.",
     "White Mambas, the old prospector with no moves and a losing record, is sitting on the richest vein in the hills and refuses to tell anyone. Zero Fox Given's claim is a hole in the ground with a tumbleweed in it."
-   ]},
-  {"block": "saloon", "head": "Overheard at the Bar", "sub": "Mumbled into the sawdust after last call."}
+   ]
+  },
+  {
+   "block": "saloon",
+   "head": "Overheard at the Bar",
+   "sub": "Mumbled into the sawdust after last call."
+  }
  ],
  "wanted": {
-  "mvp": {"title": "Sheriff", "line": "Threw the first punch, the last punch and most of the ones in between. Sabonis did the heavy lifting and most of the rebounding.", "reward": "A tin star, two ponies, and the deed to a gold claim nobody has checked for rattlesnakes", "pins": [{"p": "Domantas Sabonis", "c": ["5"]}, {"p": "Tyrese Maxey", "c": ["12"]}]},
-  "dud": {"title": "Dead Weight", "line": "Sat on the same barstool from the first song to the last. Has not filed one claim with the land office.", "reward": "One mule with a limp, a sack of beans, and a free exorcism from the traveling tent preacher", "pins": [{"p": "DeMar DeRozan", "c": ["12", "10"]}, {"p": "Rui Hachimura", "c": ["5"]}]},
-  "luckiest": {"title": "Horse Thief", "line": "Rode a mule in the Derby and won by a length. Somebody check his saddlebags. And his sleeves.", "reward": "A mail-order bride from Boston who has never seen a horse, and a one-way ticket on the next stagecoach out", "pins": [{"p": "Austin Reaves", "c": ["5", "8"]}]},
-  "robbed": {"title": "Bushwhacked", "line": "Outdrew most of the gunslingers in the street, then took a chair across the back from the Sheriff on his way out.", "reward": "A new hat with fewer holes, and a sympathy pie from the widow who runs the boarding house", "pins": [{"p": "Anthony Edwards", "c": ["12", "10"]}]}
+  "mvp": {
+   "title": "Sheriff",
+   "line": "Threw the first punch, the last punch and most of the ones in between. Sabonis did the heavy lifting and most of the rebounding.",
+   "reward": "A tin star, two ponies, and the deed to a gold claim nobody has checked for rattlesnakes",
+   "pins": [
+    {
+     "p": "Domantas Sabonis",
+     "c": [
+      "5"
+     ]
+    },
+    {
+     "p": "Tyrese Maxey",
+     "c": [
+      "12"
+     ]
+    }
+   ]
+  },
+  "dud": {
+   "title": "Dead Weight",
+   "line": "Sat on the same barstool from the first song to the last. Has not filed one claim with the land office.",
+   "reward": "One mule with a limp, a sack of beans, and a free exorcism from the traveling tent preacher",
+   "pins": [
+    {
+     "p": "DeMar DeRozan",
+     "c": [
+      "12",
+      "10"
+     ]
+    },
+    {
+     "p": "Rui Hachimura",
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  },
+  "luckiest": {
+   "title": "Horse Thief",
+   "line": "Rode a mule in the Derby and won by a length. Somebody check his saddlebags. And his sleeves.",
+   "reward": "A mail-order bride from Boston who has never seen a horse, and a one-way ticket on the next stagecoach out",
+   "pins": [
+    {
+     "p": "Austin Reaves",
+     "c": [
+      "5",
+      "8"
+     ]
+    }
+   ]
+  },
+  "robbed": {
+   "title": "Bushwhacked",
+   "line": "Outdrew most of the gunslingers in the street, then took a chair across the back from the Sheriff on his way out.",
+   "reward": "A new hat with fewer holes, and a sympathy pie from the widow who runs the boarding house",
+   "pins": [
+    {
+     "p": "Anthony Edwards",
+     "c": [
+      "12",
+      "10"
+     ]
+    }
+   ]
+  }
  },
  "late": {
-  "web.l.39751.t.5|web.l.39751.t.8": {"text": "Suggs had MONSTARS pinned against the bar on Friday. MONSTARS broke loose Saturday and stood on a table to celebrate. Sunday, Scottie Barnes swung at everything in the room and connected with nothing. Both outfits woke up Monday on the same floor.", "pins": [{"p": "Jalen Johnson", "w": true, "c": ["12", "16"]}, {"p": "Scottie Barnes", "w": true, "c": ["5"]}]},
-  "web.l.39751.t.7|web.l.39751.t.10": {"text": "White Mambas sent Jamal Murray crashing back through the doors on the weekend, swinging a bottle at anybody. Nova Knicks had already paid the tab and gone home.", "pins": [{"p": "Jamal Murray", "w": true, "c": ["12", "10"]}]},
-  "web.l.39751.t.1|web.l.39751.t.12": {"text": "theInfamous was face down in the sawdust by Friday and got one good kick in from the floor. Adam Silver Dez Nuts stepped over him on the way out.", "pins": [{"p": "Anthony Black", "w": true, "c": ["10", "11"]}]},
-  "web.l.39751.t.2|web.l.39751.t.11": {"text": "Acinonyx had the fight won by Thursday. On Sunday Luka went back inside anyway, ordered a whiskey, and took every chip on the table.", "pins": [{"p": "Luka Dončić", "w": true, "c": ["12", "16", "10"]}]}
+  "web.l.39751.t.5|web.l.39751.t.8": {
+   "text": "Suggs had MONSTARS pinned against the bar on Friday. MONSTARS broke loose Saturday and stood on a table to celebrate. Sunday, Scottie Barnes swung at everything in the room and connected with nothing. Both outfits woke up Monday on the same floor.",
+   "pins": [
+    {
+     "p": "Jalen Johnson",
+     "w": true,
+     "c": [
+      "12",
+      "16"
+     ]
+    },
+    {
+     "p": "Scottie Barnes",
+     "w": true,
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.7|web.l.39751.t.10": {
+   "text": "White Mambas sent Jamal Murray crashing back through the doors on the weekend, swinging a bottle at anybody. Nova Knicks had already paid the tab and gone home.",
+   "pins": [
+    {
+     "p": "Jamal Murray",
+     "w": true,
+     "c": [
+      "12",
+      "10"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.1|web.l.39751.t.12": {
+   "text": "theInfamous was face down in the sawdust by Friday and got one good kick in from the floor. Adam Silver Dez Nuts stepped over him on the way out.",
+   "pins": [
+    {
+     "p": "Anthony Black",
+     "w": true,
+     "c": [
+      "10",
+      "11"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.2|web.l.39751.t.11": {
+   "text": "Acinonyx had the fight won by Thursday. On Sunday Luka went back inside anyway, ordered a whiskey, and took every chip on the table.",
+   "pins": [
+    {
+     "p": "Luka Dončić",
+     "w": true,
+     "c": [
+      "12",
+      "16",
+      "10"
+     ]
+    }
+   ]
+  }
  },
  "zingers": {
   "web.l.39751.t.1": "Made more moves than anyone in town. Darius Acuff Jr. took more shots than the whole O.K. Corral.",
