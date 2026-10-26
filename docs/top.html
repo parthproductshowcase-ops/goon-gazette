@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette The Fifty</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=269e9803">
+
+<div class="wrap">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1></div>
+    <div class="dateline"><span class="label" id="dl1">The Fifty</span><span class="big" id="dl2">…</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+
+  <section class="nt-hero tp-hero">
+    <span class="label">The Fifty</span>
+    <h2 id="tp-title">The top 50 players this season, valued the way this league plays.</h2>
+    <p id="tp-sub">Every rostered player's season line is scored across all 11 categories against the whole league. Then each manager's strategy is read from his own numbers: a category he has clearly given up stops counting for his players. The score is value to his manager, 0 to 100; the grey number is the same player on all 11 categories.</p>
+  </section>
+
+  <div class="list-card tp-strat"><h3>Who is punting what <b class="dot">&bull;</b> <span id="tp-asof"></span></h3><p class="note" id="tp-rule"></p><div class="tp-chips" id="strat"></div></div>
+
+  <div class="tp-filter"><span class="label">Show</span><div class="chips" id="who"></div></div>
+
+  <div class="list-card tp-card"><div class="table-wrap"><table class="pr tp-tbl" id="tbl"><thead><tr><th>#</th><th>Player</th><th>Manager</th><th class="tp-vh">Value to manager</th><th class="r">All cats</th><th>Carries</th><th>Dropped</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+  <p class="note tp-foot" id="tp-foot"></p>
+
+  <footer><span id="gen"></span><span>Rebuilt every morning with the paper. Players with fewer than two games are listed unranked.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+</div>
+
+<script src="assets/common.js?v=a5ac5c77"></script>
+<script>
+siteNav("top");
+let T, CAT = {}, MYID = null, WHO = "all", DISP = {};
+const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } } };
+
+getJSON("data/polls.json").then(c => {
+    MYID = myTeamId(c);
+    const byId = Object.fromEntries((c.managers || []).map(m => [m.id, m.name]));
+    Object.entries(c.rosters?.teams || {}).forEach(([mid, r]) => { if (byId[mid]) DISP[r.team_id] = byId[mid]; });
+  }).catch(() => {})
+  .finally(() => getJSON("data/top50.json").then(t => { T = t; render(); }).catch(() => { $("rows").innerHTML = `<tr><td colspan="7" class="empty">The Fifty opens once the first games are in.</td></tr>`; }));
+
+const nm = tk => esc(T.team_names[tk]?.name || tk);
+const mgr = tk => esc(DISP[tk.split(".t.").pop()] || T.team_names[tk]?.manager || "");
+const cn = id => esc(CAT[id]?.name || id);
+const tone = v => v >= 70 ? "hi" : v >= 40 ? "mid" : "lo";
+
+function render() {
+  T.cats.forEach(c => CAT[c.id] = c);
+  const thru = new Date(T.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"});
+  $("dl2").textContent = `Wk ${T.week ?? ""}`;
+  $("tp-asof").textContent = `through ${thru}`;
+  $("tp-rule").textContent = `Read from season totals so far: ${T.rule}. Early in the year this is a bad week as often as a plan; it firms up as games pile up.`;
+  const punters = Object.entries(T.strategies).filter(([, s]) => s.punts.length).sort((a, b) => b[1].punts.length - a[1].punts.length);
+  $("strat").innerHTML = punters.length ? punters.map(([tk, s]) => `<span class="tp-pchip"><b>${nm(tk)}</b> ${s.punts.map(c => `<i>${cn(c)}</i>`).join("")}</span>`).join("")
+    : `<span class="note">Nobody has given up a category yet. Everyone counts on all 11.</span>`;
+  const teams = Object.keys(T.team_names).sort((a, b) => (T.team_names[a].name || "").localeCompare(T.team_names[b].name || ""));
+  if (MYID != null) { const mine = teams.find(tk => tk.endsWith(".t." + MYID)); if (mine) teams.unshift(...teams.splice(teams.indexOf(mine), 1)); }
+  $("who").innerHTML = `<button class="chip${WHO === "all" ? " on" : ""}" data-w="all">The Fifty</button>` + teams.map(tk => `<button class="chip${WHO === tk ? " on" : ""}" data-w="${tk}">${mgr(tk) || nm(tk)}</button>`).join("");
+  drawRows();
+  $("gen").textContent = `Season lines through ${thru}.`;
+}
+
+function drawRows() {
+  const all = T.players.concat(T.rest || []);
+  const list = WHO === "all" ? T.players : all.filter(r => r.team === WHO);
+  const own = WHO !== "all";
+  $("rows").innerHTML = list.map(r => {
+    const dropped = r.dropped.map(c => `<s>${cn(c)}</s>`).join("");
+    const best = r.best.map(c => `<span class="chip g">${cn(c)}</span>`).join("");
+    const gain = r.gain >= 1 ? `<small class="tp-gain up">+${r.gain} from the punt</small>` : r.gain <= -1 ? `<small class="tp-gain dn">${r.gain} from the punt</small>` : "";
+    return `<tr class="${MYID != null && r.team.endsWith(".t." + MYID) ? "me" : ""}">
+      <td class="rk num">${r.rank ?? "–"}</td>
+      <td class="tm"><mark>${esc(r.name)}</mark><small>${esc(r.nba || "")}${r.nba ? " · " : ""}${r.games} gp</small></td>
+      <td class="tm"><b>${nm(r.team)}</b><small>${mgr(r.team)}</small></td>
+      <td class="tp-v"><div class="odds"><div class="bar"><i class="${tone(r.score)}" style="width:${Math.max(2, r.score)}%"></i></div><b class="num">${r.score.toFixed(0)}</b></div>${gain}</td>
+      <td class="num r muted">${r.full.toFixed(0)}</td>
+      <td class="tp-cats">${best || "<span class='muted'>–</span>"}</td>
+      <td class="tp-drop">${dropped || "<span class='muted'>–</span>"}</td></tr>`;
+  }).join("") || `<tr><td colspan="7" class="empty">No lines yet.</td></tr>`;
+  $("tp-foot").textContent = own ? `${list.length} players on this roster, ranked where they fall among ${T.pool} rostered players league-wide. Dropped categories do not count toward this manager's value.`
+    : `Top 50 of ${T.pool} rostered players by value to their own manager. Tap a manager above to see his whole roster, including the ones that didn't make it.`;
+}
+$("who").addEventListener("click", e => { const b = e.target.closest("[data-w]"); if (!b) return; WHO = b.dataset.w; document.querySelectorAll("#who .chip").forEach(c => c.classList.toggle("on", c.dataset.w === WHO)); gc.once("top/manager"); drawRows(); });
+</script>

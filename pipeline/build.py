@@ -181,6 +181,11 @@ def _main():
                 wrap.write(d, a)
             except Exception as e:  # the wrap never blocks the paper
                 print("wrap skipped:", e)
+            try:
+                from . import top50
+                top50.write(d)
+            except Exception as e:  # The Fifty never blocks the paper
+                print("top50 skipped:", e)
     print("wrote", OUT / "league.json")
     return warnings
 

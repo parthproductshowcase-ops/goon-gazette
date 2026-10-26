@@ -19,7 +19,7 @@ from datetime import date as Date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import night, players, recap, stats, trades, wrap
+from . import night, players, recap, stats, top50, trades, wrap
 
 ET = ZoneInfo("America/New_York")
 ROOT = Path(__file__).resolve().parent.parent
@@ -270,6 +270,10 @@ def write(a, publish):
             trades.write(analyze.d)
         except Exception as e:  # the analyzer never blocks the paper
             print("trades skipped:", e)
+        try:
+            top50.write(analyze.d)
+        except Exception as e:  # The Fifty never blocks the paper
+            print("top50 skipped:", e)
     else:
         a["preview"] = True
         (DATA / "preview").mkdir(parents=True, exist_ok=True)

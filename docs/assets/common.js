@@ -28,6 +28,7 @@ function siteNav(active) {
     const more = [
       tn ? ln : "",
       link("block.html", "Trade Block", "block"),
+      link("top.html", "The Fifty", "top"),
       picks && !picks.open ? link("predict.html", "Picks", "picks") : "",
       link("history.html", "League history", "history"),
       ...seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season, "sub")),
