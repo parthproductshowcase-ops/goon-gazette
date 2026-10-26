@@ -1,0 +1,2946 @@
+{
+ "players": {
+  "last": {
+   "week": 1,
+   "start": "2026-10-20",
+   "end": "2026-10-25",
+   "days": 6,
+   "top_players": [
+    {
+     "pk": "nba.p.5642",
+     "name": "Domantas Sabonis",
+     "team": "web.l.39751.t.4",
+     "games": 3,
+     "value": 11.07,
+     "line": {
+      "5": [
+       0.808,
+       21,
+       26
+      ],
+      "8": [
+       0.867,
+       13,
+       15
+      ],
+      "10": 1,
+      "11": [
+       1.0,
+       1,
+       1
+      ],
+      "12": 56,
+      "13": 13,
+      "14": 39,
+      "16": 21,
+      "17": 3,
+      "18": 0,
+      "19": 12
+     },
+     "best": [
+      "14",
+      "13",
+      "5"
+     ]
+    },
+    {
+     "pk": "nba.p.6413",
+     "name": "Tyrese Maxey",
+     "team": "web.l.39751.t.4",
+     "games": 4,
+     "value": 10.57,
+     "line": {
+      "5": [
+       0.466,
+       41,
+       88
+      ],
+      "8": [
+       0.857,
+       24,
+       28
+      ],
+      "10": 9,
+      "11": [
+       0.3,
+       9,
+       30
+      ],
+      "12": 115,
+      "13": 3,
+      "14": 13,
+      "16": 19,
+      "17": 8,
+      "18": 4,
+      "19": 8
+     },
+     "best": [
+      "12",
+      "17",
+      "10"
+     ]
+    },
+    {
+     "pk": "nba.p.6212",
+     "name": "Ty Jerome",
+     "team": "web.l.39751.t.5",
+     "games": 3,
+     "value": 10.34,
+     "line": {
+      "5": [
+       0.562,
+       36,
+       64
+      ],
+      "8": [
+       0.885,
+       23,
+       26
+      ],
+      "10": 9,
+      "11": [
+       0.429,
+       9,
+       21
+      ],
+      "12": 104,
+      "13": 5,
+      "14": 8,
+      "16": 17,
+      "17": 2,
+      "18": 1,
+      "19": 6
+     },
+     "best": [
+      "12",
+      "5",
+      "8"
+     ]
+    },
+    {
+     "pk": "nba.p.6606",
+     "name": "Austin Reaves",
+     "team": "web.l.39751.t.2",
+     "games": 3,
+     "value": 9.88,
+     "line": {
+      "5": [
+       0.639,
+       23,
+       36
+      ],
+      "8": [
+       0.897,
+       26,
+       29
+      ],
+      "10": 8,
+      "11": [
+       0.615,
+       8,
+       13
+      ],
+      "12": 80,
+      "13": 1,
+      "14": 6,
+      "16": 19,
+      "17": 5,
+      "18": 3,
+      "19": 13
+     },
+     "best": [
+      "8",
+      "11",
+      "5"
+     ]
+    },
+    {
+     "pk": "nba.p.6014",
+     "name": "Luka Dončić",
+     "team": "web.l.39751.t.2",
+     "games": 3,
+     "value": 9.5,
+     "line": {
+      "5": [
+       0.464,
+       32,
+       69
+      ],
+      "8": [
+       0.889,
+       24,
+       27
+      ],
+      "10": 15,
+      "11": [
+       0.395,
+       15,
+       38
+      ],
+      "12": 103,
+      "13": 1,
+      "14": 21,
+      "16": 24,
+      "17": 5,
+      "18": 1,
+      "19": 21
+     },
+     "best": [
+      "10",
+      "12",
+      "16"
+     ]
+    },
+    {
+     "pk": "nba.p.6692",
+     "name": "Chet Holmgren",
+     "team": "web.l.39751.t.4",
+     "games": 3,
+     "value": 7.89,
+     "line": {
+      "5": [
+       0.407,
+       11,
+       27
+      ],
+      "8": [
+       1.0,
+       12,
+       12
+      ],
+      "10": 2,
+      "11": [
+       0.333,
+       2,
+       6
+      ],
+      "12": 36,
+      "13": 14,
+      "14": 14,
+      "16": 4,
+      "17": 2,
+      "18": 9,
+      "19": 5
+     },
+     "best": [
+      "18",
+      "13",
+      "8"
+     ]
+    },
+    {
+     "pk": "nba.p.10108",
+     "name": "Amen Thompson",
+     "team": "web.l.39751.t.7",
+     "games": 3,
+     "value": 7.81,
+     "line": {
+      "5": [
+       0.487,
+       19,
+       39
+      ],
+      "8": [
+       0.867,
+       13,
+       15
+      ],
+      "10": 2,
+      "11": [
+       0.5,
+       2,
+       4
+      ],
+      "12": 53,
+      "13": 13,
+      "14": 18,
+      "16": 14,
+      "17": 4,
+      "18": 2,
+      "19": 5
+     },
+     "best": [
+      "13",
+      "14",
+      "8"
+     ]
+    },
+    {
+     "pk": "nba.p.6018",
+     "name": "Wendell Carter Jr.",
+     "team": "web.l.39751.t.8",
+     "games": 3,
+     "value": 6.87,
+     "line": {
+      "5": [
+       0.76,
+       19,
+       25
+      ],
+      "8": [
+       0.9,
+       9,
+       10
+      ],
+      "10": 4,
+      "11": [
+       0.5,
+       4,
+       8
+      ],
+      "12": 51,
+      "13": 5,
+      "14": 21,
+      "16": 3,
+      "17": 2,
+      "18": 3,
+      "19": 4
+     },
+     "best": [
+      "5",
+      "14",
+      "8"
+     ]
+    },
+    {
+     "pk": "nba.p.6404",
+     "name": "Tyrese Haliburton",
+     "team": "web.l.39751.t.11",
+     "games": 3,
+     "value": 6.84,
+     "line": {
+      "5": [
+       0.533,
+       24,
+       45
+      ],
+      "8": [
+       0.917,
+       11,
+       12
+      ],
+      "10": 6,
+      "11": [
+       0.353,
+       6,
+       17
+      ],
+      "12": 65,
+      "13": 2,
+      "14": 10,
+      "16": 29,
+      "17": 4,
+      "18": 2,
+      "19": 8
+     },
+     "best": [
+      "16",
+      "8",
+      "12"
+     ]
+    },
+    {
+     "pk": "nba.p.5432",
+     "name": "Karl-Anthony Towns",
+     "team": "web.l.39751.t.9",
+     "games": 3,
+     "value": 6.71,
+     "line": {
+      "5": [
+       0.622,
+       23,
+       37
+      ],
+      "8": [
+       0.706,
+       12,
+       17
+      ],
+      "10": 5,
+      "11": [
+       0.455,
+       5,
+       11
+      ],
+      "12": 63,
+      "13": 11,
+      "14": 25,
+      "16": 8,
+      "17": 2,
+      "18": 3,
+      "19": 12
+     },
+     "best": [
+      "13",
+      "14",
+      "5"
+     ]
+    }
+   ],
+   "top_plays": []
+  },
+  "waiver": {
+   "week": 1,
+   "start": "2026-10-20",
+   "end": "2026-10-25",
+   "moves": [
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.4",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Naji Marshall",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.1",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Jaxson Hayes",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.1",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Dennis Schröder",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.2",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Precious Achiuwa",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.12",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Obi Toppin",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.12",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "De'Anthony Melton",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.3",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Keon Ellis",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.3",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Gui Santos",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.9",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Tristan da Silva",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.9",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Daniel Gafford",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.5",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Duncan Robinson",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.5",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Ryan Kalkbrenner",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.8",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Ziaire Williams",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.8",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Mario Hezonja",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.7",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Noah Clowney",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.7",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Scotty Pippen Jr.",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.7",
+     "adds": [
+      {
+       "pk": null,
+       "player": "De'Andre Hunter",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-25",
+     "team": "web.l.39751.t.7",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Jeremiah Fears",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.4",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Naji Marshall",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.4",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Collin Sexton",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.6",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Paul Reed",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.12",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Keaton Wagler",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.12",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Keegan Murray",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.8",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Mario Hezonja",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.8",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Max Christie",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.8",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Sandro Mamukelashvili",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.5",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Ryan Kalkbrenner",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.12",
+     "adds": [
+      {
+       "pk": null,
+       "player": "De'Anthony Melton",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-24",
+     "team": "web.l.39751.t.4",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Julian Champagnie",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.1",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Dennis Schröder",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.1",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Zaccharie Risacher",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.4",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Jaylen Wells",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.4",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Cameron Johnson",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.4",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Collin Sexton",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.4",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Mikel Brown Jr.",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.3",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Kris Dunn",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-23",
+     "team": "web.l.39751.t.3",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Oso Ighodaro",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "team": "web.l.39751.t.2",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Brook Lopez",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-22",
+     "team": "web.l.39751.t.2",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Nikola Vučević",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "team": "web.l.39751.t.6",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "De'Anthony Melton",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "team": "web.l.39751.t.9",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Kevin Porter Jr.",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "team": "web.l.39751.t.9",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Grayson Allen",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-21",
+     "team": "web.l.39751.t.1",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Zaccharie Risacher",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-21",
+     "team": "web.l.39751.t.4",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Mikel Brown Jr.",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-21",
+     "team": "web.l.39751.t.4",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Aday Mara",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-21",
+     "team": "web.l.39751.t.3",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Oso Ighodaro",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-21",
+     "team": "web.l.39751.t.3",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Devin Vassell",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-21",
+     "team": "web.l.39751.t.9",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Dillon Brooks",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-20",
+     "team": "web.l.39751.t.3",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Jared McCain",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-20",
+     "team": "web.l.39751.t.6",
+     "adds": [
+      {
+       "pk": null,
+       "player": "Jalen Smith",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    },
+    {
+     "date": "2026-10-20",
+     "team": "web.l.39751.t.6",
+     "adds": [],
+     "drops": [
+      {
+       "pk": null,
+       "player": "Ryan Kalkbrenner",
+       "source": null,
+       "faab": null
+      }
+     ]
+    },
+    {
+     "date": "2026-10-20",
+     "team": "web.l.39751.t.6",
+     "adds": [
+      {
+       "pk": null,
+       "player": "De'Anthony Melton",
+       "source": "freeagents",
+       "faab": null,
+       "games": 0,
+       "value": null,
+       "pg": null,
+       "line": {}
+      }
+     ],
+     "drops": []
+    }
+   ],
+   "total_adds": 31,
+   "best_pickup": null,
+   "busiest": {
+    "team": "web.l.39751.t.4",
+    "adds": 5
+   },
+   "trash": null,
+   "splash": null
+  }
+ },
+ "race": {
+  "rows": [
+   {
+    "team": "web.l.39751.t.2",
+    "rank": 1,
+    "w": 9,
+    "l": 2,
+    "t": 0,
+    "back": 0.0,
+    "vs_line": -3.5,
+    "playoff_odds": 0.931,
+    "top_seed_odds": 0.12,
+    "proj_w": 110,
+    "odds_move": 0.303
+   },
+   {
+    "team": "web.l.39751.t.12",
+    "rank": 2,
+    "w": 8,
+    "l": 3,
+    "t": 0,
+    "back": 1.0,
+    "vs_line": -2.5,
+    "playoff_odds": 0.879,
+    "top_seed_odds": 0.068,
+    "proj_w": 108,
+    "odds_move": 0.268
+   },
+   {
+    "team": "web.l.39751.t.4",
+    "rank": 3,
+    "w": 8,
+    "l": 3,
+    "t": 0,
+    "back": 1.0,
+    "vs_line": -2.5,
+    "playoff_odds": 1.0,
+    "top_seed_odds": 0.765,
+    "proj_w": 120,
+    "odds_move": 0.387
+   },
+   {
+    "team": "web.l.39751.t.7",
+    "rank": 4,
+    "w": 7,
+    "l": 4,
+    "t": 0,
+    "back": 2.0,
+    "vs_line": -1.5,
+    "playoff_odds": 0.501,
+    "top_seed_odds": 0.005,
+    "proj_w": 100,
+    "odds_move": -0.146
+   },
+   {
+    "team": "web.l.39751.t.6",
+    "rank": 5,
+    "w": 6,
+    "l": 5,
+    "t": 0,
+    "back": 3.0,
+    "vs_line": -0.5,
+    "playoff_odds": 0.539,
+    "top_seed_odds": 0.009,
+    "proj_w": 100,
+    "odds_move": -0.008
+   },
+   {
+    "team": "web.l.39751.t.5",
+    "rank": 6,
+    "w": 5,
+    "l": 5,
+    "t": 1,
+    "back": 3.5,
+    "vs_line": 0.0,
+    "playoff_odds": 0.624,
+    "top_seed_odds": 0.013,
+    "proj_w": 101,
+    "odds_move": 0.051
+   },
+   {
+    "team": "web.l.39751.t.8",
+    "rank": 7,
+    "w": 5,
+    "l": 5,
+    "t": 1,
+    "back": 3.5,
+    "vs_line": 0.0,
+    "playoff_odds": 0.478,
+    "top_seed_odds": 0.009,
+    "proj_w": 99,
+    "odds_move": 0.062
+   },
+   {
+    "team": "web.l.39751.t.9",
+    "rank": 8,
+    "w": 5,
+    "l": 6,
+    "t": 0,
+    "back": 4.0,
+    "vs_line": 0.5,
+    "playoff_odds": 0.279,
+    "top_seed_odds": 0.003,
+    "proj_w": 96,
+    "odds_move": -0.148
+   },
+   {
+    "team": "web.l.39751.t.10",
+    "rank": 9,
+    "w": 4,
+    "l": 7,
+    "t": 0,
+    "back": 5.0,
+    "vs_line": 1.5,
+    "playoff_odds": 0.202,
+    "top_seed_odds": 0.001,
+    "proj_w": 94,
+    "odds_move": -0.154
+   },
+   {
+    "team": "web.l.39751.t.3",
+    "rank": 10,
+    "w": 3,
+    "l": 8,
+    "t": 0,
+    "back": 6.0,
+    "vs_line": 2.5,
+    "playoff_odds": 0.549,
+    "top_seed_odds": 0.009,
+    "proj_w": 100,
+    "odds_move": 0.13
+   },
+   {
+    "team": "web.l.39751.t.1",
+    "rank": 11,
+    "w": 3,
+    "l": 8,
+    "t": 0,
+    "back": 6.0,
+    "vs_line": 2.5,
+    "playoff_odds": 0.016,
+    "top_seed_odds": 0.0,
+    "proj_w": 84,
+    "odds_move": -0.372
+   },
+   {
+    "team": "web.l.39751.t.11",
+    "rank": 12,
+    "w": 2,
+    "l": 9,
+    "t": 0,
+    "back": 7.0,
+    "vs_line": 3.5,
+    "playoff_odds": 0.001,
+    "top_seed_odds": 0.0,
+    "proj_w": 76,
+    "odds_move": -0.374
+   }
+  ],
+  "playoff_teams": 6,
+  "weeks_left": 17,
+  "reg_end": 18,
+  "sims": 2000
+ },
+ "last_week": {
+  "week": 1,
+  "games": [
+   {
+    "a": "web.l.39751.t.6",
+    "b": "web.l.39751.t.9",
+    "score": [
+     6,
+     5,
+     0
+    ],
+    "winner": "web.l.39751.t.6"
+   },
+   {
+    "a": "web.l.39751.t.1",
+    "b": "web.l.39751.t.12",
+    "score": [
+     3,
+     8,
+     0
+    ],
+    "winner": "web.l.39751.t.12"
+   },
+   {
+    "a": "web.l.39751.t.2",
+    "b": "web.l.39751.t.11",
+    "score": [
+     9,
+     2,
+     0
+    ],
+    "winner": "web.l.39751.t.2"
+   },
+   {
+    "a": "web.l.39751.t.3",
+    "b": "web.l.39751.t.4",
+    "score": [
+     3,
+     8,
+     0
+    ],
+    "winner": "web.l.39751.t.4"
+   },
+   {
+    "a": "web.l.39751.t.5",
+    "b": "web.l.39751.t.8",
+    "score": [
+     5,
+     5,
+     1
+    ],
+    "winner": null
+   },
+   {
+    "a": "web.l.39751.t.7",
+    "b": "web.l.39751.t.10",
+    "score": [
+     7,
+     4,
+     0
+    ],
+    "winner": "web.l.39751.t.7"
+   }
+  ],
+  "allplay": {
+   "web.l.39751.t.1": 1,
+   "web.l.39751.t.2": 8,
+   "web.l.39751.t.3": 7,
+   "web.l.39751.t.4": 11,
+   "web.l.39751.t.5": 7,
+   "web.l.39751.t.6": 6,
+   "web.l.39751.t.7": 5,
+   "web.l.39751.t.8": 4,
+   "web.l.39751.t.9": 4,
+   "web.l.39751.t.10": 3,
+   "web.l.39751.t.11": 0,
+   "web.l.39751.t.12": 8
+  },
+  "opponents": 11,
+  "mvp": "web.l.39751.t.4",
+  "dud": "web.l.39751.t.11",
+  "upset": null,
+  "closest": {
+   "a": "web.l.39751.t.5",
+   "b": "web.l.39751.t.8",
+   "score": [
+    5,
+    5,
+    1
+   ],
+   "winner": null
+  },
+  "robbed": "web.l.39751.t.3",
+  "leaders": {
+   "5": {
+    "team": "web.l.39751.t.9",
+    "value": 0.506
+   },
+   "8": {
+    "team": "web.l.39751.t.6",
+    "value": 0.829
+   },
+   "10": {
+    "team": "web.l.39751.t.10",
+    "value": 76
+   },
+   "11": {
+    "team": "web.l.39751.t.3",
+    "value": 0.409
+   },
+   "12": {
+    "team": "web.l.39751.t.4",
+    "value": 675
+   },
+   "13": {
+    "team": "web.l.39751.t.4",
+    "value": 77
+   },
+   "14": {
+    "team": "web.l.39751.t.4",
+    "value": 190
+   },
+   "16": {
+    "team": "web.l.39751.t.5",
+    "value": 159
+   },
+   "17": {
+    "team": "web.l.39751.t.7",
+    "value": 53
+   },
+   "18": {
+    "team": "web.l.39751.t.9",
+    "value": 33
+   },
+   "19": {
+    "team": "web.l.39751.t.12",
+    "value": 52
+   }
+  }
+ },
+ "trends": null,
+ "league": {
+  "name": "BallinWithMyGoons",
+  "season": "2026",
+  "current_week": 2,
+  "start_week": 1,
+  "end_week": 21,
+  "num_teams": 12,
+  "draft_status": "postdraft"
+ },
+ "date": "2026-10-25",
+ "sample": false,
+ "cats": [
+  {
+   "id": "5",
+   "name": "FG%",
+   "hb": true,
+   "pct": true
+  },
+  {
+   "id": "8",
+   "name": "FT%",
+   "hb": true,
+   "pct": true
+  },
+  {
+   "id": "10",
+   "name": "3PTM",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "11",
+   "name": "3PT%",
+   "hb": true,
+   "pct": true
+  },
+  {
+   "id": "12",
+   "name": "PTS",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "13",
+   "name": "OREB",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "14",
+   "name": "DREB",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "16",
+   "name": "AST",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "17",
+   "name": "ST",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "18",
+   "name": "BLK",
+   "hb": true,
+   "pct": false
+  },
+  {
+   "id": "19",
+   "name": "TO",
+   "hb": false,
+   "pct": false
+  }
+ ],
+ "teams": {
+  "web.l.39751.t.1": {
+   "name": "theInfamous",
+   "manager": "John J",
+   "logo": null,
+   "moves": 7,
+   "trades": 0
+  },
+  "web.l.39751.t.2": {
+   "name": "Acinonyx",
+   "manager": "Eshan B",
+   "logo": null,
+   "moves": 3,
+   "trades": 0
+  },
+  "web.l.39751.t.3": {
+   "name": "BrookynDynasty",
+   "manager": "Adarsh",
+   "logo": null,
+   "moves": 5,
+   "trades": 0
+  },
+  "web.l.39751.t.4": {
+   "name": "Gopher Gold",
+   "manager": "Phil",
+   "logo": null,
+   "moves": 7,
+   "trades": 0
+  },
+  "web.l.39751.t.5": {
+   "name": "MONSTARS ☄️",
+   "manager": "Chris",
+   "logo": null,
+   "moves": 2,
+   "trades": 0
+  },
+  "web.l.39751.t.6": {
+   "name": "LeParth James",
+   "manager": "parth s",
+   "logo": null,
+   "moves": 5,
+   "trades": 0
+  },
+  "web.l.39751.t.7": {
+   "name": "Nova Knicks",
+   "manager": "Roshan",
+   "logo": null,
+   "moves": 4,
+   "trades": 0
+  },
+  "web.l.39751.t.8": {
+   "name": "Suggs to be you",
+   "manager": "Keshav",
+   "logo": null,
+   "moves": 3,
+   "trades": 0
+  },
+  "web.l.39751.t.9": {
+   "name": "Thug Life",
+   "manager": "Arnav B",
+   "logo": null,
+   "moves": 3,
+   "trades": 0
+  },
+  "web.l.39751.t.10": {
+   "name": "White Mambas",
+   "manager": "Vishal",
+   "logo": null,
+   "moves": 0,
+   "trades": 0
+  },
+  "web.l.39751.t.11": {
+   "name": "Zero Fox Given",
+   "manager": "Sagar",
+   "logo": null,
+   "moves": 0,
+   "trades": 0
+  },
+  "web.l.39751.t.12": {
+   "name": "Adam Silver Dez Nuts",
+   "manager": "Jason",
+   "logo": null,
+   "moves": 3,
+   "trades": 0
+  }
+ },
+ "standings": {
+  "web.l.39751.t.2": {
+   "w": 9,
+   "l": 2,
+   "t": 0,
+   "rank": 1
+  },
+  "web.l.39751.t.12": {
+   "w": 8,
+   "l": 3,
+   "t": 0,
+   "rank": 2
+  },
+  "web.l.39751.t.4": {
+   "w": 8,
+   "l": 3,
+   "t": 0,
+   "rank": 3
+  },
+  "web.l.39751.t.7": {
+   "w": 7,
+   "l": 4,
+   "t": 0,
+   "rank": 4
+  },
+  "web.l.39751.t.6": {
+   "w": 6,
+   "l": 5,
+   "t": 0,
+   "rank": 5
+  },
+  "web.l.39751.t.5": {
+   "w": 5,
+   "l": 5,
+   "t": 1,
+   "rank": 6
+  },
+  "web.l.39751.t.8": {
+   "w": 5,
+   "l": 5,
+   "t": 1,
+   "rank": 7
+  },
+  "web.l.39751.t.9": {
+   "w": 5,
+   "l": 6,
+   "t": 0,
+   "rank": 8
+  },
+  "web.l.39751.t.10": {
+   "w": 4,
+   "l": 7,
+   "t": 0,
+   "rank": 9
+  },
+  "web.l.39751.t.3": {
+   "w": 3,
+   "l": 8,
+   "t": 0,
+   "rank": 10
+  },
+  "web.l.39751.t.1": {
+   "w": 3,
+   "l": 8,
+   "t": 0,
+   "rank": 11
+  },
+  "web.l.39751.t.11": {
+   "w": 2,
+   "l": 9,
+   "t": 0,
+   "rank": 12
+  }
+ },
+ "power": [
+  {
+   "team": "web.l.39751.t.4",
+   "score": 9.17,
+   "season_z": 9.17,
+   "recent_z": 9.17,
+   "cat_z": {
+    "5": 0.7,
+    "8": -0.3,
+    "10": -0.2,
+    "11": 0.57,
+    "12": 1.76,
+    "13": 2.09,
+    "14": 1.49,
+    "16": 1.45,
+    "17": 0.89,
+    "18": 1.12,
+    "19": -0.39
+   },
+   "rank": 1,
+   "move": 0,
+   "best_cat": "13",
+   "worst_cat": "19",
+   "luck": -0.033,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.12",
+   "score": 3.95,
+   "season_z": 3.95,
+   "recent_z": 3.95,
+   "cat_z": {
+    "5": -0.39,
+    "8": 0.68,
+    "10": 0.79,
+    "11": 0.36,
+    "12": -0.62,
+    "13": 0.42,
+    "14": 0.66,
+    "16": -0.11,
+    "17": 0.35,
+    "18": -0.18,
+    "19": 2.01
+   },
+   "rank": 2,
+   "move": 1,
+   "best_cat": "19",
+   "worst_cat": "12",
+   "luck": 0.128,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.2",
+   "score": 3.77,
+   "season_z": 3.77,
+   "recent_z": 3.77,
+   "cat_z": {
+    "5": 0.35,
+    "8": 0.85,
+    "10": 0.55,
+    "11": 0.73,
+    "12": 0.49,
+    "13": -0.08,
+    "14": -0.36,
+    "16": 0.5,
+    "17": 1.11,
+    "18": 1.12,
+    "19": -1.47
+   },
+   "rank": 3,
+   "move": 4,
+   "best_cat": "18",
+   "worst_cat": "19",
+   "luck": 0.207,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.5",
+   "score": 2.67,
+   "season_z": 2.67,
+   "recent_z": 2.67,
+   "cat_z": {
+    "5": 0.52,
+    "8": 0.91,
+    "10": 0.71,
+    "11": 0.33,
+    "12": 1.72,
+    "13": 0.0,
+    "14": -0.97,
+    "16": 1.55,
+    "17": -0.09,
+    "18": -0.4,
+    "19": -1.62
+   },
+   "rank": 4,
+   "move": 0,
+   "best_cat": "12",
+   "worst_cat": "19",
+   "luck": -0.05,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.3",
+   "score": 1.93,
+   "season_z": 1.93,
+   "recent_z": 1.93,
+   "cat_z": {
+    "5": 0.48,
+    "8": -0.54,
+    "10": 1.54,
+    "11": 1.79,
+    "12": 0.66,
+    "13": -1.67,
+    "14": -0.48,
+    "16": 0.83,
+    "17": 0.35,
+    "18": -1.26,
+    "19": 0.23
+   },
+   "rank": 5,
+   "move": 1,
+   "best_cat": "11",
+   "worst_cat": "13",
+   "luck": -0.273,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.6",
+   "score": -0.36,
+   "season_z": -0.36,
+   "recent_z": -0.36,
+   "cat_z": {
+    "5": -1.31,
+    "8": 1.21,
+    "10": -0.37,
+    "11": -1.0,
+    "12": 0.42,
+    "13": 0.0,
+    "14": 1.42,
+    "16": 0.17,
+    "17": -0.31,
+    "18": -0.83,
+    "19": 0.23
+   },
+   "rank": 6,
+   "move": -4,
+   "best_cat": "14",
+   "worst_cat": "5",
+   "luck": 0.025,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.7",
+   "score": -0.58,
+   "season_z": -0.58,
+   "recent_z": -0.58,
+   "cat_z": {
+    "5": -0.61,
+    "8": -0.47,
+    "10": -1.36,
+    "11": -1.45,
+    "12": -0.29,
+    "13": 1.0,
+    "14": 0.66,
+    "16": -0.4,
+    "17": 1.44,
+    "18": 0.9,
+    "19": 0.0
+   },
+   "rank": 7,
+   "move": -2,
+   "best_cat": "17",
+   "worst_cat": "11",
+   "luck": 0.153,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.8",
+   "score": -1.0,
+   "season_z": -1.0,
+   "recent_z": -1.0,
+   "cat_z": {
+    "5": 0.78,
+    "8": 0.46,
+    "10": -0.86,
+    "11": -0.36,
+    "12": -0.47,
+    "13": 0.0,
+    "14": 0.13,
+    "16": -1.06,
+    "17": 0.78,
+    "18": -0.18,
+    "19": -0.23
+   },
+   "rank": 8,
+   "move": 1,
+   "best_cat": "5",
+   "worst_cat": "16",
+   "luck": 0.012,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.9",
+   "score": -1.32,
+   "season_z": -1.32,
+   "recent_z": -1.32,
+   "cat_z": {
+    "5": 1.79,
+    "8": -2.18,
+    "10": -0.61,
+    "11": 0.51,
+    "12": -0.85,
+    "13": 0.42,
+    "14": -0.82,
+    "16": -1.63,
+    "17": -1.4,
+    "18": 1.99,
+    "19": 1.47
+   },
+   "rank": 9,
+   "move": 1,
+   "best_cat": "18",
+   "worst_cat": "8",
+   "luck": -0.004,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.10",
+   "score": -1.61,
+   "season_z": -1.61,
+   "recent_z": -1.61,
+   "cat_z": {
+    "5": -1.4,
+    "8": -1.5,
+    "10": 1.71,
+    "11": 1.02,
+    "12": -0.47,
+    "13": 0.0,
+    "14": 0.96,
+    "16": -0.3,
+    "17": -0.2,
+    "18": -1.05,
+    "19": -0.39
+   },
+   "rank": 10,
+   "move": -2,
+   "best_cat": "10",
+   "worst_cat": "8",
+   "luck": -0.091,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.1",
+   "score": -5.36,
+   "season_z": -5.36,
+   "recent_z": -5.36,
+   "cat_z": {
+    "5": -1.57,
+    "8": 0.83,
+    "10": -0.53,
+    "11": -1.45,
+    "12": -0.59,
+    "13": -0.33,
+    "14": -0.93,
+    "16": 0.5,
+    "17": -0.85,
+    "18": -1.05,
+    "19": 0.62
+   },
+   "rank": 11,
+   "move": 0,
+   "best_cat": "8",
+   "worst_cat": "5",
+   "luck": -0.054,
+   "punts": []
+  },
+  {
+   "team": "web.l.39751.t.11",
+   "score": -11.25,
+   "season_z": -11.25,
+   "recent_z": -11.25,
+   "cat_z": {
+    "5": 0.65,
+    "8": 0.06,
+    "10": -1.36,
+    "11": -1.05,
+    "12": -1.77,
+    "13": -1.84,
+    "14": -1.76,
+    "16": -1.49,
+    "17": -2.06,
+    "18": -0.18,
+    "19": -0.46
+   },
+   "rank": 12,
+   "move": 0,
+   "best_cat": "5",
+   "worst_cat": "17",
+   "luck": -0.021,
+   "punts": []
+  }
+ ],
+ "luck": [
+  {
+   "team": "web.l.39751.t.2",
+   "actual": 0.818,
+   "expected": 0.612,
+   "luck": 0.207
+  },
+  {
+   "team": "web.l.39751.t.7",
+   "actual": 0.636,
+   "expected": 0.483,
+   "luck": 0.153
+  },
+  {
+   "team": "web.l.39751.t.12",
+   "actual": 0.727,
+   "expected": 0.599,
+   "luck": 0.128
+  },
+  {
+   "team": "web.l.39751.t.6",
+   "actual": 0.545,
+   "expected": 0.521,
+   "luck": 0.025
+  },
+  {
+   "team": "web.l.39751.t.8",
+   "actual": 0.5,
+   "expected": 0.488,
+   "luck": 0.012
+  },
+  {
+   "team": "web.l.39751.t.9",
+   "actual": 0.455,
+   "expected": 0.459,
+   "luck": -0.004
+  },
+  {
+   "team": "web.l.39751.t.11",
+   "actual": 0.182,
+   "expected": 0.202,
+   "luck": -0.021
+  },
+  {
+   "team": "web.l.39751.t.4",
+   "actual": 0.727,
+   "expected": 0.76,
+   "luck": -0.033
+  },
+  {
+   "team": "web.l.39751.t.5",
+   "actual": 0.5,
+   "expected": 0.55,
+   "luck": -0.05
+  },
+  {
+   "team": "web.l.39751.t.1",
+   "actual": 0.273,
+   "expected": 0.326,
+   "luck": -0.054
+  },
+  {
+   "team": "web.l.39751.t.10",
+   "actual": 0.364,
+   "expected": 0.455,
+   "luck": -0.091
+  },
+  {
+   "team": "web.l.39751.t.3",
+   "actual": 0.273,
+   "expected": 0.545,
+   "luck": -0.273
+  }
+ ],
+ "punts": [],
+ "matchups": [
+  {
+   "a": "web.l.39751.t.6",
+   "b": "web.l.39751.t.2",
+   "score": [
+    0,
+    0,
+    11
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 8
+  },
+  {
+   "a": "web.l.39751.t.1",
+   "b": "web.l.39751.t.7",
+   "score": [
+    0,
+    0,
+    11
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 8
+  },
+  {
+   "a": "web.l.39751.t.3",
+   "b": "web.l.39751.t.11",
+   "score": [
+    0,
+    0,
+    11
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 8
+  },
+  {
+   "a": "web.l.39751.t.4",
+   "b": "web.l.39751.t.5",
+   "score": [
+    0,
+    0,
+    11
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 8
+  },
+  {
+   "a": "web.l.39751.t.8",
+   "b": "web.l.39751.t.10",
+   "score": [
+    0,
+    0,
+    11
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 8
+  },
+  {
+   "a": "web.l.39751.t.9",
+   "b": "web.l.39751.t.12",
+   "score": [
+    0,
+    0,
+    11
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": null,
+     "b": null,
+     "lead": "tie",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 0,
+     "b": 0,
+     "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 8
+  }
+ ],
+ "daily": {
+  "best": "web.l.39751.t.2",
+  "worst": "web.l.39751.t.6",
+  "z": {
+   "web.l.39751.t.1": 0.48,
+   "web.l.39751.t.2": 8.17,
+   "web.l.39751.t.3": 0.4,
+   "web.l.39751.t.4": 3.78,
+   "web.l.39751.t.5": 2.5,
+   "web.l.39751.t.6": -10.94,
+   "web.l.39751.t.7": -2.04,
+   "web.l.39751.t.8": 1.94,
+   "web.l.39751.t.9": 3.12,
+   "web.l.39751.t.10": -2.12,
+   "web.l.39751.t.11": -9.18,
+   "web.l.39751.t.12": 3.89
+  },
+  "leaders": {
+   "5": {
+    "team": "web.l.39751.t.2",
+    "value": 0.513
+   },
+   "8": {
+    "team": "web.l.39751.t.5",
+    "value": 0.886
+   },
+   "10": {
+    "team": "web.l.39751.t.2",
+    "value": 15
+   },
+   "11": {
+    "team": "web.l.39751.t.7",
+    "value": 0.478
+   },
+   "12": {
+    "team": "web.l.39751.t.5",
+    "value": 140
+   },
+   "13": {
+    "team": "web.l.39751.t.4",
+    "value": 13
+   },
+   "14": {
+    "team": "web.l.39751.t.4",
+    "value": 38
+   },
+   "16": {
+    "team": "web.l.39751.t.5",
+    "value": 36
+   },
+   "17": {
+    "team": "web.l.39751.t.3",
+    "value": 14
+   },
+   "18": {
+    "team": "web.l.39751.t.2",
+    "value": 9
+   },
+   "19": {
+    "team": "web.l.39751.t.11",
+    "value": 5
+   }
+  }
+ },
+ "bench": [],
+ "weeks_played": 1,
+ "gauntlet": {
+  "weeks": [
+   {
+    "week": 1,
+    "live": false,
+    "lines": {
+     "web.l.39751.t.1": {
+      "5": 0.429,
+      "8": 0.811,
+      "10": 49,
+      "11": 0.287,
+      "12": 527,
+      "13": 48,
+      "14": 126,
+      "16": 137,
+      "17": 32,
+      "18": 19,
+      "19": 70
+     },
+     "web.l.39751.t.2": {
+      "5": 0.473,
+      "8": 0.812,
+      "10": 62,
+      "11": 0.369,
+      "12": 595,
+      "13": 51,
+      "14": 141,
+      "16": 137,
+      "17": 50,
+      "18": 29,
+      "19": 97
+     },
+     "web.l.39751.t.3": {
+      "5": 0.476,
+      "8": 0.747,
+      "10": 74,
+      "11": 0.409,
+      "12": 606,
+      "13": 32,
+      "14": 138,
+      "16": 144,
+      "17": 43,
+      "18": 18,
+      "19": 75
+     },
+     "web.l.39751.t.4": {
+      "5": 0.481,
+      "8": 0.758,
+      "10": 53,
+      "11": 0.363,
+      "12": 675,
+      "13": 77,
+      "14": 190,
+      "16": 157,
+      "17": 48,
+      "18": 29,
+      "19": 83
+     },
+     "web.l.39751.t.5": {
+      "5": 0.477,
+      "8": 0.815,
+      "10": 64,
+      "11": 0.354,
+      "12": 673,
+      "13": 52,
+      "14": 125,
+      "16": 159,
+      "17": 39,
+      "18": 22,
+      "19": 99
+     },
+     "web.l.39751.t.6": {
+      "5": 0.435,
+      "8": 0.829,
+      "10": 51,
+      "11": 0.304,
+      "12": 591,
+      "13": 52,
+      "14": 188,
+      "16": 130,
+      "17": 37,
+      "18": 20,
+      "19": 75
+     },
+     "web.l.39751.t.7": {
+      "5": 0.451,
+      "8": 0.75,
+      "10": 39,
+      "11": 0.287,
+      "12": 546,
+      "13": 64,
+      "14": 168,
+      "16": 118,
+      "17": 53,
+      "18": 28,
+      "19": 78
+     },
+     "web.l.39751.t.8": {
+      "5": 0.483,
+      "8": 0.794,
+      "10": 45,
+      "11": 0.328,
+      "12": 535,
+      "13": 52,
+      "14": 154,
+      "16": 104,
+      "17": 47,
+      "18": 23,
+      "19": 81
+     },
+     "web.l.39751.t.9": {
+      "5": 0.506,
+      "8": 0.67,
+      "10": 48,
+      "11": 0.361,
+      "12": 511,
+      "13": 57,
+      "14": 129,
+      "16": 92,
+      "17": 27,
+      "18": 33,
+      "19": 59
+     },
+     "web.l.39751.t.10": {
+      "5": 0.433,
+      "8": 0.702,
+      "10": 76,
+      "11": 0.38,
+      "12": 535,
+      "13": 52,
+      "14": 176,
+      "16": 120,
+      "17": 38,
+      "18": 19,
+      "19": 83
+     },
+     "web.l.39751.t.11": {
+      "5": 0.48,
+      "8": 0.775,
+      "10": 39,
+      "11": 0.302,
+      "12": 453,
+      "13": 30,
+      "14": 104,
+      "16": 95,
+      "17": 21,
+      "18": 23,
+      "19": 84
+     },
+     "web.l.39751.t.12": {
+      "5": 0.456,
+      "8": 0.804,
+      "10": 65,
+      "11": 0.355,
+      "12": 525,
+      "13": 57,
+      "14": 168,
+      "16": 124,
+      "17": 43,
+      "18": 23,
+      "19": 52
+     }
+    },
+    "opp": {
+     "web.l.39751.t.6": "web.l.39751.t.9",
+     "web.l.39751.t.9": "web.l.39751.t.6",
+     "web.l.39751.t.1": "web.l.39751.t.12",
+     "web.l.39751.t.12": "web.l.39751.t.1",
+     "web.l.39751.t.2": "web.l.39751.t.11",
+     "web.l.39751.t.11": "web.l.39751.t.2",
+     "web.l.39751.t.3": "web.l.39751.t.4",
+     "web.l.39751.t.4": "web.l.39751.t.3",
+     "web.l.39751.t.5": "web.l.39751.t.8",
+     "web.l.39751.t.8": "web.l.39751.t.5",
+     "web.l.39751.t.7": "web.l.39751.t.10",
+     "web.l.39751.t.10": "web.l.39751.t.7"
+    }
+   }
+  ]
+ },
+ "source": "yahoo-web",
+ "recap": {
+  "date": "2026-10-25",
+  "headline": "Luka Dončić Drops 52 On LeParth James",
+  "subhead": "Acinonyx took the night 10-1 behind Dončić's 52 points, 10 assists and 8 threes while LeParth James got three players on the floor.",
+  "body": [],
+  "zingers": [
+   {
+    "team": "LeParth James",
+    "line": "LeParth James got three bodies on the floor, Cameron Boozer shot 6 for 21, and Acinonyx took the night 10-1."
+   },
+   {
+    "team": "MONSTARS ☄️",
+    "line": "Scottie Barnes went 0 for 12, and Ty Jerome's 14 for 14 free throws dragged MONSTARS ☄️ to a 5-5-1 tie."
+   },
+   {
+    "team": "Gopher Gold",
+    "line": "Jaylen Brown shot 5 for 20, LeBron James hit 2 of 6 free throws, and Gopher Gold settled for 5-5-1."
+   },
+   {
+    "team": "Nova Knicks",
+    "line": "Nova Knicks posted the worst night in the league, lost it 7-4 to theInfamous, and Jakob Poeltl scored 0."
+   },
+   {
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given got two players on the floor, has made zero moves all season, and BrookynDynasty took the night 8-3."
+   },
+   {
+    "team": "Thug Life",
+    "line": "Jalen Brunson jacked 28 shots to make 12, and Thug Life could only tie Adam Silver Dez Nuts 5-5-1."
+   },
+   {
+    "team": "White Mambas",
+    "line": "Keyonte George coughed up 6 turnovers, White Mambas played five guys, and Suggs to be you took the night 8-2."
+   }
+  ],
+  "night": [
+   "Luka Dončić posted 52 points, 10 assists and 8 threes for Acinonyx, the best line of the night, and Acinonyx took the night 10-1.",
+   "Scottie Barnes shot 0 for 12 and 0 for 5 from three for MONSTARS ☄️, the worst brick of the night, and it cost them a win in a 5-5-1 tie.",
+   "Ja'Kobe Walter dropped 22 points and 5 threes on 7 for 12 shooting and is still sitting on the wire.",
+   "Nova Knicks added three free agents before tip and still posted the worst night in the league, losing it 7-4 to theInfamous.",
+   "Zero Fox Given had two players see the floor and lost the night 8-3 to BrookynDynasty."
+  ]
+ },
+ "generated_at": "2026-10-26T05:50-04:00"
+}

@@ -107,6 +107,7 @@
   "Davion Mitchell",
   "Day'Ron Sharpe",
   "De'Aaron Fox",
+  "De'Andre Hunter",
   "De'Anthony Melton",
   "DeMar DeRozan",
   "Deandre Ayton",
@@ -124,6 +125,7 @@
   "Donovan Clingan",
   "Donovan Mitchell",
   "Draymond Green",
+  "Duncan Robinson",
   "Dylan Harper",
   "Dyson Daniels",
   "Egor Dëmin",
@@ -157,6 +159,7 @@
   "Jared McCain",
   "Jaren Jackson Jr.",
   "Jarrett Allen",
+  "Jaxson Hayes",
   "Jay Huff",
   "Jaylen Brown",
   "Jaylen Wells",
@@ -179,6 +182,7 @@
   "Keaton Wagler",
   "Keegan Murray",
   "Kel'el Ware",
+  "Keon Ellis",
   "Kevin Durant",
   "Kevin Porter Jr.",
   "Keyonte George",
@@ -217,8 +221,10 @@
   "Nikola Jokić",
   "Nikola Jović",
   "Nikola Vučević",
+  "Noah Clowney",
   "Norman Powell",
   "OG Anunoby",
+  "Obi Toppin",
   "Onyeka Okongwu",
   "Oso Ighodaro",
   "P.J. Washington",
@@ -228,6 +234,7 @@
   "Paul Reed",
   "Payton Pritchard",
   "Peyton Watson",
+  "Precious Achiuwa",
   "Quentin Grimes",
   "RJ Barrett",
   "Reed Sheppard",
@@ -250,6 +257,7 @@
   "Trae Young",
   "Tre Jones",
   "Trey Murphy III",
+  "Tristan da Silva",
   "Ty Jerome",
   "Tyler Herro",
   "Tyrese Haliburton",
@@ -264,6 +272,7 @@
   "Zaccharie Risacher",
   "Zach Edey",
   "Zach LaVine",
+  "Ziaire Williams",
   "Zion Williamson"
  ],
  "cats": [
@@ -751,26 +760,26 @@
  },
  "rosters": {
   "season": "2026-27",
-  "updated": "2026-10-25T05:42-04:00",
+  "updated": "2026-10-26T05:49-04:00",
   "source": "yahoo-web",
   "teams": {
    "johnj": {
     "team": "theInfamous",
     "team_id": 1,
     "players": [
-     "Darius Acuff Jr.",
+     "Trae Young",
      "Ayo Dosunmu",
-     "Anthony Black",
+     "Christian Braun",
      "Jayson Tatum",
      "Lauri Markkanen",
      "Peyton Watson",
-     "Alex Sarr",
-     "Day'Ron Sharpe",
-     "Dennis Schröder",
-     "Khaman Maluach",
-     "Trae Young",
-     "Christian Braun",
+     "Jaxson Hayes",
      "Jarrett Allen",
+     "Alex Sarr",
+     "Khaman Maluach",
+     "Darius Acuff Jr.",
+     "Anthony Black",
+     "Day'Ron Sharpe",
      "Stephen Curry",
      "Jusuf Nurkić"
     ],
@@ -783,18 +792,19 @@
     "team": "Acinonyx",
     "team_id": 2,
     "players": [
-     "Luka Dončić",
+     "James Harden",
      "Jalen Suggs",
      "Austin Reaves",
-     "Kawhi Leonard",
-     "Ausar Thompson",
      "Norman Powell",
+     "Jaime Jaquez Jr.",
+     "Precious Achiuwa",
      "Adem Bona",
      "Brook Lopez",
      "N. Alexander-Walker",
      "Dejounte Murray",
-     "James Harden",
-     "Jaime Jaquez Jr.",
+     "Luka Dončić",
+     "Kawhi Leonard",
+     "Ausar Thompson",
      "Yves Missi",
      "Kristaps Porziņģis"
     ],
@@ -809,17 +819,17 @@
     "players": [
      "Anthony Edwards",
      "Egor Dëmin",
+     "Keon Ellis",
      "Quentin Grimes",
-     "Gui Santos",
      "Paul George",
      "Julius Randle",
-     "P.J. Washington",
-     "Nikola Jokić",
-     "Davion Mitchell",
-     "Tre Jones",
-     "Kris Dunn",
      "Pascal Siakam",
+     "P.J. Washington",
+     "Kris Dunn",
      "Jared McCain",
+     "Nikola Jokić",
+     "Tre Jones",
+     "Davion Mitchell",
      "AJ Dybantsa",
      "Jimmy Butler III"
     ],
@@ -832,24 +842,21 @@
     "team": "Gopher Gold",
     "team_id": 4,
     "players": [
-     "Tyrese Maxey",
+     "Payton Pritchard",
      "Jaylen Brown",
      "Jaylen Wells",
      "Franz Wagner",
-     "Julian Champagnie",
+     "Yaxel Lendeborg",
      "Evan Mobley",
      "Domantas Sabonis",
      "Chet Holmgren",
      "Andre Drummond",
-     "Yaxel Lendeborg",
-     "Naji Marshall",
-     "Zion Williamson",
-     "Payton Pritchard",
-     "LeBron James"
+     "LeBron James",
+     "Tyrese Maxey",
+     "Julian Champagnie",
+     "Zion Williamson"
     ],
-    "il": [
-     "LeBron James"
-    ]
+    "il": []
    },
    "chris": {
     "team": "MONSTARS ☄️",
@@ -864,7 +871,7 @@
      "Isaiah Jackson",
      "Aaron Gordon",
      "Tyler Herro",
-     "Ryan Kalkbrenner",
+     "Duncan Robinson",
      "Jalen Green",
      "Jalen Johnson",
      "Ja Morant",
@@ -878,46 +885,51 @@
     "team": "LeParth James",
     "team_id": 6,
     "players": [
-     "Stephon Castle",
+     "Derrick White",
      "Devin Booker",
-     "Damian Lillard",
+     "Brandin Podziemski",
      "Jalen Williams",
      "Cameron Boozer",
      "Derik Queen",
      "Onyeka Okongwu",
-     "Joel Embiid",
+     "Anthony Davis",
      "Jalen Smith",
      "Paul Reed",
+     "Damian Lillard",
+     "Stephon Castle",
      "Deni Avdija",
-     "Anthony Davis",
-     "Derrick White",
-     "Brandin Podziemski",
-     "Maxime Raynaud"
+     "Maxime Raynaud",
+     "Joel Embiid"
     ],
     "il": [
-     "Brandin Podziemski",
-     "Maxime Raynaud"
+     "Maxime Raynaud",
+     "Joel Embiid"
     ]
    },
    "roshan": {
     "team": "Nova Knicks",
     "team_id": 7,
     "players": [
+     "Scotty Pippen Jr.",
      "Ajay Mitchell",
-     "Jeremiah Fears",
      "Amen Thompson",
      "Jonathan Kuminga",
-     "Paolo Banchero",
+     "Noah Clowney",
      "OG Anunoby",
      "Victor Wembanyama",
      "Jakob Poeltl",
      "Caleb Wilson",
-     "Coby White",
+     "De'Andre Hunter",
      "De'Aaron Fox",
      "Matas Buzelis",
-     "Dyson Daniels"
+     "Dyson Daniels",
+     "Paolo Banchero",
+     "Coby White"
     ],
-    "il": []
+    "il": [
+     "Paolo Banchero",
+     "Coby White"
+    ]
    },
    "keshav": {
     "team": "Suggs to be you",
@@ -928,7 +940,7 @@
      "Cade Cunningham",
      "Cason Wallace",
      "Collin Murray-Boyles",
-     "Mario Hezonja",
+     "Ziaire Williams",
      "Rudy Gobert",
      "Wendell Carter Jr.",
      "Moussa Diabaté",
@@ -955,7 +967,7 @@
      "Kel'el Ware",
      "Karl-Anthony Towns",
      "Walker Kessler",
-     "Daniel Gafford",
+     "Tristan da Silva",
      "Grayson Allen",
      "Toumani Camara",
      "Donovan Clingan",
@@ -970,18 +982,18 @@
     "team_id": 10,
     "players": [
      "Keyonte George",
-     "Desmond Bane",
+     "Josh Giddey",
      "Jamal Murray",
      "Trey Murphy III",
-     "John Collins",
+     "Bobby Portis Jr.",
      "Naz Reid",
      "Neemias Queta",
      "Isaiah Hartenstein",
      "Ryan Rollins",
-     "Michael Porter Jr.",
-     "Josh Giddey",
-     "Bobby Portis Jr.",
-     "Bam Adebayo"
+     "Bam Adebayo",
+     "Desmond Bane",
+     "John Collins",
+     "Michael Porter Jr."
     ],
     "il": []
    },
@@ -1010,22 +1022,22 @@
     "team_id": 12,
     "players": [
      "Shai Gilgeous-Alexander",
-     "VJ Edgecombe",
      "Josh Hart",
-     "Andrew Wiggins",
+     "Obi Toppin",
      "Alperen Şengün",
      "Cedric Coward",
      "Ivica Zubac",
      "Zach Edey",
      "Immanuel Quickley",
      "Keaton Wagler",
+     "Andrew Wiggins",
      "Jabari Smith Jr.",
      "Reed Sheppard",
-     "De'Anthony Melton",
-     "Fred VanVleet"
+     "Fred VanVleet",
+     "VJ Edgecombe"
     ],
     "il": [
-     "Fred VanVleet"
+     "VJ Edgecombe"
     ]
    }
   }
