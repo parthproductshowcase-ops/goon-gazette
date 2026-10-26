@@ -30,7 +30,9 @@ function siteNav(active) {
     ].join("");
     const open = el.classList.contains("open");
     el.innerHTML = `<div class="nav1">${main}${pkOpen}${who ? `<span class="who"><i>You</i>${esc(who)}</span>` : ""}<button type="button" class="more" aria-expanded="${open}" aria-controls="nav2">More</button></div><div class="nav2" id="nav2">${more}</div>`;
-    el.querySelector(".more").addEventListener("click", () => { el.classList.toggle("open"); el.querySelector(".more").setAttribute("aria-expanded", el.classList.contains("open")); });
+    const btn = el.querySelector(".more"), setOpen = v => { el.classList.toggle("open", v); btn.setAttribute("aria-expanded", v); };
+    btn.addEventListener("click", e => { e.stopPropagation(); setOpen(!el.classList.contains("open")); });
+    if (!siteNav.closer) { siteNav.closer = true; document.addEventListener("click", e => { if (!el.contains(e.target)) setOpen(false); }); document.addEventListener("keydown", e => { if (e.key === "Escape") setOpen(false); }); }
   };
   draw();
   getJSON("data/history.json").then(h => { seasons = h.seasons || []; draw(); if (h.sample) siteNav.sample = true; }).catch(() => {});
