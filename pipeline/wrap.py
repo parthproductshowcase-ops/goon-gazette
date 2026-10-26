@@ -187,11 +187,16 @@ def attach_copy(x):
     return x
 
 
-def write(d, a):
+def write(d, a, force=False):
+    """Freezes a week once its copy has landed, so the Monday numbers the copy quotes don't drift
+    as the daily paper reruns. --force rebuilds anyway."""
     x = build(d, a)
     if not x:
         print("wrap skipped: no finished week")
         return None
+    old = _load(DATA / "wraps" / f"week-{x['week']}.json")
+    if old and old.get("copy") and not force:
+        x = old
     attach_copy(x)
     blob = json.dumps(x, ensure_ascii=False)
     (DATA / "wraps").mkdir(parents=True, exist_ok=True)
@@ -209,7 +214,7 @@ def main():
     a = W.analyze(src)
     d = W.analyze.d
     if "--write" in sys.argv:
-        write(d, a)
+        write(d, a, "--force" in sys.argv)
     else:
         print(json.dumps(build(d, a), indent=1, ensure_ascii=False))
 
