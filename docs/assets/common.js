@@ -97,7 +97,13 @@ const gc = (() => {
     const qs = params.toString();
     history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + location.hash);
   }
-  const reader = store.get("gg_reader");
+  // No link tag yet: fall back to the name this device signed with on Picks or the Trade Block
+  // (gg_who). A link tag, once set, always wins, so a shared device keeps its first owner.
+  let reader = store.get("gg_reader");
+  if (!reader) {
+    const who = (store.get("gg_who") || "").toLowerCase();
+    if (/^[a-z0-9_-]{1,24}$/.test(who)) { store.set("gg_reader", who); reader = who; }
+  }
 
   if (!local) {
     window.goatcounter = { no_onload: true };
