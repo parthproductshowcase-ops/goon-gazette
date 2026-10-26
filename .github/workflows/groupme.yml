@@ -13,9 +13,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "dry-run prints the message; post sends it (held until 8am ET, once per night)"
+        description: "dry-run prints the message; post sends it (held until 8am ET, once per night); wrap sends only the Weekly Wrap message now"
         type: choice
-        options: [dry-run, post]
+        options: [dry-run, post, wrap]
         default: dry-run
 
 concurrency:
@@ -87,3 +87,9 @@ jobs:
         with:
           path: .groupme-posted
           key: groupme-posted-${{ steps.night.outputs.date }}
+
+      - name: Post the Weekly Wrap on its own (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'wrap'
+        env:
+          GROUPME_BOT_ID: ${{ secrets.GROUPME_GAZETTE_BOT_ID }}
+        run: python -m pipeline.announce --wrap-post

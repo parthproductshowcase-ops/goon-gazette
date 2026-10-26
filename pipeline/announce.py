@@ -6,7 +6,7 @@ Run by .github/workflows/groupme.yml after a push that changes docs/data/night.j
   python -m pipeline.announce --check            # prints date= and fresh= for the workflow
   python -m pipeline.announce --dry-run          # prints the message
   python -m pipeline.announce --wait 08:00       # just waits until 8am ET (no-op if later)
-  python -m pipeline.announce --post             # posts now (plus the Weekly Wrap message on Mondays)
+  python -m pipeline.announce --post             # posts now (on Mondays the Weekly Wrap is part of the same post)
   python -m pipeline.announce --wrap-post        # posts only the Weekly Wrap message, any day
 
 Posting needs GROUPME_BOT_ID (the "GOON GAZETTE" bot). The bot ID is never printed.
@@ -24,7 +24,7 @@ WRAP = Path(__file__).resolve().parent.parent / "docs" / "data" / "wrap.json"
 
 
 def wrap_message(now=None, force=False):
-    """Monday-only second post announcing the Weekly Wrap (the page itself stays up forever).
+    """The Weekly Wrap block for Monday's morning post (the page itself stays up forever).
     Needs the week's written copy and a week that ended within the last two days."""
     try:
         w = json.loads(WRAP.read_text())
@@ -68,12 +68,20 @@ def message(n, now=None):
     d = dt.date.fromisoformat(n["date"])
     head = f"LAST NIGHT IN THE GOONS ({d.strftime('%a')}, {d.strftime('%b')} {d.day})"
     notes = [x.strip() for x in (n.get("notes") or []) if str(x).strip()][:2]
-    lines = [head] + notes + [f"Full damage: {LINK}"]
+    tail = []
     note = extra_note(now)
     if note:
-        lines += ["", note]
-    text = "\n".join(lines)
-    return text if len(text) <= 1000 else text[:997] + "..."  # GroupMe caps at 1000
+        tail += ["", note]
+    wm = wrap_message(now)  # Mondays: the Weekly Wrap rides in the same post
+    if wm:
+        tail += ["", wm]
+    def build(ns):
+        return "\n".join([head] + ns + [f"Full damage: {LINK}"] + tail)
+    text = build(notes)
+    while len(text) > 1000 and notes:  # GroupMe caps at 1000: drop notes before the wrap
+        notes = notes[:-1]
+        text = build(notes)
+    return text if len(text) <= 1000 else text[:997] + "..."
 
 
 def wait_until(hhmm):
@@ -131,16 +139,8 @@ def main():
         text = message(load())
         print(text)
         post(text)
-        wm = wrap_message()  # Mondays only: a separate message for the Weekly Wrap
-        if wm:
-            time.sleep(3)
-            print("\n---\n" + wm)
-            post(wm)
         return
     print(message(n))
-    wm = wrap_message()
-    if wm:
-        print("\n--- second message (Mondays) ---\n" + wm)
 
 
 if __name__ == "__main__":
