@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=0e8e68d1">
+<link rel="stylesheet" href="themes/fight.css?v=774827e1">
 
 <div class="wrap">
   <header class="mast">
@@ -85,8 +85,8 @@ function showTab(id, push){
   if (!TABS.includes(id)) id = "current";
   TABS.forEach(t => { $(t).hidden = t !== id; });
   document.querySelectorAll("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.tab === id ? "true" : "false"));
-  if (push) history.replaceState(null, "", "#" + id);
-  window.scrollTo({top: 0});
+  if (push) { history.replaceState(null, "", "#" + id); document.querySelector("nav.tabs").scrollIntoView({block: "start"}); }
+  else window.scrollTo({top: 0});
   gc.once("tab/" + id);
 }
 document.querySelectorAll("nav.tabs a").forEach(a => a.addEventListener("click", e => { e.preventDefault(); showTab(a.dataset.tab, true); }));

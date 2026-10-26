@@ -933,10 +933,10 @@ nav.site a.picks.open[aria-current="page"]{box-shadow:inset 0 0 0 2px #1a1a1a}
   .front{display:contents}
   #current{display:flex;flex-direction:column}
   #current .lead-card{order:1;margin-top:16px}
-  #current>.lineup{order:2}
-  #current>.sec-head{order:3}
-  #current>#mu{order:4}
-  #current .board{order:5;margin-top:12px}
+  #current .board{order:2;margin-top:12px}
+  #current>.lineup{order:3}
+  #current>.sec-head{order:4}
+  #current>#mu{order:5}
   #current>.standouts{order:6}
 }
 @media (max-width:560px){nav.tabs a{font-size:11.5px;padding:13px 9px 11px;letter-spacing:.03em}nav.tabs a[aria-current="true"]::after{left:10px;right:10px}nav.tabs a:first-child{padding-left:0}nav.tabs a:first-child[aria-current="true"]::after{left:0}}
