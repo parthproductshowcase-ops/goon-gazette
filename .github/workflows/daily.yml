@@ -1,19 +1,36 @@
 name: The Goon Gazette
 on:
   schedule:
-    - cron: "0 8 * * *"   # 4am ET during EDT (3am in winter)
-  workflow_dispatch:        # "Run workflow" button for manual rebuilds
+    # 5:00am ET, full paper. Two lines so the time holds through the clock change:
+    # 09:00 UTC is 5am during EDT, 10:00 UTC is 5am during EST. The gate below runs only the one that lands at 5am ET.
+    - cron: "0 9 * * *"
+    - cron: "0 10 * * *"
+  workflow_dispatch:        # "Run workflow" button for manual rebuilds (always runs)
 permissions:
   contents: write
+concurrency:
+  group: gazette-build
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Only the 5am ET firing runs (the other cron is the off-season clock)
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+          M=$((10#$(TZ=America/New_York date +%H) * 60 + 10#$(TZ=America/New_York date +%M)))
+          # accept 5:00am to 5:59am ET (GitHub may start a scheduled run some minutes late)
+          if [ "$M" -ge 300 ] && [ "$M" -lt 360 ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; else echo "go=no" >> "$GITHUB_OUTPUT"; echo "Not 5am ET ($(TZ=America/New_York date +%H:%M)); skipping"; fi
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.go == 'yes'
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.go == 'yes'
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
+        if: steps.gate.outputs.go == 'yes'
       - run: python -m pipeline.history   # cheap: only fetches seasons not yet archived
+        if: steps.gate.outputs.go == 'yes'
         continue-on-error: true   # a history hiccup never blocks the daily paper
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
@@ -23,6 +40,7 @@ jobs:
           YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - run: python -m pipeline.build
+        if: steps.gate.outputs.go == 'yes'
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
@@ -31,9 +49,11 @@ jobs:
           YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - name: Commit today's paper
+        if: steps.gate.outputs.go == 'yes'
         run: |
           git config user.name "gazette-bot"
           git config user.email "gazette-bot@users.noreply.github.com"
           git add docs/data archive cache
-          git diff --cached --quiet || git commit -m "Gazette $(date -u +%F)"
+          git diff --cached --quiet || git commit -m "Gazette $(TZ=America/New_York date +%F)"
+          git pull --rebase
           git push

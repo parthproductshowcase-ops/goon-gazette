@@ -12,6 +12,7 @@ Input `d` (internal format):
   bench    {tk: [{player, stats}]}      # yesterday's benched producers
   date     'YYYY-MM-DD' (the day being recapped)
 """
+import re
 from statistics import mean, pstdev
 
 
@@ -52,6 +53,35 @@ def is_swing(a, b, c):
 def _pct(w, l, t):
     g = w + l + t
     return (w + 0.5 * t) / g if g else None
+
+
+def team_id(key):
+    """The team number N from any team key: web.l.39751.t.N, 466.l.39751.t.N or plain N."""
+    return str(key).rsplit(".t.", 1)[-1]
+
+
+def league_id(key):
+    """The league id from a team key, or None for a plain number."""
+    m = re.search(r"\.l\.(\d+)\.t\.", str(key))
+    return m.group(1) if m else None
+
+
+def rekey_prev(prev, d):
+    """Map a history snapshot's team keys onto today's keys by team number, so power moves
+    and odds moves survive the switch from web.l.<id>.t.N to <game>.l.<id>.t.N.
+    A snapshot from a different league (the sample) is dropped."""
+    if not prev or not prev.get("teams"):
+        return prev
+    cur = {team_id(k): k for k in d["teams"]}
+    old = next(iter(prev["teams"]))
+    if league_id(old) != league_id(next(iter(d["teams"]))):
+        return None
+    out = dict(prev)
+    out["power"] = [dict(p, team=cur.get(team_id(p["team"]), p["team"])) for p in prev.get("power", [])]
+    if prev.get("race") and prev["race"].get("rows"):
+        out["race"] = dict(prev["race"], rows=[dict(r, team=cur.get(team_id(r["team"]), r["team"]))
+                                                for r in prev["race"]["rows"]])
+    return out
 
 
 def power_rankings(d, prev):
@@ -177,6 +207,7 @@ def bench_report(d):
 
 
 def analyze(d, prev=None):
+    prev = rekey_prev(prev, d)
     power, zs = power_rankings(d, prev)
     lk = {r["team"]: r["luck"] for r in luck(d)}
     pn = {p["team"]: p["cats"] for p in punts(d, zs)}

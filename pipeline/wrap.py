@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 from . import players as P
+from . import stats
 from .stats import cmp_cat
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -135,11 +136,11 @@ def build(d, a):
                     s["played"] += 1
                     s["last"] = dt
     R = (_load(POLLS, {}) or {}).get("rosters", {}).get("teams", {})
-    web = str(next(iter(teams))).startswith("web.")
+    by_id = {stats.team_id(k): k for k in teams}  # team number -> today's key (web or API)
     an = (_load(ANALYZER, {}) or {}).get("players", {})
     inj, done = [], set()
     for v in R.values():
-        tk = f"web.l.39751.t.{v['team_id']}" if web else None
+        tk = by_id.get(str(v["team_id"]))
         if not tk:
             continue
         st, sl = v.get("status") or {}, v.get("slots") or {}
@@ -201,8 +202,8 @@ def build(d, a):
     # manager display names (Yahoo nicknames like "parth s" -> "Parth"), via polls.json rosters team_id
     pc = _load(POLLS, {}) or {}
     names = {m["id"]: m["name"] for m in pc.get("managers", [])}
-    disp = {f"web.l.39751.t.{v['team_id']}": names[mid] for mid, v in (pc.get("rosters") or {}).get("teams", {}).items()
-            if mid in names and web}
+    disp = {by_id[str(v["team_id"])]: names[mid] for mid, v in (pc.get("rosters") or {}).get("teams", {}).items()
+            if mid in names and str(v["team_id"]) in by_id}
     return {
         "week": w, "start": win.get("start"), "end": win.get("end"), "days": ds, "theme": theme_for(w),
         "date": d.get("date"), "teams": {k: {"name": v["name"], "manager": disp.get(k, v["manager"])} for k, v in teams.items()},

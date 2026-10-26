@@ -195,8 +195,6 @@ def analyze(src, today=None):
     hist = DATA / "history"
     prev_files = sorted(p for p in hist.glob("*.json") if p.stem < d["date"]) if hist.exists() else []
     prev = json.loads(prev_files[-1].read_text()) if prev_files else None
-    if prev and not str(next(iter(prev.get("teams", {})), "")).startswith("web."):
-        prev = None  # older snapshot from the sample or the API; team keys don't line up
     a = stats.analyze(d, prev)
     a["sample"] = False
     a["source"] = "yahoo-web"
