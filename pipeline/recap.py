@@ -19,6 +19,10 @@ eleven screenshot it for the group chat.
 Hard rules: roast lineups, trades, pickups, laziness and luck. Never looks, families, jobs,
 health, money or identities. No slurs, PG-13. No made-up stats: use only numbers in FACTS.
 Refer to teams by team name. Nothing longer than 22 words.
+Matchup weeks run Monday to Sunday. If FACTS include last_night_was_final_day_of_week, last night
+closed that week: lead with final_results (who won the week, by how much, who blew it on the last
+day). Those are the opponents last night was played against; new_matchups_starting_today only
+begin today, so never describe last night as a game against a new_matchups opponent.
 If FACTS include manager_picks_on_record, use at most two of them: a manager whose prediction
 is aging badly (picked himself 2nd and sits 10th, called a bust who is carrying a rival, or the
 trash talk he signed). Quote picks exactly as recorded."""
@@ -53,6 +57,14 @@ def _facts(a):
         "swing_cats": [{"cat": cat[r["cat"]], "leader": nm(m["a"] if r["lead"] == "a" else m["b"])}
                        for r in m["cats"] if r["swing"]]}
         for m in a["matchups"]]
+    nw, L = a.get("night_week"), a.get("last_week")
+    if nw and L and L.get("week") == nw and nw < a["league"]["current_week"]:
+        # last night was the final day of a matchup week: the story is who won that week,
+        # and the night's head-to-head is against that week's opponent, not the new one
+        f["last_night_was_final_day_of_week"] = nw
+        f["final_results"] = [{"teams": [nm(g["a"]), nm(g["b"])], "score": g["score"],
+                               "winner": nm(g["winner"]) if g.get("winner") else "tie"} for g in L["games"]]
+        f["new_matchups_starting_today"] = [m["teams"] for m in f.pop("matchups")]
     if a.get("race"):
         rows = a["race"]["rows"]
         f["playoff_race"] = {"spots": a["race"]["playoff_teams"], "weeks_left": a["race"]["weeks_left"],

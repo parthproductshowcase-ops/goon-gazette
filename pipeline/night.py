@@ -178,9 +178,10 @@ def build(d, recap_notes=None):
         kings.append({"cat": cid, "name": c["name"], "player": best[2]["name"], "team": best[2]["team"],
                       "value": best[2]["line"].get(cid), "bad": not c["hb"]})
 
-    # every fantasy team: the night's players and how the night went against this week's opponent
+    # every fantasy team: the night's players and how the night went against that night's opponent
+    # (on Mondays the night is Sunday, the final day of the previous week's matchup)
     opp = {}
-    for m in d.get("matchups") or []:
+    for m in d.get("night_matchups") or d.get("matchups") or []:
         opp[m["a"]], opp[m["b"]] = m["b"], m["a"]
     night_tot = {}
     for tk in T:

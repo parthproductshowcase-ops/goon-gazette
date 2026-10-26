@@ -2899,48 +2899,49 @@
   ]
  },
  "source": "yahoo-web",
+ "night_week": 1,
  "recap": {
   "date": "2026-10-25",
-  "headline": "Luka Dončić Drops 52 On LeParth James",
-  "subhead": "Acinonyx took the night 10-1 behind Dončić's 52 points, 10 assists and 8 threes while LeParth James got three players on the floor.",
+  "headline": "Dončić's 52 Buries Zero Fox Given 9-2",
+  "subhead": "Week 1 is final: Acinonyx closed out Zero Fox Given 9-2, LeParth James survived Thug Life 6-5, and MONSTARS ☄️ and Suggs to be you split 5-5-1.",
   "body": [],
   "zingers": [
    {
-    "team": "LeParth James",
-    "line": "LeParth James got three bodies on the floor, Cameron Boozer shot 6 for 21, and Acinonyx took the night 10-1."
-   },
-   {
-    "team": "MONSTARS ☄️",
-    "line": "Scottie Barnes went 0 for 12, and Ty Jerome's 14 for 14 free throws dragged MONSTARS ☄️ to a 5-5-1 tie."
-   },
-   {
-    "team": "Gopher Gold",
-    "line": "Jaylen Brown shot 5 for 20, LeBron James hit 2 of 6 free throws, and Gopher Gold settled for 5-5-1."
-   },
-   {
-    "team": "Nova Knicks",
-    "line": "Nova Knicks posted the worst night in the league, lost it 7-4 to theInfamous, and Jakob Poeltl scored 0."
-   },
-   {
     "team": "Zero Fox Given",
-    "line": "Zero Fox Given got two players on the floor, has made zero moves all season, and BrookynDynasty took the night 8-3."
+    "line": "Zero Fox Given sent two players out on the final day, has made zero moves all season, and lost 9-2."
    },
    {
     "team": "Thug Life",
-    "line": "Jalen Brunson jacked 28 shots to make 12, and Thug Life could only tie Adam Silver Dez Nuts 5-5-1."
+    "line": "Thug Life won Sunday 9-2 and still lost the week 6-5, because Jalen Brunson needed 28 shots to make 12."
+   },
+   {
+    "team": "LeParth James",
+    "line": "LeParth James got three players on the floor Sunday, lost the night 9-2, and backed into a 6-5 week."
+   },
+   {
+    "team": "MONSTARS ☄️",
+    "line": "Scottie Barnes went 0 for 12 Sunday, and MONSTARS ☄️ had to settle for a 5-5-1 tie."
+   },
+   {
+    "team": "Nova Knicks",
+    "line": "Nova Knicks posted the worst Sunday in the league, Jakob Poeltl scored 0, and they still won the week 7-4."
    },
    {
     "team": "White Mambas",
-    "line": "Keyonte George coughed up 6 turnovers, White Mambas played five guys, and Suggs to be you took the night 8-2."
+    "line": "White Mambas won Sunday 6-4-1 and still lost the week 7-4, with Keyonte George coughing up 6 turnovers."
+   },
+   {
+    "team": "theInfamous",
+    "line": "theInfamous lost the week 8-3 to Adam Silver Dez Nuts, and Shai Gilgeous-Alexander's 34 on Sunday rubbed it in."
    }
   ],
   "night": [
-   "Luka Dončić posted 52 points, 10 assists and 8 threes for Acinonyx, the best line of the night, and Acinonyx took the night 10-1.",
-   "Scottie Barnes shot 0 for 12 and 0 for 5 from three for MONSTARS ☄️, the worst brick of the night, and it cost them a win in a 5-5-1 tie.",
+   "Luka Dončić posted 52 points, 10 assists and 8 threes for Acinonyx, the best line of the night, sealing a 9-2 week over Zero Fox Given.",
+   "Scottie Barnes shot 0 for 12 and 0 for 5 from three for MONSTARS ☄️, the worst brick of the night, in a week that ended 5-5-1 with Suggs to be you.",
    "Ja'Kobe Walter dropped 22 points and 5 threes on 7 for 12 shooting and is still sitting on the wire.",
-   "Nova Knicks added three free agents before tip and still posted the worst night in the league, losing it 7-4 to theInfamous.",
-   "Zero Fox Given had two players see the floor and lost the night 8-3 to BrookynDynasty."
+   "Thug Life took the final night 9-2 off LeParth James, who got three players on the floor, and still lost the week 6-5.",
+   "Nova Knicks posted the worst night in the league and still closed out White Mambas 7-4 for the week."
   ]
  },
- "generated_at": "2026-10-26T05:50-04:00"
+ "generated_at": "2026-10-26T06:44-04:00"
 }

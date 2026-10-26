@@ -153,6 +153,10 @@ def build_d(src, today=None):
                 for a, b in src["sched"].get(str(cur), [])]
     schedule = {int(w): [[tk(a), tk(b)] for a, b in pairs] for w, pairs in src["sched"].items()
                 if cur <= int(w) <= src["reg_end"]}
+    # the night being reported can belong to the week that just ended (Monday's paper covers
+    # Sunday, the last day of the old matchup), so pair opponents by the night's own week
+    nw = min(max(1, week_of(src, last)), src["end_week"])
+    night_matchups = [{"a": tk(a), "b": tk(b)} for a, b in src["sched"].get(str(nw), [])]
     cs, ce = week_span(src, cur)
     span = (Date.fromisoformat(ce) - Date.fromisoformat(cs)).days + 1
     done = max(0, (min(Date.fromisoformat(last), Date.fromisoformat(ce)) - Date.fromisoformat(cs)).days + 1)
@@ -167,7 +171,7 @@ def build_d(src, today=None):
         "weekly": weekly, "results": results, "schedule": schedule, "date": last,
         "num_playoff_teams": src["num_playoff_teams"], "reg_end": src["reg_end"],
         "week_progress": round(done / span, 2),
-        "matchups": matchups,
+        "matchups": matchups, "night_week": nw, "night_matchups": night_matchups,
         "season": {t: totals([l for x in dates for l in days[x][t]]) for t in teams},
         "daily": {t: totals(days[last][t]) for t in teams},
         "days": days, "windows": windows, "transactions": transactions(src), "frac": FRAC,
@@ -196,6 +200,7 @@ def analyze(src, today=None):
     a = stats.analyze(d, prev)
     a["sample"] = False
     a["source"] = "yahoo-web"
+    a["night_week"] = d["night_week"]
     return a
 
 
