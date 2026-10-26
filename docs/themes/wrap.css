@@ -178,3 +178,26 @@
 :root[data-theme="dark"] .wx[data-wt="western"] .wx-pin{background:#33261b}
 :root[data-theme="dark"] .wx[data-wt="western"] .wx-stone{background:#3d3833;border-color:#8a8076;color:#f1e2c2}
 :root[data-theme="dark"] .wx .wx-odds.good{color:#10200a}
+
+/* ---------- story layout: one narrative in numbered chapters, with engravings ---------- */
+.wx-defs{position:absolute;width:0;height:0;overflow:hidden}
+.wx-hero{margin:4px 0 0;border:2px solid var(--wx-rule);padding:6px;background:color-mix(in srgb,var(--wx-ink) 5%,transparent)}
+.wx-hero svg{display:block;width:100%;height:auto}
+.wx-hero figcaption,.wx-spot figcaption{font:italic 400 13px/1.35 var(--wx-serif);color:var(--wx-muted);text-align:center;margin-top:6px}
+.wx-ch{margin-top:22px}
+.wx-ch .wx-h{font-size:26px}
+.wx-num{font:400 26px/1 var(--wx-display);color:var(--wx-accent);margin-right:4px}
+.wx-ch .wx-h::before{content:none}
+.wx-body{font:400 17px/1.6 var(--wx-serif);margin:10px 0 12px}
+.wx-body::after{content:"";display:block;clear:both}
+.wx-body p{margin:0 0 10px}
+.wx-body.wx-lead{columns:2 300px;column-gap:28px;column-rule:1px solid var(--rule)}
+.wx-body.wx-lead p:first-of-type::first-letter{float:left;font:400 58px/.82 var(--wx-display);margin:5px 7px 0 0;color:var(--wx-accent)}
+.wx-spot{float:right;width:220px;margin:2px 0 8px 18px;border:2px solid var(--wx-rule);padding:5px;background:color-mix(in srgb,var(--wx-ink) 6%,transparent)}
+.wx-spot svg{display:block;width:100%;height:auto;color:var(--wx-ink)}
+.wx-heard{columns:2 280px;column-gap:24px;list-style:none;margin:6px 0 0;padding:0;font:400 14px/1.45 var(--wx-serif)}
+.wx-heard li{break-inside:avoid;margin:0 0 8px;padding-left:12px;border-left:3px solid var(--wx-accent)}
+.wx-heard li > b{font:800 13px/1 var(--body);text-transform:uppercase;letter-spacing:.04em;margin-right:4px}
+@media (max-width:640px){.wx-spot{float:none;width:auto;max-width:300px;margin:4px auto 10px}.wx-body.wx-lead{columns:1}.wx-ch .wx-h{font-size:22px}}
+.wx[data-wt] .wx-ch .wx-h::before{content:none}
+.wx-spot{width:190px}

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
 <link rel="stylesheet" href="themes/fight.css?v=005abff9">
-<link rel="stylesheet" href="themes/wrap.css?v=5ca4ee35">
+<link rel="stylesheet" href="themes/wrap.css?v=7afb4f09">
 
 <div class="wrap">
   <header class="mast">
@@ -28,33 +28,19 @@
       <div class="wx-strip"><span id="wx-edition">Weekly Wrap</span><span id="wx-dates"></span><span class="wx-weeks" id="wx-weeks"></span></div>
     </header>
 
+    <svg class="wx-defs" width="0" height="0" aria-hidden="true"><defs>
+      <pattern id="wxh" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1"/></pattern>
+      <pattern id="wxh2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width=".7"/></pattern>
+    </defs></svg>
+
     <section class="wx-front">
       <p class="wx-kicker" id="wx-kicker"></p>
       <h2 class="wx-head" id="wx-head">Loading the wire</h2>
       <p class="wx-deck" id="wx-deck"></p>
-      <div class="wx-lead" id="wx-lead"></div>
-      <div class="wx-pins" id="wx-lead-pins"></div>
+      <figure class="wx-hero" id="wx-hero"></figure>
     </section>
 
-    <section class="wx-sec"><h3 class="wx-h" id="h-wanted"></h3><p class="wx-sub" id="s-wanted"></p>
-      <div class="wx-posters" id="wanted"></div></section>
-
-    <section class="wx-sec"><h3 class="wx-h" id="h-results"></h3><p class="wx-sub" id="s-results"></p>
-      <div class="wx-board" id="results"></div></section>
-
-    <section class="wx-sec"><h3 class="wx-h" id="h-late"></h3><p class="wx-sub" id="s-late"></p>
-      <div class="wx-late" id="late"></div></section>
-
-    <section class="wx-sec"><h3 class="wx-h" id="h-boot"></h3><p class="wx-sub" id="s-boot"></p>
-      <p class="wx-story" id="boot-story"></p>
-      <div class="wx-stones" id="boot"></div></section>
-
-    <section class="wx-sec"><h3 class="wx-h" id="h-roy"></h3><p class="wx-sub" id="s-roy"></p>
-      <p class="wx-story" id="roy-story"></p>
-      <div class="wx-roy" id="roy"></div></section>
-
-    <section class="wx-sec"><h3 class="wx-h" id="h-saloon"></h3><p class="wx-sub" id="s-saloon"></p>
-      <div class="wx-zings" id="saloon"></div></section>
+    <div id="chapters"></div>
 
     <p class="wx-sign" id="wx-sign"></p>
   </article>
@@ -120,6 +106,82 @@ const ART = {
   }
 };
 
+// Engraving-style story art for the western edition (original drawings; hatch patterns #wxh/#wxh2 live in the page's <defs>)
+function rider(x, y, s = 1, flip = false) {
+  return `<g transform="translate(${x} ${y}) scale(${flip ? -s : s} ${s})" fill="currentColor" stroke="currentColor">
+    <ellipse cx="0" cy="0" rx="26" ry="10" stroke="none"/>
+    <path d="M17-5L31-23 40-21 28 3z" stroke="none"/><path d="M31-23L46-16 44-10 32-13z" stroke="none"/>
+    <path d="M-17 6L-30 22M-11 8L-5 24M13 8L25 22M20 5L34 15" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M-25-3q-14 0-19 13" stroke-width="3" fill="none"/>
+    <path d="M-5-8L6-8 4-30-6-30z" stroke="none"/><circle cx="-1" cy="-36" r="5" stroke="none"/>
+    <path d="M-5-34l9 0-4 5z" fill="var(--wx-accent)" stroke="none"/>
+    <ellipse cx="-1" cy="-41" rx="10" ry="2.2" stroke="none"/><rect x="-5" y="-48" width="8" height="7" rx="2" stroke="none"/>
+    <path d="M4-26l14-8" stroke-width="3" stroke-linecap="round" fill="none"/></g>`;
+}
+Object.assign(ART.western, {
+  hero() {
+    let legs = "";
+    for (let x = 30; x < 780; x += 60) legs += `<path d="M${x} 214L${x + 30} 300M${x + 60} 214L${x + 30} 300M${x} 214v86M${x + 60} 214v86" stroke="currentColor" stroke-width="2.2"/>`;
+    const puff = [[508, 108, 13], [484, 90, 19], [450, 74, 25], [404, 64, 29], [350, 58, 31], [292, 56, 28]]
+      .map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#wxh2)" stroke="currentColor" stroke-width="1.5"/>`).join("");
+    return `<svg viewBox="0 0 800 300" role="img" aria-label="A train crossing a trestle bridge with riders alongside">
+      <rect width="800" height="300" fill="url(#wxh2)" opacity=".18"/>
+      <circle cx="660" cy="84" r="44" fill="var(--wx-accent)" opacity=".35"/>
+      <path d="M0 200L60 150H160L190 182H262L292 138H420L452 190H800V214H0z" fill="currentColor" opacity=".22"/>
+      <path d="M560 190l40-34h70l30 34z" fill="url(#wxh)" stroke="currentColor" stroke-width="1.5"/>
+      ${legs}
+      <rect x="0" y="205" width="800" height="9" fill="currentColor"/>
+      <g fill="currentColor">
+        <rect x="110" y="140" width="136" height="56" rx="4"/><rect x="104" y="134" width="148" height="8" rx="3"/>
+        <g fill="var(--wx-poster)"><rect x="122" y="150" width="18" height="16"/><rect x="150" y="150" width="18" height="16"/><rect x="178" y="150" width="18" height="16"/><rect x="206" y="150" width="18" height="16"/></g>
+        <circle cx="135" cy="200" r="9"/><circle cx="222" cy="200" r="9"/>
+        <rect x="256" y="158" width="100" height="38" rx="3"/><circle cx="280" cy="200" r="9"/><circle cx="332" cy="200" r="9"/>
+        <rect x="366" y="134" width="58" height="62"/><rect x="358" y="126" width="74" height="10" rx="3"/>
+        <rect x="378" y="144" width="20" height="18" fill="var(--wx-poster)"/>
+        <rect x="420" y="158" width="112" height="38" rx="10"/>
+        <path d="M494 158l-4-34h32l-6 34z"/><path d="M484 118h44l-7 9h-30z"/>
+        <path d="M446 158a10 10 0 0 1 20 0z"/>
+        <rect x="526" y="164" width="12" height="10" fill="var(--wx-accent)"/>
+        <path d="M532 196l38 10h-38z"/>
+        <circle cx="398" cy="192" r="15" fill="var(--wx-poster)" stroke="currentColor" stroke-width="5"/>
+        <circle cx="446" cy="192" r="15" fill="var(--wx-poster)" stroke="currentColor" stroke-width="5"/>
+        <circle cx="496" cy="198" r="9"/><circle cx="522" cy="198" r="9"/>
+        <path d="M398 192h48" stroke="currentColor" stroke-width="4"/>
+      </g>
+      ${puff}
+      <path d="M0 262h800" stroke="currentColor" stroke-width="1" opacity=".4"/>
+      ${rider(250, 262, .9)}${rider(380, 270, 1.05)}${rider(130, 268, .8)}
+      <g fill="var(--wx-accent)"><path d="M412 226l6-10 2 10 9-4-6 9 9 3-10 2 3 9-8-6-5 8 0-10-9 0 8-5z"/></g>
+    </svg>`;
+  },
+  strongbox: `<svg viewBox="0 0 200 140" aria-hidden="true"><path d="M30 60l20-26h100l20 26z" fill="url(#wxh)" stroke="currentColor" stroke-width="2.5"/>
+    <rect x="30" y="60" width="140" height="64" fill="currentColor"/><g stroke="var(--wx-poster)" stroke-width="3"><path d="M30 76h140M30 108h140"/><path d="M60 60v64M140 60v64"/></g>
+    <rect x="88" y="74" width="24" height="26" rx="3" fill="var(--wx-accent)"/><path d="M93 74v-8a7 7 0 0 1 14 0v8" stroke="var(--wx-accent)" stroke-width="4" fill="none"/>
+    <g fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"><ellipse cx="184" cy="128" rx="9" ry="4"/><ellipse cx="18" cy="130" rx="9" ry="4"/><ellipse cx="190" cy="120" rx="8" ry="3.5"/></g>
+    <g fill="var(--wx-accent)"><path d="M158 26l4 9 10 1-8 6 3 10-9-6-9 6 3-10-8-6 10-1z"/></g></svg>`,
+  cars: `<svg viewBox="0 0 200 140" aria-hidden="true"><path d="M0 112h200" stroke="currentColor" stroke-width="5"/>
+    <g fill="currentColor"><rect x="6" y="56" width="88" height="50" rx="4"/><rect x="106" y="56" width="88" height="50" rx="4"/><rect x="0" y="50" width="100" height="8" rx="3"/><rect x="100" y="50" width="100" height="8" rx="3"/>
+    <circle cx="24" cy="110" r="7"/><circle cx="76" cy="110" r="7"/><circle cx="124" cy="110" r="7"/><circle cx="176" cy="110" r="7"/></g>
+    <g fill="var(--wx-poster)"><rect x="16" y="66" width="16" height="14"/><rect x="42" y="66" width="16" height="14"/><rect x="68" y="66" width="16" height="14"/><rect x="116" y="66" width="16" height="14"/><rect x="142" y="66" width="16" height="14"/><rect x="168" y="66" width="16" height="14"/></g>
+    <g fill="var(--wx-accent)"><path d="M96 40l7-14 2 14 13-6-9 12 14 3-14 3 6 12-11-8-5 13-2-14-13 5 9-11-12-6z"/><path d="M40 30l4-8 1 8 8-3-5 7 8 2-8 2 3 7-6-5-3 7-1-8-8 3 5-6-7-4z"/></g>
+    ${rider(160, 36, .55, true).replace("translate(160 36)", "translate(160 30)")}</svg>`,
+  coffin: `<svg viewBox="0 0 200 140" aria-hidden="true"><path d="M70 10l60 0 18 30-14 92H66L52 40z" fill="url(#wxh)" stroke="currentColor" stroke-width="3"/>
+    <rect x="80" y="54" width="40" height="18" fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"/>
+    <text x="100" y="67" text-anchor="middle" font-family="Rye,Georgia,serif" font-size="11" fill="currentColor">R.I.P.</text>
+    <path d="M162 20l-10 104" stroke="currentColor" stroke-width="4"/><path d="M146 116l20 4-4 18-18-4z" fill="currentColor"/>
+    <path d="M0 134h200" stroke="currentColor" stroke-width="3"/><g fill="currentColor" opacity=".5"><ellipse cx="30" cy="130" rx="22" ry="6"/></g></svg>`,
+  posse() {
+    return `<svg viewBox="0 0 200 140" aria-hidden="true"><circle cx="160" cy="44" r="22" fill="var(--wx-accent)" opacity=".35"/>
+      <path d="M0 96l30-26h40l20 18h40l24-22h46v30H0z" fill="currentColor" opacity=".2"/><path d="M0 124h200" stroke="currentColor" stroke-width="2"/>
+      ${rider(46, 108, .75)}${rider(104, 112, .85)}${rider(160, 106, .7)}</svg>`;
+  },
+  doors: `<svg viewBox="0 0 200 140" aria-hidden="true"><rect x="20" y="8" width="160" height="22" fill="currentColor"/>
+    <text x="100" y="25" text-anchor="middle" font-family="Rye,Georgia,serif" font-size="15" fill="var(--wx-poster)">SALOON</text>
+    <path d="M30 30v110M170 30v110" stroke="currentColor" stroke-width="6"/>
+    <g fill="url(#wxh)" stroke="currentColor" stroke-width="3"><path d="M40 52q30-10 58 0v62q-28 8-58 0z"/><path d="M102 52q28-10 58 0v62q-30 8-58 0z"/></g>
+    <g stroke="currentColor" stroke-width="2"><path d="M48 66h42M48 80h42M48 94h42M110 66h42M110 80h42M110 94h42"/></g></svg>`
+});
+
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const CN = {"5": "FG", "8": "FT", "10": "3PM", "11": "3P", "12": "PTS", "13": "OREB", "14": "DREB", "16": "AST", "17": "STL", "18": "BLK", "19": "TO"};
 let X, C, T;
@@ -158,6 +220,70 @@ function pin(p) {
 }
 const pins = list => (list || []).map(pin).join("");
 
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+const DEFAULT_CHAPTERS = ["intro", "wanted", "results", "late", "boot", "roy", "saloon"];
+const BLOCK = {
+  // Wanted posters
+  wanted() {
+    const W = C.wanted || {}, art = ART[X.theme || "western"] || {};
+    return `<div class="wx-posters">${["mvp", "dud", "luckiest", "robbed"].filter(k => X.awards[k]).map((k, i) => {
+      const tk = X.awards[k], w = W[k] || {};
+      return `<figure class="wx-poster ${k}" style="--tilt:${[-1.2, 0.9, -0.6, 1.3][i]}deg">
+        <span class="wx-pk">${esc(T.posted)}</span>
+        <div class="wx-art">${art[k] || ""}</div>
+        ${T.sub ? `<span class="wx-ps">${esc(T.sub)}</span>` : ""}
+        <span class="wx-pt">${esc(w.title || T[k])}</span>
+        <b class="wx-pn">${nm(tk)}</b><span class="wx-pm">${mg(tk)}</span>
+        <p>${ink(w.line || "")}</p>
+        <div class="wx-pins">${pins(w.pins)}</div>
+        <span class="wx-reward">${esc(T.reward)}: <b>${esc(w.reward || "bragging rights")}</b></span></figure>`;
+    }).join("")}</div>`;
+  },
+  // Results: just who was standing
+  results() {
+    return `<div class="wx-board">${X.games.slice().sort((a, b) => a.a.localeCompare(b.a, undefined, {numeric: true})).map(g => {
+      const [a, b] = g.final;
+      const side = (tk, sc, other) => `<div class="wx-bs${sc > other ? " won" : ""}"><b>${nm(tk)}</b><span>${sc}</span></div>`;
+      return `<div class="wx-bout">${side(g.a, a, b)}${side(g.b, b, a)}${g.final[2] ? `<small>${g.final[2]} tied</small>` : ""}</div>`;
+    }).join("")}</div>`;
+  },
+  // Late drama: stories, with the score trail and player lines as pins
+  late() {
+    const L = C.late || {};
+    const lates = X.games.filter(g => L[`${g.a}|${g.b}`] || (!X.copy && g.swing >= 1));
+    return lates.length ? `<div class="wx-late">${lates.map(g => {
+      const c = L[`${g.a}|${g.b}`], n = g.trail.length;
+      const trail = g.trail.slice(Math.max(0, n - 3)).map((s, i) => `<span class="wx-pin plain"><i>${DAYS[new Date(X.days[n - 3 + i] + "T12:00:00").getDay()]}</i> <b>${score(s)}</b></span>`).join("");
+      return `<div class="wx-card"><h4>${nm(g.a)} <span>vs</span> ${nm(g.b)}</h4>
+        <p>${ink(txt(c) || autoLate(g))}</p><div class="wx-pins">${trail}${pins(pinsOf(c))}</div></div>`;
+    }).join("")}</div>` : "";
+  },
+  // Injuries: tombstones
+  boot() {
+    const I = X.injuries.filter(i => i.still_out).slice(0, 10);
+    return `<div class="wx-stones">${I.map(i => `<div class="wx-stone${i.started_hurt ? " hurt" : ""}">
+      <span class="wx-rip">${esc((T.status || {})[i.status] || i.status)}</span>
+      <mark>${esc(i.name)}</mark><small><b>${nm(i.team)}</b></small>
+      ${i.started_hurt ? `<em>In the starting lineup</em>` : i.last_game && X.days.slice(-2).includes(i.last_game) ? `<em>Went down this weekend</em>` : ""}</div>`).join("")}</div>`;
+  },
+  // Rest of year: one compact board, best odds first
+  roy() {
+    return `<div class="wx-roy">${X.outlook.map((o, i) => {
+      const mv = o.odds_move, arrow = mv == null || Math.abs(mv) < .005 ? "" : `<i class="${mv > 0 ? "up" : "dn"}">${mv > 0 ? "▲" : "▼"} ${Math.round(Math.abs(mv) * 100)}</i>`;
+      const tier = o.odds >= .75 ? "good" : o.odds <= .25 ? "bad" : "mid";
+      return `<div class="wx-row"><span class="wx-rk">${i + 1}</span>
+        <div class="wx-tm"><b>${nm(o.team)}</b><small>${mg(o.team)} · ${o.w}-${o.l}${o.t ? "-" + o.t : ""} this week</small></div>
+        <div class="wx-proj"><small>Yahoo projects</small><b>${ordinal(o.proj_rank)}</b></div>
+        <div class="wx-od"><span class="wx-odds ${tier}">${pct(o.odds)}</span>${arrow}</div></div>`;
+    }).join("")}</div>`;
+  },
+  // Overheard: one short line per manager, small type, no pins
+  saloon() {
+    const Z = C.zingers || {};
+    return `<ul class="wx-heard">${Object.keys(X.teams).map(tk => `<li><b>${mg(tk)}</b> ${ink(txt(Z[tk]) || autoZing(tk))}</li>`).join("")}</ul>`;
+  }
+};
+
 function load(w) {
   const url = w ? `data/wraps/week-${w}.json` : "data/wrap.json";
   return getJSON(url).then(x => { X = x; X.pins = X.pins || {}; render(); }).catch(() => {
@@ -186,71 +312,21 @@ function render() {
   $("wx-kicker").textContent = C.kicker || `Week ${X.week} is final`;
   $("wx-head").innerHTML = ink(C.headline || autoHead());
   $("wx-deck").innerHTML = ink(C.deck || "");
-  $("wx-lead").innerHTML = (C.lead || autoLead()).map(p => `<p>${ink(p)}</p>`).join("");
-  $("wx-lead-pins").innerHTML = pins(C.lead_pins);
+  const hero = (ART[th] || {}).hero;
+  $("wx-hero").innerHTML = hero ? `${typeof hero === "function" ? hero() : hero}<figcaption>${esc(C.hero_caption || "")}</figcaption>` : "";
+  $("wx-hero").hidden = !hero;
 
-  for (const k of ["wanted", "results", "late", "boot", "roy", "saloon"]) {
-    $("h-" + k).innerHTML = `${esc(S[k])} <b class="dot">&bull;</b> <span>Week ${X.week}</span>`;
-    $("s-" + k).textContent = S[k + "_sub"] || "";
-  }
-
-  // Wanted posters
-  const W = C.wanted || {}, art = ART[th] || {};
-  $("wanted").innerHTML = ["mvp", "dud", "luckiest", "robbed"].filter(k => X.awards[k]).map((k, i) => {
-    const tk = X.awards[k], w = W[k] || {};
-    return `<figure class="wx-poster ${k}" style="--tilt:${[-1.2, 0.9, -0.6, 1.3][i]}deg">
-      <span class="wx-pk">${esc(T.posted)}</span>
-      <div class="wx-art">${art[k] || ""}</div>
-      ${T.sub ? `<span class="wx-ps">${esc(T.sub)}</span>` : ""}
-      <span class="wx-pt">${esc(w.title || T[k])}</span>
-      <b class="wx-pn">${nm(tk)}</b><span class="wx-pm">${mg(tk)}</span>
-      <p>${ink(w.line || "")}</p>
-      <div class="wx-pins">${pins(w.pins)}</div>
-      <span class="wx-reward">${esc(T.reward)}: <b>${esc(w.reward || "bragging rights")}</b></span></figure>`;
+  const chapters = C.chapters || DEFAULT_CHAPTERS.map(b => ({block: b, head: S[b] || "", text: b === "intro" ? autoLead() : []}));
+  $("chapters").innerHTML = chapters.map((ch, i) => {
+    const art = ch.art && (ART[th] || {})[ch.art];
+    const fig = art ? `<figure class="wx-spot">${typeof art === "function" ? art() : art}${ch.caption ? `<figcaption>${esc(ch.caption)}</figcaption>` : ""}</figure>` : "";
+    const paras = (ch.text || []).map(x => `<p>${ink(x)}</p>`).join("");
+    return `<section class="wx-ch wx-ch-${esc(ch.block)}">
+      <h3 class="wx-h"><span class="wx-num">${ROMAN[i] || i + 1}.</span> ${esc(ch.head || "")}</h3>
+      ${ch.sub ? `<p class="wx-sub">${esc(ch.sub)}</p>` : ""}
+      ${fig || paras ? `<div class="wx-body${ch.block === "intro" ? " wx-lead" : ""}">${fig}${paras}</div>` : ""}
+      ${(BLOCK[ch.block] || (() => ""))()}</section>`;
   }).join("");
-
-  // Results: just who was standing
-  $("results").innerHTML = X.games.slice().sort((a, b) => a.a.localeCompare(b.a, undefined, {numeric: true})).map(g => {
-    const [a, b] = g.final;
-    const side = (tk, sc, other) => `<div class="wx-bs${sc > other ? " won" : ""}"><b>${nm(tk)}</b><span>${sc}</span></div>`;
-    return `<div class="wx-bout">${side(g.a, a, b)}${side(g.b, b, a)}${g.final[2] ? `<small>${g.final[2]} tied</small>` : ""}</div>`;
-  }).join("");
-
-  // Late drama: stories, with the score trail and player lines as pins
-  const L = C.late || {};
-  const lates = X.games.filter(g => L[`${g.a}|${g.b}`] || (!X.copy && g.swing >= 1));
-  $("late").innerHTML = lates.length ? lates.map(g => {
-    const c = L[`${g.a}|${g.b}`];
-    const n = g.trail.length;
-    const trail = g.trail.slice(Math.max(0, n - 3)).map((s, i) => `<span class="wx-pin plain"><i>${DAYS[new Date(X.days[n - 3 + i] + "T12:00:00").getDay()]}</i> <b>${score(s)}</b></span>`).join("");
-    return `<div class="wx-card"><h4>${nm(g.a)} <span>vs</span> ${nm(g.b)}</h4>
-      <p>${ink(txt(c) || autoLate(g))}</p>
-      <div class="wx-pins">${trail}${pins(pinsOf(c))}</div></div>`;
-  }).join("") : `<p class="wx-story">Nobody moved the needle on the weekend. Every lead held.</p>`;
-
-  // Injuries: tombstones only, no tables
-  const I = X.injuries.filter(i => i.still_out).slice(0, 10);
-  $("boot-story").innerHTML = ink(C.boot || "");
-  $("boot").innerHTML = I.map(i => `<div class="wx-stone${i.started_hurt ? " hurt" : ""}">
-    <span class="wx-rip">${esc((T.status || {})[i.status] || i.status)}</span>
-    <mark>${esc(i.name)}</mark><small><b>${nm(i.team)}</b></small>
-    ${i.started_hurt ? `<em>In the starting lineup</em>` : i.last_game && X.days.slice(-2).includes(i.last_game) ? `<em>Went down this weekend</em>` : ""}</div>`).join("");
-
-  // Rest of year: one compact board, best odds first
-  $("roy-story").innerHTML = ink(C.roy || "");
-  $("roy").innerHTML = X.outlook.map((o, i) => {
-    const mv = o.odds_move, arrow = mv == null || Math.abs(mv) < .005 ? "" : `<i class="${mv > 0 ? "up" : "dn"}">${mv > 0 ? "▲" : "▼"} ${Math.round(Math.abs(mv) * 100)}</i>`;
-    const tier = o.odds >= .75 ? "good" : o.odds <= .25 ? "bad" : "mid";
-    return `<div class="wx-row"><span class="wx-rk">${i + 1}</span>
-      <div class="wx-tm"><b>${nm(o.team)}</b><small>${mg(o.team)} · ${o.w}-${o.l}${o.t ? "-" + o.t : ""} this week</small></div>
-      <div class="wx-proj"><small>Yahoo projects</small><b>${ordinal(o.proj_rank)}</b></div>
-      <div class="wx-od"><span class="wx-odds ${tier}">${pct(o.odds)}</span>${arrow}</div></div>`;
-  }).join("");
-
-  // Every manager gets roasted
-  const Z = C.zingers || {};
-  $("saloon").innerHTML = Object.keys(X.teams).map(tk => `<div class="wx-zing"><b>${mg(tk)}</b><small>${nm(tk)}</small>
-    <p>${ink(txt(Z[tk]) || autoZing(tk))}</p><div class="wx-pins">${pins(pinsOf(Z[tk]))}</div></div>`).join("");
 
   $("wx-sign").textContent = C.sign_off || "";
   $("gen").textContent = X.date ? `Games through ${md(X.date)}.` : "";
