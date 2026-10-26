@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=774827e1">
+<link rel="stylesheet" href="themes/fight.css?v=95863316">
 
 <div class="wrap">
   <header class="mast">
@@ -31,7 +31,7 @@
         <h3 class="card-h">Squawk Box</h3>
         <div class="zingers" id="zings"></div>
       </div>
-      <aside class="board" id="board" aria-label="Standings and power rank"></aside>
+      <aside class="board" id="board" aria-label="Power rank and standings"></aside>
     </div>
     <section class="card lineup" id="lineup" hidden>
       <div class="lu-head"><h3 id="lu-title">The Lineup Card</h3><span class="lu-time" id="lu-time"></span></div>
@@ -74,7 +74,7 @@
   <footer><span id="gen"></span><span>Morning edition 4am ET. Lineup Card 7:15pm ET, after lineups lock.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=d03e30c5"></script>
+<script src="assets/common.js?v=2a22451d"></script>
 <script>
 siteNav("today");
 
@@ -116,17 +116,16 @@ function render(a){
   const r = a.recap || {};
   $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
 
-  // rank board: Yahoo standing next to power rank
-  const powerBy = Object.fromEntries((a.power || []).map(p => [p.team, p]));
-  const standing = Object.entries(a.standings || {}).map(([tk, s]) => ({tk, ...s})).sort((x, y) => x.rank - y.rank);
-  const spots = a.race?.playoff_teams || 0;
-  if (standing.length){
-    $("board").innerHTML = `<h3>Standings and power rank</h3><table>
-      <thead><tr><th>Yahoo</th><th>Team</th><th>Power</th><th>Move</th></tr></thead><tbody>` +
-      standing.map((s, i) => {
-        const p = powerBy[s.tk] || {};
+  // rank board: the Gazette's power rank 1-12, with the Yahoo standing beside it
+  const standBy = a.standings || {};
+  const power = [...(a.power || [])].sort((x, y) => x.rank - y.rank);
+  if (power.length){
+    $("board").innerHTML = `<h3>Power rank and standings</h3><table>
+      <thead><tr><th>Power</th><th>Team</th><th>Yahoo</th><th>Move</th></tr></thead><tbody>` +
+      power.map(p => {
+        const s = standBy[p.team] || {};
         const mv = p.move == null || p.move === 0 ? `<td class="d eq">&#8594;</td>` : `<td class="d ${p.move > 0 ? "up" : "dn"}">${p.move > 0 ? "&#8593;" : "&#8595;"}${Math.abs(p.move)}</td>`;
-        return `<tr class="${spots && i === spots - 1 ? "line" : ""}"><td class="y num">${s.rank}</td><td class="n">${nm(s.tk)}<small>${s.w}-${s.l}${s.t ? "-" + s.t : ""}</small></td><td class="p num">${p.rank ?? "–"}</td>${mv}</tr>`;
+        return `<tr><td class="p num">${p.rank}</td><td class="n">${nm(p.team)}<small>${s.w ?? "–"}-${s.l ?? "–"}${s.t ? "-" + s.t : ""}</small></td><td class="y num">${s.rank ?? "–"}</td>${mv}</tr>`;
       }).join("") + `</tbody></table>`;
   }
 

@@ -23,10 +23,10 @@ function siteNav(active) {
     const main = (siteNav.locked ? "" : link("night.html", "Last Night", "night")) + paper + (siteNav.locked ? "" : link("wrap.html", "Weekly Wrap", "wrap"));
     const pkOpen = picks && picks.open ? `<a href="predict.html" class="picks open"${cur("picks")}>File Your Picks<em>Locks ${esc(picks.day)}</em></a>` : "";
     const more = [
-      picks && !picks.open ? link("predict.html", "Picks", "picks") : "",
       link("block.html", "Trade Block", "block"),
-      ...seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)),
-      link("history.html", "League history", "history")
+      picks && !picks.open ? link("predict.html", "Picks", "picks") : "",
+      link("history.html", "League history", "history"),
+      ...seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season, "sub"))
     ].join("");
     const open = el.classList.contains("open");
     el.innerHTML = `<div class="nav1">${main}${pkOpen}${who ? `<span class="who"><i>You</i>${esc(who)}</span>` : ""}<button type="button" class="more" aria-expanded="${open}" aria-controls="nav2">More</button></div><div class="nav2" id="nav2">${more}</div>`;
