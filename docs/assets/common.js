@@ -30,7 +30,8 @@ function siteNav(active) {
       link("block.html", "Trade Block", "block"),
       picks && !picks.open ? link("predict.html", "Picks", "picks") : "",
       link("history.html", "League history", "history"),
-      ...seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season, "sub"))
+      ...seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season, "sub")),
+      link("about.html", "About", "about")
     ].join("");
     const open = el.classList.contains("open");
     el.innerHTML = `<div class="nav1">${main}${pkOpen}${who ? `<span class="who"><i>You</i>${esc(who)}</span>` : ""}<button type="button" class="more" aria-expanded="${open}" aria-controls="nav2">More</button></div><div class="nav2" id="nav2">${more}</div>`;

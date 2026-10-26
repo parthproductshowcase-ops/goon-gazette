@@ -21,6 +21,9 @@
  *         POST {action:"block_remove", who, pin, player, reader}
  *         POST {action:"pin_check", who, pin}
  *         GET  ?block=1  -> {listings:[{who, player, note, since}], recent:[...], max}
+ * About:  POST {action:"contact", name, email, message, reader}  -> {ok}
+ *         Logs to the "contact" tab and emails CONTACT_TO (the sheet owner's Gmail, since the
+ *         web app executes as "Me"). The first deploy after adding this asks for Gmail permission.
  *
  * Lock times, managers, rosters and the block cap come from goongazette.com/data/polls.json.
  * When polls.json has rosters for a manager, he can only list players on that roster.
@@ -29,6 +32,9 @@ const CONFIG_URL = "https://goongazette.com/data/polls.json";
 const SHEET = "responses";
 const BLOCK = "block";
 const SITE = "goongazette.com/block.html";
+const CONTACT = "contact";
+const CONTACT_TO = "shahpv6@gmail.com";
+const CONTACT_MAX = 250;
 
 function config_() {
   const cache = CacheService.getScriptCache();
@@ -50,6 +56,34 @@ function tab_(name, header) {
 }
 function sheet_() { return tab_(SHEET, ["received_at", "poll", "who", "reader", "answers"]); }
 function blockSheet_() { return tab_(BLOCK, ["at", "who", "action", "player", "note", "reader"]); }
+function contactSheet_() { return tab_(CONTACT, ["at", "name", "email", "message", "reader"]); }
+
+// About page form: log it, email it. Light abuse guard: 300 chars of message max, 5 a day per sender.
+function contactPost_(b) {
+  const name = String(b.name || "").trim().slice(0, 80);
+  const email = String(b.email || "").trim().slice(0, 120);
+  const message = String(b.message || "").trim().slice(0, CONTACT_MAX + 50);
+  const reader = String(b.reader || "").slice(0, 24);
+  if (!name || !message) return { ok: false, error: "name and message are required" };
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: "that email doesn't look right" };
+  if (String(b.website || "")) return { ok: true };  // honeypot field: bots fill it, people never see it
+  const sh = contactSheet_();
+  const today = new Date().toDateString();
+  const mine = sh.getDataRange().getValues().slice(1).filter(r => new Date(r[0]).toDateString() === today && String(r[2]) === email && email);
+  if (mine.length >= 5) return { ok: false, error: "that's enough messages for one day" };
+  sh.appendRow([new Date(), name, email, message, reader]);
+  try {
+    MailApp.sendEmail({
+      to: CONTACT_TO,
+      replyTo: email || undefined,
+      subject: "Goon Gazette message from " + name,
+      body: name + (email ? " <" + email + ">" : "") + (reader ? " (reader tag " + reader + ")" : "") + " wrote:\n\n" + message + "\n\nSent from goongazette.com/about.html"
+    });
+  } catch (err) {
+    return { ok: true, mailed: false };  // logged in the sheet even if Gmail refused
+  }
+  return { ok: true, mailed: true };
+}
 
 function out_(o) {
   return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
@@ -232,6 +266,7 @@ function doPost(e) {
   try {
     const cfg = config_();
     const b = JSON.parse(e.postData.contents || "{}");
+    if (b.action === "contact") return out_(contactPost_(b));
     if (b.action === "block_add" || b.action === "block_remove" || b.action === "pin_check") return out_(blockPost_(cfg, b));
     return out_(picksPost_(cfg, b));
   } finally {

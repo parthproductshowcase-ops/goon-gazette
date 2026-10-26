@@ -976,3 +976,19 @@ nav.site a.tonight:not([aria-current="page"]) i{background:var(--accent)}
 .live-card b{font:800 15px/1.2 var(--display)}
 .live-card small{display:block;color:#b9babd;font-size:12px;margin-top:2px}
 .live-card span.go{flex:none;font:700 12px/1 var(--body);background:var(--accent);color:#fff;padding:8px 10px;border-radius:3px;white-space:nowrap}
+
+/* ---------- About (about.html) ---------- */
+.ab-hero h2{font:800 clamp(24px,3.6vw,32px)/1.1 var(--display);letter-spacing:-.01em;margin:8px 0 10px}
+.ab-hero p{margin:0 0 10px;color:var(--ink);font-size:15px;line-height:1.55;max-width:70ch}
+.ab-hero p:last-child{margin-bottom:0;color:var(--muted)}
+.ab-cols{margin-top:12px;align-items:start}
+.ab-form{display:grid;gap:12px;margin-top:12px}
+.ab-form label{display:grid;gap:6px}
+.ab-form .pk-in{font-weight:500;font-size:15px}
+.ab-form textarea.pk-in{resize:vertical;min-height:96px;font-family:var(--body)}
+.ab-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ab-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ab-msg{font:600 13px/1.3 var(--body);color:var(--good)}
+.ab-msg.bad{color:var(--bad)}
+.ab-list .nt-row{display:block}
+.ab-list .nt-row small{margin-top:3px;line-height:1.45}

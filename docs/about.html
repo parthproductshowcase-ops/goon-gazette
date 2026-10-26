@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>About The Goon Gazette</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=17f7cb39">
+
+<div class="wrap">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1></div>
+    <div class="dateline"><span class="label">Est.</span><span class="big">2026</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+
+  <section class="nt-hero ab-hero">
+    <span class="label">About</span>
+    <h2>A daily paper for one fantasy basketball league.</h2>
+    <p>The Goon Gazette covers Ballinwithmygoons, a 12-team, 11-category head-to-head Yahoo league. Every morning it reads the league's data, runs the numbers and publishes the damage: last night's box scores, this week's fights, playoff odds, waiver grades, an all-play Gauntlet, and a Monday Weekly Wrap told as a story. During games it updates hourly. The commentary is written by an AI beat writer with one editorial rule: expose every manager's atrocities, and never invent a stat.</p>
+    <p>Built and run by <b>Parth</b>, one of the twelve managers, who would like it on the record that the paper roasts his team the same as everyone else's.</p>
+  </section>
+
+  <div class="cols2 ab-cols">
+    <div class="list-card">
+      <h3>Say something</h3>
+      <p class="note">Bugs, ideas, trash talk, a stat the paper got wrong. It goes straight to Parth's inbox.</p>
+      <form id="cf" class="ab-form" novalidate>
+        <label><span class="label">Name</span><input class="pk-in" name="name" maxlength="80" autocomplete="name" required></label>
+        <label><span class="label">Email</span><input class="pk-in" name="email" type="email" maxlength="120" autocomplete="email" placeholder="So he can write back"></label>
+        <label><span class="label">Message</span><textarea class="pk-in" name="message" maxlength="250" rows="4" required></textarea><small class="pk-left" id="left">250 characters left</small></label>
+        <label class="ab-hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="ab-row"><button type="submit" class="pk-submit" id="send">Send it</button><span class="ab-msg" id="msg"></span></div>
+      </form>
+    </div>
+    <div class="list-card">
+      <h3>How the paper works</h3>
+      <div class="ab-list">
+        <div class="nt-row"><div><b>Morning edition</b><small>By 6am ET: Last Night, This Week, Victory Road, Waivers and The Gauntlet, rebuilt from the night's box scores.</small></div></div>
+        <div class="nt-row"><div><b>Tonight</b><small>Hourly from 7pm to 1am ET while games are on: live matchup totals, lead changes and the best lines so far.</small></div></div>
+        <div class="nt-row"><div><b>Weekly Wrap</b><small>Every Monday, the week that was, written as one story in a rotating theme.</small></div></div>
+        <div class="nt-row"><div><b>Picks and the Trade Block</b><small>Managers put predictions on the record and shop players to the league. Both are honor system.</small></div></div>
+        <div class="nt-row"><div><b>The numbers</b><small>Playoff odds from 2,000 simulations of the remaining schedule; player values are z-scores across all 11 categories; nothing in the prose is made up.</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer><span>Reader messages are logged and emailed to the editor. No cookies, no tracking beyond a pageview count.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+</div>
+
+<script src="assets/common.js?v=62cd552e"></script>
+<script>
+siteNav("about");
+let ENDPOINT = null;
+getJSON("data/polls.json").then(c => { ENDPOINT = c.endpoint || null; }).catch(() => {});
+
+const form = $("cf"), msgEl = $("msg"), left = $("left"), ta = form.elements.message;
+ta.addEventListener("input", () => { left.textContent = `${250 - ta.value.length} characters left`; });
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const name = form.elements.name.value.trim(), email = form.elements.email.value.trim(), message = ta.value.trim();
+  if (!name || !message) { say("Name and message, at least.", true); return; }
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { say("That email doesn't look right.", true); return; }
+  if (!ENDPOINT) { say("The mailbox isn't connected yet. Try again in a minute.", true); return; }
+  let reader = ""; try { reader = localStorage.getItem("gg_reader") || localStorage.getItem("gg_who") || ""; } catch (x) {}
+  $("send").disabled = true; say("Sending…");
+  fetch(ENDPOINT, {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"},
+    body: JSON.stringify({action: "contact", name, email, message, website: form.elements.website.value, reader})})
+    .then(r => r.json()).then(r => {
+      if (!r.ok) throw new Error(r.error || "no");
+      form.reset(); left.textContent = "250 characters left";
+      say("Sent. Parth has it.");
+      gc.event("about/sent");
+    }).catch(err => say(err.message && err.message !== "no" ? err.message : "Didn't go through. Try again.", true))
+    .finally(() => { $("send").disabled = false; });
+});
+function say(t, bad) { msgEl.textContent = t; msgEl.classList.toggle("bad", !!bad); }
+</script>
