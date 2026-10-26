@@ -7,23 +7,30 @@ const fmtLuck = v => v == null ? "–" : (v >= 0 ? "+" : "−") + Math.abs(v * 1
 const ordinal = n => n + (["th","st","nd","rd"][(n % 100 > 10 && n % 100 < 14) ? 0 : (n % 10 < 4 ? n % 10 : 0)]);
 const getJSON = url => fetch(url, {cache: "no-store"}).then(r => { if (!r.ok) throw new Error(url + " " + r.status); return r.json(); });
 
-// Site-wide nav: Today, each archived season, History.
+// Site-wide nav. Primary row: Last Night, This Week, Weekly Wrap (plus a yellow Picks pill while a poll is open).
+// Everything else (Picks after lock, Trade Block, past seasons, League history) sits behind "More" on phones
+// and shows as plain links on the right on desktop. One accent color: the active page is red, the rest black.
 function siteNav(active) {
   const el = $("sitenav");
   if (!el) return;
-  const link = (href, label, key) => `<a href="${href}"${key === active ? ' aria-current="page"' : ""}>${label}</a>`;
-  let seasons = [], picks = null;
+  const cur = k => k === active ? ' aria-current="page"' : "";
+  const link = (href, label, key, cls) => `<a href="${href}"${cls ? ` class="${cls}"` : ""}${cur(key)}>${label}</a>`;
+  let seasons = [], picks = null, who = null;
   const draw = () => {
-    const cur = siteNav.locked
-      ? `<a href="index.html#current" class="locked"${active === "today" ? ' aria-current="page"' : ""} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
-      : link("index.html#current", "Current Season", "today");
-    const pk = picks ? `<a href="predict.html" class="picks${picks.open ? " open" : ""}"${active === "picks" ? ' aria-current="page"' : ""}>${picks.open ? "File Your Picks" : "Picks"}${picks.open ? `<em>Locks ${esc(picks.day)}</em>` : ""}</a>` : "";
-    const bk = `<a href="block.html" class="block"${active === "block" ? ' aria-current="page"' : ""}>Trade Block</a>`;
-    const nt = siteNav.locked ? "" : `<a href="night.html" class="night"${active === "night" ? ' aria-current="page"' : ""}>Last Night</a>`;
-    const wr = siteNav.locked ? "" : `<a href="wrap.html" class="wrapn"${active === "wrap" ? ' aria-current="page"' : ""}>Weekly Wrap</a>`;
-    el.innerHTML = nt + wr + cur + pk + bk
-      + seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)).join("")
-      + link("history.html", "League history", "history");
+    const paper = siteNav.locked
+      ? `<a href="index.html#current" class="locked"${cur("today")} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
+      : link("index.html#current", "This Week", "today");
+    const main = (siteNav.locked ? "" : link("night.html", "Last Night", "night")) + paper + (siteNav.locked ? "" : link("wrap.html", "Weekly Wrap", "wrap"));
+    const pkOpen = picks && picks.open ? `<a href="predict.html" class="picks open"${cur("picks")}>File Your Picks<em>Locks ${esc(picks.day)}</em></a>` : "";
+    const more = [
+      picks && !picks.open ? link("predict.html", "Picks", "picks") : "",
+      link("block.html", "Trade Block", "block"),
+      ...seasons.map(s => link(`season.html#${s.season}`, esc(s.label), "s" + s.season)),
+      link("history.html", "League history", "history")
+    ].join("");
+    const open = el.classList.contains("open");
+    el.innerHTML = `<div class="nav1">${main}${pkOpen}${who ? `<span class="who"><i>You</i>${esc(who)}</span>` : ""}<button type="button" class="more" aria-expanded="${open}" aria-controls="nav2">More</button></div><div class="nav2" id="nav2">${more}</div>`;
+    el.querySelector(".more").addEventListener("click", () => { el.classList.toggle("open"); el.querySelector(".more").setAttribute("aria-expanded", el.classList.contains("open")); });
   };
   draw();
   getJSON("data/history.json").then(h => { seasons = h.seasons || []; draw(); if (h.sample) siteNav.sample = true; }).catch(() => {});
@@ -32,9 +39,14 @@ function siteNav(active) {
     const open = ps.find(p => new Date(p.opens) <= now && now < new Date(p.locks));
     if (open) picks = {open: true, day: new Date(open.locks).toLocaleDateString("en-US", {weekday: "short", timeZone: "America/New_York"})};
     else if (ps.some(p => new Date(p.locks) <= now)) picks = {open: false};
-    if (picks) draw();
+    try { const R = c.rosters && c.rosters.teams[localStorage.getItem("gg_who")]; if (R && R.team) who = R.team; } catch (e) {}
+    draw();
   }).catch(() => {});
   seasonLocked().then(l => { if (l !== siteNav.locked) { siteNav.locked = l; draw(); } });
+}
+// The reader's own Yahoo team id (from the name they signed on Picks or the Trade Block), or null.
+function myTeamId(c) {
+  try { const R = c.rosters && c.rosters.teams[localStorage.getItem("gg_who")]; return R ? R.team_id : null; } catch (e) { return null; }
 }
 
 // The current season stays in chains until the first real (non-sample) build lands.

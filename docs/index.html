@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=005abff9">
+<link rel="stylesheet" href="themes/fight.css?v=6d52bc19">
 
 <div class="wrap">
   <header class="mast">
@@ -21,8 +21,7 @@
   <div class="scores" id="scores" aria-label="Scoreboard"></div>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
   <nav class="tabs" aria-label="Sections">
-    <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#gauntlet" data-tab="gauntlet">The Gauntlet</a><a href="#race" data-tab="race">Victory Road</a><a href="#lastweek" data-tab="lastweek">Last Week</a>
-    <a href="#waivers" data-tab="waivers">Waiver Wire</a><a href="#trends" data-tab="trends">Trends</a>
+    <a href="#current" data-tab="current" aria-current="true">This Week</a><a href="#gauntlet" data-tab="gauntlet">The Gauntlet</a><a href="#race" data-tab="race">Victory Road</a><a href="#waivers" data-tab="waivers">Waivers</a>
   </nav>
 
   <div class="banner" id="banner" hidden></div>
@@ -66,38 +65,22 @@
     <div class="table-wrap"><table class="pr race"><thead><tr><th>#</th><th>Team</th><th class="r">Cat record</th><th class="r">Back</th><th class="r">Vs line</th><th>Playoff odds</th><th class="r">No. 1 seed</th><th class="r">Proj. wins</th></tr></thead><tbody id="rc"></tbody></table></div>
   </section>
 
-  <section id="lastweek" class="panel" hidden>
-    <div class="sec-head"><h2 id="lw-title">The Receipts</h2><p>Receipts from last week. All-play means how you would have done against everyone.</p></div>
-    <div class="awards" id="lw-awards"></div>
-    <div class="sec-head"><h2>Final Damage</h2><p>How every fight ended.</p></div>
-    <div class="results" id="lw-games"></div>
-    <div class="cols2 standouts">
-      <div class="list-card"><h3>Managers Who Earned Their Keep</h3><p class="note">Pickups that decided a matchup while the draft picks watched.</p><div id="lw-plays"></div></div>
-      <div class="list-card"><h3>Players Carrying Lazy Rosters</h3><p class="note">Top 10 last week by category value.</p><div id="lw-players"></div></div>
-    </div>
-  </section>
-
   <section id="waivers" class="panel" hidden>
     <div class="sec-head"><h2 id="ww-title">Waiver Wire Review</h2><p>Every add and drop from last week, graded on what the pickup actually did. The grades are not kind.</p></div>
     <div class="awards" id="ww-awards"></div>
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Date</th><th>Team</th><th>Added</th><th class="c">Grade</th><th>Dropped</th></tr></thead><tbody id="ww-moves"></tbody></table></div>
   </section>
 
-  <section id="trends" class="panel" hidden>
-    <div class="sec-head"><h2 id="tr-title">Cooking or Cooked</h2><p>Who is rising over the last three weeks, who is falling apart, and every team's weekly all-play.</p></div>
-    <div class="cols3" id="form"></div>
-    <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Team</th><th>Weekly all-play %</th><th class="r">Season</th><th class="r">Last 3</th><th class="r">Form</th></tr></thead><tbody id="spark"></tbody></table></div>
-  </section>
-
   <footer><span id="gen"></span><span>Morning edition 4am ET. Lineup Card 7:15pm ET, after lineups lock.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=9ce94dc4"></script>
+<script src="assets/common.js?v=0ed99ebd"></script>
 <script>
 siteNav("today");
 
 // section tabs: one panel at a time; the hash remembers which
-const TABS = ["current","gauntlet","race","lastweek","waivers","trends"];
+const TABS = ["current","gauntlet","race","waivers"];
+let MYID = null;  // the reader's Yahoo team id (gg_who via polls.json rosters)
 function showTab(id, push){
   if (!TABS.includes(id)) id = "current";
   TABS.forEach(t => { $(t).hidden = t !== id; });
@@ -172,7 +155,10 @@ function render(a){
   }
 
   // 2. matchups, closest first
+  const started = m => m.cats.some(c => c.a || c.b);
+  const isMine = m => MYID != null && (m.a.endsWith(".t." + MYID) || m.b.endsWith(".t." + MYID));
   const tier = m => {
+    if (!started(m)) return [2, "Not started"];
     const gap = Math.abs(m.score[0] - m.score[1]), sw = m.cats.filter(c => c.swing).length;
     if (gap <= 1 && sw >= 1) return [0, "Down to the wire"];
     if (gap <= 1) return [0, "Dead even"];
@@ -182,11 +168,11 @@ function render(a){
     return [4, "Getting embarrassed"];
   };
   const closeness = m => Math.abs(m.score[0] - m.score[1]) - 0.4 * m.cats.filter(c => c.swing).length;
-  const ordered = [...a.matchups].sort((x, y) => closeness(x) - closeness(y));
+  const ordered = [...a.matchups].sort((x, y) => (isMine(y) - isMine(x)) || closeness(x) - closeness(y));
   const short = tk => { const n = T[tk]?.name || tk; return n.length > 16 ? n.slice(0, 15).trim() + "…" : n; };
   $("scores").innerHTML = ordered.map((m, i) => {
     const [tl, tt] = tier(m), aw = m.score[0] > m.score[1], bw = m.score[1] > m.score[0];
-    return `<a href="#current" data-mu="${i}"><span class="st ${tl <= 1 ? "live" : ""}">${tt}</span>
+    return `<a href="#current" data-mu="${i}" class="${isMine(m) ? "mine" : ""}"><span class="st ${tl <= 1 ? "live" : tl === 2 ? "off" : ""}">${isMine(m) ? "Your fight" : tt}</span>
       <span class="tm ${aw ? "w" : ""}">${esc(short(m.a))}</span><span class="sc ${bw ? "l" : ""} num">${m.score[0]}</span>
       <span class="tm ${bw ? "w" : ""}">${esc(short(m.b))}</span><span class="sc ${aw ? "l" : ""} num">${m.score[1]}</span></a>`;
   }).join("");
@@ -195,11 +181,11 @@ function render(a){
     document.getElementById("mu-" + el.dataset.mu)?.scrollIntoView({behavior: "smooth", block: "start"});
   }));
   $("mu").innerHTML = ordered.length ? ordered.map((m, i) => {
-    const [tl, tt] = tier(m);
+    const [tl, tt] = tier(m), mine = isMine(m);
     const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
     const sw = m.cats.filter(c => c.swing), rest = m.cats.filter(c => !c.swing);
-    return `<article class="mu" id="mu-${i}">
-      <span class="tier t${tl}">${tt}</span>
+    return `<article class="mu${mine ? " mine" : ""}" id="mu-${i}">
+      <span class="tier t${tl}">${mine ? `Your fight <b class="dot">&bull;</b> ${tt}` : tt}</span>
       <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mg(m.a)}</small></div>
       <div class="mu-score">${m.score[0]}–${m.score[1]}${m.score[2]?`<span class="t">–${m.score[2]}</span>`:""}</div>
       <div class="mu-team b">${nm(m.b)}<small>${mg(m.b)}</small></div></div>
@@ -263,8 +249,6 @@ function render(a){
   }).join("") : `<p class="empty">No pickups have swung a matchup ${live ? "yet" : "this week"}.</p>`;
   $("cw-players").innerHTML = playerRows(PL.current?.top_players);
   $("cw-plays").innerHTML = playRows(PL.current?.top_plays, true);
-  $("lw-players").innerHTML = playerRows(PL.last?.top_players);
-  $("lw-plays").innerHTML = playRows(PL.last?.top_plays, false);
 
   // waiver wire review
   const WW = PL.waiver;
@@ -306,52 +290,7 @@ function render(a){
     $("ww-awards").innerHTML = `<p class="empty">Waiver review starts after week 1.</p>`;
   }
 
-  // 3. last week
-  const L = a.last_week;
   $("cw-title").innerHTML = `The Fights <b class="dot">&bull;</b> Week ${a.league?.current_week ?? ""}`;
-  if (L){
-    $("lw-title").innerHTML = `The Receipts <b class="dot">&bull;</b> Week ${L.week}`;
-    const opp = L.opponents;
-    $("lw-games").innerHTML = L.games.map(g => {
-      const side = (tk, sc) => `<div class="${g.winner === tk ? "w" : ""}"><span>${nm(tk)}</span><span class="num">${sc}</span></div>`;
-      return `<div class="game">${side(g.a, g.score[0])}${side(g.b, g.score[1])}</div>`;
-    }).join("");
-    const aw = [];
-    aw.push(`<div class="award hot"><span class="label">MVP of the week</span><h3>${nm(L.mvp)}</h3><p>Would have beaten ${L.allplay[L.mvp]} of ${opp} teams.</p></div>`);
-    if (L.upset) aw.push(`<div class="award"><span class="label">Upset of the week</span><h3>${nm(L.upset.winner)}</h3><p>Took down ${nm(L.upset.loser)}, ${L.upset.gap} spots higher in the power rankings, ${L.upset.score[0] > L.upset.score[1] ? L.upset.score[0] + "–" + L.upset.score[1] : L.upset.score[1] + "–" + L.upset.score[0]}.</p></div>`);
-    if (L.closest) aw.push(`<div class="award"><span class="label">Closest bout</span><h3>${nm(L.closest.a)} vs ${nm(L.closest.b)}</h3><p>Decided ${L.closest.score[0]}–${L.closest.score[1]}${L.closest.score[2] ? "–" + L.closest.score[2] : ""}.</p></div>`);
-    if (L.robbed) aw.push(`<div class="award"><span class="label">Robbed in broad daylight</span><h3>${nm(L.robbed)}</h3><p>Lost, but would have beaten ${L.allplay[L.robbed]} of ${opp} teams.</p></div>`);
-    aw.push(`<div class="award"><span class="label">Disgrace of the week</span><h3>${nm(L.dud)}</h3><p>Would have beaten ${L.allplay[L.dud]} of ${opp} teams.</p></div>`);
-    $("lw-awards").innerHTML = aw.join("");
-  } else {
-    $("lw-games").innerHTML = `<p class="empty">No completed weeks yet.</p>`;
-  }
-
-  // 5. trends
-  const TR = a.trends;
-  if (TR){
-    $("tr-title").innerHTML = `Cooking or Cooked <b class="dot">&bull;</b> Weeks ${TR.weeks[0]}&ndash;${TR.weeks.at(-1)}`;
-    const order = a.power.map(p => p.team);
-    const hot = TR.form.slice(0, 3), cold = TR.form.slice(-3).reverse();
-    const fr = x => `<div class="feud"><span><b>${nm(x.team)}</b></span><span class="num" style="color:var(${x.delta >= 0 ? "--good" : "--bad"})">${x.delta >= 0 ? "+" : "−"}${Math.abs(x.delta * 100).toFixed(1)}</span></div>`;
-    const climb = [...TR.form].sort((x, y) => y.rank_change - x.rank_change)[0];
-    const fall = [...TR.form].sort((x, y) => x.rank_change - y.rank_change)[0];
-    $("form").innerHTML = `
-      <div class="list-card"><h3>Cooking</h3>${hot.map(fr).join("")}</div>
-      <div class="list-card"><h3>Cooked</h3>${cold.map(fr).join("")}</div>
-      <div class="list-card"><h3>Biggest moves since week ${TR.weeks[0]}</h3>
-        <div class="feud"><span>Biggest climb</span><span><b>${nm(climb.team)}</b> <span class="num delta up">▲${climb.rank_change}</span></span></div>
-        <div class="feud"><span>Biggest fall</span><span><b>${nm(fall.team)}</b> <span class="num delta dn">▼${-fall.rank_change}</span></span></div></div>`;
-    const formBy = Object.fromEntries(TR.form.map(f => [f.team, f]));
-    $("spark").innerHTML = order.map(t => {
-      const f = formBy[t] || {};
-      return `<tr><td class="tm"><b>${nm(t)}</b></td><td>${spark(TR.allplay_by_week[t])}</td>
-        <td class="num r">${fmtPct(f.season)}</td><td class="num r">${fmtPct(f.recent)}</td>
-        <td class="num r" style="color:var(${(f.delta ?? 0) >= 0 ? "--good" : "--bad"})">${f.delta == null ? "–" : (f.delta >= 0 ? "+" : "−") + Math.abs(f.delta * 100).toFixed(1)}</td></tr>`;
-    }).join("");
-  } else {
-    $("form").innerHTML = `<p class="empty">Trends start after week 2.</p>`;
-  }
 
   gauntlet(a);
 
@@ -479,21 +418,13 @@ function gauntlet(a){
   draw();
 }
 
-function spark(vals){
-  const v = (vals || []).filter(x => x != null);
-  if (v.length < 2) return "";
-  const W = 120, H = 28, pad = 3;
-  const x = i => pad + (W - 2 * pad) * i / (v.length - 1), y = p => H - pad - (H - 2 * pad) * p;
-  const pts = v.map((p, i) => `${x(i)},${y(p)}`).join(" ");
-  return `<svg viewBox="0 0 ${W} ${H}" class="spark" aria-hidden="true"><line x1="0" x2="${W}" y1="${y(.5)}" y2="${y(.5)}" class="mid"/><polyline points="${pts}" fill="none"/><circle cx="${x(v.length - 1)}" cy="${y(v.at(-1))}" r="3"/></svg>`;
-}
-
 Promise.all([
+  getJSON("data/polls.json").then(c => { MYID = myTeamId(c); }).catch(() => {}),
   // preview tabs read the real-league preview (built from Yahoo's pages) when there is one
   (PREVIEW ? fetch("data/preview/league.json", {cache:"no-store"}).then(r => r.ok ? r.json() : Promise.reject()).catch(() => null) : Promise.resolve(null))
     .then(p => p || fetch("data/league.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })),
   fetch("data/tonight.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null)
-]).then(([a, t]) => {
+]).then(([, a, t]) => {
     // the evening edition wins while it is newer than the morning paper
     if (t && t.generated_at && a.generated_at && t.generated_at >= a.generated_at && !t.sample === !a.sample){
       a.matchups = t.matchups || a.matchups;

@@ -34,10 +34,6 @@ h1,h2,h3{font-weight:700;letter-spacing:-.01em;line-height:1.1}
 .dateline .big{font:700 13px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;background:var(--accent);color:#fff;padding:5px 8px;border-radius:2px}
 @media (max-width:560px){.nameplate small{display:none}.dateline{border:0;text-align:right;align-items:baseline;flex-basis:auto}}
 
-nav.site{margin:0;border:0;border-bottom:1px solid var(--rule);background:var(--card);padding-inline:16px}
-nav.site a{font:500 12px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--muted);border-right:0;padding:9px 14px 9px 0}
-nav.site a[aria-current="page"]{background:transparent;color:var(--ink);font-weight:600}
-nav.site a:hover,nav.site a:focus-visible{background:transparent;color:var(--accent)}
 
 /* scoreboard strip */
 .scores{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;margin:0;background:var(--card);border-bottom:1px solid var(--rule);scrollbar-width:none}
@@ -161,7 +157,6 @@ nav.tabs a:first-child[aria-current="true"]::after{left:14px}
 .board td.n small{font-size:13px}
 .board td.d{font-size:16px;font-weight:700;width:60px}
 .board .d.up{color:var(--good)}.board .d.dn{color:var(--bad)}.board .d.eq{color:#d9a400}
-nav.site{margin-top:0;border-bottom:1px solid var(--rule)}
 nav.tabs{border-bottom:0}
 
 /* top 5 plays */
@@ -186,12 +181,6 @@ nav.tabs{border-bottom:0}
 @media (max-width:480px){.play-top{grid-template-columns:auto 1fr}.play-player{grid-column:2;text-align:left}}
 
 /* round 3: season row, denser squawk box */
-nav.site{display:flex;align-items:center}
-nav.site a{font:500 12px/1 var(--body);color:var(--muted);padding:10px 12px 10px 0}
-nav.site a:first-child{font:700 13px/1 var(--body);color:var(--ink);padding-right:16px}
-nav.site a:nth-child(2){margin-left:auto}
-nav.site a:last-child{margin-left:0;padding-right:0}
-nav.site a[aria-current="page"]{color:var(--accent);font-weight:700}
 .zing{padding:9px 0;gap:10px}
 .zing b{font-size:11px}
 .zing span{font-size:14px;line-height:1.4;margin-top:1px}
@@ -211,13 +200,6 @@ nav.tabs a{font-size:14px;padding:15px 18px 13px}
 nav.tabs a[aria-current="true"]::after{left:18px;right:18px}
 nav.tabs a:first-child{padding-left:16px}
 nav.tabs a:first-child[aria-current="true"]::after{left:16px}
-nav.site{padding-block:10px;gap:8px}
-nav.site a,nav.site a:first-child,nav.site a:nth-child(2),nav.site a:last-child{border:0;border-radius:4px;background:var(--ink);color:#fff;font:600 13px/1 var(--body);padding:9px 14px;letter-spacing:0}
-nav.site a:first-child{background:var(--accent);color:#fff;font-weight:700;font-size:14px;padding:10px 16px}
-nav.site a:nth-child(2){margin-left:auto}
-nav.site a[aria-current="page"]{background:var(--accent);color:#fff;outline:0;box-shadow:inset 0 0 0 2px #fff,0 0 0 2px var(--accent)}
-nav.site a:hover,nav.site a:focus-visible{background:var(--accent);color:#fff}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav.site a{background:#3a3c42}}
 .card-h,.board h3{font:800 18px/1.1 var(--display);text-transform:none;letter-spacing:-.01em;color:var(--ink)}
 .card-h{padding-bottom:12px;margin-bottom:0}
 .board h3{padding:14px 14px 12px}
@@ -228,7 +210,6 @@ nav.site a:hover,nav.site a:focus-visible{background:var(--accent);color:#fff}
 .badge.g-mid{background:#f2c437;border-color:#f2c437;color:#1a1a1a}
 .badge.g-bad{background:var(--bad);border-color:var(--bad);color:#fff}
 .award.hot .g-good{color:#6fe3a1}.award.hot .g-mid{color:#ffd65c}.award.hot .g-bad{color:#ff8a93}
-nav.site{border-bottom:0;padding-top:12px;padding-bottom:4px}
 nav.tabs{border-bottom:1px solid var(--rule)}
 .sec-head .dot{color:var(--accent);margin:0 4px}
 .results{gap:12px}
@@ -282,7 +263,6 @@ footer{padding-top:14px}
 @media (max-width:820px){.lu-body{grid-template-columns:1fr}.lu-row{grid-template-columns:1fr}}
 
 /* only the tab bar sticks; the season buttons scroll away */
-nav.site{position:static}
 nav.tabs{position:sticky;top:0;z-index:6}
 
 /* ---------- season page: spiciest playoff matchups + the race (Oct 20) ---------- */
@@ -425,15 +405,8 @@ body.season-locked .scores{filter:blur(3px) grayscale(.6);opacity:.45;pointer-ev
 nav.site a.locked span,nav.site a.locked .lock-ic{text-shadow:0 1px 2px #000,0 0 6px #000}
 nav.site a.locked span{z-index:3}
 nav.site a.locked .chain{opacity:.85}
-@media (max-width:560px){nav.site{flex-wrap:wrap;row-gap:8px}nav.site a:nth-child(2){margin-left:0}nav.site a.locked em{display:none}}
 
 /* Picks (predict.html) and the nav button that points to it */
-nav.site a.picks{margin-left:0 !important;display:inline-flex;align-items:center;gap:6px}
-nav.site a.picks.open{background:#ffd65c !important;color:#1a1a1a !important;font-weight:800}
-nav.site a.picks.open em{font:800 9px/1 var(--body);font-style:normal;text-transform:uppercase;letter-spacing:.06em;background:#1a1a1a;color:#ffd65c;padding:3px 5px;border-radius:2px}
-nav.site a.picks + a{margin-left:auto}
-nav.site a.picks.open[aria-current="page"]{box-shadow:inset 0 0 0 2px #1a1a1a,0 0 0 2px #ffd65c}
-@media (max-width:560px){nav.site a.picks + a{margin-left:0}}
 .pk-hero{display:grid;grid-template-columns:1fr minmax(220px,300px);gap:0;margin-top:12px;background:var(--card);border:1px solid var(--rule);border-top:6px solid var(--accent);border-radius:2px}
 .pk-hero>div:first-child{padding:20px 22px}
 .pk-hero .label{font:800 12px/1 var(--body);text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
@@ -517,11 +490,6 @@ nav.site a.picks.open[aria-current="page"]{box-shadow:inset 0 0 0 2px #1a1a1a,0 
 @keyframes pk-shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 .pk-q[data-type="rank"]{grid-column:1/-1}
 /* Trade Block */
-nav.site a.block{margin-left:0 !important;background:#fff !important;color:var(--accent) !important;box-shadow:inset 0 0 0 2px var(--accent);font-weight:800}
-nav.site a.block[aria-current="page"]{background:var(--accent) !important;color:#fff !important}
-nav.site a.block + a{margin-left:auto}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav.site a.block{background:#1b1c1e !important}}
-@media (max-width:560px){nav.site a.block + a{margin-left:0}}
 .bk-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 @media (max-width:900px){.bk-board{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.bk-board{grid-template-columns:1fr}}
@@ -618,14 +586,11 @@ table.nt-box td.g{color:var(--good);font-weight:800}
 table.nt-box td.b{color:var(--bad);font-weight:800}
 table.nt-box tr.bn td{opacity:.55}
 @media (max-width:560px){.nt-rec{display:none}.nt-hero{padding:16px}}
-nav.site a.night{margin-left:0 !important}
 .nt-tag.wire{background:var(--good)}
 .nt-tag.gone{background:var(--muted)}
 .nt-free .nt-star{border-left-color:var(--good)}
 
 /* ---------- Trade Lab (trade.html) ---------- */
-nav.site a.trade{background:var(--accent) !important;color:#fff !important;font-weight:800;padding-inline:12px !important;margin-left:6px}
-nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var(--card) !important}
 .tl-page mark,.tl-deal mark{background:#ffe66d;color:#1a1a1a;padding:0 3px;border-radius:2px;font-weight:700}
 .tl-zero{font:800 22px/1 var(--display);color:var(--accent);margin-right:4px}
 .tl-you{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--accent);border-radius:2px;padding:16px;margin-top:12px}
@@ -776,25 +741,10 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 .ta-card.up{border-top-color:var(--good)}.ta-card.dn{border-top-color:var(--accent)}
 .ta-card .label{color:var(--ink);font-weight:800;font-size:13px;letter-spacing:.04em}
 .ta-nums{display:flex;align-items:center;gap:10px;margin:6px 0}
-.ta-big{font:800 40px/1 var(--display)}
-.ta-big.up{color:var(--good)}.ta-big.dn{color:var(--accent)}
 .ta-nums>span{font:600 13px/1.25 var(--body)}
 .ta-nums small{display:block;font:500 12px/1.4 var(--body);color:var(--muted)}
 .ta-nums small .up{color:var(--good);font-weight:700}.ta-nums small .dn{color:var(--accent);font-weight:700}
 .ta-roast{margin:4px 0 0;font-size:14px;line-height:1.45}
-.ta-tw{margin-top:12px;overflow-x:auto}
-.ta-cats{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}
-.ta-cats thead th{font:700 11px/1 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:9px 8px;border-bottom:1px solid var(--rule);text-align:center;white-space:nowrap}
-.ta-cats thead tr:first-child th{color:var(--ink);font-size:12px}
-.ta-cats tbody th{text-align:left;font:700 13px/1 var(--body);padding:8px;border-bottom:1px solid var(--rule);white-space:nowrap}
-.ta-cats td{padding:8px;border-bottom:1px solid var(--rule);text-align:center;white-space:nowrap}
-.ta-cats tr:last-child th,.ta-cats tr:last-child td{border-bottom:0}
-.ta-cats td.ta-d+td.ta-r{border-right:1px solid var(--rule)}
-.ta-cats td.up{color:var(--good);font-weight:800}
-.ta-cats td.dn{color:var(--accent);font-weight:800}
-.ta-cats td.ta-r.up{background:color-mix(in srgb,var(--good) 14%,var(--card))}
-.ta-cats td.ta-r.dn{background:color-mix(in srgb,var(--accent) 12%,var(--card))}
-.ta-cats td i{font-style:normal;color:var(--muted);margin:0 3px}
 .ta-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--muted)}
 .ta-how{margin:16px 16px 0;font-size:12px;color:var(--muted);line-height:1.5}
 @media (max-width:640px){
@@ -803,22 +753,12 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
   .ta-tool{transform:rotate(90deg)}.ta-tool.sm{transform:none}
   .ta-cards{grid-template-columns:1fr 1fr;gap:8px}
   .ta-card{padding:10px}
-  .ta-big{font-size:30px}
   .ta-nums{flex-direction:column;align-items:flex-start;gap:4px}
   .ta-verdict p{font-size:17px}
-  .ta-cats{font-size:13px}.ta-cats td,.ta-cats tbody th{padding:7px 5px}
 }
 /* Trade Analyzer v3 (simple) */
 .ta-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.ta-lean{font:800 20px/1.1 var(--display)}
-.ta-lean.up{color:var(--good)}.ta-lean.dn{color:var(--accent)}
-.ta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px}
 .ta-k{font:700 11px/1 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);width:46px}
-.ta-c{display:inline-flex;gap:6px;align-items:baseline;font:600 13px/1 var(--body);padding:7px 9px;border-radius:3px}
-.ta-c.up{background:color-mix(in srgb,var(--good) 15%,var(--card))}
-.ta-c.dn{background:color-mix(in srgb,var(--accent) 12%,var(--card))}
-.ta-c i{font-style:normal;color:var(--muted)}
-.ta-none{margin:4px 0 0;font-size:13px;color:var(--muted)}
 .ta-card .ta-roast{margin-top:10px;font-size:13px;color:var(--muted)}
 .ta-grain{margin:12px 0 0;padding:12px 14px;background:var(--card);border:1px solid var(--rule);border-left:4px solid #ffe66d;border-radius:2px;font-size:13px;line-height:1.5;color:var(--muted)}
 .ta-grain b{color:var(--ink)}
@@ -916,12 +856,9 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 @media (max-width:480px){.award.gt-v h3{font-size:22px}.gt-tbl td.tm{min-width:104px;font-size:13px}}
 .gt-st td.num{white-space:nowrap}
 @media (max-width:480px){.gt-st{min-width:0}.gt-st th:nth-child(4),.gt-st td:nth-child(4){display:none}.gt-st td,.gt-st th{padding:8px 4px}.gt-st .badge{font-size:11px;padding:4px 6px}}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gt-v .badge.g-good,:root:not([data-theme="light"]) .gt-st .badge.g-good{color:#0b2a17}}
-:root[data-theme="dark"] .gt-v .badge.g-good,:root[data-theme="dark"] .gt-st .badge.g-good{color:#0b2a17}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.g-good{color:#0b2a17}}
+:root[data-theme="dark"] .badge.g-good{color:#0b2a17}
 
-/* ---------- Weekly Wrap nav button (page styles in wrap.css) ---------- */
-nav.site a.wrapn{background:#9a5b13 !important;color:#fff !important;font-weight:800;padding-inline:12px !important}
-nav.site a.wrapn[aria-current="page"]{background:var(--ink) !important;color:var(--card) !important}
 
 /* ---------- goon posse beside the masthead wordmark (built in common.js) ---------- */
 .nameplate{min-width:0;align-items:center}
@@ -938,3 +875,63 @@ nav.site a.wrapn[aria-current="page"]{background:var(--ink) !important;color:var
 @media (max-width:560px){.mast-goons{height:30px}.mast-goons svg{height:27px}.mast .dateline .label{display:none}}
 .nameplate h1{white-space:nowrap}
 @media (max-width:560px){.nameplate h1{font-size:18px}}
+
+/* ---------- site nav (Oct 26 redesign): three primary buttons, one accent, the rest behind More ---------- */
+nav.site{display:block;position:static;margin-block:0;border:0;border-bottom:1px solid var(--rule);background:var(--card);padding-block:10px 8px;overflow:visible}
+nav.site .nav1{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+nav.site a,nav.site .more{flex:none;border:0;border-radius:4px;background:var(--ink);color:#fff;font:700 14px/1 var(--body);letter-spacing:0;text-transform:none;padding:10px 14px;text-decoration:none;cursor:pointer;white-space:nowrap}
+nav.site a[aria-current="page"]{background:var(--accent);color:#fff}
+nav.site a:hover,nav.site a:focus-visible{background:var(--accent);color:#fff;outline:none}
+nav.site .more{margin-left:auto;background:transparent;color:var(--ink);border:1px solid var(--rule);padding:9px 12px;font-weight:600}
+nav.site .more::after{content:"";display:inline-block;width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:0 0 3px 7px}
+nav.site.open .more::after{transform:rotate(-135deg);margin-bottom:-2px}
+nav.site .nav2{display:none;flex-wrap:wrap;gap:6px 14px;padding-top:10px;margin-top:8px;border-top:1px solid var(--rule)}
+nav.site.open .nav2{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
+nav.site .nav2 a{background:transparent;color:var(--muted);font:600 13px/1 var(--body);padding:8px 0}
+nav.site .nav2 a[aria-current="page"],nav.site .nav2 a:hover,nav.site .nav2 a:focus-visible{background:transparent;color:var(--accent)}
+nav.site .who{display:inline-flex;align-items:center;gap:6px;font:600 13px/1 var(--body);color:var(--ink);padding:8px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav.site .who i{font:700 9px/1 var(--body);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+nav.site a.picks.open{display:inline-flex;align-items:center;gap:6px;background:#ffd65c;color:#1a1a1a;font-weight:800}
+nav.site a.picks.open em{font:800 9px/1 var(--body);font-style:normal;text-transform:uppercase;letter-spacing:.06em;background:#1a1a1a;color:#ffd65c;padding:3px 5px;border-radius:2px}
+nav.site a.picks.open[aria-current="page"]{box-shadow:inset 0 0 0 2px #1a1a1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) nav.site a:not([aria-current="page"]):not(.picks){background:#3a3c42}}
+:root[data-theme="dark"] nav.site a:not([aria-current="page"]):not(.picks){background:#3a3c42}
+@media (min-width:760px){
+  nav.site{display:flex;align-items:center;gap:16px}
+  nav.site .nav1{flex:none}
+  nav.site .more{display:none}
+  nav.site .nav2{display:flex;flex-wrap:wrap;justify-content:flex-end;border:0;margin:0 0 0 auto;padding:0;gap:4px 18px;align-items:center}
+  nav.site .who{margin-left:4px}
+}
+@media (max-width:759px){
+  nav.site .nav1 a{padding:10px 11px;font-size:13px}
+  nav.site .who{display:none}
+  nav.site a.picks.open em{display:none}
+  nav.site a.locked em{display:none}
+}
+@media (max-width:400px){nav.site .nav1 a{padding:10px 9px}}
+
+/* scoreboard strip: a 2-column grid on phones instead of a horizontal scroll */
+@media (max-width:560px){
+  .scores{display:grid;grid-template-columns:1fr 1fr;gap:6px;overflow:visible;padding:8px 16px}
+  .scores a{flex:none;min-width:0;padding:6px 8px;font-size:11px}
+  .scores a .st{font-size:9px;margin-bottom:2px}
+}
+.scores a.mine{border-color:var(--accent);box-shadow:inset 0 2px 0 var(--accent)}
+.scores a .st.off{color:var(--muted)}
+
+/* the reader's own matchup, first in The Fights */
+.mu.mine{border-top:4px solid var(--accent)}
+.mu.mine .tier{color:var(--accent)}
+.mu .tier.t2{color:var(--muted)}
+@media (max-width:820px){
+  .front{display:contents}
+  #current{display:flex;flex-direction:column}
+  #current .lead-card{order:1;margin-top:16px}
+  #current>.lineup{order:2}
+  #current>.sec-head{order:3}
+  #current>#mu{order:4}
+  #current .board{order:5;margin-top:12px}
+  #current>.standouts{order:6}
+}
+@media (max-width:560px){nav.tabs a{font-size:11.5px;padding:13px 9px 11px;letter-spacing:.03em}nav.tabs a[aria-current="true"]::after{left:10px;right:10px}nav.tabs a:first-child{padding-left:0}nav.tabs a:first-child[aria-current="true"]::after{left:0}}
