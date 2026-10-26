@@ -18,6 +18,19 @@
 .wx-weeks a{border:1px solid var(--wx-rule);padding:2px 8px;color:inherit;text-decoration:none}
 .wx-weeks a[aria-current]{background:var(--wx-accent);border-color:var(--wx-accent);color:#fff}
 
+/* the goon posse under the nameplate */
+.wx{--wx-face:#f3dcb8}
+.wx-goons{display:flex;justify-content:center;align-items:flex-end;gap:2px;margin:2px auto 8px;color:var(--wx-ink);flex-wrap:nowrap;overflow:hidden}
+.wx-goons svg{width:clamp(34px,7vw,74px);height:auto;flex:none}
+.wx-goons svg.g1{transform:translateY(-3px) rotate(-3deg)}
+.wx-goons svg.g2{transform:scale(.9) rotate(2deg)}
+.wx-goons svg.g3{transform:translateY(-1px) scale(1.06)}
+@media (prefers-reduced-motion:no-preference){.wx-goons svg{animation:wx-bob 2.8s ease-in-out infinite}
+  .wx-goons svg:nth-child(odd){animation-delay:-1.4s}}
+@keyframes wx-bob{50%{translate:0 -2px}}
+@media (max-width:640px){.wx-goons svg:nth-child(n+9){display:none}.wx-goons svg{width:42px}}
+@media (max-width:420px){.wx-goons svg:nth-child(n+8){display:none}.wx-goons svg{width:44px}}
+
 /* front page */
 .wx-front{border-bottom:1px solid var(--wx-rule);padding-bottom:14px}
 .wx-kicker{font:800 12px/1.2 var(--body);text-transform:uppercase;letter-spacing:.12em;color:var(--wx-accent);margin:0 0 6px;text-align:center}
@@ -149,7 +162,7 @@
 .wx[data-wt="western"] .wx-stone small{color:#5c534a}
 .wx[data-wt="western"] .wx-h::before{content:"✶ ";color:var(--wx-accent)}
 .wx[data-wt="western"] .wx-pin{background:#f7ebd0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .wx[data-wt="western"]{
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .wx[data-wt="western"]{--wx-face:#4a3522;
   --wx-paper:#241a12;--wx-card:#2f2218;--wx-poster:#3a2a1c;--wx-ink:#f1e2c2;--wx-muted:#c2a77e;--wx-rule:#c2a77e;--wx-accent:#e0673f;
   --wx-good:#7fbf5a;--wx-bad:#e0673f;--rule:#4a3726;border-color:#c2a77e;box-shadow:inset 0 0 0 6px var(--wx-paper),inset 0 0 0 7px #c2a77e}
   :root:not([data-theme="light"]) .wx[data-wt="western"] .wx-art{background:#4a3522}
@@ -157,7 +170,7 @@
   :root:not([data-theme="light"]) .wx[data-wt="western"] .wx-stone{background:#3d3833;border-color:#8a8076;color:#f1e2c2}
   :root:not([data-theme="light"]) .wx[data-wt="western"] .wx-stone small{color:#c9beb2}
   :root:not([data-theme="light"]) .wx .wx-odds.good{color:#10200a}}
-:root[data-theme="dark"] .wx[data-wt="western"]{
+:root[data-theme="dark"] .wx[data-wt="western"]{--wx-face:#4a3522;
   --wx-paper:#241a12;--wx-card:#2f2218;--wx-poster:#3a2a1c;--wx-ink:#f1e2c2;--wx-muted:#c2a77e;--wx-rule:#c2a77e;--wx-accent:#e0673f;
   --wx-good:#7fbf5a;--wx-bad:#e0673f;--rule:#4a3726;border-color:#c2a77e;box-shadow:inset 0 0 0 6px var(--wx-paper),inset 0 0 0 7px #c2a77e}
 :root[data-theme="dark"] .wx[data-wt="western"] .wx-art{background:#4a3522}
