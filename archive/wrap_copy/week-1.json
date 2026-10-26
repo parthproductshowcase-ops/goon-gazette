@@ -10,7 +10,30 @@
   "Sunday night Roshan stampeded the general store at closing time, grabbing three players inside three minutes like the last sack of flour in the territory. He had already won his gunfight. Nobody told him.",
   "Best bargain on the frontier: Ty Jerome, bought cheap at the auction and shooting like he had the only rifle in the county."
  ],
- "lead_pins": [{"p": "Mikal Bridges", "c": ["11", "5"]}, {"p": "Ty Jerome", "c": ["12", "5", "8"]}, {"p": "Noah Clowney", "c": ["12", "5"]}],
+ "lead_pins": [
+  {
+   "p": "Mikal Bridges",
+   "c": [
+    "11",
+    "5"
+   ]
+  },
+  {
+   "p": "Ty Jerome",
+   "c": [
+    "12",
+    "5",
+    "8"
+   ]
+  },
+  {
+   "p": "Noah Clowney",
+   "c": [
+    "12",
+    "5"
+   ]
+  }
+ ],
  "sections": {
   "wanted": "Wanted",
   "wanted_sub": "Posted by order of the commissioner's office. Reward paid in bragging rights.",
@@ -26,32 +49,288 @@
   "saloon_sub": "One round for every manager. Nobody drinks free."
  },
  "wanted": {
-  "mvp": {"title": "Sheriff", "line": "Outdrew all eleven outfits in a single week. Sabonis did the heavy lifting and most of the rebounding.", "pins": [{"p": "Domantas Sabonis", "c": ["5", "14"]}, {"p": "Tyrese Maxey", "c": ["12"]}]},
-  "dud": {"title": "Dead Weight", "line": "Last seen at the end of the bar, nursing the same drink since tip-off. Has not filed one claim with the land office.", "pins": [{"p": "DeMar DeRozan", "c": ["12", "10"]}, {"p": "Rui Hachimura", "c": ["5"]}]},
-  "luckiest": {"title": "Horse Thief", "line": "Rode a mule in the Derby and won by a length. Somebody check his saddlebags. And his sleeves.", "pins": [{"p": "Austin Reaves", "c": ["5", "8"]}]},
-  "robbed": {"title": "Bushwhacked", "line": "Outdrew most of the gunslingers in the territory, then caught one in the back from the Sheriff on the way out of town.", "pins": [{"p": "Anthony Edwards", "c": ["12", "10"]}]}
+  "mvp": {
+   "title": "Sheriff",
+   "line": "Outdrew all eleven outfits in a single week. Sabonis did the heavy lifting and most of the rebounding.",
+   "pins": [
+    {
+     "p": "Domantas Sabonis",
+     "c": [
+      "5",
+      "14"
+     ]
+    },
+    {
+     "p": "Tyrese Maxey",
+     "c": [
+      "12"
+     ]
+    }
+   ],
+   "reward": "A tin star, two ponies, and the deed to a gold claim nobody has checked for rattlesnakes"
+  },
+  "dud": {
+   "title": "Dead Weight",
+   "line": "Last seen at the end of the bar, nursing the same drink since tip-off. Has not filed one claim with the land office.",
+   "pins": [
+    {
+     "p": "DeMar DeRozan",
+     "c": [
+      "12",
+      "10"
+     ]
+    },
+    {
+     "p": "Rui Hachimura",
+     "c": [
+      "5"
+     ]
+    }
+   ],
+   "reward": "One mule with a limp, a sack of beans, and a free exorcism from the traveling tent preacher"
+  },
+  "luckiest": {
+   "title": "Horse Thief",
+   "line": "Rode a mule in the Derby and won by a length. Somebody check his saddlebags. And his sleeves.",
+   "pins": [
+    {
+     "p": "Austin Reaves",
+     "c": [
+      "5",
+      "8"
+     ]
+    }
+   ],
+   "reward": "A mail-order bride from Boston who has never seen a horse, and a one-way ticket on the next stagecoach out"
+  },
+  "robbed": {
+   "title": "Bushwhacked",
+   "line": "Outdrew most of the gunslingers in the territory, then caught one in the back from the Sheriff on the way out of town.",
+   "pins": [
+    {
+     "p": "Anthony Edwards",
+     "c": [
+      "12",
+      "10"
+     ]
+    }
+   ],
+   "reward": "A new hat with fewer holes, and a sympathy pie from the widow who runs the boarding house"
+  }
  },
  "late": {
-  "web.l.39751.t.5|web.l.39751.t.8": {"text": "Suggs held the ridge Friday. MONSTARS took it Saturday and planted a flag. Sunday, Scottie Barnes emptied both six-shooters into the saloon mirror and the flag came down. Nobody won. Everybody needs a drink.", "pins": [{"p": "Jalen Johnson", "w": true, "c": ["12", "16"]}, {"p": "Scottie Barnes", "w": true, "c": ["5"]}]},
-  "web.l.39751.t.7|web.l.39751.t.10": {"text": "White Mambas sent Jamal Murray out on the weekend like a cavalry charge. The cavalry arrived after the fort had already burned down.", "pins": [{"p": "Jamal Murray", "w": true, "c": ["12", "10"]}]},
-  "web.l.39751.t.1|web.l.39751.t.12": {"text": "theInfamous was down to its last bullet on Friday and spent it on one category. The coffin was already nailed shut.", "pins": [{"p": "Anthony Black", "w": true, "c": ["10", "11"]}]},
-  "web.l.39751.t.2|web.l.39751.t.11": {"text": "Already up big, Luka walked into the street Sunday and kept firing at the body anyway.", "pins": [{"p": "Luka Dončić", "w": true, "c": ["12", "16", "10"]}]}
+  "web.l.39751.t.5|web.l.39751.t.8": {
+   "text": "Suggs held the ridge Friday. MONSTARS took it Saturday and planted a flag. Sunday, Scottie Barnes emptied both six-shooters into the saloon mirror and the flag came down. Nobody won. Everybody needs a drink.",
+   "pins": [
+    {
+     "p": "Jalen Johnson",
+     "w": true,
+     "c": [
+      "12",
+      "16"
+     ]
+    },
+    {
+     "p": "Scottie Barnes",
+     "w": true,
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.7|web.l.39751.t.10": {
+   "text": "White Mambas sent Jamal Murray out on the weekend like a cavalry charge. The cavalry arrived after the fort had already burned down.",
+   "pins": [
+    {
+     "p": "Jamal Murray",
+     "w": true,
+     "c": [
+      "12",
+      "10"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.1|web.l.39751.t.12": {
+   "text": "theInfamous was down to its last bullet on Friday and spent it on one category. The coffin was already nailed shut.",
+   "pins": [
+    {
+     "p": "Anthony Black",
+     "w": true,
+     "c": [
+      "10",
+      "11"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.2|web.l.39751.t.11": {
+   "text": "Already up big, Luka walked into the street Sunday and kept firing at the body anyway.",
+   "pins": [
+    {
+     "p": "Luka Dončić",
+     "w": true,
+     "c": [
+      "12",
+      "16",
+      "10"
+     ]
+    }
+   ]
+  }
  },
  "boot": "Jalen Williams went down on the last day of the week and is in Parth's infirmary. Cooper Flagg, the priciest horse at the auction, is in Keshav's barn with a question mark on the stall door. Stephen Curry is on John J's IL. And two lineups are rolling into Monday with a doubtful man riding shotgun.",
  "roy": "The assayer's report came in Monday. Gopher Gold has the best odds in town and only the ninth-best claim, which is how pyrite usually looks right before it doesn't. White Mambas, the old prospector with no moves and a losing record, is sitting on the richest vein in the territory. Zero Fox Given's claim is a hole in the ground with a tumbleweed in it.",
  "zingers": {
-  "web.l.39751.t.1": {"text": "John J made more moves than anyone in town and still got buried. Darius Acuff Jr. took more shots than the whole O.K. Corral.", "pins": [{"p": "Darius Acuff Jr.", "c": ["5", "11"]}]},
-  "web.l.39751.t.2": {"text": "Eshan plays cards like a man with a derringer in his boot. Nikola Vučević started once and contributed about as much as a scarecrow in a duster.", "pins": [{"p": "Nikola Vučević", "c": ["12"]}]},
-  "web.l.39751.t.3": {"text": "Adarsh is paying rent on two IL bunks for men who haven't seen daylight since the season started. The boarding house loves him.", "pins": [{"p": "Anthony Edwards", "c": ["10"]}]},
-  "web.l.39751.t.4": {"text": "Phil struck gold and is already building the saloon. Sabonis shot like the hoop was the size of a water trough.", "pins": [{"p": "Domantas Sabonis", "c": ["5", "13"]}]},
-  "web.l.39751.t.5": {"text": "Chris made two moves all week, the same number as the town drunk, and got the same result: a tie with the hitching post.", "pins": [{"p": "Jalen Green", "c": ["5"]}]},
-  "web.l.39751.t.6": {"text": "Parth cut De'Anthony Melton after one cold night. Jason pulled Melton off the scrap heap, got a big night out of him, then ran him out of town too. Melton has been chased out of more towns than a card cheat.", "pins": [{"p": "De'Anthony Melton", "t": "web.l.39751.t.6", "c": ["12", "5"]}, {"p": "De'Anthony Melton", "t": "web.l.39751.t.12", "c": ["12", "5"]}]},
-  "web.l.39751.t.7": {"text": "Roshan's waiver strategy is a man firing a scattergun at a barn and calling whatever he hits a plan.", "pins": [{"p": "Amen Thompson", "c": ["13", "14"]}]},
-  "web.l.39751.t.8": {"text": "Keshav paid thoroughbred money for a horse that's spent half the week in the barn. Still dragged his wagon back to a tie with a broken axle.", "pins": [{"p": "Wendell Carter Jr.", "c": ["5", "14"]}]},
-  "web.l.39751.t.9": {"text": "The champ's badge is already tarnished. Kon Knueppel cost real money and has yet to leave the infirmary cot.", "pins": [{"p": "Mikal Bridges", "c": ["10"]}]},
-  "web.l.39751.t.10": {"text": "Vishal sat on his porch with a rifle across his lap and never once got up. Josh Giddey rode drag all week, eating everybody's dust.", "pins": [{"p": "Josh Giddey", "c": ["5", "16"]}]},
-  "web.l.39751.t.11": {"text": "Sagar hasn't moved since the stagecoach dropped him off. The piano player has made more roster moves, and the piano player is a piano.", "pins": [{"p": "Tyrese Haliburton", "c": ["16"]}]},
-  "web.l.39751.t.12": {"text": "Jason is a decent card player at a table full of drunks. Enjoy the pot, partner. The sober ones show up eventually.", "pins": [{"p": "Shai Gilgeous-Alexander", "c": ["12", "18"]}]}
+  "web.l.39751.t.1": {
+   "text": "John J made more moves than anyone in town and still got buried. Darius Acuff Jr. took more shots than the whole O.K. Corral.",
+   "pins": [
+    {
+     "p": "Darius Acuff Jr.",
+     "c": [
+      "5",
+      "11"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.2": {
+   "text": "Eshan plays cards like a man with a derringer in his boot. Nikola Vučević started once and contributed about as much as a scarecrow in a duster.",
+   "pins": [
+    {
+     "p": "Nikola Vučević",
+     "c": [
+      "12"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.3": {
+   "text": "Adarsh is paying rent on two IL bunks for men who haven't seen daylight since the season started. The boarding house loves him.",
+   "pins": [
+    {
+     "p": "Anthony Edwards",
+     "c": [
+      "10"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.4": {
+   "text": "Phil struck gold and is already building the saloon. Sabonis shot like the hoop was the size of a water trough.",
+   "pins": [
+    {
+     "p": "Domantas Sabonis",
+     "c": [
+      "5",
+      "13"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.5": {
+   "text": "Chris made two moves all week, the same number as the town drunk, and got the same result: a tie with the hitching post.",
+   "pins": [
+    {
+     "p": "Jalen Green",
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.6": {
+   "text": "Parth cut De'Anthony Melton after one cold night. Jason pulled Melton off the scrap heap, got a big night out of him, then ran him out of town too. Melton has been chased out of more towns than a card cheat.",
+   "pins": [
+    {
+     "p": "De'Anthony Melton",
+     "t": "web.l.39751.t.6",
+     "c": [
+      "12",
+      "5"
+     ]
+    },
+    {
+     "p": "De'Anthony Melton",
+     "t": "web.l.39751.t.12",
+     "c": [
+      "12",
+      "5"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.7": {
+   "text": "Roshan's waiver strategy is a man firing a scattergun at a barn and calling whatever he hits a plan.",
+   "pins": [
+    {
+     "p": "Amen Thompson",
+     "c": [
+      "13",
+      "14"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.8": {
+   "text": "Keshav paid thoroughbred money for a horse that's spent half the week in the barn. Still dragged his wagon back to a tie with a broken axle.",
+   "pins": [
+    {
+     "p": "Wendell Carter Jr.",
+     "c": [
+      "5",
+      "14"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.9": {
+   "text": "The champ's badge is already tarnished. Kon Knueppel cost real money and has yet to leave the infirmary cot.",
+   "pins": [
+    {
+     "p": "Mikal Bridges",
+     "c": [
+      "10"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.10": {
+   "text": "Vishal sat on his porch with a rifle across his lap and never once got up. Josh Giddey rode drag all week, eating everybody's dust.",
+   "pins": [
+    {
+     "p": "Josh Giddey",
+     "c": [
+      "5",
+      "16"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.11": {
+   "text": "Sagar hasn't moved since the stagecoach dropped him off. The piano player has made more roster moves, and the piano player is a piano.",
+   "pins": [
+    {
+     "p": "Tyrese Haliburton",
+     "c": [
+      "16"
+     ]
+    }
+   ]
+  },
+  "web.l.39751.t.12": {
+   "text": "Jason is a decent card player at a table full of drunks. Enjoy the pot, partner. The sober ones show up eventually.",
+   "pins": [
+    {
+     "p": "Shai Gilgeous-Alexander",
+     "c": [
+      "12",
+      "18"
+     ]
+    }
+   ]
+  }
  },
  "sign_off": "Next week the Gazette goes undercover. Spy Edition, Monday morning."
 }

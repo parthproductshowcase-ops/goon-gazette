@@ -922,3 +922,17 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 /* ---------- Weekly Wrap nav button (page styles in wrap.css) ---------- */
 nav.site a.wrapn{background:#9a5b13 !important;color:#fff !important;font-weight:800;padding-inline:12px !important}
 nav.site a.wrapn[aria-current="page"]{background:var(--ink) !important;color:var(--card) !important}
+
+/* ---------- goon posse under the masthead wordmark (built in common.js) ---------- */
+.nameplate{flex-wrap:wrap;row-gap:0;min-width:0}
+header.mast{padding-top:10px}
+.mast .dateline{flex:none}
+.mast-goons{flex-basis:100%;min-width:0;width:0;display:flex;align-items:flex-end;gap:3px;padding:6px 0 8px;color:#f2f2f2;
+  --wx-accent:var(--accent);--wx-poster:#121212;--wx-face:#2b2d31;overflow:hidden;flex-wrap:nowrap}
+.mast-goons svg{width:40px;height:auto;flex:none}
+.mast-goons svg.g1{transform:translateY(-2px) rotate(-3deg)}
+.mast-goons svg.g2{transform:scale(.9) rotate(2deg)}
+.mast-goons svg.g3{transform:scale(1.05)}
+@media (prefers-reduced-motion:no-preference){.mast-goons svg{animation:mast-bob 2.8s ease-in-out infinite}.mast-goons svg:nth-child(odd){animation-delay:-1.4s}}
+@keyframes mast-bob{50%{translate:0 -2px}}
+@media (max-width:560px){.mast-goons svg{width:30px}.mast-goons svg:nth-child(n+7){display:none}}

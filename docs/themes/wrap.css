@@ -72,7 +72,7 @@
 .wx-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(60,30,10,.35) 100%)}
 .wx-art svg{display:block;width:100%;height:auto;max-height:150px}
 .wx-poster .wx-pins{flex-direction:column;align-items:center}
-.wx-poster .wx-pin{flex-wrap:nowrap;font-size:11px;white-space:nowrap;max-width:100%;gap:4px}
+.wx-poster .wx-pin{flex-wrap:nowrap;font-size:10px;white-space:nowrap;max-width:100%;gap:4px}
 .wx-poster .wx-pin em{display:none}
 .wx-ps{font:700 11px/1 var(--body);text-transform:uppercase;letter-spacing:.2em}
 .wx-pt{font:400 21px/1.1 var(--wx-display);color:var(--wx-accent);text-transform:uppercase;margin-top:2px}
@@ -80,7 +80,8 @@
 .wx-pm{font:700 12px/1.2 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--wx-muted)}
 .wx-poster p{margin:6px 0 0;font:400 15px/1.45 var(--wx-serif)}
 .wx-poster .wx-pins{justify-content:center}
-.wx-reward{margin-top:auto;padding-top:8px;font:700 11px/1.2 var(--body);text-transform:uppercase;letter-spacing:.08em;border-top:1px dashed var(--wx-rule)}
+.wx-reward{margin-top:auto;padding-top:8px;font:700 11px/1.3 var(--body);text-transform:uppercase;letter-spacing:.08em;border-top:1px dashed var(--wx-rule);color:var(--wx-accent)}
+.wx-reward b{display:block;margin-top:3px;font:800 13px/1.3 var(--body);text-transform:none;letter-spacing:0;color:var(--wx-accent)}
 
 /* results board: just the scores */
 .wx-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}

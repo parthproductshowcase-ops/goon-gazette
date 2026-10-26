@@ -127,3 +127,51 @@ const gc = (() => {
     once: (path, title) => { if (!seen.has(path)) { seen.add(path); event(path, title); } },
   };
 })();
+
+// The goon posse: small original cartoon goons (western outfits), used on the site masthead and the Weekly Wrap nameplate.
+// Colors come from CSS vars --wx-accent, --wx-poster, --wx-face set by whoever hosts them.
+const GOON = {
+  hats: {
+    cowboy: `<ellipse cx="30" cy="17" rx="20" ry="4"/><path d="M19 17c0-9 4-13 11-13s11 4 11 13c-3 1-7 2-11 2s-8-1-11-2z"/><path d="M20 15c3 1 7 2 10 2s7-1 10-2" stroke="var(--wx-accent)" stroke-width="2" fill="none"/>`,
+    tall: `<ellipse cx="30" cy="18" rx="17" ry="3.5"/><path d="M21 18V3c0-2 18-2 18 0v15z"/><path d="M21 14h18" stroke="var(--wx-accent)" stroke-width="2.5"/>`,
+    bowler: `<ellipse cx="30" cy="18" rx="14" ry="3"/><path d="M19 18c0-8 5-12 11-12s11 4 11 12z"/>`,
+    sombrero: `<ellipse cx="30" cy="18" rx="25" ry="4.5"/><path d="M23 18c1-9 4-14 7-14s6 5 7 14z"/><path d="M24 14h12" stroke="var(--wx-accent)" stroke-width="2"/>`,
+    band: `<path d="M18 22c0-3 24-3 24 0v3c-8-2-16-2-24 0z" fill="var(--wx-accent)"/><path d="M42 23l6-3-2 6z" fill="var(--wx-accent)"/>`
+  },
+  face: {
+    bandana: `<path d="M19 30c5 3 17 3 22 0l-3 9c-3 3-6 4-8 4s-5-1-8-4z" fill="var(--wx-accent)"/><g fill="var(--wx-poster)" opacity=".6"><circle cx="26" cy="35" r="1"/><circle cx="34" cy="35" r="1"/><circle cx="30" cy="38" r="1"/></g>`,
+    shades: `<rect x="20" y="25" width="9" height="5" rx="2"/><rect x="31" y="25" width="9" height="5" rx="2"/><path d="M29 27h2"/><path d="M26 36c2 1 6 1 8 0" stroke="currentColor" stroke-width="1.6" fill="none"/>`,
+    stache: `<path d="M22 31c3-3 6-2 8 0 2-2 5-3 8 0-3 3-5 2-8 1-3 1-5 2-8-1z"/>`,
+    scowl: `<path d="M26 37c2-2 6-2 8 0" stroke="currentColor" stroke-width="1.8" fill="none"/>`
+  },
+  prop: {
+    ball: `<circle cx="51" cy="54" r="7" fill="var(--wx-accent)"/><path d="M44 54h14M51 47v14M46 49c3 3 3 7 0 10M56 49c-3 3-3 7 0 10" stroke="currentColor" stroke-width="1" fill="none"/>`,
+    loot: `<path d="M45 50c-3 4-4 13 6 13s9-9 6-13c-1-2-3-3-3-3l2-3h-10l2 3s-2 1-3 3z"/><text x="51" y="60" text-anchor="middle" font-size="8" font-weight="800" fill="var(--wx-poster)" font-family="Inter,sans-serif">$</text>`,
+    lasso: `<ellipse cx="52" cy="52" rx="7" ry="5" fill="none" stroke="var(--wx-accent)" stroke-width="2"/><path d="M46 54c-2 3-3 6-3 9" stroke="var(--wx-accent)" stroke-width="2" fill="none"/>`,
+    cards: `<rect x="45" y="47" width="9" height="12" rx="1.5" fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.2" transform="rotate(-12 49 53)"/><rect x="49" y="46" width="9" height="12" rx="1.5" fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.2" transform="rotate(10 53 52)"/><text x="53.5" y="55" text-anchor="middle" font-size="7" fill="var(--wx-accent)" font-family="Inter,sans-serif">A</text>`,
+    none: ``
+  }
+};
+function goon(i) {
+  const H = ["cowboy", "tall", "bowler", "sombrero", "band"], F = ["bandana", "shades", "stache", "scowl"], P = ["ball", "loot", "lasso", "cards", "none"];
+  const h = H[i % 5], f = F[(i + Math.floor(i / 4)) % 4], pr = P[(i * 3 + 1) % 5];
+  const wide = i % 3 === 1 ? 4 : 0, flip = i % 2 ? ' transform="translate(60 0) scale(-1 1)"' : "";
+  return `<svg viewBox="0 0 60 80" class="g${i % 4}"><g${flip} fill="currentColor" stroke="currentColor" stroke-width="0">
+    <path d="M22 66l-2 11h8l1-11zM33 66l1 11h8l-2-11z"/>
+    <path d="M${16 - wide} 70c0-16 5-26 14-26s${14 + wide} 10 ${14 + wide} 26z"/>
+    <path d="M44 52c4 0 6 2 6 4" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M17 52c-3 3-4 6-3 10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="30" cy="30" r="13" fill="var(--wx-face)" stroke="currentColor" stroke-width="2.4"/>
+    <g fill="currentColor"><circle cx="25.5" cy="28" r="1.8"/><circle cx="34.5" cy="28" r="1.8"/><path d="M22 23.5l6 2.2M38 23.5l-6 2.2" stroke="currentColor" stroke-width="2.2"/></g>
+    ${GOON.face[f]}${GOON.hats[h]}${GOON.prop[pr]}</g></svg>`;
+}
+// Masthead posse on every page: a row of goons under "The Goon Gazette"
+(function mastGoons() {
+  const np = document.querySelector("header.mast .nameplate");
+  if (!np || np.querySelector(".mast-goons") || document.getElementById("wx-goons")) return;  // the Wrap has its own posse
+  const row = document.createElement("div");
+  row.className = "mast-goons";
+  row.setAttribute("aria-hidden", "true");
+  row.innerHTML = Array.from({length: 12}, (_, i) => goon(i)).join("");
+  np.appendChild(row);
+})();
