@@ -76,14 +76,19 @@ function ggScrape(dates) {
       for (let id = 1; id <= 12; id++) {
         const d = await get(`${L}/${id}`);
         const team = (d.title.match(/ - (.*?) \| Fantasy/) || [])[1] || "";
-        const players = [], il = [];
+        const players = [], il = [], status = {}, slots = {};
         d.querySelectorAll("table#statTable0 tbody tr").forEach(tr => {
           const a = tr.querySelector("a.name"); if (!a) return;
           const slot = (tr.querySelector("td") || {}).textContent.trim();
-          players.push(a.textContent.trim());
-          if (/^IL/.test(slot)) il.push(a.textContent.trim());
+          const nm = a.textContent.trim();
+          players.push(nm);
+          slots[nm] = slot;
+          if (/^IL/.test(slot)) il.push(nm);
+          // Yahoo's injury tag next to the name: O out, D doubtful, Q questionable, P probable, INJ, GTD, DTD
+          const s = tr.querySelector(".F-injury");
+          if (s && s.textContent.trim()) status[nm] = s.textContent.trim();
         });
-        g.out.rosters[id] = {team, players, il};
+        g.out.rosters[id] = {team, players, il, status, slots};
         await sleep(1500);
       }
       // transactions (newest first) and moves per team

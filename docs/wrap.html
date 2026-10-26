@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
 <link rel="stylesheet" href="themes/fight.css?v=f1167623">
-<link rel="stylesheet" href="themes/wrap.css?v=eec4c340">
+<link rel="stylesheet" href="themes/wrap.css?v=b366ee17">
 
 <div class="wrap">
   <header class="mast">
@@ -32,21 +32,17 @@
       <h2 class="wx-head" id="wx-head">Loading the wire</h2>
       <p class="wx-deck" id="wx-deck"></p>
       <div class="wx-lead" id="wx-lead"></div>
+      <div class="wx-pins" id="wx-lead-pins"></div>
     </section>
 
     <section class="wx-sec"><h3 class="wx-h" id="h-wanted"></h3><p class="wx-sub" id="s-wanted"></p>
       <div class="wx-posters" id="wanted"></div></section>
 
     <section class="wx-sec"><h3 class="wx-h" id="h-results"></h3><p class="wx-sub" id="s-results"></p>
-      <div class="wx-fights" id="results"></div></section>
+      <div class="wx-board" id="results"></div></section>
 
     <section class="wx-sec"><h3 class="wx-h" id="h-late"></h3><p class="wx-sub" id="s-late"></p>
       <div class="wx-late" id="late"></div></section>
-
-    <div class="wx-two">
-      <section class="wx-sec"><h3 class="wx-h" id="h-guns"></h3><p class="wx-sub" id="s-guns"></p><ol class="wx-list" id="guns"></ol></section>
-      <section class="wx-sec"><h3 class="wx-h" id="h-fools"></h3><p class="wx-sub" id="s-fools"></p><ol class="wx-list" id="fools"></ol></section>
-    </div>
 
     <section class="wx-sec"><h3 class="wx-h" id="h-boot"></h3><p class="wx-sub" id="s-boot"></p>
       <p class="wx-story" id="boot-story"></p>
@@ -54,7 +50,7 @@
 
     <section class="wx-sec"><h3 class="wx-h" id="h-roy"></h3><p class="wx-sub" id="s-roy"></p>
       <p class="wx-story" id="roy-story"></p>
-      <div class="table-wrap"><table class="wx-roy" id="roy"><thead><tr><th class="c">#</th><th>Team</th><th class="c">Wk</th><th>Projected strength</th><th class="hide-s">Leans on</th><th class="hide-s">Leaks</th><th class="r">Playoffs</th></tr></thead><tbody></tbody></table></div></section>
+      <div class="wx-roy" id="roy"></div></section>
 
     <section class="wx-sec"><h3 class="wx-h" id="h-saloon"></h3><p class="wx-sub" id="s-saloon"></p>
       <div class="wx-zings" id="saloon"></div></section>
@@ -62,7 +58,7 @@
     <p class="wx-sign" id="wx-sign"></p>
   </article>
 
-  <footer><span id="gen"></span><span>Matchup scores from active lineup slots only. Projections are Yahoo's rest-of-season numbers; playoff odds are the Gazette's Victory Road sims.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+  <footer><span id="gen"></span><span>Pins show the player's line for the week, or for Saturday and Sunday where marked. Projections are Yahoo's rest-of-season numbers; playoff odds are the Gazette's Victory Road sims.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
 <script src="assets/common.js?v=d0b5b7ec"></script>
@@ -72,44 +68,98 @@ siteNav("wrap");
 // Section titles per theme, used when the week's copy doesn't set its own.
 const THEME = {
   western: {edition: "Frontier Edition", results: "Showdown at High Noon", late: "Dead Man's Hand", wanted: "Wanted",
-    guns: "Fastest Guns", fools: "Fool's Gold", boot: "Boot Hill", roy: "Rest of Year: The Long Ride", saloon: "Saloon Talk",
-    mvp: "Sheriff", dud: "Wanted: Dead Weight", luckiest: "Horse Thief", robbed: "Bushwhacked", reward: "Reward"},
-  _: {edition: "Weekly Wrap", results: "The Results", late: "Late Drama", wanted: "The Awards", guns: "Best Lines",
-    fools: "Priciest Duds", boot: "Injury Report", roy: "Rest of Year Outlook", saloon: "Every Manager",
-    mvp: "MVP", dud: "Dud", luckiest: "Luckiest", robbed: "Robbed", reward: "Award"}
+    boot: "Boot Hill", roy: "Rest of Year: The Long Ride", saloon: "Saloon Talk",
+    mvp: "Sheriff", dud: "Dead Weight", luckiest: "Horse Thief", robbed: "Bushwhacked", reward: "Reward", posted: "Wanted", sub: "Dead or alive",
+    status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "On the IL"}},
+  _: {edition: "Weekly Wrap", results: "The Results", late: "Late Drama", wanted: "The Awards",
+    boot: "Injury Report", roy: "Rest of Year Outlook", saloon: "Every Manager",
+    mvp: "MVP", dud: "Dud", luckiest: "Luckiest", robbed: "Robbed", reward: "Prize", posted: "Award", sub: "",
+    status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "On the IL"}}
 };
+
+// Poster art per theme and award (original drawings, no real characters or marks)
+const ART = {
+  western: {
+    mvp: `<svg viewBox="0 0 200 140" aria-hidden="true"><g stroke="currentColor" stroke-width="2" opacity=".35">
+      <path d="M100 70L100 0M100 70L160 6M100 70L196 40M100 70L196 100M100 70L160 136M100 70L40 136M100 70L4 100M100 70L4 40M100 70L40 6"/></g>
+      <path fill="currentColor" d="M100 14l14 32 34-6-21 28 21 28-34-6-14 32-14-32-34 6 21-28-21-28 34 6z"/>
+      <path fill="var(--wx-poster)" opacity=".28" d="M100 26l9 22 23-4-14 20 14 20-23-4-9 22-9-22-23 4 14-20-14-20 23 4z"/>
+      <g fill="currentColor"><circle cx="100" cy="12" r="7"/><circle cx="150" cy="40" r="7"/><circle cx="150" cy="100" r="7"/><circle cx="100" cy="128" r="7"/><circle cx="50" cy="100" r="7"/><circle cx="50" cy="40" r="7"/></g>
+      <circle cx="100" cy="70" r="21" fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="70" r="16" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.5 2.5"/>
+      <text x="100" y="73" text-anchor="middle" font-family="Rye,Georgia,serif" font-size="8.5" fill="currentColor">SHERIFF</text></svg>`,
+    dud: `<svg viewBox="0 0 200 140" aria-hidden="true"><g fill="currentColor">
+      <path d="M36 140c4-32 28-46 64-46s60 14 64 46z"/>
+      <path d="M86 92h28l-4 10H90z"/>
+      <ellipse cx="100" cy="66" rx="24" ry="28"/>
+      <path d="M74 70c8 5 17 7 26 7s18-2 26-7l-5 26c-6 7-14 10-21 10s-15-3-21-10z" fill="var(--wx-accent)"/>
+      <g fill="var(--wx-poster)" opacity=".55"><circle cx="86" cy="86" r="2"/><circle cx="100" cy="92" r="2"/><circle cx="114" cy="86" r="2"/><circle cx="93" cy="80" r="1.5"/><circle cx="107" cy="80" r="1.5"/></g>
+      <ellipse cx="100" cy="42" rx="64" ry="10"/>
+      <path d="M70 42c0-22 12-32 30-32s30 10 30 32c-8 3-19 5-30 5s-22-2-30-5z"/>
+      <path d="M72 36c8 3 18 4 28 4s20-1 28-4" stroke="var(--wx-accent)" stroke-width="4" fill="none"/></g>
+      <g fill="var(--wx-poster)"><path d="M84 62l12 2-1 3-11-2z"/><path d="M116 62l-12 2 1 3 11-2z"/></g>
+      <g fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="5"/><circle cx="178" cy="120" r="4"/><circle cx="170" cy="20" r="3"/></g></svg>`,
+    luckiest: `<svg viewBox="0 0 200 140" aria-hidden="true"><g fill="currentColor">
+      <path d="M150 140l-4-70-12-40-8 14-8-18-8 18c-14 6-30 22-44 46-6 12-4 20 4 24 6 3 14 1 24-3l22-8c6 12 6 24 2 37z"/></g>
+      <circle cx="104" cy="58" r="3.5" fill="var(--wx-poster)"/>
+      <path d="M66 100c3 1 6 0 8-2" stroke="var(--wx-poster)" stroke-width="2" fill="none"/>
+      <g stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"><path d="M134 34c10 10 16 26 18 44M140 30c12 12 18 30 20 52M128 44c8 8 12 20 14 34"/></g>
+      <path d="M118 74l30 6" stroke="var(--wx-accent)" stroke-width="5"/><path d="M84 92l64-10" stroke="var(--wx-accent)" stroke-width="3"/>
+      <path fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" d="M26 126V102a16 16 0 0 1 32 0v24"/>
+      <g fill="var(--wx-poster)"><circle cx="26" cy="120" r="2"/><circle cx="26" cy="108" r="2"/><circle cx="58" cy="120" r="2"/><circle cx="58" cy="108" r="2"/></g>
+      <g fill="currentColor" opacity=".6"><path d="M30 26l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><path d="M60 50l2 5 6 1-4 4 1 6-5-3-5 3 1-6-4-4 6-1z"/></g></svg>`,
+    robbed: `<svg viewBox="0 0 200 140" aria-hidden="true"><circle cx="150" cy="70" r="28" fill="var(--wx-accent)" opacity=".45"/>
+      <path fill="currentColor" opacity=".35" d="M0 112l18-30h30l10 16 12-24h34l14 38z"/>
+      <path fill="currentColor" opacity=".55" d="M110 112l12-22h26l8 10 8-14h22l14 26z"/>
+      <path fill="currentColor" d="M88 140V44c0-11 18-11 18 0v96zM88 94H70c-8 0-12-4-12-12V62c0-10 15-10 15 0v18h15zM106 80h14V54c0-10 15-10 15 0v22c0 8-4 12-12 12h-17z"/>
+      <path d="M0 126h200v14H0z" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M28 30q8-8 14 0q6-8 14 0"/><path d="M62 18q5-5 9 0q4-5 9 0"/></g>
+      <g fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"><circle cx="40" cy="64" r="5"/><circle cx="176" cy="22" r="4"/><circle cx="128" cy="34" r="3"/></g>
+      <g stroke="currentColor" stroke-width="1.3"><path d="M40 54v-5M40 74v5M30 64h-5M50 64h5"/></g></svg>`
+  }
+};
+
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const CN = {"5": "FG", "8": "FT", "10": "3PM", "11": "3P", "12": "PTS", "13": "OREB", "14": "DREB", "16": "AST", "17": "STL", "18": "BLK", "19": "TO"};
 let X, C, T;
 
 const nm = tk => esc(X.teams[tk]?.name || tk);
 const mg = tk => esc(X.teams[tk]?.manager || "");
 const md = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"});
-const money = c => c ? `<i class="wx-cost">$${c}</i>` : "";
 const pct = v => v == null ? "–" : Math.round(v * 100) + "%";
+const score = s => `${s[0]}-${s[1]}${s[2] ? "-" + s[2] : ""}`;
+const txt = v => typeof v === "string" ? v : (v && v.text) || "";
+const pinsOf = v => (v && typeof v === "object" && v.pins) || [];
 
-// players highlighted, teams and managers bolded, in any copy we print
-function ink(txt, players) {
-  let h = esc(txt || "");
-  const team = Object.values(X.teams).flatMap(t => [t.name, t.manager]);
-  const swap = (keys, tag) => [...new Set(keys.filter(Boolean))].sort((a, b) => b.length - a.length).forEach(k => {
+// teams and managers bolded in any copy we print; players get highlighted in their pins, not the prose
+function ink(t) {
+  let h = esc(t || "");
+  const keys = Object.values(X.teams).flatMap(t => [t.name, t.manager]).filter(Boolean).sort((a, b) => b.length - a.length);
+  keys.forEach(k => {
     const e = esc(k).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    h = h.replace(new RegExp(`(^|[^\\w>])(${e})(?![\\w<])`, "g"), `$1<${tag}>$2</${tag}>`);
+    h = h.replace(new RegExp(`(^|[^\\w>])(${e})(?![\\w<])`, "g"), "$1<b>$2</b>");
   });
-  swap(players || [], "mark");
-  swap(team, "b");
   return h;
 }
-const PLAYERS = () => [...X.top, ...X.duds, ...X.injuries].map(p => p.name)
-  .concat(X.games.flatMap(g => g.heroes.map(h => h.name)));
 
-function line(l, keys) {
-  const name = {"5": "FG", "8": "FT", "10": "3PM", "11": "3P", "12": "PTS", "13": "OREB", "14": "DREB", "16": "AST", "17": "STL", "18": "BLK", "19": "TO"};
-  return keys.filter(k => l[k] != null).map(k => Array.isArray(l[k]) ? `${l[k][1]}-${l[k][2]} ${name[k]}` : `${l[k]} ${name[k]}`).join(" · ");
+// a stat pin: player name plus 1 to 3 numbers from the week (or the weekend), straight from the data
+function pin(p) {
+  if (typeof p === "string") p = {p};
+  if (p.label) return `<span class="wx-pin plain">${esc(p.label)}</span>`;
+  const e = (p.t && X.pins[`${p.p}|${p.t}`]) || X.pins[p.p];
+  if (!e) return "";
+  const l = p.w ? e.weekend : e.line;
+  if (!l) return "";
+  const cats = (p.c && p.c.length ? p.c : e.best).filter(c => l[c] != null).slice(0, 3);
+  const vals = cats.map(c => Array.isArray(l[c]) ? `<i><b>${l[c][1]}-${l[c][2]}</b> ${CN[c]}</i>` : `<i><b>${l[c]}</b> ${CN[c]}</i>`).join("");
+  const who = p.t && p.t !== e.team ? ` <small>for ${nm(p.t)}</small>` : "";
+  return `<span class="wx-pin"><mark>${esc(p.p)}</mark>${who}${vals}<em>${p.w ? "Sat-Sun" : (e.games + (e.games === 1 ? " game" : " games"))}</em></span>`;
 }
+const pins = list => (list || []).map(pin).join("");
 
 function load(w) {
   const url = w ? `data/wraps/week-${w}.json` : "data/wrap.json";
-  return getJSON(url).then(x => { X = x; render(); }).catch(() => {
+  return getJSON(url).then(x => { X = x; X.pins = X.pins || {}; render(); }).catch(() => {
     $("wx-head").textContent = "No wrap yet";
     $("wx-deck").textContent = "The first Weekly Wrap prints the Monday after Week 1 ends.";
   });
@@ -121,7 +171,6 @@ function render() {
   T = Object.assign({}, THEME._, THEME[th] || {});
   const S = Object.assign({}, T, C.sections || {});
   $("wx").dataset.wt = th;
-  const P = PLAYERS();
 
   $("dl2").textContent = `Week ${X.week}`;
   $("wx-ear1").textContent = `Week ${X.week} Final`;
@@ -129,88 +178,78 @@ function render() {
   $("wx-edition").textContent = `${C.edition || T.edition} · Weekly Wrap`;
   $("wx-dates").textContent = `${md(X.start)} to ${md(X.end)}`;
   $("wx-kicker").textContent = C.kicker || `Week ${X.week} is final`;
-  $("wx-head").innerHTML = ink(C.headline || autoHead(), P);
-  $("wx-deck").innerHTML = ink(C.deck || "", P);
-  $("wx-lead").innerHTML = (C.lead || autoLead()).map(p => `<p>${ink(p, P)}</p>`).join("");
+  $("wx-head").innerHTML = ink(C.headline || autoHead());
+  $("wx-deck").innerHTML = ink(C.deck || "");
+  $("wx-lead").innerHTML = (C.lead || autoLead()).map(p => `<p>${ink(p)}</p>`).join("");
+  $("wx-lead-pins").innerHTML = pins(C.lead_pins);
 
-  for (const k of ["wanted", "results", "late", "guns", "fools", "boot", "roy", "saloon"]) {
+  for (const k of ["wanted", "results", "late", "boot", "roy", "saloon"]) {
     $("h-" + k).innerHTML = `${esc(S[k])} <b class="dot">&bull;</b> <span>Week ${X.week}</span>`;
     $("s-" + k).textContent = S[k + "_sub"] || "";
   }
 
-  // Wanted posters: awards
-  const W = C.wanted || {};
-  $("wanted").innerHTML = ["mvp", "dud", "luckiest", "robbed"].filter(k => X.awards[k]).map(k => {
+  // Wanted posters
+  const W = C.wanted || {}, art = ART[th] || {};
+  $("wanted").innerHTML = ["mvp", "dud", "luckiest", "robbed"].filter(k => X.awards[k]).map((k, i) => {
     const tk = X.awards[k], w = W[k] || {};
-    return `<div class="wx-poster ${k}"><span class="wx-pt">${esc(w.title || T[k])}</span>
+    return `<figure class="wx-poster ${k}" style="--tilt:${[-1.2, 0.9, -0.6, 1.3][i]}deg">
+      <span class="wx-pk">${esc(T.posted)}</span>
+      <div class="wx-art">${art[k] || ""}</div>
+      ${T.sub ? `<span class="wx-ps">${esc(T.sub)}</span>` : ""}
+      <span class="wx-pt">${esc(w.title || T[k])}</span>
       <b class="wx-pn">${nm(tk)}</b><span class="wx-pm">${mg(tk)}</span>
-      <p>${ink(w.line || "", P)}</p><span class="wx-reward">${esc(T.reward)}: bragging rights</span></div>`;
+      <p>${ink(w.line || "")}</p>
+      <div class="wx-pins">${pins(w.pins)}</div>
+      <span class="wx-reward">${esc(T.reward)}: bragging rights</span></figure>`;
   }).join("");
 
-  // Results with the day-by-day trail
-  $("results").innerHTML = X.games.map(g => {
-    const [a, b, t] = g.final, win = g.winner;
-    const tag = {comeback: "Comeback", blown: "Lead blown", late: "Late winner", held: "Wire to wire"}[g.tag];
-    const trail = g.trail.map((s, i) => {
-      const day = DAYS[new Date(X.days[i] + "T12:00:00").getDay()];
-      const lead = s[0] > s[1] ? "a" : s[0] < s[1] ? "b" : "t";
-      return `<span class="wx-tr ${lead}"><i>${day}</i>${s[0]}-${s[1]}${s[2] ? "-" + s[2] : ""}</span>`;
-    }).join("");
-    const side = (tk, sc, on) => `<div class="wx-side${on ? " won" : ""}"><b>${nm(tk)}</b><small>${mg(tk)}</small><span class="wx-sc">${sc}</span></div>`;
-    return `<div class="wx-fight ${g.tag}"><div class="wx-ft-top"><span class="wx-tag ${g.tag}">${tag}</span>${t ? `<span class="wx-tie">${a}-${b}-${t} tie</span>` : ""}</div>
-      ${side(g.a, a, win === g.a)}${side(g.b, b, win === g.b)}
-      <div class="wx-trail" aria-label="Score after each day">${trail}</div></div>`;
+  // Results: just who was standing
+  $("results").innerHTML = X.games.slice().sort((a, b) => a.a.localeCompare(b.a, undefined, {numeric: true})).map(g => {
+    const [a, b] = g.final;
+    const side = (tk, sc, other) => `<div class="wx-bs${sc > other ? " won" : ""}"><b>${nm(tk)}</b><span>${sc}</span></div>`;
+    return `<div class="wx-bout">${side(g.a, a, b)}${side(g.b, b, a)}${g.final[2] ? `<small>${g.final[2]} tied</small>` : ""}</div>`;
   }).join("");
 
-  // Late drama: games where the last two days moved the score
+  // Late drama: stories, with the score trail and player lines as pins
   const L = C.late || {};
-  const lates = X.games.filter(g => g.swing >= 1 || L[`${g.a}|${g.b}`]);
+  const lates = X.games.filter(g => L[`${g.a}|${g.b}`] || (!X.copy && g.swing >= 1));
   $("late").innerHTML = lates.length ? lates.map(g => {
-    const story = L[`${g.a}|${g.b}`] || autoLate(g);
-    const flips = g.flips.map(f => `<span class="wx-flip">${esc(f.cat)} &rarr; ${f.to ? nm(f.to) : "tie"}</span>`).join("");
-    const heroes = g.heroes.map(h => `<li><mark>${esc(h.name)}</mark> <small>${esc(line(h.line, ["12", "10", "16", "8"]))}</small></li>`).join("");
-    return `<div class="wx-card"><h4>${nm(g.a)} <span>${g.before[0]}-${g.before[1]}${g.before[2] ? "-" + g.before[2] : ""} &rarr; ${g.final[0]}-${g.final[1]}${g.final[2] ? "-" + g.final[2] : ""}</span> ${nm(g.b)}</h4>
-      <p>${ink(story, P)}</p>${flips ? `<div class="wx-flips"><span class="label">Changed hands</span>${flips}</div>` : ""}
-      ${heroes ? `<ul class="wx-heroes"><span class="label">Weekend for ${nm(g.gainer)}</span>${heroes}</ul>` : ""}</div>`;
+    const c = L[`${g.a}|${g.b}`];
+    const n = g.trail.length;
+    const trail = g.trail.slice(Math.max(0, n - 3)).map((s, i) => `<span class="wx-pin plain"><i>${DAYS[new Date(X.days[n - 3 + i] + "T12:00:00").getDay()]}</i> <b>${score(s)}</b></span>`).join("");
+    return `<div class="wx-card"><h4>${nm(g.a)} <span>vs</span> ${nm(g.b)}</h4>
+      <p>${ink(txt(c) || autoLate(g))}</p>
+      <div class="wx-pins">${trail}${pins(pinsOf(c))}</div></div>`;
   }).join("") : `<p class="wx-story">Nobody moved the needle on the weekend. Every lead held.</p>`;
 
-  // Best lines and pricey duds
-  $("guns").innerHTML = X.top.map(r => `<li><mark>${esc(r.name)}</mark>${money(r.cost)} <b class="wx-v good">+${r.value.toFixed(1)}</b>
-    <small><b>${nm(r.team)}</b> · ${r.games} games · ${esc(line(r.line, r.best))}</small></li>`).join("");
-  $("fools").innerHTML = X.duds.length ? X.duds.map(r => `<li><mark>${esc(r.name)}</mark>${money(r.cost)} <b class="wx-v bad">${r.value.toFixed(1)}</b>
-    <small><b>${nm(r.team)}</b> · ${r.games} games · ${esc(line(r.line, ["5", "12", "19"]))}</small></li>`).join("")
-    : `<li class="empty">Every $20 player earned his keep. Suspicious.</li>`;
+  // Injuries: tombstones only, no tables
+  const I = X.injuries.filter(i => i.still_out).slice(0, 10);
+  $("boot-story").innerHTML = ink(C.boot || "");
+  $("boot").innerHTML = I.map(i => `<div class="wx-stone${i.started_hurt ? " hurt" : ""}">
+    <span class="wx-rip">${esc((T.status || {})[i.status] || i.status)}</span>
+    <mark>${esc(i.name)}</mark><small><b>${nm(i.team)}</b></small>
+    ${i.started_hurt ? `<em>In the starting lineup</em>` : i.last_game && X.days.slice(-2).includes(i.last_game) ? `<em>Went down this weekend</em>` : ""}</div>`).join("");
 
-  // Injuries
-  const I = X.injuries.filter(i => i.still_out || i.missed).slice(0, 10);
-  $("boot-story").innerHTML = ink(C.boot || "", P);
-  $("boot").innerHTML = I.map(i => `<div class="wx-stone${i.still_out ? "" : " back"}"><span class="wx-rip">${i.still_out ? "Still out" : "Back"}</span>
-    <mark>${esc(i.name)}</mark>${money(i.cost)}<small><b>${nm(i.team)}</b></small>
-    <small>${i.played} played${i.missed ? `, ${i.missed} sat in IL` : ""}${i.first_il ? ` · down ${md(i.first_il)}` : ""}</small></div>`).join("");
-
-  // Rest of year
-  $("roy-story").innerHTML = ink(C.roy || "", P);
-  const mx = Math.max(...X.outlook.map(o => o.strength || 0), 1);
-  $("roy").querySelector("tbody").innerHTML = X.outlook.map(o => {
-    const mv = o.odds_move, arrow = mv == null || Math.abs(mv) < .005 ? "" : `<i class="${mv > 0 ? "up" : "dn"}">${mv > 0 ? "▲" : "▼"}${Math.round(Math.abs(mv) * 100)}</i>`;
+  // Rest of year: one compact board, best odds first
+  $("roy-story").innerHTML = ink(C.roy || "");
+  $("roy").innerHTML = X.outlook.map((o, i) => {
+    const mv = o.odds_move, arrow = mv == null || Math.abs(mv) < .005 ? "" : `<i class="${mv > 0 ? "up" : "dn"}">${mv > 0 ? "▲" : "▼"} ${Math.round(Math.abs(mv) * 100)}</i>`;
     const tier = o.odds >= .75 ? "good" : o.odds <= .25 ? "bad" : "mid";
-    return `<tr><td class="c"><b>${o.proj_rank}</b></td><td><b>${nm(o.team)}</b><small>${mg(o.team)} · ${o.w}-${o.l}${o.t ? "-" + o.t : ""}, ${ordinal(o.rank)}</small></td>
-      <td class="c">${o.allplay != null ? o.allplay + "-" + (11 - o.allplay) : ""}</td>
-      <td><div class="wx-bar"><span style="width:${Math.round((o.strength || 0) / mx * 100)}%"></span></div><small>${o.strength != null ? o.strength.toFixed(1) + " of 11 cats a week" : "no projection"}</small></td>
-      <td class="hide-s"><small>${esc(o.strong.join(", "))}</small></td><td class="hide-s"><small>${esc(o.weak.join(", "))}</small></td>
-      <td class="r"><span class="wx-odds ${tier}">${pct(o.odds)}</span>${arrow}</td></tr>`;
+    return `<div class="wx-row"><span class="wx-rk">${i + 1}</span>
+      <div class="wx-tm"><b>${nm(o.team)}</b><small>${mg(o.team)} · ${o.w}-${o.l}${o.t ? "-" + o.t : ""} this week</small></div>
+      <div class="wx-proj"><small>Yahoo projects</small><b>${ordinal(o.proj_rank)}</b></div>
+      <div class="wx-od"><span class="wx-odds ${tier}">${pct(o.odds)}</span>${arrow}</div></div>`;
   }).join("");
 
   // Every manager gets roasted
   const Z = C.zingers || {};
   $("saloon").innerHTML = Object.keys(X.teams).map(tk => `<div class="wx-zing"><b>${mg(tk)}</b><small>${nm(tk)}</small>
-    <p>${ink(Z[tk] || autoZing(tk), P)}</p></div>`).join("");
+    <p>${ink(txt(Z[tk]) || autoZing(tk))}</p><div class="wx-pins">${pins(pinsOf(Z[tk]))}</div></div>`).join("");
 
   $("wx-sign").textContent = C.sign_off || "";
   $("gen").textContent = X.date ? `Games through ${md(X.date)}.` : "";
   weeks();
 }
-
 
 // Template fallbacks (only computed facts) for weeks without written copy
 function autoHead() {
@@ -221,7 +260,7 @@ function autoLead() {
   return X.games.slice(0, 3).map(g => `${X.teams[g.a].name} ${g.final[0]}, ${X.teams[g.b].name} ${g.final[1]}${g.final[2] ? ` (${g.final[2]} tied)` : ""}.`);
 }
 function autoLate(g) {
-  return `${X.teams[g.a].name} and ${X.teams[g.b].name} went from ${g.before[0]}-${g.before[1]} to ${g.final[0]}-${g.final[1]} over the last two days.`;
+  return `${X.teams[g.a].name} and ${X.teams[g.b].name} went from ${score(g.before)} to ${score(g.final)} over the last two days.`;
 }
 function autoZing(tk) {
   const o = X.outlook.find(o => o.team === tk) || {};

@@ -23,6 +23,7 @@ PRIOR = ROOT / "archive" / "2026_prior.json"
 ANALYZER = ROOT / "labs" / "analyzer.json"
 POLLS = DATA / "polls.json"
 IL = {"IL", "IL+", "IR"}
+OUT_CODES = {"O", "INJ", "D"}  # Yahoo tags that mean he is not playing (Q, P, GTD, DTD are maybes)
 
 
 def _load(p, default=None):
@@ -121,33 +122,60 @@ def build(d, a):
     for r in top:
         r["cost"] = cost.get(r["name"])
 
-    # ---------- injuries: anyone parked in an IL slot this week, plus the current IL ----------
-    seen, inj = {}, []
+    # ---------- injuries: Yahoo's injury tags on the current rosters, IL slots, and IL stints this week ----------
+    seen = {}
     for dt in ds:
         for tk, lines in days[dt].items():
             for x in lines:
-                key = (tk, x["name"])
-                s = seen.setdefault(key, {"active": 0, "il": 0, "first_il": None, "played": 0})
+                s = seen.setdefault((tk, x["name"]), {"il": 0, "first_il": None, "played": 0, "last": None})
                 if x["pos"] in IL:
                     s["il"] += 1
                     s["first_il"] = s["first_il"] or dt
-                else:
-                    if any(v for k, v in x["stats"].items() if not isinstance(v, list)) or x["stats"]["9004003"][1]:
-                        s["played"] += 1
-    roster_il = {}
+                elif any(v for v in x["stats"].values() if not isinstance(v, list)) or x["stats"]["9004003"][1]:
+                    s["played"] += 1
+                    s["last"] = dt
     R = (_load(POLLS, {}) or {}).get("rosters", {}).get("teams", {})
-    for v in R.values():
-        for n in v.get("il", []):
-            roster_il[n] = f"web.l.39751.t.{v['team_id']}" if str(next(iter(teams))).startswith("web.") else None
+    web = str(next(iter(teams))).startswith("web.")
     an = (_load(ANALYZER, {}) or {}).get("players", {})
-    names = {(tk, n) for (tk, n), s in seen.items() if s["il"]} | {(tk, n) for n, tk in roster_il.items() if tk}
-    for tk, n in sorted(names, key=lambda x: (x[0], x[1])):
-        s = seen.get((tk, n), {"il": 0, "played": 0, "first_il": None})
-        pj = an.get(n) or {}
-        inj.append({"team": tk, "name": n, "cost": cost.get(n), "played": s["played"], "missed": s["il"],
-                    "first_il": s["first_il"], "still_out": n in roster_il, "gp_left": pj.get("gp"),
-                    "value": pj.get("value")})
-    inj.sort(key=lambda r: (-(r["cost"] or 0), -r["missed"]))
+    inj, done = [], set()
+    for v in R.values():
+        tk = f"web.l.39751.t.{v['team_id']}" if web else None
+        if not tk:
+            continue
+        st, sl = v.get("status") or {}, v.get("slots") or {}
+        for n in v.get("players", []):
+            code = st.get(n, "")
+            on_il = n in (v.get("il") or [])
+            s = seen.get((tk, n), {})
+            if not (code in OUT_CODES or on_il or s.get("il")):
+                continue
+            done.add((tk, n))
+            slot = sl.get(n, "")
+            inj.append({"team": tk, "name": n, "cost": cost.get(n), "status": code or ("IL" if on_il else ""),
+                        "slot": slot, "played": s.get("played", 0), "missed": s.get("il", 0),
+                        "first_il": s.get("first_il"), "last_game": s.get("last"),
+                        "still_out": code in OUT_CODES or on_il,
+                        # an injured player sitting in an active lineup slot right now
+                        "started_hurt": code in ("O", "INJ") and slot not in P.INACTIVE and slot != "",
+                        "gp_left": (an.get(n) or {}).get("gp")})
+    rank = {"O": 0, "INJ": 0, "D": 1, "IL": 2, "Q": 3, "GTD": 3, "DTD": 3}
+    inj.sort(key=lambda r: (not r["started_hurt"], rank.get(r["status"], 4), -(r["cost"] or 0)))
+
+    # ---------- player lines for the page's stat pins (week and last two days) ----------
+    # keyed "name|team" (a player can change teams mid-week); bare "name" = the stint with most games
+    pins = {}
+    for (tk, _), p in pl.items():
+        if not p["games"]:
+            continue
+        z = scorer.z(p)
+        e = {"team": tk, "games": p["games"], "line": P._line(p, cats), "best": sorted(z, key=z.get, reverse=True)[:3]}
+        pins[f"{p['name']}|{tk}"] = e
+        if p["name"] not in pins or pins[p["name"]]["games"] < e["games"]:
+            pins[p["name"]] = e
+    for (tk, _), p in late_pl.items():
+        k = f"{p['name']}|{tk}"
+        if p["games"] and k in pins:
+            pins[k]["weekend"] = P._line(p, cats)
 
     # ---------- rest of year outlook ----------
     race = {r["team"]: r for r in ((a.get("race") or {}).get("rows") or [])}
@@ -166,14 +194,19 @@ def build(d, a):
                         "odds": r.get("playoff_odds"), "top_seed": r.get("top_seed_odds"),
                         "odds_move": r.get("odds_move"), "allplay": (lw.get("allplay") or {}).get(tk),
                         "prev_strength": (prev_out.get(tk) or {}).get("strength")})
-    outlook.sort(key=lambda o: -(o["strength"] or 0))
-    for i, o in enumerate(outlook):
+    for i, o in enumerate(sorted(outlook, key=lambda o: -(o["strength"] or 0))):
         o["proj_rank"] = i + 1
+    outlook.sort(key=lambda o: (-(o["odds"] or 0), o["proj_rank"]))
 
+    # manager display names (Yahoo nicknames like "parth s" -> "Parth"), via polls.json rosters team_id
+    pc = _load(POLLS, {}) or {}
+    names = {m["id"]: m["name"] for m in pc.get("managers", [])}
+    disp = {f"web.l.39751.t.{v['team_id']}": names[mid] for mid, v in (pc.get("rosters") or {}).get("teams", {}).items()
+            if mid in names and web}
     return {
         "week": w, "start": win.get("start"), "end": win.get("end"), "days": ds, "theme": theme_for(w),
-        "date": d.get("date"), "teams": {k: {"name": v["name"], "manager": v["manager"]} for k, v in teams.items()},
-        "games": games, "top": top, "duds": duds, "injuries": inj, "outlook": outlook,
+        "date": d.get("date"), "teams": {k: {"name": v["name"], "manager": disp.get(k, v["manager"])} for k, v in teams.items()},
+        "games": games, "top": top, "duds": duds, "injuries": inj, "outlook": outlook, "pins": pins,
         "proj_as_of": model.get("proj_as_of"), "weeks_left": model.get("weeks_left"),
         "awards": {"mvp": lw.get("mvp"), "dud": lw.get("dud"), "robbed": lw.get("robbed"),
                    "luckiest": ((a.get("luck") or [{}])[0] or {}).get("team")},

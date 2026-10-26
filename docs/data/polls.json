@@ -54,6 +54,7 @@
  "players": [
   "AJ Dybantsa",
   "Aaron Gordon",
+  "Aaron Wiggins",
   "Ace Bailey",
   "Aday Mara",
   "Adem Bona",
@@ -256,6 +257,7 @@
   "Toumani Camara",
   "Trae Young",
   "Tre Jones",
+  "Trevon Brazile",
   "Trey Murphy III",
   "Tristan da Silva",
   "Ty Jerome",
@@ -760,7 +762,7 @@
  },
  "rosters": {
   "season": "2026-27",
-  "updated": "2026-10-26T05:49-04:00",
+  "updated": "2026-10-26T12:43-04:00",
   "source": "yahoo-web",
   "teams": {
    "johnj": {
@@ -773,10 +775,10 @@
      "Jayson Tatum",
      "Lauri Markkanen",
      "Peyton Watson",
-     "Jaxson Hayes",
      "Jarrett Allen",
-     "Alex Sarr",
      "Khaman Maluach",
+     "Jaxson Hayes",
+     "Alex Sarr",
      "Darius Acuff Jr.",
      "Anthony Black",
      "Day'Ron Sharpe",
@@ -786,23 +788,43 @@
     "il": [
      "Stephen Curry",
      "Jusuf Nurkić"
-    ]
+    ],
+    "status": {
+     "Jusuf Nurkić": "O"
+    },
+    "slots": {
+     "Trae Young": "PG",
+     "Ayo Dosunmu": "SG",
+     "Christian Braun": "G",
+     "Jayson Tatum": "SF",
+     "Lauri Markkanen": "PF",
+     "Peyton Watson": "F",
+     "Jarrett Allen": "C",
+     "Khaman Maluach": "C",
+     "Jaxson Hayes": "Util",
+     "Alex Sarr": "Util",
+     "Darius Acuff Jr.": "BN",
+     "Anthony Black": "BN",
+     "Day'Ron Sharpe": "BN",
+     "Stephen Curry": "IL",
+     "Jusuf Nurkić": "IL"
+    }
    },
    "eshanb": {
     "team": "Acinonyx",
     "team_id": 2,
     "players": [
      "James Harden",
-     "Jalen Suggs",
+     "Luka Dončić",
      "Austin Reaves",
      "Norman Powell",
      "Jaime Jaquez Jr.",
-     "Precious Achiuwa",
+     "Trevon Brazile",
      "Adem Bona",
      "Brook Lopez",
      "N. Alexander-Walker",
      "Dejounte Murray",
-     "Luka Dončić",
+     "Precious Achiuwa",
      "Kawhi Leonard",
      "Ausar Thompson",
      "Yves Missi",
@@ -811,32 +833,76 @@
     "il": [
      "Yves Missi",
      "Kristaps Porziņģis"
-    ]
+    ],
+    "status": {
+     "Kawhi Leonard": "Q",
+     "Ausar Thompson": "Q",
+     "Yves Missi": "O",
+     "Kristaps Porziņģis": "O"
+    },
+    "slots": {
+     "James Harden": "PG",
+     "Luka Dončić": "SG",
+     "Austin Reaves": "G",
+     "Norman Powell": "SF",
+     "Jaime Jaquez Jr.": "PF",
+     "Trevon Brazile": "F",
+     "Adem Bona": "C",
+     "Brook Lopez": "C",
+     "N. Alexander-Walker": "Util",
+     "Dejounte Murray": "Util",
+     "Precious Achiuwa": "BN",
+     "Kawhi Leonard": "BN",
+     "Ausar Thompson": "BN",
+     "Yves Missi": "IL",
+     "Kristaps Porziņģis": "IL"
+    }
    },
    "adarsh": {
     "team": "BrookynDynasty",
     "team_id": 3,
     "players": [
      "Anthony Edwards",
-     "Egor Dëmin",
-     "Keon Ellis",
-     "Quentin Grimes",
-     "Paul George",
-     "Julius Randle",
-     "Pascal Siakam",
-     "P.J. Washington",
-     "Kris Dunn",
-     "Jared McCain",
-     "Nikola Jokić",
      "Tre Jones",
      "Davion Mitchell",
+     "Ace Bailey",
+     "Paul George",
+     "Pascal Siakam",
+     "P.J. Washington",
+     "Jay Huff",
+     "Jared McCain",
+     "Nikola Jokić",
+     "Julius Randle",
+     "Egor Dëmin",
+     "Keon Ellis",
      "AJ Dybantsa",
      "Jimmy Butler III"
     ],
     "il": [
      "AJ Dybantsa",
      "Jimmy Butler III"
-    ]
+    ],
+    "status": {
+     "AJ Dybantsa": "O",
+     "Jimmy Butler III": "O"
+    },
+    "slots": {
+     "Anthony Edwards": "PG",
+     "Tre Jones": "SG",
+     "Davion Mitchell": "G",
+     "Ace Bailey": "SF",
+     "Paul George": "PF",
+     "Pascal Siakam": "F",
+     "P.J. Washington": "C",
+     "Jay Huff": "C",
+     "Jared McCain": "Util",
+     "Nikola Jokić": "Util",
+     "Julius Randle": "BN",
+     "Egor Dëmin": "BN",
+     "Keon Ellis": "BN",
+     "AJ Dybantsa": "IL",
+     "Jimmy Butler III": "IL"
+    }
    },
    "phil": {
     "team": "Gopher Gold",
@@ -856,7 +922,23 @@
      "Julian Champagnie",
      "Zion Williamson"
     ],
-    "il": []
+    "il": [],
+    "status": {},
+    "slots": {
+     "Payton Pritchard": "PG",
+     "Jaylen Brown": "SG",
+     "Jaylen Wells": "G",
+     "Franz Wagner": "SF",
+     "Yaxel Lendeborg": "PF",
+     "Evan Mobley": "F",
+     "Domantas Sabonis": "C",
+     "Chet Holmgren": "C",
+     "Andre Drummond": "Util",
+     "LeBron James": "Util",
+     "Tyrese Maxey": "BN",
+     "Julian Champagnie": "BN",
+     "Zion Williamson": "BN"
+    }
    },
    "chris": {
     "team": "MONSTARS ☄️",
@@ -864,22 +946,41 @@
     "players": [
      "Darius Garland",
      "Ty Jerome",
-     "Zach LaVine",
-     "Scottie Barnes",
+     "Jalen Green",
+     "Jalen Johnson",
      "Jerami Grant",
      "Jaren Jackson Jr.",
      "Isaiah Jackson",
      "Aaron Gordon",
      "Tyler Herro",
      "Duncan Robinson",
-     "Jalen Green",
-     "Jalen Johnson",
+     "Zach LaVine",
+     "Scottie Barnes",
      "Ja Morant",
      "Jalen Duren"
     ],
     "il": [
      "Jalen Duren"
-    ]
+    ],
+    "status": {
+     "Jalen Duren": "O"
+    },
+    "slots": {
+     "Darius Garland": "PG",
+     "Ty Jerome": "SG",
+     "Jalen Green": "G",
+     "Jalen Johnson": "SF",
+     "Jerami Grant": "PF",
+     "Jaren Jackson Jr.": "F",
+     "Isaiah Jackson": "C",
+     "Aaron Gordon": "C",
+     "Tyler Herro": "Util",
+     "Duncan Robinson": "Util",
+     "Zach LaVine": "BN",
+     "Scottie Barnes": "BN",
+     "Ja Morant": "BN",
+     "Jalen Duren": "IL"
+    }
    },
    "parth": {
     "team": "LeParth James",
@@ -888,7 +989,7 @@
      "Derrick White",
      "Devin Booker",
      "Brandin Podziemski",
-     "Jalen Williams",
+     "Deni Avdija",
      "Cameron Boozer",
      "Derik Queen",
      "Onyeka Okongwu",
@@ -897,14 +998,36 @@
      "Paul Reed",
      "Damian Lillard",
      "Stephon Castle",
-     "Deni Avdija",
-     "Maxime Raynaud",
-     "Joel Embiid"
+     "Joel Embiid",
+     "Jalen Williams",
+     "Maxime Raynaud"
     ],
     "il": [
-     "Maxime Raynaud",
-     "Joel Embiid"
-    ]
+     "Jalen Williams",
+     "Maxime Raynaud"
+    ],
+    "status": {
+     "Joel Embiid": "P",
+     "Jalen Williams": "O",
+     "Maxime Raynaud": "O"
+    },
+    "slots": {
+     "Derrick White": "PG",
+     "Devin Booker": "SG",
+     "Brandin Podziemski": "G",
+     "Deni Avdija": "SF",
+     "Cameron Boozer": "PF",
+     "Derik Queen": "F",
+     "Onyeka Okongwu": "C",
+     "Anthony Davis": "C",
+     "Jalen Smith": "Util",
+     "Paul Reed": "Util",
+     "Damian Lillard": "BN",
+     "Stephon Castle": "BN",
+     "Joel Embiid": "BN",
+     "Jalen Williams": "IL",
+     "Maxime Raynaud": "IL"
+    }
    },
    "roshan": {
     "team": "Nova Knicks",
@@ -914,22 +1037,43 @@
      "Ajay Mitchell",
      "Amen Thompson",
      "Jonathan Kuminga",
-     "Noah Clowney",
-     "OG Anunoby",
+     "Matas Buzelis",
+     "Dyson Daniels",
      "Victor Wembanyama",
      "Jakob Poeltl",
      "Caleb Wilson",
      "De'Andre Hunter",
+     "Noah Clowney",
+     "OG Anunoby",
      "De'Aaron Fox",
-     "Matas Buzelis",
-     "Dyson Daniels",
      "Paolo Banchero",
      "Coby White"
     ],
     "il": [
      "Paolo Banchero",
      "Coby White"
-    ]
+    ],
+    "status": {
+     "Paolo Banchero": "O",
+     "Coby White": "O"
+    },
+    "slots": {
+     "Scotty Pippen Jr.": "PG",
+     "Ajay Mitchell": "SG",
+     "Amen Thompson": "G",
+     "Jonathan Kuminga": "SF",
+     "Matas Buzelis": "PF",
+     "Dyson Daniels": "F",
+     "Victor Wembanyama": "C",
+     "Jakob Poeltl": "C",
+     "Caleb Wilson": "Util",
+     "De'Andre Hunter": "Util",
+     "Noah Clowney": "BN",
+     "OG Anunoby": "BN",
+     "De'Aaron Fox": "BN",
+     "Paolo Banchero": "IL",
+     "Coby White": "IL"
+    }
    },
    "keshav": {
     "team": "Suggs to be you",
@@ -939,27 +1083,47 @@
      "Darryn Peterson",
      "Cade Cunningham",
      "Cason Wallace",
-     "Collin Murray-Boyles",
-     "Ziaire Williams",
+     "Brandon Miller",
+     "Kevin Durant",
      "Rudy Gobert",
      "Wendell Carter Jr.",
      "Moussa Diabaté",
      "Max Christie",
+     "Collin Murray-Boyles",
+     "Ziaire Williams",
      "Dylan Harper",
-     "Kevin Durant",
-     "Brandon Miller",
      "Cooper Flagg"
     ],
     "il": [
      "Cooper Flagg"
-    ]
+    ],
+    "status": {
+     "Cason Wallace": "D",
+     "Cooper Flagg": "Q"
+    },
+    "slots": {
+     "Andrew Nembhard": "PG",
+     "Darryn Peterson": "SG",
+     "Cade Cunningham": "G",
+     "Cason Wallace": "SF",
+     "Brandon Miller": "PF",
+     "Kevin Durant": "F",
+     "Rudy Gobert": "C",
+     "Wendell Carter Jr.": "C",
+     "Moussa Diabaté": "Util",
+     "Max Christie": "Util",
+     "Collin Murray-Boyles": "BN",
+     "Ziaire Williams": "BN",
+     "Dylan Harper": "BN",
+     "Cooper Flagg": "IL"
+    }
    },
    "arnavb": {
     "team": "Thug Life",
     "team_id": 9,
     "players": [
      "Jalen Brunson",
-     "RJ Barrett",
+     "Grayson Allen",
      "LaMelo Ball",
      "Mikal Bridges",
      "Dillon Brooks",
@@ -967,15 +1131,34 @@
      "Kel'el Ware",
      "Karl-Anthony Towns",
      "Walker Kessler",
-     "Tristan da Silva",
-     "Grayson Allen",
+     "Aaron Wiggins",
+     "RJ Barrett",
      "Toumani Camara",
      "Donovan Clingan",
      "Kon Knueppel"
     ],
     "il": [
      "Kon Knueppel"
-    ]
+    ],
+    "status": {
+     "Kon Knueppel": "O"
+    },
+    "slots": {
+     "Jalen Brunson": "PG",
+     "Grayson Allen": "SG",
+     "LaMelo Ball": "G",
+     "Mikal Bridges": "SF",
+     "Dillon Brooks": "PF",
+     "Jaden McDaniels": "F",
+     "Kel'el Ware": "C",
+     "Karl-Anthony Towns": "C",
+     "Walker Kessler": "Util",
+     "Aaron Wiggins": "Util",
+     "RJ Barrett": "BN",
+     "Toumani Camara": "BN",
+     "Donovan Clingan": "BN",
+     "Kon Knueppel": "IL"
+    }
    },
    "vishal": {
     "team": "White Mambas",
@@ -995,7 +1178,25 @@
      "John Collins",
      "Michael Porter Jr."
     ],
-    "il": []
+    "il": [],
+    "status": {
+     "Naz Reid": "P"
+    },
+    "slots": {
+     "Keyonte George": "PG",
+     "Josh Giddey": "SG",
+     "Jamal Murray": "G",
+     "Trey Murphy III": "SF",
+     "Bobby Portis Jr.": "PF",
+     "Naz Reid": "F",
+     "Neemias Queta": "C",
+     "Isaiah Hartenstein": "C",
+     "Ryan Rollins": "Util",
+     "Bam Adebayo": "Util",
+     "Desmond Bane": "BN",
+     "John Collins": "BN",
+     "Michael Porter Jr.": "BN"
+    }
    },
    "sagar": {
     "team": "Zero Fox Given",
@@ -1015,30 +1216,70 @@
      "CJ McCollum",
      "DeMar DeRozan"
     ],
-    "il": []
+    "il": [],
+    "status": {
+     "Brandon Ingram": "O",
+     "Nic Claxton": "O"
+    },
+    "slots": {
+     "Tyrese Haliburton": "PG",
+     "Brandon Ingram": "SG",
+     "Kyrie Irving": "G",
+     "Rui Hachimura": "SF",
+     "Giannis Antetokounmpo": "PF",
+     "Miles Bridges": "F",
+     "Draymond Green": "C",
+     "Myles Turner": "C",
+     "Kyshawn George": "Util",
+     "Nic Claxton": "Util",
+     "Donovan Mitchell": "BN",
+     "CJ McCollum": "BN",
+     "DeMar DeRozan": "BN"
+    }
    },
    "jason": {
     "team": "Adam Silver Dez Nuts",
     "team_id": 12,
     "players": [
      "Shai Gilgeous-Alexander",
-     "Josh Hart",
+     "Reed Sheppard",
+     "Fred VanVleet",
      "Obi Toppin",
      "Alperen Şengün",
      "Cedric Coward",
-     "Ivica Zubac",
      "Zach Edey",
-     "Immanuel Quickley",
-     "Keaton Wagler",
-     "Andrew Wiggins",
      "Jabari Smith Jr.",
-     "Reed Sheppard",
-     "Fred VanVleet",
+     "Andrew Wiggins",
+     "Ivica Zubac",
+     "Keaton Wagler",
+     "Josh Hart",
+     "Immanuel Quickley",
      "VJ Edgecombe"
     ],
     "il": [
      "VJ Edgecombe"
-    ]
+    ],
+    "status": {
+     "Zach Edey": "P",
+     "Ivica Zubac": "D",
+     "VJ Edgecombe": "Q"
+    },
+    "slots": {
+     "Shai Gilgeous-Alexander": "PG",
+     "Reed Sheppard": "SG",
+     "Fred VanVleet": "G",
+     "Obi Toppin": "SF",
+     "Alperen Şengün": "PF",
+     "Cedric Coward": "F",
+     "Zach Edey": "C",
+     "Jabari Smith Jr.": "C",
+     "Andrew Wiggins": "Util",
+     "Ivica Zubac": "Util",
+     "Keaton Wagler": "BN",
+     "Josh Hart": "BN",
+     "Immanuel Quickley": "BN",
+     "VJ Edgecombe": "IL"
+    }
    }
   }
  }

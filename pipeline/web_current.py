@@ -230,7 +230,8 @@ def merge(path):
         for k, v in new["rosters"].items():
             if len(v.get("players") or []) < 10:
                 continue
-            R["teams"][MGR_ID[int(k)]] = {"team": v["team"], "team_id": int(k), "players": v["players"], "il": v.get("il", [])}
+            R["teams"][MGR_ID[int(k)]] = {"team": v["team"], "team_id": int(k), "players": v["players"], "il": v.get("il", []),
+                                         "status": v.get("status", {}), "slots": v.get("slots", {})}
             pc["players"] = sorted(set(pc.get("players", [])) | set(v["players"]))
         R["updated"] = datetime.now(ET).isoformat(timespec="minutes")
         POLLS.write_text(json.dumps(pc, indent=1, ensure_ascii=False))

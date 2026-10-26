@@ -6,7 +6,8 @@ Run by .github/workflows/groupme.yml after a push that changes docs/data/night.j
   python -m pipeline.announce --check            # prints date= and fresh= for the workflow
   python -m pipeline.announce --dry-run          # prints the message
   python -m pipeline.announce --wait 08:00       # just waits until 8am ET (no-op if later)
-  python -m pipeline.announce --post             # posts now
+  python -m pipeline.announce --post             # posts now (plus the Weekly Wrap message on Mondays)
+  python -m pipeline.announce --wrap-post        # posts only the Weekly Wrap message, any day
 
 Posting needs GROUPME_BOT_ID (the "GOON GAZETTE" bot). The bot ID is never printed.
 """
@@ -22,17 +23,26 @@ LINK = "goongazette.com"
 WRAP = Path(__file__).resolve().parent.parent / "docs" / "data" / "wrap.json"
 
 
-def wrap_line(now=None):
-    """Link to the latest Weekly Wrap. Monday (the day it prints) gets the headline too."""
+def wrap_message(now=None, force=False):
+    """Monday-only second post announcing the Weekly Wrap (the page itself stays up forever).
+    Needs the week's written copy and a week that ended within the last two days."""
     try:
         w = json.loads(WRAP.read_text())
     except Exception:
         return ""
-    head = ((w.get("copy") or {}).get("headline") or "").strip()
+    c = w.get("copy") or {}
     today = (now or dt.datetime.now(ET)).date()
-    if today.weekday() == 0 and head:
-        return f"NEW WEEKLY WRAP (Week {w['week']}): {head} {LINK}/wrap.html"
-    return f"Week {w['week']} Wrap: {LINK}/wrap.html"
+    if not c.get("headline"):
+        return ""
+    if not force and (today.weekday() != 0 or dt.date.fromisoformat(w["end"]) < today - dt.timedelta(days=2)):
+        return ""
+    ed = (c.get("edition") or "").upper()
+    lines = [f"THE WEEKLY WRAP: WEEK {w['week']}" + (f" ({ed})" if ed else ""), c["headline"].strip()]
+    if c.get("deck"):
+        lines.append(c["deck"].strip())
+    lines.append(f"Read it: {LINK}/wrap.html#{w['week']}")
+    text = "\n".join(lines)
+    return text if len(text) <= 1000 else text[:997] + "..."
 
 
 def load():
@@ -59,9 +69,6 @@ def message(n, now=None):
     head = f"LAST NIGHT IN THE GOONS ({d.strftime('%a')}, {d.strftime('%b')} {d.day})"
     notes = [x.strip() for x in (n.get("notes") or []) if str(x).strip()][:2]
     lines = [head] + notes + [f"Full damage: {LINK}"]
-    wl = wrap_line(now)
-    if wl:
-        lines.append(wl)
     note = extra_note(now)
     if note:
         lines += ["", note]
@@ -98,6 +105,7 @@ def main():
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--post", action="store_true")
+    ap.add_argument("--wrap-post", action="store_true", help="post only the Weekly Wrap message now, any day")
     ap.add_argument("--wait", default=None, help="HH:MM ET to hold the post until")
     a = ap.parse_args()
     n = load()
@@ -112,12 +120,27 @@ def main():
         wait_until(a.wait)  # the workflow pulls main again after this, then posts
         if not a.post:
             return
+    if a.wrap_post:
+        text = wrap_message(force=True)
+        if not text:
+            sys.exit("no Weekly Wrap with copy to post")
+        print(text)
+        post(text)
+        return
     if a.post:
         text = message(load())
         print(text)
         post(text)
+        wm = wrap_message()  # Mondays only: a separate message for the Weekly Wrap
+        if wm:
+            time.sleep(3)
+            print("\n---\n" + wm)
+            post(wm)
         return
     print(message(n))
+    wm = wrap_message()
+    if wm:
+        print("\n--- second message (Mondays) ---\n" + wm)
 
 
 if __name__ == "__main__":
