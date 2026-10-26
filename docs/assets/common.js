@@ -15,14 +15,18 @@ function siteNav(active) {
   if (!el) return;
   const cur = k => k === active ? ' aria-current="page"' : "";
   const link = (href, label, key, cls) => `<a href="${href}"${cls ? ` class="${cls}"` : ""}${cur(key)}>${label}</a>`;
-  let seasons = [], picks = null, who = null;
+  let seasons = [], picks = null, who = null, tonight = null;
   const draw = () => {
     const paper = siteNav.locked
       ? `<a href="index.html#current" class="locked"${cur("today")} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
       : link("index.html#current", "This Week", "today");
-    const main = (siteNav.locked ? "" : link("night.html", "Last Night", "night")) + paper + (siteNav.locked ? "" : link("wrap.html", "Weekly Wrap", "wrap"));
+    // while tonight's page is live, "Tonight" takes Last Night's slot and Last Night moves under More
+    const tn = tonight && !siteNav.locked ? `<a href="today.html" class="tonight"${cur("today")}>Tonight${tonight.final ? "" : "<i aria-hidden=\"true\"></i>"}</a>` : "";
+    const ln = siteNav.locked ? "" : link("night.html", "Last Night", "night");
+    const main = (tn || ln) + paper + (siteNav.locked ? "" : link("wrap.html", "Weekly Wrap", "wrap"));
     const pkOpen = picks && picks.open ? `<a href="predict.html" class="picks open"${cur("picks")}>File Your Picks<em>Locks ${esc(picks.day)}</em></a>` : "";
     const more = [
+      tn ? ln : "",
       link("block.html", "Trade Block", "block"),
       picks && !picks.open ? link("predict.html", "Picks", "picks") : "",
       link("history.html", "League history", "history"),
@@ -45,6 +49,16 @@ function siteNav(active) {
     draw();
   }).catch(() => {});
   seasonLocked().then(l => { if (l !== siteNav.locked) { siteNav.locked = l; draw(); } });
+  tonightLive().then(t => { if (t) { tonight = t; draw(); } });
+}
+// today.json counts as tonight while its game date is the current NBA night (anything before 5am ET is still "tonight").
+function tonightLive() {
+  if (!tonightLive.p) tonightLive.p = getJSON("data/today.json").then(t => {
+    if (!t || t.sample) return null;
+    const now = new Date(Date.now() - 5 * 3600 * 1000).toLocaleDateString("en-CA", {timeZone: "America/New_York"});
+    return t.date === now ? t : null;
+  }).catch(() => null);
+  return tonightLive.p;
 }
 // The reader's own Yahoo team id (from the name they signed on Picks or the Trade Block), or null.
 function myTeamId(c) {

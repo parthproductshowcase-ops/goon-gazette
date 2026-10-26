@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>The Goon Gazette Tonight</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
+<link rel="stylesheet" href="themes/fight.css?v=59dd29bc">
+
+<div class="wrap">
+  <header class="mast">
+    <div class="nameplate"><h1>The Goon Gazette</h1></div>
+    <div class="dateline"><span class="label" id="dl1">Tonight</span><span class="big" id="dl2">…</span></div>
+  </header>
+  <nav class="site" id="sitenav" aria-label="Site"></nav>
+
+  <section class="nt-hero td-hero">
+    <div class="nt-head">
+      <div>
+        <span class="label"><i class="live-dot" id="live-dot" aria-hidden="true"></i><span id="td-state">Tonight</span></span>
+        <h2 id="td-date">Loading</h2>
+        <p id="td-sub"></p>
+      </div>
+      <div class="td-asof" id="td-asof"></div>
+    </div>
+    <h3 class="td-head" id="td-headline"></h3>
+    <div class="nt-notes" id="td-notes"></div>
+  </section>
+
+  <div class="nba-strip" id="nba" hidden></div>
+
+  <div class="sec-head"><h2 id="mu-title">The Fights Tonight</h2><p>Live week totals. Red categories are within a possession; a chip shows the score at the last update.</p></div>
+  <div class="grid2" id="mu"></div>
+
+  <div class="cols2 nt-pair">
+    <div class="list-card"><h3>Leads That Flipped</h3><p class="note">Category leads that changed hands since the last update.</p><div id="flips"></div></div>
+    <div class="list-card"><h3>Every Team's Night So Far</h3><p class="note">Starters' value tonight. Tap a row for the full box score on Last Night tomorrow.</p><div id="tn"></div></div>
+  </div>
+
+  <div class="sec-head"><h2>The Best Lines So Far</h2><p>Ranked by value across all 11 categories. Benched lines flagged.</p></div>
+  <div class="nt-stars" id="stars"></div>
+
+  <footer><span id="gen"></span><span>Rebuilt every hour from 7pm to 1am ET while games are on. The morning paper lands by 6am.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+</div>
+
+<script src="assets/common.js?v=c7eec71f"></script>
+<script>
+siteNav("today");
+let T, CAT = {}, MYID = null;
+
+getJSON("data/polls.json").then(c => { MYID = myTeamId(c); }).catch(() => {})
+  .finally(() => getJSON("data/today.json").then(t => { if (t.sample && !PREVIEW) { location.replace("night.html"); return; } T = t; render(); }).catch(() => { location.replace("night.html"); }));
+
+const nm = tk => esc(T.team_names[tk]?.name || tk);
+const mgr = tk => esc(T.team_names[tk]?.manager || "");
+const sign = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+const tone = v => v >= 3 ? "hi" : v <= -3 ? "lo" : "mid";
+const fmt = (id, v) => fmtStat(v, CAT[id]?.pct);
+const chip = (cid, v) => { const c = CAT[cid]; if (!c) return ""; const txt = Array.isArray(v) ? `${v[1]}-${v[2]} ${c.name.replace("%", "")}` : `${v} ${c.name}`; return `<span class="nt-chip">${esc(txt)}</span>`; };
+const sc = s => `${s[0]}–${s[1]}${s[2] ? "–" + s[2] : ""}`;
+
+function render() {
+  T.cats.forEach(c => CAT[c.id] = c);
+  const live = !T.final;
+  const d = new Date(T.date + "T12:00:00");
+  $("dl2").textContent = d.toLocaleDateString("en-US", {month: "short", day: "numeric"});
+  $("dl1").textContent = live ? "Live" : "Final";
+  $("td-state").textContent = live ? "Tonight, live" : "Tonight, final";
+  $("live-dot").hidden = !live;
+  $("td-date").textContent = d.toLocaleDateString("en-US", {weekday: "long", month: "short", day: "numeric"});
+  const g = T.games || [], fin = g.filter(x => x.state === "post").length, ip = g.filter(x => x.state === "in").length, pre = g.length - fin - ip;
+  $("td-sub").textContent = g.length ? `${g.length} NBA game${g.length === 1 ? "" : "s"}: ${fin} final, ${ip} in progress, ${pre} yet to tip.` : `${T.lines.length} lines in so far.`;
+  const nxt = live && T.update < T.updates ? ` Next update about ${nextHour(T.generated_at)}.` : "";
+  $("td-asof").innerHTML = `<b>As of ${esc(T.as_of)}</b><small>Update ${T.update} of ${T.updates}.${nxt}</small>`;
+  $("td-headline").textContent = T.headline || "";
+  const names = Object.values(T.team_names).map(t => t.name).concat(T.lines.map(r => r.name));
+  $("td-notes").innerHTML = storyList(T.notes, names);
+
+  // NBA scoreboard strip
+  $("nba").hidden = !g.length;
+  $("nba").innerHTML = g.map(x => `<span class="nba-g ${x.state}"><b>${esc(x.teams[0])} ${x.score[0]}</b><b>${esc(x.teams[1])} ${x.score[1]}</b><small>${esc(x.state === "pre" ? x.detail.replace(/ E[DS]T$/, "") : x.state === "post" ? "Final" : x.detail)}</small></span>`).join("");
+
+  // the fights, yours first
+  const isMine = m => MYID != null && (m.a.endsWith(".t." + MYID) || m.b.endsWith(".t." + MYID));
+  const ordered = [...T.matchups].sort((x, y) => (isMine(y) - isMine(x)) || (y.swings - x.swings));
+  $("mu-title").innerHTML = `The Fights Tonight <b class="dot">&bull;</b> Week ${T.week}`;
+  $("mu").innerHTML = ordered.map((m, i) => {
+    const mine = isMine(m), gap = Math.abs(m.score[0] - m.score[1]);
+    const tier = mine ? "Your fight" : gap <= 1 ? "Down to the wire" : gap <= 3 ? "Trading punches" : "Slipping away";
+    const prev = m.prev_score && (m.prev_score[0] !== m.score[0] || m.prev_score[1] !== m.score[1]) ? `<span class="chip td-was">Was ${sc(m.prev_score)}</span>` : "";
+    const row = c => `<tr class="${c.swing ? "sw" : ""}"><td class="v va ${c.lead === "a" ? "lead" : ""}">${fmt(c.cat, c.a)}</td><td class="c">${esc(CAT[c.cat]?.name)}${c.flip ? ` <i class="td-flip">flipped</i>` : ""}</td><td class="v vb ${c.lead === "b" ? "lead" : ""}">${fmt(c.cat, c.b)}</td></tr>`;
+    const sw = m.cats.filter(c => c.swing || c.flip), rest = m.cats.filter(c => !(c.swing || c.flip));
+    return `<article class="mu${mine ? " mine" : ""}">
+      <span class="tier ${mine || gap <= 1 ? "t0" : "t1"}">${tier}</span>
+      <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mgr(m.a)}</small></div>
+      <div class="mu-score">${sc(m.score)}</div>
+      <div class="mu-team b">${nm(m.b)}<small>${mgr(m.b)}</small></div></div>
+      ${prev ? `<div class="td-prev">${prev}</div>` : ""}
+      <div class="hp" aria-hidden="true"><i class="a" style="flex:${m.score[0] || 0.2}"></i><i class="t" style="flex:${m.score[2] || 0.0001}"></i><i class="b" style="flex:${m.score[1] || 0.2}"></i></div>
+      <table class="cats">${sw.map(row).join("")}</table>
+      <details><summary><span class="c-all">All ${m.cats.length} categories</span><span class="c-sw">Clutch categories</span></summary><table class="cats">${rest.map(row).join("")}</table></details>
+    </article>`;
+  }).join("");
+
+  // flips
+  const F = (T.flips || []).filter(f => f.now !== "tie");
+  $("flips").innerHTML = F.length ? F.map(f => {
+    const who = f.now === "a" ? f.a : f.b, from = f.was === "a" ? f.a : f.b;
+    return `<div class="nt-row"><div><b>${nm(who)}</b> took <b>${esc(CAT[f.cat]?.name)}</b><small>from <b>${nm(from)}</b> · ${fmt(f.cat, f.now === "a" ? f.a_val : f.b_val)} to ${fmt(f.cat, f.now === "a" ? f.b_val : f.a_val)}</small></div></div>`;
+  }).join("") : `<p class="note empty">${T.update <= 1 ? "First update of the night. Flips show from the next one." : "No lead changed hands in the last hour."}</p>`;
+
+  // team nights
+  $("tn").innerHTML = T.team_nights.map(t => `<div class="nt-row ${MYID != null && t.team.endsWith(".t." + MYID) ? "me" : ""}">
+      <div><span class="nt-trank">${t.rank}</span> <b>${nm(t.team)}</b><small>${t.played} ${t.played === 1 ? "player" : "players"} with a stat${t.with_game != null ? ` of ${t.with_game} with a game` : ""}${t.top.length ? ` · ${esc(t.top.join(", "))}` : ""}</small></div>
+      <b class="nt-val ${tone(t.value)}">${sign(t.value)}</b></div>`).join("");
+
+  // best lines so far
+  $("stars").innerHTML = T.lines.slice(0, 8).map((s, i) => `<article class="nt-star ${tone(s.value)}">
+      <div class="nt-st-top"><span class="nt-rank">${i + 1}</span><mark>${esc(s.name)}</mark><b class="nt-val ${tone(s.value)}">${sign(s.value)}</b></div>
+      <div class="nt-by"><b>${nm(s.team)}</b>${s.benched ? ` <i class="nt-tag">Benched</i>` : ""}<small>${esc(s.nba || "")}</small></div>
+      <div class="nt-chips">${s.best.map(c => chip(c, s.line[c])).join("")}</div>
+      <p class="nt-desc">${esc(s.desc)}</p>
+    </article>`).join("") || `<p class="empty">No lines in yet. Tip-off is coming.</p>`;
+
+  $("gen").textContent = `Updated ${new Date(T.generated_at).toLocaleString("en-US", {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"})}.`;
+  gc.once("view/tonight");
+}
+function nextHour(iso) {
+  const d = new Date(iso); d.setMinutes(0, 0, 0); d.setHours(d.getHours() + 1);
+  return d.toLocaleTimeString("en-US", {hour: "numeric"}).toLowerCase().replace(" ", "");
+}
+</script>

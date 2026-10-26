@@ -1,20 +1,23 @@
 name: The Lineup Card
 on:
   schedule:
-    # Two editions a night, each with an EDT line and an EST line so the clock change changes nothing.
-    # 7:15pm ET: the Lineup Card (23:15 UTC in EDT, 00:15 UTC in EST)
-    - cron: "15 23 * * *"
-    - cron: "15 0 * * *"
-    # 10:45pm ET: the late edition, most finals in (02:45 UTC in EDT, 03:45 UTC in EST)
-    - cron: "45 2 * * *"
-    - cron: "45 3 * * *"
+    # Hourly from 7pm to 1am ET, each hour with an EDT line and an EST line so the clock change changes nothing.
+    # 7pm ET = 23 UTC (EDT) or 00 UTC (EST); 1am ET = 05 UTC (EDT) or 06 UTC (EST). The union is 23 and 0 to 6.
+    - cron: "0 23 * * *"
+    - cron: "0 0 * * *"
+    - cron: "0 1 * * *"
+    - cron: "0 2 * * *"
+    - cron: "0 3 * * *"
+    - cron: "0 4 * * *"
+    - cron: "0 5 * * *"
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       edition:
-        description: "card (7:15pm) or late (10:45pm)"
-        default: "card"
+        description: "card = Lineup Card plus Tonight (the 7pm run); today = Tonight only (every other hour)"
+        default: "today"
         type: choice
-        options: [card, late]
+        options: [card, today]
 permissions:
   contents: write
 concurrency:
@@ -25,17 +28,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Which edition is this, in Eastern time
+      - name: Which hourly slot is this, in Eastern time
         id: gate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "edition=${{ github.event.inputs.edition }}" >> "$GITHUB_OUTPUT"
           else
-            M=$((10#$(TZ=America/New_York date +%H) * 60 + 10#$(TZ=America/New_York date +%M)))
-            # 7:15pm to 8:14pm ET is the card; 10:45pm to 11:44pm ET is the late edition; anything else is the off-season clock
-            if [ "$M" -ge 1155 ] && [ "$M" -lt 1215 ]; then echo "edition=card" >> "$GITHUB_OUTPUT";
-            elif [ "$M" -ge 1365 ] && [ "$M" -lt 1425 ]; then echo "edition=late" >> "$GITHUB_OUTPUT";
-            else echo "edition=skip" >> "$GITHUB_OUTPUT"; echo "Not an ET edition time ($(TZ=America/New_York date +%H:%M)); skipping"; fi
+            H=$((10#$(TZ=America/New_York date +%H)))
+            # 7pm ET is the Lineup Card plus the first Tonight; 8pm to 1am ET are Tonight updates; anything else is the off-season clock
+            if [ "$H" -eq 19 ]; then echo "edition=card" >> "$GITHUB_OUTPUT";
+            elif [ "$H" -ge 20 ] || [ "$H" -le 1 ]; then echo "edition=today" >> "$GITHUB_OUTPUT";
+            else echo "edition=skip" >> "$GITHUB_OUTPUT"; echo "Not an ET evening hour ($(TZ=America/New_York date +%H:%M)); skipping"; fi
           fi
           # Until the official Yahoo feed opens, edition.json says sample or yahoo-web and there is nothing to pull.
           if python3 -c 'import json,sys; e=json.load(open("docs/data/edition.json")); sys.exit(0 if (e.get("sample") or e.get("source")=="yahoo-web") else 1)'; then
@@ -48,22 +51,33 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
         if: steps.gate.outputs.edition != 'skip' && steps.gate.outputs.feed == 'open'
-      - run: python -m pipeline.tonight
-        if: steps.gate.outputs.edition != 'skip' && steps.gate.outputs.feed == 'open'
+      - name: The Lineup Card (7pm only)
+        if: steps.gate.outputs.edition == 'card' && steps.gate.outputs.feed == 'open'
+        run: python -m pipeline.tonight
         env:
-          GG_EDITION: ${{ steps.gate.outputs.edition }}
+          GG_EDITION: card
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
           YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
           YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      - name: Commit tonight's card
+      - name: Tonight (every evening hour)
+        if: steps.gate.outputs.edition != 'skip' && steps.gate.outputs.feed == 'open'
+        run: python -m pipeline.today
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
+          YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Commit tonight's data
         if: steps.gate.outputs.edition != 'skip' && steps.gate.outputs.feed == 'open'
         run: |
           git config user.name "gazette-bot"
           git config user.email "gazette-bot@users.noreply.github.com"
-          git add docs/data/tonight.json
-          git diff --cached --quiet || git commit -m "Lineup Card (${{ steps.gate.outputs.edition }}) $(TZ=America/New_York date +%F)"
+          git add docs/data/tonight.json docs/data/today.json
+          git diff --cached --quiet || git commit -m "Tonight $(TZ=America/New_York date '+%F %-I%p')"
           git pull --rebase
           git push

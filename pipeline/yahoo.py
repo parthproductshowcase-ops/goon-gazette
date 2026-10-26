@@ -349,7 +349,8 @@ def _roster_day(self, tk, date, cat_ids, frac_ids):
                     stats[sid] = parse_frac(s.get("value"))
             nm = p.get("name", {})
             out.append({"pk": p.get("player_key"), "name": nm.get("full") if isinstance(nm, dict) else str(nm),
-                        "pos": pos, "stats": stats})
+                        "pos": pos, "stats": stats, "nba": (p.get("editorial_team_abbr") or "").upper(),
+                        "status": (p.get("status") or "").upper()})
     return out
 
 

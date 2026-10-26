@@ -160,7 +160,7 @@ def _call(system, user, max_tokens=1200):
         r.raise_for_status()
         text = "".join(b.get("text", "") for b in r.json()["content"])
         out = json.loads(text[text.find("{"): text.rfind("}") + 1])
-        assert out.get("headline") or out.get("zingers") or out.get("body")
+        assert out.get("headline") or out.get("zingers") or out.get("body") or out.get("notes")
         return out
     except Exception as e:  # never let the newspaper kill the build
         print("Claude call failed, using fallback:", e)
@@ -304,3 +304,70 @@ def tonight_fallback(t):
 def tonight(t):
     out = _call(TONIGHT_VOICE, "FACTS:\n" + json.dumps(tonight_facts(t)) + "\n\n" + TONIGHT_SCHEMA, 700)
     return out or tonight_fallback(t)
+
+
+# ---------- Tonight (the hourly evening page) ----------
+TODAY_VOICE = VOICE + """
+This is TONIGHT, an in-progress update written while games are still being played (the facts say
+how many games are final, in progress and yet to tip, and the time). Write like a beat writer filing
+from the arena at the hour: what is swinging right now, who is carrying or burying his team tonight,
+category leads that just flipped, and benched players putting up numbers. Use "so far" and "right now"
+framing; never declare a matchup decided unless the facts say every game is final. Only numbers from
+the facts."""
+
+TODAY_SCHEMA = """Return ONLY JSON:
+{"headline": "<=7 words, Title Case, about tonight so far",
+ "notes": ["one sentence, <=24 words", ...]  // exactly 5; name the player and the team; at least one about a category lead that flipped if any did, one about the best line so far, one about a manager's bench
+}"""
+
+
+def today_facts(t):
+    nm = lambda tk: t["teams"][tk]["name"]
+    cat = {c["id"]: c["name"] for c in t["cats"]}
+    g = t.get("games") or []
+    f = {"as_of": t["as_of"], "update": f"{t['update']} of {t['updates']} tonight",
+         "games": {"final": sum(1 for x in g if x["state"] == "post"), "in_progress": sum(1 for x in g if x["state"] == "in"),
+                   "not_started": sum(1 for x in g if x["state"] == "pre")} if g else "unknown"}
+    f["matchups"] = [{"teams": [nm(m["a"]), nm(m["b"])], "score_now": m["score"][:2],
+                      "score_last_update": m.get("prev_score", [None, None])[:2],
+                      "swing_cats": [cat[r["cat"]] for r in m["cats"] if r["swing"]]} for m in t["matchups"]]
+    f["lead_flips_since_last_update"] = [{"cat": cat[x["cat"]], "now_leads": nm(x["a"] if x["now"] == "a" else x["b"]),
+                                          "took_it_from": nm(x["a"] if x["was"] == "a" else x["b"])} for x in t["flips"] if x["now"] != "tie"][:8]
+    f["best_lines_so_far"] = [{"player": r["name"], "team": nm(r["team"]), "line": r["desc"], "benched": r["benched"]} for r in t["rows"][:8]]
+    f["worst_lines_so_far"] = [{"player": r["name"], "team": nm(r["team"]), "line": r["desc"]} for r in t["rows"][-4:] if r["value"] < -2]
+    f["benched_and_producing"] = [{"player": r["name"], "team": nm(r["team"]), "line": r["desc"]} for r in t["rows"] if r["benched"] and r["value"] > 2][:4]
+    f["team_nights"] = [{"team": nm(x["team"]), "night_rank": x["rank"], "players_with_a_stat": x["played"]} for x in t["team_nights"]]
+    return f
+
+
+def today_fallback(t):
+    nm = lambda tk: t["teams"][tk]["name"]
+    cat = {c["id"]: c["name"] for c in t["cats"]}
+    notes = []
+    if t["rows"]:
+        r = t["rows"][0]
+        notes.append(f"{r['name']} has the line of the night so far for {nm(r['team'])}: {r['desc']}.")
+    for x in t["flips"][:2]:
+        if x["now"] != "tie":
+            notes.append(f"{nm(x['a'] if x['now'] == 'a' else x['b'])} just took {cat[x['cat']]} from {nm(x['a'] if x['was'] == 'a' else x['b'])}.")
+    for r in t["rows"]:
+        if r["benched"] and r["value"] > 2:
+            notes.append(f"{r['name']} is putting up {r['desc']} on {nm(r['team'])}'s bench. Someone check on that manager.")
+            break
+    close = [m for m in t["matchups"] if abs(m["score"][0] - m["score"][1]) <= 1]
+    if close:
+        m = close[0]
+        notes.append(f"{nm(m['a'])} and {nm(m['b'])} are {m['score'][0]}-{m['score'][1]} with {m['swings']} categor{'y' if m['swings'] == 1 else 'ies'} inside a possession.")
+    if t["rows"]:
+        r = t["rows"][-1]
+        if r["value"] < -2:
+            notes.append(f"{r['name']} is actively hurting {nm(r['team'])}: {r['desc']}.")
+    head = "Tonight, So Far" if not t.get("final") else "Tonight, Final"
+    return {"headline": head, "notes": notes[:5]}
+
+
+def today(t):
+    out = _call(TODAY_VOICE, "FACTS:\n" + json.dumps(today_facts(t)) + "\n\n" + TODAY_SCHEMA, 900)
+    if out and out.get("notes"):
+        return {"headline": out.get("headline") or "Tonight, So Far", "notes": [str(n) for n in out["notes"]][:5]}
+    return today_fallback(t)
