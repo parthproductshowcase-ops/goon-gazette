@@ -57,3 +57,13 @@ jobs:
           git diff --cached --quiet || git commit -m "Gazette $(TZ=America/New_York date +%F)"
           git pull --rebase
           git push
+      - name: Record the failure in status.json (the site footer and the daily check read it)
+        if: failure() && steps.gate.outputs.go == 'yes'
+        run: |
+          git config user.name "gazette-bot"
+          git config user.email "gazette-bot@users.noreply.github.com"
+          test -f docs/data/status.json || echo '{"ok": false, "edition": "morning", "error": "build failed before status.json was written"}' > docs/data/status.json
+          git add docs/data/status.json
+          git diff --cached --quiet || git commit -m "Gazette build failed $(TZ=America/New_York date +%F)"
+          git pull --rebase
+          git push

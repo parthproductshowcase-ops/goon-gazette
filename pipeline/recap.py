@@ -31,7 +31,8 @@ SCHEMA = """Return ONLY JSON:
 {"headline": "<=7 words, Title Case, the day's verdict",
  "subhead": "one sentence",
  "body": [],
- "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words, about last night's impact on their matchup"}]  // exactly 7, seven different teams
+ "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words, about last night's impact on their matchup"}],  // exactly 7, seven different teams
+ "night": ["5 notes for the Last Night page, <=30 words each, from last_night only: the best line, the worst brick, the bench blunder, the free agent who balled (say whether he is still on the wire), the night's winner and loser; name the player and the team; exact numbers from last_night only"]
 }"""
 
 
@@ -89,6 +90,32 @@ def _facts(a):
                                           for b in a["bench"][:3]]
     if a.get("picks"):
         f["manager_picks_on_record"] = a["picks"]
+    if a.get("_night"):
+        f["last_night"] = _night_facts(a["_night"], nm)
+    return f
+
+
+def _night_facts(n, nm):
+    """What night.build worked out, trimmed for the prompt (no derived prose, just lines)."""
+    def row(r):
+        o = {"player": r["name"], "team": nm(r["team"]), "line": r.get("desc", "")}
+        if r.get("benched"):
+            o["benched"] = True
+        return o
+    f = {"best_lines": [row(r) for r in (n.get("stars") or [])[:4]],
+         "bricks": [row(r) for r in (n.get("bricks") or [])[:3]],
+         "left_on_the_bench": [row(r) for r in (n.get("bench") or [])[:2]],
+         "free_agents_who_balled": [{"player": r["name"], "line": r.get("desc", ""),
+                                     "now": r.get("owned_by") or "still on the wire"} for r in (n.get("free") or [])[:3]]}
+    T = n.get("teams") or []
+    f["best_team_night"] = [nm(T[0]["team"]), T[0]["night"]] if T else None
+    played = [t for t in T if t.get("players")]
+    f["worst_team_night"] = [nm(played[-1]["team"]), played[-1]["night"]] if played else None
+    f["night_record_vs_opponent"] = {nm(t["team"]): {"vs": nm(t["opp"]) if t.get("opp") else None, "won_lost_tied": t["night"]}
+                                     for t in T if t.get("opp")}
+    idle = [nm(t["team"]) for t in T if not t.get("started")]
+    if idle:
+        f["teams_with_nobody_playing"] = idle
     return f
 
 
@@ -140,7 +167,10 @@ def _call(system, user, max_tokens=1200):
         return None
 
 
-def write(a):
+def write(a, night=None):
+    """Squawk Box (headline, subhead, 7 zingers) plus, when `night` (night.build's dict) is given,
+    the 5 Last Night notes under "night". Falls back to templates without a key."""
+    a = dict(a, _night=night) if night else a
     return _call(VOICE, "FACTS:\n" + json.dumps(_facts(a)) + "\n\n" + SCHEMA) or fallback(a)
 
 

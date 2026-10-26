@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import players, polls, recap, stats
+from . import api_extras, night, players, polls, recap, stats
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data"
@@ -95,11 +95,38 @@ def fetch_live():
         "days": days, "windows": windows, "transactions": transactions, "frac": frac,
     }
     d["bench"] = players.bench_from_day(d, yesterday)
+    # the night being reported can belong to the week that just ended (Monday's paper covers
+    # Sunday, the last day of the old matchup), so pair opponents by the night's own week
+    nw = cur
+    if cur in gw and yesterday < gw[cur]["start"] and (cur - 1) in results:
+        nw = cur - 1
+    d["night_week"] = nw
+    d["night_matchups"] = ([{"a": m["a"], "b": m["b"]} for m in results[nw]] if nw in results
+                           else [{"a": m["a"], "b": m["b"]} for m in d["matchups"]])
+    if not preseason:
+        # rosters, injury tags and lineup slots into polls.json (Trade Block, Boot Hill, Lineup Card),
+        # plus who owns whom and every NBA line last night for Free Agents Who Balled
+        today = now.date().isoformat()
+        d["owned_now"] = api_extras.rosters(y, teams, today)
+        d["nba_lines"] = api_extras.espn_lines(yesterday)
     return d, preseason
 
 
 def main():
+    if "--sample" in sys.argv:
+        _main()
+        return
+    try:
+        warnings = _main()
+        api_extras.status(True, edition="morning", source="yahoo-api", warnings=warnings)
+    except Exception as e:
+        api_extras.status(False, edition="morning", source="yahoo-api", error=f"{type(e).__name__}: {e}")
+        raise
+
+
+def _main():
     sample = "--sample" in sys.argv
+    warnings = []
     if sample:
         from .sample import make
         d, preseason = make(), False
@@ -122,10 +149,13 @@ def main():
                        "zingers": []}}
     else:
         a = stats.analyze(d, prev)
+        a["night_week"] = d.get("night_week")
         if not sample:
             polls.snapshot()
             a["picks"] = polls.facts(a)
-        a["recap"] = d["recap"] if sample else recap.write(a)
+        # Last Night first (computed), so the recap can write its five notes from the same facts
+        n = night.build(d) if d.get("days") else None
+        a["recap"] = d["recap"] if sample else recap.write(a, n)
 
     a["generated_at"] = datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes")
     blob = json.dumps(a, indent=1)
@@ -135,6 +165,8 @@ def main():
                                                   "date": d["date"], "generated_at": a["generated_at"]}))
     if not sample:
         (hist / f"{d['date']}.json").write_text(blob)
+        stale = api_extras.block_check()
+        warnings += [f"Trade Block: {b['player']} ({b['who']}) left the roster" for b in stale]
         if d.get("days"):
             from .web_current import write_night
             write_night(d, (a.get("recap") or {}).get("night"))
@@ -149,6 +181,7 @@ def main():
             except Exception as e:  # the wrap never blocks the paper
                 print("wrap skipped:", e)
     print("wrote", OUT / "league.json")
+    return warnings
 
 
 if __name__ == "__main__":
