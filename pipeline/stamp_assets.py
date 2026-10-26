@@ -13,7 +13,7 @@ import re
 from pathlib import Path
 
 DOCS = Path(__file__).resolve().parent.parent / "docs"
-ASSETS = ["assets/gazette.css", "assets/common.js", "themes/fight.css", "themes/grandprix.css"]
+ASSETS = ["assets/gazette.css", "assets/common.js", "themes/fight.css", "themes/grandprix.css", "themes/wrap.css"]
 
 
 def h(rel):

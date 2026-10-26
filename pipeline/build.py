@@ -143,6 +143,11 @@ def main():
                 trades.write(d)
             except Exception as e:  # the analyzer never blocks the paper
                 print("trades skipped:", e)
+            try:
+                from . import wrap
+                wrap.write(d, a)
+            except Exception as e:  # the wrap never blocks the paper
+                print("wrap skipped:", e)
     print("wrote", OUT / "league.json")
 
 

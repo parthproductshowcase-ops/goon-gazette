@@ -19,6 +19,20 @@ NIGHT = Path(__file__).resolve().parent.parent / "docs" / "data" / "night.json"
 # One-off extra note (e.g. a new feature), posted only on its ET date: {"date": "YYYY-MM-DD", "text": "..."}
 NOTE = Path(__file__).resolve().parent.parent / "config" / "announce_note.json"
 LINK = "goongazette.com"
+WRAP = Path(__file__).resolve().parent.parent / "docs" / "data" / "wrap.json"
+
+
+def wrap_line(now=None):
+    """Link to the latest Weekly Wrap. Monday (the day it prints) gets the headline too."""
+    try:
+        w = json.loads(WRAP.read_text())
+    except Exception:
+        return ""
+    head = ((w.get("copy") or {}).get("headline") or "").strip()
+    today = (now or dt.datetime.now(ET)).date()
+    if today.weekday() == 0 and head:
+        return f"NEW WEEKLY WRAP (Week {w['week']}): {head} {LINK}/wrap.html"
+    return f"Week {w['week']} Wrap: {LINK}/wrap.html"
 
 
 def load():
@@ -45,6 +59,9 @@ def message(n, now=None):
     head = f"LAST NIGHT IN THE GOONS ({d.strftime('%a')}, {d.strftime('%b')} {d.day})"
     notes = [x.strip() for x in (n.get("notes") or []) if str(x).strip()][:2]
     lines = [head] + notes + [f"Full damage: {LINK}"]
+    wl = wrap_line(now)
+    if wl:
+        lines.append(wl)
     note = extra_note(now)
     if note:
         lines += ["", note]

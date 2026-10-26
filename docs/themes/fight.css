@@ -918,3 +918,7 @@ nav.site a.trade[aria-current="page"]{background:var(--ink) !important;color:var
 @media (max-width:480px){.gt-st{min-width:0}.gt-st th:nth-child(4),.gt-st td:nth-child(4){display:none}.gt-st td,.gt-st th{padding:8px 4px}.gt-st .badge{font-size:11px;padding:4px 6px}}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gt-v .badge.g-good,:root:not([data-theme="light"]) .gt-st .badge.g-good{color:#0b2a17}}
 :root[data-theme="dark"] .gt-v .badge.g-good,:root[data-theme="dark"] .gt-st .badge.g-good{color:#0b2a17}
+
+/* ---------- Weekly Wrap nav button (page styles in wrap.css) ---------- */
+nav.site a.wrapn{background:#9a5b13 !important;color:#fff !important;font-weight:800;padding-inline:12px !important}
+nav.site a.wrapn[aria-current="page"]{background:var(--ink) !important;color:var(--card) !important}

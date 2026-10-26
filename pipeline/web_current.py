@@ -19,7 +19,7 @@ from datetime import date as Date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import night, players, recap, stats, trades
+from . import night, players, recap, stats, trades, wrap
 
 ET = ZoneInfo("America/New_York")
 ROOT = Path(__file__).resolve().parent.parent
@@ -263,6 +263,10 @@ def write(a, publish):
         (DATA / "history" / f"{a['date']}.json").write_text(blob)
         print("published", DATA / "league.json")
         write_night(analyze.d, (a.get("recap") or {}).get("night"))
+        try:
+            wrap.write(analyze.d, a)
+        except Exception as e:  # the wrap never blocks the paper
+            print("wrap skipped:", e)
         try:
             trades.write(analyze.d)
         except Exception as e:  # the analyzer never blocks the paper
