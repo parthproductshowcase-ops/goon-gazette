@@ -2,7 +2,8 @@
 `pipeline.build` (GitHub Actions) covers them once the official feed opens.
 
     rosters(y, teams, date)   -> polls.json rosters (players, IL, injury status, lineup slots) + owned_now
-    espn_lines(date)          -> every NBA box-score line that night (Free Agents Who Balled)
+    free_agent_lines(y, lk, date, cat_ids, frac_ids) -> Yahoo's own free agents' lines that night (Free Agents Who Balled)
+    espn_lines(date)          -> the same from ESPN box scores (fallback; the web edition's source)
     block_check(polls)        -> Trade Block listings whose player left the seller's roster
     status(ok, **fields)      -> docs/data/status.json heartbeat
 
@@ -18,7 +19,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from . import night
-from .yahoo import coll, flat
+from .yahoo import coll, flat, parse_frac, parse_val
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "docs" / "data"
@@ -91,7 +92,54 @@ def rosters(y, teams, date, write=True):
         return {}
 
 
-# ---------- every NBA line that night (Free Agents Who Balled) ----------
+# ---------- free agents who balled, straight from Yahoo ----------
+def free_agent_lines(y, lk, date, cat_ids, frac_ids, count=50):
+    """Lines for the free agents (status=A) who scored that night, in the shape night.py reads
+    for d["nba_lines"]. Yahoo ranks them for the date, so no name matching against rosters.
+    Pulls the top `count` by points plus the top 25 by assists, rebounds and blocks (dedup),
+    so a stat-stuffer with a quiet scoring night still shows. Returns [] on failure."""
+    sorts = [("12", count), ("16", 25), ("15", 25), ("18", 25)]  # PTS, AST, REB, BLK stat ids
+    seen, out = set(), []
+    try:
+        for sid, n in sorts:
+            start = 0
+            while start < n:
+                page = min(25, n - start)
+                lg = flat(y.get(f"league/{lk}/players;status=A;sort={sid};sort_type=date;sort_date={date}"
+                                f";start={start};count={page}/stats;type=date;date={date}")["league"])
+                got = 0
+                for p in coll(lg.get("players"), "player"):
+                    p = flat(p)
+                    got += 1
+                    pk = p.get("player_key")
+                    if pk in seen:
+                        continue
+                    stats = {}
+                    for st in p.get("player_stats", {}).get("stats", []):
+                        st = st.get("stat", st)
+                        k = str(st.get("stat_id"))
+                        if k in cat_ids:
+                            stats[k] = parse_val(st.get("value"))
+                        elif k in frac_ids:
+                            stats[k] = parse_frac(st.get("value"))
+                    if not any(v for v in stats.values() if not isinstance(v, list)) and \
+                       not any(v[1] for v in stats.values() if isinstance(v, list)):
+                        continue  # did not play
+                    seen.add(pk)
+                    nm = p.get("name", {})
+                    out.append({"pk": pk, "name": nm.get("full") if isinstance(nm, dict) else str(nm), "pos": "FA",
+                                "nba": (p.get("editorial_team_abbr") or "").upper(), "result": "", "stats": stats})
+                if got < page:
+                    break
+                start += page
+        print("yahoo free agents:", len(out), "lines for", date)
+        return out
+    except Exception as e:
+        warn(f"free agent lines skipped: {e}")
+        return []
+
+
+# ---------- every NBA line that night from ESPN (fallback) ----------
 def _pair(s):
     try:
         a, b = str(s).split("-")

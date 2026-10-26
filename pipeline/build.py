@@ -108,7 +108,8 @@ def fetch_live():
         # plus who owns whom and every NBA line last night for Free Agents Who Balled
         today = now.date().isoformat()
         d["owned_now"] = api_extras.rosters(y, teams, today)
-        d["nba_lines"] = api_extras.espn_lines(yesterday)
+        d["nba_lines"] = (api_extras.free_agent_lines(y, lk, yesterday, ids, frac)
+                          or api_extras.espn_lines(yesterday))
     return d, preseason
 
 
