@@ -7,7 +7,7 @@ const fmtLuck = v => v == null ? "–" : (v >= 0 ? "+" : "−") + Math.abs(v * 1
 const ordinal = n => n + (["th","st","nd","rd"][(n % 100 > 10 && n % 100 < 14) ? 0 : (n % 10 < 4 ? n % 10 : 0)]);
 const getJSON = url => fetch(url, {cache: "no-store"}).then(r => { if (!r.ok) throw new Error(url + " " + r.status); return r.json(); });
 
-// Site-wide nav. Primary row: Last Night, This Week, Weekly Wrap (plus a yellow Picks pill while a poll is open).
+// Site-wide nav. Primary row: Last Night, This Week, Sunday Paper (plus a yellow Picks pill while a poll is open).
 // Everything else (Picks after lock, Trade Block, past seasons, League history) sits behind "More" on phones
 // and shows as plain links on the right on desktop. One accent color: the active page is red, the rest black.
 function siteNav(active) {
@@ -23,7 +23,7 @@ function siteNav(active) {
     // while tonight's page is live, "Tonight" takes Last Night's slot and Last Night moves under More
     const tn = tonight && !siteNav.locked ? `<a href="today.html" class="tonight"${cur("today")}>Tonight${tonight.final ? "" : "<i aria-hidden=\"true\"></i>"}</a>` : "";
     const ln = siteNav.locked ? "" : link("night.html", "Last Night", "night");
-    const main = (tn || ln) + paper + (siteNav.locked ? "" : link("wrap.html", "Weekly Wrap", "wrap"));
+    const main = (tn || ln) + paper + (siteNav.locked ? "" : link("wrap.html", "Sunday Paper", "wrap"));
     const pkOpen = picks && picks.open ? `<a href="predict.html" class="picks open"${cur("picks")}>File Your Picks<em>Locks ${esc(picks.day)}</em></a>` : "";
     const more = [
       tn ? ln : "",
@@ -185,7 +185,7 @@ const gc = (() => {
   };
 })();
 
-// The goon posse: small original cartoon goons (western outfits), used on the site masthead and the Weekly Wrap nameplate.
+// The goon posse: small original cartoon goons (western outfits), used on the site masthead and the Sunday Paper nameplate.
 // Colors come from CSS vars --wx-accent, --wx-poster, --wx-face set by whoever hosts them.
 const GOON = {
   hats: {

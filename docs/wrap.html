@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><meta charset="utf-8">
-<title>The Goon Gazette Weekly Wrap</title>
+<title>The Goon Gazette: The Sunday Paper</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -11,12 +11,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
 <link rel="stylesheet" href="themes/fight.css?v=1fbdaf1e">
-<link rel="stylesheet" href="themes/wrap.css?v=2138c943">
+<link rel="stylesheet" href="themes/wrap.css?v=4f8e8069">
 
 <div class="wrap">
   <header class="mast">
     <div class="nameplate"><h1>The Goon Gazette</h1></div>
-    <div class="dateline"><span class="label">Weekly Wrap</span><span class="big" id="dl2">…</span></div>
+    <div class="dateline"><span class="label">Sunday Paper</span><span class="big" id="dl2">…</span></div>
   </header>
   <nav class="site" id="sitenav" aria-label="Site"></nav>
 
@@ -25,7 +25,7 @@
       <div class="wx-ears"><span id="wx-ear1"></span><span id="wx-ear2"></span></div>
       <h1 class="wx-name">The Goon Gazette</h1>
       <div class="wx-goons" id="wx-goons" aria-hidden="true"></div>
-      <div class="wx-strip"><span id="wx-edition">Weekly Wrap</span><span id="wx-dates"></span><span class="wx-weeks" id="wx-weeks"></span></div>
+      <div class="wx-strip"><span id="wx-edition">Sunday Paper</span><span id="wx-dates"></span><span class="wx-weeks" id="wx-weeks"></span></div>
     </header>
 
     <svg class="wx-defs" width="0" height="0" aria-hidden="true"><defs>
@@ -48,7 +48,7 @@
   <footer><span id="gen"></span><span>Pins show the player's line for the week, or for Saturday and Sunday where marked. Projections are Yahoo's rest-of-season numbers; playoff odds are the Gazette's Victory Road sims (2,000 simulated seasons), rounded to the nearest 5 until week 8.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=1d02a538"></script>
+<script src="assets/common.js?v=f76291ad"></script>
 <script>
 siteNav("wrap");
 
@@ -58,7 +58,7 @@ const THEME = {
     boot: "Boot Hill", roy: "Rest of Year: The Long Ride", saloon: "Saloon Talk",
     mvp: "Sheriff", dud: "Dead Weight", luckiest: "Horse Thief", robbed: "Bushwhacked", reward: "Reward", posted: "Wanted", sub: "Dead or alive",
     status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "On the IL"}},
-  _: {edition: "Weekly Wrap", results: "The Results", late: "Late Drama", wanted: "The Awards",
+  _: {edition: "Sunday Paper", results: "The Results", late: "Late Drama", wanted: "The Awards",
     boot: "Injury Report", roy: "Rest of Year Outlook", saloon: "Every Manager",
     mvp: "MVP", dud: "Dud", luckiest: "Luckiest", robbed: "Robbed", reward: "Prize", posted: "Award", sub: "",
     status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "On the IL"}}
@@ -306,7 +306,7 @@ function load(w) {
   const url = w ? `data/wraps/week-${w}.json` : "data/wrap.json";
   return getJSON(url).then(x => { X = x; X.pins = X.pins || {}; render(); }).catch(() => {
     $("wx-head").textContent = "No wrap yet";
-    $("wx-deck").textContent = "The first Weekly Wrap prints the Monday after Week 1 ends.";
+    $("wx-deck").textContent = "The first Sunday Paper prints the Monday after Week 1 ends.";
   });
 }
 
@@ -325,7 +325,7 @@ function render() {
   $("dl2").textContent = `Week ${X.week}`;
   $("wx-ear1").textContent = `Week ${X.week} Final`;
   $("wx-ear2").textContent = `Games through ${md(X.end)}`;
-  $("wx-edition").textContent = `${C.edition || T.edition} · Weekly Wrap`;
+  $("wx-edition").textContent = `${C.edition || T.edition} · Sunday Paper`;
   $("wx-dates").textContent = `${md(X.start)} to ${md(X.end)}`;
   $("wx-kicker").textContent = C.kicker || `Week ${X.week} is final`;
   $("wx-head").innerHTML = ink(C.headline || autoHead());

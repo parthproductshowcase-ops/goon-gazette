@@ -1,4 +1,4 @@
-"""The Weekly Wrap: an editorial one-pager for the week that just ended (docs/wrap.html).
+"""The Sunday Paper: an editorial one-pager for the week that just ended (docs/wrap.html).
 
     python -m pipeline.wrap            # print the facts for the writer (week = last finished week)
     python -m pipeline.wrap --write    # write docs/data/wrap.json, wraps/week-N.json, wraps/index.json

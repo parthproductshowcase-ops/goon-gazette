@@ -1,4 +1,4 @@
-/* The Weekly Wrap (wrap.html). Layout first, then one skin per theme: .wx[data-wt="western"], ... */
+/* The Sunday Paper (wrap.html). Layout first, then one skin per theme: .wx[data-wt="western"], ... */
 
 .wx{--wx-paper:var(--card);--wx-ink:var(--ink);--wx-muted:var(--muted);--wx-rule:var(--ink);--wx-accent:var(--accent);
   --wx-hi:#ffe14d;--wx-good:var(--good);--wx-bad:var(--bad);--wx-card:var(--card);--wx-poster:var(--card);
