@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=269e9803">
+<link rel="stylesheet" href="themes/fight.css?v=1fbdaf1e">
 
 <div class="wrap">
   <header class="mast">
@@ -40,8 +40,8 @@
     <div class="sec-head"><h2 id="cw-title">The Fights</h2><p>Closest fights first. Red categories are clutch: close enough to flip tonight.</p></div>
     <div class="grid2" id="mu"></div>
     <div class="cols2 standouts">
-      <div class="list-card"><h3>Managers Who Earned Their Keep</h3><p class="note">Pickups doing the job the draft picks were supposed to do.</p><div id="cw-plays"></div></div>
-      <div class="list-card"><h3>Players Carrying Lazy Rosters</h3><p class="note">Top 10 this week by category value.</p><div id="cw-players"></div></div>
+      <div class="list-card"><h3>Managers Who Earned Their Keep</h3><p class="note">Pickups doing the job the draft picks were supposed to do: this week's score with the pickup's stats and without them.</p><div id="cw-plays"></div></div>
+      <div class="list-card"><h3>Players Carrying Lazy Rosters</h3><p class="note">Top 10 this week by category value: z-scores across all 11 categories vs every rostered player, summed. +10 is a monster week, 0 is average.</p><div id="cw-players"></div></div>
     </div>
   </section>
 
@@ -50,6 +50,7 @@
     <div class="gt-bar"><div class="chips gt-weeks" id="gt-weeks"></div></div>
     <div class="gt-pick"><span class="label">Pick a team</span><div class="chips" id="gt-teams"></div></div>
     <div class="gt-hero" id="gt-hero"></div>
+    <p class="how"><b>How it works:</b> your week's category totals played against every other team's, same rules as a real matchup. <b>Legit</b> = winning and beating half the league or more. <b>Gift</b> = winning but beating fewer than half. <b>Robbed</b> = losing but beating more than half. <b>Exposed</b> = losing and beating half or fewer.</p>
     <div class="list-card gt-card"><h3 id="gt-board-h">Vs everyone</h3><p class="note">Every opponent, every category. Tap a row for the full head to head.</p><div class="gt-scroll"><table class="gt-tbl" id="gt-board"></table></div></div>
     <div class="gt-two">
       <div class="list-card gt-card gt-h2h" id="gt-h2h-card"><h3>Head to head <b class="dot">&bull;</b> Any two teams</h3>
@@ -63,18 +64,20 @@
     <div class="sec-head"><h2 id="race-title">Victory Road</h2><p id="race-sub">Who is in, who is praying, who is already planning next year.</p></div>
     <div class="race-strip" id="race-strip"></div>
     <div class="table-wrap"><table class="pr race"><thead><tr><th>#</th><th>Team</th><th class="r">Cat record</th><th class="r">Back</th><th class="r">Vs line</th><th>Playoff odds</th><th class="r">No. 1 seed</th><th class="r">Proj. wins</th></tr></thead><tbody id="rc"></tbody></table></div>
+    <p class="how" id="race-how"></p>
   </section>
 
   <section id="waivers" class="panel" hidden>
     <div class="sec-head"><h2 id="ww-title">Waiver Wire Review</h2><p>Every add and drop from last week, graded on what the pickup actually did. The grades are not kind.</p></div>
     <div class="awards" id="ww-awards"></div>
+    <p class="how"><b>How grades work:</b> the pickup's per-game value across all 11 categories since he was added, measured against every rostered player this week. A+ is +4 or better a game, B is break-even, F is below -3. Games played shown beside each add.</p>
     <div class="table-wrap" style="margin-top:14px"><table class="pr"><thead><tr><th>Date</th><th>Team</th><th>Added</th><th class="c">Grade</th><th>Dropped</th></tr></thead><tbody id="ww-moves"></tbody></table></div>
   </section>
 
   <footer><span id="gen"></span><span>Morning edition 4am ET. Lineup Card 7:15pm ET, after lineups lock.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=a5ac5c77"></script>
+<script src="assets/common.js?v=1d02a538"></script>
 <script>
 siteNav("today");
 
@@ -93,12 +96,17 @@ document.querySelectorAll("nav.tabs a").forEach(a => a.addEventListener("click",
 window.addEventListener("hashchange", () => showTab(location.hash.slice(1), false));
 showTab(location.hash.slice(1), false);
 
+let CARDS = null;  // docs/cards/index.json: which share PNGs exist
+const tid = tk => String(tk).split(".t.").pop();
+const thruDate = a => a.date ? new Date(a.date + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"}) : "today";
 function render(a){
   const T = a.teams, nm = tk => esc(T[tk]?.name || tk), mg = tk => esc(T[tk]?.manager || "");
   const cat = {}; a.cats.forEach(c => cat[c.id] = c);
   const fmt = (id, v) => fmtStat(v, cat[id]?.pct);
   const half = v => (Math.round(v * 2) / 2).toString().replace(/\.0$/, "");
   const pct = v => v >= .995 && v < 1 ? ">99%" : v > 0 && v < .005 ? "<1%" : Math.round(v * 100) + "%";
+  // early in the season the sims can't tell 63% from 67%: round to the nearest 5 until week 8 (race.coarse)
+  const pct5 = v => v >= .975 ? ">95%" : v > 0 && v < .025 ? "<5%" : "~" + Math.round(v * 20) * 5 + "%";
 
   $("lg").textContent = `The daily paper of ${a.league?.name || "the league"}, ${a.cats.length}-category head-to-head`;
   const d = a.date ? new Date(a.date + "T12:00:00") : new Date();
@@ -126,7 +134,8 @@ function render(a){
         const s = standBy[p.team] || {};
         const mv = p.move == null || p.move === 0 ? `<td class="d eq">&#8594;</td>` : `<td class="d ${p.move > 0 ? "up" : "dn"}">${p.move > 0 ? "&#8593;" : "&#8595;"}${Math.abs(p.move)}</td>`;
         return `<tr><td class="p num">${p.rank}</td><td class="n">${nm(p.team)}<small>${s.w ?? "–"}-${s.l ?? "–"}${s.t ? "-" + s.t : ""}</small></td><td class="y num">${s.rank ?? "–"}</td>${mv}</tr>`;
-      }).join("") + `</tbody></table>`;
+      }).join("") + `</tbody></table>
+      <p class="how"><b>How it works:</b> power rank is 70% season category totals and 30% last week's, scored across all ${a.cats.length} categories. Yahoo is the real standings. Move is since the last paper. Games through ${thruDate(a)}.</p>`;
   }
 
   // 1. race to the championship
@@ -134,7 +143,9 @@ function render(a){
   if (R && R.rows.length){
     const n = R.playoff_teams;
     $("race-title").innerHTML = `Victory Road <b class="dot">&bull;</b> ${R.weeks_left} week${R.weeks_left === 1 ? "" : "s"} left <b class="dot">&bull;</b> ${n} playoff spots`;
-    $("race-sub").textContent = `Top ${n} make the playoffs. Odds come from ${R.sims.toLocaleString()} simulations of the remaining schedule, using each team's category strength.`;
+    const op = R.coarse ? pct5 : pct;
+    $("race-sub").textContent = `Top ${n} make the playoffs. Games through ${thruDate(a)}.`;
+    $("race-how").innerHTML = `<b>How it works:</b> ${R.sims.toLocaleString()} simulated seasons of the remaining schedule, each category decided by the two teams' all-play strength so far. Odds move is since the last paper.${R.coarse ? ` Rounded to the nearest 5 until week 8: ${R.week ? R.week - 1 : "a few"} week${R.week === 2 ? "" : "s"} of games can't tell 63% from 67%.` : ""}`;
     const bubble = R.rows.filter(x => x.playoff_odds >= .2 && x.playoff_odds <= .8).length;
     const locks = R.rows.filter(x => x.playoff_odds >= .99).length;
     $("race-strip").innerHTML = [["Weeks left", R.weeks_left], ["Playoff spots", n], ["Near locks", locks], ["On the bubble", bubble]]
@@ -146,8 +157,8 @@ function render(a){
       return `${sep}<tr class="${i < n ? "in" : "out"}"><td class="rk">${x.rank}</td>
         <td class="tm"><b>${nm(x.team)}</b><small>${mg(x.team)}</small></td>
         <td class="num r">${x.w}-${x.l}-${x.t}</td><td class="num r">${x.back ? half(x.back) : "–"}</td><td class="num r">${line}</td>
-        <td><div class="odds"><div class="bar"><i style="width:${Math.max(2, x.playoff_odds * 100)}%"></i></div><span class="num">${pct(x.playoff_odds)}</span>${mv}</div></td>
-        <td class="num r">${pct(x.top_seed_odds)}</td><td class="num r">${x.proj_w}</td></tr>`;
+        <td><div class="odds"><div class="bar"><i style="width:${Math.max(2, x.playoff_odds * 100)}%"></i></div><span class="num">${op(x.playoff_odds)}</span>${mv}</div></td>
+        <td class="num r">${op(x.top_seed_odds)}</td><td class="num r">${x.proj_w}</td></tr>`;
     }).join("");
   } else {
     $("rc").innerHTML = `<tr><td colspan="8" class="empty">The race starts after week 1.</td></tr>`;
@@ -184,7 +195,7 @@ function render(a){
     const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
     const sw = m.cats.filter(c => c.swing), rest = m.cats.filter(c => !c.swing);
     return `<article class="mu${mine ? " mine" : ""}" id="mu-${i}">
-      <span class="tier t${tl}">${mine ? `Your fight <b class="dot">&bull;</b> ${tt}` : tt}</span>
+      <div class="mu-tier"><span class="tier t${tl}">${mine ? `Your fight <b class="dot">&bull;</b> ${tt}` : tt}</span>${shareBtn(CARDS?.matchups?.[`${tid(m.a)}-${tid(m.b)}`], "matchup", `${T[m.a]?.name} ${m.score[0]}-${m.score[1]} ${T[m.b]?.name}, week ${a.league?.current_week}. goongazette.com`)}</div>
       <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mg(m.a)}</small></div>
       <div class="mu-score">${m.score[0]}–${m.score[1]}${m.score[2]?`<span class="t">–${m.score[2]}</span>`:""}</div>
       <div class="mu-team b">${nm(m.b)}<small>${mg(m.b)}</small></div></div>
@@ -374,7 +385,7 @@ function gauntlet(a){
       Even: `Beats ${w} of ${n}, loses to ${l}. Perfectly mediocre.`
     }[v[0]];
     $("gt-hero").innerHTML = `<div class="award hot gt-v">
-      <div class="gt-vtop"><span class="label">${nm(me)} <small>${mg(me)}</small></span>${v ? `<span class="badge ${v[1]}">${v[0]}</span>` : ""}</div>
+      <div class="gt-vtop"><span class="label">${nm(me)} <small>${mg(me)}</small></span>${v ? `<span class="badge ${v[1]}">${v[0]}</span>` : ""}${shareBtn(CARDS?.gauntlet_week === W.week ? CARDS?.gauntlet?.[tid(me)] : null, "gauntlet", `${T[me]?.name} beats ${w} of ${n} in The Gauntlet, week ${W.week}. goongazette.com/index.html#gauntlet`)}</div>
       <h3>Beats ${w} of ${n}${my.rec[2] ? `, ties ${my.rec[2]}` : ""}</h3>
       <p>${realTxt}${realTxt ? ". " : ""}${esc(roast)}</p>
       <div class="gt-facts"><span><i>All-play rank</i><b>${ordinal(rank)} of ${n + 1}</b></span><span><i>Category record</i><b>${sc(my.cat)}</b></span>
@@ -422,8 +433,10 @@ Promise.all([
   // preview tabs read the real-league preview (built from Yahoo's pages) when there is one
   (PREVIEW ? fetch("data/preview/league.json", {cache:"no-store"}).then(r => r.ok ? r.json() : Promise.reject()).catch(() => null) : Promise.resolve(null))
     .then(p => p || fetch("data/league.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })),
-  fetch("data/tonight.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null)
+  fetch("data/tonight.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null),
+  shareCards().then(c => { if (c && !c.sample) CARDS = c; })
 ]).then(([, a, t]) => {
+    if (CARDS && CARDS.date !== a.date) CARDS = null;  // cards from another paper: don't offer them
     // the evening edition wins while it is newer than the morning paper
     if (t && t.generated_at && a.generated_at && t.generated_at >= a.generated_at && !t.sample === !a.sample){
       a.matchups = t.matchups || a.matchups;

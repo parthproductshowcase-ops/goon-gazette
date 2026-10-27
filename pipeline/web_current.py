@@ -274,6 +274,11 @@ def write(a, publish):
             top50.write(analyze.d)
         except Exception as e:  # The Fifty never blocks the paper
             print("top50 skipped:", e)
+        try:
+            from . import cards
+            cards.write(a)
+        except Exception as e:  # share cards never block the paper
+            print("cards skipped:", e)
     else:
         a["preview"] = True
         (DATA / "preview").mkdir(parents=True, exist_ok=True)

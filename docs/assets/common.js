@@ -67,6 +67,33 @@ function myTeamId(c) {
   try { const R = c.rosters && c.rosters.teams[localStorage.getItem("gg_who")]; return R ? R.team_id : null; } catch (e) { return null; }
 }
 
+// Share cards: PNGs drawn by pipeline/cards.py into docs/cards/ (docs/cards/index.json lists them).
+// On a phone the share sheet opens with the image (GroupMe is one tap away); elsewhere the image opens in a new tab.
+const SHARE_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l4 4h-3v8h-2V7H8zM5 12h2v7h10v-7h2v9H5z"/></svg>`;
+function shareCards() {
+  if (!shareCards.p) shareCards.p = getJSON("cards/index.json").catch(() => null);
+  return shareCards.p;
+}
+// a small "Share" button; kind is matchup, gauntlet or night (tracked as share/<kind>)
+function shareBtn(file, kind, text) {
+  return file ? `<button type="button" class="share-btn" data-share="${esc(file)}" data-kind="${kind}" data-text="${esc(text || "")}" aria-label="Share this card">${SHARE_SVG}<span>Share</span></button>` : "";
+}
+document.addEventListener("click", async e => {
+  const b = e.target.closest && e.target.closest(".share-btn");
+  if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const url = new URL("cards/" + b.dataset.share, document.baseURI).href;
+  gc.event("share/" + b.dataset.kind);
+  b.classList.add("busy");
+  try {
+    const r = await fetch(url, {cache: "no-store"});
+    const f = new File([await r.blob()], b.dataset.share, {type: "image/png"});
+    if (navigator.canShare && navigator.canShare({files: [f]})) { await navigator.share({files: [f], text: b.dataset.text || "goongazette.com"}); return; }
+  } catch (err) { if (err && err.name === "AbortError") { b.classList.remove("busy"); return; } }
+  finally { b.classList.remove("busy"); }
+  window.open(url, "_blank", "noopener");
+});
+
 // The current season stays in chains until the first real (non-sample) build lands.
 const LOCK_SVG = `<svg class="lock-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2h1.5A1.5 1.5 0 0 1 20 11.5v9A1.5 1.5 0 0 1 18.5 22h-13A1.5 1.5 0 0 1 4 20.5v-9A1.5 1.5 0 0 1 5.5 10zm2 0h6V8a3 3 0 0 0-6 0zm3 4a1.6 1.6 0 0 0-.8 3V19h1.6v-2a1.6 1.6 0 0 0-.8-3z"/></svg>`;
 // goongazette.com/?preview opens the current-season pages on sample data for this tab only

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=269e9803">
+<link rel="stylesheet" href="themes/fight.css?v=1fbdaf1e">
 
 <div class="wrap">
   <header class="mast">
@@ -34,7 +34,7 @@
 
   <div class="banner" id="banner" hidden></div>
 
-  <div class="sec-head"><h2>The Best Lines <b class="dot">&bull;</b> <span id="nt-n"></span></h2><p>Ranked by value across all 11 categories. Rostered players only.</p></div>
+  <div class="sec-head"><h2>The Best Lines <b class="dot">&bull;</b> <span id="nt-n"></span></h2><p>Ranked by value: z-scores across all 11 categories against every player-game this season, summed. +10 is a huge night, 0 is average. Rostered players only.</p></div>
   <div class="nt-stars" id="stars"></div>
 
   <div id="free-sec" hidden>
@@ -56,17 +56,17 @@
   <footer><span id="gen"></span><span>Values are z-scores across the 11 categories against every player-game so far. Bench and IL lines don't count toward matchups.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=a5ac5c77"></script>
+<script src="assets/common.js?v=1d02a538"></script>
 <script>
 siteNav("night");
 tonightLive().then(t => { if (t) $("live").innerHTML = `<a class="live-card" href="today.html"><span><b>${t.final ? "Tonight is final" : "Tonight is live"}: ${esc(t.headline || "see the damage so far")}</b><small>As of ${esc(t.as_of)}, update ${t.update} of ${t.updates}.</small></span><span class="go">Open Tonight</span></a>`; });
 
 const SHOW = ["5", "8", "10", "11", "12", "13", "14", "16", "17", "18", "19"];
-let N, CAT = {}, MY = null;
+let N, CAT = {}, MY = null, NCARD = null;  // NCARD: the share PNG for this night, if one exists
 
 function load(date) {
   const url = date ? `data/nights/${date}.json` : "data/night.json";
-  return getJSON(url).then(n => { N = n; render(); }).catch(() => {
+  return Promise.all([getJSON(url), shareCards()]).then(([n, c]) => { N = n; NCARD = c && c.night_date === n.date ? c.night : null; render(); }).catch(() => {
     if (!date) { location.replace("index.html#current"); return; } // no nights yet: fall back to the paper
     $("nt-date").textContent = "No games yet";
     $("nt-sub").textContent = "The first box scores land the morning after tip-off.";
@@ -105,7 +105,7 @@ function render() {
   $("nt-n").textContent = `${N.stars.length} lines`;
 
   $("stars").innerHTML = N.stars.map((s, i) => `<article class="nt-star ${tone(s.value)}">
-      <div class="nt-st-top"><span class="nt-rank">${i + 1}</span><mark>${esc(s.name)}</mark><b class="nt-val ${tone(s.value)}">${sign(s.value)}</b></div>
+      <div class="nt-st-top"><span class="nt-rank">${i + 1}</span><mark>${esc(s.name)}</mark><b class="nt-val ${tone(s.value)}">${sign(s.value)}</b>${i === 0 && NCARD ? shareBtn(NCARD, "night", `${s.name}: ${s.desc}. Last night's best line, goongazette.com`) : ""}</div>
       <div class="nt-by"><b>${nm(s.team)}</b>${s.benched ? ` <i class="nt-tag">Benched</i>` : ""}<small>${esc(s.nba)}${s.result ? ` · ${esc(s.result)}` : ""}</small></div>
       <div class="nt-chips">${s.best.map(c => chip(c, s.line[c])).join("")}</div>
       <p class="nt-desc">${esc(s.desc)}</p>

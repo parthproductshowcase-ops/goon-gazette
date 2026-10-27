@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=269e9803">
+<link rel="stylesheet" href="themes/fight.css?v=1fbdaf1e">
 <link rel="stylesheet" href="themes/wrap.css?v=2138c943">
 
 <div class="wrap">
@@ -45,10 +45,10 @@
     <p class="wx-sign" id="wx-sign"></p>
   </article>
 
-  <footer><span id="gen"></span><span>Pins show the player's line for the week, or for Saturday and Sunday where marked. Projections are Yahoo's rest-of-season numbers; playoff odds are the Gazette's Victory Road sims.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+  <footer><span id="gen"></span><span>Pins show the player's line for the week, or for Saturday and Sunday where marked. Projections are Yahoo's rest-of-season numbers; playoff odds are the Gazette's Victory Road sims (2,000 simulated seasons), rounded to the nearest 5 until week 8.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=a5ac5c77"></script>
+<script src="assets/common.js?v=1d02a538"></script>
 <script>
 siteNav("wrap");
 
@@ -206,6 +206,8 @@ const nm = tk => esc(X.teams[tk]?.name || tk);
 const mg = tk => esc(X.teams[tk]?.manager || "");
 const md = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"});
 const pct = v => v == null ? "–" : Math.round(v * 100) + "%";
+// Victory Road odds are rounded to the nearest 5 until week 8 (X.week < 8): two weeks of sims can't tell 63% from 67%
+const pctOdds = v => v == null ? "–" : X.week >= 8 ? pct(v) : v >= .975 ? ">95%" : v < .025 ? "<5%" : "~" + Math.round(v * 20) * 5 + "%";
 const score = s => `${s[0]}-${s[1]}${s[2] ? "-" + s[2] : ""}`;
 const txt = v => typeof v === "string" ? v : (v && v.text) || "";
 const pinsOf = v => (v && typeof v === "object" && v.pins) || [];
@@ -290,7 +292,7 @@ const BLOCK = {
       return `<div class="wx-row"><span class="wx-rk">${i + 1}</span>
         <div class="wx-tm"><b>${nm(o.team)}</b><small>${mg(o.team)} · ${o.w}-${o.l}${o.t ? "-" + o.t : ""} this week</small></div>
         <div class="wx-proj"><small>Yahoo projects</small><b>${ordinal(o.proj_rank)}</b></div>
-        <div class="wx-od"><span class="wx-odds ${tier}">${pct(o.odds)}</span>${arrow}</div></div>`;
+        <div class="wx-od"><span class="wx-odds ${tier}">${pctOdds(o.odds)}</span>${arrow}</div></div>`;
     }).join("")}</div>`;
   },
   // Overheard: one short line per manager, small type, no pins

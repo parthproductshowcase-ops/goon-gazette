@@ -186,6 +186,11 @@ def _main():
                 top50.write(d)
             except Exception as e:  # The Fifty never blocks the paper
                 print("top50 skipped:", e)
+            try:
+                from . import cards
+                cards.write(a)
+            except Exception as e:  # share cards never block the paper
+                print("cards skipped:", e)
     print("wrote", OUT / "league.json")
     return warnings
 

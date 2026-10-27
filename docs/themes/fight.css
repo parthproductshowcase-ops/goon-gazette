@@ -1026,3 +1026,24 @@ nav.site a.tonight:not([aria-current="page"]) i{background:var(--accent)}
 .tp-tbl td.muted{color:var(--muted)}
 .tp-foot{margin-top:10px;font-size:13px;color:var(--muted)}
 @media (max-width:560px){.tp-tbl{min-width:640px}.tp-tbl th.tp-vh{min-width:150px}}
+
+/* how it works: one-line method note under a board, plus the as-of line (outside review, Oct 27) */
+.how{margin:8px 0 0;font-size:12px;line-height:1.4;color:var(--muted)}
+.how b{color:var(--ink);font-weight:600}
+.board .how{padding:8px 14px 10px;margin:0;border-top:1px solid var(--rule)}
+.table-wrap .how{padding:8px 10px 10px}
+.list-card .how{margin-top:10px}
+.how.asof{font-weight:600;color:var(--ink)}
+.how.asof i{font-style:normal;color:var(--accent)}
+
+/* share buttons (PNG cards from pipeline/cards.py) */
+.share-btn{display:inline-flex;align-items:center;gap:5px;font:700 11px/1 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);background:var(--card);border:1px solid var(--ink);border-radius:2px;padding:6px 9px;cursor:pointer;margin-left:auto;flex:0 0 auto}
+.share-btn svg{width:13px;height:13px;fill:currentColor}
+.share-btn:hover,.share-btn:focus-visible{background:var(--ink);color:var(--card)}
+.share-btn.busy{opacity:.5;pointer-events:none}
+.mu .mu-tier{display:flex;align-items:center;gap:8px}
+.mu .mu-tier .tier{margin-bottom:0}
+.mu .mu-tier{margin-bottom:10px}
+.award.gt-v .share-btn{color:#fff;background:transparent;border-color:#fff}
+.award.gt-v .share-btn:hover{background:#fff;color:var(--ink)}
+.nt-st-top .share-btn{margin-left:6px}

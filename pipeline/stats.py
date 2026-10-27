@@ -312,8 +312,9 @@ def race(d, prev=None, sims=2000, seed=42):
             "playoff_odds": round(odds, 3), "top_seed_odds": round(top[t] / sims, 3),
             "proj_w": round(wins[t] / sims), "odds_move": round(odds - prev_odds[t], 3) if t in prev_odds else None,
         })
+    # coarse: too few weeks played to show odds to the percent; pages round to the nearest 5 until week 8
     return {"rows": rows, "playoff_teams": npo, "weeks_left": len(sched), "reg_end": d.get("reg_end"),
-            "sims": sims}
+            "sims": sims, "week": cur, "coarse": (cur or 0) < 8}
 
 
 # ---------- the gauntlet: every team against every team, every week ----------
