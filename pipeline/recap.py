@@ -153,7 +153,10 @@ def _call(system, user, max_tokens=1200):
             headers={"x-api-key": key, "anthropic-version": "2023-06-01",
                      "content-type": "application/json"},
             json={"model": os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5-5"),
-                  "max_tokens": max_tokens, "system": system,
+                  "max_tokens": max(max_tokens, 4000), "system": system,
+                  # Sonnet 5.5 thinks by default and spent the whole output budget on a thinking
+                  # block (Oct 28: stop_reason max_tokens, no text, so every page fell back to templates)
+                  "thinking": {"type": "disabled"},
                   "messages": [{"role": "user", "content": user}]},
             timeout=90,
         )
