@@ -66,22 +66,23 @@ def _agg(stats, cats, pmap):
 def _desc(p):
     """'38 PTS, 7 3PTM, 12-21 FG' style summary from a display line."""
     L, bits = p["line"], []
+    n = lambda v: int(v) if isinstance(v, float) and v.is_integer() else v  # the API hands back 41.0
     if L.get("12"):
-        bits.append(f"{L['12']} PTS")
+        bits.append(f"{n(L['12'])} PTS")
     reb = (L.get("13") or 0) + (L.get("14") or 0)
     if reb >= 8:
-        bits.append(f"{reb} REB")
+        bits.append(f"{n(reb)} REB")
     if (L.get("16") or 0) >= 6:
-        bits.append(f"{L['16']} AST")
+        bits.append(f"{n(L['16'])} AST")
     if (L.get("10") or 0) >= 3:
-        bits.append(f"{L['10']} 3PTM")
+        bits.append(f"{n(L['10'])} 3PTM")
     if (L.get("17") or 0) >= 3:
-        bits.append(f"{L['17']} STL")
+        bits.append(f"{n(L['17'])} STL")
     if (L.get("18") or 0) >= 3:
-        bits.append(f"{L['18']} BLK")
+        bits.append(f"{n(L['18'])} BLK")
     fg = L.get("5")
     if fg:
-        bits.append(f"{fg[1]}-{fg[2]} FG")
+        bits.append(f"{n(fg[1])}-{n(fg[2])} FG")
     return ", ".join(bits[:4])
 
 
