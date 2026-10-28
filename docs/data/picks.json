@@ -1,0 +1,66 @@
+{
+ "preseason-2026": {
+  "title": "Preseason Picks",
+  "locks": "2026-10-25T23:59:00-04:00",
+  "questions": [
+   {
+    "id": "champ",
+    "type": "manager",
+    "q": "Who wins the 2026-27 title?"
+   },
+   {
+    "id": "missing",
+    "type": "managers",
+    "pick": 6,
+    "max": 120,
+    "q": "Which 6 miss the playoffs?",
+    "hint": "Six of twelve get in. Pick the six who don't."
+   },
+   {
+    "id": "bust",
+    "type": "player",
+    "pick": 2,
+    "max": 90,
+    "q": "Two biggest busts",
+    "hint": "Stars who wreck somebody's draft"
+   },
+   {
+    "id": "breakout",
+    "type": "player",
+    "pick": 2,
+    "max": 90,
+    "q": "Two breakout players",
+    "hint": "Guys nobody paid for"
+   },
+   {
+    "id": "finish",
+    "type": "rank",
+    "q": "Where do you finish? Be honest. We will check."
+   },
+   {
+    "id": "talk",
+    "type": "text",
+    "q": "Say something you'll regret",
+    "hint": "140 characters. Quoted on the record.",
+    "optional": true,
+    "max": 140
+   }
+  ],
+  "picks": [
+   {
+    "who": "eshanb",
+    "at": "2026-10-22T13:20:16.828Z",
+    "reader": "",
+    "answers": {
+     "champ": "eshanb",
+     "missing": "adarsh|jason|phil|roshan|sagar|vishal",
+     "bust": "Jayson Tatum|Nikola Jokić",
+     "breakout": "Ty Jerome|Yves Missi",
+     "finish": "1",
+     "talk": "Lakers gonna win the chip. Luka gonna win me the chip. Rest of you are a bag of chips. Frito LAAAAAYS"
+    },
+    "edits": 0
+   }
+  ]
+ }
+}
