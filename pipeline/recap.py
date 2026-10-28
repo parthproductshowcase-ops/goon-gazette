@@ -181,7 +181,14 @@ def write(a, night=None):
     """Squawk Box (headline, subhead, 7 zingers) plus, when `night` (night.build's dict) is given,
     the 5 Last Night notes under "night". Falls back to templates without a key."""
     a = dict(a, _night=night) if night else a
-    return _call(VOICE, "FACTS:\n" + json.dumps(_facts(a)) + "\n\n" + SCHEMA, max_tokens=2000) or fallback(a)
+    out = _call(VOICE, "FACTS:\n" + json.dumps(_facts(a)) + "\n\n" + SCHEMA, max_tokens=2000)
+    if out and out.get("zingers"):  # one zinger per team, in the order written; drop stray keys
+        seen, zs = set(), []
+        for z in out["zingers"]:
+            if isinstance(z, dict) and z.get("team") and z.get("line") and z["team"] not in seen:
+                seen.add(z["team"]); zs.append({"team": z["team"], "line": z["line"]})
+        out["zingers"] = zs[:7]
+    return out or fallback(a)
 
 
 # ---------- past seasons ----------
