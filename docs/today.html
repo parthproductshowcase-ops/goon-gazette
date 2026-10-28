@@ -120,12 +120,14 @@ function render() {
       <b class="nt-val ${tone(t.value)}">${sign(t.value)}</b></div>`).join("");
 
   // best lines so far
-  $("stars").innerHTML = T.lines.slice(0, 8).map((s, i) => `<article class="nt-star ${tone(s.value)}">
+  // early in the night every partial line scores below zero against full-game references; wait for a real one
+  const good = T.lines.filter(s => s.value > 0);
+  $("stars").innerHTML = (good.length ? T.lines.slice(0, 8) : []).map((s, i) => `<article class="nt-star ${tone(s.value)}">
       <div class="nt-st-top"><span class="nt-rank">${i + 1}</span><mark>${esc(s.name)}</mark><b class="nt-val ${tone(s.value)}">${sign(s.value)}</b></div>
       <div class="nt-by"><b>${nm(s.team)}</b>${s.benched ? ` <i class="nt-tag">Benched</i>` : ""}<small>${esc(s.nba || "")}</small></div>
       <div class="nt-chips">${s.best.map(c => chip(c, s.line[c])).join("")}</div>
       <p class="nt-desc">${esc(s.desc)}</p>
-    </article>`).join("") || `<p class="empty">No lines in yet. Tip-off is coming.</p>`;
+    </article>`).join("") || `<p class="empty">${T.lines.length ? "Too early. Nobody has a line worth printing yet; check back after the first quarter." : "No lines in yet. Tip-off is coming."}</p>`;
 
   $("gen").textContent = `Updated ${new Date(T.generated_at).toLocaleString("en-US", {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"})}.`;
   gc.once("view/tonight");
