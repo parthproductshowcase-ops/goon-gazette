@@ -157,8 +157,15 @@ def _call(system, user, max_tokens=1200):
                   "messages": [{"role": "user", "content": user}]},
             timeout=90,
         )
+        if os.environ.get("GG_DEBUG"):
+            print("claude http", r.status_code, r.text[:300])
         r.raise_for_status()
-        text = "".join(b.get("text", "") for b in r.json()["content"])
+        body = r.json()
+        text = "".join(b.get("text", "") for b in body["content"])
+        if os.environ.get("GG_DEBUG"):
+            print("claude stop_reason", body.get("stop_reason"), "blocks", [b.get("type") for b in body["content"]],
+                  "usage", body.get("usage"))
+            print("claude text[:800]:", text[:800])
         out = json.loads(text[text.find("{"): text.rfind("}") + 1])
         assert out.get("headline") or out.get("zingers") or out.get("body") or out.get("notes")
         return out
@@ -171,7 +178,7 @@ def write(a, night=None):
     """Squawk Box (headline, subhead, 7 zingers) plus, when `night` (night.build's dict) is given,
     the 5 Last Night notes under "night". Falls back to templates without a key."""
     a = dict(a, _night=night) if night else a
-    return _call(VOICE, "FACTS:\n" + json.dumps(_facts(a)) + "\n\n" + SCHEMA) or fallback(a)
+    return _call(VOICE, "FACTS:\n" + json.dumps(_facts(a)) + "\n\n" + SCHEMA, max_tokens=2000) or fallback(a)
 
 
 # ---------- past seasons ----------
@@ -371,3 +378,16 @@ def today(t):
     if out and out.get("notes"):
         return {"headline": out.get("headline") or "Tonight, So Far", "notes": [str(n) for n in out["notes"]][:5]}
     return today_fallback(t)
+
+
+if __name__ == "__main__":
+    # Probe: run the real Squawk Box prompt against the committed paper and show what Claude sends back.
+    #   GG_DEBUG=1 ANTHROPIC_API_KEY=... python -m pipeline.recap
+    import pathlib
+    os.environ.setdefault("GG_DEBUG", "1")
+    data = pathlib.Path(__file__).resolve().parent.parent / "docs" / "data"
+    a = json.loads((data / "league.json").read_text())
+    night = json.loads((data / "night.json").read_text()) if (data / "night.json").exists() else None
+    out = write(a, night)
+    print("\nRESULT headline:", out.get("headline"))
+    print("zingers:", len(out.get("zingers", [])), "night notes:", len(out.get("night", []) or []))
