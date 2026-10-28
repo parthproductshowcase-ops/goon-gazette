@@ -156,7 +156,7 @@ def _call(system, user, max_tokens=1200):
                   "max_tokens": max(max_tokens, 4000), "system": system,
                   # Sonnet 5.5 thinks by default and spent the whole output budget on a thinking
                   # block (Oct 28: stop_reason max_tokens, no text, so every page fell back to templates)
-                  "thinking": {"type": "disabled"},
+                  "thinking": {"type": "between_tools"},
                   "messages": [{"role": "user", "content": user}]},
             timeout=90,
         )
