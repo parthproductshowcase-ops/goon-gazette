@@ -772,7 +772,7 @@
  },
  "rosters": {
   "season": "2026-27",
-  "updated": "2026-10-28T17:50-04:00",
+  "updated": "2026-10-28T18:39-04:00",
   "source": "yahoo-api",
   "teams": {
    "johnj": {
@@ -798,7 +798,6 @@
      "Jusuf Nurkić"
     ],
     "status": {
-     "Anthony Black": "Q",
      "Lauri Markkanen": "Q",
      "Jusuf Nurkić": "O"
     },
@@ -937,7 +936,6 @@
      "Chet Holmgren"
     ],
     "status": {
-     "Yaxel Lendeborg": "Q",
      "Chet Holmgren": "O"
     },
     "slots": {

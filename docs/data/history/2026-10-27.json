@@ -4413,27 +4413,46 @@
   }
  ],
  "recap": {
-  "headline": "Gopher Gold Runs the Town",
-  "subhead": "Thug Life owned last night; MONSTARS \u2604\ufe0f would like it struck from the record.",
+  "headline": "Eshan Called Himself Champion, Sits Fifth",
+  "subhead": "Thug Life posted the day's best box score, the Nova Knicks won the night, and MONSTARS found three new ways to lose it.",
   "body": [],
   "zingers": [
    {
+    "team": "Acinonyx",
+    "line": "Eshan B picked himself to finish first, then Luka dropped 41 and his team still lost the night 6-4 to LeParth James."
+   },
+   {
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given walked away from a 7-1 beating by BrookynDynasty with nobody playing and a 1-7-3 night record."
+   },
+   {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "Worst box score in the league last night. Twelve teams, and you found the bottom."
+    "line": "MONSTARS took the day's worst night, 3-5-3 against Gopher Gold, and still collected the brick award for lazy decoration."
    },
    {
     "team": "Thug Life",
-    "line": "Best night in the league, which says more about the other eleven than about you."
+    "line": "Thug Life led the league in points, OREB and DREB, and still lost the matchup to Adam Silver Dez Nuts, 7-4."
    },
    {
-    "team": "BrookynDynasty",
-    "line": "Beats most of the league on paper and still loses. Unlucky is one word for it."
+    "team": "Nova Knicks",
+    "line": "Victor Wembanyama went 14-21 with five blocks, and the Nova Knicks needed every one to bully theInfamous 6-4."
    },
    {
-    "team": "Acinonyx",
-    "line": "Luckiest schedule in the league. The record is a lie and everybody knows it."
+    "team": "theInfamous",
+    "line": "Jayson Tatum dropped 40 for theInfamous, who still went 4-6-1 on the night against a Wemby-powered Knicks team."
+   },
+   {
+    "team": "White Mambas",
+    "line": "Michael Porter Jr. hit six threes for the White Mambas, who still sit 8-2 down to Suggs to be you."
    }
+  ],
+  "night": [
+   "Luka Don\u010di\u0107 went off for Acinonyx: 41.0 PTS, 9.0 AST, 6.0 3PTM on 12-22 FG. His team still lost the night 6-4 to LeParth James.",
+   "Walker Kessler gave Thug Life 13.0 PTS and 8.0 REB on 6-9 FG, the dullest brick of a night when his team led the league in scoring.",
+   "No bench blunders surfaced last night: nobody left a monster on the pine, so every lineup mistake was committed on the roster itself.",
+   "De'Andre Hunter dropped 24.0 PTS and 5.0 3PTM on 8-13 FG, and he is still on the wire. Twelve managers looked at that and kept scrolling.",
+   "Nova Knicks won the night at 6-4-1 against theInfamous. MONSTARS \u2604\ufe0f lost the night worst at 3-5-3 against Gopher Gold."
   ]
  },
- "generated_at": "2026-10-28T17:50-04:00"
+ "generated_at": "2026-10-28T18:39-04:00"
 }
