@@ -62,6 +62,10 @@ section.panel[hidden]{display:none}
 .lead-card{background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:18px 20px 16px}
 .headline{font:800 clamp(24px,3.4vw,34px)/1.12 var(--display);text-transform:none;letter-spacing:-.02em;text-shadow:none;color:var(--ink)}
 .sub{font:400 16px/1.45 var(--body);color:var(--muted);margin-top:8px;max-width:64ch}
+.sq-lead{margin-top:10px}
+.sq-lead h2{font:800 22px/1.15 var(--body);letter-spacing:-.01em;color:var(--ink);margin:0}
+.sq-lead p{font-size:14px;line-height:1.4;color:var(--muted);margin:6px 0 0}
+@media(max-width:560px){.sq-lead h2{font-size:20px}}
 .zingers{margin-top:14px;display:grid;gap:0;border-top:1px solid var(--rule)}
 .zing{padding:12px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:4px 1fr;gap:12px}
 .zing::before{content:"";background:var(--accent);border-radius:1px}

@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=1fbdaf1e">
+<link rel="stylesheet" href="themes/fight.css?v=d30a6f47">
 
 <div class="wrap">
   <header class="mast">
@@ -29,6 +29,7 @@
     <div class="front">
       <div class="lead-card">
         <h3 class="card-h">Squawk Box</h3>
+        <div class="sq-lead" id="sq-lead" hidden><h2 id="sq-head"></h2><p id="sq-sub"></p></div>
         <div class="zingers" id="zings"></div>
       </div>
       <aside class="board" id="board" aria-label="Power rank and standings"></aside>
@@ -122,6 +123,12 @@ function render(a){
   }
 
   const r = a.recap || {};
+  if (r.headline && !/ Runs the Town$/.test(r.headline)) {  // the template fallback has no real headline
+    $("sq-head").textContent = r.headline;
+    $("sq-sub").textContent = r.subhead || "";
+    $("sq-sub").hidden = !r.subhead;
+    $("sq-lead").hidden = false;
+  }
   $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
 
   // rank board: the Gazette's power rank 1-12, with the Yahoo standing beside it
