@@ -1,0 +1,18 @@
+name: Recap probe
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - name: Run the Squawk Box prompt and surface the reply as annotations
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GG_DEBUG: "1"
+        run: |
+          python -m pipeline.recap > probe.txt 2>&1 || true
+          grep -i "claude\|RESULT\|zingers" probe.txt | cut -c1-900 | while IFS= read -r line; do echo "::notice::$line"; done
