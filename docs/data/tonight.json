@@ -1,101 +1,12 @@
 {
- "date": "2026-12-08",
- "week": 8,
- "sample": true,
- "generated_at": "2026-10-18T10:30-04:00",
+ "date": "2026-10-28",
+ "week": 2,
+ "sample": false,
+ "generated_at": "2026-10-28T19:18-04:00",
  "matchups": [
   {
-   "a": "466.l.1.t.7",
-   "b": "466.l.1.t.3",
-   "score": [
-    5,
-    5,
-    1
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.4864864864864865,
-     "b": 0.4807692307692308,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "8",
-     "a": 0.782608695652174,
-     "b": 0.7916666666666666,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "10",
-     "a": 23,
-     "b": 17,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 239,
-     "b": 205,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 18,
-     "b": 14,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "15",
-     "a": 85,
-     "b": 65,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 62,
-     "b": 65,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "17",
-     "a": 10,
-     "b": 12,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "18",
-     "a": 7,
-     "b": 8,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "19",
-     "a": 27,
-     "b": 20,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "27",
-     "a": 3,
-     "b": 3,
-     "lead": "tie",
-     "swing": true
-    }
-   ],
-   "swings": 6
-  },
-  {
-   "a": "466.l.1.t.6",
-   "b": "466.l.1.t.4",
+   "a": "478.l.39751.t.8",
+   "b": "478.l.39751.t.10",
    "score": [
     8,
     2,
@@ -104,354 +15,443 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.5128205128205128,
-     "b": 0.49019607843137253,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.8064516129032258,
-     "b": 0.8113207547169812,
+     "a": 0.477,
+     "b": 0.486,
      "lead": "b",
      "swing": true
     },
     {
-     "cat": "10",
-     "a": 14,
-     "b": 10,
+     "cat": "8",
+     "a": 0.776,
+     "b": 0.703,
      "lead": "a",
      "swing": false
     },
     {
+     "cat": "10",
+     "a": 19.0,
+     "b": 19.0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "11",
+     "a": 0.365,
+     "b": 0.352,
+     "lead": "a",
+     "swing": true
+    },
+    {
      "cat": "12",
-     "a": 304,
-     "b": 203,
+     "a": 199.0,
+     "b": 179.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "13",
-     "a": 30,
-     "b": 26,
+     "a": 31.0,
+     "b": 22.0,
      "lead": "a",
      "swing": false
     },
     {
-     "cat": "15",
-     "a": 131,
-     "b": 86,
-     "lead": "a",
-     "swing": false
+     "cat": "14",
+     "a": 63.0,
+     "b": 66.0,
+     "lead": "b",
+     "swing": true
     },
     {
      "cat": "16",
-     "a": 76,
-     "b": 53,
+     "a": 50.0,
+     "b": 37.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "17",
-     "a": 15,
-     "b": 15,
-     "lead": "tie",
-     "swing": true
+     "a": 16.0,
+     "b": 7.0,
+     "lead": "a",
+     "swing": false
     },
     {
      "cat": "18",
-     "a": 16,
-     "b": 14,
+     "a": 14.0,
+     "b": 13.0,
      "lead": "a",
      "swing": true
     },
     {
      "cat": "19",
-     "a": 39,
-     "b": 25,
+     "a": 22.0,
+     "b": 23.0,
+     "lead": "a",
+     "swing": true
+    }
+   ],
+   "swings": 6
+  },
+  {
+   "a": "478.l.39751.t.4",
+   "b": "478.l.39751.t.5",
+   "score": [
+    7,
+    4,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.569,
+     "b": 0.467,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.769,
+     "b": 0.758,
+     "lead": "a",
+     "swing": true
+    },
+    {
+     "cat": "10",
+     "a": 26.0,
+     "b": 15.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.51,
+     "b": 0.349,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 170.0,
+     "b": 174.0,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "13",
+     "a": 17.0,
+     "b": 7.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 43.0,
+     "b": 36.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 37.0,
+     "b": 40.0,
      "lead": "b",
      "swing": false
     },
     {
-     "cat": "27",
-     "a": 5,
-     "b": 3,
+     "cat": "17",
+     "a": 3.0,
+     "b": 7.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 7.0,
+     "b": 6.0,
      "lead": "a",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 16.0,
+     "b": 15.0,
+     "lead": "b",
      "swing": true
     }
    ],
    "swings": 4
   },
   {
-   "a": "466.l.1.t.9",
-   "b": "466.l.1.t.12",
+   "a": "478.l.39751.t.1",
+   "b": "478.l.39751.t.7",
    "score": [
+    8,
     3,
-    7,
-    1
+    0
    ],
    "cats": [
     {
      "cat": "5",
-     "a": 0.4673913043478261,
-     "b": 0.5101214574898786,
+     "a": 0.483,
+     "b": 0.496,
      "lead": "b",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "8",
-     "a": 0.8095238095238095,
-     "b": 0.7014925373134329,
+     "a": 0.857,
+     "b": 0.771,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 26,
-     "b": 18,
+     "a": 14.0,
+     "b": 8.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.318,
+     "b": 0.25,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 249,
-     "b": 317,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 18,
-     "b": 24,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "15",
-     "a": 65,
-     "b": 107,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 59,
-     "b": 61,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "17",
-     "a": 16,
-     "b": 16,
-     "lead": "tie",
-     "swing": true
-    },
-    {
-     "cat": "18",
-     "a": 11,
-     "b": 19,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": 27,
-     "b": 33,
+     "a": 208.0,
+     "b": 149.0,
      "lead": "a",
      "swing": false
     },
     {
-     "cat": "27",
-     "a": 1,
-     "b": 3,
+     "cat": "13",
+     "a": 14.0,
+     "b": 15.0,
      "lead": "b",
      "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 53.0,
+     "b": 32.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 41.0,
+     "b": 28.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 14.0,
+     "b": 10.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 12.0,
+     "b": 11.0,
+     "lead": "a",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 25.0,
+     "b": 17.0,
+     "lead": "b",
+     "swing": false
     }
    ],
    "swings": 3
   },
   {
-   "a": "466.l.1.t.1",
-   "b": "466.l.1.t.5",
+   "a": "478.l.39751.t.2",
+   "b": "478.l.39751.t.6",
    "score": [
-    5,
-    6,
+    3,
+    8,
     0
    ],
    "cats": [
     {
      "cat": "5",
-     "a": 0.4556213017751479,
-     "b": 0.4858757062146893,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.78,
-     "b": 0.7317073170731707,
+     "a": 0.468,
+     "b": 0.444,
      "lead": "a",
      "swing": false
     },
     {
-     "cat": "10",
-     "a": 17,
-     "b": 22,
+     "cat": "8",
+     "a": 0.771,
+     "b": 0.786,
      "lead": "b",
      "swing": false
     },
     {
+     "cat": "10",
+     "a": 21.0,
+     "b": 24.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.389,
+     "b": 0.381,
+     "lead": "a",
+     "swing": true
+    },
+    {
      "cat": "12",
-     "a": 210,
-     "b": 224,
+     "a": 152.0,
+     "b": 185.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "13",
-     "a": 18,
-     "b": 15,
-     "lead": "a",
+     "a": 7.0,
+     "b": 23.0,
+     "lead": "b",
      "swing": false
     },
     {
-     "cat": "15",
-     "a": 64,
-     "b": 81,
+     "cat": "14",
+     "a": 26.0,
+     "b": 53.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 60,
-     "b": 56,
-     "lead": "a",
+     "a": 34.0,
+     "b": 50.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "17",
-     "a": 16,
-     "b": 14,
-     "lead": "a",
+     "a": 10.0,
+     "b": 11.0,
+     "lead": "b",
      "swing": true
     },
     {
      "cat": "18",
-     "a": 5,
-     "b": 17,
+     "a": 2.0,
+     "b": 4.0,
      "lead": "b",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "19",
-     "a": 18,
-     "b": 34,
+     "a": 16.0,
+     "b": 24.0,
      "lead": "a",
      "swing": false
-    },
-    {
-     "cat": "27",
-     "a": 1,
-     "b": 3,
-     "lead": "b",
-     "swing": true
     }
    ],
-   "swings": 2
+   "swings": 3
   },
   {
-   "a": "466.l.1.t.10",
-   "b": "466.l.1.t.11",
+   "a": "478.l.39751.t.3",
+   "b": "478.l.39751.t.11",
    "score": [
-    4,
-    6,
+    7,
+    3,
     1
    ],
    "cats": [
     {
      "cat": "5",
-     "a": 0.4563758389261745,
-     "b": 0.46842105263157896,
-     "lead": "b",
+     "a": 0.473,
+     "b": 0.468,
+     "lead": "a",
      "swing": true
     },
     {
      "cat": "8",
-     "a": 0.82,
-     "b": 0.803030303030303,
+     "a": 0.783,
+     "b": 0.75,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 26,
-     "b": 18,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 203,
-     "b": 249,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 16,
-     "b": 19,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "15",
-     "a": 50,
-     "b": 91,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 68,
-     "b": 52,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 14,
-     "b": 14,
+     "a": 25.0,
+     "b": 25.0,
      "lead": "tie",
      "swing": true
     },
     {
-     "cat": "18",
-     "a": 10,
-     "b": 13,
+     "cat": "11",
+     "a": 0.291,
+     "b": 0.379,
      "lead": "b",
      "swing": false
     },
     {
-     "cat": "19",
-     "a": 24,
-     "b": 29,
+     "cat": "12",
+     "a": 251.0,
+     "b": 187.0,
      "lead": "a",
      "swing": false
     },
     {
-     "cat": "27",
-     "a": 2,
-     "b": 5,
+     "cat": "13",
+     "a": 22.0,
+     "b": 18.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 57.0,
+     "b": 49.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 56.0,
+     "b": 57.0,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "17",
+     "a": 15.0,
+     "b": 12.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 12.0,
+     "b": 9.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 36.0,
+     "b": 29.0,
      "lead": "b",
      "swing": false
     }
    ],
-   "swings": 2
+   "swings": 3
   },
   {
-   "a": "466.l.1.t.8",
-   "b": "466.l.1.t.2",
+   "a": "478.l.39751.t.9",
+   "b": "478.l.39751.t.12",
    "score": [
     4,
     7,
@@ -460,198 +460,372 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.5327868852459017,
-     "b": 0.5510204081632653,
+     "a": 0.465,
+     "b": 0.514,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "8",
-     "a": 0.7941176470588235,
-     "b": 0.7419354838709677,
-     "lead": "a",
+     "a": 0.717,
+     "b": 0.81,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 15,
-     "b": 25,
-     "lead": "b",
+     "a": 22.0,
+     "b": 14.0,
+     "lead": "a",
      "swing": false
     },
     {
-     "cat": "12",
-     "a": 172,
-     "b": 287,
+     "cat": "11",
+     "a": 0.338,
+     "b": 0.341,
      "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "12",
+     "a": 194.0,
+     "b": 141.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "13",
-     "a": 14,
-     "b": 26,
-     "lead": "b",
+     "a": 19.0,
+     "b": 10.0,
+     "lead": "a",
      "swing": false
     },
     {
-     "cat": "15",
-     "a": 90,
-     "b": 82,
+     "cat": "14",
+     "a": 58.0,
+     "b": 45.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 34,
-     "b": 51,
+     "a": 37.0,
+     "b": 38.0,
      "lead": "b",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "17",
-     "a": 8,
-     "b": 22,
+     "a": 9.0,
+     "b": 15.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "18",
-     "a": 13,
-     "b": 15,
+     "a": 4.0,
+     "b": 7.0,
      "lead": "b",
-     "swing": true
+     "swing": false
     },
     {
      "cat": "19",
-     "a": 19,
-     "b": 25,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "27",
-     "a": 6,
-     "b": 3,
-     "lead": "a",
-     "swing": false
+     "a": 25.0,
+     "b": 24.0,
+     "lead": "b",
+     "swing": true
     }
    ],
-   "swings": 1
+   "swings": 3
   }
  ],
  "lineups": {
-  "466.l.1.t.1": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.2": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.3": {
+  "478.l.39751.t.2": {
    "benched_with_game": [
-    "Rookie McBucket"
+    "Daniel Gafford",
+    "Devin Vassell"
    ],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.4": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.5": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.6": {
-   "benched_with_game": [],
    "starting_out": [
     {
-     "player": "Glass Eater",
+     "player": "Luka Don\u010di\u0107",
      "status": "O"
     }
    ],
    "empty_slots": 0,
    "schedule_known": true
   },
-  "466.l.1.t.7": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.8": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 1,
-   "schedule_known": true
-  },
-  "466.l.1.t.9": {
-   "benched_with_game": [],
-   "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": true
-  },
-  "466.l.1.t.10": {
+  "478.l.39751.t.4": {
    "benched_with_game": [
-    "Point God",
-    "Stretch Five"
+    "Mo Bamba"
    ],
    "starting_out": [],
    "empty_slots": 0,
    "schedule_known": true
   },
-  "466.l.1.t.11": {
+  "478.l.39751.t.12": {
+   "benched_with_game": [
+    "Andrew Wiggins"
+   ],
+   "starting_out": [
+    {
+     "player": "Alperen \u015eeng\u00fcn",
+     "status": "O"
+    }
+   ],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.7": {
+   "benched_with_game": [
+    "Jakob Poeltl",
+    "Terrence Shannon Jr."
+   ],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.6": {
    "benched_with_game": [],
    "starting_out": [],
    "empty_slots": 0,
    "schedule_known": true
   },
-  "466.l.1.t.12": {
+  "478.l.39751.t.5": {
    "benched_with_game": [],
    "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.8": {
+   "benched_with_game": [
+    "Max Christie",
+    "Andrew Nembhard"
+   ],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.9": {
+   "benched_with_game": [],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.10": {
+   "benched_with_game": [
+    "Bobby Portis Jr."
+   ],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.1": {
+   "benched_with_game": [],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.3": {
+   "benched_with_game": [],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
+  },
+  "478.l.39751.t.11": {
+   "benched_with_game": [],
+   "starting_out": [
+    {
+     "player": "Tyrese Haliburton",
+     "status": "O"
+    },
+    {
+     "player": "Rui Hachimura",
+     "status": "O"
+    }
+   ],
    "empty_slots": 0,
    "schedule_known": true
   }
  },
  "moves_today": [
   {
-   "team": "466.l.1.t.2",
+   "id": "478.l.39751.tr.80",
+   "ts": 1793228389,
    "kind": "add",
-   "player": "Two Way Tony"
+   "team": "478.l.39751.t.12",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.5840",
+   "player": "Kyle Kuzma"
   },
   {
-   "team": "466.l.1.t.2",
+   "id": "478.l.39751.tr.80",
+   "ts": 1793228389,
    "kind": "drop",
-   "player": "Corner Carl"
+   "team": "478.l.39751.t.12",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.10585",
+   "player": "Keaton Wagler"
+  },
+  {
+   "id": "478.l.39751.tr.79",
+   "ts": 1793217947,
+   "kind": "add",
+   "team": "478.l.39751.t.5",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6707",
+   "player": "Tari Eason"
+  },
+  {
+   "id": "478.l.39751.tr.79",
+   "ts": 1793217947,
+   "kind": "drop",
+   "team": "478.l.39751.t.5",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6047",
+   "player": "Mitchell Robinson"
+  },
+  {
+   "id": "478.l.39751.tr.78",
+   "ts": 1793210103,
+   "kind": "add",
+   "team": "478.l.39751.t.3",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6208",
+   "player": "Matisse Thybulle"
+  },
+  {
+   "id": "478.l.39751.tr.78",
+   "ts": 1793210103,
+   "kind": "drop",
+   "team": "478.l.39751.t.3",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6753",
+   "player": "Keon Ellis"
+  },
+  {
+   "id": "478.l.39751.tr.77",
+   "ts": 1793202237,
+   "kind": "add",
+   "team": "478.l.39751.t.7",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.10460",
+   "player": "Joan Beringer"
+  },
+  {
+   "id": "478.l.39751.tr.77",
+   "ts": 1793202237,
+   "kind": "drop",
+   "team": "478.l.39751.t.7",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6757",
+   "player": "Scotty Pippen Jr."
+  },
+  {
+   "id": "478.l.39751.tr.76",
+   "ts": 1793188478,
+   "kind": "add",
+   "team": "478.l.39751.t.2",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6403",
+   "player": "Devin Vassell"
+  },
+  {
+   "id": "478.l.39751.tr.75",
+   "ts": 1793188366,
+   "kind": "drop",
+   "team": "478.l.39751.t.2",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.5464",
+   "player": "Kristaps Porzi\u0146\u0123is"
+  },
+  {
+   "id": "478.l.39751.tr.74",
+   "ts": 1793175435,
+   "kind": "add",
+   "team": "478.l.39751.t.10",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6038",
+   "player": "Robert Williams III"
+  },
+  {
+   "id": "478.l.39751.tr.73",
+   "ts": 1793175152,
+   "kind": "add",
+   "team": "478.l.39751.t.10",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6694",
+   "player": "Keegan Murray"
+  },
+  {
+   "id": "478.l.39751.tr.72",
+   "ts": 1793175106,
+   "kind": "add",
+   "team": "478.l.39751.t.10",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.5009",
+   "player": "Bradley Beal"
+  },
+  {
+   "id": "478.l.39751.tr.72",
+   "ts": 1793175106,
+   "kind": "drop",
+   "team": "478.l.39751.t.10",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6581",
+   "player": "Neemias Queta"
+  },
+  {
+   "id": "478.l.39751.tr.70",
+   "ts": 1793174582,
+   "kind": "add",
+   "team": "478.l.39751.t.6",
+   "source": "waivers",
+   "faab": null,
+   "pk": "478.p.5636",
+   "player": "Kris Dunn"
+  },
+  {
+   "id": "478.l.39751.tr.70",
+   "ts": 1793174582,
+   "kind": "drop",
+   "team": "478.l.39751.t.6",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6402",
+   "player": "Jalen Smith"
   }
  ],
- "headline": "Tonight's Lineup Card",
+ "headline": "Locked In, Checked Out",
  "zingers": [
   {
-   "team": "The Load Managers",
-   "line": "Rookie McBucket is healthy, has a game tonight, and is on your bench. Explain that to the group chat."
+   "team": "Acinonyx",
+   "line": "Acinonyx started Luka Doncic with an O next to his name while Daniel Gafford and Devin Vassell watch from the bench, down 8-3."
   },
   {
-   "team": "Free Throw Tragedies",
-   "line": "Glass Eater is listed O and still in your starting lineup. That is a zero you chose."
+   "team": "Zero Fox Given",
+   "line": "Zero Fox Given locked in Tyrese Haliburton and Rui Hachimura, both listed out, then wonders why 3PTM and AST leads feel fragile."
   },
   {
-   "team": "Bench Mob Mafia",
-   "line": "1 empty starting slot tonight. You are forfeiting minutes on purpose."
+   "team": "Adam Silver Dez Nuts",
+   "line": "Adam Silver Dez Nuts hold Alperen Sengun's out tag in the lineup and bench Andrew Wiggins, who actually plays tonight."
   },
   {
-   "team": "Waiver Wire Warriors",
-   "line": "Point God is healthy, has a game tonight, and is on your bench. Explain that to the group chat."
+   "team": "Nova Knicks",
+   "line": "Nova Knicks bench Jakob Poeltl, their OREB and FG% lifeline, while down 8-3 and clinging to those two categories."
   }
  ]
 }
