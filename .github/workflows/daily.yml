@@ -1,10 +1,14 @@
 name: The Goon Gazette
 on:
   schedule:
-    # 5:00am ET, full paper. Two lines so the time holds through the clock change:
-    # 09:00 UTC is 5am during EDT, 10:00 UTC is 5am during EST. The gate below runs only the one that lands at 5am ET.
-    - cron: "0 9 * * *"
-    - cron: "0 10 * * *"
+    # 5:00am ET, full paper. GitHub runs scheduled jobs late on this repo (often by hours, worst at the
+    # top of the hour), so several firings are listed at off-hour minutes. The gate below builds on the
+    # first firing that lands at 5am ET, or on any later firing if today's paper still isn't out.
+    - cron: "7 9 * * *"     # 5:07am EDT (4:07am EST)
+    - cron: "7 10 * * *"    # 5:07am EST (6:07am EDT)
+    - cron: "7 11 * * *"    # retries if the earlier firings came late or never came
+    - cron: "7 12 * * *"
+    - cron: "7 13 * * *"
   workflow_dispatch:        # "Run workflow" button for manual rebuilds (always runs)
 permissions:
   contents: write
@@ -15,15 +19,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Only the 5am ET firing runs (the other cron is the off-season clock)
+      - uses: actions/checkout@v4
+      - name: Gate (5am ET firing, or any firing while today's paper is missing)
         id: gate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
-          M=$((10#$(TZ=America/New_York date +%H) * 60 + 10#$(TZ=America/New_York date +%M)))
-          # accept 5:00am to 5:59am ET (GitHub may start a scheduled run some minutes late)
-          if [ "$M" -ge 300 ] && [ "$M" -lt 360 ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; else echo "go=no" >> "$GITHUB_OUTPUT"; echo "Not 5am ET ($(TZ=America/New_York date +%H:%M)); skipping"; fi
-      - uses: actions/checkout@v4
-        if: steps.gate.outputs.go == 'yes'
+          NOW=$(TZ=America/New_York date +%H:%M)
+          M=$((10#${NOW%:*} * 60 + 10#${NOW#*:}))
+          YDAY=$(TZ=America/New_York date -d 'yesterday' +%F)
+          HAVE=$(python3 -c "import json;print(json.load(open('docs/data/edition.json')).get('date',''))" 2>/dev/null || echo "")
+          if [ "$HAVE" = "$YDAY" ]; then
+            echo "Paper for $YDAY is already out ($NOW ET); skipping"; echo "go=no" >> "$GITHUB_OUTPUT"
+          elif [ "$M" -ge 300 ] && [ "$M" -lt 360 ]; then
+            echo "5am ET window ($NOW); building"; echo "go=yes" >> "$GITHUB_OUTPUT"
+          elif [ "$M" -ge 300 ]; then
+            echo "Late firing ($NOW ET) and paper for $YDAY not out yet (have '$HAVE'); building"; echo "go=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "Before 5am ET ($NOW); skipping"; echo "go=no" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-python@v5
         if: steps.gate.outputs.go == 'yes'
         with: { python-version: "3.12" }
