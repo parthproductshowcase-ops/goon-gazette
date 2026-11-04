@@ -2,9 +2,9 @@
  "date": "2026-11-03",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-03T21:49-05:00",
- "as_of": "9:49pm",
- "update": 3,
+ "generated_at": "2026-11-04T00:33-05:00",
+ "as_of": "12:33am",
+ "update": 6,
  "updates": 7,
  "final": false,
  "cats": [
@@ -213,7 +213,12 @@
      "swing": false
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    6,
+    5,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.4",
@@ -302,7 +307,12 @@
      "swing": true
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    5,
+    5,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.5",
@@ -391,7 +401,12 @@
      "swing": false
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    7,
+    4,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.1",
@@ -480,7 +495,12 @@
      "swing": true
     }
    ],
-   "swings": 2
+   "swings": 2,
+   "prev_score": [
+    5,
+    5,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.3",
@@ -569,7 +589,12 @@
      "swing": false
     }
    ],
-   "swings": 2
+   "swings": 2,
+   "prev_score": [
+    5,
+    5,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.7",
@@ -658,7 +683,12 @@
      "swing": false
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    2,
+    8,
+    1
+   ]
   }
  ],
  "flips": [],
@@ -775,12 +805,12 @@
    "rank": 12
   }
  ],
- "headline": "Three Games In, Nova Knicks Are Drowning",
+ "headline": "Midnight Hour, Nobody Home, Everybody Guilty",
  "notes": [
-  "Nova Knicks trail Suggs to be you 8-2 at 9:49pm, and the only category still alive is OREB. That is a eulogy, not a matchup.",
-  "MONSTARS lead Zero Fox Given 7-4 with three of seven games final. Zero Fox ranks dead last on the night and is sleepwalking.",
-  "Gopher Gold own the best night in the league so far, and White Mambas, ranked 11th, still sit at 5-5 on ST, BLK and TO.",
-  "Adam Silver Dez Nuts are 8th on the night and still hanging at 5-6, with PTS, OREB and BLK up for grabs. Somebody get a pulse.",
-  "BrookynDynasty are 7th on the night, and LeParth James is no better. A 5-5 tie on AST and BLK is two bad lineups bleeding evenly."
+  "Nova Knicks trail Suggs to be you 8-2 with one category in play, and it's OREB. Rebounding is the only thing they have left.",
+  "MONSTARS lead Zero Fox Given 7-4 while ranking tenth for the night. Zero Fox Given is last, which is how you lose to a sleepwalker.",
+  "Gopher Gold have the best night in the league and still sit 5-5 against White Mambas. Eleventh on the night, level on the scoreboard. Somebody is wasting a good night.",
+  "Da Don Da Beard & Da Klaw lead Adam Silver Dez Nuts 6-5, and PTS, OREB and BLK can still flip it. Dez Nuts are eighth tonight, so the door is open.",
+  "theInfamous and Thug Life are stuck at 5-5 with FG% and TO deciding it. Thug Life are second tonight; theInfamous are fifth, so it's closer than it looks."
  ]
 }
