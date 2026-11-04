@@ -2499,8 +2499,8 @@
   "current": {
    "week": 3,
    "start": "2026-11-02",
-   "end": "2026-11-02",
-   "days": 1,
+   "end": "2026-11-03",
+   "days": 2,
    "top_players": [
     {
      "pk": "478.p.6014",
@@ -3076,8 +3076,8 @@
     "back": 0.0,
     "vs_line": -4.5,
     "playoff_odds": 0.999,
-    "top_seed_odds": 0.834,
-    "proj_w": 122,
+    "top_seed_odds": 0.825,
+    "proj_w": 121,
     "odds_move": 0.0
    },
    {
@@ -3089,9 +3089,9 @@
     "back": 2.5,
     "vs_line": -2.0,
     "playoff_odds": 0.959,
-    "top_seed_odds": 0.081,
-    "proj_w": 111,
-    "odds_move": -0.002
+    "top_seed_odds": 0.083,
+    "proj_w": 110,
+    "odds_move": 0.0
    },
    {
     "team": "478.l.39751.t.2",
@@ -3101,10 +3101,10 @@
     "t": 0,
     "back": 2.5,
     "vs_line": -2.0,
-    "playoff_odds": 0.538,
-    "top_seed_odds": 0.004,
+    "playoff_odds": 0.542,
+    "top_seed_odds": 0.005,
     "proj_w": 100,
-    "odds_move": 0.017
+    "odds_move": 0.004
    },
    {
     "team": "478.l.39751.t.8",
@@ -3114,10 +3114,10 @@
     "t": 1,
     "back": 3.0,
     "vs_line": -1.5,
-    "playoff_odds": 0.912,
-    "top_seed_odds": 0.053,
+    "playoff_odds": 0.917,
+    "top_seed_odds": 0.06,
     "proj_w": 108,
-    "odds_move": 0.008
+    "odds_move": 0.005
    },
    {
     "team": "478.l.39751.t.1",
@@ -3127,10 +3127,10 @@
     "t": 0,
     "back": 4.5,
     "vs_line": 0.0,
-    "playoff_odds": 0.625,
-    "top_seed_odds": 0.006,
-    "proj_w": 101,
-    "odds_move": -0.001
+    "playoff_odds": 0.622,
+    "top_seed_odds": 0.005,
+    "proj_w": 102,
+    "odds_move": -0.003
    },
    {
     "team": "478.l.39751.t.6",
@@ -3140,10 +3140,10 @@
     "t": 0,
     "back": 4.5,
     "vs_line": 0.0,
-    "playoff_odds": 0.724,
+    "playoff_odds": 0.725,
     "top_seed_odds": 0.015,
     "proj_w": 104,
-    "odds_move": -0.005
+    "odds_move": 0.001
    },
    {
     "team": "478.l.39751.t.3",
@@ -3153,10 +3153,10 @@
     "t": 0,
     "back": 6.5,
     "vs_line": 2.0,
-    "playoff_odds": 0.451,
-    "top_seed_odds": 0.001,
+    "playoff_odds": 0.453,
+    "top_seed_odds": 0.002,
     "proj_w": 99,
-    "odds_move": 0.003
+    "odds_move": 0.002
    },
    {
     "team": "478.l.39751.t.12",
@@ -3166,10 +3166,10 @@
     "t": 0,
     "back": 6.5,
     "vs_line": 2.0,
-    "playoff_odds": 0.64,
+    "playoff_odds": 0.635,
     "top_seed_odds": 0.005,
     "proj_w": 102,
-    "odds_move": -0.021
+    "odds_move": -0.005
    },
    {
     "team": "478.l.39751.t.7",
@@ -3179,10 +3179,10 @@
     "t": 0,
     "back": 7.5,
     "vs_line": 3.0,
-    "playoff_odds": 0.059,
+    "playoff_odds": 0.052,
     "top_seed_odds": 0.0,
-    "proj_w": 90,
-    "odds_move": -0.006
+    "proj_w": 89,
+    "odds_move": -0.007
    },
    {
     "team": "478.l.39751.t.5",
@@ -3192,10 +3192,10 @@
     "t": 2,
     "back": 8.5,
     "vs_line": 4.0,
-    "playoff_odds": 0.033,
+    "playoff_odds": 0.035,
     "top_seed_odds": 0.0,
     "proj_w": 86,
-    "odds_move": -0.001
+    "odds_move": 0.002
    },
    {
     "team": "478.l.39751.t.10",
@@ -3208,7 +3208,7 @@
     "playoff_odds": 0.06,
     "top_seed_odds": 0.0,
     "proj_w": 89,
-    "odds_move": 0.008
+    "odds_move": 0.0
    },
    {
     "team": "478.l.39751.t.11",
@@ -3575,7 +3575,7 @@
   "is_finished": false,
   "renew": "466_40764"
  },
- "date": "2026-11-02",
+ "date": "2026-11-03",
  "sample": false,
  "cats": [
   {
@@ -4078,7 +4078,7 @@
     "19": -1.29
    },
    "rank": 10,
-   "move": 1,
+   "move": 0,
    "best_cat": "12",
    "worst_cat": "14",
    "luck": -0.033,
@@ -4103,7 +4103,7 @@
     "19": 1.45
    },
    "rank": 11,
-   "move": -1,
+   "move": 0,
    "best_cat": "18",
    "worst_cat": "10",
    "luck": -0.021,
@@ -4780,155 +4780,25 @@
   }
  ],
  "daily": {
-  "best": "478.l.39751.t.12",
-  "worst": "478.l.39751.t.7",
+  "best": "478.l.39751.t.4",
+  "worst": "478.l.39751.t.11",
   "z": {
-   "478.l.39751.t.4": 1.21,
-   "478.l.39751.t.9": -1.02,
-   "478.l.39751.t.2": 3.12,
-   "478.l.39751.t.8": -1.68,
-   "478.l.39751.t.1": -0.6,
-   "478.l.39751.t.6": -0.04,
-   "478.l.39751.t.3": -1.2,
-   "478.l.39751.t.12": 5.31,
-   "478.l.39751.t.7": -9.57,
-   "478.l.39751.t.5": 2.4,
-   "478.l.39751.t.10": -0.09,
-   "478.l.39751.t.11": 2.15
+   "478.l.39751.t.4": 0.0,
+   "478.l.39751.t.9": 0.0,
+   "478.l.39751.t.2": 0.0,
+   "478.l.39751.t.8": 0.0,
+   "478.l.39751.t.1": 0.0,
+   "478.l.39751.t.6": 0.0,
+   "478.l.39751.t.3": 0.0,
+   "478.l.39751.t.12": 0.0,
+   "478.l.39751.t.7": 0.0,
+   "478.l.39751.t.5": 0.0,
+   "478.l.39751.t.10": 0.0,
+   "478.l.39751.t.11": 0.0
   },
-  "leaders": {
-   "5": {
-    "team": "478.l.39751.t.2",
-    "value": 0.555
-   },
-   "8": {
-    "team": "478.l.39751.t.1",
-    "value": 0.837
-   },
-   "10": {
-    "team": "478.l.39751.t.5",
-    "value": 26.0
-   },
-   "11": {
-    "team": "478.l.39751.t.2",
-    "value": 0.489
-   },
-   "12": {
-    "team": "478.l.39751.t.5",
-    "value": 194.0
-   },
-   "13": {
-    "team": "478.l.39751.t.9",
-    "value": 29.0
-   },
-   "14": {
-    "team": "478.l.39751.t.9",
-    "value": 54.0
-   },
-   "16": {
-    "team": "478.l.39751.t.11",
-    "value": 54.0
-   },
-   "17": {
-    "team": "478.l.39751.t.8",
-    "value": 19.0
-   },
-   "18": {
-    "team": "478.l.39751.t.7",
-    "value": 11.0
-   },
-   "19": {
-    "team": "478.l.39751.t.12",
-    "value": 10.0
-   }
-  }
+  "leaders": {}
  },
- "bench": [
-  {
-   "team": "478.l.39751.t.2",
-   "players": 3,
-   "wasted_pts": 46.0,
-   "top_player": "Norman Powell",
-   "top_pts": 18.0
-  },
-  {
-   "team": "478.l.39751.t.6",
-   "players": 3,
-   "wasted_pts": 43.0,
-   "top_player": "Derik Queen",
-   "top_pts": 20.0
-  },
-  {
-   "team": "478.l.39751.t.7",
-   "players": 3,
-   "wasted_pts": 31.0,
-   "top_player": "Caleb Wilson",
-   "top_pts": 24.0
-  },
-  {
-   "team": "478.l.39751.t.9",
-   "players": 3,
-   "wasted_pts": 28.0,
-   "top_player": "Tari Eason",
-   "top_pts": 13.0
-  },
-  {
-   "team": "478.l.39751.t.10",
-   "players": 3,
-   "wasted_pts": 28.0,
-   "top_player": "Neemias Queta",
-   "top_pts": 16.0
-  },
-  {
-   "team": "478.l.39751.t.8",
-   "players": 2,
-   "wasted_pts": 25.0,
-   "top_player": "Collin Murray-Boyles",
-   "top_pts": 18.0
-  },
-  {
-   "team": "478.l.39751.t.4",
-   "players": 3,
-   "wasted_pts": 22.0,
-   "top_player": "Ja'Kobe Walter",
-   "top_pts": 10.0
-  },
-  {
-   "team": "478.l.39751.t.11",
-   "players": 1,
-   "wasted_pts": 15.0,
-   "top_player": "Jarace Walker",
-   "top_pts": 15.0
-  },
-  {
-   "team": "478.l.39751.t.12",
-   "players": 3,
-   "wasted_pts": 14.0,
-   "top_player": "Keaton Wagler",
-   "top_pts": 6.0
-  },
-  {
-   "team": "478.l.39751.t.5",
-   "players": 1,
-   "wasted_pts": 11.0,
-   "top_player": "Jalen Green",
-   "top_pts": 11.0
-  },
-  {
-   "team": "478.l.39751.t.3",
-   "players": 1,
-   "wasted_pts": 10.0,
-   "top_player": "Tristan da Silva",
-   "top_pts": 10.0
-  },
-  {
-   "team": "478.l.39751.t.1",
-   "players": 1,
-   "wasted_pts": 6.0,
-   "top_player": "Moritz Wagner",
-   "top_pts": 6.0
-  }
- ],
+ "bench": [],
  "weeks_played": 2,
  "gauntlet": {
   "weeks": [
@@ -5287,7 +5157,7 @@
    {
     "week": 3,
     "live": true,
-    "through": "2026-11-02",
+    "through": "2026-11-03",
     "lines": {
      "478.l.39751.t.1": {
       "5": 0.442,
@@ -5498,46 +5368,46 @@
   }
  ],
  "recap": {
-  "headline": "Eshan's Chip Talk Meets Eighth Place",
-  "subhead": "Luka dropped 42 and Norman Powell watched it all from the pine, which is the story of Da Don Da Beard & Da Klaw.",
+  "headline": "Gopher Gold Rolls, Zero Fox Bricks",
+  "subhead": "Last night crowned Gopher Gold, buried Zero Fox Given, and handed a lazy 6-5 to a team picking itself first.",
   "body": [],
   "zingers": [
    {
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given punted PTS and ST on purpose, trails MONSTARS \u2604\ufe0f 7-4, and only owns DREB, which is a participation trophy."
+   },
+   {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Eshan B picked himself first and called everyone else a bag of chips, then sits eighth while Norman Powell's 18 points rot on his bench."
+    "line": "Eshan B picked himself first and sits 8th, clinging to a 6-5 lead because Luka Don\u010di\u0107 is the only one working."
    },
    {
     "team": "Nova Knicks",
-    "line": "Caleb Wilson dropped 24 points and 4 threes on your bench while you took a 2-7 loss to Suggs to be you."
+    "line": "Nova Knicks trail Suggs to be you 2-8 despite Victor Wembanyama, because punting 3PTM and 3PT% turned a superstar into a screensaver."
    },
    {
-    "team": "LeParth James",
-    "line": "Derik Queen put up 20 on your bench, and you are tied 5-5 with BrookynDynasty, so do the math."
+    "team": "White Mambas",
+    "line": "White Mambas lead ST, BLK and TO against Gopher Gold and still sit tied 5-5, the unluckiest roster in the league."
    },
    {
-    "team": "Suggs to be you",
-    "line": "Cooper Flagg went 3-19 from the field and you still ran Nova Knicks off the floor 8-2, which says everything about Nova."
+    "team": "Gopher Gold",
+    "line": "Gopher Gold needed Aday Mara off the wire just to drag a 5-5 tie out of White Mambas."
    },
    {
-    "team": "Adam Silver Dez Nuts",
-    "line": "Alperen Sengun went 12-15 with 10 assists and you still trail Da Don Da Beard & Da Klaw 6-5 because of that bench."
-   },
-   {
-    "team": "Zero Fox Given",
-    "line": "Giannis went for 30, 12 and 7 and MONSTARS still lead you 7-4, which is what punting points and steals gets you."
+    "team": "MONSTARS \u2604\ufe0f",
+    "line": "MONSTARS \u2604\ufe0f are 7-4 up on Zero Fox Given, with Duncan Robinson doing the work on a team that was last week's dud."
    },
    {
     "team": "Thug Life",
-    "line": "Donovan Clingan's 18 boards and 4 blocks bought you a 5-5 tie with theInfamous, so the FT% punt is leaking."
+    "line": "Thug Life punted FT% and still grinds a 5-5 tie with theInfamous, so Jeremiah Fears had better keep earning that pickup."
    }
   ],
   "night": [
-   "Luka Doncic went for 42 PTS, 13 AST, 6 3PTM on 14-24 FG for Da Don Da Beard & Da Klaw, the best line of the night.",
-   "Cooper Flagg went 17 PTS, 6 AST on 3-19 FG for Suggs to be you, the worst brick of the night.",
-   "Caleb Wilson sat on Nova Knicks' bench and put up 24 PTS, 4 3PTM, 4 STL on 9-17 FG, and Derik Queen did 20 PTS for LeParth James.",
-   "Kobe Sanders scored 26 PTS with 5 3PTM on 8-17 FG, and he is still on the wire.",
-   "Da Don Da Beard & Da Klaw had the best night, going 5-5-1 against Adam Silver Dez Nuts, while Nova Knicks had the worst at 2-7-2 against Suggs to be you."
+   "Best line unavailable: no last_night box scores were supplied. Gopher Gold earned team of the day, which says more about the competition than the roster.",
+   "Worst brick: Zero Fox Given earned brick of the day, a punt strategy that now trails MONSTARS \u2604\ufe0f 7-4 with only DREB to show.",
+   "Bench blunder: the file names no benched player, but White Mambas lead ST, BLK and TO against Gopher Gold and are still only tied 5-5.",
+   "Free agent watch: Aday Mara (Gopher Gold) and Duncan Robinson (MONSTARS \u2604\ufe0f) both swung matchups this week, so the wire is now rostered goods, not charity.",
+   "Winner Gopher Gold, loser Zero Fox Given. Suggs to be you also lead Nova Knicks 8-2, so someone's punting plan is working beautifully, and it isn't Nova's."
   ]
  },
- "generated_at": "2026-11-03T11:58-05:00"
+ "generated_at": "2026-11-04T12:04-05:00"
 }
