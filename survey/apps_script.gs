@@ -180,10 +180,16 @@ function chat_(text) {
   else if (kind === "discord") body = { content: text };
   else if (kind === "slack") body = { text };
   else return false;
+  let code = 0, note = "";
   try {
-    UrlFetchApp.fetch(url, { method: "post", contentType: "application/json", payload: JSON.stringify(body), muteHttpExceptions: true });
-    return true;
-  } catch (e) { return false; }
+    const r = UrlFetchApp.fetch(url, { method: "post", contentType: "application/json", payload: JSON.stringify(body), muteHttpExceptions: true });
+    code = r.getResponseCode();
+    if (code >= 300) note = r.getContentText().slice(0, 200);
+  } catch (e) { note = String(e).slice(0, 200); }
+  // Every post is logged, so a dead bot ID shows up as a 404 row instead of failing silently (Oct 21 to Nov 6)
+  try { tab_("chat_log", ["at", "kind", "code", "text", "error"]).appendRow([new Date(), kind, code, text.slice(0, 120), note]); } catch (e) {}
+  Logger.log("chat " + kind + " -> " + code + (note ? " " + note : ""));
+  return code >= 200 && code < 300;
 }
 
 function testChat() {
