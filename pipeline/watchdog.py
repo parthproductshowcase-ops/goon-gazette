@@ -5,6 +5,7 @@ committed files instead of trusting the runs.
 
   python -m pipeline.watchdog --check morning   # about 6:15am ET: paper out, status clean, last night's Tonight finished
   python -m pipeline.watchdog --check evening   # about 7:25pm ET: Lineup Card and the first Tonight update are in
+Both also check the live site serves the committed paper (a failed Pages deploy leaves it stale).
 
 Exit code 1 with one ::error:: annotation per problem; exit 0 with a ::notice:: when everything is fine.
 """
@@ -33,6 +34,24 @@ def games_on(date):
         return len(g) if g else None
     except Exception:
         return None
+
+
+def live_site():
+    """The repo can be right while the site is stale: on Nov 6 the 10:03am paper sat undeployed for 50 minutes
+    because GitHub Pages deploys timed out. Compare the live edition.json with the committed one."""
+    import time
+    import requests
+    mine = load("edition")
+    try:
+        r = requests.get("https://goongazette.com/data/edition.json", params={"t": int(time.time())}, timeout=20)
+        r.raise_for_status()
+        live = r.json()
+    except Exception as e:
+        return [f"goongazette.com unreachable or broken: {e}"]
+    if live.get("generated_at") != mine.get("generated_at"):
+        return [f"Site is stale: live paper generated {live.get('generated_at')}, repo has {mine.get('generated_at')}. "
+                "The Pages deploy failed or is stuck; check 'pages build and deployment' runs and re-run, or push an empty commit."]
+    return []
 
 
 def morning(now):
@@ -88,7 +107,7 @@ def evening(now):
 def main():
     check = sys.argv[sys.argv.index("--check") + 1] if "--check" in sys.argv else "morning"
     now = datetime.now(ET)
-    probs = morning(now) if check == "morning" else evening(now)
+    probs = (morning(now) if check == "morning" else evening(now)) + live_site()
     for p in probs:
         print(f"::error::{p}")
     if probs:
