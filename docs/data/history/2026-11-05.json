@@ -3073,64 +3073,76 @@
    ],
    "pickups": [
     {
-     "team": "478.l.39751.t.4",
-     "opp": "478.l.39751.t.10",
+     "team": "478.l.39751.t.1",
+     "opp": "478.l.39751.t.9",
      "score": [
-      6,
-      4,
+      5,
+      5,
       1
      ],
      "without": [
-      3,
-      7,
+      4,
+      6,
       1
      ],
      "carried": true,
-     "net": 3,
+     "net": 1,
      "swung": [
-      "13",
-      "17",
-      "18"
+      "10"
      ],
-     "share": {
-      "10": 0.14,
-      "12": 0.1,
-      "13": 0.15,
-      "14": 0.13,
-      "16": 0.08,
-      "17": 0.2,
-      "18": 0.24
-     },
      "pickups": [
       {
-       "name": "Aday Mara",
+       "name": "Klay Thompson",
        "games": 2,
-       "desc": "2 games: 19 PTS, 4 OREB, 10 DREB, 2 AST, 4 BLK, 9-13 FG",
-       "acquired": {
-        "date": "2026-10-26",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
+       "desc": "2 games: 41 PTS, 1 OREB, 4 DREB, 6 AST, 10 3PTM, 3 BLK",
+       "added": "2026-11-03",
+       "dropped": "Moritz Wagner",
+       "dropped_desc": "1 game: 6 PTS, 1 DREB, 3-4 FG"
+      }
+     ]
+    },
+    {
+     "team": "478.l.39751.t.12",
+     "opp": "478.l.39751.t.2",
+     "score": [
+      5,
+      5,
+      1
+     ],
+     "without": [
+      4,
+      6,
+      1
+     ],
+     "carried": true,
+     "net": 1,
+     "swung": [
+      "14"
+     ],
+     "pickups": [
       {
-       "name": "Collin Gillespie",
-       "games": 2,
-       "desc": "2 games: 8 PTS, 1 OREB, 4 DREB, 4 AST, 2 3PTM, 5 ST",
-       "acquired": {
-        "date": "2026-11-02",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Ja'Kobe Walter",
+       "name": "De'Anthony Melton",
        "games": 1,
-       "desc": "1 game: 8 PTS, 1 OREB, 2 AST, 1 3PTM, 3-8 FG",
-       "acquired": {
-        "date": "2026-10-27",
-        "source": "freeagents",
-        "faab": null
-       }
+       "desc": "1 game: 5 PTS, 1 OREB, 5 DREB, 2 AST, 3 ST, 1-5 FG",
+       "added": "2026-11-01",
+       "dropped": null,
+       "dropped_desc": null
+      },
+      {
+       "name": "Alex Caruso",
+       "games": 1,
+       "desc": "1 game: 7 PTS, 1 OREB, 3 DREB, 3 AST, 1 3PTM, 1-3 FG",
+       "added": "2026-11-04",
+       "dropped": "Matisse Thybulle",
+       "dropped_desc": "1 game: 3 PTS, 1 OREB, 2 AST, 1 3PTM, 2 ST, 2 BLK"
+      },
+      {
+       "name": "Oso Ighodaro",
+       "games": 1,
+       "desc": "1 game: 2 PTS, 2 OREB, 3 DREB, 1 AST, 1 BLK, 1-2 FG",
+       "added": "2026-11-04",
+       "dropped": "Keaton Wagler",
+       "dropped_desc": "1 game: 11 PTS, 2 DREB, 1 AST, 3 3PTM, 3-6 FG"
       }
      ]
     },
@@ -3143,86 +3155,58 @@
       2
      ],
      "without": [
-      3,
-      7,
+      4,
+      6,
       1
      ],
      "carried": true,
-     "net": 2,
+     "net": 1,
      "swung": [
-      "10",
       "13",
       "16"
      ],
-     "share": {
-      "10": 0.41,
-      "12": 0.3,
-      "13": 0.24,
-      "14": 0.37,
-      "16": 0.2,
-      "17": 0.24,
-      "18": 0.29
-     },
      "pickups": [
       {
        "name": "Dillon Brooks",
        "games": 3,
        "desc": "3 games: 57 PTS, 3 OREB, 12 DREB, 7 AST, 6 3PTM, 3 ST",
-       "acquired": {
-        "date": "2026-11-02",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-11-02",
+       "dropped": "Saddiq Bey",
+       "dropped_desc": "2 games: 40 PTS, 2 OREB, 7 DREB, 4 AST, 4 3PTM, 2 ST"
       },
       {
        "name": "Nolan Traore",
        "games": 2,
        "desc": "2 games: 33 PTS, 1 OREB, 6 DREB, 6 AST, 7 3PTM, 4 ST",
-       "acquired": {
-        "date": "2026-10-30",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-10-30",
+       "dropped": "Egor D\u00ebmin",
+       "dropped_desc": "0 games"
       },
       {
        "name": "Ace Bailey",
        "games": 1,
        "desc": "1 game: 5 PTS, 1 OREB, 5 DREB, 2 AST, 1 3PTM, 1 ST",
-       "acquired": {
-        "date": "2026-10-26",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Jared McCain",
-       "games": 1,
-       "desc": "1 game: 7 PTS, 1 OREB, 8 DREB, 2 AST, 3-11 FG",
-       "acquired": {
-        "date": "2026-10-20",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-10-26",
+       "dropped": "Kris Dunn",
+       "dropped_desc": "2 games: 17 PTS, 1 OREB, 8 DREB, 4 AST, 2 3PTM, 4 ST"
       },
       {
        "name": "Tristan da Silva",
        "games": 1,
        "desc": "1 game: 18 PTS, 1 OREB, 1 DREB, 1 AST, 4 3PTM, 6-15 FG",
-       "acquired": {
-        "date": "2026-11-02",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-11-02",
+       "dropped": "Jay Huff",
+       "dropped_desc": "2 games: 28 PTS, 1 OREB, 10 DREB, 3 AST, 2 3PTM, 3 BLK"
       }
      ]
     },
     {
-     "team": "478.l.39751.t.8",
-     "opp": "478.l.39751.t.7",
+     "team": "478.l.39751.t.4",
+     "opp": "478.l.39751.t.10",
      "score": [
-      5,
+      6,
       4,
-      2
+      1
      ],
      "without": [
       5,
@@ -3230,39 +3214,34 @@
       1
      ],
      "carried": true,
-     "net": 0,
+     "net": 1,
      "swung": [
-      "13"
+      "17"
      ],
-     "share": {
-      "10": 0.18,
-      "12": 0.06,
-      "13": 0.03,
-      "14": 0.07,
-      "16": 0.05,
-      "17": 0.12,
-      "18": 0.07
-     },
      "pickups": [
       {
-       "name": "Jaylin Williams",
-       "games": 1,
-       "desc": "1 game: 3 PTS, 1 OREB, 2 DREB, 2 AST, 1 3PTM, 1 ST",
-       "acquired": {
-        "date": "2026-10-30",
-        "source": "freeagents",
-        "faab": null
-       }
+       "name": "Aday Mara",
+       "games": 2,
+       "desc": "2 games: 19 PTS, 4 OREB, 10 DREB, 2 AST, 4 BLK, 9-13 FG",
+       "added": "2026-10-26",
+       "dropped": "Mark Williams",
+       "dropped_desc": "0 games"
       },
       {
-       "name": "Aaron Wiggins",
+       "name": "Collin Gillespie",
+       "games": 2,
+       "desc": "2 games: 8 PTS, 1 OREB, 4 DREB, 4 AST, 2 3PTM, 5 ST",
+       "added": "2026-11-02",
+       "dropped": "Mo Bamba",
+       "dropped_desc": "2 games: 15 PTS, 9 OREB, 9 DREB, 1 AST, 3 BLK, 6-10 FG"
+      },
+      {
+       "name": "Ja'Kobe Walter",
        "games": 1,
-       "desc": "1 game: 15 PTS, 4 DREB, 2 AST, 3 3PTM, 2 ST, 1 BLK",
-       "acquired": {
-        "date": "2026-10-31",
-        "source": "freeagents",
-        "faab": null
-       }
+       "desc": "1 game: 8 PTS, 1 OREB, 2 AST, 1 3PTM, 3-8 FG",
+       "added": "2026-10-27",
+       "dropped": "Alex Caruso",
+       "dropped_desc": "1 game: 7 PTS, 1 OREB, 3 DREB, 3 AST, 1 3PTM, 1-3 FG"
       }
      ]
     },
@@ -3285,267 +3264,22 @@
       "10",
       "12"
      ],
-     "share": {
-      "10": 0.28,
-      "12": 0.17,
-      "13": 0.11,
-      "14": 0.14,
-      "16": 0.13,
-      "17": 0.19,
-      "18": 0.11
-     },
      "pickups": [
       {
        "name": "Jalen Smith",
        "games": 2,
        "desc": "2 games: 16 PTS, 2 OREB, 7 DREB, 4 AST, 2 3PTM, 1 BLK",
-       "acquired": {
-        "date": "2026-10-30",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-10-30",
+       "dropped": "Herbert Jones",
+       "dropped_desc": "2 games: 11 PTS, 2 OREB, 7 DREB, 4 AST, 3 3PTM, 1 ST"
       },
       {
        "name": "Duncan Robinson",
        "games": 2,
        "desc": "2 games: 51 PTS, 3 DREB, 5 AST, 13 3PTM, 4 ST, 16-23 FG",
-       "acquired": {
-        "date": "2026-10-25",
-        "source": "freeagents",
-        "faab": null
-       }
-      }
-     ]
-    },
-    {
-     "team": "478.l.39751.t.1",
-     "opp": "478.l.39751.t.9",
-     "score": [
-      5,
-      5,
-      1
-     ],
-     "without": [
-      4,
-      6,
-      1
-     ],
-     "carried": false,
-     "net": 1,
-     "swung": [
-      "10",
-      "12"
-     ],
-     "share": {
-      "10": 0.27,
-      "12": 0.18,
-      "13": 0.04,
-      "14": 0.11,
-      "16": 0.11,
-      "17": 0.12,
-      "18": 0.21
-     },
-     "pickups": [
-      {
-       "name": "Christian Braun",
-       "games": 2,
-       "desc": "2 games: 25 PTS, 6 DREB, 6 AST, 2 3PTM, 3 ST, 8-12 FG",
-       "acquired": {
-        "date": "2026-10-19",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Klay Thompson",
-       "games": 2,
-       "desc": "2 games: 41 PTS, 1 OREB, 4 DREB, 6 AST, 10 3PTM, 3 BLK",
-       "acquired": {
-        "date": "2026-11-03",
-        "source": "freeagents",
-        "faab": null
-       }
-      }
-     ]
-    },
-    {
-     "team": "478.l.39751.t.9",
-     "opp": "478.l.39751.t.1",
-     "score": [
-      5,
-      5,
-      1
-     ],
-     "without": [
-      4,
-      6,
-      1
-     ],
-     "carried": false,
-     "net": 1,
-     "swung": [
-      "14"
-     ],
-     "share": {
-      "10": 0.03,
-      "12": 0.09,
-      "13": 0.09,
-      "14": 0.06,
-      "16": 0.17,
-      "17": 0.13,
-      "18": 0.0
-     },
-     "pickups": [
-      {
-       "name": "Jeremiah Fears",
-       "games": 2,
-       "desc": "2 games: 31 PTS, 4 OREB, 6 DREB, 9 AST, 1 3PTM, 2 ST",
-       "acquired": {
-        "date": "2026-10-29",
-        "source": "freeagents",
-        "faab": null
-       }
-      }
-     ]
-    },
-    {
-     "team": "478.l.39751.t.2",
-     "opp": "478.l.39751.t.12",
-     "score": [
-      5,
-      5,
-      1
-     ],
-     "without": [
-      4,
-      6,
-      1
-     ],
-     "carried": false,
-     "net": 1,
-     "swung": [
-      "12",
-      "17"
-     ],
-     "share": {
-      "10": 0.04,
-      "12": 0.16,
-      "13": 0.4,
-      "14": 0.28,
-      "16": 0.13,
-      "17": 0.27,
-      "18": 0.7
-     },
-     "pickups": [
-      {
-       "name": "Daniel Gafford",
-       "games": 2,
-       "desc": "2 games: 22 PTS, 4 OREB, 7 DREB, 1 AST, 2 ST, 3 BLK",
-       "acquired": {
-        "date": "2026-10-27",
-        "source": "waivers",
-        "faab": null
-       }
-      },
-      {
-       "name": "Devin Vassell",
-       "games": 1,
-       "desc": "1 game: 11 PTS, 2 DREB, 1 AST, 1 ST, 4-9 FG",
-       "acquired": {
-        "date": "2026-10-28",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Precious Achiuwa",
-       "games": 1,
-       "desc": "1 game: 6 PTS, 2 OREB, 8 DREB, 3 AST, 2 ST, 2 BLK",
-       "acquired": {
-        "date": "2026-10-25",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Brook Lopez",
-       "games": 1,
-       "desc": "1 game: 12 PTS, 1 OREB, 5 DREB, 1 AST, 1 3PTM, 1 ST",
-       "acquired": {
-        "date": "2026-10-22",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Karlo Matkovi\u0107",
-       "games": 1,
-       "desc": "1 game: 5 PTS, 1 OREB, 3 DREB, 2 AST, 1 3PTM, 1 BLK",
-       "acquired": {
-        "date": "2026-11-03",
-        "source": "freeagents",
-        "faab": null
-       }
-      }
-     ]
-    },
-    {
-     "team": "478.l.39751.t.12",
-     "opp": "478.l.39751.t.2",
-     "score": [
-      5,
-      5,
-      1
-     ],
-     "without": [
-      4,
-      6,
-      1
-     ],
-     "carried": false,
-     "net": 1,
-     "swung": [
-      "14"
-     ],
-     "share": {
-      "10": 0.03,
-      "12": 0.04,
-      "13": 0.12,
-      "14": 0.11,
-      "16": 0.06,
-      "17": 0.14,
-      "18": 0.06
-     },
-     "pickups": [
-      {
-       "name": "De'Anthony Melton",
-       "games": 1,
-       "desc": "1 game: 5 PTS, 1 OREB, 5 DREB, 2 AST, 3 ST, 1-5 FG",
-       "acquired": {
-        "date": "2026-11-01",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Alex Caruso",
-       "games": 1,
-       "desc": "1 game: 7 PTS, 1 OREB, 3 DREB, 3 AST, 1 3PTM, 1-3 FG",
-       "acquired": {
-        "date": "2026-11-04",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Oso Ighodaro",
-       "games": 1,
-       "desc": "1 game: 2 PTS, 2 OREB, 3 DREB, 1 AST, 1 BLK, 1-2 FG",
-       "acquired": {
-        "date": "2026-11-04",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-10-25",
+       "dropped": "Ryan Kalkbrenner",
+       "dropped_desc": "2 games: 10 PTS, 7 OREB, 3 DREB, 2 AST, 3 BLK, 2-4 FG"
       }
      ]
     },
@@ -3567,95 +3301,22 @@
      "swung": [
       "14"
      ],
-     "share": {
-      "10": 0.05,
-      "12": 0.05,
-      "13": 0.13,
-      "14": 0.08,
-      "16": 0.07,
-      "17": 0.1,
-      "18": 0.29
-     },
      "pickups": [
       {
        "name": "Neemias Queta",
        "games": 1,
        "desc": "1 game: 9 PTS, 4 OREB, 8 DREB, 3 AST, 2 BLK, 4-8 FG",
-       "acquired": {
-        "date": "2026-11-03",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-11-03",
+       "dropped": "Kelly Oubre Jr.",
+       "dropped_desc": "0 games"
       },
       {
        "name": "Jase Richardson",
        "games": 1,
        "desc": "1 game: 10 PTS, 1 OREB, 1 DREB, 3 AST, 2 3PTM, 2 ST",
-       "acquired": {
-        "date": "2026-11-05",
-        "source": "freeagents",
-        "faab": null
-       }
-      }
-     ]
-    },
-    {
-     "team": "478.l.39751.t.11",
-     "opp": "478.l.39751.t.5",
-     "score": [
-      6,
-      4,
-      1
-     ],
-     "without": [
-      5,
-      4,
-      2
-     ],
-     "carried": false,
-     "net": 1,
-     "swung": [
-      "17"
-     ],
-     "share": {
-      "10": 0.16,
-      "12": 0.1,
-      "13": 0.19,
-      "14": 0.17,
-      "16": 0.12,
-      "17": 0.16,
-      "18": 0.06
-     },
-     "pickups": [
-      {
-       "name": "Jrue Holiday",
-       "games": 2,
-       "desc": "2 games: 32 PTS, 2 OREB, 10 DREB, 10 AST, 8 3PTM, 2 ST",
-       "acquired": {
-        "date": "2026-11-02",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Zaccharie Risacher",
-       "games": 2,
-       "desc": "2 games: 2 PTS, 2 OREB, 4 DREB, 3 AST, 2 ST, 1-7 FG",
-       "acquired": {
-        "date": "2026-10-30",
-        "source": "freeagents",
-        "faab": null
-       }
-      },
-      {
-       "name": "Jarace Walker",
-       "games": 1,
-       "desc": "1 game: 2 PTS, 1 OREB, 7 DREB, 1 AST, 1-4 FG",
-       "acquired": {
-        "date": "2026-11-02",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-11-05",
+       "dropped": "Bradley Beal",
+       "dropped_desc": "0 games"
       }
      ]
     },
@@ -3669,8 +3330,8 @@
      ],
      "without": [
       3,
-      7,
-      1
+      6,
+      2
      ],
      "carried": false,
      "net": 1,
@@ -3678,35 +3339,135 @@
       "13",
       "14"
      ],
-     "share": {
-      "10": 0.43,
-      "12": 0.11,
-      "13": 0.15,
-      "14": 0.21,
-      "16": 0.15,
-      "17": 0.06,
-      "18": 0.27
-     },
      "pickups": [
-      {
-       "name": "Jonathan Kuminga",
-       "games": 2,
-       "desc": "2 games: 24 PTS, 4 OREB, 14 DREB, 8 AST, 6 3PTM, 1 ST",
-       "acquired": {
-        "date": "2026-10-17",
-        "source": "waivers",
-        "faab": null
-       }
-      },
       {
        "name": "Joan Beringer",
        "games": 1,
        "desc": "1 game: 4 PTS, 2 OREB, 5 DREB, 1 BLK, 2-3 FG",
-       "acquired": {
-        "date": "2026-10-28",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-10-28",
+       "dropped": "Scotty Pippen Jr.",
+       "dropped_desc": "0 games"
+      }
+     ]
+    },
+    {
+     "team": "478.l.39751.t.9",
+     "opp": "478.l.39751.t.1",
+     "score": [
+      5,
+      5,
+      1
+     ],
+     "without": [
+      5,
+      5,
+      1
+     ],
+     "carried": false,
+     "net": 0,
+     "swung": [],
+     "pickups": [
+      {
+       "name": "Jeremiah Fears",
+       "games": 2,
+       "desc": "2 games: 31 PTS, 4 OREB, 6 DREB, 9 AST, 1 3PTM, 2 ST",
+       "added": "2026-10-29",
+       "dropped": "Dillon Brooks",
+       "dropped_desc": "3 games: 57 PTS, 3 OREB, 12 DREB, 7 AST, 6 3PTM, 3 ST"
+      }
+     ]
+    },
+    {
+     "team": "478.l.39751.t.2",
+     "opp": "478.l.39751.t.12",
+     "score": [
+      5,
+      5,
+      1
+     ],
+     "without": [
+      5,
+      5,
+      1
+     ],
+     "carried": false,
+     "net": 0,
+     "swung": [],
+     "pickups": [
+      {
+       "name": "Daniel Gafford",
+       "games": 2,
+       "desc": "2 games: 22 PTS, 4 OREB, 7 DREB, 1 AST, 2 ST, 3 BLK",
+       "added": "2026-10-27",
+       "dropped": "Trevon Brazile",
+       "dropped_desc": "2 games: 12 PTS, 3 OREB, 9 DREB, 2 AST, 3 ST, 6-9 FG"
+      },
+      {
+       "name": "Devin Vassell",
+       "games": 1,
+       "desc": "1 game: 11 PTS, 2 DREB, 1 AST, 1 ST, 4-9 FG",
+       "added": "2026-10-28",
+       "dropped": null,
+       "dropped_desc": null
+      },
+      {
+       "name": "Precious Achiuwa",
+       "games": 1,
+       "desc": "1 game: 6 PTS, 2 OREB, 8 DREB, 3 AST, 2 ST, 2 BLK",
+       "added": "2026-10-25",
+       "dropped": null,
+       "dropped_desc": null
+      },
+      {
+       "name": "Karlo Matkovi\u0107",
+       "games": 1,
+       "desc": "1 game: 5 PTS, 1 OREB, 3 DREB, 2 AST, 1 3PTM, 1 BLK",
+       "added": "2026-11-03",
+       "dropped": "Pelle Larsson",
+       "dropped_desc": "2 games: 20 PTS, 4 DREB, 8 AST, 3 3PTM, 4 ST, 6-16 FG"
+      }
+     ]
+    },
+    {
+     "team": "478.l.39751.t.11",
+     "opp": "478.l.39751.t.5",
+     "score": [
+      6,
+      4,
+      1
+     ],
+     "without": [
+      6,
+      4,
+      1
+     ],
+     "carried": false,
+     "net": 0,
+     "swung": [],
+     "pickups": [
+      {
+       "name": "Jrue Holiday",
+       "games": 2,
+       "desc": "2 games: 32 PTS, 2 OREB, 10 DREB, 10 AST, 8 3PTM, 2 ST",
+       "added": "2026-11-02",
+       "dropped": null,
+       "dropped_desc": null
+      },
+      {
+       "name": "Zaccharie Risacher",
+       "games": 2,
+       "desc": "2 games: 2 PTS, 2 OREB, 4 DREB, 3 AST, 2 ST, 1-7 FG",
+       "added": "2026-10-30",
+       "dropped": "Jaylen Wells",
+       "dropped_desc": "2 games: 16 PTS, 5 DREB, 6 AST, 3 3PTM, 1 ST, 1 BLK"
+      },
+      {
+       "name": "Jarace Walker",
+       "games": 1,
+       "desc": "1 game: 2 PTS, 1 OREB, 7 DREB, 1 AST, 1-4 FG",
+       "added": "2026-11-02",
+       "dropped": null,
+       "dropped_desc": null
       }
      ]
     },
@@ -3719,45 +3480,67 @@
       2
      ],
      "without": [
-      4,
       5,
-      2
+      5,
+      1
      ],
      "carried": false,
-     "net": 0,
+     "net": -1,
      "swung": [
       "12",
       "16"
      ],
-     "share": {
-      "10": 0.07,
-      "12": 0.09,
-      "13": 0.14,
-      "14": 0.14,
-      "16": 0.13,
-      "17": 0.33,
-      "18": 0.27
-     },
      "pickups": [
       {
        "name": "Paul Reed",
        "games": 2,
        "desc": "2 games: 19 PTS, 3 OREB, 9 DREB, 8 AST, 3 ST, 2 BLK",
-       "acquired": {
-        "date": "2026-10-24",
-        "source": "freeagents",
-        "faab": null
-       }
+       "added": "2026-10-24",
+       "dropped": null,
+       "dropped_desc": null
       },
       {
        "name": "Kris Dunn",
        "games": 2,
        "desc": "2 games: 17 PTS, 1 OREB, 8 DREB, 4 AST, 2 3PTM, 4 ST",
-       "acquired": {
-        "date": "2026-10-28",
-        "source": "waivers",
-        "faab": null
-       }
+       "added": "2026-10-28",
+       "dropped": "Jalen Smith",
+       "dropped_desc": "2 games: 16 PTS, 2 OREB, 7 DREB, 4 AST, 2 3PTM, 1 BLK"
+      }
+     ]
+    },
+    {
+     "team": "478.l.39751.t.8",
+     "opp": "478.l.39751.t.7",
+     "score": [
+      5,
+      4,
+      2
+     ],
+     "without": [
+      7,
+      3,
+      1
+     ],
+     "carried": false,
+     "net": -2,
+     "swung": [],
+     "pickups": [
+      {
+       "name": "Jaylin Williams",
+       "games": 1,
+       "desc": "1 game: 3 PTS, 1 OREB, 2 DREB, 2 AST, 1 3PTM, 1 ST",
+       "added": "2026-10-30",
+       "dropped": "Jrue Holiday",
+       "dropped_desc": "2 games: 32 PTS, 2 OREB, 10 DREB, 10 AST, 8 3PTM, 2 ST"
+      },
+      {
+       "name": "Aaron Wiggins",
+       "games": 1,
+       "desc": "1 game: 15 PTS, 4 DREB, 2 AST, 3 3PTM, 2 ST, 1 BLK",
+       "added": "2026-10-31",
+       "dropped": "Max Christie",
+       "dropped_desc": "1 game: 2 DREB, 1 ST, 0-5 FG"
       }
      ]
     }
@@ -6813,43 +6596,47 @@
  "night_week": 3,
  "picks": null,
  "recap": {
-  "headline": "Waiver Wire Is Doing Everyone's Job",
-  "subhead": "Gopher Gold and BrookynDynasty are winning on pickups alone, and the rosters they drafted are decoration.",
+  "headline": "BrookynDynasty Pickups Are Running the League",
+  "subhead": "Dillon Brooks and Nolan Traore flipped a 4-6 loss into a 5-4 lead while Suggs to be you cut the wrong Holiday.",
   "body": [],
   "zingers": [
    {
     "team": "BrookynDynasty",
-    "line": "Strip out Dillon Brooks and Nolan Traore and BrookynDynasty loses 7-3 instead of leading 5-4; the draft room produced nothing here, the wire did everything."
-   },
-   {
-    "team": "Gopher Gold",
-    "line": "Gopher Gold leads White Mambas 6-4 only because of Aday Mara, Collin Gillespie and Ja'Kobe Walter; without them it's 3-7, so the drafted roster is dead weight."
+    "line": "Dillon Brooks (57 PTS) and Nolan Traore (7 3PTM) flipped OREB and AST, turning a 4-6 loss into a lead over LeParth James."
    },
    {
     "team": "Suggs to be you",
-    "line": "Suggs to be you cut Jrue Holiday, who has 32 points and 8 threes for Zero Fox Given since, and kept Jaylin Williams's 6 points."
+    "line": "Suggs to be you cut Jrue Holiday for Jaylin Williams: 32 PTS and 8 3PTM for Zero Fox Given since, six points for Williams."
    },
    {
     "team": "Nova Knicks",
-    "line": "Nova Knicks trail 5-4 while Naji Marshall's 10 assists and Caleb Wilson's 24 points sat on the bench; starting them ties it 5-5."
+    "line": "Nova Knicks lost by one category with Naji Marshall's 10 AST and Caleb Wilson's 24-point game on the bench, costing FG% and OREB."
    },
    {
-    "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw lead by one category with 23 starts left to Adam Silver Dez Nuts' 16; that lead is a formality."
+    "team": "theInfamous",
+    "line": "Klay Thompson's 10 threes pulled theInfamous level with Thug Life; Moritz Wagner, dropped for him, has six points and a shrug."
    },
    {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "MONSTARS \u2604\ufe0f lost last night 8-1 to Zero Fox Given and has 15 starts left to their 19, with no punting strategy rescuing this."
+    "line": "MONSTARS trail Zero Fox Given 5-6 with four fewer starts left, and last night they lost 8 categories to 1."
+   },
+   {
+    "team": "Gopher Gold",
+    "line": "Gopher Gold lost the night 2-8 to White Mambas despite Franz Wagner's 15 assists; the 6-5 lead survives on better starts left."
+   },
+   {
+    "team": "Adam Silver Dez Nuts",
+    "line": "Adam Silver Dez Nuts took the night's worst beating, 6-1-4, and enter with seven fewer starts than Da Don Da Beard & Da Klaw."
    }
   ],
   "night": [
-   "Wendell Carter Jr. went 10-12 from the field for Suggs to be you with 27 points and 13 rebounds, and Nova Knicks lost the night 7-1.",
-   "Anthony Black gave theInfamous 10 points on 3-8 shooting; Stephen Curry's 29 points and 6 threes had to carry the whole damn building.",
-   "Davion Mitchell scored 22 on 9-18 shooting for BrookynDynasty, and that was the 'brick'. The night against LeParth James still ended 4-4-3.",
-   "Ryan Conwell put up 13 points, 3 threes and 3 steals on the free agent market, and he is still on the wire. Somebody was asleep.",
-   "Zero Fox Given won the night 8-1-2 against MONSTARS \u2604\ufe0f. Adam Silver Dez Nuts went 6-1-4 and still got buried by Da Don Da Beard & Da Klaw."
+   "Wendell Carter Jr. went 10-12 FG for 27 PTS and 13 REB, and Suggs to be you took Nova Knicks 7-1-3.",
+   "Davion Mitchell scored 22 on 9-18 FG for BrookynDynasty; Franz Wagner's 15 AST and 4 STL still lost Gopher Gold the night 2-8.",
+   "Anthony Black gave theInfamous 10 PTS on 3-8 FG, yet they still beat Thug Life 7-1-3 on the night.",
+   "Ryan Conwell dropped 13 PTS, 3 3PTM and 3 STL on 4-9 FG, and he is still on the wire.",
+   "Zero Fox Given won the night 8-1-2 over MONSTARS; Adam Silver Dez Nuts lost theirs 6-1-4 to Da Don Da Beard & Da Klaw."
   ],
   "by": "claude"
  },
- "generated_at": "2026-11-06T08:20-05:00"
+ "generated_at": "2026-11-06T10:03-05:00"
 }
