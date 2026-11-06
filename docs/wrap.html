@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Racing+Sans+One&family=Barlow:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=d30a6f47">
-<link rel="stylesheet" href="themes/wrap.css?v=1b5dc6cd">
+<link rel="stylesheet" href="themes/fight.css?v=ecaa68de">
+<link rel="stylesheet" href="themes/wrap.css?v=204209f1">
 
 <div class="wrap">
   <header class="mast">
@@ -49,7 +49,7 @@
   <footer><span id="gen"></span><span>Pins show the player's line for the week, or for Saturday and Sunday where marked. Projections are Yahoo's rest-of-season numbers; playoff odds are the Gazette's Victory Road sims (2,000 simulated seasons), rounded to the nearest 5 until week 8.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=f76291ad"></script>
+<script src="assets/common.js?v=5ba1232a"></script>
 <script>
 siteNav("wrap");
 
@@ -59,7 +59,7 @@ const THEME = {
     boot: "Boot Hill", roy: "Rest of Year: The Long Ride", saloon: "Saloon Talk",
     mvp: "Sheriff", dud: "Dead Weight", luckiest: "Horse Thief", robbed: "Bushwhacked", reward: "Reward", posted: "Wanted", sub: "Dead or alive",
     status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "On the IL"}},
-  karts: {edition: "Mahesh's Car", results: "The Heats", late: "Final Lap", wanted: "The Podium",
+  karts: {edition: "Mahesh's Rickshaw Race", results: "The Heats", late: "Final Lap", wanted: "The Podium",
     boot: "Pit Lane", roy: "Rest of Year: The Championship", saloon: "Pit Radio",
     mvp: "Race Winner", dud: "Lapped", luckiest: "Slipstream Special", robbed: "Spun Out", reward: "Prize", posted: "Race Card", sub: "Official results",
     status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "In the pits"}},
@@ -115,7 +115,7 @@ const ART = {
   }
 };
 
-// Karts edition ("Mahesh's Car"): original go-kart art, no real racing games, characters, items or marks
+// Karts edition ("Mahesh's Rickshaw Race"): original auto-rickshaw race art, no real racing games, characters, items or marks
 const HELMETS = {
   cowboy: `<path d="M15 31a15 15 0 0 1 30 0v3H15z"/><path d="M17 28h26" stroke="var(--wx-accent)" stroke-width="3"/><path d="M19 30h22v4H19z" fill="var(--wx-poster)" opacity=".5"/>`,
   tall: `<path d="M15 31a15 15 0 0 1 30 0v3H15z"/><path d="M30 16v15" stroke="var(--wx-accent)" stroke-width="4"/><path d="M19 30h22v4H19z" fill="var(--wx-poster)" opacity=".5"/>`,
@@ -128,19 +128,27 @@ function helmetGoon(i) {  // the common.js goon with a racing helmet instead of 
   GOON.hats = HELMETS;
   try { return goon(i); } finally { GOON.hats = saved; }
 }
-function kart(x, y, s, i, num, rot = 0) {
-  const w = 40, h = w * 80 / 60;
-  const driver = helmetGoon(i).replace(/<svg viewBox="0 0 60 80" class="g\d">/, `<svg x="${-w / 2 - 4}" y="${14 - h}" width="${w}" height="${h}" viewBox="0 0 60 80" overflow="visible">`);
-  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">${driver}
-    <path d="M-62-20h22v6h-22z" fill="var(--wx-accent)"/><path d="M-54-14h6v22h-6z" fill="currentColor"/>
-    <path d="M18-6l8-12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-    <path d="M-44 0h78q14 0 22 8l8 6v4h-110z" fill="currentColor"/>
-    <path d="M-40 4h70" stroke="var(--wx-accent)" stroke-width="3"/>
-    <circle cx="8" cy="10" r="7" fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.5"/>
-    <text x="8" y="13.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="9" fill="currentColor">${num}</text>
-    <g fill="currentColor"><circle cx="-30" cy="20" r="12"/><circle cx="40" cy="20" r="12"/></g>
-    <g fill="var(--wx-poster)"><circle cx="-30" cy="20" r="4.5"/><circle cx="40" cy="20" r="4.5"/></g></g>`;
+function kart(x, y, s, i, num, rot = 0) {  // an auto-rickshaw: canopy roof, open sides, one front wheel, a goon at the bars
+  const w = 38, h = w * 80 / 60;
+  const driver = helmetGoon(i).replace(/<svg viewBox="0 0 60 80" class="g\d">/, `<svg x="${-w / 2 + 2}" y="${10 - h}" width="${w}" height="${h}" viewBox="0 0 60 80" overflow="visible">`);
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">
+    <path d="M-48-2V-54q0-12 12-12h58q16 0 22 18l6 46z" fill="currentColor" opacity=".18"/>
+    ${driver}
+    <path d="M-50-56q0-14 14-14h58q18 0 24 20" fill="none" stroke="var(--wx-accent)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-48-58V0" stroke="currentColor" stroke-width="5"/><path d="M40-48l8 46" stroke="currentColor" stroke-width="4"/>
+    <path d="M16-14l14-6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M-54-2h96q16 0 22 14v8h-118z" fill="currentColor"/>
+    <path d="M-50 4h84" stroke="var(--wx-hi, var(--wx-accent))" stroke-width="3"/>
+    <circle cx="-14" cy="10" r="7" fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="-14" y="13.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="9" fill="currentColor">${num}</text>
+    <g fill="currentColor"><circle cx="-34" cy="22" r="12"/><circle cx="50" cy="24" r="10"/></g>
+    <g fill="var(--wx-poster)"><circle cx="-34" cy="22" r="4.5"/><circle cx="50" cy="24" r="4"/></g></g>`;
 }
+const peel = (x, y, r = 0) => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M0 0q-14-4-18-16q10 4 16 10q-2-14 4-22q4 12 2 22q8-8 18-8q-6 12-18 14z" fill="var(--wx-hi, #ffd60a)" stroke="currentColor" stroke-width="1.5"/></g>`;
+const rocket = (x, y, r = 0) => `<g transform="translate(${x} ${y}) rotate(${r})">
+    <path d="M-40 0c-14-8-28-6-40 0c12 6 26 8 40 0z" fill="url(#wxh2)" stroke="currentColor" stroke-width="1" opacity=".7"/>
+    <path d="M-36-7h44l14 7-14 7h-44z" fill="currentColor"/><path d="M-36-7l-10-8v30l10-8z" fill="var(--wx-accent)"/>
+    <path d="M-14-7v14" stroke="var(--wx-poster)" stroke-width="3"/></g>`;
 ART.karts = {
   mvp: `<svg viewBox="0 0 200 140" aria-hidden="true">
     <g transform="rotate(-24 60 70)"><path d="M58 128V18" stroke="currentColor" stroke-width="3"/><rect x="60" y="18" width="48" height="32" fill="url(#wxck)" stroke="currentColor" stroke-width="1.5"/></g>
@@ -191,7 +199,7 @@ ART.karts = {
     const smoke = [[176, 214, 16], [150, 206, 12], [204, 222, 11], [130, 214, 9]]
       .map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#wxh2)" stroke="currentColor" stroke-width="1.1" opacity=".8"/>`).join("");
     const crowd = Array.from({length: 46}, (_, k) => `<circle cx="${14 + k * 17}" cy="${66 + (k % 3) * 9}" r="4.5"/>`).join("");
-    return `<svg viewBox="0 0 800 320" role="img" aria-label="Go-karts racing through a corner, one spinning out">
+    return `<svg viewBox="0 0 800 320" role="img" aria-label="Auto-rickshaws racing through a corner: one spins out on a banana peel, a rocket closes in on the leader">
       <rect width="800" height="320" fill="url(#wxh2)" opacity=".12"/>
       <path d="M0 46h800v58H0z" fill="currentColor" opacity=".14"/>
       <g fill="currentColor" opacity=".3">${crowd}</g>
@@ -209,7 +217,7 @@ ART.karts = {
       ${cone(250, 166, -8)}${cone(520, 162)}${cone(300, 300, 64)}
       <path d="M150 244c-30-14-50-6-62 8M170 252c-26-20-60-18-80 0" stroke="currentColor" stroke-width="4" fill="none" opacity=".45"/>
       ${smoke}
-      ${kart(176, 236, .9, 4, 7, 155)}
+      ${kart(176, 236, .9, 4, 7, 155)}${peel(222, 262, 20)}${peel(410, 292, -30)}${rocket(640, 196, -6)}
       <g stroke="currentColor" stroke-width="3" opacity=".45" stroke-linecap="round"><path d="M600 226h-90M610 240h-110M596 254h-80"/></g>
       ${kart(690, 236, 1.08, 0, 1)}
       ${kart(470, 226, 1, 1, 3)}

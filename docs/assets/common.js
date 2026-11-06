@@ -15,11 +15,11 @@ function siteNav(active) {
   if (!el) return;
   const cur = k => k === active ? ' aria-current="page"' : "";
   const link = (href, label, key, cls) => `<a href="${href}"${cls ? ` class="${cls}"` : ""}${cur(key)}>${label}</a>`;
-  let seasons = [], picks = null, who = null, tonight = null;
+  let seasons = [], picks = null, tonight = null;
   const draw = () => {
     const paper = siteNav.locked
-      ? `<a href="index.html#current" class="locked"${cur("today")} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
-      : link("index.html#current", "This Week", "today");
+      ? `<a href="index.html#current" class="locked"${cur("paper")} aria-label="Current Season, locked until tip-off">${LOCK_SVG}<span>Current Season</span><em>Unlocks tonight</em><i class="chain c1" aria-hidden="true"></i><i class="chain c2" aria-hidden="true"></i></a>`
+      : link("index.html#current", "This Week", "paper");
     // while tonight's page is live, "Tonight" takes Last Night's slot and Last Night moves under More
     const tn = tonight && !siteNav.locked ? `<a href="today.html" class="tonight"${cur("today")}>Tonight${tonight.final ? "" : "<i aria-hidden=\"true\"></i>"}</a>` : "";
     const ln = siteNav.locked ? "" : link("night.html", "Last Night", "night");
@@ -35,7 +35,7 @@ function siteNav(active) {
       link("about.html", "About", "about")
     ].join("");
     const open = el.classList.contains("open");
-    el.innerHTML = `<div class="nav1">${main}${pkOpen}${who ? `<span class="who"><i>You</i>${esc(who)}</span>` : ""}<button type="button" class="more" aria-expanded="${open}" aria-controls="nav2">More</button></div><div class="nav2" id="nav2">${more}</div>`;
+    el.innerHTML = `<div class="nav1">${main}${pkOpen}<button type="button" class="more" aria-expanded="${open}" aria-controls="nav2">More</button></div><div class="nav2" id="nav2">${more}</div>`;
     const btn = el.querySelector(".more"), setOpen = v => { el.classList.toggle("open", v); btn.setAttribute("aria-expanded", v); };
     btn.addEventListener("click", e => { e.stopPropagation(); setOpen(!el.classList.contains("open")); });
     if (!siteNav.closer) { siteNav.closer = true; document.addEventListener("click", e => { if (!el.contains(e.target)) setOpen(false); }); document.addEventListener("keydown", e => { if (e.key === "Escape") setOpen(false); }); }
@@ -47,7 +47,6 @@ function siteNav(active) {
     const open = ps.find(p => new Date(p.opens) <= now && now < new Date(p.locks));
     if (open) picks = {open: true, day: new Date(open.locks).toLocaleDateString("en-US", {weekday: "short", timeZone: "America/New_York"})};
     else if (ps.some(p => new Date(p.locks) <= now)) picks = {open: false};
-    try { const R = c.rosters && c.rosters.teams[localStorage.getItem("gg_who")]; if (R && R.team) who = R.team; } catch (e) {}
     draw();
   }).catch(() => {});
   seasonLocked().then(l => { if (l !== siteNav.locked) { siteNav.locked = l; draw(); } });

@@ -217,6 +217,102 @@ def top_plays(players, teams, pairs, cats, acq, scorer, n=5):
     return rows[:n]
 
 
+def _score(mine, theirs, cats):
+    s, res = [0, 0, 0], {}
+    for c in cats:
+        r = cmp_cat(mine[c["id"]], theirs[c["id"]], c["hb"], c["pct"])
+        res[c["id"]] = r
+        s[0 if r > 0 else 1 if r < 0 else 2] += 1
+    return s, res
+
+
+def week_desc(p, cats):
+    """'3 games: 71 PTS, 24 REB, 9 3PTM, 25-48 FG' for a week (or a stretch) of totals."""
+    L, name = _line(p, cats), {c["id"]: c["name"] for c in cats}
+    n = lambda v: int(v) if isinstance(v, float) and v.is_integer() else round(v, 1) if isinstance(v, float) else v
+    bits = []
+    for cid in ("12", "13", "14", "16", "10", "17", "18"):
+        if L.get(cid):
+            bits.append(f"{n(L[cid])} {name.get(cid, cid)}")
+    if L.get("5"):
+        bits.append(f"{L['5'][1]}-{L['5'][2]} FG")
+    g = p.get("games") or 0
+    return f"{g} game{'s' if g != 1 else ''}: " + ", ".join(bits[:6])
+
+
+def pickup_impact(players, teams, pairs, cats, acq):
+    """Per team this week: the matchup score with every waiver/free-agent pickup's stats and without all of them.
+    'carried' = the pickups are the difference between winning and not (the Squawk Box's lead story)."""
+    vals = {tk: values_of(agg, cats) for tk, agg in teams.items()}
+    rows = []
+    for a, b in pairs:
+        for me, opp in ((a, b), (b, a)):
+            if me not in teams or opp not in teams:
+                continue
+            mine = [(pk, p) for (tk, pk), p in players.items() if tk == me and p["games"] and (tk, pk) in acq]
+            if not mine:
+                continue
+            base, base_r = _score(vals[me], vals[opp], cats)
+            cf = {"cnt": dict(teams[me]["cnt"]), "frac": {k: list(v) for k, v in teams[me]["frac"].items()}}
+            for _, p in mine:
+                for k, v in p["cnt"].items():
+                    cf["cnt"][k] = cf["cnt"].get(k, 0) - v
+                for k, v in p["frac"].items():
+                    cur = cf["frac"].setdefault(k, [0.0, 0.0])
+                    cur[0] -= v[0]; cur[1] -= v[1]
+            without, res = _score(values_of(cf, cats), vals[opp], cats)
+            share = {}
+            for c in cats:  # pickups' share of the team's counting stats
+                if not c["pct"] and c["hb"] and teams[me]["cnt"].get(c["id"]):
+                    share[c["id"]] = round(sum(p["cnt"].get(c["id"], 0) for _, p in mine) / teams[me]["cnt"][c["id"]], 2)
+            rows.append({"team": me, "opp": opp, "score": base, "without": without,
+                         "carried": _outcome(base) == 2 and _outcome(without) < 2,
+                         "net": base[0] - without[0], "swung": [c["id"] for c in cats if res[c["id"]] < base_r[c["id"]]],
+                         "share": share,
+                         "pickups": [{"name": p["name"], "games": p["games"], "desc": week_desc(p, cats),
+                                      "acquired": acq[(me, pk)]} for pk, p in sorted(mine, key=lambda x: -x[1]["games"])]})
+    rows.sort(key=lambda r: (r["carried"], r["net"]), reverse=True)
+    return rows
+
+
+def drop_regrets(d, cats, pmap, scorer, start, end):
+    """Players a team dropped since `start` who have outplayed what that team added in the same move.
+    Production counts started games only (another team's lineup), from the move date through `end`."""
+    lo = datetime.fromisoformat(start).replace(tzinfo=ET).timestamp()
+    moves = {}
+    for t in sorted(d.get("transactions", []), key=lambda t: t["ts"]):
+        if t["ts"] < lo:
+            continue
+        m = moves.setdefault((t["id"], t["team"]), {"date": et_date(t["ts"]), "team": t["team"], "adds": [], "drops": []})
+        (m["adds"] if t["kind"] == "add" else m["drops"]).append(t)
+    out = []
+    for (tid, tk), m in moves.items():
+        if not m["drops"]:
+            continue
+        adds = m["adds"]  # an add/drop pair is one transaction for one team
+        dates = date_range(m["date"], end) if m["date"] <= end else []
+        if not dates:
+            continue
+        players, _ = aggregate(d["days"], dates, cats, pmap)
+        for dr in m["drops"]:
+            gone = [(otk, p) for (otk, pk), p in players.items() if pk == dr["pk"] and otk != tk and p["games"]]
+            if not gone:
+                continue
+            otk, p = max(gone, key=lambda x: x[1]["games"])
+            v = scorer.value(p)
+            got = [(a, players.get((tk, a["pk"]))) for a in adds]
+            gv = sum(scorer.value(g) for _, g in got if g and g["games"]) if got else None
+            if v <= 0 or (gv is not None and v - gv < 1.5):
+                continue
+            out.append({"team": tk, "date": m["date"], "dropped": dr["player"], "now_on": otk,
+                        "dropped_value": round(v, 1), "dropped_desc": week_desc(p, cats),
+                        "added": [{"name": a["player"], "desc": week_desc(g, cats) if g and g["games"] else "0 games started",
+                                   "value": round(scorer.value(g), 1) if g and g["games"] else 0.0} for a, g in got],
+                        "gap": round(v - (gv or 0), 1)})
+    out.sort(key=lambda r: -r["gap"])
+    return out[:5]
+
+
 def waiver_review(d, window, scorer, cats, pmap, extra_dates=(), pg_scorer=None):
     start, end = window["start"], window["end"]
     lo = datetime.fromisoformat(start).replace(tzinfo=ET).timestamp()
@@ -288,6 +384,10 @@ def weekly_report(d):
         out[key] = {"week": w["week"], "start": w["start"], "end": w["end"], "days": len(dates),
                     "top_players": top_players(players, scorer, cats, 10),
                     "top_plays": top_plays(players, teams, pairs, cats, acq, scorer)}
+        if key == "current":
+            out[key]["pickups"] = pickup_impact(players, teams, pairs, cats, acq)
+            last = (d.get("windows") or {}).get("last")
+            out[key]["regrets"] = drop_regrets(d, cats, pmap, scorer, (last or w)["start"], w["end"])
         if key == "last":
             cur = (d.get("windows") or {}).get("current")
             extra = date_range(cur["start"], cur["end"]) if cur and cur["end"] >= cur["start"] else []

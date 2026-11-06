@@ -196,6 +196,13 @@ function testChat() {
   chat_("The Goon Gazette trade wire is live. Every player that hits the block, or slinks off it, gets announced here. " + SITE);
 }
 
+// Run once from the editor: grants the "send email as you" permission and drops a test row in the contact tab,
+// exactly the path a Say Something message takes.
+function testContact() {
+  const r = contactPost_({name: "Editor test", email: "", message: "Test from the Apps Script editor. If this is in your inbox, the About form works.", reader: "parth"});
+  Logger.log(JSON.stringify(r));
+}
+
 /* ---------- Trade Block ---------- */
 
 function listings_() {

@@ -28,6 +28,7 @@ from .tonight import ESPN, ABBR
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data" / "today.json"
+LEAGUE = ROOT / "docs" / "data" / "league.json"
 NIGHTS = ROOT / "docs" / "data" / "nights"
 ET = ZoneInfo("America/New_York")
 # Runs per night: the 6:55pm Lineup Card run, then :05 and :35 from 7:05pm to 1:35am ET (cron-job.org).
@@ -137,7 +138,8 @@ def team_nights(d, rows, games):
         bench = [r for r in rows if r["team"] == tk and r["benched"]]
         out.append({"team": tk, "value": round(sum(r["value"] for r in mine), 1), "played": len(mine),
                     "with_game": len(with_game) if playing else None, "bench_value": round(sum(r["value"] for r in bench), 1),
-                    "top": [r["name"] for r in mine[:2]]})
+                    # best three so far; before tip-off, the starters who have a game
+                    "top": ([r["name"] for r in mine[:3]] + [ln["name"] for ln in with_game if ln["name"] not in {r["name"] for r in mine}])[:3]})
     out.sort(key=lambda t: -t["value"])
     for i, t in enumerate(out):
         t["rank"] = i + 1
@@ -165,6 +167,34 @@ def diff_matchups(cur, prev):
                 flips.append({"a": m["a"], "b": m["b"], "cat": r["cat"], "was": was, "now": r["lead"],
                               "a_val": r["a"], "b_val": r["b"]})
     return cur, flips
+
+
+def night_over(prev, date):
+    """True when the previous run already caught every game of this night final: nothing left to update."""
+    return bool(prev) and prev.get("date") == date and bool(prev.get("final")) and not prev.get("sample")
+
+
+def race_after_games(d, now, final, is_sample):
+    """Victory Road odds redone with tonight's scoreboard, once the night is over (every game final)
+    or on the last runs (1:30am ET on), so a late West Coast overtime can't hold it back.
+    Inputs come from the morning paper's league.json race_inputs; odds move is since that paper."""
+    late = now.hour in (2, 3, 4) or (now.hour == 1 and now.minute >= 30)
+    if not (final or late or is_sample):
+        return None
+    try:
+        a = json.loads(LEAGUE.read_text())
+    except Exception:
+        return None
+    ri = a.get("race_inputs")
+    if not ri or ri.get("week") != d["week"] or bool(a.get("sample")) != is_sample:
+        return None
+    nd = datetime.fromisoformat(d["date"])
+    mini = {"teams": ri["teams"], "cats": d["cats"], "num_playoff_teams": ri["num_playoff_teams"], "reg_end": ri.get("reg_end"),
+            "league": {"current_week": ri["week"]}, "schedule": ri["schedule"], "standings": ri["standings"],
+            "matchups": d["matchups"], "week_progress": round(min(nd.weekday() + 1, 7) / 7, 2)}
+    r = stats.race(mini, a, strength=ri["strength"])
+    r.update({"through": d["date"], "after": "final" if final else "late"})
+    return r
 
 
 def fetch_live():
@@ -221,6 +251,13 @@ def sample():
 
 def main():
     is_sample = "--sample" in sys.argv
+    if not is_sample and OUT.exists():  # once a run has seen every game final, later runs skip (no Yahoo calls)
+        try:
+            if night_over(json.loads(OUT.read_text()), game_date(datetime.now(ET))):
+                print("every game was already final at the last update; nothing to do")
+                return
+        except Exception:
+            pass
     d = sample() if is_sample else fetch_live()
     now = d["now"]
     games = d.get("games") if is_sample else nba_games(d["date"])
@@ -232,6 +269,7 @@ def main():
                 prev = p
         except Exception:
             prev = None
+
     matchups = stats.matchup_board({"matchups": d["matchups"], "cats": d["cats"]})
     matchups, flips = diff_matchups(matchups, prev)
     rows = score_lines(d)
@@ -247,7 +285,9 @@ def main():
            "final": final, "cats": d["cats"], "team_names": {tk: {"name": v["name"], "manager": v.get("manager", "")} for tk, v in d["teams"].items()},
            "matchups": matchups, "flips": flips, "games": games,
            "lines": rows[:10], "bench": [r for r in rows if r["benched"] and r["value"] > 2][:5],
-           "team_nights": tn, "headline": copy.get("headline"), "notes": copy.get("notes", [])}
+           "team_nights": tn, "headline": copy.get("headline"), "notes": copy.get("notes", []),
+           "gauntlet": stats.gauntlet_live(d["matchups"], d["cats"], d["week"], d["date"]),
+           "race": race_after_games(d, now, final, is_sample)}
     OUT.write_text(json.dumps(out, indent=1))
     print("wrote", OUT, "update", slot, "final" if final else "live", len(rows), "lines", len(flips), "flips")
 

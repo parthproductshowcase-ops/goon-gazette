@@ -312,6 +312,10 @@ def main():
         x = _load(DATA / "wraps" / f"week-{week}.json")
         if x:
             x.pop("copy", None)
+            # the copy writer's brief for this week's theme (config/wrap_themes.json briefs): follow it to the letter
+            b = ((_load(THEMES, {}) or {}).get("briefs") or {}).get(x.get("theme"))
+            if b:
+                x["theme_brief"] = b
         print(json.dumps(x, indent=1, ensure_ascii=False))
 
 

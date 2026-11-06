@@ -10,12 +10,20 @@ Voice: a ruthless beat writer who read every box score last night and is persona
 by what he saw. Snappy, sharp, humiliating. Short declarative sentences. Name names. No
 announcer shtick, no exclamation points, no hedging, no compliments unless they set up a
 knife. Praise only goes to a team that is embarrassing someone else.
-You produce exactly seven zingers, each one sentence, each aimed at a different team, about
-what LAST NIGHT did to their matchup: the player left on the bench who went off, the category
-lead they coughed up, the pickup carrying a lazy roster, the blowout they are sleepwalking
-into, the lucky stiff who should be losing. Use the player's name and the category whenever
-FACTS give you one. The test for every line: would the manager wince, and would the other
-eleven screenshot it for the group chat.
+You produce exactly seven zingers, each one sentence, each aimed at a different team. They are
+the week's STORYLINES, not a box score recap: who is actually winning and why, who is getting
+carried, who sabotaged himself. Rank the storylines and lead with the biggest:
+1. this_week_pickup_impact: a team with winning_only_because_of_pickups true is the lead story.
+   Give it the accolade (the waiver wire is the only thing working in that front office) and the
+   knife (the drafted roster is dead weight). Name the pickups and what they are winning.
+2. dropped_and_regretting_it: a manager who cut a player who is now outplaying the guy he added
+   gets brutally admonished. Name the dropped player, his line since, and who he grabbed instead.
+   If now_on_his_opponent_this_week is true, that is the cruelest line of the day.
+3. Then last night: the player left on the bench who went off, the category lead coughed up, the
+   blowout they are sleepwalking into, the lucky stiff who should be losing.
+The headline and subhead go to the single biggest storyline. Use the player's name and the
+category whenever FACTS give you one. The test for every line: would the manager wince, and would
+the other eleven screenshot it for the group chat.
 Hard rules: roast lineups, trades, pickups, laziness and luck. Never looks, families, jobs,
 health, money or identities. No slurs, PG-13. No made-up stats: use only numbers in FACTS.
 Refer to teams by team name. Nothing longer than 22 words.
@@ -31,7 +39,7 @@ SCHEMA = """Return ONLY JSON:
 {"headline": "<=7 words, Title Case, the day's verdict",
  "subhead": "one sentence",
  "body": [],
- "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words, about last night's impact on their matchup"}],  // exactly 7, seven different teams
+ "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words: the team's storyline this week (pickups carrying them, a drop they regret, last night's damage)"}],  // exactly 7, seven different teams, biggest storyline first
  "night": ["5 notes for the Last Night page, <=30 words each, from last_night only: the best line, the worst brick, the bench blunder, the free agent who balled (say whether he is still on the wire), the night's winner and loser; name the player and the team; exact numbers from last_night only"]
 }"""
 
@@ -82,6 +90,27 @@ def _facts(a):
             f[f"{k}_week_top_players"] = [[x["name"], nm(x["team"])] for x in P[k]["top_players"][:3]]
             f[f"{k}_week_waiver_plays"] = [[x["name"], nm(x["team"]), "swung the matchup" if x["flipped"] else f"worth {x['net']} cats"]
                                           for x in P[k]["top_plays"][:2]]
+    cur = P.get("current") or {}
+    if cur.get("pickups"):
+        # the week's storylines: who is winning on waiver-wire pickups, and how much of the box score they are
+        f["this_week_pickup_impact"] = [{
+            "team": nm(x["team"]), "vs": nm(x["opp"]), "score_with_pickups": x["score"][:2],
+            "score_without_any_pickups": x["without"][:2],
+            "winning_only_because_of_pickups": x["carried"],
+            "categories_the_pickups_are_winning": [cat[c] for c in x["swung"] if c in cat],
+            "pickups_share_of_team_stats": {cat[c]: f"{round(v * 100)}%" for c, v in x["share"].items() if c in cat and v >= .2},
+            "pickups": [f'{p["name"]} ({p["desc"]})' for p in x["pickups"][:4]]}
+            for x in cur["pickups"] if x["net"] > 0][:5]
+    opp_of = {}
+    for m in a.get("matchups") or []:
+        opp_of[m["a"]], opp_of[m["b"]] = m["b"], m["a"]
+    if cur.get("regrets"):
+        f["dropped_and_regretting_it"] = [{
+            "team_that_dropped_him": nm(x["team"]), "dropped": x["dropped"], "dropped_on": x["date"],
+            "since_then_for": nm(x["now_on"]), "his_line_since": x["dropped_desc"],
+            "now_on_his_opponent_this_week": opp_of.get(x["team"]) == x["now_on"],
+            "picked_up_instead": [f'{a["name"]} ({a["desc"]})' for a in x["added"]] or ["nobody"]}
+            for x in cur["regrets"]]
     if P.get("waiver") and P["waiver"].get("best_pickup"):
         f["pickup_of_the_week"] = [P["waiver"]["best_pickup"]["player"], nm(P["waiver"]["best_pickup"]["team"])]
     if a["bench"]:

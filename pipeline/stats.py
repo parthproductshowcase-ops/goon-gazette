@@ -226,7 +226,17 @@ def analyze(d, prev=None):
         "matchups": matchup_board(d), "daily": daily_report(d), "bench": bench_report(d),
         "weeks_played": len(d["weekly"]),
         "gauntlet": gauntlet(d),
+        "race_inputs": race_inputs(d) if d.get("schedule") else None,
     }
+
+
+def race_inputs(d):
+    """What race() needs besides tonight's scoreboard, so the Tonight run can redo the odds after the last game
+    without refetching the season (today.py reads this from league.json)."""
+    return {"week": d["league"]["current_week"], "teams": list(d["teams"]), "strength": _cat_strength(d),
+            "schedule": {str(w): ms for w, ms in (d.get("schedule") or {}).items()},
+            "standings": {t: {k: d["standings"][t].get(k) for k in ("w", "l", "t", "rank")} for t in d["teams"]},
+            "num_playoff_teams": d.get("num_playoff_teams") or 6, "reg_end": d.get("reg_end")}
 
 
 # ---------- race to the championship ----------
@@ -257,12 +267,12 @@ def _log5(a, b):
     return a * (1 - b) / (a * (1 - b) + b * (1 - a))
 
 
-def race(d, prev=None, sims=2000, seed=42):
+def race(d, prev=None, sims=2000, seed=42, strength=None):
     import random
     rnd = random.Random(seed)
     teams, cats = list(d["teams"]), d["cats"]
     npo = d.get("num_playoff_teams") or 6
-    strength = _cat_strength(d)
+    strength = strength or _cat_strength(d)
     cur = d["league"]["current_week"]
     sched = {int(w): ms for w, ms in (d.get("schedule") or {}).items()}
     live = {(m["a"], m["b"]): m for m in d.get("matchups", [])}
@@ -318,6 +328,12 @@ def race(d, prev=None, sims=2000, seed=42):
 
 
 # ---------- the gauntlet: every team against every team, every week ----------
+def gauntlet_live(matchups, cats, week, through):
+    """The Gauntlet's live week from a scoreboard (raw a_stats/b_stats), for the Tonight runs."""
+    g = gauntlet({"cats": cats, "weekly": {}, "league": {"current_week": week}, "matchups": matchups, "date": through})
+    return g["weeks"][-1] if g else None
+
+
 def gauntlet(d):
     """Category lines per team for each finished week plus the live one, with real opponents.
     The page (index.html#gauntlet) plays every pair off with the same rules as cmp_cat."""

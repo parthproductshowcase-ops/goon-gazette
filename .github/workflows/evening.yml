@@ -28,18 +28,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Which hourly slot is this, in Eastern time
+      - name: Which evening slot is this, in Eastern time
         id: gate
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "edition=${{ github.event.inputs.edition }}" >> "$GITHUB_OUTPUT"
+            E="${{ github.event.inputs.edition }}"
           else
             H=$((10#$(TZ=America/New_York date +%H)))
             # 7pm ET is the Lineup Card plus the first Tonight; 8pm to 1am ET are Tonight updates; anything else is the off-season clock
-            if [ "$H" -eq 19 ]; then echo "edition=card" >> "$GITHUB_OUTPUT";
-            elif [ "$H" -ge 20 ] || [ "$H" -le 1 ]; then echo "edition=today" >> "$GITHUB_OUTPUT";
-            else echo "edition=skip" >> "$GITHUB_OUTPUT"; echo "Not an ET evening hour ($(TZ=America/New_York date +%H:%M)); skipping"; fi
+            if [ "$H" -eq 19 ]; then E=card;
+            elif [ "$H" -ge 20 ] || [ "$H" -le 1 ]; then E=today;
+            else E=skip; echo "Not an ET evening hour ($(TZ=America/New_York date +%H:%M)); skipping"; fi
           fi
+          # Once a Tonight run has seen every NBA game final, the rest of the night's runs skip (no Yahoo or Claude calls).
+          if [ "$E" = "today" ] && python3 -c '
+          import json, sys
+          from datetime import datetime, timedelta
+          from zoneinfo import ZoneInfo
+          t = json.load(open("docs/data/today.json"))
+          night = (datetime.now(ZoneInfo("America/New_York")) - timedelta(hours=5)).date().isoformat()
+          sys.exit(0 if t.get("final") and not t.get("sample") and t.get("date") == night else 1)'; then
+            E=skip; echo "Every game tonight was already final at the last update; skipping"
+          fi
+          echo "edition=$E" >> "$GITHUB_OUTPUT"
           # Until the official Yahoo feed opens, edition.json says sample or yahoo-web and there is nothing to pull.
           if python3 -c 'import json,sys; e=json.load(open("docs/data/edition.json")); sys.exit(0 if (e.get("sample") or e.get("source")=="yahoo-web") else 1)'; then
             echo "feed=closed" >> "$GITHUB_OUTPUT"; echo "Yahoo feed not open yet (edition.json is sample or yahoo-web); skipping"

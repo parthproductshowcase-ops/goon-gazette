@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
-<link rel="stylesheet" href="themes/fight.css?v=d30a6f47">
+<link rel="stylesheet" href="themes/fight.css?v=ecaa68de">
 
 <div class="wrap">
   <header class="mast">
@@ -78,9 +78,9 @@
   <footer><span id="gen"></span><span>Morning edition by 6am ET. Lineup Card 6:55pm ET. Tonight updates every 30 minutes, 7pm to 1:30am ET.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=f76291ad"></script>
+<script src="assets/common.js?v=5ba1232a"></script>
 <script>
-siteNav("today");
+siteNav("paper");
 
 // section tabs: one panel at a time; the hash remembers which
 const TABS = ["current","gauntlet","race","waivers"];
@@ -151,8 +151,8 @@ function render(a){
     const n = R.playoff_teams;
     $("race-title").innerHTML = `Victory Road <b class="dot">&bull;</b> ${R.weeks_left} week${R.weeks_left === 1 ? "" : "s"} left <b class="dot">&bull;</b> ${n} playoff spots`;
     const op = R.coarse ? pct5 : pct;
-    $("race-sub").textContent = `Top ${n} make the playoffs. Games through ${thruDate(a)}.`;
-    $("race-how").innerHTML = `<b>How it works:</b> ${R.sims.toLocaleString()} simulated seasons of the remaining schedule, each category decided by the two teams' all-play strength so far. Odds move is since the last paper.${R.coarse ? ` Rounded to the nearest 5 until week 8: ${R.week ? R.week - 1 : "a few"} week${R.week === 2 ? "" : "s"} of games can't tell 63% from 67%.` : ""}`;
+    $("race-sub").textContent = `Top ${n} make the playoffs. Games through ${R.through ? thruDate({date: R.through}) : thruDate(a)}${R.through ? `, re-run after ${R.after === "final" ? "the last game" : "the late games"}` : ""}.`;
+    $("race-how").innerHTML = `<b>How it works:</b> ${R.sims.toLocaleString()} simulated seasons of the remaining schedule, each category decided by the two teams' all-play strength so far. Odds move is since the ${R.through ? "morning " : "last "}paper.${R.coarse ? ` Rounded to the nearest 5 until week 8: ${R.week ? R.week - 1 : "a few"} week${R.week === 2 ? "" : "s"} of games can't tell 63% from 67%.` : ""}`;
     const bubble = R.rows.filter(x => x.playoff_odds >= .2 && x.playoff_odds <= .8).length;
     const locks = R.rows.filter(x => x.playoff_odds >= .99).length;
     $("race-strip").innerHTML = [["Weeks left", R.weeks_left], ["Playoff spots", n], ["Near locks", locks], ["On the bubble", bubble]]
@@ -202,7 +202,7 @@ function render(a){
     const row = c => `<tr class="${c.swing?"sw":""}"><td class="v va ${c.lead==="a"?"lead":""}">${fmt(c.cat,c.a)}</td><td class="c">${esc(cat[c.cat]?.name)}</td><td class="v vb ${c.lead==="b"?"lead":""}">${fmt(c.cat,c.b)}</td></tr>`;
     const sw = m.cats.filter(c => c.swing), rest = m.cats.filter(c => !c.swing);
     return `<article class="mu${mine ? " mine" : ""}" id="mu-${i}">
-      <div class="mu-tier"><span class="tier t${tl}">${mine ? `Your fight <b class="dot">&bull;</b> ${tt}` : tt}</span>${shareBtn(CARDS?.matchups?.[`${tid(m.a)}-${tid(m.b)}`], "matchup", `${T[m.a]?.name} ${m.score[0]}-${m.score[1]} ${T[m.b]?.name}, week ${a.league?.current_week}. goongazette.com`)}</div>
+      <div class="mu-tier"><span class="tier t${tl}">${mine ? `Your fight <b class="dot">&bull;</b> ${tt}` : tt}</span>${shareBtn(a.live?.matchups ? null : CARDS?.matchups?.[`${tid(m.a)}-${tid(m.b)}`], "matchup", `${T[m.a]?.name} ${m.score[0]}-${m.score[1]} ${T[m.b]?.name}, week ${a.league?.current_week}. goongazette.com`)}</div>
       <div class="mu-top"><div class="mu-team">${nm(m.a)}<small>${mg(m.a)}</small></div>
       <div class="mu-score">${m.score[0]}–${m.score[1]}${m.score[2]?`<span class="t">–${m.score[2]}</span>`:""}</div>
       <div class="mu-team b">${nm(m.b)}<small>${mg(m.b)}</small></div></div>
@@ -307,7 +307,7 @@ function render(a){
     $("ww-awards").innerHTML = `<p class="empty">Waiver review starts after week 1.</p>`;
   }
 
-  $("cw-title").innerHTML = `The Fights <b class="dot">&bull;</b> Week ${a.league?.current_week ?? ""}`;
+  $("cw-title").innerHTML = `The Fights <b class="dot">&bull;</b> Week ${a.league?.current_week ?? ""}${a.live?.matchups ? ` <b class="dot">&bull;</b> <span class="live-tag">${a.live.final ? "Tonight final" : "Live " + esc(a.live.as_of)}</span>` : ""}`;
 
   gauntlet(a);
 
@@ -369,7 +369,7 @@ function gauntlet(a){
     const thru = W.through ? new Date(W.through + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"}) : "";
 
     $("gt-title").innerHTML = `The Gauntlet <b class="dot">&bull;</b> Week ${W.week}${W.live ? ` <b class="dot">&bull;</b> Live` : ""}`;
-    $("gt-sub").textContent = W.live ? `Your schedule is luck. This is every team against every team, category by category, with games through ${thru}. Updates every morning.`
+    $("gt-sub").textContent = W.live ? `Your schedule is luck. This is every team against every team, category by category, with games through ${thru}${W.tonight ? " (live)" : ""}. Updates every 30 minutes on game nights.`
       : `Week ${W.week} is final. Every team against every team, category by category.`;
     $("gt-weeks").innerHTML = G.weeks.length > 1 ? G.weeks.map((w, i) => `<button class="chip${i === S.w ? " on" : ""}" data-w="${i}">Week ${w.week}${w.live ? " (live)" : ""}</button>`).reverse().join("") : "";
     $("gt-teams").innerHTML = order.map(t => `<button class="chip${t === me ? " on" : ""}" data-t="${t}">${mg(t) || nm(t)}</button>`).join("");
@@ -387,7 +387,7 @@ function gauntlet(a){
       Even: `Beats ${w} of ${n}, loses to ${l}. Perfectly mediocre.`
     }[v[0]];
     $("gt-hero").innerHTML = `<div class="award hot gt-v">
-      <div class="gt-vtop"><span class="label">${nm(me)} <small>${mg(me)}</small></span>${v ? `<span class="badge ${v[1]}">${v[0]}</span>` : ""}${shareBtn(CARDS?.gauntlet_week === W.week ? CARDS?.gauntlet?.[tid(me)] : null, "gauntlet", `${T[me]?.name} beats ${w} of ${n} in The Gauntlet, week ${W.week}. goongazette.com/index.html#gauntlet`)}</div>
+      <div class="gt-vtop"><span class="label">${nm(me)} <small>${mg(me)}</small></span>${v ? `<span class="badge ${v[1]}">${v[0]}</span>` : ""}${shareBtn(!W.tonight && CARDS?.gauntlet_week === W.week ? CARDS?.gauntlet?.[tid(me)] : null, "gauntlet", `${T[me]?.name} beats ${w} of ${n} in The Gauntlet, week ${W.week}. goongazette.com/index.html#gauntlet`)}</div>
       <h3>Beats ${w} of ${n}${my.rec[2] ? `, ties ${my.rec[2]}` : ""}</h3>
       <p>${realTxt}${realTxt ? ". " : ""}${esc(roast)}</p>
       <div class="gt-facts"><span><i>All-play rank</i><b>${ordinal(rank)} of ${n + 1}</b></span><span><i>Category record</i><b>${sc(my.cat)}</b></span>
@@ -436,17 +436,35 @@ Promise.all([
   (PREVIEW ? fetch("data/preview/league.json", {cache:"no-store"}).then(r => r.ok ? r.json() : Promise.reject()).catch(() => null) : Promise.resolve(null))
     .then(p => p || fetch("data/league.json", {cache:"no-store"}).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })),
   fetch("data/tonight.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null),
+  fetch("data/today.json", {cache:"no-store"}).then(r => r.ok ? r.json() : null).catch(() => null),
   shareCards().then(c => { if (c && !c.sample) CARDS = c; })
-]).then(([, a, t]) => {
+]).then(([, a, t, td]) => {
     if (CARDS && CARDS.date !== a.date) CARDS = null;  // cards from another paper: don't offer them
     // the evening edition wins while it is newer than the morning paper
     if (t && t.generated_at && a.generated_at && t.generated_at >= a.generated_at && !t.sample === !a.sample){
       a.matchups = t.matchups || a.matchups;
       a.tonight = t;
     }
+    liveOverlay(a, td);
     render(a);
   })
   .catch(e => { $("zings").innerHTML = `<div class="zing"><b>Presses jammed</b><span>Couldn't load today's data. The morning build may have failed; check the GitHub Actions log.</span></div>`; console.error(e); });
+
+// Tonight's runs (every 30 minutes on game nights) carry the live scoreboard, the Gauntlet's live week and,
+// once every game is final, re-run playoff odds. Until the 5am paper lands they replace the morning numbers.
+function liveOverlay(a, td){
+  if (!td || td.sample || a.sample || !td.date || !a.date || td.date <= a.date) return;
+  if (td.week !== a.league?.current_week || !(td.generated_at >= (a.generated_at || ""))) return;
+  a.live = {as_of: td.as_of, final: !!td.final, date: td.date};
+  if (td.matchups?.length) { a.matchups = td.matchups; a.live.matchups = true; }
+  const W = td.gauntlet;
+  if (W && a.gauntlet?.weeks) {
+    W.tonight = true;
+    const i = a.gauntlet.weeks.findIndex(w => w.week === W.week);
+    if (i >= 0) a.gauntlet.weeks[i] = W; else a.gauntlet.weeks.push(W);
+  } else if (W) a.gauntlet = {weeks: [W]};
+  if (td.race?.rows?.length) { a.race = td.race; a.live.race = true; }
+}
 
 // Season in chains: blur the sample paper behind a lock card until real data lands.
 function lockdown() {

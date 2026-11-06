@@ -179,7 +179,7 @@
 :root[data-theme="dark"] .wx[data-wt="western"] .wx-stone{background:#3d3833;border-color:#8a8076;color:#f1e2c2}
 :root[data-theme="dark"] .wx .wx-odds.good{color:#10200a}
 
-/* ---------- skin: karts ("Mahesh's Car") ---------- */
+/* ---------- skin: karts ("Mahesh's Rickshaw Race") ---------- */
 .wx[data-wt="karts"]{--wx-paper:#eeede8;--wx-card:#fafaf7;--wx-poster:#ffffff;--wx-ink:#16181c;--wx-muted:#555b63;--wx-rule:#16181c;--wx-accent:#d4231a;
   --wx-hi:#ffd60a;--wx-good:#1d8a3a;--wx-bad:#d4231a;--wx-face:#f3dcb8;--wx-display:"Racing Sans One","Arial Black",Impact,sans-serif;--wx-serif:"Barlow",Inter,system-ui,sans-serif;
   --rule:#cfcdc6;border:2px solid #16181c;padding-top:30px;padding-bottom:30px}
