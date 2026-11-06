@@ -13,9 +13,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "dry-run prints the message; post sends it (held until 8am ET, once per night); wrap sends only the Sunday Paper message now"
+        description: "dry-run prints the message; post sends it (held until 8am ET, once per night); wrap sends only the Sunday Paper message now; note sends only today's config/announce_note.json text now"
         type: choice
-        options: [dry-run, post, wrap]
+        options: [dry-run, post, wrap, note]
         default: dry-run
 
 concurrency:
@@ -93,3 +93,9 @@ jobs:
         env:
           GROUPME_BOT_ID: ${{ secrets.GROUPME_GAZETTE_BOT_ID }}
         run: python -m pipeline.announce --wrap-post
+
+      - name: Post today's one-day note on its own (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'note'
+        env:
+          GROUPME_BOT_ID: ${{ secrets.GROUPME_GAZETTE_BOT_ID }}
+        run: python -m pipeline.announce --note-post

@@ -3,6 +3,12 @@ name: Wrap probe
 # prints a summary as run annotations (job logs are blocked from the cloud). Commits nothing.
 on:
   workflow_dispatch:
+    inputs:
+      write:
+        description: "yes = also write and commit docs/data/wraps/week-N.json and wrap.json (template copy until --attach)"
+        default: "no"
+permissions:
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -29,6 +35,9 @@ jobs:
               prev = json.loads(hist[-1].read_text()) if hist else None
               a = stats.analyze(d, prev)
               x = wrap.build(d, a)
+              if x and "${{ inputs.write }}" == "yes":
+                  wrap.write(d, a)
+                  print("RESULT wrote week", x["week"])
               if not x:
                   print("RESULT no finished week")
               else:
@@ -41,3 +50,13 @@ jobs:
               print("RESULT error", traceback.format_exc().replace("\n", " | ")[-850:])
           PY
           grep "RESULT" probe.txt | cut -c1-900 | while IFS= read -r line; do echo "::notice::$line"; done
+      - name: Commit the wrap facts (write=yes only)
+        if: inputs.write == 'yes'
+        run: |
+          git config user.name "gazette-bot"
+          git config user.email "gazette-bot@users.noreply.github.com"
+          git add docs/data/wrap.json docs/data/wraps
+          git diff --cached --quiet && { echo "nothing to commit"; exit 0; }
+          git commit -m "Sunday Paper facts (wrap probe)"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main

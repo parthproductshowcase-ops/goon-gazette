@@ -8,6 +8,7 @@ Run by .github/workflows/groupme.yml after a push that changes docs/data/night.j
   python -m pipeline.announce --wait 08:00       # just waits until 8am ET (no-op if later)
   python -m pipeline.announce --post             # posts now (on Mondays the Sunday Paper is part of the same post)
   python -m pipeline.announce --wrap-post        # posts only the Sunday Paper message, any day
+  python -m pipeline.announce --note-post        # posts only today's config/announce_note.json text, any time
 
 Posting needs GROUPME_BOT_ID (the "GOON GAZETTE" bot). The bot ID is never printed.
 """
@@ -114,8 +115,16 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--post", action="store_true")
     ap.add_argument("--wrap-post", action="store_true", help="post only the Sunday Paper message now, any day")
+    ap.add_argument("--note-post", action="store_true", help="post only today's one-day note now")
     ap.add_argument("--wait", default=None, help="HH:MM ET to hold the post until")
     a = ap.parse_args()
+    if a.note_post:
+        t = extra_note()
+        if not t:
+            sys.exit("no note for today in config/announce_note.json")
+        print(t)
+        post(t)
+        return
     n = load()
     if a.check:
         out = f"date={n['date']}\nfresh={'true' if fresh(n['date']) else 'false'}\n"
