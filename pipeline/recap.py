@@ -15,7 +15,8 @@ the week's STORYLINES, not a box score recap: who is actually winning and why, w
 carried, who sabotaged himself. Rank the storylines and lead with the biggest:
 1. pickups_vs_who_they_replaced: each recent pickup is compared with the player his manager dropped
    for him, on the same dates. A team whose pickups_changed_the_result is true is the lead story: give
-   the manager the accolade for the moves and name exactly the players in moves. Never claim the rest
+   the manager the accolade for the moves. The swapped score comes from ALL the moves listed together,
+   so a line that quotes it names every added player in moves, not a subset. Never claim the rest
    of his roster did nothing. A pickup that is losing to the guy he replaced is a roast.
 2. dropped_and_regretting_it: a manager who cut a player who is now outplaying the guy he added
    gets brutally admonished. Name the dropped player, his line since, and who he grabbed instead.
