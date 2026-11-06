@@ -2,9 +2,9 @@
  "date": "2026-11-05",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-06T00:49-05:00",
- "as_of": "12:49am",
- "update": 13,
+ "generated_at": "2026-11-06T01:05-05:00",
+ "as_of": "1:05am",
+ "update": 14,
  "updates": 15,
  "final": true,
  "cats": [
@@ -166,7 +166,7 @@
     {
      "cat": "12",
      "a": 399.0,
-     "b": 418.0,
+     "b": 417.0,
      "lead": "b",
      "swing": true
     },
@@ -776,7 +776,7 @@
    "slot": "F",
    "nba": "PHX",
    "benched": false,
-   "value": 6.84,
+   "value": 6.85,
    "z": {
     "5": 0.79,
     "8": 0.76,
@@ -1216,7 +1216,7 @@
   },
   {
    "team": "478.l.39751.t.6",
-   "value": 3.9,
+   "value": 3.8,
    "played": 2,
    "with_game": 2,
    "bench_value": 0,
@@ -1325,12 +1325,12 @@
    "rank": 12
   }
  ],
- "headline": "Wendell Carter Jr. Is Wrecking Nova Knicks",
+ "headline": "Wendell Carter Jr. Is Wrecking Somebody's Night",
  "notes": [
-  "Wendell Carter Jr. has 27 points and 10-12 shooting for Suggs to be you, and Nova Knicks are watching it from a 6-4 hole.",
-  "Adam Silver Dez Nuts got 2 points on 1-6 from Andrew Wiggins and 2 more from Oso Ighodaro, yet somehow still trail by one category.",
-  "Devin Booker has 30 points, 8 assists and 3 steals for LeParth James, and they still sit at 4 behind BrookynDynasty.",
-  "Zero Fox Given have Giannis Antetokounmpo and Miles Bridges both sitting on 13 or more boards. MONSTARS trail 6-5 with Jalen Green's 3-7 for company.",
-  "Stephen Curry dropped 29 and six threes for theInfamous, and they still trail Thug Life 6-5 while 3PT% and DREB stay live."
+  "Wendell Carter Jr. has 27 points and 10-12 shooting for Suggs to be you, and Nova Knicks are watching FG% and OREB walk out the door.",
+  "Devin Booker dropped 30 and 4 threes for LeParth James, yet BrookynDynasty still leads 6-4 because Dillon Brooks keeps splashing.",
+  "Adam Silver Dez Nuts got 2 points on 1-6 from Andrew Wiggins plus 2 from Oso Ighodaro, and still cling to 5 categories.",
+  "Zero Fox Given have Giannis Antetokounmpo and Miles Bridges both above 13 boards, and MONSTARS \u2604\ufe0f lead only because Jalen Green shot 3-7.",
+  "Gopher Gold hold a 6-5 edge on Franz Wagner's 15 assists, while White Mambas bleed FG% on Bobby Portis Jr.'s 0-3 clunker."
  ]
 }
