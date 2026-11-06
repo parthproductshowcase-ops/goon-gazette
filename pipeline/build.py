@@ -176,21 +176,25 @@ def _main():
                 trades.write(d)
             except Exception as e:  # the analyzer never blocks the paper
                 print("trades skipped:", e)
+                warnings.append(f"trades skipped: {type(e).__name__}: {e}")
             try:
                 from . import wrap
                 wrap.write(d, a)
             except Exception as e:  # the wrap never blocks the paper
                 print("wrap skipped:", e)
+                warnings.append(f"wrap skipped: {type(e).__name__}: {e}")
             try:
                 from . import top50
                 top50.write(d)
             except Exception as e:  # The Fifty never blocks the paper
                 print("top50 skipped:", e)
+                warnings.append(f"top50 skipped: {type(e).__name__}: {e}")
             try:
                 from . import cards
                 cards.write(a)
             except Exception as e:  # share cards never block the paper
                 print("cards skipped:", e)
+                warnings.append(f"cards skipped: {type(e).__name__}: {e}")
     print("wrote", OUT / "league.json")
     return warnings
 

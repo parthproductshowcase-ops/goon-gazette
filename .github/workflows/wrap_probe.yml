@@ -1,0 +1,43 @@
+name: Wrap probe
+# Manual only. Pulls live Yahoo data, builds the Sunday Paper facts for the week that just ended and
+# prints a summary as run annotations (job logs are blocked from the cloud). Commits nothing.
+on:
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - name: Build the wrap facts from live Yahoo data
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
+          YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
+        run: |
+          python - > probe.txt 2>&1 <<'PY' || true
+          import json, traceback
+          from pathlib import Path
+          from pipeline import build, stats, wrap
+          try:
+              d, pre = build.fetch_live()
+              hist = sorted(p for p in Path("docs/data/history").glob("*.json") if p.stem < d["date"])
+              prev = json.loads(hist[-1].read_text()) if hist else None
+              a = stats.analyze(d, prev)
+              x = wrap.build(d, a)
+              if not x:
+                  print("RESULT no finished week")
+              else:
+                  print("RESULT week", x["week"], x["start"], "to", x["end"], "theme", x["theme"],
+                        "games", len(x["games"]), "pins", len(x["pins"]), "injuries", len(x["injuries"]),
+                        "outlook", len(x["outlook"]), "top", [r["name"] for r in x["top"][:3]])
+                  for g in x["games"]:
+                      print("RESULT game", x["teams"][g["a"]]["name"], g["final"], x["teams"][g["b"]]["name"], g["tag"])
+          except Exception:
+              print("RESULT error", traceback.format_exc().replace("\n", " | ")[-850:])
+          PY
+          grep "RESULT" probe.txt | cut -c1-900 | while IFS= read -r line; do echo "::notice::$line"; done

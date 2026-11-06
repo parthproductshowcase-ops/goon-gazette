@@ -58,11 +58,37 @@ def _totals(days, ds, team):
     return out
 
 
+FRAC = ("9004003", "9007006", "9001002")  # made/attempted pairs (FG, FT, 3PT)
+
+
+def _clean_days(days):
+    """The Yahoo API sends null for every stat of a player who didn't play (the web scrape sent zeros).
+    Return a copy with nulls as 0, and [0, 0] for the made/attempted pairs, so sums never hit None."""
+    out = {}
+    for dt, teams in (days or {}).items():
+        out[dt] = {}
+        for tk, lines in (teams or {}).items():
+            rows = []
+            for x in lines or []:
+                st = {}
+                for k, v in (x.get("stats") or {}).items():
+                    if k in FRAC:
+                        st[k] = [(v[0] or 0), (v[1] or 0)] if isinstance(v, list) else [0, 0]
+                    else:
+                        st[k] = 0 if v is None else v
+                for k in FRAC:
+                    st.setdefault(k, [0, 0])
+                rows.append({**x, "stats": st})
+            out[dt][tk] = rows
+    return out
+
+
 def build(d, a):
     w = (d.get("league") or {}).get("current_week", 1) - 1
     if w < 1 or w not in d.get("results", {}):
         return None
-    cats, teams, days = d["cats"], d["teams"], d["days"]
+    cats, teams = d["cats"], d["teams"]
+    days = _clean_days(d["days"])
     cname = {c["id"]: c["name"] for c in cats}
     win = (d.get("windows") or {}).get("last") or {}
     ds = sorted(x for x in days if win.get("start", "") <= x <= win.get("end", ""))
@@ -242,15 +268,51 @@ def write(d, a, force=False):
     return x
 
 
+def latest_week():
+    return max(_load(DATA / "wraps" / "index.json", []) or [0])
+
+
+def attach(week=None):
+    """Cloud path for the Monday copy task: take the facts the morning API build already wrote
+    (docs/data/wraps/week-N.json), attach archive/wrap_copy/week-N.json, and publish. No Yahoo calls."""
+    week = week or latest_week()
+    x = _load(DATA / "wraps" / f"week-{week}.json")
+    if not x:
+        print(f"no facts for week {week}: the morning build has not written docs/data/wraps/week-{week}.json")
+        return None
+    attach_copy(x)
+    blob = json.dumps(x, ensure_ascii=False)
+    (DATA / "wraps" / f"week-{week}.json").write_text(blob)
+    if week == latest_week():
+        (DATA / "wrap.json").write_text(blob)
+    print("wrote wrap week", week, "copy" if x["copy"] else "template (no copy file)")
+    return x
+
+
 def main():
-    from . import web_current as W
-    src = json.loads(W.SRC.read_text())
-    a = W.analyze(src)
-    d = W.analyze.d
-    if "--write" in sys.argv:
-        write(d, a, "--force" in sys.argv)
+    """python -m pipeline.wrap               print the latest week's facts (from the morning build's file)
+    python -m pipeline.wrap --week N        print week N's facts
+    python -m pipeline.wrap --attach [N]    attach archive/wrap_copy/week-N.json and publish (default latest)
+    python -m pipeline.wrap --web [--write] the old web-archive path (frozen Oct 27; fallback only)"""
+    args = sys.argv[1:]
+    num = next((int(x) for x in args if x.isdigit()), None)
+    if "--web" in args:
+        from . import web_current as W
+        src = json.loads(W.SRC.read_text())
+        a = W.analyze(src)
+        d = W.analyze.d
+        if "--write" in args:
+            write(d, a, "--force" in args)
+        else:
+            print(json.dumps(build(d, a), indent=1, ensure_ascii=False))
+    elif "--attach" in args:
+        attach(num)
     else:
-        print(json.dumps(build(d, a), indent=1, ensure_ascii=False))
+        week = num or latest_week()
+        x = _load(DATA / "wraps" / f"week-{week}.json")
+        if x:
+            x.pop("copy", None)
+        print(json.dumps(x, indent=1, ensure_ascii=False))
 
 
 if __name__ == "__main__":
