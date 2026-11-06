@@ -240,37 +240,89 @@ def week_desc(p, cats):
     return f"{g} game{'s' if g != 1 else ''}: " + ", ".join(bits[:6])
 
 
-def pickup_impact(players, teams, pairs, cats, acq):
-    """Per team this week: the matchup score with every waiver/free-agent pickup's stats and without all of them.
-    'carried' = the pickups are the difference between winning and not (the Squawk Box's lead story)."""
+PICKUP_DAYS = 14  # a "pickup" for the Squawk Box is an add in the last two weeks
+
+
+def drop_pairs(transactions):
+    """(team, added pk) -> the player that team dropped in the same move (pk, name, date), or None for an add
+    into an open roster spot."""
+    by = {}
+    for t in transactions:
+        by.setdefault((t["id"], t["team"]), []).append(t)
+    out = {}
+    for (tid, tk), ts in by.items():
+        drops = [t for t in ts if t["kind"] == "drop"]
+        for i, t in enumerate(x for x in ts if x["kind"] == "add"):  # several adds and drops in one move pair in order
+            dr = drops[i] if i < len(drops) else None
+            out[(tk, t["pk"])] = {"pk": dr["pk"], "name": dr["player"]} if dr else None
+    return out
+
+
+def dropped_needed(d, end):
+    """{dropped pk: first date to track} for every pickup in the last PICKUP_DAYS days that came with a drop.
+    The build and the Tonight runs fetch these players' daily lines so the swap is fair."""
+    since = (datetime.fromisoformat(end) - timedelta(days=PICKUP_DAYS - 1)).date().isoformat()
+    pairs, need = drop_pairs(d.get("transactions", [])), {}
+    for t in d.get("transactions", []):
+        if t["kind"] == "add" and et_date(t["ts"]) >= since and pairs.get((t["team"], t["pk"])):
+            pk = pairs[(t["team"], t["pk"])]["pk"]
+            need[pk] = min(need.get(pk, "9999"), et_date(t["ts"]))
+    return need
+
+
+def pickup_impact(players, teams, pairs, cats, acq, d, dates):
+    """Per team this week: the matchup with its recent pickups (adds in the last PICKUP_DAYS days) against the
+    same matchup if each pickup had never happened, i.e. the player he dropped for him had stayed and played
+    the same dates. An add into an open spot is replaced by nothing. 'carried' = that swap flips the result.
+    Dropped players' lines come from d["dropped_lines"] {date: {pk: line}} (fetched by the build), falling back
+    to d["days"] when the dropped player was rostered elsewhere and played."""
+    pmap, end = pct_map(cats, d.get("frac") or {}), dates[-1]
+    since = (datetime.fromisoformat(end) - timedelta(days=PICKUP_DAYS - 1)).date().isoformat()
+    swaps, dl = drop_pairs(d.get("transactions", [])), d.get("dropped_lines") or {}
+    lines_of = {}
+    for dt in dates:
+        for tk, ls in (d["days"].get(dt) or {}).items():
+            for ln in ls:
+                lines_of.setdefault((dt, ln["pk"]), ln)
     vals = {tk: values_of(agg, cats) for tk, agg in teams.items()}
     rows = []
     for a, b in pairs:
         for me, opp in ((a, b), (b, a)):
             if me not in teams or opp not in teams:
                 continue
-            mine = [(pk, p) for (tk, pk), p in players.items() if tk == me and p["games"] and (tk, pk) in acq]
+            mine = [(pk, p) for (tk, pk), p in players.items()
+                    if tk == me and p["games"] and (tk, pk) in acq and acq[(tk, pk)]["date"] >= since]
             if not mine:
                 continue
             base, base_r = _score(vals[me], vals[opp], cats)
             cf = {"cnt": dict(teams[me]["cnt"]), "frac": {k: list(v) for k, v in teams[me]["frac"].items()}}
-            for _, p in mine:
+            detail = []
+            for pk, p in mine:
                 for k, v in p["cnt"].items():
                     cf["cnt"][k] = cf["cnt"].get(k, 0) - v
                 for k, v in p["frac"].items():
                     cur = cf["frac"].setdefault(k, [0.0, 0.0])
                     cur[0] -= v[0]; cur[1] -= v[1]
+                sw, added = swaps.get((me, pk)), acq[(me, pk)]["date"]
+                kept = None
+                if sw:  # the dropped player's games on the same dates
+                    kept = {**_empty(), "name": sw["name"]}
+                    for dt in dates:
+                        if dt < added:
+                            continue
+                        ln = (dl.get(dt) or {}).get(sw["pk"]) or lines_of.get((dt, sw["pk"]))
+                        st = ln["stats"] if isinstance(ln, dict) and "stats" in ln else ln
+                        if st and _add_line(kept, st, cats, pmap):
+                            _add_line(cf, st, cats, pmap)
+                            kept["games"] += 1
+                detail.append({"name": p["name"], "games": p["games"], "desc": week_desc(p, cats), "added": added,
+                               "dropped": sw["name"] if sw else None,
+                               "dropped_desc": (week_desc(kept, cats) if kept and kept["games"] else "0 games") if sw else None})
             without, res = _score(values_of(cf, cats), vals[opp], cats)
-            share = {}
-            for c in cats:  # pickups' share of the team's counting stats
-                if not c["pct"] and c["hb"] and teams[me]["cnt"].get(c["id"]):
-                    share[c["id"]] = round(sum(p["cnt"].get(c["id"], 0) for _, p in mine) / teams[me]["cnt"][c["id"]], 2)
             rows.append({"team": me, "opp": opp, "score": base, "without": without,
-                         "carried": _outcome(base) == 2 and _outcome(without) < 2,
+                         "carried": _outcome(base) > _outcome(without),
                          "net": base[0] - without[0], "swung": [c["id"] for c in cats if res[c["id"]] < base_r[c["id"]]],
-                         "share": share,
-                         "pickups": [{"name": p["name"], "games": p["games"], "desc": week_desc(p, cats),
-                                      "acquired": acq[(me, pk)]} for pk, p in sorted(mine, key=lambda x: -x[1]["games"])]})
+                         "pickups": sorted(detail, key=lambda x: -x["games"])})
     rows.sort(key=lambda r: (r["carried"], r["net"]), reverse=True)
     return rows
 
@@ -439,7 +491,7 @@ def weekly_report(d):
                     "top_plays": top_plays(players, teams, pairs, cats, acq, scorer)}
         if key == "current":  # storyline extras for the Squawk Box; never allowed to block the paper
             last = (d.get("windows") or {}).get("last")
-            for k, fn in (("pickups", lambda: pickup_impact(players, teams, pairs, cats, acq)),
+            for k, fn in (("pickups", lambda: pickup_impact(players, teams, pairs, cats, acq, d, dates)),
                           ("regrets", lambda: drop_regrets(d, cats, pmap, scorer, (last or w)["start"], w["end"])),
                           ("bench_cost", lambda: bench_cost(d["days"], dates, cats, pmap, pairs, teams))):
                 try:

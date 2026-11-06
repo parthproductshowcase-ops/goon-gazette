@@ -13,15 +13,17 @@ knife. Praise only goes to a team that is embarrassing someone else.
 You produce exactly seven zingers, each one sentence, each aimed at a different team. They are
 the week's STORYLINES, not a box score recap: who is actually winning and why, who is getting
 carried, who sabotaged himself. Rank the storylines and lead with the biggest:
-1. this_week_pickup_impact: a team with winning_only_because_of_pickups true is the lead story.
-   Give it the accolade (the waiver wire is the only thing working in that front office) and the
-   knife (the drafted roster is dead weight). Name the pickups and what they are winning.
+1. pickups_vs_who_they_replaced: each recent pickup is compared with the player his manager dropped
+   for him, on the same dates. A team whose pickups_changed_the_result is true is the lead story: give
+   the manager the accolade for the moves and name exactly the players in moves. Never claim the rest
+   of his roster did nothing. A pickup that is losing to the guy he replaced is a roast.
 2. dropped_and_regretting_it: a manager who cut a player who is now outplaying the guy he added
    gets brutally admonished. Name the dropped player, his line since, and who he grabbed instead.
    If now_on_his_opponent_this_week is true, that is the cruelest line of the day.
 3. bench_cost_this_week: categories a manager would be winning if he had started his own bench.
-4. starts_left_this_week: a team leading on the scoreboard with far fewer starts left is living on
-   borrowed time; a team trailing with a big starts edge is about to steamroll. Matchup math nobody
+4. starts_left_this_week: a team leading on the scoreboard with far fewer starts left is in trouble;
+   a team trailing with a big starts edge is the favorite to come back. It is an edge, never a result:
+   never call a matchup decided or a formality. Matchup math nobody
    sees in a box score is the paper's whole value.
 5. Then last night: the player left on the bench who went off, the category lead coughed up, the
    blowout they are sleepwalking into, the lucky stiff who should be losing.
@@ -117,13 +119,15 @@ def week_story_facts(cur, nm, cat, matchups):
     for m in matchups:
         opp_of[m["a"]], opp_of[m["b"]] = m["b"], m["a"]
     if cur.get("pickups"):
-        f["this_week_pickup_impact"] = [{
-            "team": nm(x["team"]), "vs": nm(x["opp"]), "score_with_pickups": x["score"][:2],
-            "score_without_any_pickups": x["without"][:2],
-            "winning_only_because_of_pickups": x["carried"],
-            "categories_the_pickups_are_winning": [cat[c] for c in x["swung"] if c in cat],
-            "pickups_share_of_team_stats": {cat[c]: f"{round(v * 100)}%" for c, v in x["share"].items() if c in cat and v >= .2},
-            "pickups": [f'{p["name"]} ({p["desc"]})' for p in x["pickups"][:4]]}
+        # pickups added in the last 14 days, each swapped back for the player dropped to make room
+        # (his real stats on the same dates; an add into an open spot is swapped for nothing)
+        f["pickups_vs_who_they_replaced"] = [{
+            "team": nm(x["team"]), "vs": nm(x["opp"]), "score_now": x["score"][:2],
+            "score_if_he_had_kept_the_dropped_players": x["without"][:2],
+            "pickups_changed_the_result": x["carried"], "categories_the_swap_changes": [cat[c] for c in x["swung"] if c in cat],
+            "moves": [f'added {p["name"]} ({p["desc"]})' + (f', dropped {p["dropped"]} ({p["dropped_desc"]} since)' if p.get("dropped") else ", into an open roster spot")
+                      for p in x["pickups"][:4]],
+            "rule": "credit only the players listed in moves; never judge the rest of the roster"}
             for x in cur["pickups"] if x["net"] > 0][:5]
     if cur.get("regrets"):
         f["dropped_and_regretting_it"] = [{

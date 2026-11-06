@@ -108,6 +108,14 @@ def fetch_live():
         # plus who owns whom and every NBA line last night for Free Agents Who Balled
         today = now.date().isoformat()
         d["owned_now"] = api_extras.rosters(y, teams, today)
+        cw = windows.get("current")
+        if cw and cw["end"] >= cw["start"]:  # the players dropped for recent pickups, so the Squawk Box swap is fair
+            need = {pk: max(first, cw["start"]) for pk, first in players.dropped_needed(d, cw["end"]).items()}
+            dfile = CACHE.parent / "dropped.json"  # kept for the Tonight runs, which only fetch tonight
+            have = json.loads(dfile.read_text()) if dfile.exists() else {}
+            have = {k: v for k, v in have.items() if k >= cw["start"]}
+            d["dropped_lines"] = api_extras.player_lines(y, lk, need, cw["end"], ids, frac, have)
+            dfile.write_text(json.dumps(d["dropped_lines"]))
         try:  # starts each team can still get this week (today through Sunday), from yesterday's rosters
             from .tonight import schedule_left
             we = (windows.get("current") or {}).get("week_end")

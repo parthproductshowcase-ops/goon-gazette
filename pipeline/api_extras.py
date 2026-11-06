@@ -93,6 +93,36 @@ def rosters(y, teams, date, write=True):
 
 
 # ---------- free agents who balled, straight from Yahoo ----------
+def player_lines(y, lk, need, end, cat_ids, frac_ids, have=None):
+    """Daily stat lines for specific players (dropped players the Squawk Box swaps back in), any roster status.
+    need = {pk: first date}; one call per date for up to 25 players. have = already fetched {date: {pk: stats}}
+    (the Tonight runs keep finished days). Returns {date: {pk: stats}}; never raises."""
+    out = {k: dict(v) for k, v in (have or {}).items()}
+    try:
+        from .players import date_range
+        if not need:
+            return out
+        for dt in date_range(min(need.values()), end):
+            pks = [pk for pk, first in need.items() if first <= dt and pk not in out.get(dt, {})]
+            for i in range(0, len(pks), 25):
+                lg = flat(y.get(f"league/{lk}/players;player_keys={','.join(pks[i:i + 25])}/stats;type=date;date={dt}")["league"])
+                for p in coll(lg.get("players"), "player"):
+                    p = flat(p)
+                    stats = {}
+                    for st in p.get("player_stats", {}).get("stats", []):
+                        st = st.get("stat", st)
+                        k = str(st.get("stat_id"))
+                        if k in cat_ids:
+                            stats[k] = parse_val(st.get("value"))
+                        elif k in frac_ids:
+                            stats[k] = parse_frac(st.get("value"))
+                    out.setdefault(dt, {})[p.get("player_key")] = stats
+        print("dropped player lines:", sum(len(v) for v in out.values()), "player-days")
+    except Exception as e:
+        warn(f"dropped player lines skipped: {e}")
+    return out
+
+
 def free_agent_lines(y, lk, date, cat_ids, frac_ids, count=50):
     """Lines for the free agents (status=A) who scored that night, in the shape night.py reads
     for d["nba_lines"]. Yahoo ranks them for the date, so no name matching against rosters.

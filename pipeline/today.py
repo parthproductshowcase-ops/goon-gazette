@@ -214,7 +214,7 @@ def week_report(d, prev, is_sample):
         sched = {k: sorted(v) for k, v in schedule_left(rest).items()} if not is_sample else {}
     mini = {"cats": d["cats"], "frac": d["frac"], "days": days, "matchups": d["matchups"],
             "windows": {"current": {"week": w["week"], "start": w["start"], "end": d["date"]}},
-            "transactions": d.get("transactions", []),
+            "transactions": d.get("transactions", []), "dropped_lines": d.get("dropped_lines") or {},
             "games_left": P.games_left(d["lines"], {k: set(v) for k, v in sched.items()}) if sched else None}
     try:
         r = P.weekly_report(mini).get("current")
@@ -254,6 +254,13 @@ def fetch_live():
             if dt < date and f.exists():
                 hist[dt] = json.loads(f.read_text())
         out["days_hist"] = hist
+        # players dropped for recent pickups: finished days from the morning build's cache, tonight fetched live
+        from . import api_extras
+        dfile = ROOT / "cache" / "dropped.json"
+        have = json.loads(dfile.read_text()) if dfile.exists() else {}
+        have = {k: v for k, v in have.items() if gw["start"] <= k < date}
+        need = {pk: max(first, gw["start"]) for pk, first in P.dropped_needed({"transactions": out["transactions"]}, date).items()}
+        out["dropped_lines"] = api_extras.player_lines(y, lk, need, date, set(c["id"] for c in cats), frac, have)
     except Exception as e:
         print("week window skipped:", e)
     return out
