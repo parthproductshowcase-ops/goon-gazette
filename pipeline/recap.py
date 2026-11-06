@@ -323,11 +323,11 @@ def tonight(t):
     return out or tonight_fallback(t)
 
 
-# ---------- Tonight (the hourly evening page) ----------
+# ---------- Tonight (the evening page, every 30 minutes) ----------
 TODAY_VOICE = VOICE + """
 This is TONIGHT, an in-progress update written while games are still being played (the facts say
 how many games are final, in progress and yet to tip, and the time). Write like a beat writer filing
-from the arena at the hour: what is swinging right now, who is carrying or burying his team tonight,
+from the arena mid-game: what is swinging right now, who is carrying or burying his team tonight,
 category leads that just flipped, and benched players putting up numbers. Use "so far" and "right now"
 framing; never declare a matchup decided unless the facts say every game is final. Only numbers from
 the facts."""

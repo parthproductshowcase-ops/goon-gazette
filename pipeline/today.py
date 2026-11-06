@@ -1,4 +1,4 @@
-"""Tonight: the live-ish evening page, rebuilt every hour from 7pm to 1am ET.
+"""Tonight: the live-ish evening page, rebuilt every 30 minutes from 7pm to 1:35am ET (cron-job.org dispatches).
 
     python -m pipeline.today            # live (Yahoo API)
     python -m pipeline.today --sample   # fake data for design work
@@ -30,7 +30,8 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data" / "today.json"
 NIGHTS = ROOT / "docs" / "data" / "nights"
 ET = ZoneInfo("America/New_York")
-SLOTS = [19, 20, 21, 22, 23, 0, 1]  # ET hours of the hourly runs; the 1am run is the last
+# Runs per night: the 6:55pm Lineup Card run, then :05 and :35 from 7:05pm to 1:35am ET (cron-job.org).
+UPDATES = 15
 
 
 def game_date(now):
@@ -38,9 +39,9 @@ def game_date(now):
     return (now - timedelta(hours=5)).date().isoformat()
 
 
-def slot_no(now):
-    h = now.hour
-    return SLOTS.index(h) + 1 if h in SLOTS else None
+def update_no(prev):
+    """Count this night's runs: one more than the previous today.json for the same night, else 1."""
+    return min(int(prev.get("update") or 0) + 1, UPDATES) if prev else 1
 
 
 def nba_games(date):
@@ -236,13 +237,13 @@ def main():
     rows = score_lines(d)
     tn = team_nights(d, rows, games)
     final = bool(games) and all(g["state"] == "post" for g in games)
-    slot = slot_no(now) or len(SLOTS)
+    slot = update_no(prev)
     t = {"date": d["date"], "week": d["week"], "cats": d["cats"], "teams": d["teams"], "matchups": matchups,
          "flips": flips, "rows": rows, "team_nights": tn, "games": games, "as_of": now.strftime("%-I:%M%p").lower(),
-         "update": slot, "updates": len(SLOTS), "final": final}
+         "update": slot, "updates": UPDATES, "final": final}
     copy = recap.today_fallback(t) if is_sample else recap.today(t)
     out = {"date": d["date"], "week": d["week"], "sample": is_sample,
-           "generated_at": now.isoformat(timespec="minutes"), "as_of": t["as_of"], "update": slot, "updates": len(SLOTS),
+           "generated_at": now.isoformat(timespec="minutes"), "as_of": t["as_of"], "update": slot, "updates": UPDATES,
            "final": final, "cats": d["cats"], "team_names": {tk: {"name": v["name"], "manager": v.get("manager", "")} for tk, v in d["teams"].items()},
            "matchups": matchups, "flips": flips, "games": games,
            "lines": rows[:10], "bench": [r for r in rows if r["benched"] and r["value"] > 2][:5],

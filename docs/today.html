@@ -45,7 +45,7 @@
   <div class="sec-head"><h2>The Best Lines So Far</h2><p>Ranked by value across all 11 categories. Benched lines flagged.</p></div>
   <div class="nt-stars" id="stars"></div>
 
-  <footer><span id="gen"></span><span>Rebuilt every hour from 7pm to 1am ET while games are on. The morning paper lands by 6am.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
+  <footer><span id="gen"></span><span>Rebuilt every 30 minutes from 7pm to 1:30am ET while games are on. The morning paper lands by 6am.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
 <script src="assets/common.js?v=f76291ad"></script>
@@ -75,7 +75,7 @@ function render() {
   $("td-date").textContent = d.toLocaleDateString("en-US", {weekday: "long", month: "short", day: "numeric"});
   const g = T.games || [], fin = g.filter(x => x.state === "post").length, ip = g.filter(x => x.state === "in").length, pre = g.length - fin - ip;
   $("td-sub").textContent = g.length ? `${g.length} NBA game${g.length === 1 ? "" : "s"}: ${fin} final, ${ip} in progress, ${pre} yet to tip.` : `${T.lines.length} lines in so far.`;
-  const nxt = live && T.update < T.updates ? ` Next update about ${nextHour(T.generated_at)}.` : "";
+  const nxt = live && T.update < T.updates ? ` Next update about ${nextSlot(T.generated_at)}.` : "";
   $("td-asof").innerHTML = `<b>As of ${esc(T.as_of)}</b><small>Update ${T.update} of ${T.updates}.${nxt}</small>`;
   $("td-headline").textContent = T.headline || "";
   const names = Object.values(T.team_names).map(t => t.name).concat(T.lines.map(r => r.name));
@@ -112,7 +112,7 @@ function render() {
   $("flips").innerHTML = F.length ? F.map(f => {
     const who = f.now === "a" ? f.a : f.b, from = f.was === "a" ? f.a : f.b;
     return `<div class="nt-row"><div><b>${nm(who)}</b> took <b>${esc(CAT[f.cat]?.name)}</b><small>from <b>${nm(from)}</b> · ${fmt(f.cat, f.now === "a" ? f.a_val : f.b_val)} to ${fmt(f.cat, f.now === "a" ? f.b_val : f.a_val)}</small></div></div>`;
-  }).join("") : `<p class="note empty">${T.update <= 1 ? "First update of the night. Flips show from the next one." : "No lead changed hands in the last hour."}</p>`;
+  }).join("") : `<p class="note empty">${T.update <= 1 ? "First update of the night. Flips show from the next one." : "No lead changed hands since the last update."}</p>`;
 
   // team nights
   $("tn").innerHTML = T.team_nights.map(t => `<div class="nt-row ${MYID != null && t.team.endsWith(".t." + MYID) ? "me" : ""}">
@@ -132,8 +132,11 @@ function render() {
   $("gen").textContent = `Updated ${new Date(T.generated_at).toLocaleString("en-US", {month: "short", day: "numeric", hour: "numeric", minute: "2-digit"})}.`;
   gc.once("view/tonight");
 }
-function nextHour(iso) {
-  const d = new Date(iso); d.setMinutes(0, 0, 0); d.setHours(d.getHours() + 1);
-  return d.toLocaleTimeString("en-US", {hour: "numeric"}).toLowerCase().replace(" ", "");
+function nextSlot(iso) {
+  // runs are dispatched at :05 and :35 ET; the next one after this update
+  const d = new Date(iso); d.setSeconds(0, 0);
+  const m = d.getMinutes();
+  if (m < 5) d.setMinutes(5); else if (m < 35) d.setMinutes(35); else { d.setHours(d.getHours() + 1); d.setMinutes(5); }
+  return d.toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit"}).toLowerCase().replace(" ", "");
 }
 </script>
