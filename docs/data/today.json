@@ -2,10 +2,10 @@
  "date": "2026-11-05",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-05T20:16-05:00",
- "as_of": "8:16pm",
- "update": 2,
- "updates": 7,
+ "generated_at": "2026-11-05T20:35-05:00",
+ "as_of": "8:35pm",
+ "update": 3,
+ "updates": 15,
  "final": false,
  "cats": [
   {
@@ -213,7 +213,12 @@
      "swing": false
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    7,
+    4,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.1",
@@ -302,7 +307,12 @@
      "swing": false
     }
    ],
-   "swings": 2
+   "swings": 2,
+   "prev_score": [
+    4,
+    6,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.7",
@@ -391,7 +401,12 @@
      "swing": true
     }
    ],
-   "swings": 2
+   "swings": 2,
+   "prev_score": [
+    6,
+    5,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.2",
@@ -480,7 +495,12 @@
      "swing": false
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    7,
+    4,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.4",
@@ -569,7 +589,12 @@
      "swing": false
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    5,
+    6,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.5",
@@ -658,7 +683,12 @@
      "swing": false
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    5,
+    6,
+    0
+   ]
   }
  ],
  "flips": [],
@@ -804,12 +834,12 @@
    "rank": 12
   }
  ],
- "headline": "Nobody Has Tipped Yet, Still Embarrassing Somebody",
+ "headline": "Nobody Has Tipped Off, Everybody Is Already Wrong",
  "notes": [
-  "Nothing has tipped at 8:16pm, and Zero Fox Given already owns the worst night rank, which takes real commitment.",
-  "BrookynDynasty leads LeParth James 7-4 right now on FG%, OREB and AST swings, and has played zero minutes.",
-  "White Mambas lead Gopher Gold 6-5 and Gopher Gold holds the best night rank so far, a stat that means nothing yet.",
-  "Nova Knicks lead Suggs to be you 6-5 with FG% and TO still live, and a bench full of nothing yet.",
-  "No lead has flipped, no one has scored, and Adam Silver Dez Nuts still trail 7-4 on FG% alone."
+  "Gopher Gold sits atop tonight's rankings with zero players stat-sheeted, which is the most impressive thing anyone on that roster has done all week.",
+  "Zero Fox Given trails White Mambas 6-5 before a single bucket drops, so tonight's plan is apparently hoping OREB falls from the sky.",
+  "BrookynDynasty leads LeParth James 7-4, and FG%, OREB and AST are all still swinging, so that cushion is lighter than it looks.",
+  "No lead has flipped, no one has a line, no bench has erupted; the only thing happening right now is Nova Knicks ranking ninth in nothing.",
+  "Da Don Da Beard & Da Klaw lead Adam Silver Dez Nuts 7-4 and are begging FG% to keep it that way. Hope is not a strategy."
  ]
 }
