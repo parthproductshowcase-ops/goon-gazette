@@ -2,9 +2,9 @@
  "date": "2026-11-05",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-06T01:05-05:00",
- "as_of": "1:05am",
- "update": 14,
+ "generated_at": "2026-11-06T01:35-05:00",
+ "as_of": "1:35am",
+ "update": 15,
  "updates": 15,
  "final": true,
  "cats": [
@@ -717,7 +717,7 @@
     120
    ],
    "state": "post",
-   "clock": "0.0",
+   "clock": "12:00",
    "period": 4,
    "detail": "Final"
   }
@@ -1325,12 +1325,12 @@
    "rank": 12
   }
  ],
- "headline": "Wendell Carter Jr. Is Wrecking Somebody's Night",
+ "headline": "Wendell Carter Jr. Is Burying Nova Knicks",
  "notes": [
-  "Wendell Carter Jr. has 27 points and 10-12 shooting for Suggs to be you, and Nova Knicks are watching FG% and OREB walk out the door.",
-  "Devin Booker dropped 30 and 4 threes for LeParth James, yet BrookynDynasty still leads 6-4 because Dillon Brooks keeps splashing.",
-  "Adam Silver Dez Nuts got 2 points on 1-6 from Andrew Wiggins plus 2 from Oso Ighodaro, and still cling to 5 categories.",
-  "Zero Fox Given have Giannis Antetokounmpo and Miles Bridges both above 13 boards, and MONSTARS \u2604\ufe0f lead only because Jalen Green shot 3-7.",
-  "Gopher Gold hold a 6-5 edge on Franz Wagner's 15 assists, while White Mambas bleed FG% on Bobby Portis Jr.'s 0-3 clunker."
+  "Wendell Carter Jr. has 27 points on 10-12 shooting for Suggs to be you, and Nova Knicks are down 6-4 with FG% sliding.",
+  "Andrew Wiggins is 1-6 for 2 points and Oso Ighodaro added 2 more, so Adam Silver Dez Nuts own the worst night in the league.",
+  "Devin Booker dropped 30, 8 assists and 3 steals for LeParth James, and BrookynDynasty still lead 6-4 on Dillon Brooks' 24.",
+  "Zero Fox Given have Giannis and Miles Bridges both past 13 boards, and MONSTARS are down 6-5 with Jalen Green's 6 points hurting FT% and 3PTM.",
+  "Bobby Portis Jr. is 0-3 from the field for White Mambas, and FG% is the lone swing category keeping Gopher Gold up 6-5."
  ]
 }
