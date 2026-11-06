@@ -1,0 +1,134 @@
+{
+ "week": 2,
+ "theme": "spy",
+ "edition": "Undercover Edition",
+ "kicker": "Extra! Extra! Week 2 is declassified",
+ "headline": "Gala at the Grand Belvedere Ends in a Cable Car Chase. Thug Life Walks Off With the Briefcase.",
+ "deck": "Keshav quietly cracked the White Mambas safe while the whole room watched the baccarat table, and Moussa Diabaté was spotted pulling rebounds off the chandelier.",
+ "hero_caption": "The Grand Belvedere at midnight, as sketched by our correspondent from inside a laundry cart.",
+ "chapters": [
+  {
+   "block": "intro",
+   "head": "Black Tie, Masks Optional",
+   "text": [
+    "The invitations went out on Monday: black tie, masks optional, sidearms discouraged. Twelve agents checked into the Grand Belvedere, a casino hotel bolted to the side of a mountain, each with a cover story and a plan to leave with the briefcase.",
+    "Arnav B lost nearly everything on the first hand and was escorted to the bar to think about his choices. Phil came in through the laundry chute, as he does, carrying more fake passports than anyone else in the building. Chris found the punch bowl in the first five minutes and never left it.",
+    "Then the lights went out over the baccarat table, somebody shouted in three languages, and the briefcase was gone."
+   ]
+  },
+  {
+   "block": "wanted",
+   "head": "The Dossiers",
+   "sub": "Eyes only. Burn after reading."
+  },
+  {
+   "block": "results",
+   "head": "Six Tables, One Briefcase",
+   "text": [
+    "Six tables, two agents to a table, eleven categories on the felt. Here is how the chips were counted when the lights came back on.",
+    "Thug Life and theInfamous both ran their tables nine to two, and nobody at either table wants to talk about it."
+   ]
+  },
+  {
+   "block": "late",
+   "head": "The Chase Down the Mountain",
+   "text": [
+    "Four of the six fights were still going when the cable car left the station on Saturday. Not everybody who got on it made it to the bottom."
+   ]
+  },
+  {
+   "block": "boot",
+   "head": "Agents Who Never Made It Past the Coat Check",
+   "text": [
+    "Chet Holmgren, Jalen Williams, Jalen Duren and Paolo Banchero spent the whole gala in the safe house. MONSTARS lost three men to the infirmary in one week: Jalen Duren, Jaren Jackson Jr. and Ja Morant.",
+    "Anthony Edwards made one appearance for BrookynDynasty, ordered a drink, and went dark for the rest of the week. Kawhi Leonard spent the week in Eshan's safe house, which surprised exactly nobody at the agency."
+   ]
+  },
+  {
+   "block": "roy",
+   "head": "Who Gets Out of the Mountains Alive",
+   "text": [
+    "Gopher Gold is out of the building with a near-certain ticket to the playoffs, and Thug Life is right behind them on the next cable car.",
+    "White Mambas sits eleventh in the standings and the model still rates them the strongest outfit in the league, which is exactly what a sleeper agent would want you to believe. Parth's outfit has the weakest strength rating of all twelve and a better than even shot at the playoffs. The analysts in the van have stopped asking questions. Zero Fox Given's odds round down to nothing, and the model did not have to round very far."
+   ]
+  },
+  {
+   "block": "saloon",
+   "head": "Overheard on the Wiretap",
+   "sub": "Transcribed from a bug in the ice bucket."
+  }
+ ],
+ "wanted": {
+  "mvp": {
+   "title": "Agent of the Week",
+   "line": "Down to his last chip after the first night, then cleaned out the house and walked off with the briefcase. Beat ten of the eleven agents in the building.",
+   "reward": "A watch with a laser nobody has tested, and a lake villa with a shark tank of questionable legality",
+   "pins": [
+    {"p": "Walker Kessler", "c": ["18", "13"]},
+    {"p": "Jalen Brunson", "c": ["12"]}
+   ]
+  },
+  "dud": {
+   "title": "Double Agent (For the Other Side)",
+   "line": "Beat nobody. Not one agent in the building. Was dead level with Gopher Gold going into the weekend, then fell asleep in the getaway car.",
+   "reward": "A rubber tuxedo, a pen that only writes, and a seat on the submarine with the screen door",
+   "pins": [
+    {"p": "Jalen Johnson", "c": ["19"]},
+    {"p": "Tyler Herro", "c": ["5"], "w": true}
+   ]
+  },
+  "luckiest": {
+   "title": "The Lucky Charm",
+   "line": "Third in the standings, beat two agents all week, and still left the gala with his cover intact. The cameras were conveniently off.",
+   "reward": "A lifetime pass to the high-roller room, revoked the moment anybody checks the security tapes",
+   "pins": [
+    {"p": "Luka Dončić", "c": ["12", "10"]}
+   ]
+  }
+ },
+ "late": {
+  "478.l.39751.t.4|478.l.39751.t.5": {
+   "text": "Gopher Gold and MONSTARS were dead level when the cable car left the station. By the bottom of the mountain Gopher Gold had lifted the assists, the steals and the three point percentage, and MONSTARS were hanging off the door by one hand.",
+   "pins": [
+    {"p": "Yaxel Lendeborg", "w": true, "c": ["12", "10"]},
+    {"p": "Tyrese Maxey", "w": true, "c": ["12"]}
+   ]
+  },
+  "478.l.39751.t.2|478.l.39751.t.6": {
+   "text": "Parth had the briefcase all week and nearly dropped it out the window. Luka emptied the clip on Saturday and Sunday and Da Don snatched the three point percentage, but LeParth James grabbed the points over the weekend and jumped the gap by a single category.",
+   "pins": [
+    {"p": "Luka Dončić", "w": true, "c": ["12", "10"]},
+    {"p": "Cameron Boozer", "w": true, "c": ["12", "8"]}
+   ]
+  },
+  "478.l.39751.t.3|478.l.39751.t.11": {
+   "text": "BrookynDynasty went into the weekend one category up with a nervous pilot. Saddiq Bey and Paul George took the controls and flew it home, and Zero Fox Given got the three point percentage as a parting gift.",
+   "pins": [
+    {"p": "Saddiq Bey", "w": true, "c": ["5", "17"]},
+    {"p": "Paul George", "w": true, "c": ["16"]}
+   ]
+  },
+  "478.l.39751.t.1|478.l.39751.t.7": {
+   "text": "Nova Knicks had the best player in the entire building and he still could not stop theInfamous from taking both shooting percentages on the way down the mountain.",
+   "pins": [
+    {"p": "Victor Wembanyama", "c": ["12", "18"]},
+    {"p": "Ayo Dosunmu", "w": true, "c": ["5"]}
+   ]
+  }
+ },
+ "zingers": {
+  "478.l.39751.t.4": "More fake passports than anyone in the building, and every one of them comes with a mustache. Chet never left the safe house.",
+  "478.l.39751.t.9": "Down to one chip after the first night, then took the house. Kon Knueppel is still on the bench, still Out, still on the payroll.",
+  "478.l.39751.t.2": "Beat two agents all week and still thinks he is the hero of this movie. Kawhi is filing his reports from the infirmary.",
+  "478.l.39751.t.8": "Won his table without anybody noticing, which is the entire job description. Gobert spent two nights in the safe house anyway.",
+  "478.l.39751.t.1": "Lauri Markkanen shot like his pistol was loaded with blanks. Curry carried the briefcase out anyway.",
+  "478.l.39751.t.6": "Paid star money for Devin Booker, who fired at the target all week and hit the ceiling fan. Won by one category and is calling it a plan.",
+  "478.l.39751.t.3": "Brought Anthony Edwards to the gala and he left before the soup course. Saddiq Bey did the heavy lifting in a borrowed tuxedo.",
+  "478.l.39751.t.12": "Had Thug Life tied to a chair after one night and somehow lost the interrogation. Ivica Zubac spent the week on the bench in a disguise nobody asked for.",
+  "478.l.39751.t.7": "Owned the best player in the building and still got carried out on a stretcher. Banchero has not shown up for a single briefing.",
+  "478.l.39751.t.5": "Beat zero agents. The punch bowl had a better week, and somebody spiked the punch bowl.",
+  "478.l.39751.t.10": "Eleventh in the standings and rated the strongest outfit in the league. Either a sleeper agent or just asleep.",
+  "478.l.39751.t.11": "Four moves all season and a roster full of men in casts. Even the mole quit."
+ },
+ "sign_off": "Next Monday, the Gazette trades the tuxedo for something with four wheels and no brakes. Keep your elbows inside the vehicle."
+}
