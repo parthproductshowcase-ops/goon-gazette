@@ -1,0 +1,78 @@
+name: Projections probe
+# Manual only. Asks the Yahoo Fantasy API for rest-of-season projections in every form we know of and
+# prints what comes back as run annotations (job logs are blocked from the cloud). Commits nothing.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - name: Try every projection path
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+          YAHOO_LEAGUE_ID: ${{ secrets.YAHOO_LEAGUE_ID }}
+          YAHOO_REDIRECT_URI: ${{ secrets.YAHOO_REDIRECT_URI }}
+        run: |
+          python - > probe.txt 2>&1 <<'PY' || true
+          import json, os, requests, traceback
+          from pipeline.yahoo import Yahoo, API, load_dotenv
+          load_dotenv()
+          y = Yahoo(os.environ["YAHOO_CLIENT_ID"], os.environ["YAHOO_CLIENT_SECRET"], os.environ["YAHOO_REFRESH_TOKEN"])
+          y._refresh()
+          lk = y.league_key(os.environ["YAHOO_LEAGUE_ID"])
+          P = y.top_players(lk, 1)[0]["player_key"]
+          def raw(path):
+              r = requests.get(f"{API}/{path}", params={"format": "json"},
+                               headers={"Authorization": f"Bearer {y.access}"}, timeout=30)
+              return r.status_code, r.text
+          def summarize(txt):
+              # pull coverage_type, stat values and any rank blocks out of the reply
+              out = []
+              try:
+                  s = json.dumps(json.loads(txt))
+              except ValueError:
+                  return txt[:160].replace("\n", " ")
+              import re
+              for k in ("coverage_type", "season", "rank_type", "rank_value", "description"):
+                  m = re.findall(r'"%s": "([^"]*)"' % k, s)
+                  if m: out.append(f"{k}={m[:4]}")
+              vals = re.findall(r'"stat_id": "(\d+)", "value": "([^"]*)"', s)
+              if vals: out.append("stats=" + ",".join(f"{a}:{b}" for a, b in vals[:9]))
+              return " ".join(out)[:420] or s[:300]
+          tries = [
+              ("season", f"league/{lk}/players;player_keys={P}/stats;type=season"),
+              ("projected_season", f"league/{lk}/players;player_keys={P}/stats;type=projected_season"),
+              ("projected_season_remaining", f"league/{lk}/players;player_keys={P}/stats;type=projected_season_remaining"),
+              ("remaining_games", f"league/{lk}/players;player_keys={P}/stats;type=remaining_games"),
+              ("projected_week", f"league/{lk}/players;player_keys={P}/stats;type=projected_week"),
+              ("projected_date", f"league/{lk}/players;player_keys={P}/stats;type=projected_date"),
+              ("S_PSR", f"league/{lk}/players;player_keys={P}/stats;type=S_PSR"),
+              ("game-level projected_season", f"players;player_keys={P}/stats;type=projected_season"),
+              ("ranks", f"league/{lk}/players;player_keys={P};out=ranks"),
+              ("player_ranks", f"league/{lk}/players;player_keys={P}/ranks"),
+              ("percent_owned+draft", f"league/{lk}/players;player_keys={P};out=percent_owned,draft_analysis"),
+              ("sort=OR", f"league/{lk}/players;sort=OR;count=3"),
+              ("sort=PR", f"league/{lk}/players;sort=PR;count=3"),
+              ("sort=AR lastmonth", f"league/{lk}/players;sort=AR;sort_type=lastmonth;count=3"),
+          ]
+          print("RESULT player", P, "league", lk)
+          for label, path in tries:
+              try:
+                  code, txt = raw(path)
+                  print("RESULT", label, code, summarize(txt))
+              except Exception as e:
+                  print("RESULT", label, "error", repr(e)[:200])
+          PY
+          grep "RESULT" probe.txt | head -8 | cut -c1-900 | while IFS= read -r line; do echo "::notice::$line"; done
+      - name: More results
+        run: |
+          grep -q RESULT probe.txt || echo "::notice::NO RESULT $(tail -c 800 probe.txt | tr '\n' ' ')"
+          grep "RESULT" probe.txt | sed -n '9,20p' | cut -c1-900 | while IFS= read -r line; do echo "::notice::$line"; done

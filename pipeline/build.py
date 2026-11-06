@@ -177,8 +177,6 @@ def _main():
                 warnings.append("recap fell back to templates: Squawk Box is not Claude copy")
             elif n and not a["recap"].get("night"):
                 warnings.append("Last Night notes fell back to templates")
-    if os.environ.get("HISTORY_OUTCOME") == "failure":  # the step is continue-on-error in daily.yml
-        warnings.append("history step failed: history.json was not rebuilt")
 
     a["generated_at"] = datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes")
     blob = json.dumps(a, indent=1)
