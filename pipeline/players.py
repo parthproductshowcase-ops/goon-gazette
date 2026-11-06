@@ -437,11 +437,15 @@ def weekly_report(d):
         out[key] = {"week": w["week"], "start": w["start"], "end": w["end"], "days": len(dates),
                     "top_players": top_players(players, scorer, cats, 10),
                     "top_plays": top_plays(players, teams, pairs, cats, acq, scorer)}
-        if key == "current":
-            out[key]["pickups"] = pickup_impact(players, teams, pairs, cats, acq)
+        if key == "current":  # storyline extras for the Squawk Box; never allowed to block the paper
             last = (d.get("windows") or {}).get("last")
-            out[key]["regrets"] = drop_regrets(d, cats, pmap, scorer, (last or w)["start"], w["end"])
-            out[key]["bench_cost"] = bench_cost(d["days"], dates, cats, pmap, pairs, teams)
+            for k, fn in (("pickups", lambda: pickup_impact(players, teams, pairs, cats, acq)),
+                          ("regrets", lambda: drop_regrets(d, cats, pmap, scorer, (last or w)["start"], w["end"])),
+                          ("bench_cost", lambda: bench_cost(d["days"], dates, cats, pmap, pairs, teams))):
+                try:
+                    out[key][k] = fn()
+                except Exception as e:
+                    print(f"week {k} skipped:", e)
             if d.get("games_left"):
                 out[key]["games_left"] = d["games_left"]
         if key == "last":
