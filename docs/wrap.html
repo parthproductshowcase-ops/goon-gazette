@@ -8,10 +8,10 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#121212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Racing+Sans+One&family=Barlow:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
 <link rel="stylesheet" href="themes/fight.css?v=d30a6f47">
-<link rel="stylesheet" href="themes/wrap.css?v=4f8e8069">
+<link rel="stylesheet" href="themes/wrap.css?v=1b5dc6cd">
 
 <div class="wrap">
   <header class="mast">
@@ -31,6 +31,7 @@
     <svg class="wx-defs" width="0" height="0" aria-hidden="true"><defs>
       <pattern id="wxh" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.1"/></pattern>
       <pattern id="wxh2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width=".7"/></pattern>
+      <pattern id="wxck" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="var(--wx-poster)"/><rect width="6" height="6" fill="currentColor"/><rect x="6" y="6" width="6" height="6" fill="currentColor"/></pattern>
     </defs></svg>
 
     <section class="wx-front">
@@ -58,6 +59,10 @@ const THEME = {
     boot: "Boot Hill", roy: "Rest of Year: The Long Ride", saloon: "Saloon Talk",
     mvp: "Sheriff", dud: "Dead Weight", luckiest: "Horse Thief", robbed: "Bushwhacked", reward: "Reward", posted: "Wanted", sub: "Dead or alive",
     status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "On the IL"}},
+  karts: {edition: "Mahesh's Car", results: "The Heats", late: "Final Lap", wanted: "The Podium",
+    boot: "Pit Lane", roy: "Rest of Year: The Championship", saloon: "Pit Radio",
+    mvp: "Race Winner", dud: "Lapped", luckiest: "Slipstream Special", robbed: "Spun Out", reward: "Prize", posted: "Race Card", sub: "Official results",
+    status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "In the pits"}},
   spy: {edition: "Undercover Edition", results: "The Tables", late: "The Chase", wanted: "The Dossiers",
     boot: "The Safe House", roy: "Rest of Year: The Extraction", saloon: "The Wiretap",
     mvp: "Agent of the Week", dud: "Double Agent", luckiest: "Lucky Charm", robbed: "Burned", reward: "Payout", posted: "Classified", sub: "Eyes only",
@@ -107,6 +112,112 @@ const ART = {
       <g stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M28 30q8-8 14 0q6-8 14 0"/><path d="M62 18q5-5 9 0q4-5 9 0"/></g>
       <g fill="var(--wx-poster)" stroke="currentColor" stroke-width="2"><circle cx="40" cy="64" r="5"/><circle cx="176" cy="22" r="4"/><circle cx="128" cy="34" r="3"/></g>
       <g stroke="currentColor" stroke-width="1.3"><path d="M40 54v-5M40 74v5M30 64h-5M50 64h5"/></g></svg>`
+  }
+};
+
+// Karts edition ("Mahesh's Car"): original go-kart art, no real racing games, characters, items or marks
+const HELMETS = {
+  cowboy: `<path d="M15 31a15 15 0 0 1 30 0v3H15z"/><path d="M17 28h26" stroke="var(--wx-accent)" stroke-width="3"/><path d="M19 30h22v4H19z" fill="var(--wx-poster)" opacity=".5"/>`,
+  tall: `<path d="M15 31a15 15 0 0 1 30 0v3H15z"/><path d="M30 16v15" stroke="var(--wx-accent)" stroke-width="4"/><path d="M19 30h22v4H19z" fill="var(--wx-poster)" opacity=".5"/>`,
+  bowler: `<path d="M15 31a15 15 0 0 1 30 0v3H15z" fill="var(--wx-accent)"/><path d="M19 30h22v4H19z" fill="var(--wx-poster)" opacity=".6"/>`,
+  sombrero: `<path d="M15 31a15 15 0 0 1 30 0v3H15z"/><g fill="var(--wx-poster)"><rect x="20" y="19" width="4" height="4"/><rect x="28" y="19" width="4" height="4"/><rect x="36" y="19" width="4" height="4"/><rect x="24" y="23" width="4" height="4"/><rect x="32" y="23" width="4" height="4"/></g>`,
+  band: `<path d="M15 31a15 15 0 0 1 30 0v3H15z"/><path d="M20 22c6-5 14-5 20 0" stroke="var(--wx-accent)" stroke-width="3" fill="none"/><path d="M19 30h22v4H19z" fill="var(--wx-poster)" opacity=".5"/>`
+};
+function helmetGoon(i) {  // the common.js goon with a racing helmet instead of a hat
+  const saved = GOON.hats;
+  GOON.hats = HELMETS;
+  try { return goon(i); } finally { GOON.hats = saved; }
+}
+function kart(x, y, s, i, num, rot = 0) {
+  const w = 40, h = w * 80 / 60;
+  const driver = helmetGoon(i).replace(/<svg viewBox="0 0 60 80" class="g\d">/, `<svg x="${-w / 2 - 4}" y="${14 - h}" width="${w}" height="${h}" viewBox="0 0 60 80" overflow="visible">`);
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">${driver}
+    <path d="M-62-20h22v6h-22z" fill="var(--wx-accent)"/><path d="M-54-14h6v22h-6z" fill="currentColor"/>
+    <path d="M18-6l8-12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    <path d="M-44 0h78q14 0 22 8l8 6v4h-110z" fill="currentColor"/>
+    <path d="M-40 4h70" stroke="var(--wx-accent)" stroke-width="3"/>
+    <circle cx="8" cy="10" r="7" fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.5"/>
+    <text x="8" y="13.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="9" fill="currentColor">${num}</text>
+    <g fill="currentColor"><circle cx="-30" cy="20" r="12"/><circle cx="40" cy="20" r="12"/></g>
+    <g fill="var(--wx-poster)"><circle cx="-30" cy="20" r="4.5"/><circle cx="40" cy="20" r="4.5"/></g></g>`;
+}
+ART.karts = {
+  mvp: `<svg viewBox="0 0 200 140" aria-hidden="true">
+    <g transform="rotate(-24 60 70)"><path d="M58 128V18" stroke="currentColor" stroke-width="3"/><rect x="60" y="18" width="48" height="32" fill="url(#wxck)" stroke="currentColor" stroke-width="1.5"/></g>
+    <g transform="rotate(24 140 70)"><path d="M142 128V18" stroke="currentColor" stroke-width="3"/><rect x="92" y="18" width="48" height="32" fill="url(#wxck)" stroke="currentColor" stroke-width="1.5"/></g>
+    <path fill="currentColor" d="M72 30h56v14c0 22-12 36-28 38-16-2-28-16-28-38z"/>
+    <path fill="none" stroke="currentColor" stroke-width="6" d="M72 38H60c0 16 8 22 16 24M128 38h12c0 16-8 22-16 24"/>
+    <path fill="currentColor" d="M94 82h12v16H94zM80 98h40v10H80zM74 108h52v10H74z"/>
+    <path d="M80 112h40" stroke="var(--wx-accent)" stroke-width="3"/>
+    <path fill="var(--wx-poster)" opacity=".35" d="M84 36h10v24c-6-4-10-12-10-24z"/>
+    <text x="100" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="16" fill="var(--wx-accent)">1</text></svg>`,
+  dud: `<svg viewBox="0 0 200 140" aria-hidden="true">
+    <g fill="currentColor" opacity=".35"><circle cx="70" cy="40" r="14"/><circle cx="88" cy="30" r="18"/><circle cx="110" cy="36" r="13"/><circle cx="126" cy="24" r="10"/></g>
+    <g transform="translate(100 96) rotate(180)">
+      <path d="M-50 0h80q12 0 20 8l8 6v4h-108z" fill="currentColor"/>
+      <path d="M-58-16h20v6h-20z" fill="var(--wx-accent)"/>
+      <g fill="currentColor"><circle cx="-32" cy="20" r="12"/><circle cx="38" cy="20" r="12"/></g>
+      <g fill="var(--wx-poster)"><circle cx="-32" cy="20" r="4.5"/><circle cx="38" cy="20" r="4.5"/></g></g>
+    <path d="M128 66l10-6M136 72l12-2M60 66l-10-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M0 122h200v18H0z" fill="currentColor"/><path d="M10 130h30M60 130h30M110 130h30M160 130h30" stroke="var(--wx-poster)" stroke-width="3"/>
+    <path transform="translate(150 106)" d="M0-10l7 20H-7z" fill="var(--wx-accent)"/><path d="M146 104h8" stroke="var(--wx-poster)" stroke-width="2"/></svg>`,
+  luckiest: `<svg viewBox="0 0 200 140" aria-hidden="true">
+    <circle cx="100" cy="70" r="52" fill="currentColor"/>
+    <circle cx="100" cy="70" r="40" fill="none" stroke="var(--wx-poster)" stroke-width="2" stroke-dasharray="4 5" opacity=".6"/>
+    <circle cx="100" cy="70" r="30" fill="var(--wx-poster)"/>
+    <g fill="var(--wx-good)" transform="translate(100 70)">
+      <circle cx="0" cy="-11" r="9"/><circle cx="11" cy="0" r="9"/><circle cx="0" cy="11" r="9"/><circle cx="-11" cy="0" r="9"/>
+      <path d="M0 0q6 14 2 24" stroke="var(--wx-good)" stroke-width="3" fill="none"/></g>
+    <g fill="currentColor" opacity=".55"><path d="M26 24l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/><path d="M172 104l2 5 6 1-4 4 1 6-5-3-5 3 1-6-4-4 6-1z"/></g>
+    <path d="M150 30h36M156 40h30M162 50h24" stroke="var(--wx-accent)" stroke-width="3" stroke-linecap="round"/></svg>`,
+  robbed: `<svg viewBox="0 0 200 140" aria-hidden="true">
+    <path d="M10 120c30-10 50-40 80-46s50 20 40 34-40 6-36-14 30-30 50-24" fill="none" stroke="currentColor" stroke-width="5" opacity=".35" stroke-linecap="round"/>
+    <ellipse cx="96" cy="106" rx="44" ry="12" fill="currentColor" opacity=".8"/>
+    <ellipse cx="86" cy="103" rx="14" ry="3" fill="var(--wx-poster)" opacity=".35"/>
+    <g transform="translate(120 70) rotate(-150) scale(.7)">
+      <path d="M-50 0h80q12 0 20 8l8 6v4h-108z" fill="currentColor"/><path d="M-58-16h20v6h-20z" fill="var(--wx-accent)"/>
+      <g fill="currentColor"><circle cx="-32" cy="20" r="12"/><circle cx="38" cy="20" r="12"/></g>
+      <g fill="var(--wx-poster)"><circle cx="-32" cy="20" r="4.5"/><circle cx="38" cy="20" r="4.5"/></g></g>
+    <g transform="translate(34 40) rotate(70)"><path d="M0-14l9 28H-9z" fill="var(--wx-accent)"/><path d="M-5 2h10" stroke="var(--wx-poster)" stroke-width="3"/></g>
+    <path d="M150 24q8-8 14 0M162 14q5-5 9 0" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`,
+  hero() {
+    const g = (i, x, y, w, rot = 0, flip = false) => {
+      const h = w * 80 / 60;
+      return `<g transform="translate(${x} ${y}) rotate(${rot}) ${flip ? "scale(-1 1)" : ""}">` +
+        helmetGoon(i).replace(/<svg viewBox="0 0 60 80" class="g\d">/, `<svg x="${-w / 2}" y="${-h}" width="${w}" height="${h}" viewBox="0 0 60 80" overflow="visible">`) + `</g>`;
+    };
+    const cone = (x, y, r = 0) => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M0-18l9 18H-9z" fill="var(--wx-accent)"/><path d="M-12 0h24v3h-24z" fill="currentColor"/><path d="M-4-9h8" stroke="var(--wx-poster)" stroke-width="3"/></g>`;
+    const tires = (x, y) => [0, 1, 2].map(k => `<ellipse cx="${x}" cy="${y - k * 11}" rx="17" ry="6" fill="currentColor"/><ellipse cx="${x}" cy="${y - k * 11 - 1}" rx="7" ry="2.4" fill="var(--wx-poster)" opacity=".5"/>`).join("");
+    const smoke = [[176, 214, 16], [150, 206, 12], [204, 222, 11], [130, 214, 9]]
+      .map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#wxh2)" stroke="currentColor" stroke-width="1.1" opacity=".8"/>`).join("");
+    const crowd = Array.from({length: 46}, (_, k) => `<circle cx="${14 + k * 17}" cy="${66 + (k % 3) * 9}" r="4.5"/>`).join("");
+    return `<svg viewBox="0 0 800 320" role="img" aria-label="Go-karts racing through a corner, one spinning out">
+      <rect width="800" height="320" fill="url(#wxh2)" opacity=".12"/>
+      <path d="M0 46h800v58H0z" fill="currentColor" opacity=".14"/>
+      <g fill="currentColor" opacity=".3">${crowd}</g>
+      <path d="M0 104h800v8H0z" fill="currentColor" opacity=".6"/>
+      <path d="M0 320V196C160 150 330 136 470 150S700 196 800 188V320z" fill="currentColor" opacity=".12"/>
+      <path d="M0 196C160 150 330 136 470 150S700 196 800 188" fill="none" stroke="var(--wx-accent)" stroke-width="9" stroke-dasharray="26 26"/>
+      <path d="M0 196C160 150 330 136 470 150S700 196 800 188" fill="none" stroke="var(--wx-poster)" stroke-width="9" stroke-dasharray="26 26" stroke-dashoffset="26"/>
+      <path d="M0 304C200 282 380 270 560 280S760 300 800 298" fill="none" stroke="var(--wx-accent)" stroke-width="7" stroke-dasharray="22 22"/>
+      <path d="M0 304C200 282 380 270 560 280S760 300 800 298" fill="none" stroke="var(--wx-poster)" stroke-width="7" stroke-dasharray="22 22" stroke-dashoffset="22"/>
+      <g stroke="currentColor" stroke-width="5" fill="none"><path d="M598 112V36M782 112V36"/></g>
+      <rect x="598" y="18" width="184" height="30" fill="url(#wxck)" stroke="currentColor" stroke-width="2"/>
+      <rect x="626" y="22" width="128" height="22" fill="var(--wx-poster)" stroke="currentColor" stroke-width="1.5"/>
+      <text x="690" y="38" text-anchor="middle" font-family="'Racing Sans One','Arial Black',Impact,sans-serif" font-size="14" textLength="116" lengthAdjust="spacingAndGlyphs" fill="currentColor">GOON GRAND PRIX</text>
+      ${tires(40, 192)}${tires(76, 196)}
+      ${cone(250, 166, -8)}${cone(520, 162)}${cone(300, 300, 64)}
+      <path d="M150 244c-30-14-50-6-62 8M170 252c-26-20-60-18-80 0" stroke="currentColor" stroke-width="4" fill="none" opacity=".45"/>
+      ${smoke}
+      ${kart(176, 236, .9, 4, 7, 155)}
+      <g stroke="currentColor" stroke-width="3" opacity=".45" stroke-linecap="round"><path d="M600 226h-90M610 240h-110M596 254h-80"/></g>
+      ${kart(690, 236, 1.08, 0, 1)}
+      ${kart(470, 226, 1, 1, 3)}
+      ${kart(330, 256, 1, 2, 5, -4)}
+      ${kart(560, 286, .95, 3, 9)}
+      ${g(5, 744, 150, 40)}
+      <path d="M758 128l22-38" stroke="currentColor" stroke-width="3"/><rect x="764" y="62" width="34" height="24" fill="url(#wxck)" stroke="currentColor" stroke-width="1.5" transform="rotate(-14 780 74)"/>
+    </svg>`;
   }
 };
 
@@ -315,7 +426,8 @@ function load(w) {
 }
 
 function posse() {
-  $("wx-goons").innerHTML = Array.from({length: 12}, (_, i) => goon(i)).join("");  // goon() lives in common.js
+  const draw = (X && X.theme === "karts") ? helmetGoon : goon;
+  $("wx-goons").innerHTML = Array.from({length: 12}, (_, i) => draw(i)).join("");  // goon() lives in common.js
 }
 
 function render() {
