@@ -2,11 +2,11 @@
  "date": "2026-11-05",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-06T00:35-05:00",
- "as_of": "12:35am",
- "update": 12,
+ "generated_at": "2026-11-06T00:49-05:00",
+ "as_of": "12:49am",
+ "update": 13,
  "updates": 15,
- "final": false,
+ "final": true,
  "cats": [
   {
    "id": "5",
@@ -166,7 +166,7 @@
     {
      "cat": "12",
      "a": 399.0,
-     "b": 417.0,
+     "b": 418.0,
      "lead": "b",
      "swing": true
     },
@@ -189,8 +189,7 @@
      "a": 91.0,
      "b": 91.0,
      "lead": "tie",
-     "swing": true,
-     "flip": "b"
+     "swing": true
     },
     {
      "cat": "17",
@@ -217,8 +216,8 @@
    "swings": 4,
    "prev_score": [
     6,
-    5,
-    0
+    4,
+    1
    ]
   },
   {
@@ -692,17 +691,7 @@
    ]
   }
  ],
- "flips": [
-  {
-   "a": "478.l.39751.t.3",
-   "b": "478.l.39751.t.6",
-   "cat": "16",
-   "was": "b",
-   "now": "tie",
-   "a_val": 91.0,
-   "b_val": 91.0
-  }
- ],
+ "flips": [],
  "games": [
   {
    "teams": [
@@ -727,10 +716,10 @@
     100,
     120
    ],
-   "state": "in",
-   "clock": "39.8",
+   "state": "post",
+   "clock": "0.0",
    "period": 4,
-   "detail": "39.8 - 4th"
+   "detail": "Final"
   }
  ],
  "lines": [
@@ -787,7 +776,7 @@
    "slot": "F",
    "nba": "PHX",
    "benched": false,
-   "value": 6.85,
+   "value": 6.84,
    "z": {
     "5": 0.79,
     "8": 0.76,
@@ -1227,7 +1216,7 @@
   },
   {
    "team": "478.l.39751.t.6",
-   "value": 3.8,
+   "value": 3.9,
    "played": 2,
    "with_game": 2,
    "bench_value": 0,
@@ -1336,12 +1325,12 @@
    "rank": 12
   }
  ],
- "headline": "Booker Drops 30, LeParth Still Slips",
+ "headline": "Wendell Carter Jr. Is Wrecking Nova Knicks",
  "notes": [
-  "Wendell Carter Jr. has 27 points on 10-12 shooting for Suggs to be you, and Nova Knicks have nobody on the floor to answer him.",
-  "Miles Bridges has 18 points and 13 rebounds so far, and Zero Fox Given still trail MONSTARS only because Jalen Green is shooting 3-7.",
-  "Devin Booker has 30 points, 8 assists and 3 steals, and LeParth James are somehow down 6-4 to BrookynDynasty right now.",
-  "Stephen Curry has 29 points and six threes for theInfamous, and Thug Life still lead 6-5 without a single player posting a stat.",
-  "Adam Silver Dez Nuts got 2 points on 1-6 shooting from Andrew Wiggins and 2 more from Oso Ighodaro, and the league's worst night is theirs."
+  "Wendell Carter Jr. has 27 points and 10-12 shooting for Suggs to be you, and Nova Knicks are watching it from a 6-4 hole.",
+  "Adam Silver Dez Nuts got 2 points on 1-6 from Andrew Wiggins and 2 more from Oso Ighodaro, yet somehow still trail by one category.",
+  "Devin Booker has 30 points, 8 assists and 3 steals for LeParth James, and they still sit at 4 behind BrookynDynasty.",
+  "Zero Fox Given have Giannis Antetokounmpo and Miles Bridges both sitting on 13 or more boards. MONSTARS trail 6-5 with Jalen Green's 3-7 for company.",
+  "Stephen Curry dropped 29 and six threes for theInfamous, and they still trail Thug Life 6-5 while 3PT% and DREB stay live."
  ]
 }
