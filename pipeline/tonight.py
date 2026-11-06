@@ -130,7 +130,7 @@ def main():
     out = {"date": t["date"], "week": t["week"], "sample": is_sample,
            "generated_at": datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes"),
            "matchups": t["matchups"], "lineups": t["lineups"], "moves_today": t["moves_today"],
-           "headline": card.get("headline"), "zingers": card.get("zingers", [])}
+           "headline": card.get("headline"), "zingers": card.get("zingers", []), "by": card.get("by")}
     OUT.write_text(json.dumps(out, indent=1))
     print("wrote", OUT)
 

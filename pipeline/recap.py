@@ -383,7 +383,8 @@ def tonight_fallback(t):
 
 def tonight(t):
     out = _call(TONIGHT_VOICE, "FACTS:\n" + json.dumps(tonight_facts(t)) + "\n\n" + TONIGHT_SCHEMA, 700)
-    return out or tonight_fallback(t)
+    # "by" lets the watchdog flag a Lineup Card that shipped on template copy
+    return dict(out, by="claude") if out else dict(tonight_fallback(t), by="template")
 
 
 # ---------- Tonight (the evening page, every 30 minutes) ----------
@@ -471,8 +472,9 @@ def today(t):
                 seen.add(z["team"]); zs.append({"team": z["team"], "line": z["line"]})
         if len(zs) >= 4 and w.get("headline"):
             res["week"] = {"headline": w["headline"], "subhead": w.get("subhead", ""), "zingers": zs[:7]}
+        res["by"] = "claude"
         return res
-    return today_fallback(t)
+    return dict(today_fallback(t), by="template")  # the watchdog flags template copy
 
 
 if __name__ == "__main__":

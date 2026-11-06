@@ -341,7 +341,7 @@ def main():
            "gauntlet": stats.gauntlet_live(d["matchups"], d["cats"], d["week"], d["date"]),
            "race": race_after_games(d, now, final, is_sample),
            "players_current": wk, "sched_left": sched,
-           "week_copy": copy.get("week")}
+           "week_copy": copy.get("week"), "by": copy.get("by")}
     OUT.write_text(json.dumps(out, indent=1))
     print("wrote", OUT, "update", slot, "final" if final else "live", len(rows), "lines", len(flips), "flips")
 

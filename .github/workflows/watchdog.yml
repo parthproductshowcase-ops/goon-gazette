@@ -1,0 +1,35 @@
+name: Gazette watchdog
+# Fails (and GitHub emails Parth) when a run that should have happened didn't, or shipped broken.
+# Started by cron-job.org: "Gazette watchdog morning" 6:15am ET (check=morning) and
+# "Gazette watchdog evening" 7:25pm ET (check=evening). The GitHub cron below is only a backstop in case
+# cron-job.org itself stops; it runs hours late on this repo, so it only does the morning check, and only
+# between 6am and 11pm ET.
+on:
+  workflow_dispatch:
+    inputs:
+      check:
+        description: "morning = paper out, status clean, last night's Lineup Card and Tonight finished; evening = Lineup Card and first Tonight update in"
+        default: "morning"
+        type: choice
+        options: [morning, evening]
+  schedule:
+    - cron: "17 14 * * *"
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - name: Check
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            H=$((10#$(TZ=America/New_York date +%H)))
+            if [ "$H" -lt 6 ] || [ "$H" -ge 23 ]; then echo "Backstop landed at ${H}h ET; skipping"; exit 0; fi
+            python -m pipeline.watchdog --check morning
+          else
+            python -m pipeline.watchdog --check "${{ github.event.inputs.check }}"
+          fi
