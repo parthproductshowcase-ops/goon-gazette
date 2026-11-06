@@ -157,6 +157,13 @@ def _main():
         # Last Night first (computed), so the recap can write its five notes from the same facts
         n = night.build(d) if d.get("days") else None
         a["recap"] = d["recap"] if sample else recap.write(a, n)
+        if not sample:  # a template paper used to ship under ok:true with no trace (Oct 28)
+            if a["recap"].get("by") == "template":
+                warnings.append("recap fell back to templates: Squawk Box is not Claude copy")
+            elif n and not a["recap"].get("night"):
+                warnings.append("Last Night notes fell back to templates")
+    if os.environ.get("HISTORY_OUTCOME") == "failure":  # the step is continue-on-error in daily.yml
+        warnings.append("history step failed: history.json was not rebuilt")
 
     a["generated_at"] = datetime.now(ZoneInfo("America/New_York")).isoformat(timespec="minutes")
     blob = json.dumps(a, indent=1)

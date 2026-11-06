@@ -188,7 +188,10 @@ def write(a, night=None):
             if isinstance(z, dict) and z.get("team") and z.get("line") and z["team"] not in seen:
                 seen.add(z["team"]); zs.append({"team": z["team"], "line": z["line"]})
         out["zingers"] = zs[:7]
-    return out or fallback(a)
+    if out:
+        out["by"] = "claude"
+        return out
+    return dict(fallback(a), by="template")  # build.py turns "template" into a status.json warning
 
 
 # ---------- past seasons ----------

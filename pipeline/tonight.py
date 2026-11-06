@@ -1,4 +1,4 @@
-"""Evening edition: tonight's lineup card. Run after lineups lock (about 7:15pm ET).
+"""Evening edition: tonight's lineup card. Runs at 6:55pm ET (cron-job.org), before lineups lock.
 
     python -m pipeline.tonight            # live
     python -m pipeline.tonight --sample   # fake data for design work
@@ -6,7 +6,7 @@
 Reads today's rosters (who is benched with a game, who is starting while listed out,
 empty slots), today's adds and drops, and the live matchup scores. Writes
 docs/data/tonight.json. The home page uses it to refresh the scoreboard and show the
-Lineup Card until the 4am edition replaces it.
+Lineup Card until the 5am paper replaces it.
 """
 import json
 import os
