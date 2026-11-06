@@ -19,7 +19,11 @@ carried, who sabotaged himself. Rank the storylines and lead with the biggest:
 2. dropped_and_regretting_it: a manager who cut a player who is now outplaying the guy he added
    gets brutally admonished. Name the dropped player, his line since, and who he grabbed instead.
    If now_on_his_opponent_this_week is true, that is the cruelest line of the day.
-3. Then last night: the player left on the bench who went off, the category lead coughed up, the
+3. bench_cost_this_week: categories a manager would be winning if he had started his own bench.
+4. starts_left_this_week: a team leading on the scoreboard with far fewer starts left is living on
+   borrowed time; a team trailing with a big starts edge is about to steamroll. Matchup math nobody
+   sees in a box score is the paper's whole value.
+5. Then last night: the player left on the bench who went off, the category lead coughed up, the
    blowout they are sleepwalking into, the lucky stiff who should be losing.
 The headline and subhead go to the single biggest storyline. Use the player's name and the
 category whenever FACTS give you one. The test for every line: would the manager wince, and would
@@ -90,27 +94,7 @@ def _facts(a):
             f[f"{k}_week_top_players"] = [[x["name"], nm(x["team"])] for x in P[k]["top_players"][:3]]
             f[f"{k}_week_waiver_plays"] = [[x["name"], nm(x["team"]), "swung the matchup" if x["flipped"] else f"worth {x['net']} cats"]
                                           for x in P[k]["top_plays"][:2]]
-    cur = P.get("current") or {}
-    if cur.get("pickups"):
-        # the week's storylines: who is winning on waiver-wire pickups, and how much of the box score they are
-        f["this_week_pickup_impact"] = [{
-            "team": nm(x["team"]), "vs": nm(x["opp"]), "score_with_pickups": x["score"][:2],
-            "score_without_any_pickups": x["without"][:2],
-            "winning_only_because_of_pickups": x["carried"],
-            "categories_the_pickups_are_winning": [cat[c] for c in x["swung"] if c in cat],
-            "pickups_share_of_team_stats": {cat[c]: f"{round(v * 100)}%" for c, v in x["share"].items() if c in cat and v >= .2},
-            "pickups": [f'{p["name"]} ({p["desc"]})' for p in x["pickups"][:4]]}
-            for x in cur["pickups"] if x["net"] > 0][:5]
-    opp_of = {}
-    for m in a.get("matchups") or []:
-        opp_of[m["a"]], opp_of[m["b"]] = m["b"], m["a"]
-    if cur.get("regrets"):
-        f["dropped_and_regretting_it"] = [{
-            "team_that_dropped_him": nm(x["team"]), "dropped": x["dropped"], "dropped_on": x["date"],
-            "since_then_for": nm(x["now_on"]), "his_line_since": x["dropped_desc"],
-            "now_on_his_opponent_this_week": opp_of.get(x["team"]) == x["now_on"],
-            "picked_up_instead": [f'{a["name"]} ({a["desc"]})' for a in x["added"]] or ["nobody"]}
-            for x in cur["regrets"]]
+    f.update(week_story_facts(P.get("current") or {}, nm, cat, a.get("matchups") or []))
     if P.get("waiver") and P["waiver"].get("best_pickup"):
         f["pickup_of_the_week"] = [P["waiver"]["best_pickup"]["player"], nm(P["waiver"]["best_pickup"]["team"])]
     if a["bench"]:
@@ -121,6 +105,48 @@ def _facts(a):
         f["manager_picks_on_record"] = a["picks"]
     if a.get("_night"):
         f["last_night"] = _night_facts(a["_night"], nm)
+    return f
+
+
+def week_story_facts(cur, nm, cat, matchups):
+    """The week's hidden storylines (players.weekly_report "current"), shared by the morning paper and the
+    Tonight runs: pickups carrying a team, drops that came back to bite, bench crimes that cost categories,
+    and who has more games left to swing it."""
+    f = {}
+    opp_of = {}
+    for m in matchups:
+        opp_of[m["a"]], opp_of[m["b"]] = m["b"], m["a"]
+    if cur.get("pickups"):
+        f["this_week_pickup_impact"] = [{
+            "team": nm(x["team"]), "vs": nm(x["opp"]), "score_with_pickups": x["score"][:2],
+            "score_without_any_pickups": x["without"][:2],
+            "winning_only_because_of_pickups": x["carried"],
+            "categories_the_pickups_are_winning": [cat[c] for c in x["swung"] if c in cat],
+            "pickups_share_of_team_stats": {cat[c]: f"{round(v * 100)}%" for c, v in x["share"].items() if c in cat and v >= .2},
+            "pickups": [f'{p["name"]} ({p["desc"]})' for p in x["pickups"][:4]]}
+            for x in cur["pickups"] if x["net"] > 0][:5]
+    if cur.get("regrets"):
+        f["dropped_and_regretting_it"] = [{
+            "team_that_dropped_him": nm(x["team"]), "dropped": x["dropped"], "dropped_on": x["date"],
+            "since_then_for": nm(x["now_on"]), "his_line_since": x["dropped_desc"],
+            "now_on_his_opponent_this_week": opp_of.get(x["team"]) == x["now_on"],
+            "picked_up_instead": [f'{a["name"]} ({a["desc"]})' for a in x["added"]] or ["nobody"]}
+            for x in cur["regrets"]]
+    if cur.get("bench_cost"):
+        f["bench_cost_this_week"] = [{
+            "team": nm(x["team"]), "vs": nm(x["opp"]), "score": x["score"][:2], "score_if_he_had_started_his_bench": x["with_bench"][:2],
+            "categories_left_on_the_bench": [cat[c] for c in x["cats"] if c in cat],
+            "benched_players": [f'{p["name"]} ({p["desc"]})' for p in x["players"]]} for x in cur["bench_cost"][:4]]
+    gl = cur.get("games_left")
+    if gl:
+        rows = []
+        for m in matchups:
+            ga, gb = gl.get(m["a"]), gl.get(m["b"])
+            if ga is None or gb is None:
+                continue
+            rows.append({"teams": [nm(m["a"]), nm(m["b"])], "score": m["score"][:2], "starts_left": [ga, gb], "edge": ga - gb})
+        rows.sort(key=lambda r: -abs(r["edge"]))
+        f["starts_left_this_week"] = rows  # a team leading on the scoreboard but short on starts is a trap; say so
     return f
 
 
@@ -362,11 +388,18 @@ how many games are final, in progress and yet to tip, and the time). Write like 
 from the arena mid-game: what is swinging right now, who is carrying or burying his team tonight,
 category leads that just flipped, and benched players putting up numbers. Use "so far" and "right now"
 framing; never declare a matchup decided unless the facts say every game is final. Only numbers from
-the facts."""
+the facts.
+You also rewrite the paper's Squawk Box ("week") from week_storylines and the live matchups, ranking
+storylines exactly as above: pickups carrying a team, drops that came back to bite, bench crimes,
+starts left that decide the matchup, then the biggest swings so far. Insights a manager could not get
+from staring at the box score are the point."""
 
 TODAY_SCHEMA = """Return ONLY JSON:
 {"headline": "<=7 words, Title Case, about tonight so far",
- "notes": ["one sentence, <=24 words", ...]  // exactly 5; name the player and the team; at least one about a category lead that flipped if any did, one about the best line so far, one about a manager's bench
+ "notes": ["one sentence, <=24 words", ...],  // exactly 5; name the player and the team; at least one about a category lead that flipped if any did, one about the best line so far, one about a manager's bench
+ "week": {"headline": "<=7 words, Title Case: the week's biggest storyline as of right now",
+          "subhead": "one sentence",
+          "zingers": [{"team": "<team name>", "line": "one sentence, <=22 words: this team's week storyline right now"}]}  // exactly 7, seven different teams, biggest first, from week_storylines and the live matchups
 }"""
 
 
@@ -386,6 +419,13 @@ def today_facts(t):
     f["worst_lines_so_far"] = [{"player": r["name"], "team": nm(r["team"]), "line": r["desc"]} for r in t["rows"][-4:] if r["value"] < -2]
     f["benched_and_producing"] = [{"player": r["name"], "team": nm(r["team"]), "line": r["desc"]} for r in t["rows"] if r["benched"] and r["value"] > 2][:4]
     f["team_nights"] = [{"team": nm(x["team"]), "night_rank": x["rank"], "players_with_a_stat": x["played"]} for x in t["team_nights"]]
+    wk = t.get("week_report")
+    if wk:  # the Squawk Box is rewritten every run from the week so far (tonight included)
+        st = week_story_facts(wk, nm, cat, t["matchups"])
+        st["top_players_this_week"] = [f'{x["name"]} ({nm(x["team"])})' for x in (wk.get("top_players") or [])[:5]]
+        st["pickups_swinging_a_matchup"] = [[x["name"], nm(x["team"]), "swinging the matchup" if x["flipped"] else f"worth {x['net']} cats"]
+                                            for x in (wk.get("top_plays") or [])[:3]]
+        f["week_storylines"] = st
     return f
 
 
@@ -416,9 +456,17 @@ def today_fallback(t):
 
 
 def today(t):
-    out = _call(TODAY_VOICE, "FACTS:\n" + json.dumps(today_facts(t)) + "\n\n" + TODAY_SCHEMA, 900)
+    out = _call(TODAY_VOICE, "FACTS:\n" + json.dumps(today_facts(t)) + "\n\n" + TODAY_SCHEMA, 2500)
     if out and out.get("notes"):
-        return {"headline": out.get("headline") or "Tonight, So Far", "notes": [str(n) for n in out["notes"]][:5]}
+        res = {"headline": out.get("headline") or "Tonight, So Far", "notes": [str(n) for n in out["notes"]][:5]}
+        w = out.get("week") or {}
+        seen, zs = set(), []
+        for z in w.get("zingers") or []:
+            if isinstance(z, dict) and z.get("team") and z.get("line") and z["team"] not in seen:
+                seen.add(z["team"]); zs.append({"team": z["team"], "line": z["line"]})
+        if len(zs) >= 4 and w.get("headline"):
+            res["week"] = {"headline": w["headline"], "subhead": w.get("subhead", ""), "zingers": zs[:7]}
+        return res
     return today_fallback(t)
 
 

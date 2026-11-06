@@ -56,7 +56,7 @@ def fetch_live():
     if cur - 1 in gw:
         windows["last"] = {"week": cur - 1, **gw[cur - 1]}
     if cur in gw:
-        windows["current"] = {"week": cur, "start": gw[cur]["start"], "end": min(gw[cur]["end"], yesterday)}
+        windows["current"] = {"week": cur, "start": gw[cur]["start"], "end": min(gw[cur]["end"], yesterday), "week_end": gw[cur]["end"]}
     days = {}
     want = set()
     for w in windows.values():
@@ -108,6 +108,13 @@ def fetch_live():
         # plus who owns whom and every NBA line last night for Free Agents Who Balled
         today = now.date().isoformat()
         d["owned_now"] = api_extras.rosters(y, teams, today)
+        try:  # starts each team can still get this week (today through Sunday), from yesterday's rosters
+            from .tonight import schedule_left
+            we = (windows.get("current") or {}).get("week_end")
+            if we and yesterday in days:
+                d["games_left"] = players.games_left(days[yesterday], schedule_left(players.date_range(today, we)))
+        except Exception as e:
+            print("games left skipped:", e)
         d["nba_lines"] = (api_extras.free_agent_lines(y, lk, yesterday, ids, frac)
                           or api_extras.espn_lines(yesterday))
     return d, preseason

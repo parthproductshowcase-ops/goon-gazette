@@ -11,6 +11,9 @@
    "edition": "Mahesh's Rickshaw Race",
    "brief": "One race and only the race: a no-rules street race of souped-up auto-rickshaws and other ridiculous vehicles through the city. No spies, no tuxedos, no briefcases, no gala, nothing carried over from last week's edition. Every team gets its own named vehicle that fits how its week went (examples of the shape, invent fresh ones each time: a three-wheeler with a sofa bolted on, a milk float with a jet engine, a shopping cart pulled by a scooter, a tuk-tuk on monster-truck tyres, a hearse with racing stripes). Weapons and hazards are cartoon slapstick: banana peels, oil slicks, howitzer shells, bazookas, rocket boosters that fire backwards, a cow that will not leave the road, a speed bump nobody painted, a chaat cart in the middle of a hairpin. Say who got bazooka'd, who slid on whose banana peel, who crashed into what. Each matchup is a duel on the track; the winner of the week takes the chequered flag. Keep it original and generic: no video-game racers, characters, items (shells, item boxes, mushrooms, stars, lightning), tracks or catchphrases. Obstacles are objects, animals and vehicles, never a person's body, disability or identity.",
    "sign_off_hint": "Hint at next week's noir edition only (rain, a detective, a body in the river), never name it."
+  },
+  "all": {
+   "brief": "Kicker (the small red line above the headline) is a short themed label, never 'Extra! Extra!' or other newsboy cries. One theme per paper: nothing from earlier weeks' themes."
   }
  }
 }

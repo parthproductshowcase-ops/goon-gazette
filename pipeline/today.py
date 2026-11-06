@@ -21,7 +21,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from . import recap, stats
+from . import players as P, recap, stats
 from .night import _agg, _desc, key
 from .players import INACTIVE, Scorer, _line, pct_map
 from .tonight import ESPN, ABBR
@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data" / "today.json"
 LEAGUE = ROOT / "docs" / "data" / "league.json"
 NIGHTS = ROOT / "docs" / "data" / "nights"
+DAYS = ROOT / "cache" / "days"  # finished days' roster lines, committed by the morning build
 ET = ZoneInfo("America/New_York")
 # Runs per night: the 6:55pm Lineup Card run, then :05 and :35 from 7:05pm to 1:35am ET (cron-job.org).
 UPDATES = 15
@@ -197,6 +198,32 @@ def race_after_games(d, now, final, is_sample):
     return r
 
 
+def week_report(d, prev, is_sample):
+    """This week so far (finished days from cache/days plus tonight's in-progress lines), in the same shape as
+    league.json players.current: top players, pickups that swung a matchup, pickup dependence, drop regrets,
+    bench cost and starts left. The page swaps it in for the morning numbers."""
+    w = d.get("window")
+    if not w:
+        return None
+    days = dict(d.get("days_hist") or {})
+    days[d["date"]] = d["lines"]
+    sched = (prev or {}).get("sched_left")
+    if sched is None:  # ESPN schedule for the rest of the week, looked up once a night
+        from .tonight import schedule_left
+        rest = [x for x in P.date_range(d["date"], w["week_end"]) if x > d["date"]] if w["week_end"] > d["date"] else []
+        sched = {k: sorted(v) for k, v in schedule_left(rest).items()} if not is_sample else {}
+    mini = {"cats": d["cats"], "frac": d["frac"], "days": days, "matchups": d["matchups"],
+            "windows": {"current": {"week": w["week"], "start": w["start"], "end": d["date"]}},
+            "transactions": d.get("transactions", []),
+            "games_left": P.games_left(d["lines"], {k: set(v) for k, v in sched.items()}) if sched else None}
+    try:
+        r = P.weekly_report(mini).get("current")
+    except Exception as e:
+        print("week report skipped:", e)
+        return None, sched
+    return r, sched
+
+
 def fetch_live():
     from .yahoo import Yahoo, load_dotenv
     load_dotenv()
@@ -215,8 +242,21 @@ def fetch_live():
             lines[tk] = y.roster_day(tk, date, ids, frac)
         except Exception as e:
             print("roster fetch failed", tk, e)
-    return {"date": date, "week": meta["current_week"], "cats": cats, "teams": teams, "frac": frac,
-            "matchups": y.scoreboard(lk, meta["current_week"], ids), "lines": lines, "now": now}
+    out = {"date": date, "week": meta["current_week"], "cats": cats, "teams": teams, "frac": frac,
+           "matchups": y.scoreboard(lk, meta["current_week"], ids), "lines": lines, "now": now}
+    try:  # the week's window and its moves, for the live week report (pickups, drops, bench, starts left)
+        gw = y.game_weeks(lk.split(".")[0]).get(meta["current_week"])
+        out["window"] = {"week": meta["current_week"], "start": gw["start"], "end": date, "week_end": gw["end"]}
+        out["transactions"] = y.transactions(lk)
+        hist = {}
+        for dt in P.date_range(gw["start"], date):
+            f = DAYS / f"{dt}.json"
+            if dt < date and f.exists():
+                hist[dt] = json.loads(f.read_text())
+        out["days_hist"] = hist
+    except Exception as e:
+        print("week window skipped:", e)
+    return out
 
 
 def sample():
@@ -245,8 +285,11 @@ def sample():
     games = [{"teams": ["BOS", "NYK"], "score": [58, 61], "state": "in", "clock": "4:12", "period": 3, "detail": "4:12 - 3rd"},
              {"teams": ["LAL", "DEN"], "score": [112, 104], "state": "post", "clock": "0.0", "period": 4, "detail": "Final"},
              {"teams": ["MIA", "PHX"], "score": [0, 0], "state": "pre", "clock": "", "period": 0, "detail": "10:30 PM EDT"}]
+    w = d["windows"]["current"]
     return {"date": d["date"], "week": d["league"]["current_week"], "cats": d["cats"], "teams": d["teams"], "frac": d["frac"],
-            "matchups": d["matchups"], "lines": lines, "now": now, "games": games}
+            "matchups": d["matchups"], "lines": lines, "now": now, "games": games,
+            "window": {**w, "end": d["date"], "week_end": w["end"]}, "transactions": d.get("transactions", []),
+            "days_hist": {k: v for k, v in d["days"].items() if w["start"] <= k < d["date"]}}
 
 
 def main():
@@ -279,6 +322,8 @@ def main():
     t = {"date": d["date"], "week": d["week"], "cats": d["cats"], "teams": d["teams"], "matchups": matchups,
          "flips": flips, "rows": rows, "team_nights": tn, "games": games, "as_of": now.strftime("%-I:%M%p").lower(),
          "update": slot, "updates": UPDATES, "final": final}
+    wk, sched = week_report(d, prev, is_sample) or (None, None)
+    t["week_report"] = wk
     copy = recap.today_fallback(t) if is_sample else recap.today(t)
     out = {"date": d["date"], "week": d["week"], "sample": is_sample,
            "generated_at": now.isoformat(timespec="minutes"), "as_of": t["as_of"], "update": slot, "updates": UPDATES,
@@ -287,7 +332,9 @@ def main():
            "lines": rows[:10], "bench": [r for r in rows if r["benched"] and r["value"] > 2][:5],
            "team_nights": tn, "headline": copy.get("headline"), "notes": copy.get("notes", []),
            "gauntlet": stats.gauntlet_live(d["matchups"], d["cats"], d["week"], d["date"]),
-           "race": race_after_games(d, now, final, is_sample)}
+           "race": race_after_games(d, now, final, is_sample),
+           "players_current": wk, "sched_left": sched,
+           "week_copy": copy.get("week")}
     OUT.write_text(json.dumps(out, indent=1))
     print("wrote", OUT, "update", slot, "final" if final else "live", len(rows), "lines", len(flips), "flips")
 

@@ -43,7 +43,7 @@ function siteNav(active) {
   draw();
   getJSON("data/history.json").then(h => { seasons = h.seasons || []; draw(); if (h.sample) siteNav.sample = true; }).catch(() => {});
   getJSON("data/polls.json").then(c => {
-    const now = Date.now(), ps = c.polls || [];
+    const now = Date.now(), ps = c.picks_offline ? [] : (c.polls || []);  // picks_offline hides Picks everywhere
     const open = ps.find(p => new Date(p.opens) <= now && now < new Date(p.locks));
     if (open) picks = {open: true, day: new Date(open.locks).toLocaleDateString("en-US", {weekday: "short", timeZone: "America/New_York"})};
     else if (ps.some(p => new Date(p.locks) <= now)) picks = {open: false};

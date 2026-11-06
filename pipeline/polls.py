@@ -42,6 +42,11 @@ def _norm(s):
 
 def facts(a, polls=None):
     """Picks in plain words for the recap prompt, keyed to team names where we can match managers."""
+    try:  # picks taken offline (Nov 6): keep the receipts out of the paper until the survey reopens
+        if json.loads(CFG.read_text()).get("picks_offline"):
+            return None
+    except Exception:
+        pass
     polls = polls if polls is not None else (json.loads(OUT.read_text()) if OUT.exists() else {})
     if not polls:
         return None

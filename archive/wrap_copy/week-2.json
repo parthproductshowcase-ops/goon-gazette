@@ -2,7 +2,7 @@
  "week": 2,
  "theme": "spy",
  "edition": "Undercover Edition",
- "kicker": "Extra! Extra! Week 2 is declassified",
+ "kicker": "Week 2, declassified",
  "headline": "Gala at the Grand Belvedere Ends in a Cable Car Chase. Thug Life Walks Off With the Briefcase.",
  "deck": "Keshav quietly cracked the White Mambas safe while the whole room watched the baccarat table, and Moussa Diabaté was spotted pulling rebounds off the chandelier.",
  "hero_caption": "The Grand Belvedere at midnight, as sketched by our correspondent from inside a laundry cart.",
@@ -64,8 +64,19 @@
    "line": "Down to his last chip after the first night, then cleaned out the house and walked off with the briefcase. Beat ten of the eleven agents in the building.",
    "reward": "A watch with a laser nobody has tested, and a lake villa with a shark tank of questionable legality",
    "pins": [
-    {"p": "Walker Kessler", "c": ["18", "13"]},
-    {"p": "Jalen Brunson", "c": ["12"]}
+    {
+     "p": "Walker Kessler",
+     "c": [
+      "18",
+      "13"
+     ]
+    },
+    {
+     "p": "Jalen Brunson",
+     "c": [
+      "12"
+     ]
+    }
    ]
   },
   "dud": {
@@ -73,8 +84,19 @@
    "line": "Beat nobody. Not one agent in the building. Was dead level with Gopher Gold going into the weekend, then fell asleep in the getaway car.",
    "reward": "A rubber tuxedo, a pen that only writes, and a seat on the submarine with the screen door",
    "pins": [
-    {"p": "Jalen Johnson", "c": ["19"]},
-    {"p": "Tyler Herro", "c": ["5"], "w": true}
+    {
+     "p": "Jalen Johnson",
+     "c": [
+      "19"
+     ]
+    },
+    {
+     "p": "Tyler Herro",
+     "c": [
+      "5"
+     ],
+     "w": true
+    }
    ]
   },
   "luckiest": {
@@ -82,7 +104,13 @@
    "line": "Third in the standings, beat two agents all week, and still left the gala with his cover intact. The cameras were conveniently off.",
    "reward": "A lifetime pass to the high-roller room, revoked the moment anybody checks the security tapes",
    "pins": [
-    {"p": "Luka Dončić", "c": ["12", "10"]}
+    {
+     "p": "Luka Dončić",
+     "c": [
+      "12",
+      "10"
+     ]
+    }
    ]
   }
  },
@@ -90,29 +118,81 @@
   "478.l.39751.t.4|478.l.39751.t.5": {
    "text": "Gopher Gold and MONSTARS were dead level when the cable car left the station. By the bottom of the mountain Gopher Gold had lifted the assists, the steals and the three point percentage, and MONSTARS were hanging off the door by one hand.",
    "pins": [
-    {"p": "Yaxel Lendeborg", "w": true, "c": ["12", "10"]},
-    {"p": "Tyrese Maxey", "w": true, "c": ["12"]}
+    {
+     "p": "Yaxel Lendeborg",
+     "w": true,
+     "c": [
+      "12",
+      "10"
+     ]
+    },
+    {
+     "p": "Tyrese Maxey",
+     "w": true,
+     "c": [
+      "12"
+     ]
+    }
    ]
   },
   "478.l.39751.t.2|478.l.39751.t.6": {
    "text": "Parth had the briefcase all week and nearly dropped it out the window. Luka emptied the clip on Saturday and Sunday and Da Don snatched the three point percentage, but LeParth James grabbed the points over the weekend and jumped the gap by a single category.",
    "pins": [
-    {"p": "Luka Dončić", "w": true, "c": ["12", "10"]},
-    {"p": "Cameron Boozer", "w": true, "c": ["12", "8"]}
+    {
+     "p": "Luka Dončić",
+     "w": true,
+     "c": [
+      "12",
+      "10"
+     ]
+    },
+    {
+     "p": "Cameron Boozer",
+     "w": true,
+     "c": [
+      "12",
+      "8"
+     ]
+    }
    ]
   },
   "478.l.39751.t.3|478.l.39751.t.11": {
    "text": "BrookynDynasty went into the weekend one category up with a nervous pilot. Saddiq Bey and Paul George took the controls and flew it home, and Zero Fox Given got the three point percentage as a parting gift.",
    "pins": [
-    {"p": "Saddiq Bey", "w": true, "c": ["5", "17"]},
-    {"p": "Paul George", "w": true, "c": ["16"]}
+    {
+     "p": "Saddiq Bey",
+     "w": true,
+     "c": [
+      "5",
+      "17"
+     ]
+    },
+    {
+     "p": "Paul George",
+     "w": true,
+     "c": [
+      "16"
+     ]
+    }
    ]
   },
   "478.l.39751.t.1|478.l.39751.t.7": {
    "text": "Nova Knicks had the best player in the entire building and he still could not stop theInfamous from taking both shooting percentages on the way down the mountain.",
    "pins": [
-    {"p": "Victor Wembanyama", "c": ["12", "18"]},
-    {"p": "Ayo Dosunmu", "w": true, "c": ["5"]}
+    {
+     "p": "Victor Wembanyama",
+     "c": [
+      "12",
+      "18"
+     ]
+    },
+    {
+     "p": "Ayo Dosunmu",
+     "w": true,
+     "c": [
+      "5"
+     ]
+    }
    ]
   }
  },

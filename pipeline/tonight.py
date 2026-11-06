@@ -44,6 +44,16 @@ def teams_playing_today(date):
         return set()
 
 
+def schedule_left(dates):
+    """{date: NBA teams playing} for each date (ESPN, one call per date). Missing dates on lookup failure."""
+    out = {}
+    for dt in dates:
+        t = teams_playing_today(dt)
+        if t:
+            out[dt] = t
+    return out
+
+
 def roster_today(y, tk, date):
     tm = flat(y.get(f"team/{tk}/roster;date={date}/players")["team"])
     out = []

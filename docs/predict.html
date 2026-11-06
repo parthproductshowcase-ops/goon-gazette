@@ -56,7 +56,7 @@
   <footer><span>Picks lock at the deadline. Change them as often as you like before then; the last one counts.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=5ba1232a"></script>
+<script src="assets/common.js?v=0d4a5522"></script>
 <script>
 siteNav("picks");
 
@@ -69,6 +69,12 @@ let CFG, POLL, MGR = {}, answers = {}, who = null, started = false;
 getJSON("data/polls.json").then(cfg => {
   CFG = cfg;
   cfg.managers.forEach(m => MGR[m.id] = m.name);
+  if (cfg.picks_offline) {  // taken down Nov 6: most of the league never filed; reopens with a new deadline
+    $("pk-label").textContent = "Offline"; $("dl2").textContent = "Offline";
+    $("pk-title").textContent = "Picks are closed for now";
+    $("pk-kicker").textContent = "Most of the league never got on the record. Picks reopen soon with a new deadline, and this time the paper keeps score.";
+    return;
+  }
   POLL = pickPoll(cfg.polls || []);
   if (!POLL) { $("pk-title").textContent = "No picks open"; $("pk-kicker").textContent = "The next flash poll drops when somebody does something stupid."; return; }
   const locks = new Date(POLL.locks), locked = Date.now() >= locks;

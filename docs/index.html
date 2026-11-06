@@ -28,7 +28,7 @@
   <section id="current" class="panel">
     <div class="front">
       <div class="lead-card">
-        <h3 class="card-h">Squawk Box</h3>
+        <h3 class="card-h" id="sq-h">Squawk Box</h3>
         <div class="sq-lead" id="sq-lead" hidden><h2 id="sq-head"></h2><p id="sq-sub"></p></div>
         <div class="zingers" id="zings"></div>
       </div>
@@ -78,7 +78,7 @@
   <footer><span id="gen"></span><span>Morning edition by 6am ET. Lineup Card 6:55pm ET. Tonight updates every 30 minutes, 7pm to 1:30am ET.</span><a class="yattr" href="https://basketball.fantasysports.yahoo.com/" target="_blank" rel="noopener">Fantasy data provided by Yahoo Fantasy</a></footer>
 </div>
 
-<script src="assets/common.js?v=5ba1232a"></script>
+<script src="assets/common.js?v=0d4a5522"></script>
 <script>
 siteNav("paper");
 
@@ -129,6 +129,7 @@ function render(a){
     $("sq-sub").hidden = !r.subhead;
     $("sq-lead").hidden = false;
   }
+  if (a.live?.copy) $("sq-h").innerHTML = `Squawk Box <b class="dot">&bull;</b> <span class="live-tag">${a.live.final ? "Tonight final" : "Live " + esc(a.live.as_of)}</span>`;
   $("zings").innerHTML = (r.zingers || []).slice(0, 8).map(z => `<div class="zing"><b>${esc(z.team)}</b><span>${esc(z.line)}</span></div>`).join("");
 
   // rank board: the Gazette's power rank 1-12, with the Yahoo standing beside it
@@ -464,6 +465,8 @@ function liveOverlay(a, td){
     if (i >= 0) a.gauntlet.weeks[i] = W; else a.gauntlet.weeks.push(W);
   } else if (W) a.gauntlet = {weeks: [W]};
   if (td.race?.rows?.length) { a.race = td.race; a.live.race = true; }
+  if (td.players_current && a.players) { a.players.current = td.players_current; a.live.players = true; }
+  if (td.week_copy?.zingers?.length) { a.recap = {...(a.recap || {}), ...td.week_copy}; a.live.copy = true; }
 }
 
 // Season in chains: blur the sample paper behind a lock card until real data lands.

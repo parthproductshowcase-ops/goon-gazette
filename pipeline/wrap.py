@@ -313,7 +313,10 @@ def main():
         if x:
             x.pop("copy", None)
             # the copy writer's brief for this week's theme (config/wrap_themes.json briefs): follow it to the letter
-            b = ((_load(THEMES, {}) or {}).get("briefs") or {}).get(x.get("theme"))
+            briefs = (_load(THEMES, {}) or {}).get("briefs") or {}
+            b = dict(briefs.get(x.get("theme")) or {})
+            if briefs.get("all"):
+                b["every_week"] = briefs["all"]["brief"]
             if b:
                 x["theme_brief"] = b
         print(json.dumps(x, indent=1, ensure_ascii=False))

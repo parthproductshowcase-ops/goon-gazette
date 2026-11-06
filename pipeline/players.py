@@ -313,6 +313,59 @@ def drop_regrets(d, cats, pmap, scorer, start, end):
     return out[:5]
 
 
+def bench_cost(days, dates, cats, pmap, pairs, teams):
+    """Benched players who played on a day their manager had a starter who did not (empty start, no game,
+    DNP): the stats he could have had for free, and the matchup categories they would have won him.
+    A lineup crime invisible in any one box score."""
+    vals = {tk: values_of(agg, cats) for tk, agg in teams.items()}
+    bench, who = {}, {}
+    for dt in dates:
+        for tk, lines in (days.get(dt) or {}).items():
+            idle = sum(1 for ln in lines if ln["pos"] not in INACTIVE and not _add_line(_empty(), ln["stats"], cats, pmap))
+            if not idle:
+                continue
+            played = [ln for ln in lines if ln["pos"] in ("BN", None) and _add_line(_empty(), ln["stats"], cats, pmap)]
+            played.sort(key=lambda ln: -(ln["stats"].get("12") or 0))
+            for ln in played[:idle]:
+                b = bench.setdefault(tk, _empty())
+                _add_line(b, ln["stats"], cats, pmap)
+                w = who.setdefault(tk, {}).setdefault(ln["pk"], {**_empty(), "name": ln["name"]})
+                _add_line(w, ln["stats"], cats, pmap)
+                w["games"] += 1
+    out = []
+    for a, b in pairs:
+        for me, opp in ((a, b), (b, a)):
+            if me not in bench or me not in teams or opp not in teams:
+                continue
+            base, base_r = _score(vals[me], vals[opp], cats)
+            t = teams[me]
+            both = {"cnt": {k: t["cnt"].get(k, 0) + bench[me]["cnt"].get(k, 0) for k in set(t["cnt"]) | set(bench[me]["cnt"])},
+                    "frac": {k: [t["frac"].get(k, [0, 0])[0] + bench[me]["frac"].get(k, [0, 0])[0],
+                                 t["frac"].get(k, [0, 0])[1] + bench[me]["frac"].get(k, [0, 0])[1]]
+                             for k in set(t["frac"]) | set(bench[me]["frac"])}}
+            score, res = _score(values_of(both, cats), vals[opp], cats)
+            won = [c["id"] for c in cats if res[c["id"]] > base_r[c["id"]]]
+            if not won:
+                continue
+            ps = sorted(who[me].values(), key=lambda p: -p["cnt"].get("12", 0))
+            out.append({"team": me, "opp": opp, "score": base, "with_bench": score, "cats": won,
+                        "players": [{"name": p["name"], "desc": week_desc(p, cats)} for p in ps if p["games"]][:3]})
+    out.sort(key=lambda r: -(r["with_bench"][0] - r["score"][0]))
+    return out
+
+
+def games_left(lines_by_team, sched, slots=None):
+    """Starts each team can still get this week: per remaining date, rostered players whose NBA team plays
+    (IL and Out players skipped), capped at the team's active lineup slots. sched = {date: set of NBA abbrs}."""
+    out = {}
+    for tk, lines in lines_by_team.items():
+        cap = slots or sum(1 for ln in lines if ln.get("pos") not in INACTIVE) or 10
+        ok = [ln for ln in lines if ln.get("pos") not in ("IL", "IL+", "IR", "NA")
+              and (ln.get("status") or "") not in ("O", "INJ", "SUSP")]
+        out[tk] = sum(min(cap, sum(1 for ln in ok if (ln.get("nba") or "").upper() in teams)) for teams in sched.values())
+    return out
+
+
 def waiver_review(d, window, scorer, cats, pmap, extra_dates=(), pg_scorer=None):
     start, end = window["start"], window["end"]
     lo = datetime.fromisoformat(start).replace(tzinfo=ET).timestamp()
@@ -388,6 +441,9 @@ def weekly_report(d):
             out[key]["pickups"] = pickup_impact(players, teams, pairs, cats, acq)
             last = (d.get("windows") or {}).get("last")
             out[key]["regrets"] = drop_regrets(d, cats, pmap, scorer, (last or w)["start"], w["end"])
+            out[key]["bench_cost"] = bench_cost(d["days"], dates, cats, pmap, pairs, teams)
+            if d.get("games_left"):
+                out[key]["games_left"] = d["games_left"]
         if key == "last":
             cur = (d.get("windows") or {}).get("current")
             extra = date_range(cur["start"], cur["end"]) if cur and cur["end"] >= cur["start"] else []
