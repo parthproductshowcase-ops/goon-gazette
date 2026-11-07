@@ -1,92 +1,92 @@
 {
- "date": "2026-11-06",
+ "date": "2026-11-07",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-06T18:55-05:00",
+ "generated_at": "2026-11-07T18:55-05:00",
  "matchups": [
   {
    "a": "478.l.39751.t.3",
    "b": "478.l.39751.t.6",
    "score": [
     6,
-    4,
-    1
+    5,
+    0
    ],
    "cats": [
     {
      "cat": "5",
-     "a": 0.477,
-     "b": 0.471,
+     "a": 0.473,
+     "b": 0.459,
      "lead": "a",
      "swing": true
     },
     {
      "cat": "8",
-     "a": 0.775,
-     "b": 0.875,
+     "a": 0.783,
+     "b": 0.859,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 44.0,
-     "b": 30.0,
+     "a": 59.0,
+     "b": 42.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "11",
-     "a": 0.386,
-     "b": 0.316,
+     "a": 0.393,
+     "b": 0.321,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 399.0,
-     "b": 417.0,
+     "a": 516.0,
+     "b": 548.0,
      "lead": "b",
      "swing": true
     },
     {
      "cat": "13",
-     "a": 29.0,
-     "b": 28.0,
-     "lead": "a",
+     "a": 40.0,
+     "b": 41.0,
+     "lead": "b",
      "swing": true
     },
     {
      "cat": "14",
-     "a": 87.0,
-     "b": 118.0,
+     "a": 124.0,
+     "b": 163.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 91.0,
-     "b": 91.0,
-     "lead": "tie",
-     "swing": true
+     "a": 107.0,
+     "b": 126.0,
+     "lead": "b",
+     "swing": false
     },
     {
      "cat": "17",
-     "a": 34.0,
-     "b": 21.0,
+     "a": 45.0,
+     "b": 29.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "18",
-     "a": 7.0,
-     "b": 11.0,
-     "lead": "b",
-     "swing": false
+     "a": 14.0,
+     "b": 13.0,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "19",
-     "a": 46.0,
-     "b": 50.0,
+     "a": 56.0,
+     "b": 76.0,
      "lead": "a",
      "swing": false
     }
@@ -94,88 +94,177 @@
    "swings": 4
   },
   {
-   "a": "478.l.39751.t.2",
-   "b": "478.l.39751.t.12",
+   "a": "478.l.39751.t.4",
+   "b": "478.l.39751.t.10",
    "score": [
     6,
-    5,
+    4,
+    1
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.471,
+     "b": 0.471,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "8",
+     "a": 0.736,
+     "b": 0.743,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "10",
+     "a": 37.0,
+     "b": 44.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.314,
+     "b": 0.336,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 488.0,
+     "b": 449.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 57.0,
+     "b": 45.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 158.0,
+     "b": 149.0,
+     "lead": "a",
+     "swing": true
+    },
+    {
+     "cat": "16",
+     "a": 139.0,
+     "b": 111.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 34.0,
+     "b": 27.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 22.0,
+     "b": 18.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 65.0,
+     "b": 60.0,
+     "lead": "b",
+     "swing": false
+    }
+   ],
+   "swings": 3
+  },
+  {
+   "a": "478.l.39751.t.5",
+   "b": "478.l.39751.t.11",
+   "score": [
+    4,
+    7,
     0
    ],
    "cats": [
     {
      "cat": "5",
-     "a": 0.482,
-     "b": 0.461,
+     "a": 0.512,
+     "b": 0.442,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "8",
-     "a": 0.866,
-     "b": 0.767,
+     "a": 0.765,
+     "b": 0.745,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 45.0,
-     "b": 40.0,
-     "lead": "a",
-     "swing": false
+     "a": 59.0,
+     "b": 60.0,
+     "lead": "b",
+     "swing": true
     },
     {
      "cat": "11",
-     "a": 0.446,
-     "b": 0.388,
+     "a": 0.404,
+     "b": 0.385,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 354.0,
-     "b": 335.0,
+     "a": 468.0,
+     "b": 461.0,
      "lead": "a",
      "swing": true
     },
     {
      "cat": "13",
-     "a": 20.0,
-     "b": 34.0,
+     "a": 18.0,
+     "b": 33.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "14",
-     "a": 90.0,
-     "b": 96.0,
+     "a": 85.0,
+     "b": 151.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 63.0,
-     "b": 96.0,
+     "a": 87.0,
+     "b": 151.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "17",
-     "a": 22.0,
-     "b": 21.0,
-     "lead": "a",
-     "swing": true
+     "a": 23.0,
+     "b": 32.0,
+     "lead": "b",
+     "swing": false
     },
     {
      "cat": "18",
-     "a": 10.0,
-     "b": 18.0,
+     "a": 9.0,
+     "b": 27.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "19",
-     "a": 44.0,
-     "b": 42.0,
+     "a": 59.0,
+     "b": 57.0,
      "lead": "b",
      "swing": true
     }
@@ -183,8 +272,8 @@
    "swings": 3
   },
   {
-   "a": "478.l.39751.t.7",
-   "b": "478.l.39751.t.8",
+   "a": "478.l.39751.t.2",
+   "b": "478.l.39751.t.12",
    "score": [
     4,
     6,
@@ -193,345 +282,256 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.438,
-     "b": 0.449,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "8",
-     "a": 0.825,
-     "b": 0.75,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": 14.0,
-     "b": 22.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": 0.233,
-     "b": 0.278,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 248.0,
-     "b": 310.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 39.0,
-     "b": 39.0,
-     "lead": "tie",
-     "swing": true
-    },
-    {
-     "cat": "14",
-     "a": 91.0,
-     "b": 86.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "16",
-     "a": 52.0,
-     "b": 75.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 17.0,
-     "b": 26.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 22.0,
-     "b": 14.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": 38.0,
-     "b": 43.0,
-     "lead": "a",
-     "swing": false
-    }
-   ],
-   "swings": 3
-  },
-  {
-   "a": "478.l.39751.t.1",
-   "b": "478.l.39751.t.9",
-   "score": [
-    5,
-    6,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.449,
-     "b": 0.478,
+     "a": 0.465,
+     "b": 0.483,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "8",
-     "a": 0.828,
-     "b": 0.725,
+     "a": 0.881,
+     "b": 0.807,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 44.0,
-     "b": 35.0,
+     "a": 71.0,
+     "b": 53.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "11",
-     "a": 0.352,
-     "b": 0.365,
-     "lead": "b",
+     "a": 0.423,
+     "b": 0.421,
+     "lead": "a",
      "swing": true
     },
     {
      "cat": "12",
-     "a": 374.0,
-     "b": 329.0,
+     "a": 551.0,
+     "b": 445.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "13",
-     "a": 25.0,
+     "a": 27.0,
      "b": 46.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "14",
-     "a": 91.0,
-     "b": 96.0,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "16",
-     "a": 109.0,
-     "b": 54.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 25.0,
-     "b": 15.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 14.0,
-     "b": 17.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": 47.0,
-     "b": 41.0,
-     "lead": "b",
-     "swing": false
-    }
-   ],
-   "swings": 2
-  },
-  {
-   "a": "478.l.39751.t.5",
-   "b": "478.l.39751.t.11",
-   "score": [
-    5,
-    6,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.528,
-     "b": 0.468,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.75,
-     "b": 0.74,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "10",
-     "a": 53.0,
-     "b": 51.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "11",
-     "a": 0.438,
-     "b": 0.411,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 392.0,
-     "b": 358.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 18.0,
-     "b": 26.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": 70.0,
-     "b": 126.0,
+     "a": 114.0,
+     "b": 124.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 67.0,
-     "b": 117.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 21.0,
-     "b": 25.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 9.0,
-     "b": 17.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": 52.0,
-     "b": 46.0,
-     "lead": "b",
-     "swing": false
-    }
-   ],
-   "swings": 2
-  },
-  {
-   "a": "478.l.39751.t.4",
-   "b": "478.l.39751.t.10",
-   "score": [
-    6,
-    5,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.488,
-     "b": 0.477,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "8",
-     "a": 0.743,
-     "b": 0.722,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": 21.0,
-     "b": 38.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": 0.296,
-     "b": 0.342,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 346.0,
-     "b": 376.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 41.0,
-     "b": 38.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": 109.0,
+     "a": 86.0,
      "b": 118.0,
      "lead": "b",
      "swing": false
     },
     {
-     "cat": "16",
-     "a": 103.0,
-     "b": 80.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
      "cat": "17",
-     "a": 25.0,
-     "b": 21.0,
-     "lead": "a",
-     "swing": false
+     "a": 31.0,
+     "b": 31.0,
+     "lead": "tie",
+     "swing": true
     },
     {
      "cat": "18",
      "a": 17.0,
-     "b": 14.0,
+     "b": 20.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 61.0,
+     "b": 56.0,
+     "lead": "b",
+     "swing": false
+    }
+   ],
+   "swings": 2
+  },
+  {
+   "a": "478.l.39751.t.7",
+   "b": "478.l.39751.t.8",
+   "score": [
+    2,
+    8,
+    1
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.456,
+     "b": 0.46,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "8",
+     "a": 0.758,
+     "b": 0.779,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 24.0,
+     "b": 35.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.264,
+     "b": 0.292,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 377.0,
+     "b": 450.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 52.0,
+     "b": 52.0,
+     "lead": "tie",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 119.0,
+     "b": 128.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 88.0,
+     "b": 106.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 23.0,
+     "b": 37.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 29.0,
+     "b": 20.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "19",
-     "a": 48.0,
-     "b": 39.0,
+     "a": 54.0,
+     "b": 58.0,
+     "lead": "a",
+     "swing": false
+    }
+   ],
+   "swings": 2
+  },
+  {
+   "a": "478.l.39751.t.1",
+   "b": "478.l.39751.t.9",
+   "score": [
+    6,
+    5,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.458,
+     "b": 0.479,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.861,
+     "b": 0.767,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 68.0,
+     "b": 48.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.386,
+     "b": 0.34,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 529.0,
+     "b": 487.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 33.0,
+     "b": 63.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 121.0,
+     "b": 134.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 147.0,
+     "b": 83.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 34.0,
+     "b": 22.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 20.0,
+     "b": 22.0,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 70.0,
+     "b": 58.0,
      "lead": "b",
      "swing": false
     }
@@ -567,7 +567,7 @@
   "478.l.39751.t.1": {
    "benched_with_game": [],
    "starting_out": [],
-   "empty_slots": 1,
+   "empty_slots": 0,
    "schedule_known": true
   },
   "478.l.39751.t.6": {
@@ -584,13 +584,8 @@
   },
   "478.l.39751.t.12": {
    "benched_with_game": [],
-   "starting_out": [
-    {
-     "player": "Immanuel Quickley",
-     "status": "O"
-    }
-   ],
-   "empty_slots": 1,
+   "starting_out": [],
+   "empty_slots": 0,
    "schedule_known": true
   },
   "478.l.39751.t.7": {
@@ -604,14 +599,6 @@
    "starting_out": [
     {
      "player": "Ja Morant",
-     "status": "O"
-    },
-    {
-     "player": "Jalen Johnson",
-     "status": "O"
-    },
-    {
-     "player": "Scottie Barnes",
      "status": "O"
     }
    ],
@@ -633,123 +620,173 @@
  },
  "moves_today": [
   {
-   "id": "478.l.39751.tr.129",
-   "ts": 1794007738,
+   "id": "478.l.39751.tr.141",
+   "ts": 1794086208,
    "kind": "add",
-   "team": "478.l.39751.t.12",
+   "team": "478.l.39751.t.1",
    "source": "freeagents",
    "faab": null,
-   "pk": "478.p.5824",
-   "player": "Malik Monk"
+   "pk": "478.p.6170",
+   "player": "Jaxson Hayes"
   },
   {
-   "id": "478.l.39751.tr.129",
-   "ts": 1794007738,
+   "id": "478.l.39751.tr.141",
+   "ts": 1794086208,
    "kind": "drop",
-   "team": "478.l.39751.t.12",
+   "team": "478.l.39751.t.1",
    "source": "team",
    "faab": null,
-   "pk": "478.p.10313",
-   "player": "Oso Ighodaro"
+   "pk": "478.p.6038",
+   "player": "Robert Williams III"
   },
   {
-   "id": "478.l.39751.tr.128",
-   "ts": 1794007436,
+   "id": "478.l.39751.tr.140",
+   "ts": 1794080338,
    "kind": "add",
-   "team": "478.l.39751.t.6",
+   "team": "478.l.39751.t.10",
    "source": "freeagents",
    "faab": null,
-   "pk": "478.p.6572",
-   "player": "Santi Aldama"
+   "pk": "478.p.6776",
+   "player": "Quenton Jackson"
   },
   {
-   "id": "478.l.39751.tr.127",
-   "ts": 1794006977,
-   "kind": "add",
-   "team": "478.l.39751.t.8",
-   "source": "freeagents",
-   "faab": null,
-   "pk": "478.p.6076",
-   "player": "Kenrich Williams"
-  },
-  {
-   "id": "478.l.39751.tr.126",
-   "ts": 1794006948,
-   "kind": "add",
-   "team": "478.l.39751.t.8",
-   "source": "freeagents",
-   "faab": null,
-   "pk": "478.p.5465",
-   "player": "Mario Hezonja"
-  },
-  {
-   "id": "478.l.39751.tr.125",
-   "ts": 1794006928,
-   "kind": "drop",
-   "team": "478.l.39751.t.8",
-   "source": "team",
-   "faab": null,
-   "pk": "478.p.6632",
-   "player": "Justin Champagnie"
-  },
-  {
-   "id": "478.l.39751.tr.124",
-   "ts": 1793968389,
+   "id": "478.l.39751.tr.139",
+   "ts": 1794059467,
    "kind": "add",
    "team": "478.l.39751.t.3",
    "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.5015",
+   "player": "Andre Drummond"
+  },
+  {
+   "id": "478.l.39751.tr.139",
+   "ts": 1794059467,
+   "kind": "drop",
+   "team": "478.l.39751.t.3",
+   "source": "team",
    "faab": null,
    "pk": "478.p.6047",
    "player": "Mitchell Robinson"
   },
   {
-   "id": "478.l.39751.tr.124",
-   "ts": 1793968389,
-   "kind": "drop",
-   "team": "478.l.39751.t.3",
-   "source": "team",
+   "id": "478.l.39751.tr.138",
+   "ts": 1794057695,
+   "kind": "add",
+   "team": "478.l.39751.t.2",
+   "source": "freeagents",
    "faab": null,
-   "pk": "478.p.10275",
-   "player": "Tristan da Silva"
+   "pk": "478.p.10572",
+   "player": "Morez Johnson Jr."
   },
   {
-   "id": "478.l.39751.tr.123",
-   "ts": 1793967813,
+   "id": "478.l.39751.tr.138",
+   "ts": 1794057695,
+   "kind": "drop",
+   "team": "478.l.39751.t.2",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6742",
+   "player": "Karlo Matkovi\u0107"
+  },
+  {
+   "id": "478.l.39751.tr.137",
+   "ts": 1794043584,
    "kind": "add",
    "team": "478.l.39751.t.9",
    "source": "freeagents",
    "faab": null,
-   "pk": "478.p.6032",
-   "player": "Grayson Allen"
+   "pk": "478.p.10588",
+   "player": "Mikel Brown Jr."
   },
   {
-   "id": "478.l.39751.tr.122",
-   "ts": 1793962172,
+   "id": "478.l.39751.tr.137",
+   "ts": 1794043584,
+   "kind": "drop",
+   "team": "478.l.39751.t.9",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.10327",
+   "player": "Cam Spencer"
+  },
+  {
+   "id": "478.l.39751.tr.136",
+   "ts": 1794042708,
+   "kind": "add",
+   "team": "478.l.39751.t.7",
+   "source": "waivers",
+   "faab": null,
+   "pk": "478.p.6021",
+   "player": "Mikal Bridges"
+  },
+  {
+   "id": "478.l.39751.tr.136",
+   "ts": 1794042708,
+   "kind": "drop",
+   "team": "478.l.39751.t.7",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6499",
+   "player": "Naji Marshall"
+  },
+  {
+   "id": "478.l.39751.tr.135",
+   "ts": 1794042708,
+   "kind": "add",
+   "team": "478.l.39751.t.10",
+   "source": "waivers",
+   "faab": null,
+   "pk": "478.p.6720",
+   "player": "Peyton Watson"
+  },
+  {
+   "id": "478.l.39751.tr.135",
+   "ts": 1794042708,
    "kind": "drop",
    "team": "478.l.39751.t.10",
    "source": "team",
    "faab": null,
-   "pk": "478.p.10453",
-   "player": "Jase Richardson"
+   "pk": "478.p.10476",
+   "player": "Ryan Kalkbrenner"
+  },
+  {
+   "id": "478.l.39751.tr.134",
+   "ts": 1794041600,
+   "kind": "add",
+   "team": "478.l.39751.t.4",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.10576",
+   "player": "Brayden Burries"
+  },
+  {
+   "id": "478.l.39751.tr.134",
+   "ts": 1794041600,
+   "kind": "drop",
+   "team": "478.l.39751.t.4",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.10278",
+   "player": "Ja'Kobe Walter"
   }
  ],
- "headline": "MONSTARS Start Three Injured Stars",
+ "headline": "Morant Is Out. MONSTARS Started Him.",
  "zingers": [
   {
    "team": "MONSTARS \u2604\ufe0f",
-   "line": "Ja Morant, Jalen Johnson and Scottie Barnes are all listed out, all in the starting lineup, and the manager trails by one."
+   "line": "Ja Morant is listed out and sitting in the starting lineup, which is how you trail Zero Fox Given 7-4 without help."
   },
   {
-   "team": "Adam Silver Dez Nuts",
-   "line": "Immanuel Quickley is out and still starting, in a 6-5 fight, with an empty slot sitting right there."
-  },
-  {
-   "team": "Suggs to be you",
-   "line": "Kenrich Williams and Mario Hezonja replaced Justin Champagnie today, a panic double-add with a 6-4 lead that needed no panic."
+   "team": "Nova Knicks",
+   "line": "Nova Knicks are down 8-2 to Suggs to be you, and the Mikal Bridges pickup is the plan. Bold stuff."
   },
   {
    "team": "BrookynDynasty",
-   "line": "Mitchell Robinson arrived today for Tristan da Silva, and a 6-4 lead now hinges on FG% and OREB."
+   "line": "BrookynDynasty cut Mitchell Robinson for Andre Drummond while clinging to a 6-5 lead built on FG% and blocks. Cute gamble."
+  },
+  {
+   "team": "White Mambas",
+   "line": "White Mambas picked up Quenton Jackson and Peyton Watson today, trailing 6-4 with FG% and FT% as their only hope. Panic looks busy."
   }
  ],
  "by": "claude"
