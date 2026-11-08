@@ -1,7 +1,9 @@
 {
  "ok": true,
- "generated_at": "2026-11-07T05:05-05:00",
+ "generated_at": "2026-11-08T05:05-05:00",
  "edition": "morning",
  "source": "yahoo-api",
- "warnings": []
+ "warnings": [
+  "recap fell back to templates: Squawk Box is not Claude copy"
+ ]
 }
