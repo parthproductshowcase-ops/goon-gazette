@@ -2,9 +2,9 @@
  "date": "2026-11-07",
  "week": 3,
  "sample": false,
- "generated_at": "2026-11-08T00:05-05:00",
- "as_of": "12:05am",
- "update": 13,
+ "generated_at": "2026-11-08T00:18-05:00",
+ "as_of": "12:18am",
+ "update": 14,
  "updates": 15,
  "final": false,
  "cats": [
@@ -326,10 +326,9 @@
     {
      "cat": "5",
      "a": 0.449,
-     "b": 0.448,
+     "b": 0.447,
      "lead": "a",
-     "swing": true,
-     "flip": "b"
+     "swing": true
     },
     {
      "cat": "8",
@@ -348,7 +347,7 @@
     {
      "cat": "11",
      "a": 0.274,
-     "b": 0.301,
+     "b": 0.299,
      "lead": "b",
      "swing": false
     },
@@ -399,15 +398,14 @@
      "a": 63.0,
      "b": 63.0,
      "lead": "tie",
-     "swing": true,
-     "flip": "a"
+     "swing": true
     }
    ],
    "swings": 3,
    "prev_score": [
     4,
-    7,
-    0
+    6,
+    1
    ]
   },
   {
@@ -693,26 +691,7 @@
    ]
   }
  ],
- "flips": [
-  {
-   "a": "478.l.39751.t.7",
-   "b": "478.l.39751.t.8",
-   "cat": "5",
-   "was": "b",
-   "now": "a",
-   "a_val": 0.449,
-   "b_val": 0.448
-  },
-  {
-   "a": "478.l.39751.t.7",
-   "b": "478.l.39751.t.8",
-   "cat": "19",
-   "was": "a",
-   "now": "tie",
-   "a_val": 63.0,
-   "b_val": 63.0
-  }
- ],
+ "flips": [],
  "games": [
   {
    "teams": [
@@ -804,13 +783,13 @@
     "POR"
    ],
    "score": [
-    109,
-    76
+    116,
+    85
    ],
    "state": "in",
-   "clock": "0.0",
-   "period": 3,
-   "detail": "0.0 - 3rd"
+   "clock": "6:45",
+   "period": 4,
+   "detail": "6:45 - 4th"
   }
  ],
  "lines": [
@@ -869,7 +848,7 @@
    "benched": false,
    "value": 8.38,
    "z": {
-    "5": 2.51,
+    "5": 2.52,
     "8": 2.48,
     "10": 2.04,
     "11": 0.0,
@@ -916,7 +895,7 @@
    "benched": false,
    "value": 6.29,
    "z": {
-    "5": -1.09,
+    "5": -1.08,
     "8": -0.42,
     "10": 0.22,
     "11": 0.0,
@@ -1427,7 +1406,7 @@
   },
   {
    "team": "478.l.39751.t.8",
-   "value": -9.4,
+   "value": -9.6,
    "played": 7,
    "with_game": 7,
    "bench_value": 0,
@@ -1442,7 +1421,6 @@
  "headline": "Tonight, So Far",
  "notes": [
   "Karl-Anthony Towns has the line of the night so far for Thug Life: 29 PTS, 13 REB, 11-21 FG.",
-  "Nova Knicks just took FG% from Suggs to be you.",
   "BrookynDynasty and LeParth James are 6-5 with 2 categories inside a possession.",
   "Mario Hezonja is actively hurting Suggs to be you: 0-6 FG."
  ],
@@ -1595,10 +1573,10 @@
     "19": 63.0
    },
    "478.l.39751.t.8": {
-    "5": 0.448,
+    "5": 0.447,
     "8": 0.757,
     "10": 47.0,
-    "11": 0.301,
+    "11": 0.299,
     "12": 535.0,
     "13": 62.0,
     "14": 159.0,
@@ -1635,7 +1613,7 @@
     "name": "Victor Wembanyama",
     "team": "478.l.39751.t.7",
     "games": 4,
-    "value": 18.23,
+    "value": 18.24,
     "line": {
      "5": [
       0.541,
@@ -1731,7 +1709,7 @@
     "name": "Donovan Clingan",
     "team": "478.l.39751.t.9",
     "games": 4,
-    "value": 10.66,
+    "value": 10.67,
     "line": {
      "5": [
       0.619,
@@ -1827,7 +1805,7 @@
     "name": "Onyeka Okongwu",
     "team": "478.l.39751.t.6",
     "games": 4,
-    "value": 9.99,
+    "value": 10.0,
     "line": {
      "5": [
       0.548,
@@ -1859,7 +1837,7 @@
     "name": "Kyshawn George",
     "team": "478.l.39751.t.11",
     "games": 4,
-    "value": 9.02,
+    "value": 9.03,
     "line": {
      "5": [
       0.531,
