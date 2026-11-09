@@ -1,0 +1,270 @@
+{
+ "week": 3,
+ "theme": "karts",
+ "edition": "Mahesh's Rickshaw Race",
+ "kicker": "Week 3, chequered flag",
+ "headline": "Rickshaw Race Ends in a Leap Off the Unfinished Flyover. theInfamous Laps the Entire City.",
+ "deck": "Eshan left Luka in the driver's seat all weekend with the engine off, and the limousine lost to a bicycle by a single category.",
+ "hero_caption": "The flyover with no middle at midnight, as engraved by our correspondent from the back of a passing cement mixer.",
+ "chapters": [
+  {
+   "block": "intro",
+   "head": "Engines at Dawn, a Cow on the Grid",
+   "text": [
+    "Nobody has ever met Mahesh. Once a season he paints a starting line across the road outside the old clock tower, hangs a bedsheet from a balcony for a flag, and announces that the traffic laws are suspended until Sunday night. Nobody has ever stopped him, mostly because nobody can find him.",
+    "Twelve machines crowded the grid at dawn on Monday. John J brought a tuk-tuk with an aeroplane propeller bolted to the back. Phil rolled up in a gold-plated milk float with a jet engine and a sticker on the bumper that said Number One. Chris arrived on a three-wheeler with a sofa welded to the frame, already lying down. Vishal parked a hearse with racing stripes at the very back and said nothing to anybody.",
+    "The route ran through the spice market, over the railway crossing, round the hairpin with the chaat cart that has never once moved, and up the flyover the city started building years ago and never finished. Then the bedsheet dropped, a cow wandered onto the grid, and every horn in the city went off at once."
+   ]
+  },
+  {
+   "block": "wanted",
+   "head": "Wanted by the Traffic Police",
+   "sub": "Pasted on every lamppost along the route."
+  },
+  {
+   "block": "results",
+   "head": "Duels Through the Old Market",
+   "text": [
+    "Every duel was two machines, one road and eleven categories painted on the tarmac. Here is who crossed the line first once the dust and the cow had cleared.",
+    "Half the duels were settled by a single category, which in this race is the width of one coat of paint. Parth's postal van, fitted with a rocket booster that only fires backwards, edged Adarsh's fire engine on two flat tyres. Arnav B's tuk-tuk on monster-truck tyres, last week's pride of the city, lost by three and spent the evening getting towed out of a lentil stall."
+   ]
+  },
+  {
+   "block": "late",
+   "head": "The Flyover With No Middle",
+   "text": [
+    "On Saturday night the whole field reached the flyover. It climbs four lanes into the sky and stops dead over the river, with the other half waiting on the far bank. There is no way round it. Every driver floored it, shut their eyes and jumped, and not one duel came down the other side looking the way it went up."
+   ]
+  },
+  {
+   "block": "boot",
+   "head": "The Tow Yard Is Fully Booked",
+   "text": [
+    "The tow yard kept the same guests all week: Anthony Edwards, Chet Holmgren, Jalen Williams, Kawhi Leonard, Jalen Duren, Jaren Jackson Jr. and Paolo Banchero never left the garage. Adarsh has Edwards and Jimmy Butler III parked side by side. Sagar has Tyrese Haliburton and Brandon Ingram up on blocks.",
+    "Then on Sunday the breakdown lane took three more: Domantas Sabonis, Lauri Markkanen and Brandon Miller all rolled in with smoke coming out of the bonnet. MONSTARS are carrying Ja Morant and Isaiah Jackson on the bench, both tagged out, which is two passengers paying full fare to sit in a parked car."
+   ]
+  },
+  {
+   "block": "roy",
+   "head": "The Road Out of the City",
+   "text": [
+    "Gopher Gold already has one wheel through the playoff gate. theInfamous made the biggest leap in the league this week and now rates better than nine in ten to get there.",
+    "Suggs to be you won its duel and still slid further down the odds than anyone else in the city, which is like winning the race and getting a parking ticket at the podium. Adam Silver Dez Nuts has the weakest engine in the league and the model projects it to finish dead last, and it still holds about a seven in ten shot at the playoffs. Nova Knicks, Zero Fox Given and MONSTARS are down to the kind of odds you only see on a bus timetable."
+   ]
+  },
+  {
+   "block": "saloon",
+   "head": "Overheard at the Petrol Pump",
+   "sub": "Shouted over the engines while the meter ran."
+  }
+ ],
+ "wanted": {
+  "mvp": {
+   "title": "King of the Road",
+   "line": "Beat every other machine in the race. All eleven of them. Then went back round and lapped the cow for fun.",
+   "reward": "A gold steering wheel, a horn that plays a fanfare, and the right to park on any roundabout in the city",
+   "pins": [
+    {
+     "p": "Stephen Curry",
+     "c": [
+      "12",
+      "10"
+     ]
+    },
+    {
+     "p": "Darius Acuff Jr.",
+     "c": [
+      "16"
+     ]
+    }
+   ]
+  },
+  "dud": {
+   "title": "Last Over the Line",
+   "line": "Beat nobody. Again. Second week running. Led after the first morning, then pulled over, fluffed the cushions and took a nap.",
+   "reward": "A sofa cushion with the springs showing, a horn that only sighs, and a tow truck that also needs towing",
+   "pins": [
+    {
+     "p": "Scottie Barnes",
+     "c": [
+      "19"
+     ]
+    }
+   ]
+  },
+  "luckiest": {
+   "title": "Hit and Run",
+   "line": "Would have beaten two of the eleven machines on the road. Drew the double-decker that would have beaten one.",
+   "reward": "A four-leaf clover glued to the dashboard and an insurance policy that covers acts of cow",
+   "pins": [
+    {
+     "p": "Cade Cunningham",
+     "c": [
+      "17"
+     ]
+    },
+    {
+     "p": "Rudy Gobert",
+     "c": [
+      "14"
+     ]
+    }
+   ]
+  },
+  "robbed": {
+   "title": "Run Off the Road",
+   "line": "Would have beaten eight of the eleven machines in the race. Drew the one with a coffin in the back. Still first in the standings, still shaking.",
+   "reward": "A silver medal shaped like a speed bump and a free car wash, valid only behind a hearse",
+   "pins": [
+    {
+     "p": "Jaylen Brown",
+     "c": [
+      "12"
+     ]
+    },
+    {
+     "p": "Zion Williamson",
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  }
+ },
+ "late": {
+  "478.l.39751.t.4|478.l.39751.t.10": {
+   "text": "Phil's milk float hit the ramp three categories clear and landed four clear. Then on Sunday a hearse came out of the fog behind it, Michael Porter Jr. leaned out the back window with a bazooka, and by the time the smoke lifted White Mambas had the three point percentage, the defensive rebounds and the steals, and the win by one category.",
+   "pins": [
+    {
+     "p": "Michael Porter Jr.",
+     "c": [
+      "12",
+      "14"
+     ],
+     "w": true
+    },
+    {
+     "p": "Bam Adebayo",
+     "c": [
+      "17"
+     ],
+     "w": true
+    }
+   ]
+  },
+  "478.l.39751.t.1|478.l.39751.t.9": {
+   "text": "Dead level at the foot of the ramp. Arnav B's monster-truck tyres were built for exactly this jump, and then Stephen Curry put a howitzer shell straight into the front axle. theInfamous took the three point percentage and the blocks on the way down and crossed the line three clear.",
+   "pins": [
+    {
+     "p": "Stephen Curry",
+     "c": [
+      "12",
+      "10"
+     ],
+     "w": true
+    },
+    {
+     "p": "Day'Ron Sharpe",
+     "c": [
+      "16"
+     ],
+     "w": true
+    }
+   ]
+  },
+  "478.l.39751.t.7|478.l.39751.t.8": {
+   "text": "Suggs to be you reached the flyover five categories clear. Roshan's double-decker bus closed to within one by Saturday night, with Amen Thompson swatting banana peels off the top deck. Then the bus clipped the chaat cart on Sunday and Keshav's shopping cart rolled home by three.",
+   "pins": [
+    {
+     "p": "Amen Thompson",
+     "c": [
+      "18"
+     ],
+     "w": true
+    },
+    {
+     "p": "Darryn Peterson",
+     "c": [
+      "12",
+      "10"
+     ],
+     "w": true
+    }
+   ]
+  },
+  "478.l.39751.t.2|478.l.39751.t.12": {
+   "text": "Jason's bicycle hit the ramp three categories ahead. Austin Reaves floored the limousine and Da Don snatched the field goal and three point percentages in mid-air, but Jason lifted the steals on the way down and pedalled across the line one category clear.",
+   "pins": [
+    {
+     "p": "Austin Reaves",
+     "c": [
+      "12"
+     ],
+     "w": true
+    },
+    {
+     "p": "Jabari Smith Jr.",
+     "c": [
+      "17"
+     ],
+     "w": true
+    }
+   ]
+  },
+  "478.l.39751.t.5|478.l.39751.t.11": {
+   "text": "Sagar's tractor reached the flyover four categories clear with the garden shed still attached. Jalen Johnson finally climbed onto the sofa for the weekend and MONSTARS clawed back the three point percentage and the turnovers, but Donovan Mitchell grabbed the points and the shed landed in one piece.",
+   "pins": [
+    {
+     "p": "Jalen Johnson",
+     "c": [
+      "12"
+     ],
+     "w": true
+    },
+    {
+     "p": "Donovan Mitchell",
+     "c": [
+      "12",
+      "10"
+     ],
+     "w": true
+    }
+   ]
+  },
+  "478.l.39751.t.3|478.l.39751.t.6": {
+   "text": "Two categories were tied at the foot of the ramp. Nolan Traore took Adarsh's fire engine up it like it had four good tyres and grabbed the three point percentage, but Onyeka Okongwu swatted the blocks for Parth and the postal van landed one bumper in front, exactly where it took off.",
+   "pins": [
+    {
+     "p": "Nolan Traore",
+     "c": [
+      "12",
+      "17"
+     ],
+     "w": true
+    },
+    {
+     "p": "Onyeka Okongwu",
+     "c": [
+      "18"
+     ],
+     "w": true
+    }
+   ]
+  }
+ },
+ "zingers": {
+  "478.l.39751.t.4": "Still first in the standings and still got overtaken by a hearse. Chet has not left the garage in a fortnight.",
+  "478.l.39751.t.1": "Beat every machine on the road. Trae Young drove like he was paid by the turnover.",
+  "478.l.39751.t.9": "Last week's champion, this week's speed bump. Kel'el Ware could not hit the side of a parked bus.",
+  "478.l.39751.t.8": "Won the duel against a bus that kept stalling. Brandon Miller shot like the windscreen was painted over.",
+  "478.l.39751.t.10": "Overtook the race leader in a hearse. Tenth in the standings, so the hearse is still the right vehicle.",
+  "478.l.39751.t.12": "Pedalled to a win on a bicycle. Andrew Wiggins shot like he was aiming for the cow.",
+  "478.l.39751.t.2": "James Harden shot like the steering wheel was on the wrong side. Kawhi is still in the garage, still on the payroll.",
+  "478.l.39751.t.3": "Fifteen moves this season and still no spare tyre. Lost by one category with two stars on the tow truck.",
+  "478.l.39751.t.6": "Won by one bumper and is calling it engineering. Deni Avdija drove all week with the handbrake on.",
+  "478.l.39751.t.7": "Had the best player in the race and still lost the duel. Jonathan Kuminga vanished at the flyover.",
+  "478.l.39751.t.5": "Ty Jerome did all his driving before the weekend and then walked home. The sofa is up for sale.",
+  "478.l.39751.t.11": "Beat MONSTARS, which counts. Miles Bridges cost pocket change and drove like a getaway car."
+ },
+ "sign_off": "Next Monday the rain comes in sideways, somebody fishes a body out of the river, and a man in a wet trench coat starts asking questions."
+}
