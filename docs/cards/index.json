@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-11-10T05:05-05:00",
- "date": "2026-11-09",
+ "generated_at": "2026-11-11T05:05-05:00",
+ "date": "2026-11-10",
  "week": 4,
  "matchups": {
   "1-8": "matchup-1-8.png",
-  "2-9": "matchup-2-9.png",
-  "10-11": "matchup-10-11.png",
   "3-12": "matchup-3-12.png",
+  "5-6": "matchup-5-6.png",
   "4-7": "matchup-4-7.png",
-  "5-6": "matchup-5-6.png"
+  "10-11": "matchup-10-11.png",
+  "2-9": "matchup-2-9.png"
  },
  "gauntlet": {
   "1": "gauntlet-1.png",
@@ -24,7 +24,7 @@
   "10": "gauntlet-10.png",
   "11": "gauntlet-11.png"
  },
- "night": "night-2026-11-09.png",
+ "night": "night-2026-11-10.png",
  "gauntlet_week": 4,
- "night_date": "2026-11-09"
+ "night_date": "2026-11-10"
 }
