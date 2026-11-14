@@ -2,11 +2,11 @@
  "date": "2026-11-13",
  "week": 4,
  "sample": false,
- "generated_at": "2026-11-14T00:40-05:00",
- "as_of": "12:40am",
+ "generated_at": "2026-11-14T01:05-05:00",
+ "as_of": "1:05am",
  "update": 15,
  "updates": 15,
- "final": false,
+ "final": true,
  "cats": [
   {
    "id": "5",
@@ -231,10 +231,10 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.44,
+     "a": 0.438,
      "b": 0.454,
      "lead": "b",
-     "swing": true
+     "swing": false
     },
     {
      "cat": "8",
@@ -246,23 +246,23 @@
     {
      "cat": "10",
      "a": 62.0,
-     "b": 32.0,
+     "b": 34.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "11",
-     "a": 0.363,
-     "b": 0.246,
+     "a": 0.36,
+     "b": 0.258,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
      "a": 489.0,
-     "b": 458.0,
+     "b": 466.0,
      "lead": "a",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "13",
@@ -274,14 +274,14 @@
     {
      "cat": "14",
      "a": 127.0,
-     "b": 132.0,
+     "b": 134.0,
      "lead": "b",
      "swing": true
     },
     {
      "cat": "16",
      "a": 117.0,
-     "b": 98.0,
+     "b": 99.0,
      "lead": "a",
      "swing": false
     },
@@ -325,7 +325,7 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.463,
+     "a": 0.469,
      "b": 0.472,
      "lead": "b",
      "swing": true
@@ -339,21 +339,21 @@
     },
     {
      "cat": "10",
-     "a": 46.0,
+     "a": 47.0,
      "b": 59.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "11",
-     "a": 0.368,
+     "a": 0.37,
      "b": 0.36,
      "lead": "a",
      "swing": true
     },
     {
      "cat": "12",
-     "a": 395.0,
+     "a": 404.0,
      "b": 518.0,
      "lead": "b",
      "swing": false
@@ -367,14 +367,14 @@
     },
     {
      "cat": "14",
-     "a": 84.0,
+     "a": 85.0,
      "b": 155.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 87.0,
+     "a": 88.0,
      "b": 132.0,
      "lead": "b",
      "swing": false
@@ -419,35 +419,35 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.484,
+     "a": 0.485,
      "b": 0.529,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "8",
-     "a": 0.802,
+     "a": 0.805,
      "b": 0.817,
      "lead": "b",
      "swing": true
     },
     {
      "cat": "10",
-     "a": 42.0,
+     "a": 43.0,
      "b": 35.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "11",
-     "a": 0.356,
+     "a": 0.361,
      "b": 0.38,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 489.0,
+     "a": 496.0,
      "b": 378.0,
      "lead": "a",
      "swing": false
@@ -468,7 +468,7 @@
     },
     {
      "cat": "16",
-     "a": 110.0,
+     "a": 111.0,
      "b": 92.0,
      "lead": "a",
      "swing": false
@@ -513,10 +513,10 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.476,
+     "a": 0.478,
      "b": 0.492,
      "lead": "b",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "8",
@@ -541,7 +541,7 @@
     },
     {
      "cat": "12",
-     "a": 507.0,
+     "a": 509.0,
      "b": 411.0,
      "lead": "a",
      "swing": false
@@ -555,7 +555,7 @@
     },
     {
      "cat": "14",
-     "a": 175.0,
+     "a": 177.0,
      "b": 100.0,
      "lead": "a",
      "swing": false
@@ -589,7 +589,7 @@
      "swing": false
     }
    ],
-   "swings": 1,
+   "swings": 2,
    "prev_score": [
     9,
     2,
@@ -607,35 +607,35 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.462,
+     "a": 0.464,
      "b": 0.49,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "8",
-     "a": 0.869,
+     "a": 0.871,
      "b": 0.845,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "10",
-     "a": 50.0,
+     "a": 51.0,
      "b": 63.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "11",
-     "a": 0.382,
+     "a": 0.383,
      "b": 0.366,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 403.0,
+     "a": 411.0,
      "b": 631.0,
      "lead": "b",
      "swing": false
@@ -649,15 +649,15 @@
     },
     {
      "cat": "14",
-     "a": 78.0,
-     "b": 137.0,
+     "a": 80.0,
+     "b": 138.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 83.0,
-     "b": 123.0,
+     "a": 86.0,
+     "b": 125.0,
      "lead": "b",
      "swing": false
     },
@@ -677,7 +677,7 @@
     },
     {
      "cat": "19",
-     "a": 52.0,
+     "a": 53.0,
      "b": 68.0,
      "lead": "a",
      "swing": false
@@ -801,7 +801,7 @@
     107
    ],
    "state": "post",
-   "clock": "0.0",
+   "clock": "12:00",
    "period": 4,
    "detail": "Final"
   },
@@ -811,13 +811,13 @@
     "LAC"
    ],
    "score": [
-    95,
-    91
+    112,
+    113
    ],
-   "state": "in",
-   "clock": "6:57",
+   "state": "post",
+   "clock": "0.0",
    "period": 4,
-   "detail": "6:57 - 4th"
+   "detail": "Final"
   }
  ],
  "lines": [
@@ -827,12 +827,12 @@
    "slot": "PF",
    "nba": "ORL",
    "benched": false,
-   "value": 9.89,
+   "value": 9.87,
    "z": {
     "5": 1.57,
     "8": 1.4,
     "10": 0.82,
-    "12": 2.19,
+    "12": 2.18,
     "13": -0.24,
     "14": 1.45,
     "16": 2.98,
@@ -873,12 +873,12 @@
    "slot": "C",
    "nba": "MIA",
    "benched": false,
-   "value": 9.6,
+   "value": 9.57,
    "z": {
-    "5": 2.38,
+    "5": 2.37,
     "8": 1.19,
     "10": 0.22,
-    "12": 2.42,
+    "12": 2.41,
     "13": 1.73,
     "14": 2.2,
     "16": -0.22,
@@ -919,12 +919,12 @@
    "slot": "C",
    "nba": "HOU",
    "benched": false,
-   "value": 9.2,
+   "value": 9.18,
    "z": {
-    "5": 3.34,
+    "5": 3.33,
     "8": -1.79,
     "10": -0.38,
-    "12": 3.09,
+    "12": 3.08,
     "13": 2.39,
     "14": 1.08,
     "16": 0.49,
@@ -965,14 +965,14 @@
    "slot": "C",
    "nba": "NYK",
    "benched": false,
-   "value": 7.69,
+   "value": 7.67,
    "z": {
     "5": 0.08,
     "8": -0.45,
     "10": 0.82,
     "12": 0.85,
     "13": 1.08,
-    "14": 2.95,
+    "14": 2.94,
     "16": 0.49,
     "17": 1.93,
     "18": -0.66,
@@ -1011,15 +1011,15 @@
    "slot": "G",
    "nba": "SAS",
    "benched": false,
-   "value": 7.28,
+   "value": 7.26,
    "z": {
     "5": 2.07,
     "8": 0.7,
     "10": 2.02,
-    "12": 1.86,
+    "12": 1.85,
     "13": -0.24,
     "14": -0.04,
-    "16": 0.85,
+    "16": 0.84,
     "17": -0.9,
     "18": 0.36,
     "19": 0.6
@@ -1052,12 +1052,58 @@
    ]
   },
   {
+   "name": "Isaiah Hartenstein",
+   "team": "478.l.39751.t.10",
+   "slot": "C",
+   "nba": "OKC",
+   "benched": false,
+   "value": 6.77,
+   "z": {
+    "5": 2.49,
+    "8": -0.22,
+    "10": -0.98,
+    "12": 0.63,
+    "13": 1.73,
+    "14": 2.94,
+    "16": 0.84,
+    "17": 0.04,
+    "18": -0.66,
+    "19": -0.05
+   },
+   "line": {
+    "5": [
+     0.9,
+     9,
+     10
+    ],
+    "8": [
+     0.75,
+     3,
+     4
+    ],
+    "10": 0,
+    "12": 21.0,
+    "13": 4.0,
+    "14": 12.0,
+    "16": 6.0,
+    "17": 1.0,
+    "18": 0,
+    "19": 2.0
+   },
+   "desc": "21 PTS, 16 REB, 6 AST, 9-10 FG",
+   "best": [
+    "14",
+    "5",
+    "13"
+   ]
+  },
+  {
    "name": "Davion Mitchell",
    "team": "478.l.39751.t.3",
    "slot": "G",
    "nba": "MIA",
    "benched": false,
-   "value": 6.62,
+   "value": 6.6,
    "z": {
     "5": 0.27,
     "8": 0.25,
@@ -1065,7 +1111,7 @@
     "12": 0.74,
     "13": -0.24,
     "14": -0.04,
-    "16": 4.76,
+    "16": 4.75,
     "17": -0.9,
     "18": 0.36,
     "19": 0.6
@@ -1103,15 +1149,15 @@
    "slot": "SF",
    "nba": "POR",
    "benched": false,
-   "value": 6.56,
+   "value": 6.54,
    "z": {
-    "5": 2.84,
+    "5": 2.83,
     "8": 2.1,
     "10": 0.82,
-    "12": 2.08,
+    "12": 2.07,
     "13": -0.89,
     "14": 0.7,
-    "16": 0.14,
+    "16": 0.13,
     "17": -0.9,
     "18": 0.36,
     "19": -0.69
@@ -1149,15 +1195,15 @@
    "slot": "G",
    "nba": "CLE",
    "benched": false,
-   "value": 5.61,
+   "value": 5.59,
    "z": {
     "5": -0.61,
     "8": 1.87,
     "10": 0.22,
-    "12": 0.52,
+    "12": 0.51,
     "13": -0.89,
     "14": 0.7,
-    "16": 1.56,
+    "16": 1.55,
     "17": 1.93,
     "18": 0.36,
     "19": -0.05
@@ -1190,63 +1236,17 @@
    ]
   },
   {
-   "name": "Isaiah Hartenstein",
-   "team": "478.l.39751.t.10",
-   "slot": "C",
-   "nba": "OKC",
-   "benched": false,
-   "value": 5.51,
-   "z": {
-    "5": 2.19,
-    "8": -0.21,
-    "10": -0.98,
-    "12": 0.41,
-    "13": 1.73,
-    "14": 2.2,
-    "16": 0.85,
-    "17": 0.04,
-    "18": -0.66,
-    "19": -0.05
-   },
-   "line": {
-    "5": [
-     0.889,
-     8,
-     9
-    ],
-    "8": [
-     0.75,
-     3,
-     4
-    ],
-    "10": 0,
-    "12": 19.0,
-    "13": 4.0,
-    "14": 10.0,
-    "16": 6.0,
-    "17": 1.0,
-    "18": 0,
-    "19": 2.0
-   },
-   "desc": "19 PTS, 14 REB, 6 AST, 8-9 FG",
-   "best": [
-    "14",
-    "5",
-    "13"
-   ]
-  },
-  {
    "name": "Donovan Clingan",
    "team": "478.l.39751.t.9",
    "slot": "C",
    "nba": "POR",
    "benched": false,
-   "value": 5.16,
+   "value": 5.15,
    "z": {
     "5": -0.04,
-    "8": -0.0,
+    "8": 0.0,
     "10": -0.38,
-    "12": -0.26,
+    "12": -0.27,
     "13": 1.73,
     "14": 1.08,
     "16": -0.58,
@@ -1281,7 +1281,7 @@
  "team_nights": [
   {
    "team": "478.l.39751.t.10",
-   "value": 20.9,
+   "value": 22.0,
    "played": 8,
    "with_game": 8,
    "bench_value": 0,
@@ -1294,7 +1294,7 @@
   },
   {
    "team": "478.l.39751.t.9",
-   "value": 17.1,
+   "value": 17.0,
    "played": 8,
    "with_game": 8,
    "bench_value": 0,
@@ -1307,7 +1307,7 @@
   },
   {
    "team": "478.l.39751.t.6",
-   "value": 8.3,
+   "value": 9.3,
    "played": 8,
    "with_game": 8,
    "bench_value": 0,
@@ -1320,33 +1320,20 @@
   },
   {
    "team": "478.l.39751.t.2",
-   "value": 5.3,
+   "value": 8.5,
    "played": 6,
    "with_game": 7,
    "bench_value": 0,
    "top": [
     "James Harden",
-    "Norman Powell",
-    "Jaime Jaquez Jr."
+    "Brook Lopez",
+    "Norman Powell"
    ],
    "rank": 4
   },
   {
-   "team": "478.l.39751.t.3",
-   "value": 2.3,
-   "played": 4,
-   "with_game": 5,
-   "bench_value": 0,
-   "top": [
-    "Davion Mitchell",
-    "Jared McCain",
-    "Ace Bailey"
-   ],
-   "rank": 5
-  },
-  {
    "team": "478.l.39751.t.4",
-   "value": -0.7,
+   "value": 1.7,
    "played": 7,
    "with_game": 8,
    "bench_value": 0,
@@ -1355,24 +1342,50 @@
     "Domantas Sabonis",
     "Zion Williamson"
    ],
+   "rank": 5
+  },
+  {
+   "team": "478.l.39751.t.3",
+   "value": 1.7,
+   "played": 4,
+   "with_game": 5,
+   "bench_value": 0,
+   "top": [
+    "Davion Mitchell",
+    "Jared McCain",
+    "Ace Bailey"
+   ],
    "rank": 6
   },
   {
    "team": "478.l.39751.t.12",
-   "value": -2.7,
+   "value": 0.2,
    "played": 9,
    "with_game": 9,
    "bench_value": -6.2,
    "top": [
     "Alperen \u015eeng\u00fcn",
     "Ivica Zubac",
-    "Tari Eason"
+    "Shai Gilgeous-Alexander"
    ],
    "rank": 7
   },
   {
+   "team": "478.l.39751.t.5",
+   "value": 0.1,
+   "played": 8,
+   "with_game": 9,
+   "bench_value": 0,
+   "top": [
+    "Jalen Johnson",
+    "Jalen Smith",
+    "Darius Garland"
+   ],
+   "rank": 8
+  },
+  {
    "team": "478.l.39751.t.7",
-   "value": -3.1,
+   "value": -3.2,
    "played": 8,
    "with_game": 9,
    "bench_value": 0,
@@ -1380,19 +1393,6 @@
     "Victor Wembanyama",
     "Matas Buzelis",
     "Dyson Daniels"
-   ],
-   "rank": 8
-  },
-  {
-   "team": "478.l.39751.t.5",
-   "value": -3.1,
-   "played": 8,
-   "with_game": 9,
-   "bench_value": 0,
-   "top": [
-    "Jalen Johnson",
-    "Jalen Smith",
-    "Zach LaVine"
    ],
    "rank": 9
   },
@@ -1436,7 +1436,7 @@
    "rank": 12
   }
  ],
- "headline": "Tonight, So Far",
+ "headline": "Tonight, Final",
  "notes": [
   "Franz Wagner has the line of the night so far for Gopher Gold: 35 PTS, 9 REB, 12 AST, 3 3PTM.",
   "theInfamous and Suggs to be you are 5-4 with 4 categories inside a possession.",
@@ -1474,14 +1474,14 @@
     "19": 55.0
    },
    "478.l.39751.t.2": {
-    "5": 0.463,
+    "5": 0.469,
     "8": 0.833,
-    "10": 46.0,
-    "11": 0.368,
-    "12": 395.0,
+    "10": 47.0,
+    "11": 0.37,
+    "12": 404.0,
     "13": 27.0,
-    "14": 84.0,
-    "16": 87.0,
+    "14": 85.0,
+    "16": 88.0,
     "17": 36.0,
     "18": 14.0,
     "19": 46.0
@@ -1500,10 +1500,10 @@
     "19": 64.0
    },
    "478.l.39751.t.3": {
-    "5": 0.44,
+    "5": 0.438,
     "8": 0.774,
     "10": 62.0,
-    "11": 0.363,
+    "11": 0.36,
     "12": 489.0,
     "13": 33.0,
     "14": 127.0,
@@ -1515,25 +1515,25 @@
    "478.l.39751.t.12": {
     "5": 0.454,
     "8": 0.778,
-    "10": 32.0,
-    "11": 0.246,
-    "12": 458.0,
+    "10": 34.0,
+    "11": 0.258,
+    "12": 466.0,
     "13": 58.0,
-    "14": 132.0,
-    "16": 98.0,
+    "14": 134.0,
+    "16": 99.0,
     "17": 24.0,
     "18": 22.0,
     "19": 38.0
    },
    "478.l.39751.t.4": {
-    "5": 0.484,
-    "8": 0.802,
-    "10": 42.0,
-    "11": 0.356,
-    "12": 489.0,
+    "5": 0.485,
+    "8": 0.805,
+    "10": 43.0,
+    "11": 0.361,
+    "12": 496.0,
     "13": 45.0,
     "14": 121.0,
-    "16": 110.0,
+    "16": 111.0,
     "17": 27.0,
     "18": 20.0,
     "19": 62.0
@@ -1552,17 +1552,17 @@
     "19": 55.0
    },
    "478.l.39751.t.5": {
-    "5": 0.462,
-    "8": 0.869,
-    "10": 50.0,
-    "11": 0.382,
-    "12": 403.0,
+    "5": 0.464,
+    "8": 0.871,
+    "10": 51.0,
+    "11": 0.383,
+    "12": 411.0,
     "13": 23.0,
-    "14": 78.0,
-    "16": 83.0,
+    "14": 80.0,
+    "16": 86.0,
     "17": 17.0,
     "18": 8.0,
-    "19": 52.0
+    "19": 53.0
    },
    "478.l.39751.t.6": {
     "5": 0.49,
@@ -1571,20 +1571,20 @@
     "11": 0.366,
     "12": 631.0,
     "13": 48.0,
-    "14": 137.0,
-    "16": 123.0,
+    "14": 138.0,
+    "16": 125.0,
     "17": 33.0,
     "18": 26.0,
     "19": 68.0
    },
    "478.l.39751.t.10": {
-    "5": 0.476,
+    "5": 0.478,
     "8": 0.76,
     "10": 72.0,
     "11": 0.462,
-    "12": 507.0,
+    "12": 509.0,
     "13": 36.0,
-    "14": 175.0,
+    "14": 177.0,
     "16": 126.0,
     "17": 27.0,
     "18": 24.0,
@@ -1619,7 +1619,174 @@
    "478.l.39751.t.11": "478.l.39751.t.10"
   }
  },
- "race": null,
+ "race": {
+  "rows": [
+   {
+    "team": "478.l.39751.t.4",
+    "rank": 1,
+    "w": 21,
+    "l": 11,
+    "t": 1,
+    "back": 0.0,
+    "vs_line": -3.5,
+    "playoff_odds": 0.996,
+    "top_seed_odds": 0.67,
+    "proj_w": 117,
+    "odds_move": -0.001
+   },
+   {
+    "team": "478.l.39751.t.8",
+    "rank": 2,
+    "w": 20,
+    "l": 12,
+    "t": 1,
+    "back": 1.0,
+    "vs_line": -2.5,
+    "playoff_odds": 0.73,
+    "top_seed_odds": 0.023,
+    "proj_w": 103,
+    "odds_move": 0.006
+   },
+   {
+    "team": "478.l.39751.t.1",
+    "rank": 3,
+    "w": 19,
+    "l": 14,
+    "t": 0,
+    "back": 2.5,
+    "vs_line": -1.0,
+    "playoff_odds": 0.945,
+    "top_seed_odds": 0.145,
+    "proj_w": 110,
+    "odds_move": -0.001
+   },
+   {
+    "team": "478.l.39751.t.2",
+    "rank": 4,
+    "w": 19,
+    "l": 14,
+    "t": 0,
+    "back": 2.5,
+    "vs_line": -1.0,
+    "playoff_odds": 0.382,
+    "top_seed_odds": 0.005,
+    "proj_w": 99,
+    "odds_move": -0.068
+   },
+   {
+    "team": "478.l.39751.t.6",
+    "rank": 5,
+    "w": 18,
+    "l": 15,
+    "t": 0,
+    "back": 3.5,
+    "vs_line": 0.0,
+    "playoff_odds": 0.773,
+    "top_seed_odds": 0.032,
+    "proj_w": 105,
+    "odds_move": 0.029
+   },
+   {
+    "team": "478.l.39751.t.9",
+    "rank": 6,
+    "w": 18,
+    "l": 15,
+    "t": 0,
+    "back": 3.5,
+    "vs_line": 0.0,
+    "playoff_odds": 0.93,
+    "top_seed_odds": 0.1,
+    "proj_w": 109,
+    "odds_move": 0.02
+   },
+   {
+    "team": "478.l.39751.t.12",
+    "rank": 7,
+    "w": 16,
+    "l": 17,
+    "t": 0,
+    "back": 5.5,
+    "vs_line": 2.0,
+    "playoff_odds": 0.754,
+    "top_seed_odds": 0.02,
+    "proj_w": 104,
+    "odds_move": 0.081
+   },
+   {
+    "team": "478.l.39751.t.3",
+    "rank": 8,
+    "w": 15,
+    "l": 18,
+    "t": 0,
+    "back": 6.5,
+    "vs_line": 3.0,
+    "playoff_odds": 0.333,
+    "top_seed_odds": 0.003,
+    "proj_w": 98,
+    "odds_move": -0.095
+   },
+   {
+    "team": "478.l.39751.t.11",
+    "rank": 9,
+    "w": 13,
+    "l": 20,
+    "t": 0,
+    "back": 8.5,
+    "vs_line": 5.0,
+    "playoff_odds": 0.001,
+    "top_seed_odds": 0.0,
+    "proj_w": 79,
+    "odds_move": -0.001
+   },
+   {
+    "team": "478.l.39751.t.10",
+    "rank": 10,
+    "w": 13,
+    "l": 20,
+    "t": 0,
+    "back": 8.5,
+    "vs_line": 5.0,
+    "playoff_odds": 0.134,
+    "top_seed_odds": 0.001,
+    "proj_w": 94,
+    "odds_move": 0.024
+   },
+   {
+    "team": "478.l.39751.t.7",
+    "rank": 11,
+    "w": 13,
+    "l": 20,
+    "t": 0,
+    "back": 8.5,
+    "vs_line": 5.0,
+    "playoff_odds": 0.023,
+    "top_seed_odds": 0.0,
+    "proj_w": 88,
+    "odds_move": 0.007
+   },
+   {
+    "team": "478.l.39751.t.5",
+    "rank": 12,
+    "w": 11,
+    "l": 20,
+    "t": 2,
+    "back": 9.5,
+    "vs_line": 6.0,
+    "playoff_odds": 0.001,
+    "top_seed_odds": 0.0,
+    "proj_w": 79,
+    "odds_move": -0.003
+   }
+  ],
+  "playoff_teams": 6,
+  "weeks_left": 15,
+  "reg_end": 18,
+  "sims": 2000,
+  "week": 4,
+  "coarse": true,
+  "through": "2026-11-13",
+  "after": "final"
+ },
  "players_current": {
   "week": 4,
   "start": "2026-11-09",
@@ -1631,7 +1798,7 @@
     "name": "Victor Wembanyama",
     "team": "478.l.39751.t.7",
     "games": 3,
-    "value": 18.05,
+    "value": 17.96,
     "line": {
      "5": [
       0.688,
@@ -1663,7 +1830,7 @@
     "name": "Anthony Davis",
     "team": "478.l.39751.t.6",
     "games": 3,
-    "value": 12.47,
+    "value": 12.38,
     "line": {
      "5": [
       0.581,
@@ -1695,7 +1862,7 @@
     "name": "Franz Wagner",
     "team": "478.l.39751.t.4",
     "games": 3,
-    "value": 12.38,
+    "value": 12.3,
     "line": {
      "5": [
       0.544,
@@ -1727,7 +1894,7 @@
     "name": "Alperen \u015eeng\u00fcn",
     "team": "478.l.39751.t.12",
     "games": 3,
-    "value": 11.06,
+    "value": 10.98,
     "line": {
      "5": [
       0.618,
@@ -1759,7 +1926,7 @@
     "name": "Deni Avdija",
     "team": "478.l.39751.t.6",
     "games": 3,
-    "value": 9.92,
+    "value": 9.85,
     "line": {
      "5": [
       0.583,
@@ -1791,7 +1958,7 @@
     "name": "Karl-Anthony Towns",
     "team": "478.l.39751.t.9",
     "games": 3,
-    "value": 9.49,
+    "value": 9.42,
     "line": {
      "5": [
       0.477,
@@ -1823,7 +1990,7 @@
     "name": "Donovan Clingan",
     "team": "478.l.39751.t.9",
     "games": 3,
-    "value": 8.94,
+    "value": 8.89,
     "line": {
      "5": [
       0.478,
@@ -1846,11 +2013,43 @@
     ]
    },
    {
+    "pk": "478.p.5856",
+    "name": "Isaiah Hartenstein",
+    "team": "478.l.39751.t.10",
+    "games": 3,
+    "value": 7.33,
+    "line": {
+     "5": [
+      0.733,
+      22,
+      30
+     ],
+     "8": [
+      0.667,
+      4,
+      6
+     ],
+     "10": 0,
+     "12": 48.0,
+     "13": 9.0,
+     "14": 27.0,
+     "16": 17.0,
+     "17": 3.0,
+     "18": 1.0,
+     "19": 8.0
+    },
+    "best": [
+     "14",
+     "5",
+     "13"
+    ]
+   },
+   {
     "pk": "478.p.5473",
     "name": "Devin Booker",
     "team": "478.l.39751.t.6",
     "games": 3,
-    "value": 6.99,
+    "value": 6.94,
     "line": {
      "5": [
       0.549,
@@ -1878,43 +2077,11 @@
     ]
    },
    {
-    "pk": "478.p.5856",
-    "name": "Isaiah Hartenstein",
-    "team": "478.l.39751.t.10",
-    "games": 3,
-    "value": 6.81,
-    "line": {
-     "5": [
-      0.724,
-      21,
-      29
-     ],
-     "8": [
-      0.667,
-      4,
-      6
-     ],
-     "10": 0,
-     "12": 46.0,
-     "13": 9.0,
-     "14": 25.0,
-     "16": 17.0,
-     "17": 3.0,
-     "18": 1.0,
-     "19": 8.0
-    },
-    "best": [
-     "5",
-     "14",
-     "13"
-    ]
-   },
-   {
     "pk": "478.p.6512",
     "name": "Cade Cunningham",
     "team": "478.l.39751.t.8",
     "games": 2,
-    "value": 6.71,
+    "value": 6.65,
     "line": {
      "5": [
       0.561,
@@ -1971,7 +2138,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": 0.34,
+    "value": 0.3,
     "line": {
      "5": [
       0.524,
@@ -2016,7 +2183,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": -4.58,
+    "value": -4.62,
     "line": {
      "5": [
       0.286,
@@ -2067,7 +2234,7 @@
     ],
     "flipped": true,
     "decided": false,
-    "value": 1.11,
+    "value": 1.06,
     "line": {
      "5": [
       0.667,
@@ -2116,7 +2283,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": -1.89,
+    "value": -1.93,
     "line": {
      "5": [
       0.6,
@@ -2165,7 +2332,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": -3.87,
+    "value": -3.91,
     "line": {
      "5": [
       0.545,
@@ -2254,7 +2421,7 @@
       "desc": "3 games: 28 PTS, 2 OREB, 8 DREB, 6 AST, 3 3PTM, 4 ST",
       "added": "2026-11-09",
       "dropped": "Keaton Wagler",
-      "dropped_desc": "2 games: 25 PTS, 3 DREB, 5 AST, 3 3PTM, 2 ST, 7-19 FG"
+      "dropped_desc": "2 games: 25 PTS, 2 DREB, 5 AST, 3 3PTM, 2 ST, 7-19 FG"
      },
      {
       "name": "Tari Eason",
@@ -2405,7 +2572,7 @@
      {
       "name": "Alex Caruso",
       "games": 1,
-      "desc": "1 game: 1 DREB, 3 AST, 1 ST, 1 BLK, 0-7 FG",
+      "desc": "1 game: 5 PTS, 1 DREB, 4 AST, 1 3PTM, 1 ST, 1 BLK",
       "added": "2026-11-12",
       "dropped": null,
       "dropped_desc": null
@@ -2475,41 +2642,6 @@
     ]
    },
    {
-    "team": "478.l.39751.t.11",
-    "opp": "478.l.39751.t.10",
-    "score": [
-     2,
-     8,
-     1
-    ],
-    "without": [
-     2,
-     8,
-     1
-    ],
-    "carried": false,
-    "net": 0,
-    "swung": [],
-    "pickups": [
-     {
-      "name": "Jrue Holiday",
-      "games": 3,
-      "desc": "3 games: 36 PTS, 1 OREB, 8 DREB, 12 AST, 7 3PTM, 3 ST",
-      "added": "2026-11-02",
-      "dropped": null,
-      "dropped_desc": null
-     },
-     {
-      "name": "Jarace Walker",
-      "games": 2,
-      "desc": "2 games: 8 PTS, 1 OREB, 1 DREB, 2 3PTM, 2-8 FG",
-      "added": "2026-11-02",
-      "dropped": null,
-      "dropped_desc": null
-     }
-    ]
-   },
-   {
     "team": "478.l.39751.t.3",
     "opp": "478.l.39751.t.12",
     "score": [
@@ -2518,13 +2650,15 @@
      1
     ],
     "without": [
-     4,
+     3,
      6,
-     1
+     2
     ],
     "carried": false,
-    "net": -1,
-    "swung": [],
+    "net": 0,
+    "swung": [
+     "16"
+    ],
     "pickups": [
      {
       "name": "Jamal Shead",
@@ -2557,6 +2691,41 @@
       "added": "2026-11-12",
       "dropped": "Nolan Traore",
       "dropped_desc": "0 games"
+     }
+    ]
+   },
+   {
+    "team": "478.l.39751.t.11",
+    "opp": "478.l.39751.t.10",
+    "score": [
+     2,
+     8,
+     1
+    ],
+    "without": [
+     2,
+     8,
+     1
+    ],
+    "carried": false,
+    "net": 0,
+    "swung": [],
+    "pickups": [
+     {
+      "name": "Jrue Holiday",
+      "games": 3,
+      "desc": "3 games: 36 PTS, 1 OREB, 8 DREB, 12 AST, 7 3PTM, 3 ST",
+      "added": "2026-11-02",
+      "dropped": null,
+      "dropped_desc": null
+     },
+     {
+      "name": "Jarace Walker",
+      "games": 2,
+      "desc": "2 games: 8 PTS, 1 OREB, 1 DREB, 2 3PTM, 2-8 FG",
+      "added": "2026-11-02",
+      "dropped": null,
+      "dropped_desc": null
      }
     ]
    },
