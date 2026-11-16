@@ -1,0 +1,232 @@
+{
+ "week": 4,
+ "theme": "sim",
+ "edition": "The Simulation",
+ "kicker": "Week 4, system breach",
+ "headline": "Hackers Storm the Server Spire, the Lobby Goes Slow Motion, and the Whole Grid Crashes. Thug Life Reads the Code.",
+ "deck": "LeParth James sits on the top seed with a stack of Stephon Castle's points locked in the bench folder, and Parth is calling it a security feature.",
+ "hero_caption": "The lobby of the Server Spire at the instant of the breach, engraved frame by frame by our correspondent from inside a ventilation duct.",
+ "chapters": [
+  {
+   "block": "intro",
+   "head": "Green Rain Over a City That Isn't There",
+   "text": [
+    "The league resets every Tuesday at midnight. The scoreboard flickers, the rosters reload, and twelve crews wake up believing the week is theirs to win. Nobody had ever looked at the walls long enough to notice them scrolling.",
+    "This week somebody did. Twelve hackers crammed into a basement node full of dead monitors and wet cable, jacked in, and went after the one file nobody is allowed to touch: the root key, kept on the top floor of the Server Spire, behind a lobby full of Enforcers in identical black suits and identical sunglasses.",
+    "They came through the revolving door in slow motion. Shell casings hung in the air like punctuation. Somebody took the elevator shaft, somebody took the stairs, and somebody tried the rooftop jump to the next tower and learned that the gap renders wider than it looks. By Sunday night the Spire was down to its frame, the exit phone was ringing in an empty booth, and one crew stood on the roof reading the green rain like the morning paper.",
+    "SYSTEM: BREACH CONTAINED. SYSTEM: CONTAINMENT FAILED."
+   ]
+  },
+  {
+   "block": "wanted",
+   "head": "Flagged by the Enforcers",
+   "sub": "Printed on every lobby screen before the power cut."
+  },
+  {
+   "block": "results",
+   "head": "A Duel on Every Floor of the Spire",
+   "text": [
+    "Every floor of the Spire had its own fight, one duel for every two crews in the building. Here is who still had a signal when the lights came back on.",
+    "White Mambas fed Zero Fox Given through the shredder. LeParth James did the same to MONSTARS, with Klay Thompson, who started the week on theInfamous and finished it on LeParth James, doing a lot of the typing."
+   ]
+  },
+  {
+   "block": "late",
+   "head": "The Sunday Patch Goes Live",
+   "text": [
+    "Most duels finish compiling by Friday. These four were still loading when the weekend patch hit the servers."
+   ]
+  },
+  {
+   "block": "boot",
+   "head": "The Quarantine Folder Is Full",
+   "text": [
+    "MONSTARS walked into Monday with three men tagged out sitting in live slots, and one of them, Ja Morant, did not run a single process all week. Da Don Da Beard & Da Klaw left Austin Reaves plugged into a forward slot with an O on his file. BrookynDynasty did the same with Santi Aldama.",
+    "Chet Holmgren, Kawhi Leonard, Jalen Duren, Jaren Jackson Jr. and Paolo Banchero spent the entire week in quarantine without a single reboot. Their managers are still paying for the electricity."
+   ]
+  },
+  {
+   "block": "roy",
+   "head": "The Long Way Out of the Grid",
+   "text": [
+    "Fourteen weeks remain on the clock before the system locks the bracket. Gopher Gold is all but plugged into the playoffs already and holds the best shot at the top seed, which is a strange reward for losing to the ninth seed this week.",
+    "White Mambas run the strongest code in the building by the model's reading and sit sixth anyway. They and LeParth James climbed the odds board fastest. BrookynDynasty fell the furthest. MONSTARS and Zero Fox Given have odds that the system now rounds to nothing, which is the nicest thing it has said about either of them."
+   ]
+  },
+  {
+   "block": "saloon",
+   "head": "Intercepted on an Open Channel",
+   "sub": "Pulled off the server logs after the crash."
+  }
+ ],
+ "wanted": {
+  "mvp": {
+   "title": "Root Access",
+   "line": "Beat all eleven crews in the building. Second time this season the Enforcers have had to rebuild the firewall after them.",
+   "reward": "Root access to the whole city, sunglasses that see through walls, and a lifetime pass on the express elevator",
+   "pins": [
+    {
+     "p": "Karl-Anthony Towns",
+     "c": [
+      "14",
+      "13"
+     ]
+    },
+    {
+     "p": "Jalen Brunson",
+     "c": [
+      "12",
+      "16"
+     ]
+    }
+   ]
+  },
+  "dud": {
+   "title": "Fatal Error",
+   "line": "Beat nobody in the building for the third week running. The system has stopped logging it as a bug and started logging it as a feature.",
+   "reward": "A dial-up modem, a cracked floppy disk, and a phone booth that rings forever and never connects",
+   "pins": [
+    {
+     "p": "Jalen Johnson",
+     "c": [
+      "19"
+     ]
+    },
+    {
+     "p": "Tyler Herro",
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  },
+  "luckiest": {
+   "title": "Exploit Found",
+   "line": "Drew a crew with the exact same all-play mark and won the coin flip. Second straight week on this poster. Luckiest crew in the league on the season.",
+   "reward": "A cheat code scribbled on a napkin, a save point before every loss, and a glitch that only ever breaks his way",
+   "pins": [
+    {
+     "p": "Cade Cunningham",
+     "c": [
+      "8"
+     ]
+    },
+    {
+     "p": "Darryn Peterson",
+     "c": [
+      "10"
+     ]
+    }
+   ]
+  },
+  "robbed": {
+   "title": "Deleted on Upload",
+   "line": "Matched the luckiest crew in the building blow for blow, and the building picked a side. Last week's champion, this week's corrupted file.",
+   "reward": "A backup copy of last week's trophy that will not open, and a recovery disk that only recovers losses",
+   "pins": [
+    {
+     "p": "Jayson Tatum",
+     "c": [
+      "12",
+      "10"
+     ]
+    },
+    {
+     "p": "Alex Sarr",
+     "c": [
+      "18"
+     ]
+    }
+   ]
+  }
+ },
+ "late": {
+  "478.l.39751.t.1|478.l.39751.t.8": {
+   "text": "Tied going into the weekend and still level Saturday night. Then Trae Young spent the weekend firing shots at the firewall and the firewall kept every one. Cooper Flagg hauled down everything in the room, both rebounding boards flipped to Suggs to be you, and theInfamous got logged out mid-sentence.",
+   "pins": [
+    {
+     "p": "Trae Young",
+     "w": true,
+     "c": [
+      "5"
+     ]
+    },
+    {
+     "p": "Cooper Flagg",
+     "w": true,
+     "c": [
+      "14",
+      "12"
+     ]
+    }
+   ]
+  },
+  "478.l.39751.t.3|478.l.39751.t.12": {
+   "text": "BrookynDynasty were a blinking cursor by Friday. Nikola Jokić rewired half the building over the weekend and pried two categories loose, dead level by Saturday night. Then the Sunday patch dropped and Adam Silver Dez Nuts came out of it a single category ahead.",
+   "pins": [
+    {
+     "p": "Nikola Jokić",
+     "w": true,
+     "c": [
+      "16",
+      "17"
+     ]
+    },
+    {
+     "p": "Shai Gilgeous-Alexander",
+     "w": true,
+     "c": [
+      "12"
+     ]
+    }
+   ]
+  },
+  "478.l.39751.t.4|478.l.39751.t.7": {
+   "text": "Gopher Gold needed the weekend to find a backdoor. Victor Wembanyama stood in the doorway swatting packets out of the air, Amen Thompson stopped missing entirely, and the last tied category slid to Nova Knicks.",
+   "pins": [
+    {
+     "p": "Victor Wembanyama",
+     "w": true,
+     "c": [
+      "18"
+     ]
+    },
+    {
+     "p": "Amen Thompson",
+     "w": true,
+     "c": [
+      "5"
+     ]
+    }
+   ]
+  },
+  "478.l.39751.t.2|478.l.39751.t.9": {
+   "text": "Da Don Da Beard & Da Klaw was deleted by Friday. Luka spent the weekend hacking a door that led nowhere: one category cracked, the duel already gone.",
+   "pins": [
+    {
+     "p": "Luka Dončić",
+     "w": true,
+     "c": [
+      "12",
+      "10"
+     ]
+    }
+   ]
+  }
+ },
+ "zingers": {
+  "478.l.39751.t.1": "Stephen Curry ran two games and moved into quarantine. Darius Acuff Jr. coughed up the ball like it was a virus.",
+  "478.l.39751.t.2": "Took Saddiq Bey off Gopher Gold's hands mid-week. Gopher Gold has not asked for him back.",
+  "478.l.39751.t.3": "Second most moves in the league, and Anthony Edwards still has not booted up once all week.",
+  "478.l.39751.t.4": "Most moves in the building and still lost to the ninth seed. Evan Mobley ran two games and filed himself to quarantine.",
+  "478.l.39751.t.5": "Last in the standings, last in the all-play, last to notice. The admin password is still the default.",
+  "478.l.39751.t.6": "Jalen Williams has not loaded once all week. The rest of the roster is covering for a ghost.",
+  "478.l.39751.t.7": "Ninth in the standings with the best player in the simulation. That is a configuration error.",
+  "478.l.39751.t.8": "Brandon Miller loaded for one game all week. Andrew Nembhard is now in the quarantine folder with a question mark.",
+  "478.l.39751.t.9": "Pulled Daniss Jenkins out of Da Don's folder mid-week. Kon Knueppel is still in quarantine and they won anyway.",
+  "478.l.39751.t.10": "Strongest code in the building, sixth in the standings. Trey Murphy III has not run a single line all week.",
+  "478.l.39751.t.11": "Four moves all season. The screensaver has made more decisions. Tyrese Haliburton has not loaded once.",
+  "478.l.39751.t.12": "Won by a single category and is calling it a firewall. Fred VanVleet went into quarantine on the last day."
+ },
+ "sign_off": "SYSTEM NOTICE 0x4E: reboot scheduled for Tuesday 00:00. Do not attempt to remember this week."
+}
