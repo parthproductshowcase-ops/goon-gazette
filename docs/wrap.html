@@ -8,10 +8,10 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#121212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Racing+Sans+One&family=Barlow:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rye&family=Racing+Sans+One&family=Barlow:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="assets/gazette.css?v=ea175ef3">
 <link rel="stylesheet" href="themes/fight.css?v=ecaa68de">
-<link rel="stylesheet" href="themes/wrap.css?v=204209f1">
+<link rel="stylesheet" href="themes/wrap.css?v=fb0d0346">
 
 <div class="wrap">
   <header class="mast">
@@ -67,6 +67,10 @@ const THEME = {
     boot: "The Safe House", roy: "Rest of Year: The Extraction", saloon: "The Wiretap",
     mvp: "Agent of the Week", dud: "Double Agent", luckiest: "Lucky Charm", robbed: "Burned", reward: "Payout", posted: "Classified", sub: "Eyes only",
     status: {O: "Out", INJ: "Out", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "In the safe house"}},
+  sim: {edition: "The Simulation", results: "The Readout", late: "System Crash", wanted: "The Watchlist",
+    boot: "Disconnected", roy: "Rest of Year: The Source Code", saloon: "Intercepted Transmissions",
+    mvp: "The Anomaly", dud: "Corrupted File", luckiest: "Lucky Glitch", robbed: "Hacked", reward: "Bounty", posted: "Flagged", sub: "Threat level: high",
+    status: {O: "Offline", INJ: "Offline", D: "Doubtful", Q: "Questionable", P: "Probable", GTD: "Game time", DTD: "Day to day", IL: "Unplugged"}},
   _: {edition: "Sunday Paper", results: "The Results", late: "Late Drama", wanted: "The Awards",
     boot: "Injury Report", roy: "Rest of Year Outlook", saloon: "Every Manager",
     mvp: "MVP", dud: "Dud", luckiest: "Luckiest", robbed: "Robbed", reward: "Prize", posted: "Award", sub: "",
@@ -321,6 +325,86 @@ Object.assign(ART.western, {
     <g stroke="currentColor" stroke-width="2"><path d="M48 66h42M48 80h42M48 94h42M110 66h42M110 80h42M110 94h42"/></g></svg>`
 });
 
+// Simulation edition: original falling-code hacker art (binary and stat glyphs, no film titles, characters, symbols or marks)
+const SLICK = {  // slicked-back hair for the sim goons, in place of the common.js hats
+  a: `<path d="M17 25c0-10 6-15 13-15s13 5 13 15c-3-5-8-8-13-8s-10 3-13 8z"/>`,
+  b: `<path d="M17 26c-1-10 5-16 13-16 7 0 12 4 13 10-6-3-14-3-21 1z"/>`,
+  c: `<path d="M18 23c1-8 6-12 12-12s11 4 12 12c-4-2-8-3-12-3s-8 1-12 3z"/><path d="M40 16l4-3" stroke="currentColor" stroke-width="2"/>`,
+  d: `<path d="M17 25c0-9 5-14 13-14s13 5 13 14l-4-4-4 3-5-4-5 4-4-3z"/>`,
+  e: `<path d="M18 24c0-8 5-13 12-13s12 5 12 13c-7-4-17-4-24 0z"/>`
+};
+function simGoon(i) {  // the common.js goon in a black coat and dark shades
+  const sh = GOON.hats, sf = GOON.face;
+  GOON.hats = {cowboy: SLICK.a, tall: SLICK.b, bowler: SLICK.c, sombrero: SLICK.d, band: SLICK.e};
+  GOON.face = {bandana: sf.shades, shades: sf.shades, stache: sf.shades, scowl: sf.shades};
+  try { return goon(i); } finally { GOON.hats = sh; GOON.face = sf; }
+}
+function rnd(seed) { let x = seed; return () => (x = (x * 9301 + 49297) % 233280) / 233280; }
+function rain(w, h, cols, seed, size = 13) {  // columns of falling 0s, 1s and stat letters, brightest at the head
+  const r = rnd(seed), G = "0101100110FGPTSASTBLKREB3PM%";
+  return Array.from({length: cols}, (_, k) => {
+    const x = Math.round((k + .5) * w / cols), len = 4 + Math.floor(r() * 10), y0 = Math.floor(r() * h * .9) - 40;
+    return Array.from({length: len}, (_, j) => {
+      const y = y0 + j * size, ch = G[Math.floor(r() * G.length)], head = j === len - 1;
+      return y < 0 || y > h ? "" : `<text x="${x}" y="${y}" fill="${head ? "var(--wx-hi)" : "var(--wx-accent)"}" opacity="${head ? 1 : (.15 + .6 * j / len).toFixed(2)}">${ch}</text>`;
+    }).join("");
+  }).join("");
+}
+const term = (x, y, w, lines) => `<g transform="translate(${x} ${y})"><rect width="${w}" height="${16 + lines.length * 13}" fill="var(--wx-poster)" stroke="var(--wx-accent)" stroke-width="1.5"/>
+  <path d="M0 10h${w}" stroke="var(--wx-accent)" stroke-width="1" opacity=".6"/><g fill="var(--wx-accent)"><circle cx="6" cy="5" r="2"/><circle cx="13" cy="5" r="2"/><circle cx="20" cy="5" r="2"/></g>
+  ${lines.map((l, i) => `<text x="6" y="${24 + i * 13}" font-family="'Share Tech Mono',monospace" font-size="10" fill="var(--wx-accent)">${l}</text>`).join("")}</g>`;
+ART.sim = {
+  mvp: `<svg viewBox="0 0 200 140" aria-hidden="true"><g font-family="'Share Tech Mono',monospace" font-size="11">${rain(200, 140, 14, 7, 11)}</g>
+    <circle cx="100" cy="70" r="40" fill="var(--wx-poster)" opacity=".85"/>
+    <circle cx="100" cy="70" r="40" fill="none" stroke="var(--wx-hi)" stroke-width="2"/><circle cx="100" cy="70" r="48" fill="none" stroke="var(--wx-accent)" stroke-width="1" stroke-dasharray="3 5"/>
+    <path d="M78 82l-6-28 16 12 12-20 12 20 16-12-6 28z" fill="var(--wx-hi)"/><path d="M78 88h44" stroke="var(--wx-hi)" stroke-width="4"/>
+    <text x="100" y="80" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="12" fill="var(--wx-poster)">01</text></svg>`,
+  dud: `<svg viewBox="0 0 200 140" aria-hidden="true">
+    <path d="M66 14h50l22 22v90H66z" fill="var(--wx-poster)" stroke="var(--wx-accent)" stroke-width="2.5"/><path d="M116 14v22h22" fill="none" stroke="var(--wx-accent)" stroke-width="2.5"/>
+    <path d="M96 14l-10 30 14 12-12 22 16 16-8 32" fill="none" stroke="var(--wx-bad)" stroke-width="3"/>
+    <g fill="var(--wx-accent)" opacity=".8"><rect x="58" y="56" width="40" height="6"/><rect x="104" y="70" width="44" height="5"/><rect x="62" y="96" width="30" height="4"/></g>
+    <text x="100" y="124" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="14" fill="var(--wx-bad)">ERR 404</text>
+    <g fill="var(--wx-accent)" opacity=".5"><rect x="20" y="30" width="18" height="3"/><rect x="160" y="100" width="22" height="3"/><rect x="150" y="24" width="12" height="3"/></g></svg>`,
+  luckiest: `<svg viewBox="0 0 200 140" aria-hidden="true"><g fill="var(--wx-accent)">
+    ${[[0,0],[1,0],[0,1],[1,1],[3,0],[4,0],[3,1],[4,1],[0,3],[1,3],[0,4],[1,4],[3,3],[4,3],[3,4],[4,4],[2,2],[2,5],[2,6],[1,7]].map(([c, r]) => `<rect x="${70 + c * 12}" y="${22 + r * 12}" width="11" height="11"/>`).join("")}</g>
+    <rect x="128" y="76" width="44" height="44" rx="6" fill="var(--wx-poster)" stroke="var(--wx-hi)" stroke-width="2.5" transform="rotate(14 150 98)"/>
+    <g fill="var(--wx-hi)" transform="rotate(14 150 98)"><circle cx="138" cy="86" r="4"/><circle cx="150" cy="98" r="4"/><circle cx="162" cy="110" r="4"/></g>
+    <g fill="var(--wx-accent)" opacity=".5"><rect x="24" y="40" width="6" height="6"/><rect x="36" y="56" width="6" height="6"/><rect x="18" y="100" width="6" height="6"/><rect x="176" y="30" width="6" height="6"/></g></svg>`,
+  robbed: `<svg viewBox="0 0 200 140" aria-hidden="true"><g font-family="'Share Tech Mono',monospace" font-size="10" opacity=".55">${rain(200, 140, 12, 21, 10)}</g>
+    <path d="M78 58V42a22 22 0 0 1 40-12" fill="none" stroke="var(--wx-accent)" stroke-width="8" stroke-linecap="round"/>
+    <rect x="66" y="58" width="68" height="56" rx="6" fill="var(--wx-poster)" stroke="var(--wx-accent)" stroke-width="3"/>
+    <path d="M100 58l-8 18 12 8-10 30" fill="none" stroke="var(--wx-bad)" stroke-width="3"/>
+    <text x="100" y="134" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="12" fill="var(--wx-bad)">ACCESS DENIED</text></svg>`,
+  hero() {
+    const g = (i, x, y, w, rot = 0, flip = false) => {
+      const h = w * 80 / 60;
+      return `<g transform="translate(${x} ${y}) rotate(${rot}) ${flip ? "scale(-1 1)" : ""}">` +
+        simGoon(i).replace(/<svg viewBox="0 0 60 80" class="g\d">/, `<svg x="${-w / 2}" y="${-h}" width="${w}" height="${h}" viewBox="0 0 60 80" overflow="visible">`) + `</g>`;
+    };
+    const ball = (x, y, r = 9) => `<g transform="translate(${x} ${y})"><circle r="${r}" fill="var(--wx-hi)"/><path d="M-${r} 0h${2 * r}M0-${r}v${2 * r}" stroke="var(--wx-poster)" stroke-width="1.4"/></g>`;
+    const trail = (x1, y1, x2, y2) => `<path d="M${x1} ${y1}L${x2} ${y2}" stroke="var(--wx-hi)" stroke-width="2" stroke-dasharray="2 6" opacity=".8"/>`;
+    const floor = Array.from({length: 17}, (_, k) => `<path d="M400 236L${-400 + k * 100} 320"/>`).join("") + [244, 256, 272, 294].map(y => `<path d="M0 ${y}H800"/>`).join("");
+    const city = [[0, 120, 60], [64, 90, 44], [112, 140, 50], [168, 70, 36], [210, 110, 58], [560, 100, 50], [616, 60, 40], [662, 130, 56], [724, 84, 76]]
+      .map(([x, h, w]) => `<rect x="${x}" y="${236 - h}" width="${w}" height="${h}" fill="var(--wx-poster)" stroke="var(--wx-accent)" stroke-width="1" opacity=".9"/>` +
+        Array.from({length: Math.floor(h / 18)}, (_, j) => `<path d="M${x + 6} ${236 - h + 10 + j * 18}h${w - 12}" stroke="var(--wx-accent)" stroke-width="2" stroke-dasharray="4 5" opacity=".35"/>`).join("")).join("");
+    return `<svg viewBox="0 0 800 320" role="img" aria-label="Falling green code over a wireframe city: a goon bends back in slow motion as basketballs streak past, while suited goons in shades close in">
+      <rect width="800" height="320" fill="var(--wx-poster)"/>
+      <g font-family="'Share Tech Mono',monospace" font-size="13">${rain(800, 236, 46, 3)}</g>
+      ${city}
+      <g stroke="var(--wx-accent)" stroke-width="1" opacity=".5" fill="none">${floor}</g>
+      <path d="M0 236H800" stroke="var(--wx-accent)" stroke-width="2"/>
+      ${trail(40, 150, 330, 176)}${trail(60, 196, 340, 204)}${trail(760, 140, 470, 168)}
+      ${ball(330, 176)}${ball(340, 204, 8)}${ball(470, 168, 8)}
+      <g stroke="var(--wx-hi)" stroke-width="1.5" fill="none" opacity=".7"><ellipse cx="400" cy="214" rx="70" ry="10"/><ellipse cx="400" cy="214" rx="96" ry="15" stroke-dasharray="4 6"/></g>
+      ${g(0, 400, 236, 74, -38)}
+      ${g(1, 132, 300, 60)}${g(3, 196, 304, 56, 0, true)}${g(5, 612, 304, 56)}${g(7, 676, 300, 60, 0, true)}
+      ${term(14, 14, 166, ["> jack_in --league goons", "> lineup.exe: 2 ERRORS"])}
+      ${term(620, 14, 166, ["> WARNING: anomaly found", "> trace: in progress..."])}
+      <g fill="var(--wx-accent)" opacity=".7"><rect x="250" y="40" width="70" height="4"/><rect x="480" y="92" width="54" height="3"/><rect x="300" y="120" width="30" height="3"/></g>
+    </svg>`;
+  }
+};
+
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const CN = {"5": "FG", "8": "FT", "10": "3PM", "11": "3P", "12": "PTS", "13": "OREB", "14": "DREB", "16": "AST", "17": "STL", "18": "BLK", "19": "TO"};
 let X, C, T;
@@ -434,7 +518,7 @@ function load(w) {
 }
 
 function posse() {
-  const draw = (X && X.theme === "karts") ? helmetGoon : goon;
+  const draw = (X && X.theme === "karts") ? helmetGoon : (X && X.theme === "sim") ? simGoon : goon;
   $("wx-goons").innerHTML = Array.from({length: 12}, (_, i) => draw(i)).join("");  // goon() lives in common.js
 }
 

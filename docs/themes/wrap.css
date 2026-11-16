@@ -238,3 +238,36 @@
 .wx-body.has-fig{grid-template-columns:minmax(0,1fr) 170px}
 .wx-board{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:640px){.wx-board{grid-template-columns:1fr 1fr}}
+
+/* ---------- sim skin ("The Simulation"): black terminal, phosphor green, falling code. Always dark ---------- */
+.wx[data-wt="sim"]{--wx-paper:#050806;--wx-card:#0b130d;--wx-poster:#07100a;--wx-ink:#c9f5d4;--wx-muted:#7fa98a;--wx-rule:#1fd65f;--wx-accent:#1fd65f;
+  --wx-hi:#b6ffcb;--wx-good:#1fd65f;--wx-bad:#ff4f4f;--wx-face:#0f2416;--wx-display:"Share Tech Mono","SFMono-Regular",Menlo,Consolas,monospace;--wx-serif:Inter,system-ui,sans-serif;
+  --rule:#173d22;border:1px solid #1fd65f;color-scheme:dark;
+  background:repeating-linear-gradient(0deg,rgba(31,214,95,.035) 0 1px,transparent 1px 3px),#050806}
+.wx[data-wt="sim"] .wx-name{color:var(--wx-accent);text-shadow:0 0 12px rgba(31,214,95,.55);letter-spacing:.04em}
+.wx[data-wt="sim"] .wx-head{color:#e9fff0;text-shadow:0 0 10px rgba(31,214,95,.35)}
+.wx[data-wt="sim"] .wx-kicker::before{content:"> "}
+.wx[data-wt="sim"] .wx-h{color:var(--wx-accent);border-top:1px solid var(--wx-rule)}
+.wx[data-wt="sim"] .wx-h::after{content:"_";margin-left:4px;animation:wx-blink 1.1s steps(1) infinite}
+@keyframes wx-blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.wx[data-wt="sim"] .wx-h::after{animation:none}}
+.wx[data-wt="sim"] mark{background:var(--wx-accent);color:#031a09}
+.wx[data-wt="sim"] .wx-pin{background:var(--wx-card);border-color:#1f6b38}
+.wx[data-wt="sim"] .wx-hero{border:1px solid var(--wx-rule);background:#07100a;box-shadow:0 0 22px rgba(31,214,95,.18)}
+.wx[data-wt="sim"] .wx-poster{border:1px solid var(--wx-rule);border-radius:4px;box-shadow:0 0 0 1px rgba(31,214,95,.25),0 0 18px rgba(31,214,95,.18)}
+.wx[data-wt="sim"] .wx-poster::before,.wx[data-wt="sim"] .wx-poster::after{background:var(--wx-accent);box-shadow:0 0 6px var(--wx-accent)}
+.wx[data-wt="sim"] .wx-pk{color:var(--wx-accent)}
+.wx[data-wt="sim"] .wx-art{background:#030604;border-color:#1f6b38}
+.wx[data-wt="sim"] .wx-art::after{background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.6) 100%)}
+.wx[data-wt="sim"] .wx-pt{color:var(--wx-hi)}
+.wx[data-wt="sim"] .wx-bout,.wx[data-wt="sim"] .wx-card,.wx[data-wt="sim"] .wx-roy{border-color:#173d22}
+.wx[data-wt="sim"] .wx-stone{background:var(--wx-card);border:1px dashed var(--wx-accent);border-radius:4px;color:var(--wx-ink)}
+.wx[data-wt="sim"] .wx-stone em{color:#1a0505}
+.wx[data-wt="sim"] .wx-odds.good{color:#031a09}
+.wx[data-wt="sim"] .wx-odds.mid{background:#c8b23a;color:#1a1600}
+.wx[data-wt="sim"] .wx-heard li{border-left-color:var(--wx-accent)}
+.wx[data-wt="sim"] .wx-weeks a[aria-current]{color:#031a09}
+.wx[data-wt="sim"] .wx-sign{color:var(--wx-accent);font-size:17px;border-top:1px solid var(--wx-rule)}
+.wx[data-wt="sim"] .wx-sign::before{content:"> "}
+.wx[data-wt="sim"] .wx-goons{color:var(--wx-accent)}
+.wx[data-wt="sim"] .wx-hero svg{color:var(--wx-accent)}

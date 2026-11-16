@@ -4,7 +4,7 @@
   "1": "western",
   "2": "spy",
   "3": "karts",
-  "4": "noir"
+  "4": "sim"
  },
  "briefs": {
   "karts": {
@@ -14,6 +14,11 @@
   },
   "all": {
    "brief": "Kicker (the small red line above the headline) is a short themed label, never 'Extra! Extra!' or other newsboy cries. One theme per paper: nothing from earlier weeks' themes."
+  },
+  "sim": {
+   "edition": "The Simulation",
+   "brief": "One story and only this story: the league is a computer simulation and nobody noticed until this week. The city runs on falling green code; the managers are hackers jacking in from a grimy hideout, dodging Enforcers (identical goons in black suits and sunglasses, no names), bending the rules of the system, finding glitches and backdoors, getting deleted. Each matchup is a duel inside the simulation: slow-motion dodges, rooftop jumps that come up short, a phone booth exit that rings out, a firewall, a corrupted save file, a crashed server, a rogue program, a lag spike at the worst possible second. The week's winner breaks the code and sees the numbers for what they are. Write it as a slick sci-fi action story, cold and clipped: system messages, error codes, ACCESS DENIED. No spies, rickshaws, cowboys or anything from earlier weeks. Keep it an original homage to the genre: never use or reference any film's title, characters, names, ships, cities or quotes (no pills of any colour, no white rabbit, no spoon, no 'the One', no prophecy, no Oracle, no Zion, no 'Mr.' agents). Glitches and errors happen to code, rosters and lineups, never to a person's body, health, disability or identity.",
+   "sign_off_hint": "End on one cryptic system message (a log line or error code); do not name or hint at a specific next theme."
   }
  }
 }
