@@ -1,538 +1,538 @@
 {
- "date": "2026-11-16",
+ "date": "2026-11-17",
  "week": 5,
  "sample": false,
- "generated_at": "2026-11-16T18:55-05:00",
+ "generated_at": "2026-11-17T18:55-05:00",
  "matchups": [
-  {
-   "a": "478.l.39751.t.1",
-   "b": "478.l.39751.t.2",
-   "score": [
-    0,
-    0,
-    11
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    }
-   ],
-   "swings": 0
-  },
-  {
-   "a": "478.l.39751.t.3",
-   "b": "478.l.39751.t.9",
-   "score": [
-    0,
-    0,
-    11
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    }
-   ],
-   "swings": 0
-  },
   {
    "a": "478.l.39751.t.4",
    "b": "478.l.39751.t.8",
    "score": [
-    0,
-    0,
-    11
+    10,
+    1,
+    0
    ],
    "cats": [
     {
      "cat": "5",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 0.449,
+     "b": 0.444,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "8",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 0.902,
+     "b": 0.682,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "10",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 16.0,
+     "b": 4.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "11",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 0.348,
+     "b": 0.333,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "12",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 159.0,
+     "b": 59.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "13",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 20.0,
+     "b": 8.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "14",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 34.0,
+     "b": 15.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "16",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 36.0,
+     "b": 8.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "17",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 8.0,
+     "b": 0.0,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "18",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 5.0,
+     "b": 3.0,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "19",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 12.0,
+     "b": 6.0,
+     "lead": "b",
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 3
   },
   {
    "a": "478.l.39751.t.5",
    "b": "478.l.39751.t.12",
    "score": [
-    0,
-    0,
-    11
+    4,
+    6,
+    1
    ],
    "cats": [
     {
      "cat": "5",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 0.529,
+     "b": 0.495,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "8",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 0.583,
+     "b": 0.885,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "10",
-     "a": null,
-     "b": null,
+     "a": 9.0,
+     "b": 9.0,
      "lead": "tie",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "11",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 0.474,
+     "b": 0.273,
+     "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 52.0,
+     "b": 126.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "13",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 6.0,
+     "b": 22.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "14",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 12.0,
+     "b": 40.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 9.0,
+     "b": 28.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "17",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 8.0,
+     "b": 7.0,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "18",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 4.0,
+     "b": 5.0,
+     "lead": "b",
+     "swing": true
     },
     {
      "cat": "19",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 6.0,
+     "b": 18.0,
+     "lead": "a",
      "swing": false
     }
    ],
-   "swings": 0
-  },
-  {
-   "a": "478.l.39751.t.6",
-   "b": "478.l.39751.t.10",
-   "score": [
-    0,
-    0,
-    11
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
-    }
-   ],
-   "swings": 0
+   "swings": 3
   },
   {
    "a": "478.l.39751.t.7",
    "b": "478.l.39751.t.11",
    "score": [
-    0,
-    0,
-    11
+    2,
+    8,
+    1
    ],
    "cats": [
     {
      "cat": "5",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 0.466,
+     "b": 0.554,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "8",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 0.85,
+     "b": 0.882,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "10",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 9.0,
+     "b": 8.0,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "11",
-     "a": null,
-     "b": null,
-     "lead": "tie",
-     "swing": false
+     "a": 0.391,
+     "b": 0.381,
+     "lead": "a",
+     "swing": true
     },
     {
      "cat": "12",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 80.0,
+     "b": 115.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "13",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 3.0,
+     "b": 8.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "14",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 19.0,
+     "b": 38.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 18.0,
+     "b": 23.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "17",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 3.0,
+     "b": 8.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "18",
-     "a": null,
-     "b": null,
-     "lead": "tie",
+     "a": 2.0,
+     "b": 6.0,
+     "lead": "b",
      "swing": false
     },
     {
      "cat": "19",
-     "a": null,
-     "b": null,
+     "a": 11.0,
+     "b": 11.0,
      "lead": "tie",
+     "swing": true
+    }
+   ],
+   "swings": 3
+  },
+  {
+   "a": "478.l.39751.t.3",
+   "b": "478.l.39751.t.9",
+   "score": [
+    8,
+    3,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.491,
+     "b": 0.371,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.692,
+     "b": 0.786,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 14.0,
+     "b": 6.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.326,
+     "b": 0.188,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 144.0,
+     "b": 69.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 13.0,
+     "b": 11.0,
+     "lead": "a",
+     "swing": true
+    },
+    {
+     "cat": "14",
+     "a": 34.0,
+     "b": 30.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 35.0,
+     "b": 20.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 13.0,
+     "b": 9.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 2.0,
+     "b": 8.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 16.0,
+     "b": 9.0,
+     "lead": "b",
+     "swing": false
+    }
+   ],
+   "swings": 1
+  },
+  {
+   "a": "478.l.39751.t.6",
+   "b": "478.l.39751.t.10",
+   "score": [
+    8,
+    3,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.439,
+     "b": 0.479,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.821,
+     "b": 0.789,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 26.0,
+     "b": 10.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.464,
+     "b": 0.294,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 166.0,
+     "b": 110.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 14.0,
+     "b": 4.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 30.0,
+     "b": 25.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 30.0,
+     "b": 26.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 4.0,
+     "b": 6.0,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 8.0,
+     "b": 4.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 19.0,
+     "b": 16.0,
+     "lead": "b",
+     "swing": false
+    }
+   ],
+   "swings": 1
+  },
+  {
+   "a": "478.l.39751.t.1",
+   "b": "478.l.39751.t.2",
+   "score": [
+    8,
+    3,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.424,
+     "b": 0.463,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.591,
+     "b": 0.556,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 13.0,
+     "b": 8.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.333,
+     "b": 0.364,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 104.0,
+     "b": 68.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 21.0,
+     "b": 9.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 36.0,
+     "b": 19.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 37.0,
+     "b": 21.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 12.0,
+     "b": 6.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 6.0,
+     "b": 2.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 21.0,
+     "b": 8.0,
+     "lead": "b",
      "swing": false
     }
    ],
@@ -554,13 +554,23 @@
   },
   "478.l.39751.t.9": {
    "benched_with_game": [],
-   "starting_out": [],
+   "starting_out": [
+    {
+     "player": "Walker Kessler",
+     "status": "O"
+    }
+   ],
    "empty_slots": 0,
    "schedule_known": true
   },
   "478.l.39751.t.4": {
    "benched_with_game": [],
-   "starting_out": [],
+   "starting_out": [
+    {
+     "player": "Jaylen Brown",
+     "status": "O"
+    }
+   ],
    "empty_slots": 0,
    "schedule_known": true
   },
@@ -579,12 +589,17 @@
   "478.l.39751.t.12": {
    "benched_with_game": [],
    "starting_out": [],
-   "empty_slots": 0,
+   "empty_slots": 1,
    "schedule_known": true
   },
   "478.l.39751.t.2": {
    "benched_with_game": [],
-   "starting_out": [],
+   "starting_out": [
+    {
+     "player": "Austin Reaves",
+     "status": "O"
+    }
+   ],
    "empty_slots": 0,
    "schedule_known": true
   },
@@ -592,11 +607,11 @@
    "benched_with_game": [],
    "starting_out": [
     {
-     "player": "Amen Thompson",
+     "player": "Jonathan Kuminga",
      "status": "O"
     }
    ],
-   "empty_slots": 1,
+   "empty_slots": 0,
    "schedule_known": true
   },
   "478.l.39751.t.3": {
@@ -607,7 +622,12 @@
   },
   "478.l.39751.t.11": {
    "benched_with_game": [],
-   "starting_out": [],
+   "starting_out": [
+    {
+     "player": "CJ McCollum",
+     "status": "O"
+    }
+   ],
    "empty_slots": 0,
    "schedule_known": true
   },
@@ -615,7 +635,7 @@
    "benched_with_game": [],
    "starting_out": [
     {
-     "player": "Ty Jerome",
+     "player": "Duncan Robinson",
      "status": "O"
     },
     {
@@ -629,129 +649,163 @@
  },
  "moves_today": [
   {
-   "id": "478.l.39751.tr.202",
-   "ts": 1794868898,
-   "kind": "add",
-   "team": "478.l.39751.t.10",
-   "source": "freeagents",
-   "faab": null,
-   "pk": "478.p.6216",
-   "player": "Jordan Poole"
-  },
-  {
-   "id": "478.l.39751.tr.202",
-   "ts": 1794868898,
-   "kind": "drop",
-   "team": "478.l.39751.t.10",
-   "source": "team",
-   "faab": null,
-   "pk": "478.p.6166",
-   "player": "De'Andre Hunter"
-  },
-  {
-   "id": "478.l.39751.tr.201",
-   "ts": 1794854864,
+   "id": "478.l.39751.tr.209",
+   "ts": 1794953087,
    "kind": "add",
    "team": "478.l.39751.t.4",
    "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6403",
+   "player": "Devin Vassell"
+  },
+  {
+   "id": "478.l.39751.tr.209",
+   "ts": 1794953087,
+   "kind": "drop",
+   "team": "478.l.39751.t.4",
+   "source": "team",
    "faab": null,
    "pk": "478.p.6256",
    "player": "Dean Wade"
   },
   {
-   "id": "478.l.39751.tr.201",
-   "ts": 1794854864,
-   "kind": "drop",
-   "team": "478.l.39751.t.4",
-   "source": "team",
-   "faab": null,
-   "pk": "478.p.6076",
-   "player": "Kenrich Williams"
-  },
-  {
-   "id": "478.l.39751.tr.200",
-   "ts": 1794846710,
-   "kind": "add",
-   "team": "478.l.39751.t.3",
-   "source": "freeagents",
-   "faab": null,
-   "pk": "478.p.6568",
-   "player": "Bones Hyland"
-  },
-  {
-   "id": "478.l.39751.tr.200",
-   "ts": 1794846710,
-   "kind": "drop",
-   "team": "478.l.39751.t.3",
-   "source": "team",
-   "faab": null,
-   "pk": "478.p.6499",
-   "player": "Naji Marshall"
-  },
-  {
-   "id": "478.l.39751.tr.199",
-   "ts": 1794839705,
+   "id": "478.l.39751.tr.208",
+   "ts": 1794927091,
    "kind": "add",
    "team": "478.l.39751.t.7",
    "source": "freeagents",
    "faab": null,
-   "pk": "478.p.10455",
-   "player": "Nolan Traore"
+   "pk": "478.p.6038",
+   "player": "Robert Williams III"
   },
   {
-   "id": "478.l.39751.tr.199",
-   "ts": 1794839705,
+   "id": "478.l.39751.tr.208",
+   "ts": 1794927091,
    "kind": "drop",
    "team": "478.l.39751.t.7",
    "source": "team",
    "faab": null,
-   "pk": "478.p.6217",
-   "player": "Keldon Johnson"
+   "pk": "478.p.10445",
+   "player": "Egor D\u00ebmin"
   },
   {
-   "id": "478.l.39751.tr.198",
-   "ts": 1794837411,
+   "id": "478.l.39751.tr.207",
+   "ts": 1794924513,
+   "kind": "add",
+   "team": "478.l.39751.t.12",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.10280",
+   "player": "Terrence Shannon Jr."
+  },
+  {
+   "id": "478.l.39751.tr.207",
+   "ts": 1794924513,
    "kind": "drop",
    "team": "478.l.39751.t.12",
    "source": "team",
    "faab": null,
-   "pk": "478.p.5840",
-   "player": "Kyle Kuzma"
+   "pk": "478.p.6173",
+   "player": "Cameron Johnson"
   },
   {
-   "id": "478.l.39751.tr.197",
-   "ts": 1794828850,
+   "id": "478.l.39751.tr.206",
+   "ts": 1794924185,
+   "kind": "add",
+   "team": "478.l.39751.t.2",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6030",
+   "player": "Kevin Huerter"
+  },
+  {
+   "id": "478.l.39751.tr.206",
+   "ts": 1794924185,
+   "kind": "drop",
+   "team": "478.l.39751.t.2",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.10456",
+   "player": "Danny Wolf"
+  },
+  {
+   "id": "478.l.39751.tr.205",
+   "ts": 1794919279,
+   "kind": "add",
+   "team": "478.l.39751.t.9",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6567",
+   "player": "Quentin Grimes"
+  },
+  {
+   "id": "478.l.39751.tr.205",
+   "ts": 1794919279,
+   "kind": "drop",
+   "team": "478.l.39751.t.9",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.10340",
+   "player": "Jaylen Wells"
+  },
+  {
+   "id": "478.l.39751.tr.204",
+   "ts": 1794916537,
    "kind": "add",
    "team": "478.l.39751.t.3",
    "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.10476",
+   "player": "Ryan Kalkbrenner"
+  },
+  {
+   "id": "478.l.39751.tr.204",
+   "ts": 1794916537,
+   "kind": "drop",
+   "team": "478.l.39751.t.3",
+   "source": "team",
    "faab": null,
    "pk": "478.p.6047",
    "player": "Mitchell Robinson"
   },
   {
-   "id": "478.l.39751.tr.197",
-   "ts": 1794828850,
+   "id": "478.l.39751.tr.203",
+   "ts": 1794909289,
+   "kind": "add",
+   "team": "478.l.39751.t.1",
+   "source": "waivers",
+   "faab": null,
+   "pk": "478.p.10472",
+   "player": "Tyrese Proctor"
+  },
+  {
+   "id": "478.l.39751.tr.203",
+   "ts": 1794909289,
    "kind": "drop",
-   "team": "478.l.39751.t.3",
+   "team": "478.l.39751.t.1",
    "source": "team",
    "faab": null,
-   "pk": "478.p.6572",
-   "player": "Santi Aldama"
+   "pk": "478.p.5747",
+   "player": "Derrick Jones Jr."
   }
  ],
  "headline": "Tonight's Lineup Card",
  "zingers": [
   {
-   "team": "Nova Knicks",
-   "line": "Amen Thompson is listed O and still in your starting lineup. That is a zero you chose."
+   "team": "Thug Life",
+   "line": "Walker Kessler is listed O and still in your starting lineup. That is a zero you chose."
   },
   {
-   "team": "BrookynDynasty",
+   "team": "Gopher Gold",
+   "line": "Jaylen Brown is listed O and still in your starting lineup. That is a zero you chose."
+  },
+  {
+   "team": "Adam Silver Dez Nuts",
    "line": "1 empty starting slot tonight. You are forfeiting minutes on purpose."
   },
   {
-   "team": "MONSTARS \u2604\ufe0f",
-   "line": "Ty Jerome is listed O and still in your starting lineup. That is a zero you chose."
+   "team": "Da Don Da Beard & Da Klaw",
+   "line": "Austin Reaves is listed O and still in your starting lineup. That is a zero you chose."
   }
  ],
  "by": "template"
