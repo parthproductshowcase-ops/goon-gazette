@@ -2,9 +2,9 @@
  "date": "2026-11-17",
  "week": 5,
  "sample": false,
- "generated_at": "2026-11-17T19:05-05:00",
- "as_of": "7:05pm",
- "update": 2,
+ "generated_at": "2026-11-17T19:35-05:00",
+ "as_of": "7:35pm",
+ "update": 3,
  "updates": 15,
  "final": false,
  "cats": [
@@ -1861,7 +1861,7 @@
   "regrets": [],
   "bench_cost": [],
   "games_left": {
-   "478.l.39751.t.6": 33,
+   "478.l.39751.t.6": 31,
    "478.l.39751.t.8": 30,
    "478.l.39751.t.9": 27,
    "478.l.39751.t.4": 29,
