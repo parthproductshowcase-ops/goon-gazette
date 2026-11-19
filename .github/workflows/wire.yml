@@ -1,15 +1,15 @@
 name: The Wire data
 # Free agents (Yahoo), injuries, box-score minutes and the 21-day schedule (ESPN) into cache/wire.
-# Runs right after the morning paper; also by hand. Raw data only; no rankings are published.
+# Runs right after the morning paper and after the 6:55pm Lineup Card run (other evening runs skip); also by hand. Raw data only; no rankings are published.
 on:
   workflow_run:
-    workflows: ["The Goon Gazette"]
+    workflows: ["The Goon Gazette", "The Lineup Card"]
     types: [completed]
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: gazette-build
+  group: wire-data
   cancel-in-progress: false
 jobs:
   wire:
@@ -24,6 +24,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pipeline.wire
         env:
+          WIRE_TRIGGER: ${{ github.event.workflow_run.name }}
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}

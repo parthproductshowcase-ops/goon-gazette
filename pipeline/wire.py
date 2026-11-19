@@ -9,6 +9,7 @@ Writes, under cache/wire/:
   injuries.json    ESPN league injury report.
   schedule.json    {date: [teams]} for the next 21 days (ESPN scoreboard).
   league.json      Yahoo league settings: roster slots and their counts, any games-played cap, stat categories.
+  moves.json       Yahoo adds and drops (last 200), to count each team's adds this week (league cap: 5).
   rosters.json     Yahoo rosters for all teams today: each player's eligible positions, today's lineup slot and status.
   box/<date>.json  ESPN box scores for every game that night: minutes, starter flag and the stat line
                    for every player (kept 30 days, fetched once per date).
@@ -162,6 +163,14 @@ def yahoo_fa(y, lk):
                         "status": p.get("status", ""), "stats": {}})
                     e["stats"][stype] = {str(s.get("stat", s).get("stat_id")): s.get("stat", s).get("value")
                                          for s in p.get("player_stats", {}).get("stats", [])}
+    # players on waivers (status W) can't be picked up instantly; flag them
+    try:
+        lg = flat(y.get(f"league/{lk}/players;status=W;sort=AR;sort_type=lastweek;count=50")["league"])
+        wv = {flat(p).get("player_key") for p in coll(lg.get("players"), "player")}
+        for k, e in out.items():
+            e["waivers"] = k in wv
+    except Exception:
+        pass
     return list(out.values())
 
 
@@ -215,6 +224,13 @@ def main():
     now = datetime.now(ET)
     today = now.date()
     report = []
+    # Evening runs come from the Lineup Card's workflow_run: only the 6:55pm card run counts, not every Tonight update.
+    if os.environ.get("WIRE_TRIGGER") == "The Lineup Card" and not (now.hour == 18 or (now.hour == 19 and now.minute <= 40)):
+        print("wire: skipped (not the Lineup Card run)")
+        if os.environ.get("GITHUB_ACTIONS"):
+            print("::notice::wire: skipped, not the 6:55pm Lineup Card run")
+        return
+    report.append("evening" if now.hour >= 12 else "morning")
 
     try:
         sched, pairs = schedule_ahead(today)
@@ -272,6 +288,12 @@ def main():
                               + f"; max_games_played={lg['settings'].get('max_games_played')}")
             except Exception as e:
                 report.append(f"league settings FAILED {e}")
+            try:
+                mv = y.transactions(lk)
+                json.dump({"generated_at": now.isoformat(timespec="minutes"), "moves": mv}, open(OUT / "moves.json", "w"))
+                report.append(f"moves {len(mv)}")
+            except Exception as e:
+                report.append(f"moves FAILED {e}")
             try:
                 ro = yahoo_rosters(y, lk, today.isoformat())
                 json.dump({"generated_at": now.isoformat(timespec="minutes"), "date": today.isoformat(), "teams": ro},
