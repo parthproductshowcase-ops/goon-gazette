@@ -57,21 +57,25 @@ def scoreboard(date):
 
 
 def schedule_ahead(today):
-    out = {}
+    out, pairs = {}, {}
     for i in range(AHEAD):
         d = (today + timedelta(days=i)).isoformat()
         try:
-            teams = set()
+            teams = set(); games = []
             for ev in scoreboard(d):
-                for c in ev.get("competitions", [{}])[0].get("competitors", []):
+                cs = ev.get("competitions", [{}])[0].get("competitors", [])
+                hv = {c.get("homeAway"): norm(c.get("team", {}).get("abbreviation")) for c in cs}
+                if hv.get("home") and hv.get("away"):
+                    games.append([hv["away"], hv["home"]])
+                for c in cs:
                     t = c.get("team", {})
                     teams.add(norm(t.get("abbreviation")))
                     if t.get("displayName"):
                         TEAMNAME[t["displayName"]] = norm(t.get("abbreviation"))
-            out[d] = sorted(teams)
+            out[d] = sorted(teams); pairs[d] = games
         except Exception as e:
             print("schedule lookup failed for", d, e)
-    return out
+    return out, pairs
 
 
 def _line(labels, vals):
@@ -100,26 +104,30 @@ def _line(labels, vals):
 
 def box_scores(date):
     """Every player's line for every finished game on date, or None if any game isn't final yet."""
-    games = []
+    games, pairs = [], []
     for ev in scoreboard(date):
         state = ev.get("status", {}).get("type", {}).get("state")
         if state != "post":
             return None
+        cs = ev.get("competitions", [{}])[0].get("competitors", [])
+        hv = {c.get("homeAway"): norm(c.get("team", {}).get("abbreviation")) for c in cs}
+        pairs.append([hv.get("away"), hv.get("home")])
         s = _get(f"{ESPN}/summary", {"event": ev["id"]})
         for team in s.get("boxscore", {}).get("players", []):
             ab = norm(team.get("team", {}).get("abbreviation"))
+            opp = hv.get("home") if ab == hv.get("away") else hv.get("away")
             for st in team.get("statistics", []):
                 labels = st.get("labels") or st.get("names") or []
                 for a in st.get("athletes", []):
                     ath = a.get("athlete", {})
-                    row = {"name": ath.get("displayName"), "espn_id": ath.get("id"), "team": ab,
+                    row = {"name": ath.get("displayName"), "espn_id": ath.get("id"), "team": ab, "opp": opp,
                            "pos": (ath.get("position") or {}).get("abbreviation"), "starter": bool(a.get("starter")),
                            "dnp": bool(a.get("didNotPlay")), "reason": a.get("reason") or ""}
                     if a.get("stats"):
                         row.update(_line(labels, a["stats"]))
                     games.append(row)
         time.sleep(0.2)
-    return {"date": date, "players": games}
+    return {"date": date, "games": pairs, "players": games}
 
 
 def injuries():
@@ -209,8 +217,8 @@ def main():
     report = []
 
     try:
-        sched = schedule_ahead(today)
-        json.dump({"generated_at": now.isoformat(timespec="minutes"), "dates": sched}, open(OUT / "schedule.json", "w"))
+        sched, pairs = schedule_ahead(today)
+        json.dump({"generated_at": now.isoformat(timespec="minutes"), "dates": sched, "games": pairs}, open(OUT / "schedule.json", "w"))
         report.append(f"schedule {len(sched)} days")
     except Exception as e:
         report.append(f"schedule FAILED {e}")
@@ -227,7 +235,11 @@ def main():
         d = (today - timedelta(days=i)).isoformat()
         f = BOX / f"{d}.json"
         if f.exists():
-            continue
+            try:
+                if "games" in json.load(open(f)):
+                    continue  # already has opponents
+            except Exception:
+                pass
         try:
             b = box_scores(d)
             if b is not None:
