@@ -8,6 +8,8 @@ Writes, under cache/wire/:
                    each with last-week, last-month and season totals and the injury tag.
   injuries.json    ESPN league injury report.
   schedule.json    {date: [teams]} for the next 21 days (ESPN scoreboard).
+  league.json      Yahoo league settings: roster slots and their counts, any games-played cap, stat categories.
+  rosters.json     Yahoo rosters for all teams today: each player's eligible positions, today's lineup slot and status.
   box/<date>.json  ESPN box scores for every game that night: minutes, starter flag and the stat line
                    for every player (kept 30 days, fetched once per date).
 No analysis happens here; consumers rank the data their own way.
@@ -155,6 +157,50 @@ def yahoo_fa(y, lk):
     return list(out.values())
 
 
+def _positions(v):
+    """Yahoo eligible_positions comes as a list of {position: X} (or one dict); return ['PG', 'G', ...]."""
+    out = []
+    if isinstance(v, dict):
+        v = v.get("position") if isinstance(v.get("position"), list) else [v]
+    for e in v or []:
+        if isinstance(e, dict) and e.get("position"):
+            out.append(e["position"])
+        elif isinstance(e, str):
+            out.append(e)
+    return out
+
+
+def yahoo_league(y, lk):
+    from .yahoo import flat
+    s = flat(flat(y.get(f"league/{lk}/settings")["league"])["settings"])
+    slots = {}
+    for rp in s.get("roster_positions") or []:
+        rp = rp.get("roster_position", rp)
+        slots[rp.get("position")] = int(rp.get("count") or 0)
+    keep = {k: s.get(k) for k in ("max_games_played", "max_weekly_adds", "max_adds", "weekly_deadline",
+                                  "trade_end_date", "uses_playoff", "playoff_start_week", "scoring_type")}
+    return {"slots": slots, "settings": keep}
+
+
+def yahoo_rosters(y, lk, date, n_teams=12):
+    from .yahoo import coll, flat
+    out = {}
+    for i in range(1, n_teams + 1):
+        tk = f"{lk}.t.{i}"
+        tm = flat(y.get(f"team/{tk}/roster;date={date}")["team"])
+        players = []
+        for pcoll in coll(tm.get("roster", {}), "players"):
+            for p in coll(pcoll, "player"):
+                p = flat(p)
+                nm = p.get("name", {})
+                players.append({"name": nm.get("full") if isinstance(nm, dict) else str(nm), "pk": p.get("player_key"),
+                                "nba": norm(p.get("editorial_team_abbr")), "eligible": _positions(p.get("eligible_positions")),
+                                "slot": flat(p.get("selected_position", [])).get("position"),
+                                "status": (p.get("status") or "").upper()})
+        out[tk] = {"name": tm.get("name"), "players": players}
+    return out
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     BOX.mkdir(parents=True, exist_ok=True)
@@ -205,6 +251,23 @@ def main():
             report.append(f"free agents {len(fa)}")
         except Exception as e:
             report.append(f"free agents FAILED {e}")
+            y = lk = None
+        if y is not None:
+            try:
+                lg = yahoo_league(y, lk)
+                json.dump({"generated_at": now.isoformat(timespec="minutes"), **lg}, open(OUT / "league.json", "w"))
+                report.append("slots " + ",".join(f"{k}{v}" for k, v in lg["slots"].items())
+                              + f"; max_games_played={lg['settings'].get('max_games_played')}")
+            except Exception as e:
+                report.append(f"league settings FAILED {e}")
+            try:
+                ro = yahoo_rosters(y, lk, today.isoformat())
+                json.dump({"generated_at": now.isoformat(timespec="minutes"), "date": today.isoformat(), "teams": ro},
+                          open(OUT / "rosters.json", "w"))
+                elig = sum(1 for t in ro.values() for p in t["players"] if p["eligible"])
+                report.append(f"rosters {len(ro)} teams, {elig} players with eligibility")
+            except Exception as e:
+                report.append(f"rosters FAILED {e}")
 
     msg = "; ".join(report)
     print(msg)
