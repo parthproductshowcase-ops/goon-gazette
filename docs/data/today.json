@@ -2,9 +2,9 @@
  "date": "2026-11-19",
  "week": 5,
  "sample": false,
- "generated_at": "2026-11-19T19:05-05:00",
- "as_of": "7:05pm",
- "update": 2,
+ "generated_at": "2026-11-19T19:35-05:00",
+ "as_of": "7:35pm",
+ "update": 3,
  "updates": 15,
  "final": false,
  "cats": [
@@ -904,13 +904,13 @@
    "rank": 12
   }
  ],
- "headline": "Nobody Has Done Anything Yet, Tonight",
+ "headline": "Nobody Has Done Anything Yet, Somehow",
  "notes": [
-  "Zero games are final, nothing has tipped, and every team sits at zero stats. Somewhere a manager is already refreshing the app and calling it analysis.",
-  "No lead has flipped, no best line exists, and the benched-and-producing list is empty. Tonight's Squawk Box is currently a blank page with a standings table.",
-  "Zero Fox Given leads Nova Knicks 8-3 and Kyrie Irving's 17 points are rotting on his bench. The tip-off cannot come fast enough for the other eleven.",
-  "MONSTARS trail Adam Silver Dez Nuts 7-4 with 14 starts left against 17. The deficit and the schedule both point in the wrong direction.",
-  "BrookynDynasty lead Thug Life 7-4 with 20 starts left to 15, and only TO is swinging. That is an edge, not a result, so nobody should celebrate yet."
+  "Zero games are final and none are in progress, so every manager's best lineup decision tonight is still a rumor.",
+  "No lead has flipped and no player has a stat line, which makes MONSTARS \u2604\ufe0f the league's worst night so far.",
+  "LeParth James sits first on the night with nothing to show for it, the most unearned lead in Ballinwithmygoons.",
+  "Kyrie Irving already cost Zero Fox Given a category from the bench this week, and he is leading 8-3 anyway.",
+  "BrookynDynasty is 7-4 up on Thug Life with 20 starts left, and Nikola Joki\u0107 has yet to tip."
  ],
  "gauntlet": {
   "week": 5,
@@ -2155,35 +2155,35 @@
  },
  "week_copy": {
   "headline": "Mo Bamba Is Carrying theInfamous",
-  "subhead": "Two pickups are the only reason theInfamous lead a matchup they were built to lose.",
+  "subhead": "Two cheap pickups flip theInfamous from a 3-5 loss to a lead over Da Don Da Beard & Da Klaw.",
   "zingers": [
    {
     "team": "theInfamous",
-    "line": "Mo Bamba and Tyrese Proctor flipped this matchup to 5-4; the guys they replaced would have left theInfamous trailing 3-5."
+    "line": "Mo Bamba and Tyrese Proctor flip 3PTM, OREB and DREB, turning a 3-5 loss into a lead over Da Don Da Beard & Da Klaw."
    },
    {
     "team": "LeParth James",
-    "line": "Klay Thompson dropped 30 points with nine threes in two games, and without him LeParth James trail White Mambas 4-6."
+    "line": "Klay Thompson's nine threes and Brice Sensabaugh drag LeParth James level against White Mambas when the old roster was losing 4-6."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Saddiq Bey, Daniss Jenkins and Kevin Huerter all produced, yet the pickups still trail theInfamous 4-5; the swap saved this team from a 1-8 massacre."
+    "line": "Saddiq Bey, Daniss Jenkins and Kevin Huerter are all producing, and the team is still trailing theInfamous for being so pathetic everywhere else."
    },
    {
     "team": "Zero Fox Given",
-    "line": "Kyrie Irving put up 17 points and 5 assists on the bench, a category crime that cost Zero Fox Given one more win."
+    "line": "Kyrie Irving dropped 17 points and 5 assists on the bench, and Zero Fox Given is winning anyway, which is the scariest part."
    },
    {
     "team": "Suggs to be you",
-    "line": "Taylor Hendricks has two blocks and 27 points, and it still isn't enough while Gopher Gold sit on a 7-3 lead."
+    "line": "Taylor Hendricks and Tre Jones are trying, yet Suggs to be you still trails Gopher Gold 2-7 with the pickups changing nothing."
    },
    {
     "team": "Nova Knicks",
-    "line": "Cam Spencer, Nolan Traore and Mikal Bridges arrived in three trades and Nova Knicks still trail 3-7 with 18 starts left."
+    "line": "Cam Spencer, Nolan Traore and Mikal Bridges have all produced, and Nova Knicks still trail Zero Fox Given 3-7, which is almost impressive."
    },
    {
-    "team": "Gopher Gold",
-    "line": "Gopher Gold lead Suggs to be you 7-3 but have 17 starts left against 20, so the comfortable lead is thinner than it looks."
+    "team": "BrookynDynasty",
+    "line": "BrookynDynasty leads Thug Life 7-4 and holds a 20-15 starts edge, so Joki\u0107 can start sleeping on the couch."
    }
   ]
  },
