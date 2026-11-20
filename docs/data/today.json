@@ -2,9 +2,9 @@
  "date": "2026-11-19",
  "week": 5,
  "sample": false,
- "generated_at": "2026-11-19T19:35-05:00",
- "as_of": "7:35pm",
- "update": 3,
+ "generated_at": "2026-11-19T20:05-05:00",
+ "as_of": "8:05pm",
+ "update": 4,
  "updates": 15,
  "final": false,
  "cats": [
@@ -904,13 +904,13 @@
    "rank": 12
   }
  ],
- "headline": "Nobody Has Done Anything Yet, Somehow",
+ "headline": "Nobody Has Done Anything Yet, Somehow Still Ranked",
  "notes": [
-  "Zero games are final and none are in progress, so every manager's best lineup decision tonight is still a rumor.",
-  "No lead has flipped and no player has a stat line, which makes MONSTARS \u2604\ufe0f the league's worst night so far.",
-  "LeParth James sits first on the night with nothing to show for it, the most unearned lead in Ballinwithmygoons.",
-  "Kyrie Irving already cost Zero Fox Given a category from the bench this week, and he is leading 8-3 anyway.",
-  "BrookynDynasty is 7-4 up on Thug Life with 20 starts left, and Nikola Joki\u0107 has yet to tip."
+  "Zero games are final and zero are in progress, yet LeParth James sits first for the night. Blank box score, still better than your lineup.",
+  "No best line exists yet, so MONSTARS \u2604\ufe0f, last on the night's board, owns the only distinction available: first to fail.",
+  "Nobody has flipped a lead, because nobody has played. Adam Silver Dez Nuts still hold a 7-4 edge built on yesterday's work.",
+  "Kyrie Irving's 17 points are the cautionary tale: Zero Fox Given left that production on the bench and still leads 8-3.",
+  "Four games tip tonight and 11 do not. Thug Life trail BrookynDynasty 7-4 and can only watch while the clock does its job."
  ],
  "gauntlet": {
   "week": 5,
@@ -2154,36 +2154,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Mo Bamba Is Carrying theInfamous",
-  "subhead": "Two cheap pickups flip theInfamous from a 3-5 loss to a lead over Da Don Da Beard & Da Klaw.",
+  "headline": "theInfamous Pickups Are Doing The Heavy Lifting",
+  "subhead": "Mo Bamba and Tyrese Proctor flipped theInfamous's matchup from a 3-5 deficit to a 5-4 lead over Da Don Da Beard & Da Klaw.",
   "zingers": [
    {
     "team": "theInfamous",
-    "line": "Mo Bamba and Tyrese Proctor flip 3PTM, OREB and DREB, turning a 3-5 loss into a lead over Da Don Da Beard & Da Klaw."
+    "line": "Mo Bamba's 24 DREB and Tyrese Proctor's two threes turn a 3-5 loss into a 5-4 lead; the waiver wire is carrying this team."
    },
    {
     "team": "LeParth James",
-    "line": "Klay Thompson's nine threes and Brice Sensabaugh drag LeParth James level against White Mambas when the old roster was losing 4-6."
+    "line": "Klay Thompson drained nine threes in two games and that alone rescues LeParth James from a 4-6 hole against White Mambas."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Saddiq Bey, Daniss Jenkins and Kevin Huerter are all producing, and the team is still trailing theInfamous for being so pathetic everywhere else."
+    "line": "Three pickups, 95 combined points, and Da Don Da Beard & Da Klaw still trail theInfamous 4-5. That is a managerial achievement."
    },
    {
     "team": "Zero Fox Given",
-    "line": "Kyrie Irving dropped 17 points and 5 assists on the bench, and Zero Fox Given is winning anyway, which is the scariest part."
-   },
-   {
-    "team": "Suggs to be you",
-    "line": "Taylor Hendricks and Tre Jones are trying, yet Suggs to be you still trails Gopher Gold 2-7 with the pickups changing nothing."
+    "line": "Kyrie Irving dropped 17 and five assists on Zero Fox Given's bench, and the extra assist category would have made it 8-2."
    },
    {
     "team": "Nova Knicks",
-    "line": "Cam Spencer, Nolan Traore and Mikal Bridges have all produced, and Nova Knicks still trail Zero Fox Given 3-7, which is almost impressive."
+    "line": "Cam Spencer, Nolan Traore and Mikal Bridges are all producing, and Nova Knicks still trail Zero Fox Given 3-8. Pickups cannot fix a roster this wrecked."
+   },
+   {
+    "team": "Suggs to be you",
+    "line": "Taylor Hendricks scored 27 and blocked two shots, and Suggs to be you still sit at 3-7 against Gopher Gold. Heroic and useless."
    },
    {
     "team": "BrookynDynasty",
-    "line": "BrookynDynasty leads Thug Life 7-4 and holds a 20-15 starts edge, so Joki\u0107 can start sleeping on the couch."
+    "line": "BrookynDynasty lead Thug Life 7-4 with 20 starts left to Thug Life's 15, so Nikola Joki\u0107's team has the volume edge."
    }
   ]
  },
