@@ -2,9 +2,9 @@
  "date": "2026-11-19",
  "week": 5,
  "sample": false,
- "generated_at": "2026-11-19T18:55-05:00",
- "as_of": "6:55pm",
- "update": 1,
+ "generated_at": "2026-11-19T19:05-05:00",
+ "as_of": "7:05pm",
+ "update": 2,
  "updates": 15,
  "final": false,
  "cats": [
@@ -213,7 +213,12 @@
      "swing": true
     }
    ],
-   "swings": 5
+   "swings": 5,
+   "prev_score": [
+    6,
+    4,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.7",
@@ -302,7 +307,12 @@
      "swing": false
     }
    ],
-   "swings": 4
+   "swings": 4,
+   "prev_score": [
+    3,
+    8,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.5",
@@ -391,7 +401,12 @@
      "swing": false
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    4,
+    7,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.6",
@@ -480,7 +495,12 @@
      "swing": false
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    6,
+    5,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.4",
@@ -569,7 +589,12 @@
      "swing": false
     }
    ],
-   "swings": 2
+   "swings": 2,
+   "prev_score": [
+    7,
+    3,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.3",
@@ -658,7 +683,12 @@
      "swing": true
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    7,
+    4,
+    0
+   ]
   }
  ],
  "flips": [],
@@ -874,13 +904,13 @@
    "rank": 12
   }
  ],
- "headline": "Nobody Has Done Anything Yet, Somehow",
+ "headline": "Nobody Has Done Anything Yet, Tonight",
  "notes": [
-  "It is 6:55pm, zero games are final, and MONSTARS already rank dead last on the night. Imagine losing a race before the gun.",
-  "Best line so far is nonexistent. Nobody has a stat, and LeParth James still leads the night rank on pure projected vibes.",
-  "Zero Fox Given left Kyrie Irving's 17 points and 5 assists on the bench this week, and AST is the category costing Nova Knicks nothing.",
-  "Nova Knicks trail Zero Fox Given 3-8 before tip, which makes tonight a formality unless Cam Spencer drops another 16-assist masterpiece.",
-  "BrookynDynasty are 7-4 up on Thug Life with 20 starts left against 15. Thug Life need tonight to hurt, and it has not started."
+  "Zero games are final, nothing has tipped, and every team sits at zero stats. Somewhere a manager is already refreshing the app and calling it analysis.",
+  "No lead has flipped, no best line exists, and the benched-and-producing list is empty. Tonight's Squawk Box is currently a blank page with a standings table.",
+  "Zero Fox Given leads Nova Knicks 8-3 and Kyrie Irving's 17 points are rotting on his bench. The tip-off cannot come fast enough for the other eleven.",
+  "MONSTARS trail Adam Silver Dez Nuts 7-4 with 14 starts left against 17. The deficit and the schedule both point in the wrong direction.",
+  "BrookynDynasty lead Thug Life 7-4 with 20 starts left to 15, and only TO is swinging. That is an edge, not a result, so nobody should celebrate yet."
  ],
  "gauntlet": {
   "week": 5,
@@ -2124,36 +2154,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Mo Bamba Is Carrying theInfamous Somehow",
-  "subhead": "Two pickups flipped theInfamous from a 3-5 loss to a 5-4 lead over Da Don Da Beard & Da Klaw.",
+  "headline": "Mo Bamba Is Carrying theInfamous",
+  "subhead": "Two pickups are the only reason theInfamous lead a matchup they were built to lose.",
   "zingers": [
    {
     "team": "theInfamous",
-    "line": "Mo Bamba (24 DREB) and Tyrese Proctor swapped out Jaxson Hayes and Derrick Jones Jr., turning a 3-5 loser into a 5-4 leader."
+    "line": "Mo Bamba and Tyrese Proctor flipped this matchup to 5-4; the guys they replaced would have left theInfamous trailing 3-5."
    },
    {
     "team": "LeParth James",
-    "line": "Klay Thompson's nine threes and Brice Sensabaugh drag LeParth James to 5-5 against a White Mambas side they would otherwise trail 4-6."
+    "line": "Klay Thompson dropped 30 points with nine threes in two games, and without him LeParth James trail White Mambas 4-6."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Saddiq Bey, Daniss Jenkins and Kevin Huerter all arrived, and Da Don Da Beard & Da Klaw still trail theInfamous 4-5. Keep shopping."
+    "line": "Saddiq Bey, Daniss Jenkins and Kevin Huerter all produced, yet the pickups still trail theInfamous 4-5; the swap saved this team from a 1-8 massacre."
    },
    {
     "team": "Zero Fox Given",
-    "line": "Zero Fox Given let Kyrie Irving rot on the bench for 17 points and 5 assists while Giannis Antetokounmpo did the real work."
-   },
-   {
-    "team": "Nova Knicks",
-    "line": "Nova Knicks added Cam Spencer, Nolan Traore and Mikal Bridges and still sit 3-7 against Zero Fox Given. Three pickups, no pulse."
+    "line": "Kyrie Irving put up 17 points and 5 assists on the bench, a category crime that cost Zero Fox Given one more win."
    },
    {
     "team": "Suggs to be you",
-    "line": "Taylor Hendricks and Tre Jones arrived and Suggs to be you still trail Gopher Gold 2-7. A tidy way to lose slightly less."
+    "line": "Taylor Hendricks has two blocks and 27 points, and it still isn't enough while Gopher Gold sit on a 7-3 lead."
    },
    {
-    "team": "BrookynDynasty",
-    "line": "BrookynDynasty lead Thug Life 7-4 with 20 starts left to 15, and Nikola Joki\u0107 is doing the heavy lifting. Don't thank the manager."
+    "team": "Nova Knicks",
+    "line": "Cam Spencer, Nolan Traore and Mikal Bridges arrived in three trades and Nova Knicks still trail 3-7 with 18 starts left."
+   },
+   {
+    "team": "Gopher Gold",
+    "line": "Gopher Gold lead Suggs to be you 7-3 but have 17 starts left against 20, so the comfortable lead is thinner than it looks."
    }
   ]
  },
