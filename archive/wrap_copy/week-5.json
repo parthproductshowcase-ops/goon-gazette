@@ -1,0 +1,232 @@
+{
+ "week": 5,
+ "theme": "western",
+ "edition": "Frontier Edition",
+ "kicker": "Week 5, the gold train",
+ "headline": "Gold Train Robbery Ends With the Devil's Spine Trestle in the Canyon. Thug Life Rides Off With the Strongbox.",
+ "deck": "Thug Life hauled enough gold to rob all eleven other outfits on the line. Suggs to be you and Zero Fox Given could each have robbed exactly one, and Sagar spent the week waving at the wrong train.",
+ "hero_caption": "The Devil's Spine trestle at the instant the dynamite went, engraved by our correspondent from the underside of the mail car.",
+ "chapters": [
+  {
+   "block": "intro",
+   "head": "The Gold Train Leaves at Noon",
+   "text": [
+    "Every Tuesday at noon the gold train pulls out of Goon Gulch with a strongbox in the express car, a conductor who has seen it all, and twelve outfits pretending they just happen to be riding the same way. It has a week of track to cover before the Devil's Spine, the long wooden trestle over the canyon that nobody has ever crossed twice.",
+    "This week nobody pretended. Riders came off the ridges at full gallop, swung onto the platforms, and went car to car with fists, chairs and the dining car's good silverware. Somebody uncoupled the caboose with a man still in it. Somebody climbed the coal tender and got a faceful of soot for the trouble. Somebody spent the whole ride asleep in the sleeper car and woke up two stations late.",
+    "By Sunday the fight had moved to the roof, the engine was running with nobody at the throttle, and the trestle was groaning under the weight. Then a stick of dynamite rolled off the tender, and the Devil's Spine came down into the canyon one beam at a time."
+   ]
+  },
+  {
+   "block": "wanted",
+   "head": "Posters Pasted to the Water Tower",
+   "sub": "Still wet with glue when the next train blew past."
+  },
+  {
+   "block": "results",
+   "head": "A Fight in Every Car",
+   "text": [
+    "Twelve outfits paired off, one fight to a car. Here is who was still on board when the trestle gave out.",
+    "Only one car stayed quiet. Gopher Gold took the lead from Suggs to be you on the first day, kept a boot on his neck for seven straight days, and never once let him reach the emergency brake."
+   ]
+  },
+  {
+   "block": "late",
+   "head": "The Trestle Starts to Burn",
+   "text": [
+    "Five of the six fights were still rolling on the roof when the train hit the Devil's Spine on Saturday. Every one of them changed before the planks gave way."
+   ]
+  },
+  {
+   "block": "boot",
+   "head": "Wounded in the Baggage Car",
+   "text": [
+    "The baggage car is full of men in bandages, and some of them are still listed as passengers. Da Don Da Beard & Da Klaw rolled into Monday with Austin Reaves and Norman Powell both in the starting lineup and both ruled out. Reaves has not left his bunk all week. BrookynDynasty did the same with Paul George and P.J. Washington, and spent the whole week with Anthony Edwards on the injured list.",
+    "MONSTARS have Ja Morant parked in a lineup slot without a single game played. Zero Fox Given has Giannis ruled out on the bench and Nic Claxton ruled out at center, which is two stretchers and one plan. And Adam Silver Dez Nuts carried Shai Gilgeous-Alexander off to the injured list on Sunday, which explains a lot about the weekend."
+   ]
+  },
+  {
+   "block": "roy",
+   "head": "The Last Stop Before the Pass",
+   "text": [
+    "Gopher Gold and Thug Life have both bought their tickets through the mountains, each at better than ninety-nine in a hundred. Gopher Gold rides first in the standings, but the railroad's bookmaker likes Thug Life more for the top seed, which is the kind of thing that starts fights in the dining car.",
+    "White Mambas were a long shot a week ago and now hold a playoff seat at better than three in five, the biggest jump on the line. Suggs to be you fell the furthest, from a comfortable seat to about one in three. Da Don Da Beard & Da Klaw has the second strongest roster in the territory by the assayer's count and barely better than one in four odds, which is a lot of gold to leave lying on the tracks. Zero Fox Given and MONSTARS are down to zero and walking."
+   ]
+  },
+  {
+   "block": "saloon",
+   "head": "Overheard in the Dining Car",
+   "sub": "Muttered over cold coffee and somebody else's pocket watch."
+  }
+ ],
+ "wanted": {
+  "mvp": {
+   "title": "Gold Bandit",
+   "line": "Fished Jordan Poole out of the White Mambas' scrap heap and put him straight to work in the express car. Brunson cracked the safe. Clingan stood in the doorway and swatted away anyone who tried to come back in.",
+   "reward": "The whole strongbox, a private Pullman car with velvet seats, and a conductor who stopped asking for tickets",
+   "pins": [
+    {
+     "p": "Jalen Brunson",
+     "c": ["12", "10"]
+    },
+    {
+     "p": "Donovan Clingan",
+     "c": ["18", "13"]
+    },
+    {
+     "p": "Jordan Poole",
+     "t": "478.l.39751.t.9",
+     "c": ["12"]
+    }
+   ]
+  },
+  "dud": {
+   "title": "Dead Freight",
+   "line": "Four roster moves all season. The gold train leaves every Tuesday at noon, and he is still on the platform reading the timetable.",
+   "reward": "A handcar with one working pump handle, a crate of damp dynamite, and a seat facing backwards",
+   "pins": [
+    {
+     "p": "DeMar DeRozan",
+     "c": ["5"]
+    },
+    {
+     "p": "Myles Turner",
+     "c": ["5"]
+    }
+   ]
+  },
+  "luckiest": {
+   "title": "Card Sharp",
+   "line": "Wins far more often than his cards say he should, all season long. Nobody has found the extra ace yet, but the dining car has stopped dealing him in.",
+   "reward": "A deck with five aces, a pearl-handled derringer, and a head start before the other players count the cards",
+   "pins": [
+    {
+     "p": "Cade Cunningham",
+     "c": ["5"]
+    },
+    {
+     "p": "Cooper Flagg",
+     "c": ["19"]
+    }
+   ]
+  },
+  "robbed": {
+   "title": "Thrown From the Train",
+   "line": "Had the strongbox open and eight categories in the sack on Saturday night. Woke up Monday at the bottom of the canyon, still holding the key.",
+   "reward": "A one-way ticket back to Goon Gulch, a bent pocket watch, and a handwritten apology from the railroad",
+   "pins": [
+    {
+     "p": "Anthony Davis",
+     "c": ["12", "13"]
+    },
+    {
+     "p": "Damian Lillard",
+     "c": ["10"]
+    }
+   ]
+  }
+ },
+ "late": {
+  "478.l.39751.t.3|478.l.39751.t.9": {
+   "text": "BrookynDynasty had Thug Life tied to the tracks on Friday, ahead in six categories. Then Karl-Anthony Towns climbed down off the water tower, and Thug Life grabbed points and three-point percentage before the whistle. Jokić shoveled everything he had into the firebox and came up one car short.",
+   "pins": [
+    {
+     "p": "Karl-Anthony Towns",
+     "w": true,
+     "c": ["12", "14"]
+    },
+    {
+     "p": "Nikola Jokić",
+     "w": true,
+     "c": ["16"]
+    }
+   ]
+  },
+  "478.l.39751.t.5|478.l.39751.t.12": {
+   "text": "Adam Silver Dez Nuts led seven categories to three on Friday and started counting the gold. Then Tyler Herro walked the length of the train on the weekend firing at everything, MONSTARS took field goal percentage, three-point percentage and blocks, and steals came out dead even. Josh Hart grabbed every loose bag on the floor and could not hit the side of a boxcar. It ended in a tie.",
+   "pins": [
+    {
+     "p": "Tyler Herro",
+     "w": true,
+     "c": ["12", "8"]
+    },
+    {
+     "p": "Josh Hart",
+     "w": true,
+     "c": ["5"]
+    }
+   ]
+  },
+  "478.l.39751.t.7|478.l.39751.t.11": {
+   "text": "Dead level on Friday. Then Wembanyama stood up on the roof and blocked out the sun, and Nova Knicks got a weekend shift out of Brandin Podziemski, who had started the week riding with LeParth James. Kyrie Irving finally boarded for Zero Fox Given on the weekend, just in time to watch the train leave.",
+   "pins": [
+    {
+     "p": "Victor Wembanyama",
+     "w": true,
+     "c": ["18", "5"]
+    },
+    {
+     "p": "Brandin Podziemski",
+     "w": true,
+     "t": "478.l.39751.t.7",
+     "c": ["12"]
+    },
+    {
+     "p": "Kyrie Irving",
+     "w": true,
+     "c": ["12"]
+    }
+   ]
+  },
+  "478.l.39751.t.6|478.l.39751.t.10": {
+   "text": "Sunday, Jamal Murray came over the top of the coal tender, Bam Adebayo cleaned out the mail car, and White Mambas snatched field goal and three-point percentage on the way to a six to four win. Derrick White's lantern went out in the tunnel and never came back on.",
+   "pins": [
+    {
+     "p": "Jamal Murray",
+     "w": true,
+     "c": ["12", "8"]
+    },
+    {
+     "p": "Bam Adebayo",
+     "w": true,
+     "c": ["16"]
+    },
+    {
+     "p": "Derrick White",
+     "w": true,
+     "c": ["5"]
+    }
+   ]
+  },
+  "478.l.39751.t.1|478.l.39751.t.2": {
+   "text": "Level on Friday. John J then picked up Kevin Huerter, a Da Don Da Beard & Da Klaw castoff, and Huerter thanked him by missing nearly everything he threw. Nickeil Alexander-Walker rained threes from the roof of the dining car, and Da Don Da Beard & Da Klaw took it six to five.",
+   "pins": [
+    {
+     "p": "Nickeil Alexander-Walker",
+     "w": true,
+     "c": ["10", "12"]
+    },
+    {
+     "p": "Kevin Huerter",
+     "w": true,
+     "t": "478.l.39751.t.1",
+     "c": ["5"]
+    }
+   ]
+  }
+ },
+ "zingers": {
+  "478.l.39751.t.1": "Paying for two sleeper berths, Curry and Markkanen, and neither man has left his bunk all week.",
+  "478.l.39751.t.2": "Luka carried the gold like it was a hot coal and dropped it every few steps.",
+  "478.l.39751.t.3": "Most roster moves in the territory and still riding tenth. Swaps horses like other men swap socks.",
+  "478.l.39751.t.4": "Left Chet and Mobley in the infirmary car all week and still sits first. The territory would like to see the doctor's notes.",
+  "478.l.39751.t.5": "Six moves all season. The tumbleweeds keep a busier schedule.",
+  "478.l.39751.t.6": "Third in the standings, ninth by the assayer. The gold in this claim is mostly paint.",
+  "478.l.39751.t.7": "Has the tallest man in the territory and roughly a one in seven shot at the playoffs. Hire a shorter, better one.",
+  "478.l.39751.t.8": "Sandro Mamukelashvili fired at the gold car all week and hit mostly scenery.",
+  "478.l.39751.t.9": "Pulled off the perfect heist while carrying Walker Kessler, who shoots free throws like he is aiming at the moon.",
+  "478.l.39751.t.10": "Josh Giddey handed out gifts to both sides of the fight like it was Christmas on the railroad.",
+  "478.l.39751.t.11": "Last place, and the conductor stopped checking his ticket weeks ago.",
+  "478.l.39751.t.12": "Dylan Cardwell rode two stops and never laid a finger on the gold."
+ },
+ "sign_off": "Next Monday, keep your boots on. The Gazette isn't leaving the territory just yet."
+}
