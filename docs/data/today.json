@@ -2,9 +2,9 @@
  "date": "2026-11-23",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-23T18:55-05:00",
- "as_of": "6:55pm",
- "update": 1,
+ "generated_at": "2026-11-23T19:05-05:00",
+ "as_of": "7:05pm",
+ "update": 2,
  "updates": 15,
  "final": false,
  "cats": [
@@ -213,7 +213,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    0,
+    0,
+    11
+   ]
   },
   {
    "a": "478.l.39751.t.2",
@@ -302,7 +307,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    0,
+    0,
+    11
+   ]
   },
   {
    "a": "478.l.39751.t.5",
@@ -391,7 +401,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    0,
+    0,
+    11
+   ]
   },
   {
    "a": "478.l.39751.t.6",
@@ -480,7 +495,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    0,
+    0,
+    11
+   ]
   },
   {
    "a": "478.l.39751.t.8",
@@ -569,7 +589,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    0,
+    0,
+    11
+   ]
   },
   {
    "a": "478.l.39751.t.10",
@@ -658,7 +683,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    0,
+    0,
+    11
+   ]
   }
  ],
  "flips": [],
@@ -964,13 +994,13 @@
    "rank": 12
   }
  ],
- "headline": "Nobody Has Done Anything Yet, Somehow Still Embarrassing",
+ "headline": "Nobody Has Done Anything Yet, Shockingly",
  "notes": [
-  "Ten games on the board, zero tipped, and Zero Fox Given already ranks dead last for night production. That is a lot of nothing to be proud of.",
-  "No category has flipped because no category has moved. BrookynDynasty and MONSTARS \u2604\ufe0f are both tied at nothing, which is the best they will look all night.",
-  "Best line so far belongs to nobody. Every stat sheet in this league is blank and still more competent than half these rosters.",
-  "No bench player has produced a stat yet. Check back after tip-off, when somebody inevitably benches the guy who goes for 30.",
-  "Gopher Gold sits first in night rank with zero players logging a stat. Leading a race nobody has started is the whole brand."
+  "Every score is 0-0 at 7:05pm, so Zero Fox Given is technically tied with everyone and still ranks dead last on the night.",
+  "No lead has flipped and no line has posted, which means no box score exists yet for anyone to hide behind.",
+  "MONSTARS and Zero Fox Given sit at the bottom of the night's pecking order before a single possession is played.",
+  "Gopher Gold tops tonight's board with zero stats recorded, the loftiest ranking ever earned by doing absolutely nothing.",
+  "Not one bench in this league is producing yet, so every manager gets a few more minutes of pretending his lineup is perfect."
  ],
  "gauntlet": null,
  "race": null,
@@ -1103,36 +1133,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Beard & Klaw Are Short On Starts",
-  "subhead": "Da Don Da Beard & Da Klaw trail BrookynDynasty by five starts with nothing on the board, and the math only gets uglier.",
+  "headline": "BrookynDynasty Holds The Starts Edge",
+  "subhead": "Every matchup sits at 0-0, so the only real story is who has more games left to play.",
   "zingers": [
    {
-    "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw have 27 starts left to BrookynDynasty's 32, a five-start hole before a single point."
+    "team": "BrookynDynasty",
+    "line": "BrookynDynasty has 32 starts left against 27 for Da Don Da Beard & Da Klaw, a five-start cushion built on volume."
    },
    {
-    "team": "BrookynDynasty",
-    "line": "BrookynDynasty hold a five-start cushion over Da Don Da Beard & Da Klaw and have yet to show they know what to do with it."
+    "team": "Da Don Da Beard & Da Klaw",
+    "line": "Da Don Da Beard & Da Klaw is down five starts before the first tip, so the comeback is already scheduled."
    },
    {
     "team": "White Mambas",
-    "line": "White Mambas own a four-start edge on Adam Silver Dez Nuts, 33 to 29, the only real leverage anyone has this week."
+    "line": "White Mambas carry a 33-29 starts edge on Adam Silver Dez Nuts, the biggest lead in a week where nobody has scored."
    },
    {
     "team": "Adam Silver Dez Nuts",
-    "line": "Adam Silver Dez Nuts are staring up at four fewer starts than White Mambas and rank ninth tonight with nothing to show."
-   },
-   {
-    "team": "Zero Fox Given",
-    "line": "Zero Fox Given sit twelfth in tonight's rankings before a ball is tossed, which takes real commitment to the bit."
-   },
-   {
-    "team": "MONSTARS \u2604\ufe0f",
-    "line": "MONSTARS \u2604\ufe0f trail Thug Life by two starts, 28 to 30, and rank eleventh tonight. The comeback case is thin."
+    "line": "Adam Silver Dez Nuts are playing from behind at 0-0, trailing by four starts to White Mambas."
    },
    {
     "team": "Gopher Gold",
-    "line": "Gopher Gold hold a two-start edge on theInfamous, 32 to 30, and top the night rankings by default. Do not get comfortable."
+    "line": "Gopher Gold has 32 starts left to theInfamous's 30, a small edge that matters only if the roster shows up."
+   },
+   {
+    "team": "Thug Life",
+    "line": "Thug Life holds 30 starts against MONSTARS' 28, and MONSTARS ranks last on the night before it begins."
+   },
+   {
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given is dead even on starts with Suggs to be you, which leaves only the roster itself to blame."
    }
   ]
  },
