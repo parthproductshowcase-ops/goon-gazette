@@ -1,30 +1,30 @@
 {
- "generated_at": "2026-11-23T05:05-05:00",
- "date": "2026-11-22",
+ "generated_at": "2026-11-24T05:05-05:00",
+ "date": "2026-11-23",
  "week": 6,
  "matchups": {
-  "1-4": "matchup-1-4.png",
-  "2-3": "matchup-2-3.png",
-  "5-9": "matchup-5-9.png",
+  "10-12": "matchup-10-12.png",
   "6-7": "matchup-6-7.png",
   "8-11": "matchup-8-11.png",
-  "10-12": "matchup-10-12.png"
+  "1-4": "matchup-1-4.png",
+  "2-3": "matchup-2-3.png",
+  "5-9": "matchup-5-9.png"
  },
  "gauntlet": {
   "1": "gauntlet-1.png",
+  "4": "gauntlet-4.png",
   "2": "gauntlet-2.png",
   "3": "gauntlet-3.png",
-  "9": "gauntlet-9.png",
-  "4": "gauntlet-4.png",
-  "8": "gauntlet-8.png",
   "5": "gauntlet-5.png",
-  "12": "gauntlet-12.png",
+  "9": "gauntlet-9.png",
   "6": "gauntlet-6.png",
-  "10": "gauntlet-10.png",
   "7": "gauntlet-7.png",
-  "11": "gauntlet-11.png"
+  "8": "gauntlet-8.png",
+  "11": "gauntlet-11.png",
+  "10": "gauntlet-10.png",
+  "12": "gauntlet-12.png"
  },
- "night": "night-2026-11-22.png",
- "gauntlet_week": 5,
- "night_date": "2026-11-22"
+ "night": "night-2026-11-23.png",
+ "gauntlet_week": 6,
+ "night_date": "2026-11-23"
 }
