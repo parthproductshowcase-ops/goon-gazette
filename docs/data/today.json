@@ -2,9 +2,9 @@
  "date": "2026-11-24",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-25T00:05-05:00",
- "as_of": "12:05am",
- "update": 12,
+ "generated_at": "2026-11-25T00:08-05:00",
+ "as_of": "12:08am",
+ "update": 13,
  "updates": 15,
  "final": false,
  "cats": [
@@ -138,7 +138,7 @@
     {
      "cat": "5",
      "a": 0.417,
-     "b": 0.455,
+     "b": 0.46,
      "lead": "b",
      "swing": false
     },
@@ -166,10 +166,9 @@
     {
      "cat": "12",
      "a": 142.0,
-     "b": 143.0,
+     "b": 145.0,
      "lead": "b",
-     "swing": true,
-     "flip": "a"
+     "swing": true
     },
     {
      "cat": "13",
@@ -183,13 +182,12 @@
      "a": 51.0,
      "b": 52.0,
      "lead": "b",
-     "swing": true,
-     "flip": "tie"
+     "swing": true
     },
     {
      "cat": "16",
      "a": 49.0,
-     "b": 28.0,
+     "b": 29.0,
      "lead": "a",
      "swing": false
     },
@@ -205,8 +203,7 @@
      "a": 6.0,
      "b": 6.0,
      "lead": "tie",
-     "swing": true,
-     "flip": "a"
+     "swing": true
     },
     {
      "cat": "19",
@@ -218,8 +215,8 @@
    ],
    "swings": 3,
    "prev_score": [
-    5,
-    5,
+    3,
+    7,
     1
    ]
   },
@@ -251,8 +248,7 @@
      "a": 23.0,
      "b": 20.0,
      "lead": "a",
-     "swing": false,
-     "flip": "tie"
+     "swing": false
     },
     {
      "cat": "11",
@@ -313,9 +309,9 @@
    ],
    "swings": 2,
    "prev_score": [
-    2,
+    3,
     7,
-    2
+    1
    ]
   },
   {
@@ -339,8 +335,7 @@
      "a": 0.821,
      "b": 0.833,
      "lead": "b",
-     "swing": true,
-     "flip": "tie"
+     "swing": true
     },
     {
      "cat": "10",
@@ -409,26 +404,26 @@
    "swings": 2,
    "prev_score": [
     2,
-    8,
-    1
+    9,
+    0
    ]
   },
   {
    "a": "478.l.39751.t.10",
    "b": "478.l.39751.t.12",
    "score": [
-    4,
     5,
-    2
+    5,
+    1
    ],
    "cats": [
     {
      "cat": "5",
-     "a": 0.455,
+     "a": 0.459,
      "b": 0.455,
-     "lead": "tie",
+     "lead": "a",
      "swing": true,
-     "flip": "b"
+     "flip": "tie"
     },
     {
      "cat": "8",
@@ -446,14 +441,14 @@
     },
     {
      "cat": "11",
-     "a": 0.34,
+     "a": 0.333,
      "b": 0.275,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 165.0,
+     "a": 169.0,
      "b": 126.0,
      "lead": "a",
      "swing": false
@@ -474,7 +469,7 @@
     },
     {
      "cat": "16",
-     "a": 37.0,
+     "a": 38.0,
      "b": 41.0,
      "lead": "b",
      "swing": false
@@ -504,8 +499,8 @@
    "swings": 2,
    "prev_score": [
     4,
-    6,
-    1
+    5,
+    2
    ]
   },
   {
@@ -699,57 +694,12 @@
  ],
  "flips": [
   {
-   "a": "478.l.39751.t.8",
-   "b": "478.l.39751.t.11",
-   "cat": "12",
-   "was": "a",
-   "now": "b",
-   "a_val": 142.0,
-   "b_val": 143.0
-  },
-  {
-   "a": "478.l.39751.t.8",
-   "b": "478.l.39751.t.11",
-   "cat": "14",
-   "was": "tie",
-   "now": "b",
-   "a_val": 51.0,
-   "b_val": 52.0
-  },
-  {
-   "a": "478.l.39751.t.8",
-   "b": "478.l.39751.t.11",
-   "cat": "18",
-   "was": "a",
-   "now": "tie",
-   "a_val": 6.0,
-   "b_val": 6.0
-  },
-  {
-   "a": "478.l.39751.t.1",
-   "b": "478.l.39751.t.4",
-   "cat": "10",
-   "was": "tie",
-   "now": "a",
-   "a_val": 23.0,
-   "b_val": 20.0
-  },
-  {
-   "a": "478.l.39751.t.2",
-   "b": "478.l.39751.t.3",
-   "cat": "8",
-   "was": "tie",
-   "now": "b",
-   "a_val": 0.821,
-   "b_val": 0.833
-  },
-  {
    "a": "478.l.39751.t.10",
    "b": "478.l.39751.t.12",
    "cat": "5",
-   "was": "b",
-   "now": "tie",
-   "a_val": 0.455,
+   "was": "tie",
+   "now": "a",
+   "a_val": 0.459,
    "b_val": 0.455
   }
  ],
@@ -788,13 +738,13 @@
     "DEN"
    ],
    "score": [
-    93,
-    79
+    97,
+    87
    ],
    "state": "in",
-   "clock": "9:25",
+   "clock": "7:22",
    "period": 4,
-   "detail": "9:25 - 4th"
+   "detail": "7:22 - 4th"
   }
  ],
  "lines": [
@@ -852,7 +802,7 @@
    "benched": false,
    "value": 6.02,
    "z": {
-    "5": 0.67,
+    "5": 0.66,
     "8": -2.43,
     "10": 2.66,
     "12": 2.94,
@@ -986,7 +936,7 @@
     "12": 0.64,
     "13": 1.04,
     "14": -0.78,
-    "16": -0.6,
+    "16": -0.61,
     "17": 0.07,
     "18": 1.51,
     "19": -0.06
@@ -1078,7 +1028,7 @@
     "12": -0.74,
     "13": 0.39,
     "14": 2.55,
-    "16": -0.6,
+    "16": -0.61,
     "17": 2.03,
     "18": -0.69,
     "19": 0.59
@@ -1206,7 +1156,7 @@
    "slot": "F",
    "nba": "WAS",
    "benched": false,
-   "value": 1.26,
+   "value": 1.25,
    "z": {
     "5": -0.86,
     "8": 0.06,
@@ -1302,16 +1252,20 @@
    "rank": 4
   },
   {
-   "team": "478.l.39751.t.9",
-   "value": 0,
-   "played": 0,
-   "with_game": 0,
+   "team": "478.l.39751.t.10",
+   "value": 1.0,
+   "played": 4,
+   "with_game": 4,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Neemias Queta",
+    "Desmond Bane",
+    "Jamal Murray"
+   ],
    "rank": 5
   },
   {
-   "team": "478.l.39751.t.7",
+   "team": "478.l.39751.t.9",
    "value": 0,
    "played": 0,
    "with_game": 0,
@@ -1320,16 +1274,12 @@
    "rank": 6
   },
   {
-   "team": "478.l.39751.t.10",
-   "value": -0.2,
-   "played": 4,
-   "with_game": 4,
+   "team": "478.l.39751.t.7",
+   "value": 0,
+   "played": 0,
+   "with_game": 0,
    "bench_value": 0,
-   "top": [
-    "Neemias Queta",
-    "Desmond Bane",
-    "John Collins"
-   ],
+   "top": [],
    "rank": 7
   },
   {
@@ -1371,7 +1321,7 @@
   },
   {
    "team": "478.l.39751.t.11",
-   "value": -6.6,
+   "value": -5.7,
    "played": 4,
    "with_game": 4,
    "bench_value": 0,
@@ -1395,13 +1345,13 @@
    "rank": 12
   }
  ],
- "headline": "Tatum Torches Gopher Gold's Comfortable Cushion",
+ "headline": "Tatum Torches Everyone While Managers Sleep",
  "notes": [
-  "Zero Fox Given just took points from Suggs to be you, with Kyshawn George scoring 24 while DeMar DeRozan clanks his way to 9 on 4-of-8.",
-  "Jayson Tatum has 41 points and six threes for theInfamous, and that bought a 3PTM lead back from Gopher Gold. Still down 3-7.",
-  "Anthony Davis has 33 points and 13 boards for LeParth James. Nova Knicks have zero players with a stat line tonight.",
-  "Da Don Da Beard & Da Klaw trail BrookynDynasty 2-9 even with Ausar Thompson's four blocks. Paul George has 28 and six threes on the other side.",
-  "Thug Life has no players with a stat tonight and MONSTARS \u2604\ufe0f lead 7-4, though Aaron Gordon's 1 point on 0-2 shooting is trying to help."
+  "White Mambas just stole FG% from Adam Silver Dez Nuts, courtesy of Neemias Queta's 9-of-11 shooting, while Jalen Suggs bricked his way to 2-of-8.",
+  "Jayson Tatum dropped 41 points and six threes for theInfamous, and Gopher Gold still leads that matchup 7-3. Somebody sold Tatum's night for parts.",
+  "Anthony Davis has 33 points and 13 boards for LeParth James. Nova Knicks have zero players with a stat tonight, which is a roster, not a strategy.",
+  "Aaron Gordon gave MONSTARS 1 point on 0-of-2 shooting. MONSTARS still lead 7-4, which is the only reason this is not a crime scene.",
+  "Zero Fox Given lost DeMar DeRozan to a 4-of-8, 9-point shrug and is hanging on 7-3 anyway. Nobody on the bench was producing tonight."
  ],
  "gauntlet": {
   "week": 6,
@@ -1526,27 +1476,27 @@
     "19": 22.0
    },
    "478.l.39751.t.11": {
-    "5": 0.455,
+    "5": 0.46,
     "8": 0.857,
     "10": 17.0,
     "11": 0.386,
-    "12": 143.0,
+    "12": 145.0,
     "13": 12.0,
     "14": 52.0,
-    "16": 28.0,
+    "16": 29.0,
     "17": 11.0,
     "18": 6.0,
     "19": 16.0
    },
    "478.l.39751.t.10": {
-    "5": 0.455,
+    "5": 0.459,
     "8": 0.806,
     "10": 16.0,
-    "11": 0.34,
-    "12": 165.0,
+    "11": 0.333,
+    "12": 169.0,
     "13": 12.0,
     "14": 40.0,
-    "16": 37.0,
+    "16": 38.0,
     "17": 8.0,
     "18": 16.0,
     "19": 30.0
@@ -1624,7 +1574,7 @@
     "name": "Tyler Herro",
     "team": "478.l.39751.t.5",
     "games": 1,
-    "value": 8.2,
+    "value": 8.19,
     "line": {
      "5": [
       0.625,
@@ -1656,7 +1606,7 @@
     "name": "Scottie Barnes",
     "team": "478.l.39751.t.5",
     "games": 1,
-    "value": 8.04,
+    "value": 8.02,
     "line": {
      "5": [
       0.48,
@@ -1688,7 +1638,7 @@
     "name": "Anthony Davis",
     "team": "478.l.39751.t.6",
     "games": 1,
-    "value": 7.45,
+    "value": 7.44,
     "line": {
      "5": [
       0.571,
@@ -1784,7 +1734,7 @@
     "name": "Paul George",
     "team": "478.l.39751.t.3",
     "games": 1,
-    "value": 6.02,
+    "value": 6.0,
     "line": {
      "5": [
       0.55,
@@ -1811,7 +1761,7 @@
     "name": "Stephon Castle",
     "team": "478.l.39751.t.6",
     "games": 1,
-    "value": 5.88,
+    "value": 5.86,
     "line": {
      "5": [
       0.391,
@@ -1843,7 +1793,7 @@
     "name": "Myles Turner",
     "team": "478.l.39751.t.11",
     "games": 1,
-    "value": 5.61,
+    "value": 5.6,
     "line": {
      "5": [
       0.75,
@@ -1875,7 +1825,7 @@
     "name": "Jayson Tatum",
     "team": "478.l.39751.t.1",
     "games": 1,
-    "value": 5.55,
+    "value": 5.54,
     "line": {
      "5": [
       0.52,
@@ -1933,7 +1883,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": 1.35,
+    "value": 1.34,
     "line": {
      "5": [
       0.538,
@@ -1978,7 +1928,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": 1.01,
+    "value": 1.0,
     "line": {
      "5": [
       0.583,
@@ -2029,7 +1979,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": -0.97,
+    "value": -0.99,
     "line": {
      "5": [
       0.167,
@@ -2079,7 +2029,7 @@
     ],
     "flipped": true,
     "decided": true,
-    "value": -3.2,
+    "value": -3.22,
     "line": {
      "5": [
       0.4,
@@ -2109,23 +2059,22 @@
      "faab": null
     },
     "swung": [
-     "5",
      "16",
      "17"
     ],
     "score": [
      5,
-     3,
-     3
+     4,
+     2
     ],
     "without": [
      4,
-     5,
-     2
+     6,
+     1
     ],
     "flipped": true,
     "decided": true,
-    "value": 0.18,
+    "value": 0.17,
     "line": {
      "5": [
       0.5,
@@ -2179,8 +2128,8 @@
     "opp": "478.l.39751.t.10",
     "score": [
      5,
-     3,
-     3
+     4,
+     2
     ],
     "without": [
      5,
@@ -2621,36 +2570,36 @@
   ]
  },
  "week_copy": {
-  "headline": "De'Andre Hunter Is Quietly Winning Monstars' Week",
-  "subhead": "One pickup is the difference between a 6-4 lead and a 4-5 deficit, and the manager who made the move gets the credit.",
+  "headline": "MONSTARS Pickup Is Doing The Heavy Lifting",
+  "subhead": "De'Andre Hunter turned a likely loss into a lead, and the managers who ignored the waiver wire are sweating.",
   "zingers": [
    {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "Swap Jerami Grant for De'Andre Hunter and AST and ST flip; without the move this is 4-5 against Thug Life."
+    "line": "De'Andre Hunter's 15 points, 8 assists and a steal flip AST and ST, which turns a 4-5 loss into a 6-4 lead."
    },
    {
-    "team": "Zero Fox Given",
-    "line": "Jrue Holiday and Jarace Walker are both swinging this matchup, and Zero Fox Given now leads 7-3 over Suggs to be you."
+    "team": "Thug Life",
+    "line": "Thug Life has Jaden McDaniels, the week's top scorer, and still trails because nobody else on the roster showed up."
    },
    {
     "team": "BrookynDynasty",
-    "line": "BrookynDynasty leads 9-2 and still has 28 starts left to Da Don Da Beard & Da Klaw's 24. The comeback needs a miracle."
+    "line": "BrookynDynasty leads 9-2 and Paul George just dropped 28 with six threes, so Da Don Da Beard & Da Klaw are done."
+   },
+   {
+    "team": "Da Don Da Beard & Da Klaw",
+    "line": "Da Don Da Beard & Da Klaw trail 2-9 with four fewer starts left, which is a hole with a shovel."
    },
    {
     "team": "Gopher Gold",
-    "line": "Gopher Gold leads theInfamous 7-3 with 30 starts left to 25, so the lead has company. Tatum just took 3PTM back."
+    "line": "Gopher Gold leads 7-3 with five more starts left than theInfamous, so Tatum's 41 points may not even matter."
    },
    {
-    "team": "theInfamous",
-    "line": "Tatum went for 41 and Trae Young added 12 assists, yet theInfamous still trails 3-7, and Anthony Black's 2-of-8 isn't helping."
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given leads 7-3 on Jrue Holiday and Jarace Walker, two pickups the league clearly slept on."
    },
    {
-    "team": "Suggs to be you",
-    "line": "Kevin Durant is a top player this week and Suggs to be you still trails 3-7 after losing PTS, so the ceiling is the problem."
-   },
-   {
-    "team": "White Mambas",
-    "line": "White Mambas trail Adam Silver Dez Nuts 4-5 with even starts left. Neemias Queta's 21 points on 9-of-11 can't carry the whole thing."
+    "team": "Adam Silver Dez Nuts",
+    "line": "Adam Silver Dez Nuts lost the FG% lead as Jalen Suggs went 2-of-8, and that slide leaves them tied at 5-5."
    }
   ]
  },
