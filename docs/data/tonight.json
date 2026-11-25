@@ -1,454 +1,9 @@
 {
- "date": "2026-11-24",
+ "date": "2026-11-25",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-24T18:55-05:00",
+ "generated_at": "2026-11-25T18:55-05:00",
  "matchups": [
-  {
-   "a": "478.l.39751.t.10",
-   "b": "478.l.39751.t.12",
-   "score": [
-    1,
-    8,
-    2
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.391,
-     "b": 0.463,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.76,
-     "b": 0.833,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": 8.0,
-     "b": 9.0,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "11",
-     "a": 0.267,
-     "b": 0.273,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "12",
-     "a": 99.0,
-     "b": 112.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 9.0,
-     "b": 19.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": 31.0,
-     "b": 46.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 28.0,
-     "b": 35.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 6.0,
-     "b": 6.0,
-     "lead": "tie",
-     "swing": true
-    },
-    {
-     "cat": "18",
-     "a": 10.0,
-     "b": 4.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": 20.0,
-     "b": 20.0,
-     "lead": "tie",
-     "swing": true
-    }
-   ],
-   "swings": 4
-  },
-  {
-   "a": "478.l.39751.t.6",
-   "b": "478.l.39751.t.7",
-   "score": [
-    7,
-    4,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.413,
-     "b": 0.492,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.735,
-     "b": 0.852,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": 12.0,
-     "b": 11.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "11",
-     "a": 0.3,
-     "b": 0.478,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 123.0,
-     "b": 98.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 8.0,
-     "b": 6.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "14",
-     "a": 27.0,
-     "b": 20.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 36.0,
-     "b": 22.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 8.0,
-     "b": 3.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 3.0,
-     "b": 1.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "19",
-     "a": 19.0,
-     "b": 5.0,
-     "lead": "b",
-     "swing": false
-    }
-   ],
-   "swings": 3
-  },
-  {
-   "a": "478.l.39751.t.8",
-   "b": "478.l.39751.t.11",
-   "score": [
-    7,
-    4,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.438,
-     "b": 0.508,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.857,
-     "b": 0.84,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": 11.0,
-     "b": 12.0,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "11",
-     "a": 0.355,
-     "b": 0.522,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 119.0,
-     "b": 97.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 15.0,
-     "b": 8.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": 35.0,
-     "b": 33.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "16",
-     "a": 36.0,
-     "b": 19.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 15.0,
-     "b": 8.0,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 6.0,
-     "b": 5.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "19",
-     "a": 20.0,
-     "b": 12.0,
-     "lead": "b",
-     "swing": false
-    }
-   ],
-   "swings": 3
-  },
-  {
-   "a": "478.l.39751.t.1",
-   "b": "478.l.39751.t.4",
-   "score": [
-    3,
-    8,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.508,
-     "b": 0.565,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.933,
-     "b": 0.844,
-     "lead": "a",
-     "swing": false
-    },
-    {
-     "cat": "10",
-     "a": 8.0,
-     "b": 16.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": 0.333,
-     "b": 0.457,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 88.0,
-     "b": 173.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 8.0,
-     "b": 14.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": 23.0,
-     "b": 35.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 18.0,
-     "b": 28.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 3.0,
-     "b": 7.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 5.0,
-     "b": 3.0,
-     "lead": "a",
-     "swing": true
-    },
-    {
-     "cat": "19",
-     "a": 9.0,
-     "b": 17.0,
-     "lead": "a",
-     "swing": false
-    }
-   ],
-   "swings": 1
-  },
-  {
-   "a": "478.l.39751.t.2",
-   "b": "478.l.39751.t.3",
-   "score": [
-    1,
-    10,
-    0
-   ],
-   "cats": [
-    {
-     "cat": "5",
-     "a": 0.357,
-     "b": 0.518,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "8",
-     "a": 0.833,
-     "b": 0.842,
-     "lead": "b",
-     "swing": true
-    },
-    {
-     "cat": "10",
-     "a": 10.0,
-     "b": 17.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "11",
-     "a": 0.27,
-     "b": 0.447,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "12",
-     "a": 80.0,
-     "b": 147.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "13",
-     "a": 7.0,
-     "b": 14.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "14",
-     "a": 23.0,
-     "b": 32.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "16",
-     "a": 19.0,
-     "b": 30.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "17",
-     "a": 3.0,
-     "b": 8.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "18",
-     "a": 2.0,
-     "b": 5.0,
-     "lead": "b",
-     "swing": false
-    },
-    {
-     "cat": "19",
-     "a": 14.0,
-     "b": 24.0,
-     "lead": "a",
-     "swing": false
-    }
-   ],
-   "swings": 1
-  },
   {
    "a": "478.l.39751.t.5",
    "b": "478.l.39751.t.9",
@@ -460,14 +15,14 @@
    "cats": [
     {
      "cat": "5",
-     "a": 0.514,
+     "a": 0.503,
      "b": 0.489,
      "lead": "a",
-     "swing": false
+     "swing": true
     },
     {
      "cat": "8",
-     "a": 0.885,
+     "a": 0.857,
      "b": 0.724,
      "lead": "a",
      "swing": false
@@ -481,35 +36,35 @@
     },
     {
      "cat": "11",
-     "a": 0.444,
+     "a": 0.421,
      "b": 0.353,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "12",
-     "a": 193.0,
+     "a": 194.0,
      "b": 125.0,
      "lead": "a",
      "swing": false
     },
     {
      "cat": "13",
-     "a": 10.0,
+     "a": 11.0,
      "b": 17.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "14",
-     "a": 34.0,
+     "a": 36.0,
      "b": 46.0,
      "lead": "b",
      "swing": false
     },
     {
      "cat": "16",
-     "a": 43.0,
+     "a": 46.0,
      "b": 39.0,
      "lead": "a",
      "swing": false
@@ -523,7 +78,7 @@
     },
     {
      "cat": "18",
-     "a": 6.0,
+     "a": 7.0,
      "b": 10.0,
      "lead": "b",
      "swing": false
@@ -536,13 +91,462 @@
      "swing": false
     }
    ],
+   "swings": 2
+  },
+  {
+   "a": "478.l.39751.t.8",
+   "b": "478.l.39751.t.11",
+   "score": [
+    4,
+    7,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.431,
+     "b": 0.474,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.846,
+     "b": 0.829,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 13.0,
+     "b": 18.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.342,
+     "b": 0.383,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 152.0,
+     "b": 180.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 17.0,
+     "b": 13.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 52.0,
+     "b": 61.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 50.0,
+     "b": 34.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 18.0,
+     "b": 13.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 6.0,
+     "b": 8.0,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 22.0,
+     "b": 21.0,
+     "lead": "b",
+     "swing": true
+    }
+   ],
+   "swings": 2
+  },
+  {
+   "a": "478.l.39751.t.2",
+   "b": "478.l.39751.t.3",
+   "score": [
+    2,
+    9,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.412,
+     "b": 0.511,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.75,
+     "b": 0.784,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 12.0,
+     "b": 30.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.261,
+     "b": 0.469,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 120.0,
+     "b": 243.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 15.0,
+     "b": 20.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 39.0,
+     "b": 59.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 40.0,
+     "b": 58.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 7.0,
+     "b": 12.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 8.0,
+     "b": 6.0,
+     "lead": "a",
+     "swing": true
+    },
+    {
+     "cat": "19",
+     "a": 23.0,
+     "b": 36.0,
+     "lead": "a",
+     "swing": false
+    }
+   ],
    "swings": 1
+  },
+  {
+   "a": "478.l.39751.t.10",
+   "b": "478.l.39751.t.12",
+   "score": [
+    4,
+    7,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.438,
+     "b": 0.458,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.818,
+     "b": 0.85,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 16.0,
+     "b": 13.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.327,
+     "b": 0.295,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 180.0,
+     "b": 138.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 14.0,
+     "b": 20.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 45.0,
+     "b": 55.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 40.0,
+     "b": 46.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 8.0,
+     "b": 10.0,
+     "lead": "b",
+     "swing": true
+    },
+    {
+     "cat": "18",
+     "a": 16.0,
+     "b": 4.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 32.0,
+     "b": 25.0,
+     "lead": "b",
+     "swing": false
+    }
+   ],
+   "swings": 1
+  },
+  {
+   "a": "478.l.39751.t.1",
+   "b": "478.l.39751.t.4",
+   "score": [
+    2,
+    9,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.478,
+     "b": 0.527,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.787,
+     "b": 0.867,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 23.0,
+     "b": 26.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.365,
+     "b": 0.426,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 190.0,
+     "b": 259.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 13.0,
+     "b": 17.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 37.0,
+     "b": 56.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 47.0,
+     "b": 51.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 7.0,
+     "b": 10.0,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 10.0,
+     "b": 4.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 21.0,
+     "b": 27.0,
+     "lead": "a",
+     "swing": false
+    }
+   ],
+   "swings": 0
+  },
+  {
+   "a": "478.l.39751.t.6",
+   "b": "478.l.39751.t.7",
+   "score": [
+    7,
+    4,
+    0
+   ],
+   "cats": [
+    {
+     "cat": "5",
+     "a": 0.409,
+     "b": 0.492,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "8",
+     "a": 0.735,
+     "b": 0.852,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "10",
+     "a": 16.0,
+     "b": 11.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "11",
+     "a": 0.281,
+     "b": 0.478,
+     "lead": "b",
+     "swing": false
+    },
+    {
+     "cat": "12",
+     "a": 178.0,
+     "b": 98.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "13",
+     "a": 15.0,
+     "b": 6.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "14",
+     "a": 46.0,
+     "b": 20.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "16",
+     "a": 44.0,
+     "b": 22.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "17",
+     "a": 15.0,
+     "b": 3.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "18",
+     "a": 5.0,
+     "b": 1.0,
+     "lead": "a",
+     "swing": false
+    },
+    {
+     "cat": "19",
+     "a": 23.0,
+     "b": 5.0,
+     "lead": "b",
+     "swing": false
+    }
+   ],
+   "swings": 0
   }
  ],
  "lineups": {
   "478.l.39751.t.4": {
    "benched_with_game": [],
    "starting_out": [
+    {
+     "player": "Jaylen Brown",
+     "status": "O"
+    },
     {
      "player": "Aday Mara",
      "status": "O"
@@ -564,18 +568,18 @@
   },
   "478.l.39751.t.6": {
    "benched_with_game": [],
-   "starting_out": [],
+   "starting_out": [
+    {
+     "player": "Joel Embiid",
+     "status": "O"
+    }
+   ],
    "empty_slots": 0,
    "schedule_known": true
   },
   "478.l.39751.t.8": {
    "benched_with_game": [],
-   "starting_out": [
-    {
-     "player": "Cade Cunningham",
-     "status": "O"
-    }
-   ],
+   "starting_out": [],
    "empty_slots": 0,
    "schedule_known": true
   },
@@ -587,12 +591,7 @@
   },
   "478.l.39751.t.7": {
    "benched_with_game": [],
-   "starting_out": [
-    {
-     "player": "OG Anunoby",
-     "status": "O"
-    }
-   ],
+   "starting_out": [],
    "empty_slots": 0,
    "schedule_known": true
   },
@@ -629,7 +628,11 @@
    "benched_with_game": [],
    "starting_out": [
     {
-     "player": "Duncan Robinson",
+     "player": "Zach LaVine",
+     "status": "O"
+    },
+    {
+     "player": "Jalen Smith",
      "status": "O"
     },
     {
@@ -649,53 +652,93 @@
  },
  "moves_today": [
   {
-   "id": "478.l.39751.tr.251",
-   "ts": 1795557761,
+   "id": "478.l.39751.tr.258",
+   "ts": 1795626227,
    "kind": "drop",
-   "team": "478.l.39751.t.6",
+   "team": "478.l.39751.t.11",
    "source": "team",
    "faab": null,
-   "pk": "478.p.6058",
-   "player": "Svi Mykhailiuk"
+   "pk": "478.p.10103",
+   "player": "Jarace Walker"
   },
   {
-   "id": "478.l.39751.tr.250",
-   "ts": 1795518770,
+   "id": "478.l.39751.tr.257",
+   "ts": 1795619866,
+   "kind": "add",
+   "team": "478.l.39751.t.7",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6038",
+   "player": "Robert Williams III"
+  },
+  {
+   "id": "478.l.39751.tr.257",
+   "ts": 1795619866,
+   "kind": "drop",
+   "team": "478.l.39751.t.7",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.10476",
+   "player": "Ryan Kalkbrenner"
+  },
+  {
+   "id": "478.l.39751.tr.256",
+   "ts": 1795607765,
    "kind": "add",
    "team": "478.l.39751.t.1",
    "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6076",
+   "player": "Kenrich Williams"
+  },
+  {
+   "id": "478.l.39751.tr.256",
+   "ts": 1795607765,
+   "kind": "drop",
+   "team": "478.l.39751.t.1",
+   "source": "team",
    "faab": null,
    "pk": "478.p.6173",
    "player": "Cameron Johnson"
   },
   {
-   "id": "478.l.39751.tr.250",
-   "ts": 1795518770,
+   "id": "478.l.39751.tr.255",
+   "ts": 1795593914,
+   "kind": "add",
+   "team": "478.l.39751.t.12",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6754",
+   "player": "Julian Champagnie"
+  },
+  {
+   "id": "478.l.39751.tr.255",
+   "ts": 1795593914,
    "kind": "drop",
-   "team": "478.l.39751.t.1",
+   "team": "478.l.39751.t.12",
    "source": "team",
    "faab": null,
-   "pk": "478.p.5637",
-   "player": "Buddy Hield"
+   "pk": "478.p.10099",
+   "player": "Bilal Coulibaly"
   }
  ],
- "headline": "Da Don Da Beard Is Down 10-1",
+ "headline": "MONSTARS Start Three Ghosts Tonight",
  "zingers": [
   {
-   "team": "Da Don Da Beard & Da Klaw",
-   "line": "Trailing BrookynDynasty 10-1 and still starting Norman Powell, who is out, is how you turn a loss into a clinic."
-  },
-  {
    "team": "MONSTARS \u2604\ufe0f",
-   "line": "Duncan Robinson and Ja Morant are both listed out in the starting lineup, so a 7-4 lead is held together by hope."
+   "line": "Zach LaVine, Jalen Smith and Ja Morant are all out, and all three sit in the starting lineup. A 7-4 lead is a loan."
   },
   {
-   "team": "Suggs to be you",
-   "line": "Cade Cunningham is out and sitting in the starting five while Suggs to be you protects a 7-4 lead with a vacancy."
+   "team": "Gopher Gold",
+   "line": "Jaylen Brown and Aday Mara are both out and both starting, yet Gopher Gold leads 9-2 anyway. Lucky stiffs."
   },
   {
-   "team": "White Mambas",
-   "line": "Adam Silver Dez Nuts lead 8-1 and the White Mambas still have not found a single category worth fighting for."
+   "team": "LeParth James",
+   "line": "Joel Embiid is listed out and still starting. LeParth James protects a 7-4 lead with a man who will not play."
+  },
+  {
+   "team": "Da Don Da Beard & Da Klaw",
+   "line": "Down 9-2 to BrookynDynasty with only blocks to cling to, Da Don Da Beard & Da Klaw start Norman Powell, who is out."
   }
  ],
  "by": "claude"
