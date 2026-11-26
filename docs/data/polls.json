@@ -812,7 +812,7 @@
  },
  "rosters": {
   "season": "2026-27",
-  "updated": "2026-11-25T05:05-05:00",
+  "updated": "2026-11-26T05:05-05:00",
   "source": "yahoo-api",
   "teams": {
    "johnj": {
@@ -822,8 +822,8 @@
      "Trae Young",
      "Ayo Dosunmu",
      "Darius Acuff Jr.",
-     "Cameron Johnson",
      "Jayson Tatum",
+     "Kenrich Williams",
      "Anthony Black",
      "Khaman Maluach",
      "Day'Ron Sharpe",
@@ -848,8 +848,8 @@
      "Trae Young": "PG",
      "Ayo Dosunmu": "SG",
      "Darius Acuff Jr.": "G",
-     "Cameron Johnson": "SF",
-     "Jayson Tatum": "PF",
+     "Jayson Tatum": "SF",
+     "Kenrich Williams": "PF",
      "Anthony Black": "F",
      "Khaman Maluach": "C",
      "Day'Ron Sharpe": "C",
@@ -981,7 +981,7 @@
      "Chet Holmgren"
     ],
     "status": {
-     "Yaxel Lendeborg": "Q",
+     "Jaylen Brown": "Q",
      "Aday Mara": "O",
      "Evan Mobley": "O",
      "Chet Holmgren": "O"
@@ -1029,6 +1029,7 @@
      "Jalen Duren"
     ],
     "status": {
+     "Zach LaVine": "Q",
      "Jalen Smith": "Q",
      "Ja Morant": "O",
      "Duncan Robinson": "O",
@@ -1076,7 +1077,7 @@
      "Cameron Boozer"
     ],
     "status": {
-     "Joel Embiid": "D",
+     "Joel Embiid": "Q",
      "Cameron Boozer": "O"
     },
     "slots": {
@@ -1102,17 +1103,17 @@
     "players": [
      "Ajay Mitchell",
      "Cam Spencer",
-     "De'Aaron Fox",
+     "Brandin Podziemski",
      "Matas Buzelis",
      "Jonathan Kuminga",
-     "OG Anunoby",
+     "Mikal Bridges",
      "Victor Wembanyama",
-     "Ryan Kalkbrenner",
+     "Robert Williams III",
      "Keldon Johnson",
      "Amen Thompson",
-     "Brandin Podziemski",
+     "OG Anunoby",
+     "De'Aaron Fox",
      "Dyson Daniels",
-     "Mikal Bridges",
      "Caleb Wilson",
      "Paolo Banchero"
     ],
@@ -1121,27 +1122,25 @@
      "Paolo Banchero"
     ],
     "status": {
-     "De'Aaron Fox": "Q",
      "OG Anunoby": "O",
-     "Victor Wembanyama": "Q",
-     "Ryan Kalkbrenner": "D",
+     "De'Aaron Fox": "Q",
      "Caleb Wilson": "O",
      "Paolo Banchero": "O"
     },
     "slots": {
      "Ajay Mitchell": "PG",
      "Cam Spencer": "SG",
-     "De'Aaron Fox": "G",
+     "Brandin Podziemski": "G",
      "Matas Buzelis": "SF",
      "Jonathan Kuminga": "PF",
-     "OG Anunoby": "F",
+     "Mikal Bridges": "F",
      "Victor Wembanyama": "C",
-     "Ryan Kalkbrenner": "C",
+     "Robert Williams III": "C",
      "Keldon Johnson": "Util",
      "Amen Thompson": "Util",
-     "Brandin Podziemski": "BN",
+     "OG Anunoby": "BN",
+     "De'Aaron Fox": "BN",
      "Dyson Daniels": "BN",
-     "Mikal Bridges": "BN",
      "Caleb Wilson": "IL",
      "Paolo Banchero": "IL"
     }
@@ -1171,7 +1170,7 @@
      "Dylan Harper"
     ],
     "status": {
-     "Cade Cunningham": "O",
+     "Cade Cunningham": "Q",
      "Dereck Lively II": "O",
      "Dylan Harper": "O"
     },
@@ -1219,7 +1218,7 @@
     ],
     "status": {
      "Grayson Allen": "O",
-     "Karl-Anthony Towns": "Q",
+     "LaMelo Ball": "Q",
      "RJ Barrett": "O",
      "Kon Knueppel": "O"
     },
@@ -1293,20 +1292,17 @@
      "Miles Bridges",
      "Nic Claxton",
      "Draymond Green",
-     "DeMar DeRozan",
      "Myles Turner",
+     "Brandon Ingram",
+     "DeMar DeRozan",
      "Kyrie Irving",
-     "Jarace Walker",
      "CJ McCollum",
-     "Tyrese Haliburton",
-     "Brandon Ingram"
+     "Tyrese Haliburton"
     ],
     "il": [
-     "Tyrese Haliburton",
-     "Brandon Ingram"
+     "Tyrese Haliburton"
     ],
     "status": {
-     "Giannis Antetokounmpo": "Q",
      "CJ McCollum": "O",
      "Tyrese Haliburton": "O"
     },
@@ -1319,13 +1315,12 @@
      "Miles Bridges": "F",
      "Nic Claxton": "C",
      "Draymond Green": "C",
-     "DeMar DeRozan": "Util",
      "Myles Turner": "Util",
+     "Brandon Ingram": "Util",
+     "DeMar DeRozan": "BN",
      "Kyrie Irving": "BN",
-     "Jarace Walker": "BN",
      "CJ McCollum": "BN",
-     "Tyrese Haliburton": "IL",
-     "Brandon Ingram": "IL"
+     "Tyrese Haliburton": "IL"
     }
    },
    "jason": {
@@ -1336,9 +1331,9 @@
      "Cedric Coward",
      "VJ Edgecombe",
      "Tari Eason",
-     "Alperen Şengün",
-     "Josh Hart",
      "Jabari Smith Jr.",
+     "Josh Hart",
+     "Alperen Şengün",
      "Zach Edey",
      "Shai Gilgeous-Alexander",
      "Julian Champagnie",
@@ -1348,16 +1343,16 @@
     ],
     "il": [],
     "status": {
-     "Josh Hart": "Q"
+     "Zach Edey": "Q"
     },
     "slots": {
      "Fred VanVleet": "PG",
      "Cedric Coward": "SG",
      "VJ Edgecombe": "G",
      "Tari Eason": "SF",
-     "Alperen Şengün": "PF",
+     "Jabari Smith Jr.": "PF",
      "Josh Hart": "F",
-     "Jabari Smith Jr.": "C",
+     "Alperen Şengün": "C",
      "Zach Edey": "C",
      "Shai Gilgeous-Alexander": "Util",
      "Julian Champagnie": "Util",
