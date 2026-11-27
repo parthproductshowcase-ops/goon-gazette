@@ -2,9 +2,9 @@
  "date": "2026-11-26",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-26T20:35-05:00",
- "as_of": "8:35pm",
- "update": 5,
+ "generated_at": "2026-11-26T21:05-05:00",
+ "as_of": "9:05pm",
+ "update": 6,
  "updates": 15,
  "final": false,
  "cats": [
@@ -805,13 +805,13 @@
    "rank": 12
   }
  ],
- "headline": "Five Games In, Nobody Has Done Anything",
+ "headline": "Six Games Deep, Nobody Has Done Anything",
  "notes": [
-  "Five of fifteen games are in the books and the leaderboard has not recorded a single stat. Gopher Gold leads a night nobody has played yet.",
-  "No lead has flipped since the last update. Every manager is holding exactly what he held an hour ago, which is not a compliment.",
-  "The best line so far belongs to nobody. Not one player on any roster has posted a stat tonight, so the box score is blank.",
-  "Not one benched player has produced tonight, which is the only reason no manager has been caught leaving points on the pine.",
-  "Zero Fox Given sits dead last on the night with Suggs to be you trailing seven categories to three, and the FG%, FT%, 3PT% and AST swings are all up for grabs."
+  "As of 9:05pm, 6 of 15 games are final and not one lead has flipped, so every manager is exactly where he started and just as lazy.",
+  "Gopher Gold owns the best night in the league right now, which is easy when nobody else has a single player with a stat.",
+  "Zero Fox Given is dead last for the night and still up 7-3 on Suggs to be you, so the luck is carrying him.",
+  "MONSTARS \u2604\ufe0f sit 11th for the night with FG% the only category left in play against Thug Life, and a swing there decides it.",
+  "Nobody has a bench player producing so far, which means every manager's lineup is either perfect or too asleep to check."
  ],
  "gauntlet": {
   "week": 6,
@@ -2043,36 +2043,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Hunter Keeps MONSTARS Alive Against Thug Life",
-  "subhead": "De'Andre Hunter's two games are the only reason MONSTARS are level with Thug Life instead of staring at a 3-7 hole.",
+  "headline": "De'Andre Hunter Is Carrying MONSTARS \u2604\ufe0f",
+  "subhead": "Two pickups flipped two matchups, and one manager is already losing his week anyway.",
   "zingers": [
    {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter has 30 points, 13 defensive boards and 11 assists in two games, turning a 3-7 deficit into a 5-5 tie against Thug Life."
+    "line": "De'Andre Hunter has 30 points, 13 DREB, 11 AST and 4 threes in two games, and without him MONSTARS \u2604\ufe0f would be down 3-7."
    },
    {
     "team": "theInfamous",
-    "line": "Mo Bamba and Kenrich Williams flipped 3PTM, AST and ST, so theInfamous lead Gopher Gold 5-4 instead of trailing 3-6 with the old drops."
+    "line": "Mo Bamba and Kenrich Williams, with his three triples and three steals, turned a 3-6 loss into a 5-4 lead for theInfamous."
    },
    {
     "team": "Adam Silver Dez Nuts",
-    "line": "Julian Champagnie's 11 points and one three nudged Adam Silver Dez Nuts ahead of White Mambas 6-3, though the matchup was already headed that way."
+    "line": "Julian Champagnie's 11 points helped, but Adam Silver Dez Nuts would still be up 5-4 on White Mambas without him, so his manager gets a polite nod."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw trail BrookynDynasty 3-8 with 20 starts left to BrookynDynasty's 22, so the comeback math is bleak."
+    "line": "Da Don Da Beard & Da Klaw trail BrookynDynasty 3-8 with 20 starts left, which is a lot of chances to keep losing."
    },
    {
     "team": "Zero Fox Given",
-    "line": "Zero Fox Given lead Suggs to be you 7-3, and Jrue Holiday is swinging the matchup, which is the only reason that gap is not closer."
+    "line": "Zero Fox Given lead Suggs to be you 7-3 behind a Jrue Holiday pickup, while sitting dead last on tonight's board."
    },
    {
     "team": "LeParth James",
-    "line": "LeParth James trail Nova Knicks 5-6 but hold a 23 to 21 starts edge, and only DREB separates them."
+    "line": "LeParth James trail Nova Knicks 5-6 but hold a 23 to 21 starts edge, so only DREB and some pride stand in the way."
    },
    {
     "team": "Nova Knicks",
-    "line": "Nova Knicks lead 6-5 and owe it partly to Keldon Johnson, who is swinging the matchup, while having two fewer starts left than LeParth James."
+    "line": "Nova Knicks are one Keldon Johnson pickup away from a 6-5 lead over LeParth James, and still sit 6th tonight."
    }
   ]
  },
