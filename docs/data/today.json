@@ -2,9 +2,9 @@
  "date": "2026-11-26",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-26T19:35-05:00",
- "as_of": "7:35pm",
- "update": 3,
+ "generated_at": "2026-11-26T20:05-05:00",
+ "as_of": "8:05pm",
+ "update": 4,
  "updates": 15,
  "final": false,
  "cats": [
@@ -805,13 +805,13 @@
    "rank": 12
   }
  ],
- "headline": "Three Games In, Nobody Has Done Anything",
+ "headline": "Four Games In, Nobody Has Done Anything",
  "notes": [
-  "Gopher Gold sits first in the night rankings with zero players on the board, which is how bad the other eleven are.",
-  "Zero Fox Given is dead last tonight and trails Suggs to be you 7-3, so the cellar is a good fit.",
-  "No category lead has flipped yet. Every matchup is exactly where it was at the last update.",
-  "Nobody has posted a best line or a worst line so far, which is the nicest thing we can say about tonight.",
-  "Nobody is carrying a bench into the night. Every manager left his bench exactly as useless as he found it."
+  "Four of fifteen games are in, and every team shows zero players with a stat line. Gopher Gold leads the night by default.",
+  "No lead has flipped since the last update. Every matchup score is frozen exactly where it was, and nobody has earned a headline yet.",
+  "Best line so far: there isn't one. The best-lines list is empty, so every manager's genius is still theoretical.",
+  "Zero benched players are producing yet. Every manager's lineup is still innocent, which will not last once the tip-offs stack up.",
+  "Zero Fox Given sits last on the night's board at 3-7 down to Suggs to be you, and Jrue Holiday is the pickup swinging that matchup."
  ],
  "gauntlet": {
   "week": 6,
@@ -2043,36 +2043,36 @@
   ]
  },
  "week_copy": {
-  "headline": "De'Andre Hunter Saved MONSTARS From Itself",
-  "subhead": "Two games and a pickup in place of Jerami Grant turned a 3-7 hole into a 5-5 tie.",
+  "headline": "Kenrich Williams Is Carrying theInfamous",
+  "subhead": "Two pickups flipped theInfamous from a 3-6 loser into a 5-4 leader over Gopher Gold, while MONSTARS lean on De'Andre Hunter.",
   "zingers": [
    {
-    "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter dropped 30 points and 11 assists in two games; without him swapped in for Jerami Grant, MONSTARS \u2604\ufe0f would be down 7-3."
+    "team": "theInfamous",
+    "line": "Mo Bamba and Kenrich Williams together flipped this matchup from 3-6 to 5-4, with Williams hitting three triples and three steals."
    },
    {
-    "team": "theInfamous",
-    "line": "Mo Bamba and Kenrich Williams, with his 3 threes and 3 steals, flipped 3PTM, AST and ST, and theInfamous leads 5-4 only because of them."
+    "team": "MONSTARS \u2604\ufe0f",
+    "line": "De'Andre Hunter put up 30 points and 11 assists in two games, and without him MONSTARS would trail Thug Life 3-7."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw trails BrookynDynasty 8-3 with no swing categories left, so it is not close and nothing is coming to rescue it."
+    "line": "Down 3-8 to BrookynDynasty with no swing categories left, this matchup is a funeral and the starts edge is just the eulogy."
    },
    {
-    "team": "Adam Silver Dez Nuts",
-    "line": "Julian Champagnie put up 11 points and a three, but Adam Silver Dez Nuts would be leading White Mambas 5-4 without him anyway."
+    "team": "Suggs to be you",
+    "line": "Trailing Zero Fox Given 3-7 with even starts left, Suggs to be you is running out of road and excuses."
    },
    {
     "team": "Zero Fox Given",
-    "line": "Zero Fox Given leads Suggs to be you 7-3 and finds itself last in the night rankings, which tells you the lead is not safe."
+    "line": "Jrue Holiday is swinging this matchup, which is the only reason Zero Fox Given leads 7-3 and not something uglier."
    },
    {
-    "team": "LeParth James",
-    "line": "LeParth James trails Nova Knicks 6-5 with 23 starts left to their 21, so the edge exists but nobody has cashed it."
+    "team": "Gopher Gold",
+    "line": "Domantas Sabonis is among the week's top players, yet Gopher Gold still trails 5-4 and holds a two-start edge to fix it."
    },
    {
-    "team": "Thug Life",
-    "line": "Thug Life leads MONSTARS \u2604\ufe0f 6-5 with Jaden McDaniels atop the weekly leaders, and still has 21 starts left against 19."
+    "team": "Adam Silver Dez Nuts",
+    "line": "Julian Champagnie's 11 points were nice, but the pickup didn't change the result: Adam Silver Dez Nuts were already beating White Mambas anyway."
    }
   ]
  },
