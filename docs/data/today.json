@@ -2,9 +2,9 @@
  "date": "2026-11-26",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-26T20:05-05:00",
- "as_of": "8:05pm",
- "update": 4,
+ "generated_at": "2026-11-26T20:35-05:00",
+ "as_of": "8:35pm",
+ "update": 5,
  "updates": 15,
  "final": false,
  "cats": [
@@ -805,13 +805,13 @@
    "rank": 12
   }
  ],
- "headline": "Four Games In, Nobody Has Done Anything",
+ "headline": "Five Games In, Nobody Has Done Anything",
  "notes": [
-  "Four of fifteen games are in, and every team shows zero players with a stat line. Gopher Gold leads the night by default.",
-  "No lead has flipped since the last update. Every matchup score is frozen exactly where it was, and nobody has earned a headline yet.",
-  "Best line so far: there isn't one. The best-lines list is empty, so every manager's genius is still theoretical.",
-  "Zero benched players are producing yet. Every manager's lineup is still innocent, which will not last once the tip-offs stack up.",
-  "Zero Fox Given sits last on the night's board at 3-7 down to Suggs to be you, and Jrue Holiday is the pickup swinging that matchup."
+  "Five of fifteen games are in the books and the leaderboard has not recorded a single stat. Gopher Gold leads a night nobody has played yet.",
+  "No lead has flipped since the last update. Every manager is holding exactly what he held an hour ago, which is not a compliment.",
+  "The best line so far belongs to nobody. Not one player on any roster has posted a stat tonight, so the box score is blank.",
+  "Not one benched player has produced tonight, which is the only reason no manager has been caught leaving points on the pine.",
+  "Zero Fox Given sits dead last on the night with Suggs to be you trailing seven categories to three, and the FG%, FT%, 3PT% and AST swings are all up for grabs."
  ],
  "gauntlet": {
   "week": 6,
@@ -2043,36 +2043,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Kenrich Williams Is Carrying theInfamous",
-  "subhead": "Two pickups flipped theInfamous from a 3-6 loser into a 5-4 leader over Gopher Gold, while MONSTARS lean on De'Andre Hunter.",
+  "headline": "Hunter Keeps MONSTARS Alive Against Thug Life",
+  "subhead": "De'Andre Hunter's two games are the only reason MONSTARS are level with Thug Life instead of staring at a 3-7 hole.",
   "zingers": [
    {
-    "team": "theInfamous",
-    "line": "Mo Bamba and Kenrich Williams together flipped this matchup from 3-6 to 5-4, with Williams hitting three triples and three steals."
-   },
-   {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter put up 30 points and 11 assists in two games, and without him MONSTARS would trail Thug Life 3-7."
+    "line": "De'Andre Hunter has 30 points, 13 defensive boards and 11 assists in two games, turning a 3-7 deficit into a 5-5 tie against Thug Life."
    },
    {
-    "team": "Da Don Da Beard & Da Klaw",
-    "line": "Down 3-8 to BrookynDynasty with no swing categories left, this matchup is a funeral and the starts edge is just the eulogy."
-   },
-   {
-    "team": "Suggs to be you",
-    "line": "Trailing Zero Fox Given 3-7 with even starts left, Suggs to be you is running out of road and excuses."
-   },
-   {
-    "team": "Zero Fox Given",
-    "line": "Jrue Holiday is swinging this matchup, which is the only reason Zero Fox Given leads 7-3 and not something uglier."
-   },
-   {
-    "team": "Gopher Gold",
-    "line": "Domantas Sabonis is among the week's top players, yet Gopher Gold still trails 5-4 and holds a two-start edge to fix it."
+    "team": "theInfamous",
+    "line": "Mo Bamba and Kenrich Williams flipped 3PTM, AST and ST, so theInfamous lead Gopher Gold 5-4 instead of trailing 3-6 with the old drops."
    },
    {
     "team": "Adam Silver Dez Nuts",
-    "line": "Julian Champagnie's 11 points were nice, but the pickup didn't change the result: Adam Silver Dez Nuts were already beating White Mambas anyway."
+    "line": "Julian Champagnie's 11 points and one three nudged Adam Silver Dez Nuts ahead of White Mambas 6-3, though the matchup was already headed that way."
+   },
+   {
+    "team": "Da Don Da Beard & Da Klaw",
+    "line": "Da Don Da Beard & Da Klaw trail BrookynDynasty 3-8 with 20 starts left to BrookynDynasty's 22, so the comeback math is bleak."
+   },
+   {
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given lead Suggs to be you 7-3, and Jrue Holiday is swinging the matchup, which is the only reason that gap is not closer."
+   },
+   {
+    "team": "LeParth James",
+    "line": "LeParth James trail Nova Knicks 5-6 but hold a 23 to 21 starts edge, and only DREB separates them."
+   },
+   {
+    "team": "Nova Knicks",
+    "line": "Nova Knicks lead 6-5 and owe it partly to Keldon Johnson, who is swinging the matchup, while having two fewer starts left than LeParth James."
    }
   ]
  },
