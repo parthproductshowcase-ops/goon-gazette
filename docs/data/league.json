@@ -2235,8 +2235,8 @@
   "current": {
    "week": 6,
    "start": "2026-11-23",
-   "end": "2026-11-25",
-   "days": 3,
+   "end": "2026-11-26",
+   "days": 4,
    "top_players": [
     {
      "pk": "478.p.6420",
@@ -2882,26 +2882,17 @@
       2
      ],
      "without": [
+      5,
       4,
-      6,
-      1
+      2
      ],
-     "carried": true,
-     "net": 2,
+     "carried": false,
+     "net": 1,
      "swung": [
       "10",
-      "12",
-      "17"
+      "12"
      ],
      "pickups": [
-      {
-       "name": "Jalen Suggs",
-       "games": 1,
-       "desc": "1 game: 4 PTS, 3 DREB, 5 AST, 2 ST, 2-8 FG",
-       "added": "2026-11-12",
-       "dropped": null,
-       "dropped_desc": null
-      },
       {
        "name": "Julian Champagnie",
        "games": 1,
@@ -2929,14 +2920,6 @@
      "net": 0,
      "swung": [],
      "pickups": [
-      {
-       "name": "Daniss Jenkins",
-       "games": 1,
-       "desc": "1 game: 15 PTS, 2 OREB, 2 DREB, 10 AST, 1 3PTM, 2 ST",
-       "added": "2026-11-12",
-       "dropped": "Morez Johnson Jr.",
-       "dropped_desc": "1 game: 9 PTS, 3 OREB, 7 DREB, 1 AST, 1 3PTM, 1 ST"
-      },
       {
        "name": "Saddiq Bey",
        "games": 1,
@@ -3208,14 +3191,6 @@
        "added": "2026-11-18",
        "dropped": null,
        "dropped_desc": null
-      },
-      {
-       "name": "Danny Wolf",
-       "games": 1,
-       "desc": "1 game: 5 PTS, 1 AST, 1 3PTM, 2-8 FG",
-       "added": "2026-11-24",
-       "dropped": null,
-       "dropped_desc": null
       }
      ]
     }
@@ -3240,10 +3215,10 @@
    ],
    "bench_cost": [],
    "games_left": {
-    "478.l.39751.t.4": 23,
+    "478.l.39751.t.4": 21,
     "478.l.39751.t.9": 21,
     "478.l.39751.t.6": 23,
-    "478.l.39751.t.8": 21,
+    "478.l.39751.t.8": 19,
     "478.l.39751.t.1": 19,
     "478.l.39751.t.7": 21,
     "478.l.39751.t.10": 21,
@@ -3266,7 +3241,7 @@
     "back": 0.0,
     "vs_line": -4.0,
     "playoff_odds": 0.992,
-    "top_seed_odds": 0.388,
+    "top_seed_odds": 0.399,
     "proj_w": 114,
     "odds_move": 0.0
    },
@@ -3278,10 +3253,10 @@
     "t": 0,
     "back": 0.5,
     "vs_line": -3.5,
-    "playoff_odds": 0.992,
-    "top_seed_odds": 0.431,
-    "proj_w": 115,
-    "odds_move": 0.001
+    "playoff_odds": 0.994,
+    "top_seed_odds": 0.419,
+    "proj_w": 114,
+    "odds_move": 0.002
    },
    {
     "team": "478.l.39751.t.6",
@@ -3291,10 +3266,10 @@
     "t": 1,
     "back": 1.0,
     "vs_line": -3.0,
-    "playoff_odds": 0.945,
+    "playoff_odds": 0.94,
     "top_seed_odds": 0.119,
     "proj_w": 109,
-    "odds_move": -0.011
+    "odds_move": -0.005
    },
    {
     "team": "478.l.39751.t.8",
@@ -3304,10 +3279,10 @@
     "t": 1,
     "back": 2.0,
     "vs_line": -2.0,
-    "playoff_odds": 0.288,
+    "playoff_odds": 0.265,
     "top_seed_odds": 0.002,
     "proj_w": 97,
-    "odds_move": -0.036
+    "odds_move": -0.023
    },
    {
     "team": "478.l.39751.t.1",
@@ -3317,10 +3292,10 @@
     "t": 0,
     "back": 3.5,
     "vs_line": -0.5,
-    "playoff_odds": 0.791,
+    "playoff_odds": 0.797,
     "top_seed_odds": 0.033,
     "proj_w": 105,
-    "odds_move": 0.023
+    "odds_move": 0.006
    },
    {
     "team": "478.l.39751.t.7",
@@ -3330,10 +3305,10 @@
     "t": 1,
     "back": 4.0,
     "vs_line": 0.0,
-    "playoff_odds": 0.175,
+    "playoff_odds": 0.178,
     "top_seed_odds": 0.0,
     "proj_w": 95,
-    "odds_move": 0.029
+    "odds_move": 0.004
    },
    {
     "team": "478.l.39751.t.10",
@@ -3343,7 +3318,7 @@
     "t": 1,
     "back": 4.0,
     "vs_line": 0.0,
-    "playoff_odds": 0.619,
+    "playoff_odds": 0.615,
     "top_seed_odds": 0.011,
     "proj_w": 102,
     "odds_move": -0.004
@@ -3356,10 +3331,10 @@
     "t": 0,
     "back": 4.5,
     "vs_line": 0.5,
-    "playoff_odds": 0.223,
-    "top_seed_odds": 0.002,
+    "playoff_odds": 0.198,
+    "top_seed_odds": 0.001,
     "proj_w": 96,
-    "odds_move": 0.007
+    "odds_move": -0.025
    },
    {
     "team": "478.l.39751.t.12",
@@ -3369,10 +3344,10 @@
     "t": 1,
     "back": 5.0,
     "vs_line": 1.0,
-    "playoff_odds": 0.602,
-    "top_seed_odds": 0.013,
+    "playoff_odds": 0.622,
+    "top_seed_odds": 0.015,
     "proj_w": 102,
-    "odds_move": 0.005
+    "odds_move": 0.02
    },
    {
     "team": "478.l.39751.t.3",
@@ -3382,10 +3357,10 @@
     "t": 0,
     "back": 7.5,
     "vs_line": 3.5,
-    "playoff_odds": 0.373,
-    "top_seed_odds": 0.002,
+    "playoff_odds": 0.401,
+    "top_seed_odds": 0.003,
     "proj_w": 99,
-    "odds_move": -0.016
+    "odds_move": 0.028
    },
    {
     "team": "478.l.39751.t.5",
@@ -3397,7 +3372,7 @@
     "vs_line": 9.0,
     "playoff_odds": 0.0,
     "top_seed_odds": 0.0,
-    "proj_w": 75,
+    "proj_w": 76,
     "odds_move": 0.0
    },
    {
@@ -3849,7 +3824,7 @@
   "is_finished": false,
   "renew": "466_40764"
  },
- "date": "2026-11-25",
+ "date": "2026-11-26",
  "sample": false,
  "cats": [
   {
@@ -3949,7 +3924,7 @@
    "manager": "Keshav",
    "logo": "https://s.yimg.com/ep/cx/blendr/v2/image-basketball-player-emoji-png_1721253814729.png",
    "guid": "--hidden--",
-   "moves": 21,
+   "moves": 22,
    "trades": 0
   },
   "478.l.39751.t.1": {
@@ -4225,7 +4200,7 @@
     "19": -0.8
    },
    "rank": 5,
-   "move": 1,
+   "move": 0,
    "best_cat": "8",
    "worst_cat": "19",
    "luck": -0.024,
@@ -4250,7 +4225,7 @@
     "19": -1.27
    },
    "rank": 6,
-   "move": -1,
+   "move": 0,
    "best_cat": "17",
    "worst_cat": "18",
    "luck": -0.059,
@@ -4302,7 +4277,7 @@
     "19": 1.04
    },
    "rank": 8,
-   "move": 1,
+   "move": 0,
    "best_cat": "18",
    "worst_cat": "10",
    "luck": 0.059,
@@ -4330,7 +4305,7 @@
     "19": 0.07
    },
    "rank": 9,
-   "move": -1,
+   "move": 0,
    "best_cat": "8",
    "worst_cat": "16",
    "luck": 0.04,
@@ -5072,68 +5047,23 @@
   }
  ],
  "daily": {
-  "best": "478.l.39751.t.9",
-  "worst": "478.l.39751.t.3",
+  "best": "478.l.39751.t.4",
+  "worst": "478.l.39751.t.11",
   "z": {
-   "478.l.39751.t.4": 3.84,
-   "478.l.39751.t.9": 9.23,
-   "478.l.39751.t.6": 0.15,
-   "478.l.39751.t.8": -3.22,
-   "478.l.39751.t.1": 0.82,
-   "478.l.39751.t.7": 3.98,
-   "478.l.39751.t.10": 0.89,
-   "478.l.39751.t.2": -9.4,
-   "478.l.39751.t.12": 6.12,
-   "478.l.39751.t.3": -10.09,
-   "478.l.39751.t.5": -2.01,
-   "478.l.39751.t.11": -0.29
+   "478.l.39751.t.4": 0.0,
+   "478.l.39751.t.9": 0.0,
+   "478.l.39751.t.6": 0.0,
+   "478.l.39751.t.8": 0.0,
+   "478.l.39751.t.1": 0.0,
+   "478.l.39751.t.7": 0.0,
+   "478.l.39751.t.10": 0.0,
+   "478.l.39751.t.2": 0.0,
+   "478.l.39751.t.12": 0.0,
+   "478.l.39751.t.3": 0.0,
+   "478.l.39751.t.5": 0.0,
+   "478.l.39751.t.11": 0.0
   },
-  "leaders": {
-   "5": {
-    "team": "478.l.39751.t.7",
-    "value": 0.552
-   },
-   "8": {
-    "team": "478.l.39751.t.6",
-    "value": 0.917
-   },
-   "10": {
-    "team": "478.l.39751.t.9",
-    "value": 18.0
-   },
-   "11": {
-    "team": "478.l.39751.t.9",
-    "value": 0.474
-   },
-   "12": {
-    "team": "478.l.39751.t.7",
-    "value": 173.0
-   },
-   "13": {
-    "team": "478.l.39751.t.9",
-    "value": 20.0
-   },
-   "14": {
-    "team": "478.l.39751.t.10",
-    "value": 53.0
-   },
-   "16": {
-    "team": "478.l.39751.t.12",
-    "value": 43.0
-   },
-   "17": {
-    "team": "478.l.39751.t.1",
-    "value": 11.0
-   },
-   "18": {
-    "team": "478.l.39751.t.12",
-    "value": 10.0
-   },
-   "19": {
-    "team": "478.l.39751.t.2",
-    "value": 6.0
-   }
-  }
+  "leaders": {}
  },
  "bench": [],
  "weeks_played": 5,
@@ -6022,7 +5952,7 @@
    {
     "week": 6,
     "live": true,
-    "through": "2026-11-25",
+    "through": "2026-11-26",
     "lines": {
      "478.l.39751.t.1": {
       "5": 0.483,
@@ -6792,47 +6722,47 @@
  "night_week": 6,
  "picks": null,
  "recap": {
-  "headline": "White Mambas Cut Hunter, Rival Collects Interest",
-  "subhead": "White Mambas dropped De'Andre Hunter for Jordan Poole, and Hunter has since put up 30 points and 11 assists for MONSTARS.",
+  "headline": "Hunter Haunts The Mambas Who Dumped Him",
+  "subhead": "White Mambas cut De'Andre Hunter for Jordan Poole, and Hunter is now dragging MONSTARS level with Thug Life.",
   "body": [],
   "zingers": [
    {
     "team": "White Mambas",
-    "line": "White Mambas dumped De'Andre Hunter for Jordan Poole, who has one game of 11 points; Hunter has 30 points and 11 assists elsewhere."
+    "line": "White Mambas dropped De'Andre Hunter for Jordan Poole, and Hunter has since put up 30 points and 11 assists for MONSTARS."
    },
    {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "MONSTARS added De'Andre Hunter, and 30 points, 13 DREB and 4 threes turned a 3-7 deficit against Thug Life into 5-5."
+    "line": "MONSTARS added De'Andre Hunter, and his 30 points and 4 threes alone turned a 3-7 hole into a 5-5 tie with Thug Life."
    },
    {
     "team": "theInfamous",
-    "line": "theInfamous flipped a 3-6 loss into 5-4 on Kenrich Williams' 3 threes and 3 steals plus Mo Bamba's 2 blocks, so Gopher Gold has lunch money in play."
+    "line": "theInfamous leads Gopher Gold 5-4 only because Kenrich Williams dropped 3 threes and 3 steals, and without that pair of pickups it's 3-6."
    },
    {
-    "team": "Adam Silver Dez Nuts",
-    "line": "Adam Silver Dez Nuts lead White Mambas 6-4 because Champagnie and Suggs chipped in; without them they'd be down 4-6."
-   },
-   {
-    "team": "Suggs to be you",
-    "line": "Suggs to be you trails Zero Fox Given 3-7 after Rudy Gobert delivered 9 points last night and a team that shares his name pays rent."
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given leads Suggs to be you 7-3 on shooting percentages and assists, which is fine, because the team is punting steals and points and wearing it as a brick."
    },
    {
     "team": "Gopher Gold",
-    "line": "Gopher Gold has 23 starts left against theInfamous's 19, so the tied 5-5 matchup tilts their way unless they keep sleepwalking."
+    "line": "Gopher Gold is the team of the day and still trails theInfamous in a tie, with two fewer starts left than they have to work with."
    },
    {
-    "team": "BrookynDynasty",
-    "line": "BrookynDynasty leads Da Don Da Beard & Da Klaw 8-3 yet got labeled brick of the day, the way a landlord complains about rent."
+    "team": "Da Don Da Beard & Da Klaw",
+    "line": "Da Don Da Beard & Da Klaw trails BrookynDynasty 3-8 and cannot swing a single category, so the waiver heroics of last week are ancient history."
+   },
+   {
+    "team": "LeParth James",
+    "line": "LeParth James trails Nova Knicks 5-6 despite a 23-21 start edge, and the only category in play is DREB, which is a sad little hill to die on."
    }
   ],
   "night": [
-   "Jaden McDaniels dropped 32 points, 10 rebounds and 4 threes on 11-15 shooting for Thug Life, and Wembanyama's 44 and 16 for Nova Knicks stayed second-best.",
-   "Darius Acuff Jr. posted 22 points and 9 assists for theInfamous but needed 24 shots, going 9-24 FG, a brick with a nice stat line.",
-   "Left on the bench: nothing. Nobody forgot a starter, so there is no bench blunder to hang on any manager tonight.",
-   "De'Anthony Melton hit 8 threes for 24 points and 7 assists, and he is still on the wire. Caruso (4 BLK) and Gui Santos (22 PTS) too.",
-   "Thug Life went 7-3-1 against MONSTARS and won the night. BrookynDynasty went 6-4-1, still a win, but it was the worst night of the 12 teams."
+   "No last-night data in the file, so no box score gets roasted today. Every manager gets to pretend his bench behaved.",
+   "Brick of the day goes to Zero Fox Given, who punts steals and points on purpose and still lost the week. That's craftsmanship.",
+   "Adam Silver Dez Nuts leads White Mambas 6-4 with 3PTM, PTS, ST and TO all going his way. The Mambas are down to DREB.",
+   "Free agent watch: Julian Champagnie put up 11 points and a three for Adam Silver Dez Nuts, and he is one of the pickups credited this week.",
+   "Winner of the day is Gopher Gold. Loser is Zero Fox Given, who has now been named brick of the day and last week's dud."
   ],
   "by": "claude"
  },
- "generated_at": "2026-11-26T05:05-05:00"
+ "generated_at": "2026-11-27T05:05-05:00"
 }
