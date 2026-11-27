@@ -2,9 +2,9 @@
  "date": "2026-11-26",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-26T22:35-05:00",
- "as_of": "10:35pm",
- "update": 9,
+ "generated_at": "2026-11-26T23:05-05:00",
+ "as_of": "11:05pm",
+ "update": 10,
  "updates": 15,
  "final": false,
  "cats": [
@@ -805,9 +805,13 @@
    "rank": 12
   }
  ],
- "headline": "Tonight, So Far",
+ "headline": "Ten Games In, Nobody Has Scored",
  "notes": [
-  "theInfamous and Gopher Gold are 5-5 with 3 categories inside a possession."
+  "Gopher Gold tops the night rankings with zero players on the board. That is the high-water mark for a night this barren.",
+  "No lead flipped since the last update. Every manager is exactly as wrong as he was an hour ago.",
+  "Best line so far: none. Ten of fifteen games are underway and the facts offer not one box score worth framing.",
+  "The benched-and-producing list is empty, so nobody gets caught sitting a hero tonight. Credit the pushovers' lineups for that, not their brains.",
+  "MONSTARS and Thug Life sit one category from a tie, and FG% decides it. Somebody's shooting percentage is about to ruin a life."
  ],
  "gauntlet": {
   "week": 6,
@@ -2038,6 +2042,39 @@
    "UTAH"
   ]
  },
- "week_copy": null,
- "by": "template"
+ "week_copy": {
+  "headline": "Pickups Are Carrying Two Playoff Hopefuls",
+  "subhead": "theInfamous and MONSTARS are leading only because of their waiver moves; without them, both would be losing.",
+  "zingers": [
+   {
+    "team": "MONSTARS \u2604\ufe0f",
+    "line": "De'Andre Hunter's 30 points and 11 assists turned a 3-7 loss into a 5-5 tie, and Jerami Grant got dumped for it."
+   },
+   {
+    "team": "theInfamous",
+    "line": "Mo Bamba and Kenrich Williams flip 3PTM, AST and ST, turning a 3-6 hole into a 5-4 lead over Gopher Gold."
+   },
+   {
+    "team": "Da Don Da Beard & Da Klaw",
+    "line": "Down 3-8 to BrookynDynasty with no category even swinging tonight, this one is a funeral with a scoreboard."
+   },
+   {
+    "team": "Zero Fox Given",
+    "line": "Jrue Holiday is swinging the matchup, and Zero Fox Given still ranks dead last on tonight's board while leading 7-3."
+   },
+   {
+    "team": "Suggs to be you",
+    "line": "Trailing 3-7 with equal starts left and FG%, FT%, 3PT% and AST all in play, they need four flips and a miracle."
+   },
+   {
+    "team": "LeParth James",
+    "line": "Down 5-6 to Nova Knicks with a two-start edge, they trail only because DREB went the wrong way."
+   },
+   {
+    "team": "Thug Life",
+    "line": "Jaden McDaniels is the week's top player, yet Thug Life leads MONSTARS by exactly one category and a FG% coin flip."
+   }
+  ]
+ },
+ "by": "claude"
 }
