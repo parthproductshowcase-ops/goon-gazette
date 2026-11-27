@@ -2,9 +2,9 @@
  "date": "2026-11-26",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-26T23:38-05:00",
- "as_of": "11:38pm",
- "update": 12,
+ "generated_at": "2026-11-27T00:05-05:00",
+ "as_of": "12:05am",
+ "update": 13,
  "updates": 15,
  "final": false,
  "cats": [
@@ -805,13 +805,13 @@
    "rank": 12
   }
  ],
- "headline": "Twelve Games Deep And Nobody Showed Up",
+ "headline": "Midnight Passes, Nobody Has Posted a Stat",
  "notes": [
-  "Every one of the twelve teams has zero players with a stat so far, which is a league-wide act of mass negligence at 11:38pm.",
-  "Gopher Gold sits first for the night while theInfamous holds a 5-5 tie, and neither has a single stat line to explain it.",
-  "No lead has flipped since the last update. The scoreboard is as frozen as the effort from Zero Fox Given, last in night rank.",
-  "No benched player has produced anything tonight, so no manager has earned a bench roast yet. Three more games to change that.",
-  "MONSTARS and Thug Life are separated by FG% alone, and MONSTARS sits dead last tonight while chasing it."
+  "Gopher Gold leads the night at 12:05am with 13 of 15 games done, and theInfamous still holds the five-all tie nobody earned.",
+  "Best line so far is a blank. Not one player on any roster has a stat, so whoever finds a box score has our thanks.",
+  "No bench is producing yet, which means nobody can blame a lineup for a night that does not exist.",
+  "Da Don Da Beard & Da Klaw trails BrookynDynasty 3-8 with zero swing categories, so that matchup is already a closed casket.",
+  "MONSTARS and Thug Life sit one FG% swing from deciding everything, and neither manager has earned that kind of pressure."
  ],
  "gauntlet": {
   "week": 6,
@@ -2043,36 +2043,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Kenrich Williams Is Carrying theInfamous",
-  "subhead": "Two pickups with one game each are the only reason theInfamous leads Gopher Gold at all.",
+  "headline": "De'Andre Hunter Is Carrying MONSTARS Out of a Hole",
+  "subhead": "Two games, 30 points, 13 defensive rebounds and 11 assists have hauled MONSTARS from a 3-7 deficit to a tie with Thug Life.",
   "zingers": [
    {
-    "team": "theInfamous",
-    "line": "Mo Bamba and Kenrich Williams are the only reason theInfamous leads Gopher Gold 5-4; without them it is 3-6 and a funeral."
+    "team": "MONSTARS \u2604\ufe0f",
+    "line": "De'Andre Hunter's two games turned a 3-7 loss into 5-5 against Thug Life, and Jerami Grant has zero games to defend himself."
    },
    {
-    "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter dropped 30 points and 11 assists in two games, and Jerami Grant's old owner is why MONSTARS even has a 5-5 tie."
+    "team": "theInfamous",
+    "line": "Mo Bamba and Kenrich Williams flipped 3PTM, AST and ST against Gopher Gold; without them theInfamous trails 3-6 instead of leading 5-4."
+   },
+   {
+    "team": "Gopher Gold",
+    "line": "Gopher Gold has 21 starts left to theInfamous's 19, and still can't be trusted to use them."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw trail BrookynDynasty 8-3 with fewer starts left, which is a slow-motion surrender with a roster attached."
+    "line": "Da Don Da Beard & Da Klaw trails BrookynDynasty 3-8 with no live swing category, which is a roster-wide confession."
    },
    {
-    "team": "Suggs to be you",
-    "line": "Suggs to be you are down 7-3 to Zero Fox Given with an equal number of starts left, so no excuses remain."
-   },
-   {
-    "team": "Adam Silver Dez Nuts",
-    "line": "Adam Silver Dez Nuts lead White Mambas 6-3, and Julian Champagnie's 11 points did not change the result, so don't thank him."
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given leads Suggs to be you 7-3 with Jrue Holiday swinging the matchup, and Suggs has only FG%, FT%, 3PT% and AST to chase."
    },
    {
     "team": "LeParth James",
-    "line": "LeParth James trail Nova Knicks 6-5 with a two-start edge, which means the only thing in the way is LeParth James."
+    "line": "LeParth James has a 23-21 starts edge on Nova Knicks and still trails 5-6, with DREB the only category in play."
    },
    {
-    "team": "Thug Life",
-    "line": "Thug Life lead MONSTARS 6-5, and Jaden McDaniels topping the week's best players is the only thing between them and a collapse."
+    "team": "Adam Silver Dez Nuts",
+    "line": "Adam Silver Dez Nuts leads White Mambas 6-4, and Julian Champagnie's 11 points did not even change the result."
    }
   ]
  },
