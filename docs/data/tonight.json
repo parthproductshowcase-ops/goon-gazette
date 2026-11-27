@@ -1,8 +1,8 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-26T18:55-05:00",
+ "generated_at": "2026-11-27T18:55-05:00",
  "matchups": [
   {
    "a": "478.l.39751.t.10",
@@ -541,188 +541,189 @@
  ],
  "lineups": {
   "478.l.39751.t.4": {
-   "benched_with_game": [
-    "Payton Pritchard",
-    "Franz Wagner",
-    "Matisse Thybulle"
-   ],
+   "benched_with_game": [],
    "starting_out": [
     {
      "player": "Jaylen Brown",
      "status": "O"
-    },
-    {
-     "player": "Aday Mara",
-     "status": "O"
     }
    ],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.9": {
    "benched_with_game": [
-    "Jeremiah Fears",
-    "Quentin Grimes",
-    "Walker Kessler"
+    "Kel'el Ware"
    ],
-   "starting_out": [
-    {
-     "player": "Grayson Allen",
-     "status": "O"
-    }
-   ],
+   "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.6": {
    "benched_with_game": [
     "Derrick White",
-    "Brice Sensabaugh",
-    "Derik Queen"
+    "Ja'Kobe Walter"
    ],
    "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.8": {
-   "benched_with_game": [
-    "Rudy Gobert",
-    "Cooper Flagg",
-    "Aaron Wiggins"
-   ],
+   "benched_with_game": [],
    "starting_out": [
     {
-     "player": "Cade Cunningham",
+     "player": "Dylan Harper",
+     "status": "O"
+    },
+    {
+     "player": "Kevin Porter Jr.",
      "status": "O"
     }
    ],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.1": {
-   "benched_with_game": [
-    "Christian Braun",
-    "Mo Bamba"
+   "benched_with_game": [],
+   "starting_out": [
+    {
+     "player": "Jusuf Nurki\u0107",
+     "status": "O"
+    }
    ],
-   "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.7": {
-   "benched_with_game": [
-    "Dyson Daniels"
-   ],
+   "benched_with_game": [],
    "starting_out": [],
-   "empty_slots": 0,
-   "schedule_known": false
+   "empty_slots": 1,
+   "schedule_known": true
   },
   "478.l.39751.t.10": {
-   "benched_with_game": [
-    "Neemias Queta",
-    "John Collins",
-    "Keyonte George"
-   ],
+   "benched_with_game": [],
    "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.2": {
    "benched_with_game": [
-    "Daniel Gafford",
-    "Yves Missi"
-   ],
-   "starting_out": [
-    {
-     "player": "Norman Powell",
-     "status": "O"
-    }
-   ],
-   "empty_slots": 0,
-   "schedule_known": false
-  },
-  "478.l.39751.t.12": {
-   "benched_with_game": [
-    "Ivica Zubac",
-    "Immanuel Quickley",
-    "Jalen Suggs"
+    "Austin Reaves"
    ],
    "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
+  },
+  "478.l.39751.t.12": {
+   "benched_with_game": [],
+   "starting_out": [],
+   "empty_slots": 0,
+   "schedule_known": true
   },
   "478.l.39751.t.3": {
    "benched_with_game": [
-    "Paul George",
-    "Ace Bailey",
-    "Pascal Siakam"
+    "Kelly Oubre Jr."
    ],
    "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.5": {
-   "benched_with_game": [
-    "Aaron Gordon",
-    "Jalen Johnson"
-   ],
+   "benched_with_game": [],
    "starting_out": [
     {
      "player": "Ja Morant",
      "status": "O"
+    },
+    {
+     "player": "Duncan Robinson",
+     "status": "O"
     }
    ],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   },
   "478.l.39751.t.11": {
-   "benched_with_game": [
-    "DeMar DeRozan",
-    "Kyrie Irving"
+   "benched_with_game": [],
+   "starting_out": [
+    {
+     "player": "CJ McCollum",
+     "status": "O"
+    }
    ],
-   "starting_out": [],
    "empty_slots": 0,
-   "schedule_known": false
+   "schedule_known": true
   }
  },
  "moves_today": [
   {
-   "id": "478.l.39751.tr.259",
-   "ts": 1795703819,
+   "id": "478.l.39751.tr.262",
+   "ts": 1795823371,
    "kind": "add",
-   "team": "478.l.39751.t.8",
+   "team": "478.l.39751.t.6",
    "source": "freeagents",
    "faab": null,
-   "pk": "478.p.6218",
-   "player": "Kevin Porter Jr."
+   "pk": "478.p.10278",
+   "player": "Ja'Kobe Walter"
   },
   {
-   "id": "478.l.39751.tr.259",
-   "ts": 1795703819,
+   "id": "478.l.39751.tr.262",
+   "ts": 1795823371,
    "kind": "drop",
-   "team": "478.l.39751.t.8",
+   "team": "478.l.39751.t.6",
    "source": "team",
    "faab": null,
-   "pk": "478.p.10456",
-   "player": "Danny Wolf"
+   "pk": "478.p.6035",
+   "player": "Anfernee Simons"
+  },
+  {
+   "id": "478.l.39751.tr.261",
+   "ts": 1795813494,
+   "kind": "add",
+   "team": "478.l.39751.t.6",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.6275",
+   "player": "Caleb Martin"
+  },
+  {
+   "id": "478.l.39751.tr.260",
+   "ts": 1795787190,
+   "kind": "add",
+   "team": "478.l.39751.t.1",
+   "source": "freeagents",
+   "faab": null,
+   "pk": "478.p.10092",
+   "player": "Jaime Jaquez Jr."
+  },
+  {
+   "id": "478.l.39751.tr.260",
+   "ts": 1795787190,
+   "kind": "drop",
+   "team": "478.l.39751.t.1",
+   "source": "team",
+   "faab": null,
+   "pk": "478.p.6076",
+   "player": "Kenrich Williams"
   }
  ],
- "headline": "Gopher Gold Starts Two Ghosts",
+ "headline": "Injured Starters Fill Locked Lineups",
  "zingers": [
   {
-   "team": "Gopher Gold",
-   "line": "Jaylen Brown and Aday Mara are both out, both starting, while Pritchard, Franz Wagner and Thybulle sit healthy with games tonight in a 5-5 tie."
+   "team": "MONSTARS \u2604\ufe0f",
+   "line": "Ja Morant and Duncan Robinson are both out and both starting, which is how you turn a one-category lead into a prayer."
   },
   {
    "team": "Suggs to be you",
-   "line": "Cade Cunningham is out and starting, Gobert and Cooper Flagg rest on the bench, and a 3-7 deficit somehow looks like the plan."
+   "line": "Dylan Harper and Kevin Porter Jr. are both injured and both starting, and Suggs to be you already trails Zero Fox Given 3-7."
   },
   {
-   "team": "Thug Life",
-   "line": "Grayson Allen is out and starting while Fears, Grimes and Kessler benched healthy, and Thug Life leads by one category anyway."
+   "team": "LeParth James",
+   "line": "Derrick White and Ja'Kobe Walter both play tonight, both sit on the bench, and both belong to a manager trailing 5-6."
   },
   {
-   "team": "Adam Silver Dez Nuts",
-   "line": "Leading 6-4, they benched Zubac, Quickley and Jalen Suggs, and their lead is already writing checks they won't cash."
+   "team": "Zero Fox Given",
+   "line": "Zero Fox Given leads 7-3 and still starts an injured CJ McCollum, which is called hoping nobody notices."
   }
  ],
  "by": "claude"

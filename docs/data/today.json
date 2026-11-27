@@ -1,10 +1,10 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-27T01:35-05:00",
- "as_of": "1:35am",
- "update": 15,
+ "generated_at": "2026-11-27T18:55-05:00",
+ "as_of": "6:55pm",
+ "update": 1,
  "updates": 15,
  "final": false,
  "cats": [
@@ -213,12 +213,7 @@
      "swing": true
     }
    ],
-   "swings": 5,
-   "prev_score": [
-    4,
-    6,
-    1
-   ]
+   "swings": 5
   },
   {
    "a": "478.l.39751.t.8",
@@ -307,12 +302,7 @@
      "swing": false
     }
    ],
-   "swings": 4,
-   "prev_score": [
-    3,
-    7,
-    1
-   ]
+   "swings": 4
   },
   {
    "a": "478.l.39751.t.1",
@@ -401,12 +391,7 @@
      "swing": true
     }
    ],
-   "swings": 3,
-   "prev_score": [
-    5,
-    5,
-    1
-   ]
+   "swings": 3
   },
   {
    "a": "478.l.39751.t.5",
@@ -495,12 +480,7 @@
      "swing": false
     }
    ],
-   "swings": 1,
-   "prev_score": [
-    5,
-    6,
-    0
-   ]
+   "swings": 1
   },
   {
    "a": "478.l.39751.t.6",
@@ -589,12 +569,7 @@
      "swing": false
     }
    ],
-   "swings": 1,
-   "prev_score": [
-    5,
-    6,
-    0
-   ]
+   "swings": 1
   },
   {
    "a": "478.l.39751.t.2",
@@ -683,16 +658,166 @@
      "swing": false
     }
    ],
-   "swings": 0,
-   "prev_score": [
-    3,
-    8,
-    0
-   ]
+   "swings": 0
   }
  ],
  "flips": [],
- "games": [],
+ "games": [
+  {
+   "teams": [
+    "MIA",
+    "NYK"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 7:00 PM EST"
+  },
+  {
+   "teams": [
+    "MIL",
+    "DET"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 7:30 PM EST"
+  },
+  {
+   "teams": [
+    "PHI",
+    "IND"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 7:30 PM EST"
+  },
+  {
+   "teams": [
+    "BKN",
+    "TOR"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 7:30 PM EST"
+  },
+  {
+   "teams": [
+    "ATL",
+    "BOS"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 8:00 PM EST"
+  },
+  {
+   "teams": [
+    "MEM",
+    "MIN"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 8:30 PM EST"
+  },
+  {
+   "teams": [
+    "DAL",
+    "PHX"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 9:00 PM EST"
+  },
+  {
+   "teams": [
+    "LAL",
+    "SAS"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 9:30 PM EST"
+  },
+  {
+   "teams": [
+    "DEN",
+    "UTA"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 9:30 PM EST"
+  },
+  {
+   "teams": [
+    "NOP",
+    "LAC"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 9:30 PM EST"
+  },
+  {
+   "teams": [
+    "GSW",
+    "POR"
+   ],
+   "score": [
+    0,
+    0
+   ],
+   "state": "pre",
+   "clock": "0.0",
+   "period": 0,
+   "detail": "11/27 - 9:30 PM EST"
+  }
+ ],
  "lines": [],
  "bench": [],
  "team_nights": [
@@ -700,123 +825,171 @@
    "team": "478.l.39751.t.4",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Tyrese Maxey",
+    "Devin Vassell",
+    "Collin Gillespie"
+   ],
    "rank": 1
   },
   {
    "team": "478.l.39751.t.9",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Jalen Brunson",
+    "Landry Shamet",
+    "Jeremiah Fears"
+   ],
    "rank": 2
   },
   {
    "team": "478.l.39751.t.6",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Devin Booker",
+    "Stephon Castle",
+    "Brice Sensabaugh"
+   ],
    "rank": 3
   },
   {
    "team": "478.l.39751.t.8",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 7,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Darryn Peterson",
+    "Dylan Harper",
+    "Aaron Wiggins"
+   ],
    "rank": 4
   },
   {
    "team": "478.l.39751.t.1",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 8,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Ayo Dosunmu",
+    "Christian Braun",
+    "Jayson Tatum"
+   ],
    "rank": 5
   },
   {
    "team": "478.l.39751.t.7",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 9,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "De'Aaron Fox",
+    "Cam Spencer",
+    "Brandin Podziemski"
+   ],
    "rank": 6
   },
   {
    "team": "478.l.39751.t.10",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 7,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Jamal Murray",
+    "Keyonte George",
+    "Ryan Rollins"
+   ],
    "rank": 7
   },
   {
    "team": "478.l.39751.t.2",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Daniss Jenkins",
+    "Nickeil Alexander-Walker",
+    "Luka Don\u010di\u0107"
+   ],
    "rank": 8
   },
   {
    "team": "478.l.39751.t.12",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 7,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Immanuel Quickley",
+    "Cedric Coward",
+    "VJ Edgecombe"
+   ],
    "rank": 9
   },
   {
    "team": "478.l.39751.t.3",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Mikel Brown Jr.",
+    "Brayden Burries",
+    "Davion Mitchell"
+   ],
    "rank": 10
   },
   {
    "team": "478.l.39751.t.5",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Ja Morant",
+    "Ty Jerome",
+    "Darius Garland"
+   ],
    "rank": 11
   },
   {
    "team": "478.l.39751.t.11",
    "value": 0,
    "played": 0,
-   "with_game": null,
+   "with_game": 10,
    "bench_value": 0,
-   "top": [],
+   "top": [
+    "Jrue Holiday",
+    "Kyrie Irving",
+    "CJ McCollum"
+   ],
    "rank": 12
   }
  ],
- "headline": "Fifteen Games Done, Nobody Left To Blame",
+ "headline": "Nothing Has Tipped, MONSTARS Already Sweating",
  "notes": [
-  "Every game is final and no player in this league has a single stat to show for it, so everyone's night was identical garbage.",
-  "Best line so far is a blank. Gopher Gold ranks first on a night where nobody on any roster did anything.",
-  "Zero Fox Given sits dead last tonight with no player putting up a stat, which is a hell of a way to trail Suggs to be you.",
-  "No lead flipped since the last update. Every matchup froze, and managers owe nobody an explanation they can't also give a blank box score.",
-  "Nobody on a bench produced either. Thug Life ranks second tonight with zero players recording a stat, so mediocrity is apparently a strategy."
+  "Zero games are final and zero have tipped, which still leaves Zero Fox Given dead last in the night rankings and trailing 7-3 to Suggs to be you.",
+  "No lead has flipped yet, because nobody has played. BrookynDynasty's 8-3 cushion over Da Don Da Beard & Da Klaw is still the only thing that looks solid.",
+  "Best line so far is a blank. Gopher Gold sits on top of the night rankings with no stats, which is the standard it has earned.",
+  "Bench check is blank for now. Every manager still has time to leave a heater sitting on the pine tonight, and someone will.",
+  "FG% is the only category swinging between MONSTARS and Thug Life, and a full night of volume shooters will decide it before anyone's alarm goes off."
  ],
  "gauntlet": {
   "week": 6,
   "live": true,
-  "through": "2026-11-26",
+  "through": "2026-11-27",
   "lines": {
    "478.l.39751.t.1": {
     "5": 0.483,
@@ -990,179 +1163,12 @@
    "478.l.39751.t.12": "478.l.39751.t.10"
   }
  },
- "race": {
-  "rows": [
-   {
-    "team": "478.l.39751.t.4",
-    "rank": 1,
-    "w": 32,
-    "l": 22,
-    "t": 1,
-    "back": 0.0,
-    "vs_line": -4.0,
-    "playoff_odds": 0.992,
-    "top_seed_odds": 0.399,
-    "proj_w": 114,
-    "odds_move": 0.0
-   },
-   {
-    "team": "478.l.39751.t.9",
-    "rank": 2,
-    "w": 32,
-    "l": 23,
-    "t": 0,
-    "back": 0.5,
-    "vs_line": -3.5,
-    "playoff_odds": 0.994,
-    "top_seed_odds": 0.419,
-    "proj_w": 114,
-    "odds_move": 0.002
-   },
-   {
-    "team": "478.l.39751.t.6",
-    "rank": 3,
-    "w": 31,
-    "l": 23,
-    "t": 1,
-    "back": 1.0,
-    "vs_line": -3.0,
-    "playoff_odds": 0.94,
-    "top_seed_odds": 0.119,
-    "proj_w": 109,
-    "odds_move": -0.005
-   },
-   {
-    "team": "478.l.39751.t.8",
-    "rank": 4,
-    "w": 30,
-    "l": 24,
-    "t": 1,
-    "back": 2.0,
-    "vs_line": -2.0,
-    "playoff_odds": 0.265,
-    "top_seed_odds": 0.002,
-    "proj_w": 97,
-    "odds_move": -0.023
-   },
-   {
-    "team": "478.l.39751.t.1",
-    "rank": 5,
-    "w": 29,
-    "l": 26,
-    "t": 0,
-    "back": 3.5,
-    "vs_line": -0.5,
-    "playoff_odds": 0.797,
-    "top_seed_odds": 0.033,
-    "proj_w": 105,
-    "odds_move": 0.006
-   },
-   {
-    "team": "478.l.39751.t.7",
-    "rank": 6,
-    "w": 28,
-    "l": 26,
-    "t": 1,
-    "back": 4.0,
-    "vs_line": 0.0,
-    "playoff_odds": 0.178,
-    "top_seed_odds": 0.0,
-    "proj_w": 95,
-    "odds_move": 0.004
-   },
-   {
-    "team": "478.l.39751.t.10",
-    "rank": 7,
-    "w": 28,
-    "l": 26,
-    "t": 1,
-    "back": 4.0,
-    "vs_line": 0.0,
-    "playoff_odds": 0.615,
-    "top_seed_odds": 0.011,
-    "proj_w": 102,
-    "odds_move": -0.004
-   },
-   {
-    "team": "478.l.39751.t.2",
-    "rank": 8,
-    "w": 28,
-    "l": 27,
-    "t": 0,
-    "back": 4.5,
-    "vs_line": 0.5,
-    "playoff_odds": 0.198,
-    "top_seed_odds": 0.001,
-    "proj_w": 96,
-    "odds_move": -0.025
-   },
-   {
-    "team": "478.l.39751.t.12",
-    "rank": 9,
-    "w": 27,
-    "l": 27,
-    "t": 1,
-    "back": 5.0,
-    "vs_line": 1.0,
-    "playoff_odds": 0.622,
-    "top_seed_odds": 0.015,
-    "proj_w": 102,
-    "odds_move": 0.02
-   },
-   {
-    "team": "478.l.39751.t.3",
-    "rank": 10,
-    "w": 25,
-    "l": 30,
-    "t": 0,
-    "back": 7.5,
-    "vs_line": 3.5,
-    "playoff_odds": 0.401,
-    "top_seed_odds": 0.003,
-    "proj_w": 99,
-    "odds_move": 0.028
-   },
-   {
-    "team": "478.l.39751.t.5",
-    "rank": 11,
-    "w": 18,
-    "l": 34,
-    "t": 3,
-    "back": 13.0,
-    "vs_line": 9.0,
-    "playoff_odds": 0.0,
-    "top_seed_odds": 0.0,
-    "proj_w": 76,
-    "odds_move": 0.0
-   },
-   {
-    "team": "478.l.39751.t.11",
-    "rank": 12,
-    "w": 17,
-    "l": 37,
-    "t": 1,
-    "back": 15.0,
-    "vs_line": 11.0,
-    "playoff_odds": 0.0,
-    "top_seed_odds": 0.0,
-    "proj_w": 74,
-    "odds_move": 0.0
-   }
-  ],
-  "playoff_teams": 6,
-  "weeks_left": 13,
-  "reg_end": 18,
-  "sims": 2000,
-  "week": 6,
-  "coarse": true,
-  "through": "2026-11-26",
-  "after": "late"
- },
+ "race": null,
  "players_current": {
   "week": 6,
   "start": "2026-11-23",
-  "end": "2026-11-26",
-  "days": 4,
+  "end": "2026-11-27",
+  "days": 5,
   "top_players": [
    {
     "pk": "478.p.6420",
@@ -1678,97 +1684,56 @@
     }
    },
    {
-    "pk": "478.p.6076",
-    "name": "Kenrich Williams",
-    "team": "478.l.39751.t.1",
-    "opp": "478.l.39751.t.4",
-    "games": 1,
-    "net": 2,
+    "pk": "478.p.6171",
+    "name": "Rui Hachimura",
+    "team": "478.l.39751.t.9",
+    "opp": "478.l.39751.t.5",
+    "games": 2,
+    "net": 1,
     "acquired": {
-     "date": "2026-11-25",
+     "date": "2026-11-19",
      "source": "freeagents",
      "faab": null
     },
     "swung": [
-     "10",
-     "16",
-     "17"
+     "16"
     ],
     "score": [
      5,
-     4,
-     2
+     5,
+     1
     ],
     "without": [
-     3,
-     5,
-     3
+     4,
+     6,
+     1
     ],
     "flipped": true,
-    "decided": true,
-    "value": -0.51,
+    "decided": false,
+    "value": 3.12,
     "line": {
      "5": [
-      0.5,
-      4,
-      8
+      0.522,
+      12,
+      23
      ],
      "8": [
-      1.0,
-      2,
-      2
+      0.75,
+      6,
+      8
      ],
      "10": 3.0,
-     "12": 13.0,
-     "13": 1.0,
-     "14": 4.0,
-     "16": 1.0,
-     "17": 3.0,
-     "18": 0,
-     "19": 1.0
+     "12": 33.0,
+     "13": 3.0,
+     "14": 12.0,
+     "16": 8.0,
+     "17": 0,
+     "18": 1.0,
+     "19": 2.0
     }
    }
   ],
   "pickups": [
-   {
-    "team": "478.l.39751.t.1",
-    "opp": "478.l.39751.t.4",
-    "score": [
-     5,
-     4,
-     2
-    ],
-    "without": [
-     3,
-     6,
-     2
-    ],
-    "carried": true,
-    "net": 2,
-    "swung": [
-     "10",
-     "16",
-     "17"
-    ],
-    "pickups": [
-     {
-      "name": "Mo Bamba",
-      "games": 1,
-      "desc": "1 game: 6 PTS, 7 DREB, 2 AST, 2 BLK, 3-7 FG",
-      "added": "2026-11-15",
-      "dropped": "Jaxson Hayes",
-      "dropped_desc": "0 games"
-     },
-     {
-      "name": "Kenrich Williams",
-      "games": 1,
-      "desc": "1 game: 13 PTS, 1 OREB, 4 DREB, 1 AST, 3 3PTM, 3 ST",
-      "added": "2026-11-25",
-      "dropped": "Cameron Johnson",
-      "dropped_desc": "0 games"
-     }
-    ]
-   },
    {
     "team": "478.l.39751.t.5",
     "opp": "478.l.39751.t.9",
@@ -1795,6 +1760,35 @@
       "desc": "2 games: 30 PTS, 1 OREB, 13 DREB, 11 AST, 4 3PTM, 2 ST",
       "added": "2026-11-23",
       "dropped": "Jerami Grant",
+      "dropped_desc": "0 games"
+     }
+    ]
+   },
+   {
+    "team": "478.l.39751.t.1",
+    "opp": "478.l.39751.t.4",
+    "score": [
+     5,
+     4,
+     2
+    ],
+    "without": [
+     4,
+     5,
+     2
+    ],
+    "carried": true,
+    "net": 1,
+    "swung": [
+     "16"
+    ],
+    "pickups": [
+     {
+      "name": "Mo Bamba",
+      "games": 1,
+      "desc": "1 game: 6 PTS, 7 DREB, 2 AST, 2 BLK, 3-7 FG",
+      "added": "2026-11-15",
+      "dropped": "Jaxson Hayes",
       "dropped_desc": "0 games"
      }
     ]
@@ -1933,14 +1927,6 @@
     "swung": [],
     "pickups": [
      {
-      "name": "Anfernee Simons",
-      "games": 2,
-      "desc": "2 games: 9 PTS, 1 OREB, 1 AST, 2 3PTM, 1 ST, 3-9 FG",
-      "added": "2026-11-23",
-      "dropped": "Maxime Raynaud",
-      "dropped_desc": "0 games"
-     },
-     {
       "name": "Brice Sensabaugh",
       "games": 1,
       "desc": "1 game: 6 PTS, 2 OREB, 2 DREB, 1 AST, 2 ST, 1 BLK",
@@ -1975,14 +1961,6 @@
     "net": 0,
     "swung": [],
     "pickups": [
-     {
-      "name": "Cam Spencer",
-      "games": 2,
-      "desc": "2 games: 40 PTS, 1 DREB, 9 AST, 5 3PTM, 12-17 FG",
-      "added": "2026-11-13",
-      "dropped": "Dylan Cardwell",
-      "dropped_desc": "2 games: 4 OREB, 6 DREB, 3 BLK, 0-3 FG"
-     },
      {
       "name": "Keldon Johnson",
       "games": 2,
@@ -2124,50 +2102,21 @@
   "regrets": [],
   "bench_cost": [],
   "games_left": {
-   "478.l.39751.t.4": 21,
-   "478.l.39751.t.9": 21,
-   "478.l.39751.t.6": 23,
-   "478.l.39751.t.8": 19,
-   "478.l.39751.t.1": 19,
-   "478.l.39751.t.7": 21,
-   "478.l.39751.t.10": 21,
-   "478.l.39751.t.2": 20,
-   "478.l.39751.t.12": 21,
-   "478.l.39751.t.3": 22,
-   "478.l.39751.t.5": 19,
-   "478.l.39751.t.11": 19
+   "478.l.39751.t.4": 12,
+   "478.l.39751.t.9": 11,
+   "478.l.39751.t.6": 12,
+   "478.l.39751.t.8": 11,
+   "478.l.39751.t.1": 13,
+   "478.l.39751.t.7": 12,
+   "478.l.39751.t.10": 14,
+   "478.l.39751.t.2": 10,
+   "478.l.39751.t.12": 14,
+   "478.l.39751.t.3": 12,
+   "478.l.39751.t.5": 11,
+   "478.l.39751.t.11": 10
   }
  },
  "sched_left": {
-  "2026-11-27": [
-   "ATL",
-   "BKN",
-   "BOS",
-   "DAL",
-   "DEN",
-   "DET",
-   "GS",
-   "GSW",
-   "IND",
-   "LAC",
-   "LAL",
-   "MEM",
-   "MIA",
-   "MIL",
-   "MIN",
-   "NO",
-   "NOP",
-   "NY",
-   "NYK",
-   "PHI",
-   "PHX",
-   "POR",
-   "SA",
-   "SAS",
-   "TOR",
-   "UTA",
-   "UTAH"
-  ],
   "2026-11-28": [
    "BKN",
    "CHA",
@@ -2210,36 +2159,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Kenrich Williams Is Carrying theInfamous Past Gopher Gold",
-  "subhead": "Two pickups flipped a 3-6 loss into a 5-4 lead, and the manager who made them gets the credit.",
+  "headline": "De'Andre Hunter Is Rescuing MONSTARS Right Now",
+  "subhead": "Two Hunter games and one waiver wire swap turned a 3-7 deficit into a 5-5 tie against Thug Life.",
   "zingers": [
    {
-    "team": "theInfamous",
-    "line": "Mo Bamba and Kenrich Williams together turn a 3-6 deficit into a 5-4 lead over Gopher Gold, so the waiver wire is doing the managing."
-   },
-   {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter has 30 points, 13 defensive boards and 11 assists in two games, and without him MONSTARS \u2604\ufe0f would be down 3-7 to Thug Life."
+    "line": "De'Andre Hunter has 30 PTS, 13 DREB, 11 AST and 4 3PTM in two games, and he alone dragged this team from 3-7 to 5-5."
    },
    {
-    "team": "Gopher Gold",
-    "line": "Gopher Gold is staring at 21 starts left against 19, a lead on paper that evaporates the moment theInfamous's pickups keep producing."
+    "team": "theInfamous",
+    "line": "Mo Bamba's one game of 6 PTS, 7 DREB and 2 BLK flipped AST, so the Jaxson Hayes drop is paying off against Gopher Gold."
+   },
+   {
+    "team": "Zero Fox Given",
+    "line": "Jrue Holiday is swinging this matchup, which is generous, since Zero Fox Given still trails 7-3 and has not scored a point tonight."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw trails BrookynDynasty 3-8 with no swing categories left, which is what resignation looks like on a scoreboard."
-   },
-   {
-    "team": "Suggs to be you",
-    "line": "Suggs to be you is down 3-7 to Zero Fox Given with equal starts left, so no schedule math is coming to the rescue."
-   },
-   {
-    "team": "LeParth James",
-    "line": "LeParth James has 23 starts left to Nova Knicks' 21 and still trails 5-6, so the extra games had better actually show up."
+    "line": "Trailing 8-3 to BrookynDynasty with 10 starts left against 12, this team is behind on the scoreboard and on the calendar."
    },
    {
     "team": "Adam Silver Dez Nuts",
-    "line": "Adam Silver Dez Nuts leads White Mambas 6-4, and Julian Champagnie's 11 points did not even decide it, which makes the pickup decoration."
+    "line": "Julian Champagnie's 11 PTS and 1 3PTM didn't change the result, so the Bilal Coulibaly drop is a shrug, not a heist."
+   },
+   {
+    "team": "Nova Knicks",
+    "line": "Keldon Johnson is swinging this matchup, and DREB is the lone category keeping LeParth James within reach of a 6-5 deficit."
+   },
+   {
+    "team": "Thug Life",
+    "line": "Jaden McDaniels is the week's top player and Thug Life is still tied 5-5 with MONSTARS, which is a waste of a monster."
    }
   ]
  },
