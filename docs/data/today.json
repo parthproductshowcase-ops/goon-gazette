@@ -2,9 +2,9 @@
  "date": "2026-11-26",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-27T00:35-05:00",
- "as_of": "12:35am",
- "update": 14,
+ "generated_at": "2026-11-27T01:05-05:00",
+ "as_of": "1:05am",
+ "update": 15,
  "updates": 15,
  "final": false,
  "cats": [
@@ -805,13 +805,13 @@
    "rank": 12
   }
  ],
- "headline": "Quiet Night, Loud Excuses Across League",
+ "headline": "Quiet Night, Loud Mistakes Everywhere",
  "notes": [
-  "Thirteen games into tonight's slate and nobody has a stat to show for it. Gopher Gold leads the night rankings with a column of zeroes. That tells you everything.",
-  "MONSTARS sit dead last on the night, 5-6 behind Thug Life with only FG% still swinging. The Thug Life lead is paper thin.",
-  "Zero Fox Given is last in tonight's ranking and still up 7-3 on Suggs to be you. Nobody is earning anything right now.",
-  "No benched player has put up a line so far. Every manager can stop blaming his lineup and start blaming his picks.",
-  "LeParth James trails Nova Knicks 5-6 with only DREB left to swing. One rebound decides whether he sulks or celebrates."
+  "Every game is final and no lead flipped since the last update, so tonight's drama is whoever was already losing staying lost.",
+  "Gopher Gold owns the best night in the league while the scoreboard shows nobody has a single player with a stat to brag about.",
+  "Da Don Da Beard & Da Klaw trails BrookynDynasty 3-8 with no swing categories left, which is called being buried, not competing.",
+  "Zero Fox Given leads Suggs to be you 7-3, and Suggs is still staring at four swing categories he cannot touch.",
+  "MONSTARS trails Thug Life 5-6 with FG% as the lone swing category, so one percentage point is carrying the whole weekend."
  ],
  "gauntlet": {
   "week": 6,
@@ -2043,36 +2043,36 @@
   ]
  },
  "week_copy": {
-  "headline": "Pickups Are Doing The Heavy Lifting",
-  "subhead": "Three managers are winning on waiver-wire moves, and one of them is flipping a matchup single-handedly.",
+  "headline": "De'Andre Hunter Is Rescuing MONSTARS",
+  "subhead": "Pickups are deciding this week, and the managers who made smart adds are the only ones sleeping well.",
   "zingers": [
    {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter gave MONSTARS 30 points, 13 defensive boards and 11 assists in two games, and without him they would be down 3-7 to Thug Life."
+    "line": "De'Andre Hunter has 30 PTS, 13 DREB, 11 AST and 4 3PTM, and without him MONSTARS would trail Thug Life 3-7."
    },
    {
     "team": "theInfamous",
-    "line": "Without Mo Bamba and Kenrich Williams, theInfamous would be down 3-6 to Gopher Gold, not up 5-4; those two flipped 3PTM, AST and ST."
-   },
-   {
-    "team": "Adam Silver Dez Nuts",
-    "line": "Adam Silver Dez Nuts got 11 points from Julian Champagnie, yet he was never the reason they lead White Mambas 6-3."
+    "line": "Kenrich Williams (13 PTS, 3 3PTM, 3 ST) and Mo Bamba flipped this matchup, and theInfamous would trail Gopher Gold 3-6 without them."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Da Don Da Beard & Da Klaw trail BrookynDynasty 3-8 with no category left swinging. That is a funeral, not a matchup."
+    "line": "Da Don Da Beard & Da Klaw trails BrookynDynasty 3-8 with no swing categories, a matchup that stopped being competitive days ago."
    },
    {
-    "team": "Thug Life",
-    "line": "Thug Life holds a 6-5 edge over MONSTARS thanks to Jaden McDaniels, the week's top scorer, and 21 starts left to protect it."
+    "team": "Zero Fox Given",
+    "line": "Zero Fox Given leads Suggs to be you 7-3, and Jrue Holiday is swinging the matchup, so Suggs is being outmanaged and outplayed."
+   },
+   {
+    "team": "Gopher Gold",
+    "line": "Gopher Gold leads the night's rankings yet sits level at 5-5 with 21 starts left, a bad mix of effort and results."
+   },
+   {
+    "team": "Adam Silver Dez Nuts",
+    "line": "Adam Silver Dez Nuts leads White Mambas 6-4, and Julian Champagnie's 11 PTS barely mattered, since the lead existed without him."
    },
    {
     "team": "LeParth James",
-    "line": "LeParth James has 23 starts left to Nova Knicks' 21, trails 5-6, and will need every one of those extra games."
-   },
-   {
-    "team": "Suggs to be you",
-    "line": "Suggs to be you trails Zero Fox Given 3-7 despite Moussa Diabat\u00e9 ranking among the week's top players. One man cannot carry a roster."
+    "line": "LeParth James has 23 starts left against 21 for Nova Knicks yet trails 5-6, wasting the volume edge so far."
    }
   ]
  },
