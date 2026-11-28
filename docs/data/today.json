@@ -2,9 +2,9 @@
  "date": "2026-11-27",
  "week": 6,
  "sample": false,
- "generated_at": "2026-11-27T18:55-05:00",
- "as_of": "6:55pm",
- "update": 1,
+ "generated_at": "2026-11-27T19:05-05:00",
+ "as_of": "7:05pm",
+ "update": 2,
  "updates": 15,
  "final": false,
  "cats": [
@@ -213,7 +213,12 @@
      "swing": true
     }
    ],
-   "swings": 5
+   "swings": 5,
+   "prev_score": [
+    4,
+    6,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.8",
@@ -302,7 +307,12 @@
      "swing": false
     }
    ],
-   "swings": 4
+   "swings": 4,
+   "prev_score": [
+    3,
+    7,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.1",
@@ -391,7 +401,12 @@
      "swing": true
     }
    ],
-   "swings": 3
+   "swings": 3,
+   "prev_score": [
+    5,
+    5,
+    1
+   ]
   },
   {
    "a": "478.l.39751.t.5",
@@ -480,7 +495,12 @@
      "swing": false
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    5,
+    6,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.6",
@@ -569,7 +589,12 @@
      "swing": false
     }
    ],
-   "swings": 1
+   "swings": 1,
+   "prev_score": [
+    5,
+    6,
+    0
+   ]
   },
   {
    "a": "478.l.39751.t.2",
@@ -658,7 +683,12 @@
      "swing": false
     }
    ],
-   "swings": 0
+   "swings": 0,
+   "prev_score": [
+    3,
+    8,
+    0
+   ]
   }
  ],
  "flips": [],
@@ -856,7 +886,7 @@
    "top": [
     "Devin Booker",
     "Stephon Castle",
-    "Brice Sensabaugh"
+    "Ja'Kobe Walter"
    ],
    "rank": 3
   },
@@ -978,13 +1008,13 @@
    "rank": 12
   }
  ],
- "headline": "Nothing Has Tipped, MONSTARS Already Sweating",
+ "headline": "Zero Games Played, Plenty Already Wrong",
  "notes": [
-  "Zero games are final and zero have tipped, which still leaves Zero Fox Given dead last in the night rankings and trailing 7-3 to Suggs to be you.",
-  "No lead has flipped yet, because nobody has played. BrookynDynasty's 8-3 cushion over Da Don Da Beard & Da Klaw is still the only thing that looks solid.",
-  "Best line so far is a blank. Gopher Gold sits on top of the night rankings with no stats, which is the standard it has earned.",
-  "Bench check is blank for now. Every manager still has time to leave a heater sitting on the pine tonight, and someone will.",
-  "FG% is the only category swinging between MONSTARS and Thug Life, and a full night of volume shooters will decide it before anyone's alarm goes off."
+  "Nobody has a lead flip, a best line or a worst line yet. Gopher Gold tops the night chart by default, which is the only thing they'll top.",
+  "Zero Fox Given sits last on the night board with nothing logged, and trails Suggs to be you 7-3 anyway. Consistency.",
+  "BrookynDynasty is up 8-3 on Da Don Da Beard & Da Klaw while holding the 10th-ranked night. They are winning by showing up.",
+  "MONSTARS \u2604\ufe0f trails Thug Life 6-5 with FG% the only swing category left, so one cold shooter from Tyler Herro ends it.",
+  "Nobody is benched and producing because nobody is producing. Every manager's lineup crime is still undiscovered. Give it a few hours."
  ],
  "gauntlet": {
   "week": 6,
@@ -2159,36 +2189,36 @@
   ]
  },
  "week_copy": {
-  "headline": "De'Andre Hunter Is Rescuing MONSTARS Right Now",
-  "subhead": "Two Hunter games and one waiver wire swap turned a 3-7 deficit into a 5-5 tie against Thug Life.",
+  "headline": "De'Andre Hunter Is Rescuing MONSTARS Single-Handedly",
+  "subhead": "Hunter's 30 points and 4 threes in two games turn a 3-7 deficit into a tie against Thug Life.",
   "zingers": [
    {
     "team": "MONSTARS \u2604\ufe0f",
-    "line": "De'Andre Hunter has 30 PTS, 13 DREB, 11 AST and 4 3PTM in two games, and he alone dragged this team from 3-7 to 5-5."
+    "line": "De'Andre Hunter, 30 points and 4 threes in two games, is the whole reason this is 5-5 and not 3-7 against Thug Life."
    },
    {
     "team": "theInfamous",
-    "line": "Mo Bamba's one game of 6 PTS, 7 DREB and 2 BLK flipped AST, so the Jaxson Hayes drop is paying off against Gopher Gold."
-   },
-   {
-    "team": "Zero Fox Given",
-    "line": "Jrue Holiday is swinging this matchup, which is generous, since Zero Fox Given still trails 7-3 and has not scored a point tonight."
+    "line": "Mo Bamba posted 7 boards and 2 assists in one game, and that alone flips the AST category against Gopher Gold."
    },
    {
     "team": "Da Don Da Beard & Da Klaw",
-    "line": "Trailing 8-3 to BrookynDynasty with 10 starts left against 12, this team is behind on the scoreboard and on the calendar."
+    "line": "Trailing BrookynDynasty 8-3 with two fewer starts left, this team is losing the week and the schedule."
    },
    {
-    "team": "Adam Silver Dez Nuts",
-    "line": "Julian Champagnie's 11 PTS and 1 3PTM didn't change the result, so the Bilal Coulibaly drop is a shrug, not a heist."
+    "team": "Zero Fox Given",
+    "line": "Jrue Holiday is swinging this matchup, and it's still 7-3 over Suggs to be you with one fewer start left."
+   },
+   {
+    "team": "Suggs to be you",
+    "line": "Moussa Diabat\u00e9 is a top player this week and Suggs still trail 7-3, which takes real commitment to losing."
    },
    {
     "team": "Nova Knicks",
-    "line": "Keldon Johnson is swinging this matchup, and DREB is the lone category keeping LeParth James within reach of a 6-5 deficit."
+    "line": "Keldon Johnson is swinging this matchup, yet it's 6-5 over LeParth James with DREB the only category left in play."
    },
    {
-    "team": "Thug Life",
-    "line": "Jaden McDaniels is the week's top player and Thug Life is still tied 5-5 with MONSTARS, which is a waste of a monster."
+    "team": "Adam Silver Dez Nuts",
+    "line": "Julian Champagnie's 11 points were a nice touch, but they did not change the result: this team was up 5-4 either way."
    }
   ]
  },
